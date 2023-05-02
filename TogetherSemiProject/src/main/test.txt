@@ -1,17 +1,1 @@
-11
-22
-<<<<<<< HEAD
-33
-=======
-<<<<<<< HEAD
-33333333
-=======
->>>>>>> branch 'main' of https://github.com/Jeon1301/together.git
 
-<<<<<<< HEAD
-
-
-=======
-33
->>>>>>> refs/heads/main
->>>>>>> branch 'main' of https://github.com/Jeon1301/together.git

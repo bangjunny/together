@@ -1,0 +1,21 @@
+#port설정
+server:
+  port: 9000
+  
+#mysql setting
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db-g66q7-kr.vpc-pub-cdb.ntruss.com:3306/bit701?serverTimezone=Asia/Seoul
+    username: together
+    password: together123!@#
+  servlet:
+    multipart:
+      max-file-size:
+        20MB
+    
+#mybatis
+mybatis:
+  type-aliases-package: com.semi.dto
+  mapper-locations:
+  - /mapper/**/*.xml

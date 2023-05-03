@@ -40,5 +40,11 @@ public class MoimController {
       return "/main/moim/moimdetail";
    }
    
+   @GetMapping("/moimform")
+   private String moimform()
+   {
+	   return "/main/moim/moimform";
+   }
+   
 }
 

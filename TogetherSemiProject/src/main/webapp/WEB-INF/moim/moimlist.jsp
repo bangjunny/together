@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-
+<h2>모임리스트</h2>
 </body>
 </html>
 

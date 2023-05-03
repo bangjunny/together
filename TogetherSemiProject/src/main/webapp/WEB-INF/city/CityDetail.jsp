@@ -33,7 +33,7 @@
         </div>
     </div>
     <pre>
-        게시글 영역${dto.cbcontent}
+        게시글 영역${dto.cbcontent}123
     </pre>
     <br><br><br>
 

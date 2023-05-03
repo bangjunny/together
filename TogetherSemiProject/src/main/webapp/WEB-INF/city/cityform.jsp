@@ -49,7 +49,7 @@
         <br>
         <input type="file" class="form-control" name="upload" id="myfile">
         <br>
-        <textarea name="content" class="form-control" style="resize: none;" placeholder="내용을 입력해주세요."></textarea>
+        <textarea name="content" class="form-control" style="resize: none;" placeholder="내용 내용을 입력해주세요."></textarea>
         <br>
         <hr>
             <button type="submit" class="btn btn-success" onclick="location.href=''" style="margin-left: 180px">작성</button>

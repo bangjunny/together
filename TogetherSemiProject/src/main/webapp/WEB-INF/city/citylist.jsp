@@ -52,6 +52,7 @@
         <option value="jeju">제주특별자치도</option>
     </optgroup>
 </select>
+<h1>글이 총 ${totalCount }개 있습니다</h1>
 <button style="float: right">글쓰기</button>
 <table class="table table-bordered">
     <tr>

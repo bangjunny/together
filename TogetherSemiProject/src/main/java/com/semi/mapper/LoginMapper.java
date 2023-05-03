@@ -1,5 +1,12 @@
 package com.semi.mapper;
 
-public class LoginMapper {
+
+
+import org.apache.ibatis.annotations.Mapper;
+
+
+
+@Mapper
+public interface LoginMapper {
 
 }

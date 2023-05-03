@@ -21,29 +21,60 @@
 body, body * {
 	font-family: 'Jua'
 }
+div.moim {
+	width: 600px;
+	height:1000px;
+	border:0px solid gray;
+	
+}
+pre.moimpre{
+	font-size: 14px;
+	margin:20px 10px;
+	height:700px;
+	border:1px solid gray;
+}
+img.moimimg{
+	max-width: 400px;
+	position:absolute;
+	top:250px;
+	left:250px;
+}
+
 </style>
 </head>
 <body>
-
-	<div class="moim" style="width: 600px;height:750px;border:2px solid gray;">
-		<h2 style="float:left;">${dto.mname}</h2>
-		<span style="float: right; color: #ccc; font-size: 13px;"> <fmt:formatDate
-				value="${dto.createday}" pattern="yyyy-MM-dd HH:mm" />
-		</span> <br> <span style="color: #ccc; font-size: 13px;">${dto.category}
-			${unum}명 </span><br>
+<h3>상세페이지</h3>
+	<div class="moim">
+		<div>
+		<h2>${dto.mname}</h2>
+		<span style="float: left;font-size: 14px;">${dto.city1} ${dto.city2}</span>
+		<span style="float: right; color:black; font-size: 14px;">
+		<fmt:formatDate value="${dto.createday}" pattern="yyyy-MM-dd HH:mm" />
+		</span> <br> <span style="color:black; font-size: 14px;">카테고리:${dto.category},
+			회원수:${unum}명 </span>
+		</div>
 		<hr>
+		<pre class="moimpre">
 		<c:if test="${dto.mphoto!=''}">
-			<img src="https://${imageUrl}/test/${dto.mphoto}"
-				style="max-width: 400px;">
+		<img src="https://${imageUrl}/test/${dto.mphoto}" class="moimimg">
 		</c:if>
 		<br>
-		<pre style="font-size: 16px;height:500px;">${dto.mcontent}</pre>
-		<br>
+		${dto.mcontent}
+		</pre>
+		<div style="text-align:center;">
+		<button type="button" class="btn btn-sm btn-outline-secondary"
+			style="width: 70px;" onclick="location.href='./moimlist?currentPage=${currentPage}'">목록</button>
+		<button type="button" class="btn btn-sm btn-outline-secondary"
+			style="width: 70px;" onclick="">수정</button>
+		<button type="button" class="btn btn-sm btn-outline-secondary" 
+			style="width: 70px;" onclick="">삭제</button>
+		</div>	
 		<hr>
-		<i class="bi bi-heart jjim" style="font-size: 30px;cursor:pointer;margin-left:130px;"></i>&nbsp;&nbsp;
-		<button type="button" style="width:300px;height:45px;"
-			class="btn btn-outline-secondary btn-block"
-			onclick="">가입신청</button>
+		<div style="font-size: 35px;cursor:pointer; text-align:center">
+		<i class="bi bi-heart jjim" ></i>&nbsp;
+		<button type="button" style="width:330px;height:45px;"
+			class="btn btn-secondary btn-block" onclick="">가입신청</button>
+		</div>	
 	</div>
 </body>
 </html>

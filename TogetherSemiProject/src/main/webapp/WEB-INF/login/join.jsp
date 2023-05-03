@@ -100,12 +100,12 @@
           </select>
         </div>
             <div class="form-group">
-                <label for="user_id">아이디</label>
-                <input type="text" id="user_id" name="user_id" required>
+                <label for="email">이메일</label>
+                <input type="text" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="user_pw">비밀번호</label>
-                <input type="password" id="user_pw" name="user_pw" required>
+                <label for="pass">비밀번호</label>
+                <input type="password" id="pass" name="pass" required>
             </div>
           
         <div class="form-group">

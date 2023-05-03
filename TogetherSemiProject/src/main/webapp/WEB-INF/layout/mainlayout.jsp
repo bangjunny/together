@@ -35,10 +35,16 @@
 			<a href="/city/detail">/city/detail</a>
 		</li>
 		<li>
-			<a href="/login/join">/login/login</a>
+			<a href="/login/join">/login/join</a>
 		</li>
 		<li>
-			<a href="/moim/list">/moim/list</a>
+			<a href="/login/newmember">/login/newmember</a>
+		</li>
+		<li>
+			<a href="/moim/moimlist">/moim/list</a>
+		</li>
+		<li>
+			<a href="/moim/moimform">/moim/form</a>
 		</li>
 	</ul>
 <div class="mainlayout">

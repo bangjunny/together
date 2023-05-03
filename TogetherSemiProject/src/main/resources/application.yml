@@ -1,6 +1,6 @@
 #port설정
 server:
-  port: 9000
+  port: 9005
   
 #mysql setting
 spring:

@@ -25,7 +25,7 @@ body, body * {
 </head>
 <body>
 
-	<div class="moim" style="width: 600px;">
+	<div class="moim" style="width: 600px;height:750px;border:2px solid gray;">
 		<h2 style="float:left;">${dto.mname}</h2>
 		<span style="float: right; color: #ccc; font-size: 13px;"> <fmt:formatDate
 				value="${dto.createday}" pattern="yyyy-MM-dd HH:mm" />
@@ -34,14 +34,14 @@ body, body * {
 		<hr>
 		<c:if test="${dto.mphoto!=''}">
 			<img src="https://${imageUrl}/test/${dto.mphoto}"
-				style="max-width: 500px;">
+				style="max-width: 400px;">
 		</c:if>
 		<br>
-		<pre style="font-size: 16px;">${dto.mcontent}</pre>
+		<pre style="font-size: 16px;height:500px;">${dto.mcontent}</pre>
 		<br>
 		<hr>
-		<i class="bi bi-suit-heart jjim" style="font-size: 20px; float: left;"></i>
-		<button type="button" style="width: 100px;"
+		<i class="bi bi-suit-heart jjim" style="font-size: 30px;cursor:pointer;margin-left:130px;"></i>&nbsp;
+		<button type="button" style="width:300px;"
 			class="btn btn-outline-secondary btn-block"
 			onclick="location.href=''">가입신청</button>
 	</div>

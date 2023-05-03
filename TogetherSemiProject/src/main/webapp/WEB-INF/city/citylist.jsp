@@ -63,26 +63,26 @@
         <th style="width: 100px">조회수</th>
         <th style="width: 100px">추천수</th>
     </tr>
-    <%--<c:forEach var="dto" items="${list}" varStatus="i">--%>
+    <c:forEach var="dto" items="${list}" varStatus="i">
         <tr>
-            <td align="center"><%--${i.count}--%>1</td>
+            <td align="center">${i.count}</td>
             <td>
-                <b><%--${dto.subject}--%>2</b>
+                <b>${dto.subject}</b>
             </td>
             <td>
-                    <%--${dto.작성자}--%>3
+                    ${dto.unum}
             </td>
             <td align="right">
-                <%--<fmt:formatDate value="${dto.cbwriteday}" type="yyyy-MM-dd hh:mm"/>--%>4
+                1
             </td>
             <td>
-                <%--${dto.readcount}--%>5
+                ${dto.readcount}
             </td>
             <td>
-               <%-- ${dto.cblike}--%>6
+               ${dto.cblike}
             </td>
         </tr>
-    <%--</c:forEach>--%>
+    </c:forEach>
 </table>
 <div style="float: right">
 <input type="text" placeholder=""><button>검색</button>

@@ -27,7 +27,9 @@ public class CityController {
 	// private String bucketName="bit701-bucket-113";
 
 	@GetMapping("/list")
-	public String list(/* @RequestParam(defaultValue = "1") int currentPage, */ Model model) {
+	public String list(
+			/* @RequestParam(defaultValue = "1") int currentPage, */ 
+			Model model) {
 
 		/**
 		int totalCount = cityService.getTotalCountCity();// 게시판의 총 글 갯수
@@ -66,7 +68,13 @@ public class CityController {
 		**/
 		
 		int totalCount=cityService.getTotalCountCity();
+		List<CityBoardDto> list = cityService.getAllCity();
+		
+		
+		
+		
 		model.addAttribute("totalCount",totalCount);
+		model.addAttribute("list",list);
 		
 		
 

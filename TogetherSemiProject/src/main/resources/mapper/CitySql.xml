@@ -3,4 +3,7 @@
 	<select id="getTotalCountCity" resultType="int">
 		select count(*) from city_board
 	</select>
+	<select id="getAllCity" resultType="CityBoardDto">
+		select * from city_board order by cbnum asc
+	</select>
 </mapper>

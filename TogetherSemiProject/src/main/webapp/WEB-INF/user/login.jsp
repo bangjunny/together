@@ -115,7 +115,7 @@
             
             <div class="form-group">
                 <span>계정이 없으신가요? </span>
-                <a href="/login/newmember">회원가입</a>
+                <a href="/user/join">회원가입</a>
             </div>
         </form>
     </div>

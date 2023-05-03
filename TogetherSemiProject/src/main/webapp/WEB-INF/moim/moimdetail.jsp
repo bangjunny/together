@@ -40,10 +40,10 @@ body, body * {
 		<pre style="font-size: 16px;height:500px;">${dto.mcontent}</pre>
 		<br>
 		<hr>
-		<i class="bi bi-suit-heart jjim" style="font-size: 30px;cursor:pointer;margin-left:130px;"></i>&nbsp;
-		<button type="button" style="width:300px;"
+		<i class="bi bi-heart jjim" style="font-size: 30px;cursor:pointer;margin-left:130px;"></i>&nbsp;&nbsp;
+		<button type="button" style="width:300px;height:45px;"
 			class="btn btn-outline-secondary btn-block"
-			onclick="location.href=''">가입신청</button>
+			onclick="">가입신청</button>
 	</div>
 </body>
 </html>

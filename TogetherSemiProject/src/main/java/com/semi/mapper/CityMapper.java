@@ -10,10 +10,12 @@ import com.semi.dto.CityBoardDto;
 public interface CityMapper {
 	public int getTotalCountCity();
 	public List<CityBoardDto> getAllCity();
-	public List<CityBoardDto> getPaginlistCity(Map<String, Integer> map);
+	//public List<CityBoardDto> getPaginlistCity(Map<String, Integer> map);
+	/**
 	public void insertCity(CityBoardDto dto);
 	public void updateCity(CityBoardDto dto);
 	public void deleteCity(int cbnum);
+	**/
 	}
 	
 

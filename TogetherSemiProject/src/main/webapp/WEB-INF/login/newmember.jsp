@@ -71,22 +71,22 @@
 			  
 			  <div class="input-wrap">
 			    <label for="user_email">이메일</label>
-			    <input type="email" name="user_email" id="user_email" required>
+			    <input type="email" name="email" id="email" required>
 			  </div>
 			  
 			  <div class="input-wrap">
 			    <label for="user_pw">비밀번호</label>
-			    <input type="password" name="user_pw" id="user_pw" required>
+			    <input type="password" name="pass" id="pass" required>
 			  </div>
 			  
 			  <div class="input-wrap">
 			    <label for="user_pw_check">비밀번호 확인</label>
-			    <input type="password" name="user_pw_check" id="user_pw_check" required>
+			    <input type="password" name="pass_check" id="pass_check" required>
 			  </div>
 			  
 			  <div class="input-wrap">
 			    <label for="user_name">이름</label>
-			    <input type="text" name="user_name" id="user_name" required>
+			    <input type="text" name="uname" id="uname" required>
 			  </div>
 			  
 			  <div class="input-wrap">
@@ -162,7 +162,7 @@
 			  <div class="input-wrap">
 			  	<label for="user_gender">성별</label>
 			  	<div class="ps_box gender_code">
-			     <select id="gender" name="gender" class="sel" aria-label="성별">
+			     <select id="gender" name="gender" aria-label="성별">
 			     	<option value="" selected="">성별</option>
 			     	<option value="M">남자</option>
 			     	<option value="F">여자</option>
@@ -203,7 +203,7 @@
 			  
 			  <div class="input-wrap">
 			    <label for="user_phone">휴대전화</label>
-			    <input type="tel" name="user_phone" id="user_phone" required>
+			    <input type="tel" name="hp" id="hp" required>
 			  </div>
 			   
 			  <button type="submit" class="btn-submit">가입하기</button>

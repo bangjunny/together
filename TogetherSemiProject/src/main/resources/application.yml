@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://db-g66q7-kr.vpc-pub-cdb.ntruss.com:3306/together?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://db-g92gp-kr.vpc-pub-cdb.ntruss.com:3306/together?serverTimezone=Asia/Seoul
     username: together
     password: together123!@#
   servlet:

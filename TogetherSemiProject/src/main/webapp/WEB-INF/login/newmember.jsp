@@ -93,7 +93,7 @@
 			    <label for="user_age">생년월일</label>
 			    
 			    <span class="ps_box">
-			    	<input type="text" id="yy" placeholder="년(4자)" aria-label="년(4자)" class="int" maxlength="4">
+			    	<input type="text" id="yy" placeholder="년(4자)" aria-label="년(4자)" maxlength="4">
 			    </span>
 			    
 			    <div class="bir_mm">
@@ -175,7 +175,7 @@
 			  <div class="input-wrap">
 			    <label for="user_city">지역</label>
 			    <div class="ps_box_city" style="left: 122px;">
-               		<select id = "city1" name="gi1" >
+               		<select id = "city1" name="city1" >
 	               		<option value="서울특별시" selected="">서울특별시</option>
 	               		<option value="부산광역시">부산광역시</option>
 	               		<option value="대구광역시">대구광역시</option>
@@ -195,7 +195,7 @@
 	               		<option value="제주특별자치도">제주특별자치도</option>
                		</select>
                		
-               		<select id = "city2" name="gi1">
+               		<select id = "city2" name="city2">
                			<option>강남구</option>
                		</select>
             	</div>

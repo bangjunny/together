@@ -17,7 +17,7 @@
 	
 	<!-- main 페이지는 따로 설정해도 됨 -->
 	<definition name="/main" extends="mainLayout">
-		<put-attribute name="main" value="/WEB-INF/moim/moimdetail.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
 	</definition>
 	<definition name="/sub" extends="subLayout">
 		<put-attribute name="main2" value="/WEB-INF/layout/main2.jsp"/>

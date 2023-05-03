@@ -72,7 +72,7 @@ img.moimimg{
 		<hr>
 		<div style="font-size: 35px;cursor:pointer; text-align:center">
 		<i class="bi bi-heart jjim" ></i>&nbsp;
-		<button type="button" style="width:330px;height:45px;"
+		<button type="button" style="width:370px;height:45px;text-align:center"
 			class="btn btn-secondary btn-block" onclick="">가입신청</button>
 		</div>	
 	</div>

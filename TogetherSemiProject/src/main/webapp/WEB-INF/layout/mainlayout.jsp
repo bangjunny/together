@@ -20,61 +20,34 @@
 		color: black;
 		text-decoration: none;
 	}
-	
-	div.mainlayout header,div.mainlayout section{
-		border: 0px solid gray;
-		position: absolute;
-	}
-	
-	div.mainlayout .header{
-		width: 100%;
-		top: 10px;
-		left: 10px;
-		text-align:center;
-		height:100px;
-		line-height: 100px;
-		background-color: #f0ffff;
-	}
-	
-	div.mainlayout .info{
-		width: 200px;
-		top: 220px;
-		left: 20px;
-		text-align:center;
-		height:250px;
-		padding: 30px 30px;
-	}
-	
-	div.mainlayout .menu{
-		width: 100%;
-		top: 110px;
-		left: 0px;
-		text-align:center;
-		height:80px;
-		line-height:80px;
-		font-size: 20px;
-	}
-	
-	div.mainlayout .main{
-		width: 800px;
-		top: 220px;
-		left: 300px;
-		height:500px;
-		font-size: 16px;
-	}
+
 </style>
 </head>
 <body>
+<ul>
+		<li>
+			<a href="/">Home</a>
+		</li>
+		<li>
+			<a href="/city/list">/city/list</a>
+		</li>
+		<li>
+			<a href="/city/detail">/city/detail</a>
+		</li>
+		<li>
+			<a href="/login/join">/login/join</a>
+		</li>
+		<li>
+			<a href="/login/newmember">/login/newmember</a>
+		</li>
+		<li>
+			<a href="/moim/moimlist">/moim/list</a>
+		</li>
+		<li>
+			<a href="/moim/moimform">/moim/form</a>
+		</li>
+	</ul>
 <div class="mainlayout">
-	<header class="header">
-		<tiles:insertAttribute name="header"/>
-	</header>
-	<section class="menu">
-		<tiles:insertAttribute name="menu"/>
-	</section>
-	<section class="info">
-		<tiles:insertAttribute name="info"/>
-	</section>
 	<section class="main">
 		<tiles:insertAttribute name="main"/>
 	</section>

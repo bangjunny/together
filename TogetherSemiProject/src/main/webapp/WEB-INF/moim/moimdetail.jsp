@@ -22,22 +22,22 @@ body, body * {
 	font-family: 'Jua'
 }
 div.moim {
-	width: 600px;
-	height:1000px;
+	width: 900px;
+	height:1100px;
 	border:0px solid gray;
-	
+	margin-left:200px;
+	background-color:#ccc
 }
 pre.moimpre{
-	font-size: 14px;
+	font-size: 16px;
 	margin:20px 10px;
 	height:700px;
 	border:1px solid gray;
+	background-color:white
 }
-img.moimimg{
-	max-width: 400px;
-	position:absolute;
-	top:250px;
-	left:250px;
+pre img{
+	width:450px;
+	height:450px;
 }
 
 </style>
@@ -45,20 +45,30 @@ img.moimimg{
 <body>
 <h3>상세페이지</h3>
 	<div class="moim">
-		<div>
-		<h2>${dto.mname}</h2>
-		<span style="float: left;font-size: 14px;">${dto.city1} ${dto.city2}</span>
+		<div><br>
+		<h2 style="text-align:center;">${dto.mname}</h2>
+		<span style="float: left;font-size: 14px;">지역: ${dto.city1} ${dto.city2}</span>
 		<span style="float: right; color:black; font-size: 14px;">
+		작성일:
 		<fmt:formatDate value="${dto.createday}" pattern="yyyy-MM-dd HH:mm" />
 		</span> <br> <span style="color:black; font-size: 14px;">카테고리:${dto.category},
-			회원수:${unum}명 </span>
+		모임인원:${dto.unum}명</span>
+		<br>
+		<span style="float: left; color:black; font-size:16px;">모임장: ${dto.jang}</span>
+		<br>
 		</div>
 		<hr>
 		<pre class="moimpre">
-		<c:if test="${dto.mphoto!=''}">
-		<img src="https://${imageUrl}/test/${dto.mphoto}" class="moimimg">
-		</c:if>
-		<br>
+		 <c:choose>
+   		 <c:when test="${dto.mphoto==null}">
+   		<!-- Result값이 있다면 실행할 로직 -->
+   		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+   		 </c:when>
+   		 <c:otherwise>
+		 <!-- 그렇지 않다면 실행할 로직 -->
+		 <img src="https://${imageUrl}/moim/${dto.mphoto}">	 
+   		 </c:otherwise>
+		</c:choose>
 		${dto.mcontent}
 		</pre>
 		<div style="text-align:center;">

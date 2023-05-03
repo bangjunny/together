@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.semi.dto.CityBoardDto;
+import com.semi.dto.UserDto;
 import com.semi.mapper.CityMapper;
 import com.semi.service.CityService;
 
@@ -24,11 +25,11 @@ public class CityController {
 
 	@Autowired
 	private NcpObjectStorageService storageService;
-	// private String bucketName="bit701-bucket-113";
+	private String bucketName="together-bucket-104";
 
 	@GetMapping("/list")
 	public String list(
-			/* @RequestParam(defaultValue = "1") int currentPage, */ 
+			 /**@RequestParam(defaultValue = "1") int currentPage**/
 			Model model) {
 
 		/**
@@ -67,24 +68,35 @@ public class CityController {
 		model.addAttribute("no", no);
 		**/
 		
-		int totalCount=cityService.getTotalCountCity();
-		List<CityBoardDto> list = cityService.getAllCity();
 		
+		int totalCountCity=cityService.getTotalCountCity();
+		List<CityBoardDto> listcity = cityService.getAllCity();
 		
-		
-		
-		model.addAttribute("totalCount",totalCount);
-		model.addAttribute("list",list);
-		
-		
+		model.addAttribute("totalCountCity",totalCountCity);
+		model.addAttribute("listcity",listcity);
 
 		return "/main/city/citylist";
 		
 	}
-
 	@GetMapping("/detail")
-	public String detail() {
+	public String detail(
+			int cbnum, Model model
+	) {
+		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
+		model.addAttribute("dto",dto);
+
 		return "/main/city/CityDetail";
+	}
+	
+	
+	@GetMapping("/cityform")
+	public String cityform(
+			int unum, Model model
+	) {
+		UserDto dto = cityService.getDetailbyunum(unum);
+		model.addAttribute("dto",dto);
+		
+		return "/main/city/cityform";
 	}
 
 }

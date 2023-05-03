@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.semi.dto.CityBoardDto;
+import com.semi.dto.UserDto;
 
 public interface CityServiceInter {
 	public int getTotalCountCity();
 	public List<CityBoardDto> getAllCity();
-	//public List<CityBoardDto> getPaginlistCity(int start, int perpage);
+	public CityBoardDto getDetailbycbnum(int cbnum);
+	public UserDto getDetailbyunum(int unum);
+
 	/**
 	public void insertCity(CityBoardDto dto);
 	public void updateCity(CityBoardDto dto);

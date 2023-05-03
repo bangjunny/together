@@ -16,12 +16,16 @@
 	body, body *{
 		font-family: 'Jua'
 	}
+	div {
+		position: absolute;
+		margin-left: 200px;
+	}
 </style>
 </head>
 <body>
 <!-- 이미지 출력할곳 -->
 <img id="showimg"
-style="position: absolute;left:550px;top:10px; width: 200px; height:200px; border-radius:200px">
+style="position: absolute;left:750px;top:20px; width: 200px; height:200px; border-radius:200px">
 
 <div style="width:500px">
 	<form action="insert" method="post" enctype="multipart/form-data">
@@ -29,17 +33,23 @@ style="position: absolute;left:550px;top:10px; width: 200px; height:200px; borde
 		<tr>
 			<td style="width:100px;">모임 이름</td>
 			<td>
-				<input type="text" class="form-control" name="mname" required="required" value="모임 이름을 입력해주세요">
+				<input type="text" class="form-control" name="mname" required="required" placeholder="모임 이름을 입력해주세요">
+			</td>
+		</tr>
+		<tr>
+			<td style="width:100px;">모임장</td>
+			<td>
+				<input type="text" class="form-control" name="jang" required="required" placeholder="모임장 이름을 입력해주세요">
 			</td>
 		</tr>
 		<tr>
 			<td>지역</td>
 			<td>
-				<select id="city1">
-					<option>서울시</option>
+				<select id="city1" name="city1" required="required">
+					<option value="서울시">서울시</option>
 					<option>경기도</option>
 				</select>
-				<select id="city2">
+				<select id="city2" name="city2" required="required">
 					<option selected disabled hidden>-</option>
 					<option>강남구</option>
 					<option>강서구</option>
@@ -49,7 +59,7 @@ style="position: absolute;left:550px;top:10px; width: 200px; height:200px; borde
 		<tr>
 			<td>카테고리</td>
 			<td>
-				<select id="category">
+				<select id="category" name="category" required="required">
 					<option selected disabled hidden>선택해주세요</option>
 					<option>운동</option>
 					<option>게임</option>
@@ -60,31 +70,31 @@ style="position: absolute;left:550px;top:10px; width: 200px; height:200px; borde
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="file" class="form-control" name="upload" id="moimfile" required="required">
+				<input type="file" class="form-control" name="upload" id="moimfile">
 			</td>
 		</tr>
 		<tr colspan="2">
 			<td>모임 소개</td>
 			<br>
 			<td>
-				<textarea style="width:100%; height:300px;" name="content" required="required" class="form-control"></textarea>
+				<textarea style="width:100%; height:300px;" name="mcontent" required="required" class="form-control"></textarea>
 			</td>
 		</tr>
 		<tr>
 			<td>공개 여부</td>
 			<td>
 				<label>
-					<input type="radio" name="open">공개</input>
+					<input type="radio" name="open" value="공개">공개</input>
 					&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="open">비공개</input>
+					<input type="radio" name="open" value="비공개">비공개</input>
 				</label>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<button type="button" class="btn btn-outline-success">만들기</button>
+				<button type="submit" class="btn btn-outline-success" id="btnsubmit">만들기</button>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button type="button" class="btn btn-outline-danger">취소</button>
+				<button type="button" class="btn btn-outline-danger" onclick="history.back()">취소</button>
 			</td>
 		</tr>
 	</table>
@@ -108,6 +118,15 @@ $("#moimfile").change(function(){
 		}
 		reader.readAsDataURL($(this)[0].files[0]);
 	}
+});
+
+const form = document.querySelector('form');
+form.addEventListener('submit', (event) => {
+  const radioButton = document.querySelector('input[name="open"]:checked');
+  if (!radioButton) {
+    event.preventDefault();
+    alert('공개 여부를 선택해주세요.');
+  }
 });
 </script>
 </body>

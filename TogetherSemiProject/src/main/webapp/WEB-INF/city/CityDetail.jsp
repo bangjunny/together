@@ -21,19 +21,19 @@
 <body>
 <h1>지역 게시판</h1>
 <div style="width: 600px;height: 900px;background-color: #ddd;">
-    <h3>제목</h3>
-    <h6 style="float: right;">추천수</h6>
-    <h6 style="float: right;">조회수&nbsp;</h6>
-    <h6 style="float: left">작성자&nbsp;</h6>
+    <h3>제목${dto.subject}</h3>
+    <h6 style="float: right;">추천수${dto.cblike}</h6>
+    <h6 style="float: right;">조회수${dto.readcount}&nbsp;</h6>
+    <h6 style="float: left">작성자${dto.writer}&nbsp;</h6>
     <h6>작성일</h6>
     <hr>
     <div>
         <div style="margin-left: 100px">
-            <div style="border: 5px solid pink;width: 100px;height: 100px;">사진영역</div>
+            <div style="border: 5px solid pink;width: 100px;height: 100px;">${dto.cbphoto}</div>
         </div>
     </div>
     <pre>
-        게시글 영역
+        게시글 영역${dto.cbcontent}
     </pre>
     <br><br><br>
 
@@ -42,9 +42,10 @@
 
     <hr>
     <div style="margin: auto">
-    <button type="submit" class="btn btn-sm btn-success" style="margin-left: 225px">수정</button>
-    <button type="button" class="btn btn-sm btn-success">목록으로</button>
-    <button type="button" class="btn btn-sm btn-success">삭제</button>
+    <button type="submit" class="btn btn-sm btn-success updatebtn" style="margin-left: 225px"
+    >수정</button>
+    <button type="button" class="btn btn-sm btn-success" onclick="history.back()">목록으로</button>
+    <button type="button" class="btn btn-sm btn-success deletebtn">삭제</button>
     </div>
     <hr>
     <form action="/action_page.php">

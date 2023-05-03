@@ -83,7 +83,52 @@
         </tr>
     <%--</c:forEach>--%>
 </table>
+<div style="float: right">
+<input type="text" placeholder=""><button>검색</button>
+</div>
 
+<hr>
+
+<!-- 시,도 선택 폼 -->
+<select id="sido">
+  <option value="">시,도를 선택하세요</option>
+  <option value="서울특별시">서울특별시</option>
+  <option value="부산광역시">부산광역시</option>
+  <option value="대구광역시">대구광역시</option>
+  <!-- 시,도 목록을 추가로 작성 -->
+</select>
+
+<!-- 시,군,구 선택 폼 -->
+<select id="sigungu">
+  <option value="">시,군,구를 선택하세요</option>
+</select>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  // 시,도 선택시
+  $('#sido').on('change', function() {
+    var sido = $(this).val(); // 선택한 시,도 값을 가져옴
+    if (sido == '') { // 시,도를 선택하지 않은 경우
+      $('#sigungu').html('<option value="">시,군,구를 선택하세요</option>'); // 시,군,구 선택 폼을 초기화
+    } else { // 시,도를 선택한 경우
+      $.ajax({
+        url: 'getSigungu.php', // 시,군,구 데이터를 가져올 PHP 파일 경로
+        data: {sido: sido}, // 선택한 시,도 값을 데이터로 전달
+        dataType: 'json',
+        success: function(data) { // 데이터를 가져오는데 성공한 경우
+          var options = '<option value="">시,군,구를 선택하세요</option>'; // 시,군,구 선택 폼의 옵션을 초기화
+          for (var i = 0; i < data.length; i++) { // 가져온 데이터를 반복문으로 처리하여 시,군,구 선택 폼에 추가
+            options += '<option value="' + data[i] + '">' + data[i] + '</option>';
+          }
+          $('#sigungu').html(options); // 시,군,구 선택 폼에 옵션 추가
+        }
+      });
+    }
+  });
+});
+</script>
+<br><hr>
 <!-- 페이징처리 -->
 <div style="width:700px;text-align: center;font-size: 20px;">
     <!-- 이전 -->

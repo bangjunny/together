@@ -34,11 +34,11 @@ public class MoimController {
    private MoimService moimService;
    
    @GetMapping("/moimlist")
+
    private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model)
    {   
 	   		// 게시물의 총 글 갯수
 			int totalCount = moimService.getTotalCount();	
-//			List<MoimDto> list=moimService.getAllMoim();
 			
 			int totalPage;// 총페이지수
 			int perPage = 6;// 한페이지당 보여질 글의 갯수
@@ -66,7 +66,6 @@ public class MoimController {
 			// model 저장
 			model.addAttribute("totalCount", totalCount);
 			model.addAttribute("list",list);
-//			model.addAttribute("mlist", mlist);
 			model.addAttribute("startPage", startPage);
 			model.addAttribute("endPage", endPage);
 			model.addAttribute("totalPage", totalPage);

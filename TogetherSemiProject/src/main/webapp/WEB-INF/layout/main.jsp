@@ -11,7 +11,6 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <style>
@@ -254,6 +253,7 @@ $(document).ready(function() {
 </div>
 <div id="main_bot">
 	<div id="main_bot_pic">
+				
 		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button id="slide_btn1" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -271,8 +271,8 @@ $(document).ready(function() {
     <div class="carousel-item">
       <img src="/photo/bot_3.jpg" class="d-block w-100" style="width: 500px; height: 500px;">
     </div>
-    <div class="carousel-item">
-      <img src="/photo/bot_4.jpg" class="d-block w-100" style="width: 500px; height: 500px;"> 
+        <div class="carousel-item">
+      <img src="/photo/bot_4.jpg" class="d-block w-100" style="width: 500px; height: 500px;">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -284,6 +284,7 @@ $(document).ready(function() {
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+				
 	</div>
 	<div id="main_bot_txt">
 		<span>
@@ -304,5 +305,6 @@ $(document).ready(function() {
 
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

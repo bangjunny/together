@@ -23,9 +23,6 @@
 	#main_container{
 		background-color: rgba(245, 245, 220, 0.2);	
 	}
-	#main_mid_txt h1, h3{
-		background-color: transparent;
-	}
 	.footer{
 		margin-top: 100px;
 	}

@@ -6,6 +6,20 @@
 	(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},now())
 </insert>
 
+
+	
+	<select id="getMypage" parameterType="int" resultType="UserDto">
+		select * from user where unum=#{unum}
+	</select>
+	
+	<select id="getAllUsers" resultType="UserDto">
+		select * from user order by unum asc
+	</select>
+
+	<select id="getTotalCount" resultType="int">
+		select count(*) from user
+	</select>
+
 <select id="isEqualPassEmail" parameterType="Map" resultType="int">
 	select count(*) from user where email=#{email} and pass=#{pass}
 </select>
@@ -13,6 +27,5 @@
 <select id="selectOneOfEmail" parameterType="String" resultType="UserDto">
 	select * from user where email=#{email}
 </select>
-
 
 </mapper>

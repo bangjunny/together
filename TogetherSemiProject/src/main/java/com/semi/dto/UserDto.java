@@ -1,6 +1,7 @@
 package com.semi.dto;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
@@ -21,7 +22,7 @@ public class UserDto {
 	private String city2;
 	private Timestamp joinday;
 	private int jjim;
-	private String uphoto;
+	private List<UserPhotoDto> uphoto;
 	private int mnum;
 	@Override
 	public String toString() {

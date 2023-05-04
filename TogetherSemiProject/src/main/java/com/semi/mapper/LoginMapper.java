@@ -1,10 +1,14 @@
 package com.semi.mapper;
 
+
+import java.util.List;
 import java.util.Map;
+
 
 import org.apache.ibatis.annotations.Mapper;
 
 import com.semi.dto.UserDto;
+import com.semi.dto.UserPhotoDto;
 
 @Mapper
 public interface LoginMapper {
@@ -14,4 +18,12 @@ public interface LoginMapper {
 	public UserDto selectOneOfEmail(String email);
 	 
 
+	/*마이페이지*/
+	public UserDto getMypage(int unum);
+
+	public int getTotalCount();
+
+	public List<UserDto> getAllUsers();
+	
+	
 }

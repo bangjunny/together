@@ -32,7 +32,7 @@ public class LoginController {
 	
 	@Autowired
 	LoginService loginService;
-	
+
 	@Autowired
 	LoginMapper loginMapper;
 	

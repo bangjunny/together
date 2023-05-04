@@ -30,8 +30,10 @@ body, body * {
 		<h3>제목${dto.subject}</h3>
 		<h6 style="float: right;">추천수${dto.cblike}</h6>
 		<h6 style="float: right;">조회수${dto.readcount}&nbsp;</h6>
-		<h6 style="float: left">작성자${dto.writer}&nbsp;</h6>
-		<h6>작성일</h6>
+
+		<h6 style="float: left">작성자${dto.uname}</h6>
+		<h6>작성일${dto.cbwriteday }</h6>
+
 		<hr>
 		<div>
 			<div>
@@ -65,29 +67,37 @@ body, body * {
 			<button type="submit" class="btn btn-primary btn-sm"
 				style="float: right; margin-right: 30px;">입력</button>
 		</form>
-		<br>
+		<br>${nxtcontent}
 		<br>
 		<hr>
 		<div>
-			<h4>총 ${reboardCount}개의 댓글</h4>
-			<table>
-				<c:forEach var="dto" items="${reboardList}" varStatus="i">
-					<c:if test="${i.Count==0}">
-						<tr colsapn="5" rowspan="5">
-							<td>댓글이 없습니다</td>
-						</tr>
-					</c:if>
-					<c:if test="${i.Count!=0}">
-						<tr>
-							<td rowspan="2">${dto.uphoto}</td>
-							<td>${dto.uname}</td>
-						</tr>
-						<tr>
-							<td>${dto.cbwriteday}</td>
-						</tr>
-					</c:if>
-				</c:forEach>
-			</table>
+			<br><br>
+			<div>
+			이전 게시글
+			<c:choose>
+            	<c:when test="${dto.cbnum==1}">
+            	<!-- Result값이 있다면 실행할 로직 -->
+            		<h4>이전 글이 없습니다</h4>
+            	</c:when>
+            	<c:otherwise>
+            	<!-- 그렇지 않다면 실행할 로직 -->
+                <h4>${precontent}</h4>
+            	</c:otherwise>
+      		</c:choose>
+			</div>
+			<div>
+			다음 게시글
+			<c:choose>
+            	<c:when test="${dto.cbnum==totalCountCity}">
+            	<!-- Result값이 있다면 실행할 로직 -->
+            		<h4>다음 글이 없습니다</h4>
+            	</c:when>
+            	<c:otherwise>
+            	<!-- 그렇지 않다면 실행할 로직 -->
+                <h4>${nxtcontent}</h4>
+            	</c:otherwise>
+      		</c:choose>
+			</div>
 		</div>
 	</div>
 

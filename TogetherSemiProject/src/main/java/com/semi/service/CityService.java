@@ -41,6 +41,26 @@ public class CityService implements CityServiceInter{
 		return cityMapper.getDetailbyunum(unum);
 	}
 
+	@Override
+	public void insertCity(CityBoardDto dto) {
+		// TODO Auto-generated method stub
+		cityMapper.insertCity(dto);
+	}
+
+	@Override
+	public String preContent(int num) {
+		// TODO Auto-generated method stub
+		
+		return cityMapper.preContent(num);
+	}
+
+	@Override
+	public String nxtContent(int num) {
+		// TODO Auto-generated method stub
+		return cityMapper.nxtContent(num);
+	}
+
+
 
 
 }

@@ -19,7 +19,9 @@
 	#layout_a{
 		display: flex;
 		justify-content: flex-end;
-		margin-right: 100px;
+		position: relative;
+		right: 25px;
+		top: 50px;
 	}
 </style>
 </head>

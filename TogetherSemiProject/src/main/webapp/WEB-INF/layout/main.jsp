@@ -27,9 +27,9 @@
 	}
 	#main_head_logo{
 		position: relative;
-		left: 400px;
-		top: 75px;
-	}
+		bottom: 200px;
+		left: 175px;
+	}	
 	#main_header{
 		width: 1200px;
 		height: 500px;
@@ -55,9 +55,7 @@
 		
 	}
 	#main_btn_wrap{
-		position: relative;
-		left: 500px;
-		bottom: 150px;
+		margin-top: 50px;
 		width: 200px;
 		display: flex;
 		justify-content: space-between;
@@ -205,23 +203,24 @@ $(document).ready(function() {
 </head>
 <body>
 <div id="main_container">
-<div id="main_head_logo">
-<img alt="" src="./photo/logo.png" style="width: 75px; height: 75px;"> <b style="font-size: 25px;">다 함께!</b>
-</div>
 <div id="main_header">
+	<div id="main_head_logo">
+		<img alt="" src="./photo/logo.png" style="width: 75px; height: 75px;"><b style="font-size: 25px; width: 300px;">다 함께!</b>
+	</div>
 
 	<div id="main_header_txt">
 		Lorem ipsum dolor sit amet, consectetur adipisicing elited do eiusmod tempor incididunt ut labore e, st dolore magna aliqua. Ut enim ad <span id="rotate_word" style="color: red">communities</span>
+		
+	<div id="main_btn_wrap">
+		<button type="button" class="btn btn-light" onclick="location.href='/user/login'">로그인</button>
+		<button type="button" class="btn btn-light" onclick="location.href='/user/join'">회원가입</button>
+	</div>
 	</div>
 	<div id="main_header_pic">
 		<img src="./photo/main_1.jpg" id="rotate_photo">
 	</div>
 	
 </div>
-	<div id="main_btn_wrap">
-		<button type="button" class="btn btn-light" onclick="location.href='/user/login'">로그인</button>
-		<button type="button" class="btn btn-light" onclick="location.href='/user/join'">회원가입</button>
-	</div>
 <div id="main_list_go">
 	<a href="/moim/moimlist">
 	<img class="mainphoto" src="./photo/moim.png">
@@ -240,7 +239,6 @@ $(document).ready(function() {
 	</div>
 	
 	<div id="main_mid_pic">
-		<!-- <img src="./photo/mid_pic.jpg"> -->
 	</div>
 	<div id="main_mid_txt">
 		<h1>대충 괜찮은 문장</h1>
@@ -254,38 +252,40 @@ $(document).ready(function() {
 <div id="main_bot">
 	<div id="main_bot_pic">
 				
-		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button id="slide_btn1" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button id="slide_btn2" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button id="slide_btn3" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button id="slide_btn4" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/photo/bot_1.jpg" class="d-block w-100" style="width: 500px; height: 500px;">
-    </div>
-    <div class="carousel-item">
-      <img src="/photo/bot_2.jpg" class="d-block w-100" style="width: 500px; height: 500px;">
-    </div>
-    <div class="carousel-item">
-      <img src="/photo/bot_3.jpg" class="d-block w-100" style="width: 500px; height: 500px;">
-    </div>
-        <div class="carousel-item">
-      <img src="/photo/bot_4.jpg" class="d-block w-100" style="width: 500px; height: 500px;">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  		<div class="carousel-indicators">
+    		<button id="slide_btn1" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    		<button id="slide_btn2" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    		<button id="slide_btn3" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    		<button id="slide_btn4" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+  		</div>
+  	<div class="carousel-inner">
+    	<div class="carousel-item active">
+      		<img src="/photo/bot_1.jpg" class="d-block w-100" style="width: 500px; height: 500px;">
+    	 </div>
+    	 <div class="carousel-item">
+      		<img src="/photo/bot_2.jpg" class="d-block w-100" style="width: 500px; height: 500px;">
+  		 </div>
+   		 <div class="carousel-item">
+     		 <img src="/photo/bot_3.jpg" class="d-block w-100" style="width: 500px; height: 500px;">
+   		 </div>
+       	 <div class="carousel-item">
+    		  <img src="/photo/bot_4.jpg" class="d-block w-100" style="width: 500px; height: 500px;">
+   		 </div>
+  	</div>
+  			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    			<span class="visually-hidden">Previous</span>
+ 			 </button>
+ 			 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+   			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  			  <span class="visually-hidden">Next</span>
+  			</button>
+		</div>
 				
 	</div>
+	
+	
 	<div id="main_bot_txt">
 		<span>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

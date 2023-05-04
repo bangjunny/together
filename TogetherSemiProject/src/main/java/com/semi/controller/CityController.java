@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.semi.dto.CityBoardDto;
 import com.semi.dto.UserDto;
@@ -68,12 +70,17 @@ public class CityController {
 		model.addAttribute("no", no);
 		**/
 		
-		
+		int unum=2;
 		int totalCountCity=cityService.getTotalCountCity();
 		List<CityBoardDto> listcity = cityService.getAllCity();
 		
+		UserDto udto =  cityService.getDetailbyunum(unum);
+		
 		model.addAttribute("totalCountCity",totalCountCity);
 		model.addAttribute("listcity",listcity);
+		model.addAttribute("unum",unum);
+		model.addAttribute("udto",udto);
+	
 
 		return "/main/city/citylist";
 		
@@ -97,6 +104,19 @@ public class CityController {
 		model.addAttribute("dto",dto);
 		
 		return "/main/city/cityform";
+	}
+	
+	@PostMapping("/cityinsert")
+	public String cityinsert(
+			CityBoardDto dto, MultipartFile upload
+	) {
+		
+		
+		
+		
+		
+		cityService.insertCity(dto);
+		return "redirect:list";
 	}
 
 }

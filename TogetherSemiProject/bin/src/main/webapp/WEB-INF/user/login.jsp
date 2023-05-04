@@ -55,14 +55,14 @@
             font-weight: bold;
         }
         
-        .form-group input[type="email"],
+        .form-group input[type="text"],
         .form-group input[type="password"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1em;
-            /* color: #555; */
+            color: #555;
         }
         
         .form-group input[type="submit"] {
@@ -91,23 +91,21 @@
 <body>
     <div class="container">
         <h1>로그인</h1>
-        <form action="loginaction" method="post">
-        <!-- <div class="form-group">
+        <form action="login_process.jsp" method="post">
+        <div class="form-group">
           <label for="user-type">개인회원/기업회원 선택</label>
           <select id="user-type" name="user-type">
             <option value="personal">개인회원</option>
             <option value="company">기업회원</option>
           </select>
-        </div> -->
+        </div>
             <div class="form-group">
-               <!--  <label for="user_id">아이디</label> -->
-                <input type="email" id="user_email" name="email" autofocus="autofocus" 
-                placeholder="아이디" required>
+                <label for="user_id">아이디</label>
+                <input type="text" id="user_id" name="user_id" required>
             </div>
             <div class="form-group">
-                <!-- <label for="user_pw">비밀번호</label> -->
-                <input type="password" id="user_pw" name="pass" 
-                placeholder="비밀번호" required>
+                <label for="user_pw">비밀번호</label>
+                <input type="password" id="user_pw" name="user_pw" required>
             </div>
           
         <div class="form-group">

@@ -31,8 +31,12 @@ public class MoimController {
    private MoimService moimService;
    
    @GetMapping("/moimlist")
-   private String moimlist()
+   private String moimlist(Model model)
    {   
+		//총 글갯수 출력
+		int totalCount=moimMapper.getTotalCount();
+		
+		model.addAttribute("totalCount", totalCount);
 	   
    return "/main/moim/moimlist";
    }

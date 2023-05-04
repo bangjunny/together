@@ -90,8 +90,17 @@ public class CityController {
 			int cbnum, Model model
 	) {
 		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
+		String precontent=cityService.preContent(cbnum);
+		String nxtcontent=cityService.nxtContent(cbnum);
+		int totalCountCity=cityService.getTotalCountCity();
+		
 		model.addAttribute("dto",dto);
-
+		model.addAttribute("nxtcontent",nxtcontent);
+		System.out.println(nxtcontent);
+		model.addAttribute("precontent",precontent);
+		System.out.println(precontent);
+		model.addAttribute("totalCountCity",totalCountCity);
+		
 		return "/main/city/CityDetail";
 	}
 	 
@@ -121,5 +130,7 @@ public class CityController {
 		cityService.insertCity(dto);
 		return "redirect:list";
 	}
+	
+	
 
 }

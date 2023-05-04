@@ -47,6 +47,19 @@ public class CityService implements CityServiceInter{
 		cityMapper.insertCity(dto);
 	}
 
+	@Override
+	public String preContent(int num) {
+		// TODO Auto-generated method stub
+		
+		return cityMapper.preContent(num);
+	}
+
+	@Override
+	public String nxtContent(int num) {
+		// TODO Auto-generated method stub
+		return cityMapper.nxtContent(num);
+	}
+
 
 
 

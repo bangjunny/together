@@ -72,8 +72,7 @@
         <br>
         제목&nbsp;<input type="text" class="form-control" name="subject" placeholder="제목을 입력해주세요" style="width: 100%">
         <br>
-        <div id="editor" class="form-control">
-        </div>
+        <textarea name ="content" id="editor" class="form-control"></textarea>
         <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
 		<script>		
 		ClassicEditor

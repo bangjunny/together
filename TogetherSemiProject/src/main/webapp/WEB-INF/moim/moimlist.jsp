@@ -20,6 +20,9 @@
 </head>
 <body>
 <h2>모임리스트</h2>
+<h5 class="alert alert-success">
+	총 ${totalCount}개의 상품이 등록되어있습니다
+</h5>
 </body>
 </html>
 

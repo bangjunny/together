@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.semi.dto.CityBoardDto;
 import com.semi.dto.MoimDto;
 
 @Mapper

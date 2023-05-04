@@ -25,19 +25,21 @@ div.moim {
 	width: 900px;
 	height:1100px;
 	border:0px solid gray;
-	margin-left:200px;
+	margin-left:250px;
 	background-color:#ccc
 }
-pre.moimpre{
-	font-size: 16px;
+div.mcontent {
+	font-size: 20px;
 	margin:20px 10px;
 	height:700px;
 	border:1px solid gray;
-	background-color:white
+	background-color:white;
+	text-align:center;
 }
-pre img{
-	width:450px;
-	height:450px;
+div img{
+	width:838px;
+	height:420px;
+	margin:20px;
 }
 
 </style>
@@ -58,7 +60,7 @@ pre img{
 		<br>
 		</div>
 		<hr>
-		<pre class="moimpre">
+		<div class="mcontent">
 		 <c:choose>
    		 <c:when test="${dto.mphoto==null}">
    		<!-- Result값이 있다면 실행할 로직 -->
@@ -70,7 +72,7 @@ pre img{
    		 </c:otherwise>
 		</c:choose>
 		${dto.mcontent}
-		</pre>
+		</div>
 		<div style="text-align:center;">
 		<button type="button" class="btn btn-sm btn-outline-secondary"
 			style="width: 70px;" onclick="location.href='./moimlist?currentPage=${currentPage}'">목록</button>

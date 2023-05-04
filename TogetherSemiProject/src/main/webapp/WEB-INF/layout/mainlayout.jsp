@@ -35,10 +35,10 @@
 			<a href="/city/detail">/city/detail</a>
 		</li>
 		<li>
-			<a href="/login/join">/login/join</a>
+			<a href="/user/login">/user/login</a>
 		</li>
 		<li>
-			<a href="/login/newmember">/login/newmember</a>
+			<a href="/user/join">/user/join</a>
 		</li>
 		<li>
 			<a href="/moim/moimlist">/moim/list</a>

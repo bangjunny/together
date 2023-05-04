@@ -6,4 +6,10 @@
 	<select id="getAllCity" resultType="CityBoardDto">
 		select * from city_board order by cbnum asc
 	</select>
+	<select id="getDetailbycbnum" parameterType="int" resultType="CityBoardDto">
+		select * from city_board where cbnum=#{cbnum}
+	</select>
+	<select id="getDetailbyunum" parameterType="int" resultType="UserDto">
+		select * from user where unum=#{unum}
+	</select>
 </mapper>

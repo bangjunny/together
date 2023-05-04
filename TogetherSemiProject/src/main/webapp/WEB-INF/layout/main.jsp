@@ -42,6 +42,7 @@
 		margin-top: 25px;
 		width: 400px;
 		height: 300px;
+		font-size: 25px;
 		
 	}
 	#main_header_pic{
@@ -80,21 +81,90 @@
 		background-image:url("./photo/mid_pic.jpg");
   		background-attachment: fixed;			
 	}
+	#main_bot_title{
+		margin: 20px 0px 20px 0px;
+		text-align: center;
+	}
+	#main_bot{
+		width: 1200px;
+		height: 600px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+	}
+	#main_bot_txt {
+ 		width: 45%;
+  		position: relative; /* add this line to make sure the position of the <span> is relative to this container */
+	}
+
+	#main_bot_txt span {
+  		position: absolute;
+  		top: 80px; /* adjust this value as needed to move the <span> down */
+	}
+	#main_bot_pic{
+		width: 45%;
+	}
 	
+	#main_bot_imgs{
+		width: 1000px;
+		height: 500px;
+		margin: 30px auto;
+		display: flex;
+		justify-content: center;
+		justify-content: space-around;
+	}
+	#main_bot_imgs img{
+		width: 200px;
+		height: 200px;	
+	}
 </style>
+<script type="text/javascript">
+	//Define initial variables.
+
+	var words = ["communities", "skills", "networks", "passions", "careers", "friendships"];
+	var photos = ["/photo/main_1.jpg", "/photo/bot_1.jpg", "/photo/bot_1.jpg", "/photo/bot_1.jpg", "/photo/bot_1.jpg", "/photo/bot_1.jpg"]
+	var count = 0;
+
+	// Call the changeWord function once to start the rotation immediately
+	changeMain();
+
+	// Call the changeMain function every 2 seconds
+	setInterval(changeMain, 2000); 
+
+	function changeMain() {
+  	// Define the current word to be displayed
+  	var current_word = words[count];
+  	var current_photo = photos[count];
+
+  	// Change the word in the HTML
+  	$("#rotate_word").html(current_word);
+  	$("#rotate_photo").attr("src", current_photo);
+  	
+
+
+  	// Get the index of the next word in the array
+  	count++;
+
+  // If we've reached the end of the word list, go back to the start
+  if (count == words.length) {
+    count = 0;
+  }
+}
+
+</script>
 </head>
 <body>
 <div id="main_container">
 <div id="main_head_logo">
-<img alt="" src="./photo/logo.png" style="width: 50px; height: 50px;"> 다 함께!
+<img alt="" src="./photo/logo.png" style="width: 75px; height: 75px;"> <b style="font-size: 25px;">다 함께!</b>
 </div>
 <div id="main_header">
 
 	<div id="main_header_txt">
-		Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+		Lorem ipsum dolor sit amet, consectetur adipisicing elited do eiusmod tempor incididunt ut labore e, st dolore magna aliqua. Ut enim ad minim veniam <span id="rotate_word" style="color: red">ninja</span>
 	</div>
 	<div id="main_header_pic">
-		<img src="./photo/main_1.jpg">
+		<img src="./photo/main_1.jpg" id="rotate_photo">
 	</div>
 	
 </div>
@@ -123,20 +193,29 @@
 		<!-- <img src="./photo/mid_pic.jpg"> -->
 	</div>
 	<h1 style="position: relative; bottom: 500px; color: white;">대충 괜찮은 문장</h1>
+	<h3 style="position: relative; bottom: 475px; color: white;">적당히 설명하는 문장의 행렬은 나에게 스타크래프트 1.16.1 립버전 철수는 말했다 공열안와자였다 몹시 무시무시한 죠나단 스타크래프트 1.16.1 립버전</h3>
 	
 </div>
-<br><br>
+<div id="main_bot_title">
+<h2 >Lorem ipsum</h2>
+</div>
+<div id="main_bot">
+	<div id="main_bot_pic">
+		<img src="/photo/bot_1.jpg">
+	</div>
+	<div id="main_bot_txt">
+		<span>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</span>
+	</div>
+</div>
+	<div id="main_bot_imgs">
+		<img src="/photo/bot_1.jpg">
+		<img src="/photo/bot_2.jpg">
+		<img src="/photo/bot_3.jpg">
+		<img src="/photo/bot_4.jpg">
+	</div>
+
 </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

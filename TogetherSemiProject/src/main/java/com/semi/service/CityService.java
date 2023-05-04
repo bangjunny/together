@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.semi.dto.CityBoardDto;
+import com.semi.dto.UserDto;
 import com.semi.mapper.CityMapper;
 
 @Service
@@ -28,6 +29,17 @@ public class CityService implements CityServiceInter{
 		return cityMapper.getAllCity();
 	}
 
+	@Override
+	public CityBoardDto getDetailbycbnum(int cbnum) {
+		// TODO Auto-generated method stub
+		return cityMapper.getDetailbycbnum(cbnum);
+	}
+
+	@Override
+	public UserDto getDetailbyunum(int unum) {
+		// TODO Auto-generated method stub
+		return cityMapper.getDetailbyunum(unum);
+	}
 
 
 

@@ -34,6 +34,7 @@ public class MoimController {
    private MoimService moimService;
    
    @GetMapping("/moimlist")
+
    private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model)
    {   
 	   		// 게시물의 총 글 갯수

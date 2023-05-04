@@ -61,10 +61,10 @@
 </head>
 <body>
 <div class="container-fluid">
-	<div class="container">
-		<h1>로그아웃 되었습니다.</h1>
-		<a href="login" class="btn btn-primary">로그인 화면으로 돌아가기</a>
-	</div>
+	 <div class="container">
+	<h1>로그아웃 되었습니다.</h1>
+	<a href="NewLogin.jsp" class="btn btn-primary">로그인 화면으로 돌아가기</a>
+	</div>	
 </div>	
 </body>
 </html>

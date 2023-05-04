@@ -6,13 +6,5 @@
 	(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},now())
 </insert>
 
-<select id="isEqualPassEmail" parameterType="Map" resultType="int">
-	select count(*) from user where email=#{email} and pass=#{pass}
-</select>
-
-<select id="selectOneOfEmail" parameterType="String" resultType="UserDto">
-	select * from user where email=#{email}
-</select>
-
 
 </mapper>

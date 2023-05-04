@@ -60,6 +60,9 @@
 	<section class="sidebar">
 		<tiles:insertAttribute name="sidebar"/>
 	</section>
+	<section class="logout">
+		<tiles:insertAttribute name="logout"/>
+	</section>
 	<section class="main">
 		<tiles:insertAttribute name="main"/>
 	</section>

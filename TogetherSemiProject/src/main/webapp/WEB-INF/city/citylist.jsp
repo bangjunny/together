@@ -107,7 +107,7 @@ body, body * {
                    });
                  </script>
 	<button>선택 지역 검색</button>
-	<button style="float: right" onclick="location.href='cityform?unum=${unum}'">글쓰기</button>
+	<button style="float: right" onclick="location.href='cityform?unum=${udto.unum}'">글쓰기</button>
 	<table class="table table-bordered" >
 		<tr bgcolor="#f5f5dc">
 			<th style="width: 100px">번호</th>

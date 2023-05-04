@@ -16,6 +16,12 @@
 		insert into city_board (subject, unum, cbcontent, cbphoto, cbwriteday, city1, city2)
 		value (#{subject}, #{unum}, #{cbcontent}, #{cbphoto}, now(), #{city1}, #{city2})
 	</insert>
+	<select id="getJoinByunum" resultType="UserDto">
+		SELECT *
+ 		FROM user
+  		INNER JOIN city_board ON user.unum = city_board.unum
+  		WHERE user.unum = #{unum}
+  	</select>
 	<select id="preContent" parameterType="int" resultType="String">
 		select subject from city_board where cbnum=#{cbnum}-1
 	</select>

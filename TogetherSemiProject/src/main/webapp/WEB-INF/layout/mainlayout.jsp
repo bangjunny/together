@@ -14,17 +14,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <style>
 	body, body *{
-		font-family: 'Jua'
+		font-family: 'NanumPenScript';
 	}
 	a:link,a:visited,a:hover {
 		color: black;
 		text-decoration: none;
 	}
+	#main_container{
+		background-color: rgba(245, 245, 220, 0.2);	
+	}
+	#main_mid_txt h1, h3{
+		background-color: transparent;
+	}
+	.footer{
+		margin-top: 100px;
+	}
 
 </style>
 </head>
 <body>
-<ul>
+	<ul>
 		<li>
 			<a href="/">Home</a>
 		</li>
@@ -48,10 +57,21 @@
 		</li>
 	</ul>
 <div class="mainlayout">
+	<section class="sidebar">
+		<tiles:insertAttribute name="sidebar"/>
+	</section>
+	<section class="logout">
+		<tiles:insertAttribute name="logout"/>
+	</section>
 	<section class="main">
 		<tiles:insertAttribute name="main"/>
 	</section>
+	<footer class="footer">
+		<tiles:insertAttribute name="footer"/>
+	</footer>
+	
 </div>
+
 </body>
 </html>
 

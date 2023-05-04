@@ -93,6 +93,35 @@
         <br>
         <br>
     </form>
+    
+    <form action="cityinsert" method="post" enctype="multipart/form-data">
+    <table class="table table-bordered">
+            <tr>
+                <th style="width: 100px;background-color: #ddd">제목</th>
+                <td>
+                    <input type="text" class="form-control" name="subject">
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 100px;background-color: #ddd">상품사진</th>
+                <td>
+                    <input type="file" class="form-control" name="upload" id="myfile">
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 100px;background-color: #ddd">내용</th>
+                <td>
+                    <input type="text" class="form-control" name="content">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="button" class="btn btn-outline-success"
+                    onclick="location.href=''">상품목록</button>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
 
 </body>

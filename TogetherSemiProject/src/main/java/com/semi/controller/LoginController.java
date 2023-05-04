@@ -32,9 +32,9 @@ public class LoginController {
 	
 	@Autowired
 	LoginService loginService;
-	
+
 	@Autowired
-	private LoginService loginService;
+	LoginMapper loginMapper;
 	
 	List<String> photoNames=new ArrayList<>();
 	

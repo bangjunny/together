@@ -3,8 +3,8 @@
 	<select id="getTotalCountCity" resultType="int">
 		select count(*) from city_board
 	</select>
-	<select id="getAllCity" resultType="CityBoardDto">
-		select * from city_board order by cbnum asc
+	<select id="getAllCity" parameterType="String" resultType="CityBoardDto">
+		select * from city_board order by cbnum asc;
 	</select>
 	<select id="getDetailbycbnum" parameterType="int" resultType="CityBoardDto">
 		select * from city_board where cbnum=#{cbnum}
@@ -12,4 +12,8 @@
 	<select id="getDetailbyunum" parameterType="int" resultType="UserDto">
 		select * from user where unum=#{unum}
 	</select>
+	<insert id="insertCity" parameterType="CityBoardDto">
+		insert into city_board (subject, unum, cbcontent, cbphoto, cbwriteday, city1, city2)
+		value (#{subject}, #{unum}, #{cbcontent}, #{cbphoto}, now(), #{city1}, #{city2})
+	</insert>
 </mapper>

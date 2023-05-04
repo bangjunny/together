@@ -14,6 +14,7 @@ public interface CityMapper {
 
 	public CityBoardDto getDetailbycbnum(int cbnum);
 	public UserDto getDetailbyunum(int unum);
+	public void insertCity(CityBoardDto dto);
 	/**
 	public void insertCity(CityBoardDto dto);
 	public void updateCity(CityBoardDto dto);

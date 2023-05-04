@@ -39,6 +39,7 @@
         }
         
         .ck.ck-editor {
+
 		width: 90%;
 		max-width: 800px;
 		margin: 0 auto;
@@ -48,10 +49,12 @@
 			height: 80vh;
 		}
 
+
     </style>
 </head>
 <body>
 <h1>지역 게시판</h1>
+
 <div style="float:left;">
 		<c:choose>
           <c:when test="${dto.uphoto==null}">
@@ -65,6 +68,7 @@
       </c:choose></div><h4>${dto.uname}님이 작성 중입니다</h4>
 <div class="container">
     <form action="cityinsert" method="post" enctype="multipart/form-data">
+
         <br>
         제목&nbsp;<input type="text" class="form-control" name="subject" placeholder="제목을 입력해주세요" style="width: 100%">
         <br>
@@ -81,6 +85,7 @@
 			console.error(error);
 		});
 	</script>
+
         <br>
         <hr>
             <button type="submit" class="btn btn-success" style="margin-left: 260px">작성</button>

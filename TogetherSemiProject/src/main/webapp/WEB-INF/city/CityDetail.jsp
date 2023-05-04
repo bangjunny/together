@@ -30,8 +30,10 @@ body, body * {
 		<h3>제목${dto.subject}</h3>
 		<h6 style="float: right;">추천수${dto.cblike}</h6>
 		<h6 style="float: right;">조회수${dto.readcount}&nbsp;</h6>
-		<h6 style="float: left">작성자&nbsp;</h6>
-		<h6>작성일</h6>
+
+		<h6 style="float: left">작성자${dto.uname }</h6>
+		<h6>작성일${dto.cbwriteday }</h6>
+
 		<hr>
 		<div>
 			<div>

@@ -27,6 +27,12 @@ public class MoimService implements MoimServiceInter {
 		// TODO Auto-generated method stub
 		return moimMapper.getTotalCount();
 	}
+	
+	@Override
+	public List<MoimDto> getAllMoim() {
+		// TODO Auto-generated method stub
+		return moimMapper.getAllMoim();
+	}
 
 	@Override
 	public void insertMoim(MoimDto dto) {

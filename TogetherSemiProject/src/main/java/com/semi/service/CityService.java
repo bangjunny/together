@@ -18,16 +18,11 @@ public class CityService implements CityServiceInter{
 	private CityMapper cityMapper;
 
 	@Override
-	public int getTotalCountCity() {
+	public int getTotalCountCity(String city1, String city2) {
 		// TODO Auto-generated method stub
-		return cityMapper.getTotalCountCity();
+		return cityMapper.getTotalCountCity(city1, city2);
 	}
 
-	@Override
-	public List<CityBoardDto> getAllCity() {
-		// TODO Auto-generated method stub
-		return cityMapper.getAllCity();
-	}
 
 	@Override
 	public CityBoardDto getDetailbycbnum(int cbnum) {
@@ -45,6 +40,12 @@ public class CityService implements CityServiceInter{
 	public void insertCity(CityBoardDto dto) {
 		// TODO Auto-generated method stub
 		cityMapper.insertCity(dto);
+	}
+
+	@Override
+	public List<CityBoardDto> getCityList(String city1, String city2) {
+		// TODO Auto-generated method stub
+		return cityMapper.getCityList(city1, city2);
 	}
 
 

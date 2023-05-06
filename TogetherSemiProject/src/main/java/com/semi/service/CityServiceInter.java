@@ -7,11 +7,11 @@ import com.semi.dto.CityBoardDto;
 import com.semi.dto.UserDto;
 
 public interface CityServiceInter {
-	public int getTotalCountCity();
-	public List<CityBoardDto> getAllCity();
+	public int getTotalCountCity(String city1, String city2);
 	public CityBoardDto getDetailbycbnum(int cbnum);
 	public UserDto getDetailbyunum(int unum);
 	public void insertCity(CityBoardDto dto);
+	public List<CityBoardDto> getCityList(String city1, String city2);
 
 	/**
 	public void updateCity(CityBoardDto dto);

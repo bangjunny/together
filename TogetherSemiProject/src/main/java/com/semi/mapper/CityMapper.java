@@ -9,8 +9,8 @@ import com.semi.dto.UserDto;
 
 @Mapper
 public interface CityMapper {
-	public int getTotalCountCity();
-	public List<CityBoardDto> getAllCity();
+	public int getTotalCountCity(String city1, String city2);
+	public List<CityBoardDto> getCityList(String city1, String city2);
 
 	public CityBoardDto getDetailbycbnum(int cbnum);
 	public UserDto getDetailbyunum(int unum);

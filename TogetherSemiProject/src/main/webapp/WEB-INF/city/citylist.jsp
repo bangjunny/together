@@ -22,6 +22,11 @@ body, body * {
 	font-family: 'Jua'
 }
 </style>
+<script type="text/javascript">
+	$(function(){
+		search();
+	});
+</script>
 </head>
 <body>
 	<div style="border: 1px solid black; width: 100%; height: 100px; font-size: 50px">${udto.uname }님이 로그인 중입니다</div>
@@ -29,7 +34,7 @@ body, body * {
 	<br>
 	<br>
 	<br>
-<h1>글이 총 ${totalCountCity }개 있습니다</h1>
+<h1>${city1 }의 ${city2 }에 글이 총 ${totalCountCity }개 있습니다</h1>
 <label for="user_city">지역</label>
 	<select id="city" name="city1">
 		<option hidden>시, 도 선택</option>
@@ -106,7 +111,7 @@ body, body * {
                      });
                    });
                  </script>
-	<button>선택 지역 검색</button>
+	<input type="button" id="search" onclick="search();" value="선택지역검색">
 	<button style="float: right" onclick="location.href='cityform?unum=${udto.unum}'">글쓰기</button>
 	<table class="table table-bordered" >
 		<tr bgcolor="#f5f5dc">
@@ -117,19 +122,19 @@ body, body * {
 			<th style="width: 100px">조회수</th>
 			<th style="width: 100px">추천수</th>
 		</tr>
-		<c:forEach var="dto" items="${listcity}" varStatus="i">
+		<c:forEach var="citylist" items="${citylist}" varStatus="i">
 			<tr>
 				<td align="center">${i.count}</td>
 
-				<td style="cursor: pointer" onclick="location.href='detail?cbnum=${dto.cbnum}'">
-					<b>${dto.subject}</b>
+				<td style="cursor: pointer" onclick="location.href='detail?cbnum=${citylist.cbnum}'">
+					<b>${citylist.subject}</b>
 				</td>
-				<td>${dto.cbnum}</td>
+				<td>${citylist.cbnum}</td>
 				<td align="right" >
-				<fmt:formatDate value="${dto.cbwriteday }" pattern="yyyy-MM-dd"/>
+				<fmt:formatDate value="${citylist.cbwriteday }" pattern="yyyy-MM-dd"/>
 				</td>
-				<td>${dto.readcount}</td>
-				<td>${dto.cblike}</td>
+				<td>${citylist.readcount}</td>
+				<td>${citylist.cblike}</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -169,7 +174,32 @@ body, body * {
 		</c:if>
 
 	</div>
+	<div id="test">test box</div>
 	
+	<script type="text/javascript">
+		function search(){
+			var city1 = $("#city").val();
+			var city2 = $("#district").val();
+			//alert(city1 + city2);
+			 $.ajax({
+				type:"get",
+				url:"./searchlist",
+				data:{"city1":city1,"city2":city2},
+				dataType:"json",
+				success:function(res){
+					let s="";
+					/* $.each(res,function(idx,ele){
+						s+=`
+						<div>
+						<b>\{ele.city1}</b></div>
+						`;
+					}); */
+					
+				}
+				
+			}); $("#test").html(s);
+		}
+	</script>
 </body>
 </html>
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.semi.dto.CityBoardDto;
@@ -70,21 +71,41 @@ public class CityController {
 		model.addAttribute("no", no);
 		**/
 		
-		int unum=2;
-		int totalCountCity=cityService.getTotalCountCity();
-		List<CityBoardDto> listcity = cityService.getAllCity();
+		int unum=9;
+		
+	
 		
 		UserDto udto =  cityService.getDetailbyunum(unum);
+		String city1 = udto.getCity1();
+		String city2 = udto.getCity2();
+		List<CityBoardDto> citylist = cityService.getCityList(city1, city2);
+		int totalCountCity=cityService.getTotalCountCity(city1, city2);
 		
 		
 		model.addAttribute("totalCountCity",totalCountCity);
-		model.addAttribute("listcity",listcity);
+		model.addAttribute("citylist",citylist);
 		model.addAttribute("udto",udto);
+		
+		model.addAttribute("city1",city1);
+		model.addAttribute("city2",city2);
 	
 
 		return "/main/city/citylist";
 		
 	}
+	
+	@GetMapping("/searchlist")
+	@ResponseBody public String search(String city1, String city2, Model model){
+		List<CityBoardDto> citylist = cityService.getCityList(city1, city2);
+		
+//		model.addAttribute("city1",city1);
+//		model.addAttribute("city2",city2);
+//		model.addAttribute("citylist",citylist);
+		
+		return "citylist";
+	}
+	
+	
 	@GetMapping("/detail")
 	public String detail(
 			int cbnum, Model model

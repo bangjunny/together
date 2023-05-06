@@ -47,6 +47,20 @@ public class CityService implements CityServiceInter{
 		// TODO Auto-generated method stub
 		return cityMapper.getCityList(city1, city2);
 	}
+	
+	@Override
+	public String preContent(int num) {
+		// TODO Auto-generated method stub
+		
+		return cityMapper.preContent(num);
+	}
+
+	@Override
+	public String nxtContent(int num) {
+		// TODO Auto-generated method stub
+		return cityMapper.nxtContent(num);
+
+	}
 
 
 

@@ -11,7 +11,13 @@ public interface CityServiceInter {
 	public CityBoardDto getDetailbycbnum(int cbnum);
 	public UserDto getDetailbyunum(int unum);
 	public void insertCity(CityBoardDto dto);
+
 	public List<CityBoardDto> getCityList(String city1, String city2);
+
+
+	public String preContent(int num);
+	public String nxtContent(int num);
+	
 
 	/**
 	public void updateCity(CityBoardDto dto);

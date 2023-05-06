@@ -19,7 +19,16 @@
   		INNER JOIN city_board ON user.unum = city_board.unum
   		WHERE user.unum = #{unum}
   	</select>
+
   	<select id="getCityList" parameterType="String" resultType="CityBoardDto">
   		select * from city_board where city1=#{city1} and city2=#{city2} order by cbnum asc;
   	</select>
+
+	<select id="preContent" parameterType="int" resultType="String">
+		select subject from city_board where cbnum <![CDATA[<]]> cbnum=#{cbnum} order by cbnum desc limit 1
+	</select>
+	<select id="nxtContent" parameterType="int" resultType="String">
+		select subject from city_board where cbnum <![CDATA[>]]> cbnum=#{cbnum} order by cbnum asc limit 1
+	</select>
+
 </mapper>

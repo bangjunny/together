@@ -91,7 +91,7 @@ public class CityController {
 	
 
 		return "/main/city/citylist";
-		
+			 
 	}
 	
 	@GetMapping("/searchlist")

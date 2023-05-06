@@ -187,17 +187,10 @@ body, body * {
 				data:{"city1":city1,"city2":city2},
 				dataType:"json",
 				success:function(res){
-					let s="";
-					/* $.each(res,function(idx,ele){
-						s+=`
-						<div>
-						<b>\{ele.city1}</b></div>
-						`;
-					}); */
-					
+					alert(city1)
 				}
 				
-			}); $("#test").html(s);
+			});
 		}
 	</script>
 </body>

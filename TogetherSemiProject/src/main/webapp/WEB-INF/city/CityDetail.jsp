@@ -75,7 +75,7 @@ body, body * {
 			<div>
 			이전 게시글
 			<c:choose>
-            	<c:when test="${dto.cbnum==1}">
+            	<c:when test="${precontent==null} }">
             	<!-- Result값이 있다면 실행할 로직 -->
             		<h4>이전 글이 없습니다</h4>
             	</c:when>

@@ -23,9 +23,9 @@
   		WHERE user.unum = #{unum}
   	</select>
 	<select id="preContent" parameterType="int" resultType="String">
-		select subject from city_board where cbnum=#{cbnum}-1
+		select subject from city_board where cbnum <![CDATA[<]]> cbnum=#{cbnum} order by cbnum desc limit 1
 	</select>
 	<select id="nxtContent" parameterType="int" resultType="String">
-		select subject from city_board where cbnum=#{cbnum}+1
+		select subject from city_board where cbnum <![CDATA[>]]> cbnum=#{cbnum} order by cbnum asc limit 1
 	</select>
 </mapper>

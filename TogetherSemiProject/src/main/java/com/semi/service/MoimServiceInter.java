@@ -10,6 +10,7 @@ public interface MoimServiceInter {
 	public int getTotalCount();
 	public void insertMoim(MoimDto dto);
 	public List<MoimDto> getPagingList(int start, int perpage);//map:start,perpage
+	public List<MoimDto> getAllMoim();
 	public void updateJjimcount(int mnum);
 	public MoimDto getData(int mnum);
 	public void deleteMoim(int mnum);

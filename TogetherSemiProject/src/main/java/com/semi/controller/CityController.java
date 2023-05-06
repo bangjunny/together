@@ -76,9 +76,9 @@ public class CityController {
 		
 		UserDto udto =  cityService.getDetailbyunum(unum);
 		
+		
 		model.addAttribute("totalCountCity",totalCountCity);
 		model.addAttribute("listcity",listcity);
-		model.addAttribute("unum",unum);
 		model.addAttribute("udto",udto);
 	
 
@@ -103,7 +103,7 @@ public class CityController {
 		
 		return "/main/city/CityDetail";
 	}
-	
+	 
 	
 	@GetMapping("/cityform")
 	public String cityform(
@@ -119,7 +119,10 @@ public class CityController {
 	public String cityinsert(
 			CityBoardDto dto, MultipartFile upload
 	) {
-		
+		String filename="";
+		if(!upload.getOriginalFilename().equals("")) {
+			filename=storageService.uploadFile(bucketName, "city", upload);
+		}
 		
 		
 		

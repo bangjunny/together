@@ -95,16 +95,17 @@ public class CityController {
 	}
 	
 	@GetMapping("/searchlist")
-	@ResponseBody public String search(String city1, String city2, Model model){
+	@ResponseBody public List<CityBoardDto> search(String city1, String city2, Model model){
 		List<CityBoardDto> citylist = cityService.getCityList(city1, city2);
 		
-//		model.addAttribute("city1",city1);
-//		model.addAttribute("city2",city2);
-//		model.addAttribute("citylist",citylist);
+		System.out.println(city1);
+		System.out.println(city2);
+		System.out.println(citylist.size());
 		
-		return "citylist";
+		return citylist;
 	}
 	
+
 	
 	@GetMapping("/detail")
 	public String detail(
@@ -130,10 +131,12 @@ public class CityController {
 	
 	@GetMapping("/cityform")
 	public String cityform(
-			int unum, Model model
+			int unum, String city1, String city2, Model model
 	) {
 		UserDto dto = cityService.getDetailbyunum(unum);
 		model.addAttribute("dto",dto);
+		model.addAttribute("city1",city1);
+		model.addAttribute("city2",city2);
 		
 		return "/main/city/cityform";
 	}

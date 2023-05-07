@@ -22,11 +22,7 @@ body, body * {
 	font-family: 'Jua'
 }
 </style>
-<script type="text/javascript">
-	$(function(){
-		search();
-	});
-</script>
+
 </head>
 <body>
 	<div style="border: 1px solid black; width: 100%; height: 100px; font-size: 50px">${udto.uname }님이 로그인 중입니다</div>
@@ -34,7 +30,7 @@ body, body * {
 	<br>
 	<br>
 	<br>
-<h1>${city1 }의 ${city2 }에 글이 총 ${totalCountCity }개 있습니다</h1>
+<h1><span class="city1">${city1 }</span>의 <span class="city2">${city2 }</span>에 글이 총 <span class="totalCountCity">${totalCountCity }</span>개 있습니다</h1>
 <label for="user_city">지역</label>
 	<select id="city" name="city1">
 		<option hidden>시, 도 선택</option>
@@ -112,8 +108,8 @@ body, body * {
                    });
                  </script>
 	<input type="button" id="search" onclick="search();" value="선택지역검색">
-	<button style="float: right" onclick="location.href='cityform?unum=${udto.unum}'">글쓰기</button>
-	<table class="table table-bordered" >
+	<button style="float: right" id="write" onclick="writeform();">글쓰기</button>
+	<table class="table table-bordered boardlist" >
 		<tr bgcolor="#f5f5dc">
 			<th style="width: 100px">번호</th>
 			<th style="width: 400px">제목</th>
@@ -129,7 +125,7 @@ body, body * {
 				<td style="cursor: pointer" onclick="location.href='detail?cbnum=${citylist.cbnum}'">
 					<b>${citylist.subject}</b>
 				</td>
-				<td>${citylist.cbnum}</td>
+				<td>${citylist.uname}</td>
 				<td align="right" >
 				<fmt:formatDate value="${citylist.cbwriteday }" pattern="yyyy-MM-dd"/>
 				</td>
@@ -138,11 +134,11 @@ body, body * {
 			</tr>
 		</c:forEach>
 	</table>
+	
 	<div style="float: right">
-		<input type="text" placeholder="">
+		<input type="text">
 		<button>검색</button>
 	</div>
-
 	<br>
 	<hr>
 	<!-- 페이징처리 -->
@@ -174,25 +170,62 @@ body, body * {
 		</c:if>
 
 	</div>
-	<div id="test">test box</div>
-	
 	<script type="text/javascript">
-		function search(){
-			var city1 = $("#city").val();
-			var city2 = $("#district").val();
-			//alert(city1 + city2);
-			 $.ajax({
-				type:"get",
-				url:"./searchlist",
-				data:{"city1":city1,"city2":city2},
-				dataType:"json",
-				success:function(res){
-					alert(city1)
-				}
+	function search(){
+		var city1 = $("#city").val();
+		var city2 = $("#district").val();
+		$(".city1").html(city1);
+		$(".city2").html(city2);
+		 $.ajax({
+			type:"get",
+			url:"./searchlist",
+			data:{"city1":city1,"city2":city2},
+			dataType:"json",
+			success:function(res){
+				$(".totalCountCity").html(res.length);
 				
-			});
-		}
-	</script>
+				let s=`
+					<table class="table table-bordered boardlist">
+					<tr bgcolor='#f5f5dc'>
+					<th style="width: 100px">번호</th>
+					<th style="width: 400px">제목</th>
+					<th style="width: 200px">작성자</th>
+					<th style="width: 150px">작성일</th>
+					<th style="width: 100px">조회수</th>
+					<th style="width: 100px">추천수</th>
+					</tr>`;
+				$.each(res,function(idx,ele){
+					s+=`
+					<tr>
+					<td align="center">\${idx+1}</td>
+					<td style="cursor:pointer"
+					onclick="location.href='detail?cbnum=\${ele.cbnum}'">
+					\${ele.subject}
+					</td>
+					<td>\${ele.uname}</td>
+					<td align="righter">
+					\${ele.cbwriteday}
+					</td>
+					<td>\${ele.readcount}</td>
+					<td>\${ele.cblike}</td>
+					</tr>
+					`;
+				});
+				s+=`</table>`;
+				$(".boardlist").html(s);
+
+			}
+			
+		});
+	}
+	function writeform(){
+		var city1 = $("span.city1").text();
+		var city2 = $("span.city2").text();
+		var unum = ${udto.unum}
+		location.href="cityform?unum="+(unum)+"&city1="+(city1)+"&city2="+(city2);
+	}
+</script>
+
 </body>
 </html>
 

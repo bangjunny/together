@@ -67,14 +67,19 @@
           </c:otherwise>
       </c:choose></div><h4>${dto.uname}님이 작성 중입니다</h4>
 <div class="container">
-    <form action="cityinsert" method="post" enctype="multipart/form-data">
-
+    <form action="cityinsert" method="post">
         <br>
         제목&nbsp;<input type="text" class="form-control" name="subject" placeholder="제목을 입력해주세요" style="width: 100%">
         <br>
-        <textarea name ="content" id="editor" class="form-control"></textarea>
+        <textarea name ="content" id="editor"></textarea>
         <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
-		<script>		
+        <br>
+        <hr>
+            <button type="submit" class="btn btn-success" style="margin-left: 260px">작성</button>
+            <button type="button" class="btn btn-success" onclick="history.back()" style="margin-left: 50px">취소</button>
+        <br>
+        <br>
+        <script>		
 		ClassicEditor
 		.create(document.querySelector('#editor'))
 		.then(editor => {
@@ -83,14 +88,7 @@
 		.catch(error => {
 			console.error(error);
 		});
-	</script>
-
-        <br>
-        <hr>
-            <button type="submit" class="btn btn-success" style="margin-left: 260px">작성</button>
-            <button type="button" class="btn btn-success" onclick="history.back()" style="margin-left: 50px">취소</button>
-        <br>
-        <br>
+		</script>
     </form>
     
     <form action="cityinsert" method="post" enctype="multipart/form-data">

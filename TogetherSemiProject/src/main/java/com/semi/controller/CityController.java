@@ -85,6 +85,7 @@ public class CityController {
 		return "/main/city/citylist";
 		
 	}
+	
 	@GetMapping("/detail")
 	public String detail(
 			int cbnum, Model model
@@ -92,12 +93,18 @@ public class CityController {
 		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
 		String precontent=cityService.preContent(cbnum);
 		String nxtcontent=cityService.nxtContent(cbnum);
+		String prenum=cityService.preNum(cbnum);
+		String nxtnum=cityService.nxtNum(cbnum);
 		int totalCountCity=cityService.getTotalCountCity();
+		
+		
 		
 		model.addAttribute("dto",dto);
 		model.addAttribute("nxtcontent",nxtcontent);
+		model.addAttribute("nxtnum",nxtnum);
 		System.out.println(nxtcontent);
 		model.addAttribute("precontent",precontent);
+		model.addAttribute("prenum",prenum);
 		System.out.println(precontent);
 		model.addAttribute("totalCountCity",totalCountCity);
 		

@@ -50,7 +50,6 @@ public class CityService implements CityServiceInter{
 	@Override
 	public String preContent(int num) {
 		// TODO Auto-generated method stub
-		
 		return cityMapper.preContent(num);
 	}
 
@@ -58,6 +57,18 @@ public class CityService implements CityServiceInter{
 	public String nxtContent(int num) {
 		// TODO Auto-generated method stub
 		return cityMapper.nxtContent(num);
+	}
+
+	@Override
+	public String preNum(int num) {
+		// TODO Auto-generated method stub
+		return cityMapper.preNum(num);
+	}
+
+	@Override
+	public String nxtNum(int num) {
+		// TODO Auto-generated method stub
+		return cityMapper.nxtNum(num);
 	}
 
 

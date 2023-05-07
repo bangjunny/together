@@ -67,36 +67,28 @@ body, body * {
 			<button type="submit" class="btn btn-primary btn-sm"
 				style="float: right; margin-right: 30px;">입력</button>
 		</form>
-		<br>${nxtcontent}
+		<br>
+		
 		<br>
 		<hr>
 		<div>
 			<br><br>
-			<div>
-			이전 게시글
-			<c:choose>
-            	<c:when test="${precontent==null} }">
-            	<!-- Result값이 있다면 실행할 로직 -->
-            		<h4>이전 글이 없습니다</h4>
-            	</c:when>
-            	<c:otherwise>
-            	<!-- 그렇지 않다면 실행할 로직 -->
-                <h4>${precontent}</h4>
-            	</c:otherwise>
-      		</c:choose>
+			<div><h4>이전 글</h4>
+				<c:if test="${not empty precontent}">
+					<a href="<c:url value='/city/detail?cbnum=${prenum}'/>"><h4>${precontent}</h4></a>
+				</c:if>
+				<c:if test="${empty precontent}">
+					<h4>이전 게시글이 없습니다</h4>
+				</c:if>
 			</div>
-			<div>
-			다음 게시글
-			<c:choose>
-            	<c:when test="${dto.cbnum==totalCountCity}">
-            	<!-- Result값이 있다면 실행할 로직 -->
-            		<h4>다음 글이 없습니다</h4>
-            	</c:when>
-            	<c:otherwise>
-            	<!-- 그렇지 않다면 실행할 로직 -->
-                <h4>${nxtcontent}</h4>
-            	</c:otherwise>
-      		</c:choose>
+			<br>
+			<div><h4>다음 글</h4>
+				<c:if test="${not empty nxtcontent}">
+					<a href="<c:url value='/city/detail?cbnum=${nxtnum}'/>"><h4>${nxtcontent}</h4></a>
+				</c:if>
+				<c:if test="${empty nxtcontent}">
+					<h4>다음 게시글이 없습니다</h4>
+				</c:if>
 			</div>
 		</div>
 	</div>

@@ -17,6 +17,8 @@ public interface CityMapper {
 	public void insertCity(CityBoardDto dto);
 	public String preContent(int num);
 	public String nxtContent(int num);
+	public String preNum(int num);
+	public String nxtNum(int num);
 	/**
 	public void insertCity(CityBoardDto dto);
 	public void updateCity(CityBoardDto dto);

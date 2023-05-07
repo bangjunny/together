@@ -55,7 +55,7 @@
 </style>
 </head>
 <body>
-<div style="text-align:center;font-size:30px;"><b>모임 장소를 검색 해 보세요</b></div>
+<div style="text-align:center;font-size:30px;"><b>모임 장소를 검색 해 보세요!</b></div>
 <br>
  <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>

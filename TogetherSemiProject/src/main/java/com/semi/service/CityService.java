@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.semi.dto.CbReBoardDto;
 import com.semi.dto.CityBoardDto;
 import com.semi.dto.UserDto;
 import com.semi.mapper.CityMapper;
@@ -69,6 +70,18 @@ public class CityService implements CityServiceInter{
 	public String nxtNum(int num) {
 		// TODO Auto-generated method stub
 		return cityMapper.nxtNum(num);
+	}
+
+	@Override
+	public void newComment(CbReBoardDto dto) {
+		// TODO Auto-generated method stub
+		cityMapper.newComment(dto);
+	}
+
+	@Override
+	public int getTotalComment() {
+		// TODO Auto-generated method stub
+		return cityMapper.getTotalComment();
 	}
 
 

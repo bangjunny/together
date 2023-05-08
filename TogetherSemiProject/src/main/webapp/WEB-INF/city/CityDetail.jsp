@@ -58,7 +58,7 @@ body, body * {
 			<button type="button" class="btn btn-sm btn-success" id="delbtn">삭제</button>
 		</div>
 		<hr>
-		<form action="/action_page.php">
+		<form action="newcomment" method="post" id="newcomment">
 			<div class="mb-3 mt-3">
 				<textarea class="form-control" rows="5" id="comment" name="text"
 					style="height: 200px; resize: none; width: 500px;"
@@ -68,7 +68,16 @@ body, body * {
 				style="float: right; margin-right: 30px;">입력</button>
 		</form>
 		<br>
-		
+		<div>
+			<form action="readcomment" method="post" id="readcomment">
+			<table>
+			<caption align="top">총${totalComment}개의 댓글</caption>
+			<tr>
+				<td>
+			</tr>
+			</table>
+			</form>
+		</div>
 		<br>
 		<hr>
 		<div>

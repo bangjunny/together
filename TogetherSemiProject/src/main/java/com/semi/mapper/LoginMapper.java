@@ -13,6 +13,7 @@ import com.semi.dto.UserPhotoDto;
 @Mapper
 public interface LoginMapper {
 	
+	/*로그인 회원가입*/
 	public void insertUser(UserDto dto);
 	public int isEqualPassEmail(Map<String, String> map); // map : email, pass
 	public UserDto selectOneOfEmail(String email);
@@ -25,5 +26,8 @@ public interface LoginMapper {
 
 	public List<UserDto> getAllUsers();
 	
+	public void updatePhoto(Map<String, Object> map);
+	
+	public void updateMypage(UserDto dto);
 	
 }

@@ -60,7 +60,6 @@
 		  display: flex;
 		  flex-direction: column;
 		  margin-bottom: 20px;
-		  /*font-size: 14px;*/
 		}
 		
 		.btn-wrap {
@@ -70,6 +69,7 @@
 		
 		.in {
 			height:50px;
+			width: 100%;
 		}
 		
 		.gen {
@@ -101,72 +101,165 @@
   			background-position: right;
 		}
 		
-	/* 에러메세지 */
+		input:focus {
+		    outline: none;
+		}
+		
+		.pswdImg {
+		    width: 18px;
+		    height: 20px;
+		    display: inline-block;
+		    position: absolute;
+		    top: 50%;
+		    right: 16px;
+		    margin-top: -10px;
+		    cursor: pointer;
+		}
+		
+		.box {
+		    display: block;
+		    width: 100%;
+		    height: 50px;
+		    border: solid 1px #dadada;
+		    padding: 10px 14px 10px 14px;
+		    box-sizing: border-box;
+		    background: #fff;
+		    position: relative;
+		}
+		
+		.int {
+		    display: block;
+		    position: relative;
+		    width: 100%;
+		    height: 29px;
+		    border: none;
+		    background: #fff;
+		    font-size: 15px;
+		}
+		
+		.box.int_pass {
+    		padding-right: 40px;
+		}
 
-	.error_next_box {
-	    margin-top: 9px;
-	    font-size: 12px;
-	    color: red;    
-	    display: none;
-	}
+		.box.int_pass_check {
+		    padding-right: 40px;
+		}
+		
+		.step_url {
+		    /*@daham.com*/
+		    position: absolute;
+		    top: 16px;
+		    right: 13px;
+		    font-size: 15px;
+		    color: #8e8e8e;
+		}
+		
+		select {
+		    width: 100%;
+		    height: 29px;
+		    font-size: 15px;
+		    background: #fff
+		    background-size: 20px 8px;
+		    -webkit-appearance: none;
+		    display: inline-block;
+		    text-align: start;
+		    border: solid 1px #dadada;
+		    cursor: default;
+		}
+		
+		.la{
+		 font-size:18px;
+		}
+		
+		/* 에러메세지 */
 	
-	#alertTxt {
-	    position: absolute;
-	    top: 19px;
-	    right: 38px;
-	    font-size: 12px;
-	    color: red;
-	    display: none;
-	}
+		.error_next_box {
+		    margin-top: 9px;
+		    font-size: 12px;
+		    color: red;    
+		    display: none;
+		}
+		
+		#alertTxt {
+		    position: absolute;
+		    top: 19px;
+		    right: 38px;
+		    font-size: 12px;
+		    color: red;
+		    display: none;
+		}
 			
     </style>
 </head>
 <body>
     <div class="container-fluid">
+    	
     	<form id="join-form" method="post" action="userinsert">
-			  <h2>회원가입</h2>
+    	
+    	<h2>회원가입</h2>
+  
+			  <!-- ID -->
+                <div class="input-wrap">
+                <label for="id" class="la">이메일</label>
+                <span class="box int_id">
+                	<input type="email" id="email" name="email" class="int" maxlength="20">
+                </span>
+                
+                <span class="error_next_box"></span>
+                </div>
+			  
+			  
+			  <!-- PW1 -->
+                <div class="input-wrap">
+                    <label for="pswd1" class="la">비밀번호</label>
+                    <span class="box int_pass">
+                        <input type="password" id="pass" name="pass" class="int" maxlength="20">
+                        <span id="alertTxt">사용불가</span>
+                        <img src="m_icon_pass.png" id="pswd1_img1" class="pswdImg">
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <!-- PW2 -->
+                <div class="input-wrap">
+                    <label for="pswd2" class="la">비밀번호 재확인</label>
+                    <span class="box int_pass_check">
+                        <input type="password" id="pass_check" name="pass_check" class="int" maxlength="20">
+                        <img src="m_icon_check_disable.png" id="pswd2_img1" class="pswdImg">
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+			  
+			  <!-- NAME -->
+                <div class="input-wrap">
+                    <label for="name" class="la">이름</label>
+                    <span class="box int_name">
+                        <input type="text" id="uname" name="uname" class="int" maxlength="20">
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
 			  
 			  <div class="input-wrap">
-			    <label for="user_email">이메일</label>
-				    <input type="email" name="email" id="email" class="in">
-			  </div>
-			  
-			  <div class="input-wrap">
-			    <label for="user_pw">비밀번호</label>
-			    <input type="password" name="pass" id="pass" class="in">
-			     <span id="alertTxt">사용불가</span>
-			     <span class="error_next_box"></span>
-			  </div>
-			  
-			  <div class="input-wrap">
-			    <label for="user_pw_check">비밀번호 확인</label>
-			    <input type="password" name="pass_check" id="pass_check" class="in">
+			    <label for="age" class="la">생년월일</label>
+			    <span class="box int_age">
+			    	<input type="date" id="age" name="age" class="int">
+			    </span>
 			    <span class="error_next_box"></span>
-			  </div>
-			  
-			  <div class="input-wrap">
-			    <label for="user_name">이름</label>
-			    <input type="text" name="uname" id="uname" class="in" required>
-			  </div>
-			  
-			  <div class="input-wrap">
-			    <label for="user_age">생년월일</label>
-			    <input type="date" name="age" class="in" required>
 			   </div>
 			  
-			  <div class="input-wrap">
-			  	<label for="user_gender">성별</label>
-			  	<div class="ps_box gender_code">
-			     <select id="gender" name="gender" class="gen" aria-label="성별">
-			     	<option value="M">남자</option>
-			     	<option value="F">여자</option>
-			     </select>
-			    </div>
-			    
-			  </div>
+			  <!-- GENDER -->
+                <div class="input-wrap">
+                    <label for="gender" class="la">성별</label>
+                        <select id="gender" name="gender" class="gen">
+                        	<option hidden>성별</option>
+                            <option value="남자">남자</option>
+                            <option value="여자">여자</option>
+                        </select>                            
+                    <span class="error_next_box">필수 정보입니다.</span>
+                </div>
 			  
 			  <div class="input-wrap">
-			    <label for="user_city">지역</label>
+			    <label for="user_city" class="la">지역</label>
 			    <div class="ps_box_city" style="left: 122px;">
                		<select id = "city" name="city1" class="cit">
                			<option hidden>시, 도 선택</option>
@@ -248,9 +341,14 @@
 			  </div>
 			  
 			  <div class="input-wrap">
-			    <label for="user_phone">휴대전화</label>
-			    <input type="tel" name="hp" id="hp" class="in" required>
+			    <label for="user_phone" class="la">휴대전화</label>
+			    <span class="box int_mobile">
+			    	<input type="tel" id="hp" name="hp" class="int" maxlength="16" placeholder="전화번호 입력">
+			    </span>
+			    <span class="error_next_box"></span>
 			  </div>
+			  
+			   
 			   
 			  <div class="btn-wrap">
 			  	<button type="submit" class="btn-submit">가입하기</button>
@@ -259,27 +357,79 @@
     </div>
     
     <script type="text/javascript">
-    	
+    
     /*변수 선언*/
+    
+    var email = document.querySelector('#email');
+    
     var pw1 = document.querySelector('#pass');
     var pwMsg = document.querySelector('#alertTxt');
+    var pwImg1 = document.querySelector('#pswd1_img1');
 
     var pw2 = document.querySelector('#pass_check');
+    var pwImg2 = document.querySelector('#pswd2_img1');
     var pwMsgArea = document.querySelector('.int_pass');
     
+    var userName = document.querySelector('#uname');
+    
+    var age = document.querySelector('#age');
+    
+    var gender = document.querySelector('#gender');
+    
+    var mobile = document.querySelector('#hp');
+    
+    var error = document.querySelectorAll('.error_next_box');
+    
     /*이벤트 핸들러 연결*/
-	pw1.addEventListener("focusout", checkPw);
+    
+    email.addEventListener("focusout", isEmailCorrect);
+    
+    pw1.addEventListener("focusout", checkPw);
     pw2.addEventListener("focusout", comparePw);
     
+    userName.addEventListener("focusout", checkName);
+    
+    age.addEventListener("focusout", checkage);
+    
+    gender.addEventListener("focusout", function() {
+        if(gender.value === "성별") {
+            error[5].style.display = "block";
+        } else {
+            error[5].style.display = "none";
+        }
+    });
+    
+    mobile.addEventListener("focusout", checkPhoneNum);
+    
+    
     /*콜백 함수*/
+    
+    function isEmailCorrect() {
+        var emailPattern = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/;
+
+        if(email.value === ""){ 
+        	error[0].innerHTML = "필수 정보입니다.";
+            error[0].style.display = "block";
+        } else if(!emailPattern.test(email.value)) {
+        	error[0].innerHTML = "이메일 주소를 다시 확인해주세요.";
+            error[0].style.display = "block";
+        } else {
+            error[0].style.display = "none"; 
+        }
+
+    }
+    
     function checkPw() {
         var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}/;
         if(pw1.value === "") {
             error[1].innerHTML = "필수 정보입니다.";
+            error[1].style.color = "red";
             error[1].style.display = "block";
         } else if(!pwPattern.test(pw1.value)) {
             error[1].innerHTML = "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
+            error[1].style.color = "red";
             pwMsg.innerHTML = "사용불가";
+            pwMsg.style.color = "red";
             pwMsgArea.style.paddingRight = "93px";
             error[1].style.display = "block";
             
@@ -297,19 +447,58 @@
     function comparePw() {
         if(pw2.value === pw1.value && pw2.value != "") {
             pwImg2.src = "m_icon_check_enable.png";
+            error[2].style.color = "red";
             error[2].style.display = "none";
         } else if(pw2.value !== pw1.value) {
             pwImg2.src = "m_icon_check_disable.png";
+            error[2].style.color = "red";
             error[2].innerHTML = "비밀번호가 일치하지 않습니다.";
             error[2].style.display = "block";
         } 
 
         if(pw2.value === "") {
             error[2].innerHTML = "필수 정보입니다.";
+            error[2].style.color = "red";
             error[2].style.display = "block";
         }
     }
     
+    function checkName() {
+    	  var namePattern = /^[a-zA-Z가-힣]+$/; // 특수기호, 공백 사용 불가능
+    	  if (userName.value === "") {
+    	    error[3].innerHTML = "필수 정보입니다.";
+    	    error[3].style.display = "block";
+    	  } else if (!namePattern.test(userName.value)) {
+    	    error[3].innerHTML = "한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)";
+    	    error[3].style.display = "block";
+    	  } else {
+    	    error[3].style.display = "none";
+    	  }
+    	}
+    
+    function checkage() {
+    	
+    	if(age.value === "") {
+            error[4].innerHTML = "필수 정보입니다.";
+            error[4].style.display = "block";
+        } else {
+            error[4].style.display = "none";
+        }
+    }
+    
+    function checkPhoneNum() {
+    	  var isPhoneNum = /^[0-9]*$/;
+
+    	  if(mobile.value === "") {
+    	    error[6].innerHTML = "필수 정보입니다.";
+    	    error[6].style.display = "block";
+    	  } else if(!isPhoneNum.test(mobile.value)) {
+    	    error[6].innerHTML = "숫자로만 입력해주세요.";
+    	    error[6].style.display = "block";
+    	  } else {
+    	    error[6].style.display = "none";
+    	  }
+    	}
     </script>
   
 </body>

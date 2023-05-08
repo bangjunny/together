@@ -2,7 +2,10 @@ package com.semi.controller;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 
@@ -48,8 +51,8 @@ public class LoginController {
 	@GetMapping("/login")
 	public String newLoginPage(HttpSession session) {
 		String loginok = (String)session.getAttribute("loginok");
-		
-		if(loginok==null) 
+		System.out.println("loginok="+loginok);
+		if(loginok == null) 
 		{ 
 			return "/main/user/login"; 
 		} 
@@ -68,6 +71,7 @@ public class LoginController {
 	@PostMapping("/userinsert")
 	public String userinsert(UserDto dto){
 		System.out.println(dto);
+		/*dto.setEmail(dto.getEmail() + "@daham.com");*/
 		loginService.insertUser(dto);
 		
 		return "redirect:/user/login";
@@ -99,6 +103,30 @@ public class LoginController {
 		return "/main/user/mypagedetail";
 	}
    
+	@PostMapping("/mypageupdatephoto")
+	@ResponseBody public String mypageupdatephoto(MultipartFile upload,int unum)
+	{
+		System.out.println("unum="+unum);
+		//s3 스토리지에 업로드된 기존 파일 지우기
+		String fileName=loginMapper.getMypage(unum).getUphoto();
+		storageService.deleteFile(bucketName, "user", fileName);
+
+		//네이버 클라우드의 버켓에 사진 업로드하기
+		String uphoto=storageService.uploadFile(bucketName, "user", upload);
+		Map<String, Object> map=new HashMap<>();
+		map.put("uphoto", uphoto);
+		map.put("unum", unum);
+
+		loginMapper.updatePhoto(map);
+		return uphoto;//업로드된 파일명 리턴
+	}
+	
+	@GetMapping("/updatemypage")
+	@ResponseBody public void updatemypage(UserDto dto)
+	{
+		System.out.println("dto.unum="+dto.getUnum());
+		loginMapper.updateMypage(dto);
+	}
 	
        
 	

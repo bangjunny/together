@@ -26,7 +26,7 @@
         }
         
         .container {
-            max-width: 400px;
+            max-width: 400px !important;
             margin: 20 auto;
             padding: 40px 20px;
             background-color: #fff;
@@ -116,8 +116,8 @@
         
             
             <div class="form-group">
-                <span>계정이 없으신가요? </span>&nbsp;
-                <a href="/user/join">회원가입</a>
+                <span>계정이 없으신가요? </span>
+                <a href="/user/join"> 회원가입</a>
             </div>
         </form>
     </div>

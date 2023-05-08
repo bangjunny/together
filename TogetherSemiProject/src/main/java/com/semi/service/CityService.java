@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.semi.dto.CbReBoardDto;
 import com.semi.dto.CityBoardDto;
 import com.semi.dto.UserDto;
 import com.semi.mapper.CityMapper;
@@ -18,16 +19,11 @@ public class CityService implements CityServiceInter{
 	private CityMapper cityMapper;
 
 	@Override
-	public int getTotalCountCity() {
+	public int getTotalCountCity(String city1, String city2) {
 		// TODO Auto-generated method stub
-		return cityMapper.getTotalCountCity();
+		return cityMapper.getTotalCountCity(city1, city2);
 	}
 
-	@Override
-	public List<CityBoardDto> getAllCity() {
-		// TODO Auto-generated method stub
-		return cityMapper.getAllCity();
-	}
 
 	@Override
 	public CityBoardDto getDetailbycbnum(int cbnum) {
@@ -48,9 +44,14 @@ public class CityService implements CityServiceInter{
 	}
 
 	@Override
+	public List<CityBoardDto> getCityList(String city1, String city2) {
+		// TODO Auto-generated method stub
+		return cityMapper.getCityList(city1, city2);
+	}
+	
+	@Override
 	public String preContent(int num) {
 		// TODO Auto-generated method stub
-		
 		return cityMapper.preContent(num);
 	}
 
@@ -58,6 +59,31 @@ public class CityService implements CityServiceInter{
 	public String nxtContent(int num) {
 		// TODO Auto-generated method stub
 		return cityMapper.nxtContent(num);
+
+	}
+
+	@Override
+	public String preNum(int num) {
+		// TODO Auto-generated method stub
+		return cityMapper.preNum(num);
+	}
+
+	@Override
+	public String nxtNum(int num) {
+		// TODO Auto-generated method stub
+		return cityMapper.nxtNum(num);
+	}
+
+	@Override
+	public void newComment(CbReBoardDto dto) {
+		// TODO Auto-generated method stub
+		cityMapper.newComment(dto);
+	}
+
+	@Override
+	public int getTotalComment() {
+		// TODO Auto-generated method stub
+		return cityMapper.getTotalComment();
 	}
 
 

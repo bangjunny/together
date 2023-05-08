@@ -230,7 +230,7 @@ $(document).ready(function() {
 	<a href="/city/list">
 	<img class="mainphoto" src="./photo/local.png">
 	</a>
-	<a href="지도 페이지">
+	<a href="/mapcontact">
 	<img class="mainphoto" src="./photo/map.png">
 	</a>
 	<br>

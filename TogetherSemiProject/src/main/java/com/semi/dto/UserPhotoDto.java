@@ -13,6 +13,4 @@ public class UserPhotoDto {
 	private int photo_idx;
 	private int unum;
 	private String file_name;
-	private String file_type;
-	private Date upload_date;
 }

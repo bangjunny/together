@@ -1,13 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.semi.mapper.LoginMapper">
 
-	<!-- UserPhotoDto에 대한 Result Map 추가 -->
-	<resultMap type="com.semi.mapper.LoginMapper.UserPhotoDto" id="userPhotoResultMap">
-	  <result column="photo_idx" property="photo_idx" />
-	  <result column="unum" property="unum" />
-	  <result column="file_name" property="file_name" />
-	  <result column="upload_date" property="upload_date" />
-	</resultMap>
 
 
 <insert id="insertUser" parameterType="UserDto">
@@ -39,21 +32,5 @@
 	select * from user where email=#{email}
 </select>
 
-	<select id="getUserPhotoList" parameterType="int" resultMap="userPhotoResultMap">
-       SELECT unum, file_name
-  		FROM user_photo
-  		WHERE unum = #{unum}
-    </select>
-    	
-    
-    <insert id="insertUserPhoto" parameterType="UserPhotoDto">
-        INSERT INTO user_photo (unum, file_name,file_type, upload_date) 
-        VALUES (#{unum}, #{fileName}, #{fileType}, #{uploadDate})
-    </insert>
-    
-    <delete id="deleteUserPhoto" parameterType="int">
-        DELETE FROM user_photo WHERE photo_idx=#{photo_idx}
-    </delete>
-	
 
 </mapper>

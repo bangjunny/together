@@ -1,6 +1,5 @@
 package com.semi.controller;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,12 +9,9 @@ import javax.servlet.http.HttpSession;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,12 +34,10 @@ public class LoginController {
 	
 	@Autowired
 	LoginService loginService;
-	
 
 	@Autowired
 	LoginMapper loginMapper;
 	
-	List<String> photoNames=new ArrayList<>();
 	
 	@Autowired
 	private NcpObjectStorageService storageService;
@@ -80,11 +74,8 @@ public class LoginController {
 		return "redirect:/user/login";
 	}
 	
-	
-	
-	        
 	@GetMapping("/mypagelist")
-	public String mypagelist(Model model)
+	public String list(Model model)
 	{
 		//총 상품갯수 출력
 		int utotalCount=loginMapper.getTotalCount();
@@ -100,7 +91,7 @@ public class LoginController {
 		
 	
 	@GetMapping("/mypagedetail")
-	public String mypagedetail(int unum,Model model)
+	public String detail(int unum,Model model)
 	{
 		
 		UserDto dto=loginMapper.getMypage(unum);
@@ -109,32 +100,6 @@ public class LoginController {
 		return "/main/user/mypagedetail";
 	}
    
-	@PostMapping("/mypageuploadphoto")
-	 public ResponseEntity<UserPhotoDto> uploadPhoto(@RequestParam("file") MultipartFile file, @RequestParam("unum") int unum) {
-        UserPhotoDto photoDto = loginService.uploadPhoto(file, unum);
-        if (photoDto == null) {
-            return ResponseEntity.badRequest().build();
-        }
-        return ResponseEntity.ok(photoDto);
-    }
-	
-	 @GetMapping("/{photo_idx}")
-	  	public ResponseEntity<byte[]> getPhotoById(@PathVariable("photo_idx") int photo_idx) {
-	        byte[] imageBytes = loginService.getPhotoById(photo_idx);
-	        if (imageBytes == null) {
-	            return ResponseEntity.notFound().build();
-	        }
-	        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
-	    }
-	  	
-  	@GetMapping("/mypage/{photo_idx}")
-    public ResponseEntity<List<UserPhotoDto>> getPhotoListByUserId(@PathVariable("photo_idx") int photo_idx) {
-        List<UserPhotoDto> photoList = loginService.getPhotoListByUserId(photo_idx);
-        if (photoList == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(photoList);
-    } 	
 	
        
 	

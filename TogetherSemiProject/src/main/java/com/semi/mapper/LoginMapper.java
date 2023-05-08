@@ -25,5 +25,8 @@ public interface LoginMapper {
 
 	public List<UserDto> getAllUsers();
 	
+	public void updatePhoto(Map<String, Object> map);
+	
+	public void updateMypage(UserDto dto);
 	
 }

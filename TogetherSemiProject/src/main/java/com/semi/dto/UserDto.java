@@ -22,7 +22,7 @@ public class UserDto {
 	private String city2;
 	private Timestamp joinday;
 	private int jjim;
-	private List<UserPhotoDto> uphoto;
+	private String uphoto;
 	private int mnum;
 	@Override
 	public String toString() {

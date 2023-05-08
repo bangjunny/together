@@ -4,7 +4,10 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 	<definition name="mainLayout" template="/WEB-INF/layout/mainlayout.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/layout/sidebar.jsp"/>
+		<put-attribute name="logout" value="/WEB-INF/layout/logout.jsp"/>
 		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
 	</definition>
 	<definition name="subLayout" template="/WEB-INF/layout/sublayout.jsp">
 		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>

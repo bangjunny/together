@@ -1,6 +1,7 @@
 package com.semi.controller;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -107,6 +109,13 @@ public class MoimController {
 		
 		return "redirect:moimlist";
 	}
-
+   
+   @ResponseBody //값 변환을 위해 꼭 필요함
+   @GetMapping("mnameCheck")//아이디 중복확인을 위한 값으로 따로 매핑
+   public int overlappedMname(MoimDto dto) throws Exception{
+	   int result=moimService.overlappedMname(dto);//중복 확인한 값을 int로 받음
+	   return result;
+   }
+   
 }
 

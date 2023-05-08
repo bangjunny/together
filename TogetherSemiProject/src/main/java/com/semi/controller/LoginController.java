@@ -10,9 +10,12 @@ import javax.servlet.http.HttpSession;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,6 +38,7 @@ public class LoginController {
 	
 	@Autowired
 	LoginService loginService;
+	
 
 	@Autowired
 	LoginMapper loginMapper;
@@ -76,8 +80,11 @@ public class LoginController {
 		return "redirect:/user/login";
 	}
 	
+	
+	
+	        
 	@GetMapping("/mypagelist")
-	public String list(Model model)
+	public String mypagelist(Model model)
 	{
 		//총 상품갯수 출력
 		int utotalCount=loginMapper.getTotalCount();
@@ -93,7 +100,7 @@ public class LoginController {
 		
 	
 	@GetMapping("/mypagedetail")
-	public String detail(int unum,Model model)
+	public String mypagedetail(int unum,Model model)
 	{
 		
 		UserDto dto=loginMapper.getMypage(unum);
@@ -102,30 +109,32 @@ public class LoginController {
 		return "/main/user/mypagedetail";
 	}
    
-	@PostMapping("/mypageupdatephoto")
-	@ResponseBody public String mypageupdatephoto(MultipartFile upload,int unum)
-	{
-		System.out.println("unum="+unum);
-		//s3 스토리지에 업로드된 기존 파일 지우기
-		String fileName=loginMapper.getMypage(unum).getUphoto();
-		storageService.deleteFile(bucketName, "user", fileName);
-
-		//네이버 클라우드의 버켓에 사진 업로드하기
-		String uphoto=storageService.uploadFile(bucketName, "user", upload);
-		Map<String, Object> map=new HashMap<>();
-		map.put("uphoto", uphoto);
-		map.put("unum", unum);
-
-		loginMapper.updatePhoto(map);
-		return uphoto;//업로드된 파일명 리턴
-	}
+	@PostMapping("/mypageuploadphoto")
+	 public ResponseEntity<UserPhotoDto> uploadPhoto(@RequestParam("file") MultipartFile file, @RequestParam("unum") int unum) {
+        UserPhotoDto photoDto = loginService.uploadPhoto(file, unum);
+        if (photoDto == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(photoDto);
+    }
 	
-	@GetMapping("/updatemypage")
-	@ResponseBody public void updatemypage(UserDto dto)
-	{
-		System.out.println("dto.unum="+dto.getUnum());
-		loginMapper.updateMypage(dto);
-	}
+	 @GetMapping("/{photo_idx}")
+	  	public ResponseEntity<byte[]> getPhotoById(@PathVariable("photo_idx") int photo_idx) {
+	        byte[] imageBytes = loginService.getPhotoById(photo_idx);
+	        if (imageBytes == null) {
+	            return ResponseEntity.notFound().build();
+	        }
+	        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
+	    }
+	  	
+  	@GetMapping("/mypage/{photo_idx}")
+    public ResponseEntity<List<UserPhotoDto>> getPhotoListByUserId(@PathVariable("photo_idx") int photo_idx) {
+        List<UserPhotoDto> photoList = loginService.getPhotoListByUserId(photo_idx);
+        if (photoList == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(photoList);
+    } 	
 	
        
 	

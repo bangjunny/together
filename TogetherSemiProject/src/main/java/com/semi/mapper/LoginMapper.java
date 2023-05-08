@@ -28,5 +28,10 @@ public interface LoginMapper {
 	public void updatePhoto(Map<String, Object> map);
 	
 	public void updateMypage(UserDto dto);
+	public void insertUserPhoto(UserPhotoDto dto);
+	public UserPhotoDto getUserPhoto(int photo_idx);
+	public List<UserPhotoDto> getUserPhotoList(int unum);
+	public void deleteUserPhoto(int photo_idx);
+	public UserDto getUserInfo(int unum);
 	
 }

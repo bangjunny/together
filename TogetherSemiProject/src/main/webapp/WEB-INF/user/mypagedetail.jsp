@@ -14,7 +14,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
 
 .container {
@@ -44,8 +48,44 @@
   padding: 20px;
   flex : auto;
 }
+<style>
+		.thumbnail {
+			height: 200px;
+			width: 200px;
+			margin-bottom: 30px;
+			margin-right: 30px;
+			padding: 0;
+		}
 
-</style>
+		.caption {
+			word-wrap: break-word;
+		}
+	</style>
+	<script>
+		$(document).ready(function() {
+			// 이미지 클릭시 모달 열기
+			$(".thumbnail").click(function() {
+				// 모달 내용 초기화
+				$("#myPhotoModal .modal-body").html("");
+
+				// 선택한 이미지 정보 가져오기
+				var photo_idx = $(this).data("photo_idx");
+				var unum = $(this).data("unum");
+				var url = $(this).data("url");
+				var name = $(this).data("file_name");
+				var date = $(this).data("upload_date");
+				
+
+				// 모달 내용 추가
+				var modalBody = "<img src='" + url + "' class='img-responsive' />";
+				modalBody += "<p>" + name + "</p>";
+				$("#myPhotoModal .modal-body").append(modalBody);
+
+				// 모달 열기
+				$("#myPhotoModal").modal();
+			});
+		});
+	</script>
 
 </head>
 <body>
@@ -55,16 +95,13 @@
 		<div class ="card col">
 		<button type="button" class="btn btn-outline-success btn-sm"
 			data-bs-toggle="modal" data-bs-target="#myPageModal">마이페이지 내용 수정하기 </button>	
-		 	<c:choose>
-		          <c:when test="${dto.uphoto==null}">
-		         <!-- Result값이 있다면 실행할 로직 -->
-		         <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
-		          </c:when>
-		          <c:otherwise>
-		       <!-- 그렇지 않다면 실행할 로직 -->
-		       <img src="https://${imageUrl}/user/${dto.uphoto}">    
-		          </c:otherwise>
-		      </c:choose>
+		 <!-- 프로필 사진 출력 -->
+		<c:if test="${not empty UserPhotoDto.photo_idx}">
+			<div class="col-md-3">
+				<img src="${UserPhotoDto.photo_dix}" class="img-responsive" />
+			</div>
+		</c:if> 
+		 
 		      <!-- Button trigger modal -->
 		     	      
 				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myPhotoModal">
@@ -86,15 +123,21 @@
 					${dto.city2}<br>
 			가입일 : <fmt:formatDate value="${dto.joinday}" pattern="yyyy-MM-dd HH:mm"/><br>
 			<br>
-			
-		
+		 </div>
+		 <div class="text col">
+		 	<c:forEach var="post" items="${posts}">
+                    <tr>
+                        <td><a href="post?id=${post.id}">${post.title}</a></td>
+                        <td><fmt:formatDate value="${post.regDate}" pattern="yyyy-MM-dd"/></td>
+                        <td>${post.viewCount}</td>
+                        <td><a href="editPost?id=${post.id}">수정</a></td>
+                        <td><a href="deletePost?id=${post.id}">삭제</a></td>
+                    </tr>
+                </c:forEach>
+		 
 		 </div>
 		 <br><br><br><br>
-		 <div class="text col">
-		 
-		 
-		 </div>
-		 			
+				 			
 		<div>
 		<button type="button" class="btn btn-outline-success btn-sm"
 		style="width: 200px;" onclick="location.href='login'">모임리스트</button>
@@ -111,62 +154,66 @@
 <div class="modal" id="myPhotoModal">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">사진 수정</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-     
-        <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243"
-         border="2" style="margin-left: 30px;border-radius: 50px;" id="modalphoto">
-              
-        <!-- 카메라 모양 -->
-        <i class="bi bi-camera-fill update-photo"
-        style="font-size: 26px;cursor: pointer;"></i>
-        <!-- 파일 업로드 태그 -->
-        <input type="file" id="photoupload">
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-        onclick="location.reload()">Apply</button>
-      </div>
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">사진 수정</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+		
+		    <!-- Modal body -->
+		    <div class="modal-body">
+		   	 <form id="photoForm">
+		        <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243"
+		         border="2" style="margin-left: 30px;border-radius: 50px;" id="modalphoto">
+		         <!-- 카메라 모양 -->
+		        <i class="bi bi-camera-fill update-photo"
+		        style="font-size: 26px;cursor: pointer;"></i>
+		        <!-- 파일 업로드 태그 -->
+			      <div class="mb-3">
+			      <label for="photoInput" class="form-label">사진 선택</label>
+			      <input class="form-control" type="file" id="photoInput" name="uphoto">
+			    </div>
+		   	</form>
+			</div>
+	      
+	      <!-- Modal footer -->
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+			  <button type="button" class="btn btn-primary" id="submitBtn">저장</button>
+			</div>
     </div>
-  </div>  
-</div>
-<script type="text/javascript">
-  	$(".update-photo").click(function(){
-  		$("#photoupload").trigger("click");//click 이벤트 강제 발생
-  	});
-  			
-  	$("#photoupload").change(function(){
-  		let form=new FormData();
-  		form.append("upload",$("#photoupload")[0].files[0]);//선택한 1개의 파일만 업로드
-  		form.append("unum",${dto.unum});
-  		
-  		$.ajax({
-  			type:"post",
-  			dataType:"text",
-  			url:"./mypageupdatephoto",
-  			data:form,
-  			processData:false,
-  			contentType:false,
-  			success:function(res){  				
-  							
-  	  				location.reload();		
-  	  				
-  			}
-  		});
-  	});
-  	
-  	
-  	
-  	
-  </script>
+  </div> 
+ </div>  
+<script>
+$(function() {
+  // 사진 변경 모달이 열릴 때 실행되는 함수
+  $('#myPhotoModal').on('show.bs.modal', function (event) {
+    var modal = $(this);
+    // 저장 버튼 클릭 시 실행될 함수 등록
+    modal.find('#submitBtn').click(function() {
+      var form = document.getElementById('photoForm');
+      var formData = new FormData(form);
+      $.ajax({
+        url: 'photoUpload',  // 파일 전송을 처리할 서블릿 URL
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(result) {
+          // 파일 전송이 성공하면 모달을 닫고 페이지를 새로고침합니다.
+          modal.modal('hide');
+          location.reload();
+        },
+        error: function(xhr, status, error) {
+          // 파일 전송이 실패하면 오류 메시지를 출력합니다.
+          console.error(error);
+          alert('파일 전송에 실패했습니다.');
+        }
+      });
+    });
+  });
+});
+</script>
 </body>
 </html>

@@ -10,9 +10,9 @@
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
 	</definition>
 	<definition name="subLayout" template="/WEB-INF/layout/sublayout.jsp">
-		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
-		<put-attribute name="menu2" value="/WEB-INF/layout/menu2.jsp"/>
-		<put-attribute name="main2" value="/WEB-INF/layout/main2.jsp"/>
+		<put-attribute name="logout" value="/WEB-INF/layout/logout.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
 	</definition>
 	
 	<!-- main 페이지는 따로 설정해도 됨 -->
@@ -20,7 +20,7 @@
 		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
 	</definition>
 	<definition name="/sub" extends="subLayout">
-		<put-attribute name="main2" value="/WEB-INF/layout/main2.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
 	</definition>
 	
 	<!-- wild card macro -->
@@ -28,6 +28,6 @@
 		<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
 	<definition name="/sub/*/*" extends="subLayout">
-		<put-attribute name="main2" value="/WEB-INF/{1}/{2}.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
 </tiles-definitions>

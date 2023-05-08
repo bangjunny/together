@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.semi.dto.MoimDto;
 import com.semi.dto.UserDto;
 import com.semi.dto.UserPhotoDto;
 import com.semi.mapper.LoginMapper;
@@ -54,7 +55,7 @@ public class LoginController {
 		
 		if(loginok==null) 
 		{ 
-			return "/main/user/login"; 
+			return "/sub/user/login"; 
 		} 
 		else 
 		{ 
@@ -65,7 +66,7 @@ public class LoginController {
 	
 	@GetMapping("/join")
 	public String userJoinPage() {
-		return "/main/user/join";
+		return "/sub/user/join";
 		}
 	
 	@PostMapping("/userinsert")
@@ -99,7 +100,7 @@ public class LoginController {
 		UserDto dto=loginMapper.getMypage(unum);
 		model.addAttribute("dto", dto);
 		
-		return "/main/user/mypagedetail";
+		return "/sub/user/mypagedetail";
 	}
    
 	@PostMapping("/mypageupdatephoto")
@@ -166,6 +167,12 @@ public class LoginController {
 		 session.removeAttribute("loginok"); 
 		 return "redirect:/";
 	 }
-
+	 
+	  @ResponseBody //값 변환을 위해 꼭 필요함
+	  @GetMapping("emailCheck")//아이디 중복확인을 위한 값으로 따로 매핑
+	  public int overlappedMname(UserDto dto) throws Exception{
+		  int result=loginService.overlappedEmail(dto);//중복 확인한 값을 int로 받음
+		  return result;
+	  }
    
 }

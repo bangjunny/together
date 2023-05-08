@@ -17,16 +17,20 @@ public interface CityMapper {
 	public CityBoardDto getDetailbycbnum(int cbnum);
 	public UserDto getDetailbyunum(int unum);
 	public void insertCity(CityBoardDto dto);
-	public String preContent(int num);
-	public String nxtContent(int num);
-	public String preNum(int num);
-	public String nxtNum(int num);
+	public String preContent(CityBoardDto dto);
+	public String nxtContent(CityBoardDto dto);
+	public String preNum(CityBoardDto dto);
+	public String nxtNum(CityBoardDto dto);
 	public void newComment(CbReBoardDto dto);
 	public int getTotalComment();
+	public List<CbReBoardDto> getComment(int cbnum);
+	public void updateStep(Map<String,Integer> map);
+	public int getReboardNum();
+	public void deleteCity(int cbnum);
+	
 	/**
 	public void insertCity(CityBoardDto dto);
 	public void updateCity(CityBoardDto dto);
-	public void deleteCity(int cbnum);
 	**/
 	}
 	

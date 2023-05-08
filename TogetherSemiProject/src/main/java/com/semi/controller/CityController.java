@@ -1,6 +1,8 @@
 package com.semi.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.semi.dto.CityBoardDto;
 import com.semi.dto.UserDto;
@@ -26,6 +30,10 @@ import naver.cloud.NcpObjectStorageService;
 @RequestMapping("/city")
 public class CityController {
 
+	
+	@Autowired
+	CityMapper cityMapper;
+	
 	@Autowired
 	private CityService cityService;
 
@@ -153,9 +161,15 @@ public class CityController {
 	
 	@PostMapping("/cityinsert")
 	public String cityinsert(
-			CityBoardDto dto
-	) 
+			CityBoardDto dto, MultipartFile upload
+	)
 	{
+		String photo = storageService.uploadFile(bucketName, "city", upload);
+		dto.setCbphoto(photo);
+		int cbnum=dto.getCbnum();
+		System.out.println("사진"+photo);
+		System.out.println(cbnum);
+		
 		cityService.insertCity(dto);
 		
 		return "redirect:list";

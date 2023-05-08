@@ -10,8 +10,8 @@
 		select * from user where unum=#{unum}
 	</select>
 	<insert id="insertCity" parameterType="CityBoardDto">
-		insert into city_board (subject, unum, cbcontent, cbwriteday, city1, city2)
-		value (#{subject}, #{unum}, #{cbcontent}, now(), #{city1}, #{city2})
+		insert into city_board (subject, unum, cbcontent, cbwriteday, city1, city2, uname)
+		value (#{subject}, #{unum}, #{cbcontent}, now(), #{city1}, #{city2}, #{uname})
 	</insert>
 	<select id="getJoinByunum" resultType="UserDto">
 		SELECT *

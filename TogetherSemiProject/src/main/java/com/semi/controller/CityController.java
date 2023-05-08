@@ -2,6 +2,9 @@ package com.semi.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +36,7 @@ public class CityController {
 	@GetMapping("/list")
 	public String list(
 			 /**@RequestParam(defaultValue = "1") int currentPage**/
-			Model model) {
+			Model model, HttpSession session) {
 
 		/**
 		int totalCount = cityService.getTotalCountCity();// 게시판의 총 글 갯수
@@ -71,7 +74,7 @@ public class CityController {
 		model.addAttribute("no", no);
 		**/
 		
-		int unum=9;
+		int unum=(int)session.getAttribute("unum");
 		
 	
 		
@@ -140,10 +143,11 @@ public class CityController {
 			int unum, String city1, String city2, Model model
 	) {
 		UserDto dto = cityService.getDetailbyunum(unum);
+		String uname = dto.getUname();
 		model.addAttribute("dto",dto);
 		model.addAttribute("city1",city1);
 		model.addAttribute("city2",city2);
-		
+		model.addAttribute("uname",uname);		
 		return "/main/city/cityform";
 	}
 	
@@ -153,6 +157,7 @@ public class CityController {
 	) 
 	{
 		cityService.insertCity(dto);
+		
 		return "redirect:list";
 	}
 	

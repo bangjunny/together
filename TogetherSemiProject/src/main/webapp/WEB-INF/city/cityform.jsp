@@ -71,10 +71,11 @@
         <br>
         제목&nbsp;<input type="text" class="form-control" name="subject" placeholder="제목을 입력해주세요" style="width: 100%">
         <br>
-        <input type="hidden" name="unum" value=${unum}>
-        <input type="hidden" name="city1" value=${city1}>
-        <input type="hidden" name="city2" value=${city2}>
-        <textarea name ="content" id="editor"></textarea>
+        <input type="hidden" name="unum" value="${unum}">
+        <input type="hidden" name="city1" value="${city1}">
+        <input type="hidden" name="city2" value="${city2}">
+        <input type="hidden" name="uname" value="${uname}">
+        <textarea name ="cbcontent" id="editor"></textarea>
         <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
         <br>
         <hr>

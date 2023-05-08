@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ include file="../commonvar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,8 +37,8 @@ body, body * {
 		<hr>
 		<div>
 			<div>
-				<div style="margin-left:10px; border: 5px solid pink; width: 95%; min-height:200px;">사진영역${dto.cbphoto}</div>
-			</div>
+				<img style="margin-left:10px; border: 5px solid pink; width: 95%; min-height:200px;" src="https://${imageUrl}/city/${dto.cbphoto}">
+			</div>  
 		</div>
 		<br>	
 		<pre>

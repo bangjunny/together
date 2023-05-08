@@ -1,6 +1,11 @@
 package com.semi.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.semi.dto.CbReBoardDto;
 import com.semi.dto.CityBoardDto;
@@ -24,6 +31,10 @@ import naver.cloud.NcpObjectStorageService;
 @RequestMapping("/city")
 public class CityController {
 
+	
+	@Autowired
+	CityMapper cityMapper;
+	
 	@Autowired
 	private CityService cityService;
 
@@ -34,7 +45,7 @@ public class CityController {
 	@GetMapping("/list")
 	public String list(
 			 /**@RequestParam(defaultValue = "1") int currentPage**/
-			Model model) {
+			Model model, HttpSession session) {
 
 		/**
 		int totalCount = cityService.getTotalCountCity();// 게시판의 총 글 갯수
@@ -72,7 +83,7 @@ public class CityController {
 		model.addAttribute("no", no);
 		**/
 		
-		int unum=9;
+		int unum=(int)session.getAttribute("unum");
 		
 	
 		
@@ -155,19 +166,27 @@ public class CityController {
 			int unum, String city1, String city2, Model model
 	) {
 		UserDto dto = cityService.getDetailbyunum(unum);
+		String uname = dto.getUname();
 		model.addAttribute("dto",dto);
 		model.addAttribute("city1",city1);
 		model.addAttribute("city2",city2);
-		
+		model.addAttribute("uname",uname);		
 		return "/main/city/cityform";
 	}
 	
 	@PostMapping("/cityinsert")
 	public String cityinsert(
-			CityBoardDto dto
-	) 
+			CityBoardDto dto, MultipartFile upload
+	)
 	{
+		String photo = storageService.uploadFile(bucketName, "city", upload);
+		dto.setCbphoto(photo);
+		int cbnum=dto.getCbnum();
+		System.out.println("사진"+photo);
+		System.out.println(cbnum);
+		
 		cityService.insertCity(dto);
+		
 		return "redirect:list";
 	}
 	

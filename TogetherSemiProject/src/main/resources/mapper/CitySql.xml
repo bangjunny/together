@@ -10,8 +10,8 @@
 		select * from user where unum=#{unum}
 	</select>
 	<insert id="insertCity" parameterType="CityBoardDto">
-		insert into city_board (subject, unum, cbcontent, cbwriteday, city1, city2)
-		value (#{subject}, #{unum}, #{cbcontent}, now(), #{city1}, #{city2})
+		insert into city_board (subject, unum, cbcontent, cbwriteday, city1, city2, uname, cbphoto)
+		value (#{subject}, #{unum}, #{cbcontent}, now(), #{city1}, #{city2}, #{uname}, #{cbphoto})
 	</insert>
 	<select id="preContent" parameterType="CityBoardDto" resultType="String">
 		select subject from city_board where cbnum <![CDATA[<]]> #{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum desc limit 1
@@ -22,7 +22,7 @@
   		WHERE user.unum = #{unum}
   	</select>
   	<select id="getCityList" parameterType="String" resultType="CityBoardDto">
-  		select * from city_board where city1=#{city1} and city2=#{city2} order by cbnum asc;
+  		select * from city_board where city1=#{city1} and city2=#{city2} order by cbnum desc;
   	</select>
 	</select>
 	<select id="nxtContent" parameterType="CityBoardDto" resultType="String">

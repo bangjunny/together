@@ -119,7 +119,6 @@ public class CityController {
 
 		String prenum=cityService.preNum(cbnum);
 		String nxtnum=cityService.nxtNum(cbnum);
-		int totalCountCity=cityService.getTotalCountCity();
 		int totalComment=cityService.getTotalComment();
 		System.out.println("댓글 수"+totalComment);
 		

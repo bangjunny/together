@@ -58,7 +58,7 @@ body, body * {
 			<button type="button" class="btn btn-sm btn-success" id="delbtn">삭제</button>
 		</div>
 		<hr>
-		<form action="/action_page.php">
+		<form action="newcomment" method="post" id="newcomment">
 			<div class="mb-3 mt-3">
 				<textarea class="form-control" rows="5" id="comment" name="text"
 					style="height: 200px; resize: none; width: 500px;"
@@ -67,36 +67,37 @@ body, body * {
 			<button type="submit" class="btn btn-primary btn-sm"
 				style="float: right; margin-right: 30px;">입력</button>
 		</form>
-		<br>${nxtcontent}
+		<br>
+		<div>
+			<form action="readcomment" method="post" id="readcomment">
+			<table>
+			<caption align="top">총${totalComment}개의 댓글</caption>
+			<tr>
+				<td>
+			</tr>
+			</table>
+			</form>
+		</div>
 		<br>
 		<hr>
 		<div>
 			<br><br>
-			<div>
-			이전 게시글
-			<c:choose>
-            	<c:when test="${dto.cbnum==1}">
-            	<!-- Result값이 있다면 실행할 로직 -->
-            		<h4>이전 글이 없습니다</h4>
-            	</c:when>
-            	<c:otherwise>
-            	<!-- 그렇지 않다면 실행할 로직 -->
-                <h4>${precontent}</h4>
-            	</c:otherwise>
-      		</c:choose>
+			<div><h4>이전 글</h4>
+				<c:if test="${not empty precontent}">
+					<a href="<c:url value='/city/detail?cbnum=${prenum}'/>"><h4>${precontent}</h4></a>
+				</c:if>
+				<c:if test="${empty precontent}">
+					<h4>이전 게시글이 없습니다</h4>
+				</c:if>
 			</div>
-			<div>
-			다음 게시글
-			<c:choose>
-            	<c:when test="${dto.cbnum==totalCountCity}">
-            	<!-- Result값이 있다면 실행할 로직 -->
-            		<h4>다음 글이 없습니다</h4>
-            	</c:when>
-            	<c:otherwise>
-            	<!-- 그렇지 않다면 실행할 로직 -->
-                <h4>${nxtcontent}</h4>
-            	</c:otherwise>
-      		</c:choose>
+			<br>
+			<div><h4>다음 글</h4>
+				<c:if test="${not empty nxtcontent}">
+					<a href="<c:url value='/city/detail?cbnum=${nxtnum}'/>"><h4>${nxtcontent}</h4></a>
+				</c:if>
+				<c:if test="${empty nxtcontent}">
+					<h4>다음 게시글이 없습니다</h4>
+				</c:if>
 			</div>
 		</div>
 	</div>

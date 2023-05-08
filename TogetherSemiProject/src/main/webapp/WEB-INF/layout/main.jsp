@@ -218,7 +218,7 @@ $(document).ready(function() {
 <div id="main_container">
 <div id="main_header">
 	<div id="main_head_logo">
-		<img alt="" src="./photo/logo.png" style="width: 75px; height: 75px;"><b>다 함께!</b>
+		<img src="../photo/logo.png" style="width: 75px; height: 75px;"><b>다 함께!</b>
 	</div>
 
 	<div id="main_header_txt">
@@ -230,21 +230,21 @@ $(document).ready(function() {
 	</div>
 	</div>
 	<div id="main_header_pic">
-		<img src="./photo/main_1.jpg" id="rotate_photo">
+		<img src="../photo/main_1.jpg" id="rotate_photo">
 	</div>
 	
 </div>
 <div id="main_list_go">
 	<a href="/moim/moimlist">
-	<img class="mainphoto" src="./photo/moim.png"><br>
+	<img class="mainphoto" src="../photo/moim.png"><br>
 	<span>모임 게시판</span><br>
 	</a>
 	<a href="/city/list">
-	<img class="mainphoto" src="./photo/local.png"><br>
+	<img class="mainphoto" src="../photo/local.png"><br>
 	<span>지역 게시판</span><br>
 	</a>
 	<a href="/mapcontact">
-	<img class="mainphoto" src="./photo/map.png"><br>
+	<img class="mainphoto" src="../photo/map.png"><br>
 	<span>지도로 위치 검색</span><br>
 	</a>
 	<br>
@@ -263,10 +263,10 @@ $(document).ready(function() {
 
 <div id="main_bot">
 	<div class="main_bot_pic">
-      	<img src="/photo/bot_1.jpg" style="width: 500px; height: 500px;">		
-    	<img src="/photo/bot_2.jpg" style="width: 500px; height: 500px;">
-		<img src="/photo/bot_3.jpg" style="width: 500px; height: 500px;">
-		<img src="/photo/bot_4.jpg" style="width: 500px; height: 500px;">		
+      	<img src="../photo/bot_1.jpg" style="width: 500px; height: 500px;">		
+    	<img src="../photo/bot_2.jpg" style="width: 500px; height: 500px;">
+		<img src="../photo/bot_3.jpg" style="width: 500px; height: 500px;">
+		<img src="../photo/bot_4.jpg" style="width: 500px; height: 500px;">		
 	</div>
 	
 	<div id="main_bot_txt">
@@ -277,10 +277,10 @@ $(document).ready(function() {
 	
 </div>
 <div class="main_bot_imgs">
-		<img src="/photo/bot_1.jpg" id="bot_btn1" >
-		<img src="/photo/bot_2.jpg" id="bot_btn2" >
-		<img src="/photo/bot_3.jpg" id="bot_btn3" >
-		<img src="/photo/bot_4.jpg" id="bot_btn4" >
+		<img src="../photo/bot_1.jpg" id="bot_btn1" >
+		<img src="../photo/bot_2.jpg" id="bot_btn2" >
+		<img src="../photo/bot_3.jpg" id="bot_btn3" >
+		<img src="../photo/bot_4.jpg" id="bot_btn4" >
 </div>
 
 </div>

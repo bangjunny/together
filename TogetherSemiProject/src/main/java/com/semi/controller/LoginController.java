@@ -54,7 +54,7 @@ public class LoginController {
 		
 		if(loginok==null) 
 		{ 
-			return "/main/user/login"; 
+			return "/sub/user/login"; 
 		} 
 		else 
 		{ 
@@ -65,7 +65,7 @@ public class LoginController {
 	
 	@GetMapping("/join")
 	public String userJoinPage() {
-		return "/main/user/join";
+		return "/sub/user/join";
 		}
 	
 	@PostMapping("/userinsert")
@@ -99,7 +99,7 @@ public class LoginController {
 		UserDto dto=loginMapper.getMypage(unum);
 		model.addAttribute("dto", dto);
 		
-		return "/main/user/mypagedetail";
+		return "/sub/user/mypagedetail";
 	}
    
 	@PostMapping("/mypageupdatephoto")

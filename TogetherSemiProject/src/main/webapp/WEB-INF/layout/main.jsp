@@ -31,6 +31,7 @@
 		width: 1200px;
 		height: 500px;
 		margin: 0 auto;
+		padding-top: 100px;
 		display: flex;
     	align-items: center;
     
@@ -40,13 +41,16 @@
 		bottom: 200px;
 		left: 175px;
 	}	
+	#main_head_logo b{
+		font-size: 25px; 
+		width: 500px !important;
+	}
 	#main_header_txt{
 		margin-top: 25px;
 		margin-right:50px;
 		width: 500px;
 		height: 300px;
 		font-size: 25px;
-	
 	}
 	
 	#main_header_pic{
@@ -68,8 +72,11 @@
 		justify-content: space-between;
 	}
 	#main_list_go{
-		margin-top: 100px;
+		margin-top: 200px;
+		margin-bottom: 100px;
 		text-align: center;
+		display: flex;
+		justify-content: center;
 	}
 	.mainphoto{
 		width: 200px;
@@ -211,7 +218,7 @@ $(document).ready(function() {
 <div id="main_container">
 <div id="main_header">
 	<div id="main_head_logo">
-		<img alt="" src="./photo/logo.png" style="width: 75px; height: 75px;"><b style="font-size: 25px; width: 300px;">다 함께!</b>
+		<img alt="" src="./photo/logo.png" style="width: 75px; height: 75px;"><b>다 함께!</b>
 	</div>
 
 	<div id="main_header_txt">
@@ -229,20 +236,19 @@ $(document).ready(function() {
 </div>
 <div id="main_list_go">
 	<a href="/moim/moimlist">
-	<img class="mainphoto" src="./photo/moim.png">
+	<img class="mainphoto" src="./photo/moim.png"><br>
+	<span>모임 게시판</span><br>
 	</a>
 	<a href="/city/list">
-	<img class="mainphoto" src="./photo/local.png">
+	<img class="mainphoto" src="./photo/local.png"><br>
+	<span>지역 게시판</span><br>
 	</a>
 	<a href="/mapcontact">
-	<img class="mainphoto" src="./photo/map.png">
+	<img class="mainphoto" src="./photo/map.png"><br>
+	<span>지도로 위치 검색</span><br>
 	</a>
 	<br>
-	<div id="main_list_txt">
-		<span>모임 게시판</span>
-		<span>지역 게시판</span>
-		<span>지도로 위치 검색</span>
-	</div>
+</div>
 	
 	<div id="main_mid_pic">
 	</div>
@@ -251,7 +257,6 @@ $(document).ready(function() {
 		<h3>적당히 설명하는 문장의 행렬은 나에게 스타크래프트 1.16.1 립버전 철수는 말했다 공열안와자였다 몹시 무시무시한 죠나단 스타크래프트 1.16.1 립버전</h3>
 	</div>
 	
-</div>
 <div id="main_bot_title">
 <h2 >Lorem ipsum</h2>
 </div>

@@ -26,7 +26,7 @@
 </style>
 </head>
 <body>
-	<a id="layout_a" href="logout">로그아웃</a>
+	<a id="layout_a" href="/user/logout">로그아웃</a>
 </body>
 </html>
 

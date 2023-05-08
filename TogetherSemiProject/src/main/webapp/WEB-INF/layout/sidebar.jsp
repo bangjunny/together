@@ -39,7 +39,7 @@
   #sidebar_wrap ul li{
   	margin-top: 5px;
   }
-  #sidebar_wrap ul li img {
+  #sidebar_wrap ul li .sidebar_imgs {
     width: 35px;
     height: 35px;
   }
@@ -86,27 +86,27 @@ $(document).on("mouseout", "#sidebar_wrap", function(event) {
 	<ul>
 		<li>
 			<a href="/">
-			<img src="../photo/black.png">
+			<img class="sidebar_imgs" src="../photo/black.png">
 			</a>
 		</li>
 		<li>
 			<a href="/user/login">
-			<img src="../photo/login.png">
+			<img class="sidebar_imgs" src="../photo/login.png">
 			</a>
 		</li>
 		<li>
 			<a href="/moim/moimlist">
-			<img src="../photo/moim.png">
+			<img class="sidebar_imgs" src="../photo/moim.png">
 			</a>
 		</li>
 		<li>
 			<a href="/city/list"> 
-			<img src="../photo/local.png">
+			<img class="sidebar_imgs" src="../photo/local.png">
 			</a>
 		</li>
 		<li>
-			<a href="#">
-			<img src="../photo/map.png">
+			<a href="/mapcontact">
+			<img class="sidebar_imgs" src="../photo/map.png">
 			</a>
 		</li>
 	</ul>

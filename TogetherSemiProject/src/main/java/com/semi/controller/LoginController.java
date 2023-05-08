@@ -139,6 +139,11 @@ public class LoginController {
 		 session.removeAttribute("loginok"); 
 		 return "redirect:/";
 	 }
+	 
+	 @GetMapping("/naver")
+	 public String naver() {
+		 return "/main/user/naver";
+	 }
 
    
 }

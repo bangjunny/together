@@ -60,8 +60,65 @@
 		  display: flex;
 		  flex-direction: column;
 		  margin-bottom: 20px;
+		  /*font-size: 14px;*/
 		}
 		
+		.btn-wrap {
+		  display: flex;
+		  flex-direction: column;
+		}
+		
+		.in {
+			height:50px;
+		}
+		
+		.gen {
+			height:50px;
+			width:100%;
+		}
+		
+		.cit {
+			height:50px;
+			width:197px;
+		}
+		
+		.btn-submit {
+		  width:100%;
+		  height:50px;
+		  background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+		  background-position: left;
+		  background-size: 200%;
+		  color:white;
+		  font-weight: 700;
+		  border:none;
+		  cursor:pointer;
+		  transition: 0.4s;
+		  margin-top:20px;
+		  font-size:18px;
+		}
+
+		.btn-submit:hover {
+  			background-position: right;
+		}
+		
+	/* 에러메세지 */
+
+	.error_next_box {
+	    margin-top: 9px;
+	    font-size: 12px;
+	    color: red;    
+	    display: none;
+	}
+	
+	#alertTxt {
+	    position: absolute;
+	    top: 19px;
+	    right: 38px;
+	    font-size: 12px;
+	    color: red;
+	    display: none;
+	}
+			
     </style>
 </head>
 <body>
@@ -71,33 +128,36 @@
 			  
 			  <div class="input-wrap">
 			    <label for="user_email">이메일</label>
-			    <input type="email" name="email" id="email" required>
+				    <input type="email" name="email" id="email" class="in">
 			  </div>
 			  
 			  <div class="input-wrap">
 			    <label for="user_pw">비밀번호</label>
-			    <input type="password" name="pass" id="pass" required>
+			    <input type="password" name="pass" id="pass" class="in">
+			     <span id="alertTxt">사용불가</span>
+			     <span class="error_next_box"></span>
 			  </div>
 			  
 			  <div class="input-wrap">
 			    <label for="user_pw_check">비밀번호 확인</label>
-			    <input type="password" name="pass_check" id="pass_check" required>
+			    <input type="password" name="pass_check" id="pass_check" class="in">
+			    <span class="error_next_box"></span>
 			  </div>
 			  
 			  <div class="input-wrap">
 			    <label for="user_name">이름</label>
-			    <input type="text" name="uname" id="uname" required>
+			    <input type="text" name="uname" id="uname" class="in" required>
 			  </div>
 			  
 			  <div class="input-wrap">
 			    <label for="user_age">생년월일</label>
-			    <input type="date" name="age" required>
+			    <input type="date" name="age" class="in" required>
 			   </div>
 			  
 			  <div class="input-wrap">
 			  	<label for="user_gender">성별</label>
 			  	<div class="ps_box gender_code">
-			     <select id="gender" name="gender" aria-label="성별">
+			     <select id="gender" name="gender" class="gen" aria-label="성별">
 			     	<option value="M">남자</option>
 			     	<option value="F">여자</option>
 			     </select>
@@ -108,7 +168,7 @@
 			  <div class="input-wrap">
 			    <label for="user_city">지역</label>
 			    <div class="ps_box_city" style="left: 122px;">
-               		<select id = "city" name="city1" >
+               		<select id = "city" name="city1" class="cit">
                			<option hidden>시, 도 선택</option>
 	               		<option value="서울특별시">서울특별시</option>
 	               		<option value="부산광역시">부산광역시</option>
@@ -129,7 +189,7 @@
 	               		<option value="제주특별자치도">제주특별자치도</option>
                		</select>
                		
-               		 <select id="district" name="city2">
+               		 <select id="district" name="city2" class="cit">
       					<option>시, 군, 구 선택</option>
    					</select>
 
@@ -189,12 +249,68 @@
 			  
 			  <div class="input-wrap">
 			    <label for="user_phone">휴대전화</label>
-			    <input type="tel" name="hp" id="hp" required>
+			    <input type="tel" name="hp" id="hp" class="in" required>
 			  </div>
 			   
-			  <button type="submit" class="btn-submit">가입하기</button>
+			  <div class="btn-wrap">
+			  	<button type="submit" class="btn-submit">가입하기</button>
+			  </div>
 			</form>
     </div>
+    
+    <script type="text/javascript">
+    	
+    /*변수 선언*/
+    var pw1 = document.querySelector('#pass');
+    var pwMsg = document.querySelector('#alertTxt');
+
+    var pw2 = document.querySelector('#pass_check');
+    var pwMsgArea = document.querySelector('.int_pass');
+    
+    /*이벤트 핸들러 연결*/
+	pw1.addEventListener("focusout", checkPw);
+    pw2.addEventListener("focusout", comparePw);
+    
+    /*콜백 함수*/
+    function checkPw() {
+        var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}/;
+        if(pw1.value === "") {
+            error[1].innerHTML = "필수 정보입니다.";
+            error[1].style.display = "block";
+        } else if(!pwPattern.test(pw1.value)) {
+            error[1].innerHTML = "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
+            pwMsg.innerHTML = "사용불가";
+            pwMsgArea.style.paddingRight = "93px";
+            error[1].style.display = "block";
+            
+            pwMsg.style.display = "block";
+            pwImg1.src = "m_icon_not_use.png";
+        } else {
+            error[1].style.display = "none";
+            pwMsg.innerHTML = "안전";
+            pwMsg.style.display = "block";
+            pwMsg.style.color = "#03c75a";
+            pwImg1.src = "m_icon_safe.png";
+        }
+    }
+
+    function comparePw() {
+        if(pw2.value === pw1.value && pw2.value != "") {
+            pwImg2.src = "m_icon_check_enable.png";
+            error[2].style.display = "none";
+        } else if(pw2.value !== pw1.value) {
+            pwImg2.src = "m_icon_check_disable.png";
+            error[2].innerHTML = "비밀번호가 일치하지 않습니다.";
+            error[2].style.display = "block";
+        } 
+
+        if(pw2.value === "") {
+            error[2].innerHTML = "필수 정보입니다.";
+            error[2].style.display = "block";
+        }
+    }
+    
+    </script>
   
 </body>
 </html>

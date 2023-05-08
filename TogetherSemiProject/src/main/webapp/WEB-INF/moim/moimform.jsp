@@ -27,32 +27,11 @@
 	}
 	
 	.olmessagef {color: red; font-style: Italic;}
-	.olmessaget {color: blue; font-style: Italic;}
+	.olmessaget {color: green; font-style: Italic;}
 </style>
 </head>
 <script>
-/* $("#overlappedmname").click(function(){
-	$("#btnsubmit").attr("type", "button");
-	const mname = $("#moimname").val();
-	$.ajax({
-	type: "get",
-	async: false,
-	url: "http://localhost:9000/moim/mnameCheck",
-	data: {mname: mname},
-	success: function (data) {
-	if(data == 1) {
-		$("#olmessage").text("이미 사용중인 모임 이름 입니다.");
-		$("#olmessage").addClass("olmessagef");
-		$("#olmessage").removeClass("olmessaget");
-		}else {
-		$("#olmessage").text("사용 가능한 모임 이름 입니다.");
-		$("#olmessage").addClass("olmessaget");
-		$("#olmessage").removeClass("olmessagef");
-		$("#signup").attr("type", "submit");
-		}
-		}
-	})
-	}); */
+
 </script>
 <body>
 <!-- 이미지 출력할곳 -->
@@ -68,7 +47,7 @@ style="position: absolute;left:350px;top:0px; width: 200px; height:200px; border
 				<input type="text" id="moimname" class="form-control" name="mname" required="required" placeholder="모임 이름을 입력해주세요">
 				<span id="olmessage"></span>
 				<div align="right">
-				<button id="overlappedmname" type="button" class="btn btn-outline-danger btn-sm">중복확인</button>
+				<button id="overlappedMname" type="button" class="btn btn-outline-danger btn-sm">중복확인</button>
 				</div>
 			</td>
 		</tr>
@@ -289,6 +268,15 @@ form.addEventListener('submit', (event) => {
   }
 });
 
+
+form.addEventListener('submit', function(event) {
+	const cityInput=document.querySelector('#city');
+	if (cityInput.value == "시, 도 선택"){
+		event.preventDefault();
+	    alert('지역을 선택해주세요');
+	}
+});
+
 </script>
 
 <!-- The Modal -->
@@ -316,6 +304,7 @@ form.addEventListener('submit', (event) => {
         <input type="checkbox" name="categorys" value="탁구">탁구        
         <input type="checkbox" name="categorys" value="러닝/마라톤">러닝/마라톤
         <input type="checkbox" name="categorys" value="골프">골프
+        <input type="checkbox" name="categorys" value="볼링">볼링
       </div>
 
       <!-- Modal footer -->
@@ -612,6 +601,28 @@ $(function() {
     });
   });
   
+$("#overlappedMname").click(function(){
+	$("#btnsubmit").attr("type", "button");
+	const mname = $("#moimname").val();
+	$.ajax({
+	type: "get",
+	async: false,
+	url: "http://localhost:9000/moim/mnameCheck",
+	data: {mname: mname},
+	success: function (data) {
+	if(data == 1) {
+		$("#olmessage").text("이미 사용중인 모임 이름 입니다.");
+		$("#olmessage").addClass("olmessagef");
+		$("#olmessage").removeClass("olmessaget");
+		}else {
+		$("#olmessage").text("사용 가능한 모임 이름 입니다.");
+		$("#olmessage").addClass("olmessaget");
+		$("#olmessage").removeClass("olmessagef");
+		$("#btnsubmit").attr("type", "submit");
+		}
+		}
+	})
+	});
 </script>
 </body>
 </html>

@@ -27,5 +27,7 @@
 <select id="selectOneOfEmail" parameterType="String" resultType="UserDto">
 	select * from user where email=#{email}
 </select>
-
+	<select id="overlappedEmail" parameterType="UserDto" resultType="int">
+		select count(email) from user where email=#{email}
+	</select>
 </mapper>

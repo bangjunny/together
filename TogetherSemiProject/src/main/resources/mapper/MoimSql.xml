@@ -33,6 +33,9 @@
 		</if>
 		,mcontent=#{mcontent} where mnum=#{mnum}
 	</update>
+	<select id="overlappedMname" parameterType="MoimDto" resultType="int">
+		select count(mname) from moim where mname=#{mname}
+	</select>
 </mapper>
 
 

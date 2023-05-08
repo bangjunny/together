@@ -73,4 +73,10 @@ public class MoimService implements MoimServiceInter {
 		moimMapper.updateMoim(dto);
 	}
 
+	@Override
+	public int overlappedMname(MoimDto dto) {
+		return moimMapper.overlappedMname(dto);
+	}
+	
+	
 }

@@ -14,7 +14,7 @@ public class CbReBoardDto {
 	private int unum;
 	private String uname;
 	private String recontent;
-	private Timestamp cbwriteday;
+	private Timestamp rewriteday;
 	private int ref;
 	private int step;
 	private int depth;

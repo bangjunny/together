@@ -20,52 +20,29 @@
 		color: black;
 		text-decoration: none;
 	}
-	
-	div.sublayout header,div.sublayout section{
-		border: 0px solid gray;
-		position: absolute;
+	#main_container{
+		background-color: rgba(245, 245, 220, 0.2);	
 	}
-	
-	div.sublayout .header{
-		width: 100%;
-		top: 10px;
-		left: 10px;
-		text-align:center;
-		height:100px;
-		line-height: 100px;
-		background-color: #f0ffff;
+	.logout{
+		background-color: rgba(245, 245, 220, 0.2);	
+		height: 100px;
 	}
-	
-	div.sublayout .menu{
-		width: 100%;
-		top: 110px;
-		left: 0px;
-		text-align:center;
-		height:80px;
-		line-height:80px;
-		font-size: 20px;
-	}
-	
-	div.sublayout .main{
-		width: 800px;
-		top: 220px;
-		left: 300px;
-		height:500px;
-		font-size: 16px;
+	.footer{
+		margin-top: 100px;
 	}
 </style>
 </head>
 <body>
 <div class="sublayout">
-	<header class="header">
-		<tiles:insertAttribute name="header"/>
-	</header>
-	<section class="menu">
-		<tiles:insertAttribute name="menu2"/>
+	<section class="logout">
+		<tiles:insertAttribute name="logout"/>
 	</section>
 	<section class="main">
-		<tiles:insertAttribute name="main2"/>
+		<tiles:insertAttribute name="main"/>
 	</section>
+	<footer class="footer">
+		<tiles:insertAttribute name="footer"/>
+	</footer>
 </div>
 </body>
 </html>

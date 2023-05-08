@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.semi.dto.CbReBoardDto;
 import com.semi.dto.CityBoardDto;
 import com.semi.dto.UserDto;
 import com.semi.mapper.CityMapper;
@@ -88,19 +89,24 @@ public class CityController {
 	
 	@GetMapping("/detail")
 	public String detail(
-			int cbnum, Model model
+			int cbnum, Model model,
+			@RequestParam(defaultValue = "0") int renum,
+			@RequestParam(defaultValue = "0") int ref,
+			@RequestParam(defaultValue = "0") int step,
+			@RequestParam(defaultValue = "0") int depth
 	) {
 		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
-		String precontent=cityService.preContent(cbnum);
-		String nxtcontent=cityService.nxtContent(cbnum);
-		String prenum=cityService.preNum(cbnum);
-		String nxtnum=cityService.nxtNum(cbnum);
+		List<CbReBoardDto> listcomment = cityService.getComment(cbnum);
+		String precontent=cityService.preContent(dto);
+		String nxtcontent=cityService.nxtContent(dto);
+		String prenum=cityService.preNum(dto);
+		String nxtnum=cityService.nxtNum(dto);
 		int totalCountCity=cityService.getTotalCountCity();
 		int totalComment=cityService.getTotalComment();
 		System.out.println("댓글 수"+totalComment);
 		
-		
-		
+
+		model.addAttribute("listcomment",listcomment);
 		model.addAttribute("dto",dto);
 		model.addAttribute("nxtcontent",nxtcontent);
 		model.addAttribute("nxtnum",nxtnum);
@@ -109,6 +115,11 @@ public class CityController {
 		model.addAttribute("prenum",prenum);
 		System.out.println(precontent);
 		model.addAttribute("totalCountCity",totalCountCity);
+		model.addAttribute("totalComment",totalComment);
+		model.addAttribute("renum",renum);
+		model.addAttribute("ref",ref);
+		model.addAttribute("step",step);
+		model.addAttribute("depth",depth);
 		
 		return "/main/city/CityDetail";
 	}

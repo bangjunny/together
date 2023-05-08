@@ -50,34 +50,29 @@ public class CityService implements CityServiceInter{
 	}
 	
 	@Override
-	public String preContent(int num) {
+	public String preContent(CityBoardDto dto) {
 		// TODO Auto-generated method stub
-		return cityMapper.preContent(num);
+		return cityMapper.preContent(dto);
 	}
 
 	@Override
-	public String nxtContent(int num) {
+	public String nxtContent(CityBoardDto dto) {
 		// TODO Auto-generated method stub
-		return cityMapper.nxtContent(num);
+    
+		return cityMapper.nxtContent(dto);
 
 	}
 
 	@Override
-	public String preNum(int num) {
+	public String preNum(CityBoardDto dto) {
 		// TODO Auto-generated method stub
-		return cityMapper.preNum(num);
+		return cityMapper.preNum(dto);
 	}
 
 	@Override
-	public String nxtNum(int num) {
+	public String nxtNum(CityBoardDto dto) {
 		// TODO Auto-generated method stub
-		return cityMapper.nxtNum(num);
-	}
-
-	@Override
-	public void newComment(CbReBoardDto dto) {
-		// TODO Auto-generated method stub
-		cityMapper.newComment(dto);
+		return cityMapper.nxtNum(dto);
 	}
 
 	@Override
@@ -86,7 +81,52 @@ public class CityService implements CityServiceInter{
 		return cityMapper.getTotalComment();
 	}
 
+	@Override
+	public List<CbReBoardDto> getComment(int cbnum) {
+		// TODO Auto-generated method stub
+		return cityMapper.getComment(cbnum);
+	}
 
+	@Override
+	public void updateStep(int ref, int step) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map=new HashMap<>();
+		map.put("ref", ref);
+		map.put("step",step);
+		
+		cityMapper.updateStep(map);
+	}
+
+	@Override
+	public void newComment(CbReBoardDto dto) {
+		// TODO Auto-generated method stub
+		int ref=dto.getRef();
+		int step=dto.getStep();
+		int depth=dto.getDepth();
+		
+		if(dto.getRenum()==0) {
+			step=0;
+			depth=0;
+			ref=cityMapper.getReboardNum()+1;
+		}
+		else {
+			this.updateStep(ref, step);
+			step++;
+			depth++;
+		}
+		
+		dto.setRef(ref);
+		dto.setStep(step);
+		dto.setDepth(depth);
+		
+		cityMapper.newComment(dto);
+	}
+
+	@Override
+	public int getReboardNum() {
+		// TODO Auto-generated method stub
+		return cityMapper.getReboardNum();
+	}
 
 
 }

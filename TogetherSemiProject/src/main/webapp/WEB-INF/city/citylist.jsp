@@ -120,7 +120,7 @@ body, body * {
 		</tr>
 		<c:forEach var="citylist" items="${citylist}" varStatus="i">
 			<tr>
-				<td align="center">${totalCountCity - (i.count-1)}</td>
+				<td align="center">${citylist.cbnum }</td>
 
 				<td style="cursor: pointer" onclick="location.href='detail?cbnum=${citylist.cbnum}'">
 					<b>${citylist.subject}</b>
@@ -198,7 +198,7 @@ body, body * {
 					s+=`
 					<tr>
 					<td align="center">
-					${totalCountCity}
+					\${ele.cbnum}
 					</td>
 					<td style="cursor:pointer"
 					onclick="location.href='detail?cbnum=\${ele.cbnum}'">

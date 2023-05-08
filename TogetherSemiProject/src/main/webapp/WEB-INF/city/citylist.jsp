@@ -182,8 +182,7 @@ body, body * {
 			data:{"city1":city1,"city2":city2},
 			dataType:"json",
 			success:function(res){
-				$(".totalCountCity").html(res.length);
-				
+				$(".totalCountCity").html(res.length);				
 				let s=`
 					<table class="table table-bordered boardlist">
 					<tr bgcolor='#f5f5dc'>
@@ -195,6 +194,8 @@ body, body * {
 					<th style="width: 100px">추천수</th>
 					</tr>`;
 				$.each(res,function(idx,ele){
+					 var date = new Date(ele.cbwriteday);
+					 var formattedDate = date.toLocaleDateString('ko-KR', {year:'numeric', month: '2-digit', day: '2-digit'});
 					s+=`
 					<tr>
 					<td align="center">\${idx+1}</td>
@@ -203,8 +204,8 @@ body, body * {
 					\${ele.subject}
 					</td>
 					<td>\${ele.uname}</td>
-					<td align="righter">
-					\${ele.cbwriteday}
+					<td align="right">
+					\${formattedDate}
 					</td>
 					<td>\${ele.readcount}</td>
 					<td>\${ele.cblike}</td>

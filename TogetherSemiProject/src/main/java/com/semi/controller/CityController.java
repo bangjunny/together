@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.semi.dto.CbReBoardDto;
 import com.semi.dto.CityBoardDto;
 import com.semi.dto.UserDto;
@@ -82,10 +82,8 @@ public class CityController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("no", no);
 		**/
-		
+
 		int unum=(int)session.getAttribute("unum");
-		
-	
 		
 		UserDto udto =  cityService.getDetailbyunum(unum);
 		String city1 = udto.getCity1();
@@ -106,6 +104,7 @@ public class CityController {
 			 
 	}
 	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	@GetMapping("/searchlist")
 	@ResponseBody public List<CityBoardDto> search(String city1, String city2, Model model){
 		List<CityBoardDto> citylist = cityService.getCityList(city1, city2);
@@ -203,5 +202,9 @@ public class CityController {
 		
 		return "redirect:/main/city/CityDetail";
 	}
-
+	
+	@GetMapping("/newPost")
+	public String newPost() {
+		return "/main/city/newPost";
+	}
 }

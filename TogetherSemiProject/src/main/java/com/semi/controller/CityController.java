@@ -1,6 +1,11 @@
 package com.semi.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.semi.dto.CbReBoardDto;
 import com.semi.dto.CityBoardDto;
 import com.semi.dto.UserDto;
 import com.semi.mapper.CityMapper;
@@ -24,6 +31,10 @@ import naver.cloud.NcpObjectStorageService;
 @RequestMapping("/city")
 public class CityController {
 
+	
+	@Autowired
+	CityMapper cityMapper;
+	
 	@Autowired
 	private CityService cityService;
 
@@ -34,7 +45,7 @@ public class CityController {
 	@GetMapping("/list")
 	public String list(
 			 /**@RequestParam(defaultValue = "1") int currentPage**/
-			Model model) {
+			Model model, HttpSession session) {
 
 		/**
 		int totalCount = cityService.getTotalCountCity();// 게시판의 총 글 갯수
@@ -71,10 +82,8 @@ public class CityController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("no", no);
 		**/
-		
-		int unum=2;
-		
-	
+
+		int unum=(int)session.getAttribute("unum");
 		
 		UserDto udto =  cityService.getDetailbyunum(unum);
 		String city1 = udto.getCity1();
@@ -109,21 +118,30 @@ public class CityController {
 	
 	@GetMapping("/detail")
 	public String detail(
-			int cbnum, Model model
+			int cbnum, Model model,
+			@RequestParam(defaultValue = "0") int renum,
+			@RequestParam(defaultValue = "0") int ref,
+			@RequestParam(defaultValue = "0") int step,
+			@RequestParam(defaultValue = "0") int depth
 	) {
 		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
-		String precontent=cityService.preContent(cbnum);
-		String nxtcontent=cityService.nxtContent(cbnum);
+
+		List<CbReBoardDto> listcomment = cityService.getComment(cbnum);
+		String precontent=cityService.preContent(dto);
+		String nxtcontent=cityService.nxtContent(dto);
+		String prenum=cityService.preNum(dto);
+		String nxtnum=cityService.nxtNum(dto);
+		int totalCountCity=cityService.getTotalCountCity();
+		int totalComment=cityService.getTotalComment();
+		System.out.println("댓글 수"+totalComment);
+		
+		model.addAttribute("listcomment",listcomment);
 
 		String city1 = dto.getCity1();
 		String city2 = dto.getCity2();
 		int totalCountCity=cityService.getTotalCountCity(city1, city2);
 
-		String prenum=cityService.preNum(cbnum);
-		String nxtnum=cityService.nxtNum(cbnum);
-		int totalComment=cityService.getTotalComment();
-		System.out.println("댓글 수"+totalComment);
-		
+
 		model.addAttribute("dto",dto);
 		model.addAttribute("nxtcontent",nxtcontent);
 		model.addAttribute("nxtnum",nxtnum);
@@ -132,6 +150,11 @@ public class CityController {
 		model.addAttribute("prenum",prenum);
 		System.out.println(precontent);
 		model.addAttribute("totalCountCity",totalCountCity);
+		model.addAttribute("totalComment",totalComment);
+		model.addAttribute("renum",renum);
+		model.addAttribute("ref",ref);
+		model.addAttribute("step",step);
+		model.addAttribute("depth",depth);
 		
 		return "/main/city/CityDetail";
 	}
@@ -142,19 +165,27 @@ public class CityController {
 			int unum, String city1, String city2, Model model
 	) {
 		UserDto dto = cityService.getDetailbyunum(unum);
+		String uname = dto.getUname();
 		model.addAttribute("dto",dto);
 		model.addAttribute("city1",city1);
 		model.addAttribute("city2",city2);
-		
+		model.addAttribute("uname",uname);		
 		return "/main/city/cityform";
 	}
 	
 	@PostMapping("/cityinsert")
 	public String cityinsert(
-			CityBoardDto dto
-	) 
+			CityBoardDto dto, MultipartFile upload
+	)
 	{
+		String photo = storageService.uploadFile(bucketName, "city", upload);
+		dto.setCbphoto(photo);
+		int cbnum=dto.getCbnum();
+		System.out.println("사진"+photo);
+		System.out.println(cbnum);
+		
 		cityService.insertCity(dto);
+		
 		return "redirect:list";
 	}
 	

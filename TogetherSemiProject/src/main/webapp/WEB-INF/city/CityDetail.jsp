@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ include file="../commonvar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,8 +37,8 @@ body, body * {
 		<hr>
 		<div>
 			<div>
-				<div style="margin-left:10px; border: 5px solid pink; width: 95%; min-height:200px;">사진영역${dto.cbphoto}</div>
-			</div>
+				<img style="margin-left:10px; border: 5px solid pink; width: 95%; min-height:200px;" src="https://${imageUrl}/city/${dto.cbphoto}">
+			</div>  
 		</div>
 		<br>	
 		<pre>
@@ -59,8 +59,11 @@ body, body * {
 		</div>
 		<hr>
 		<form action="newcomment" method="post" id="newcomment">
+			<input type="hidden" name="unum">
+			<input type="hidden" name="uname">
+			<input type="hidden" name="cbnum">
 			<div class="mb-3 mt-3">
-				<textarea class="form-control" rows="5" id="comment" name="text"
+				<textarea class="form-control" rows="5" id="content" name="recontent"
 					style="height: 200px; resize: none; width: 500px;"
 					placeholder="내용을 입력해주세요"></textarea>
 			</div>
@@ -69,14 +72,45 @@ body, body * {
 		</form>
 		<br>
 		<div>
-			<form action="readcomment" method="post" id="readcomment">
+			
 			<table>
-			<caption align="top">총${totalComment}개의 댓글</caption>
-			<tr>
-				<td>
-			</tr>
+			<caption align="top" style="width: 500px">총 ${totalComment}개의 댓글</caption>
+			<hr>
+			<c:if test="${totalComment=='0'}">
+				<tr>
+					<td>댓글이 없습니다</td>
+				</tr>
+			</c:if>
+			<c:if test="${totalComment!='0' }">
+			<c:forEach var="listcomment" items="${listcomment}">
+				<tr>
+				<c:forEach begin="1" end="${listcomment.depth}">
+					&nbsp;&nbsp;
+				</c:forEach>
+					<td>${listcomment.uname}</td>
+				</tr>
+				<tr>
+					<td>${listcomment.recontent}</td>
+					<td style="float:right">${listcomment.rewriteday}</td>
+				</tr>
+				<tr>
+					<td colspan="2"><button id="addComment" style="float:right">답글</button></td>
+				</tr>
+				<td class="addComment" colspan="2">
+					<form action="newcomment" method="post">
+						<div id="recontent" style="display: none;" >
+							<textarea class="form-control" rows="5" name="recontent"
+							style="height: 100px; resize: none; width: 498px;"
+							placeholder="내용을 입력해주세요"></textarea>
+							<button type="submit" class="btn btn-primary btn-sm"
+							style="float: right; margin-right: 30px;">입력</button>
+						</div>
+					</form>
+					</td>
+				</c:forEach>
+			</c:if>
 			</table>
-			</form>
+			
 		</div>
 		<br>
 		<hr>
@@ -96,7 +130,7 @@ body, body * {
 					<a href="<c:url value='/city/detail?cbnum=${nxtnum}'/>"><h4>${nxtcontent}</h4></a>
 				</c:if>
 				<c:if test="${empty nxtcontent}">
-					<h4>다음 게시글이 없습니다</h4>
+					<h4>다음 게시글이 없습니다 ${rdto.uname}</h4>
 				</c:if>
 			</div>
 		</div>
@@ -110,6 +144,16 @@ body, body * {
 		if (a) {
 			location.href = ''
 		}
-	})
+	});
+	
+	$(document).on("click", "#addComment", function() {
+    	let s=$("#recontent").css("display");
+    	if(s=="none"){
+			$("#recontent").css("display", "block");
+    	} else {
+    		$("#recontent").css("display", "none");
+    	}
+	});
+	
 </script>
 </html>

@@ -10,9 +10,11 @@
 		select * from user where unum=#{unum}
 	</select>
 	<insert id="insertCity" parameterType="CityBoardDto">
-		insert into city_board (subject, unum, cbcontent, cbwriteday, city1, city2)
-		value (#{subject}, #{unum}, #{cbcontent}, now(), #{city1}, #{city2})
+		insert into city_board (subject, unum, cbcontent, cbwriteday, city1, city2, uname, cbphoto)
+		value (#{subject}, #{unum}, #{cbcontent}, now(), #{city1}, #{city2}, #{uname}, #{cbphoto})
 	</insert>
+	<select id="preContent" parameterType="CityBoardDto" resultType="String">
+		select subject from city_board where cbnum <![CDATA[<]]> #{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum desc limit 1
 	<select id="getJoinByunum" resultType="UserDto">
 		SELECT *
  		FROM user
@@ -20,26 +22,33 @@
   		WHERE user.unum = #{unum}
   	</select>
   	<select id="getCityList" parameterType="String" resultType="CityBoardDto">
-  		select * from city_board where city1=#{city1} and city2=#{city2} order by cbnum asc;
+  		select * from city_board where city1=#{city1} and city2=#{city2} order by cbnum desc;
   	</select>
-	<select id="preContent" parameterType="int" resultType="String">
-		select subject from city_board where cbnum <![CDATA[<]]> #{cbnum} order by cbnum desc limit 1
 	</select>
-	<select id="nxtContent" parameterType="int" resultType="String">
-		select subject from city_board where cbnum <![CDATA[>]]> #{cbnum} order by cbnum asc limit 1
+	<select id="nxtContent" parameterType="CityBoardDto" resultType="String">
+		select subject from city_board where cbnum <![CDATA[>]]> #{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum asc limit 1
 	</select>
-	<select id="preNum" parameterType="int" resultType="String">
-		select cbnum from city_board where cbnum <![CDATA[<]]> #{cbnum} order by cbnum desc limit 1
+	<select id="preNum" parameterType="CityBoardDto" resultType="String">
+		select cbnum from city_board where cbnum <![CDATA[<]]> #{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum desc limit 1
 	</select>
-	<select id="nxtNum" parameterType="int" resultType="String">
-		select cbnum from city_board where cbnum <![CDATA[>]]> #{cbnum} order by cbnum asc limit 1
+	<select id="nxtNum" parameterType="CityBoardDto" resultType="String">
+		select cbnum from city_board where cbnum <![CDATA[>]]> #{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum asc limit 1
 	</select>
+	<update id="updateStep" parameterType="Map">
+		update cb_reboard set step=step+1 where ref=${ref} and step <![CDATA[>]]> #{step}
+	</update>
 	<insert id="newComment" parameterType="CbReBoardDto">
-		insert into cb_reboard (unum,uname,recontent,recontent,cbwriteday,ref,step,depth) 
-		value (#{unum},#{uname},#{recontent},now(),#{ref},#{step},#{depth})
+		insert into cb_reboard (unum,uname,recontent,rewriteday,ref,step,depth,cbnum) 
+		value (#{unum},#{uname},#{recontent},now(),#{ref},#{step},#{depth},#{cbnum})
 	</insert>
 	<select id="getTotalComment" parameterType="String" resultType="int">
-		select count(*) from cb_reboard
+		select count(*) from cb_reboard;
+	</select>
+	<select id="getComment" parameterType="int" resultType="CbReBoardDto">
+		select * from cb_reboard where cbnum=#{cbnum} order by renum asc
+	</select>
+	<select id="getReboardNum" resultType="int">
+		select ifnull(max(num),0) form cb_reboard
 	</select>
 
 </mapper>

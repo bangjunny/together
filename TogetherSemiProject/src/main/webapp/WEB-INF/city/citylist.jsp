@@ -120,7 +120,7 @@ body, body * {
 		</tr>
 		<c:forEach var="citylist" items="${citylist}" varStatus="i">
 			<tr>
-				<td align="center">${i.count}</td>
+				<td align="center">${totalCountCity - (i.count-1)}</td>
 
 				<td style="cursor: pointer" onclick="location.href='detail?cbnum=${citylist.cbnum}'">
 					<b>${citylist.subject}</b>
@@ -198,7 +198,9 @@ body, body * {
 					 var formattedDate = date.toLocaleDateString('ko-KR', {year:'numeric', month: '2-digit', day: '2-digit'});
 					s+=`
 					<tr>
-					<td align="center">\${idx+1}</td>
+					<td align="center">
+					${totalCountCity}
+					</td>
 					<td style="cursor:pointer"
 					onclick="location.href='detail?cbnum=\${ele.cbnum}'">
 					\${ele.subject}

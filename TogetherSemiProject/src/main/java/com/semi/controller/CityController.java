@@ -1,7 +1,9 @@
 package com.semi.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,16 +44,22 @@ public class CityController {
 	private NcpObjectStorageService storageService;
 	private String bucketName="together-bucket-104";
 
+	
 	@GetMapping("/list")
 	public String list(
-			 /**@RequestParam(defaultValue = "1") int currentPage**/
+			 @RequestParam(defaultValue = "1") int currentPage,
 			Model model, HttpSession session) {
 
-		/**
-		int totalCount = cityService.getTotalCountCity();// 게시판의 총 글 갯수
+		int unum=(int)session.getAttribute("unum");
+		
+		UserDto udto = cityService.getDetailbyunum(unum);
+		String city1 = udto.getCity1();
+		String city2 = udto.getCity2();
+		
+		int totalCount = cityService.getTotalCountCity(city1, city2);// 게시판의 총 글 갯수
 		int totalPage;// 총 페이지수
-		int perPage = 10;// 한 페이지당 보여질 글 갯수
-		int perBlock = 5;// 한 블럭당 보여질 페이지의 갯수
+		int perPage = 5;// 한 페이지당 보여질 글 갯수
+		int perBlock = 3;// 한 블럭당 보여질 페이지의 갯수
 		int startNum;// 각 페이지에서 보여질 글의 시작번호
 		int startPage;// 각 블럭에서 보여질 시작 페이지 번호
 		int endPage;// 각 블럭에서 보여질 끝 페이지 번호
@@ -72,22 +80,15 @@ public class CityController {
 		// 각 글마다 출력할 글 번호(예:10개일경우 1페이지:10, 2페이지:7...)
 		no = totalCount - startNum;
 
-		// 각 페이지에 필요한 게시글 db에서 가져오기
-		List<CityBoardDto> list = cityService.getPaginlistCity(startNum, perPage); // 출력시 필요한 변수들을 model에 모두 저장
 		model.addAttribute("totalCount", totalCount);
-		model.addAttribute("list", list);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("no", no);
-		**/
-
-		int unum=(int)session.getAttribute("unum");
 		
-		UserDto udto =  cityService.getDetailbyunum(unum);
-		String city1 = udto.getCity1();
-		String city2 = udto.getCity2();
+		
+		
 		List<CityBoardDto> citylist = cityService.getCityList(city1, city2);
 		int totalCountCity=cityService.getTotalCountCity(city1, city2);
 		
@@ -95,7 +96,6 @@ public class CityController {
 		model.addAttribute("totalCountCity",totalCountCity);
 		model.addAttribute("citylist",citylist);
 		model.addAttribute("udto",udto);
-		
 		model.addAttribute("city1",city1);
 		model.addAttribute("city2",city2);
 	
@@ -208,16 +208,63 @@ public class CityController {
 	}
 	
 	@GetMapping("/citydelete")
-	public String citydelete(int cbnum) {
-		cityService.deleteCity(cbnum);
-		return "redirect:list";
+	@ResponseBody public Map<String, String> delete(int cbnum, String pass){
+        System.out.println(cbnum);
+        System.out.println(pass);
+        Map<String, String> map = new HashMap<>();
+        //비번이 맞을경우 map에 result->success를 넣고 버켓의 사진 지우고 db글 지우고
+        //틀릴경우 map에 result->에 fail
+        CityBoardDto cbdto = cityMapper.getDetailbycbnum(cbnum);
+        int cbdtounum = cbdto.getUnum();
+        UserDto udto = cityMapper.getDetailbyunum(cbdtounum);
+        String udtopass = udto.getPass();
+        boolean b = pass.equals(udtopass);
+
+        if(b){
+            map.put("result","success");
+            //db삭제 전에 저장된 이미지를 버켓에서 지운다
+            String filename=cityService.getDetailbycbnum(cbnum).getCbphoto();
+            storageService.deleteFile(bucketName, "city", filename);
+            //db삭제
+            cityService.deleteCity(cbnum);
+        }else{
+            map.put("result","fail");
+        }
+
+        return map;
+    }
+	/*
+	 * public String citydelete(int cbnum, String pass) { CityBoardDto cbdto =
+	 * cityService.getDetailbycbnum(cbnum); int unum = cbdto.getUnum();
+	 * System.out.println("비밀번호 :"+pass);
+	 * 
+	 * UserDto udto = cityService.getDetailbyunum(unum); String udtopass =
+	 * udto.getPass(); System.out.println("비밀번호2 :"+udtopass);
+	 * 
+	 * 
+	 * 
+	 * if(pass.equals(udtopass)){ cityService.deleteCity(cbnum); return
+	 * "redirect:list"; } else { return "redirect:detail?cbnum="+(cbnum); } }
+	 */
+	
+	@GetMapping("/cityupdateform")
+	public String cityupdateform(int cbnum, Model model) {
+		System.out.println(cbnum);
+		CityBoardDto cbdto = cityService.getDetailbycbnum(cbnum);
+		int unum = cbdto.getUnum();
+		UserDto udto = cityService.getDetailbyunum(unum);
+		model.addAttribute("cbdto",cbdto);	
+		model.addAttribute("udto",udto);	
+		return "/main/city/cityupdateform";
 	}
 	
 	@GetMapping("/cityupdate")
-	public String cityupdate(int cbnum, Model model) {
-		System.out.println(cbnum);
-		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
-		model.addAttribute("dto",dto);		
-		return "/main/city/cityupdateform";
+	public String cityupdate(CityBoardDto dto, MultipartFile upload) {
+		
+		
+		
+		
+		
+		return "/main/city/CityDetail";
 	}
 }

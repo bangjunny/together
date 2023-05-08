@@ -27,6 +27,7 @@ public interface CityMapper {
 	public void updateStep(Map<String,Integer> map);
 	public int getReboardNum();
 	public void deleteCity(int cbnum);
+	public int isEqualPass(Map<String, Object> map);
 	
 	/**
 	public void insertCity(CityBoardDto dto);

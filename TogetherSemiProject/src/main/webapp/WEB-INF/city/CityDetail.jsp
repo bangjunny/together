@@ -22,6 +22,7 @@ body, body * {
 	font-family: 'Jua'
 }
 </style>
+
 </head>
 <body>
 	<h1>지역 게시판</h1>
@@ -52,7 +53,7 @@ body, body * {
 		<hr>
 		<div style="margin: auto">
 			<button type="submit" class="btn btn-sm btn-success updatebtn"
-				style="margin-left: 180px" onclick="location.href='cityupdate?cbnum=${dto.cbnum}'">수정</button>
+				style="margin-left: 180px" onclick="location.href='cityupdateform?cbnum=${dto.cbnum}'">수정</button>
 			<button type="button" class="btn btn-sm btn-success"
 				onclick="history.back()">목록으로</button>
 			<button type="button" class="btn btn-sm btn-success" id="delbtn">삭제</button>
@@ -140,19 +141,23 @@ body, body * {
 </body>
 <script type="text/javascript">
 	$("#delbtn").click(function() {
-		let a = confirm("삭제하려면 확인을 눌러주세요");
-		if (a) {
-			location.href = 'citydelete?cbnum='+${dto.cbnum}
-		}
-	});
-	
-	$(document).on("click", "#addComment", function() {
-    	let s=$("#recontent").css("display");
-    	if(s=="none"){
-			$("#recontent").css("display", "block");
-    	} else {
-    		$("#recontent").css("display", "none");
-    	}
+		var pass = prompt("삭제하려면 비밀번호를 입력해주세요");
+        var cbnum=${dto.cbnum};
+        $.ajax({
+           type:"get",
+           url:"./citydelete",
+           data:{"cbnum":cbnum,"pass":pass},
+           dataType:"json",
+           success:function(res){
+               if(res.result=='success'){
+                   alert("삭제되었습니다");
+                   location.href='./list';
+                   //location.href='./list?currentPage='+${currentPage};//보던 페이지로 이동
+               }else{
+                   alert("비밀번호가 맞지 않습니다");
+               }
+           }
+        })
 	});
 	
 </script>

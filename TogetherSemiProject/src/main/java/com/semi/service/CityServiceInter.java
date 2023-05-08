@@ -23,6 +23,7 @@ public interface CityServiceInter {
 	public int getReboardNum();
 	public List<CityBoardDto> getCityList(String city1, String city2);
 	public void deleteCity(int cbnum);
+	public boolean isEqualPass(int cbnum, String pass);
 
 	/**
 	public void updateCity(CityBoardDto dto);

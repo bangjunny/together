@@ -13,19 +13,26 @@
 		select * from user where unum=#{unum}
 	</select>
 	<insert id="insertCity" parameterType="CityBoardDto">
-		insert into city_board (subject, unum, cbcontent, cbphoto, cbwriteday, city1, city2)
-		value (#{subject}, #{unum}, #{cbcontent}, #{cbphoto}, now(), #{city1}, #{city2})
+		insert into city_board (subject, unum, cbcontent, cbwriteday, city1, city2)
+		value (#{subject}, #{unum}, #{cbcontent}, now(), #{city1}, #{city2})
 	</insert>
-	<select id="getJoinByunum" resultType="UserDto">
-		SELECT *
- 		FROM user
-  		INNER JOIN city_board ON user.unum = city_board.unum
-  		WHERE user.unum = #{unum}
-  	</select>
 	<select id="preContent" parameterType="int" resultType="String">
-		select subject from city_board where cbnum=#{cbnum}-1
+		select subject from city_board where cbnum <![CDATA[<]]> #{cbnum} order by cbnum desc limit 1
 	</select>
 	<select id="nxtContent" parameterType="int" resultType="String">
-		select subject from city_board where cbnum=#{cbnum}+1
+		select subject from city_board where cbnum <![CDATA[>]]> #{cbnum} order by cbnum asc limit 1
+	</select>
+	<select id="preNum" parameterType="int" resultType="String">
+		select cbnum from city_board where cbnum <![CDATA[<]]> #{cbnum} order by cbnum desc limit 1
+	</select>
+	<select id="nxtNum" parameterType="int" resultType="String">
+		select cbnum from city_board where cbnum <![CDATA[>]]> #{cbnum} order by cbnum asc limit 1
+	</select>
+	<insert id="newComment" parameterType="CbReBoardDto">
+		insert into cb_reboard (unum,uname,recontent,recontent,cbwriteday,ref,step,depth) 
+		value (#{unum},#{uname},#{recontent},now(),#{ref},#{step},#{depth})
+	</insert>
+	<select id="getTotalComment" parameterType="String" resultType="int">
+		select count(*) from cb_reboard
 	</select>
 </mapper>

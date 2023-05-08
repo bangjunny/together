@@ -67,59 +67,35 @@
           </c:otherwise>
       </c:choose></div><h4>${dto.uname}님이 작성 중입니다</h4>
 <div class="container">
-    <form action="cityinsert" method="post" enctype="multipart/form-data">
-
+    <form action="cityinsert" method="post">
         <br>
         제목&nbsp;<input type="text" class="form-control" name="subject" placeholder="제목을 입력해주세요" style="width: 100%">
         <br>
-        <textarea name ="content" id="editor" class="form-control"></textarea>
+        <input type="hidden" name="unum" value=${unum}>
+        <input type="hidden" name="city1" value=${city1}>
+        <input type="hidden" name="city2" value=${city2}>
+        <textarea name ="content" id="editor"></textarea>
         <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
-		<script>		
-		ClassicEditor
-		.create(document.querySelector('#editor'))
-		.then(editor => {
-			console.log('Editor was initialized');
-		})
-		.catch(error => {
-			console.error(error);
-		});
-	</script>
-
         <br>
         <hr>
             <button type="submit" class="btn btn-success" style="margin-left: 260px">작성</button>
             <button type="button" class="btn btn-success" onclick="history.back()" style="margin-left: 50px">취소</button>
         <br>
         <br>
-    </form>
-    
-    <form action="cityinsert" method="post" enctype="multipart/form-data">
-    <table class="table table-bordered">
-            <tr>
-                <th style="width: 100px;background-color: #ddd">제목</th>
-                <td>
-                    <input type="text" class="form-control" name="subject">
-                </td>
-            </tr>
-            <tr>
-                <th style="width: 100px;background-color: #ddd">상품사진</th>
-                <td>
-                    <input type="file" class="form-control" name="upload" id="myfile">
-                </td>
-            </tr>
-            <tr>
-                <th style="width: 100px;background-color: #ddd">내용</th>
-                <td>
-                    <input type="text" class="form-control" name="content">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <button type="button" class="btn btn-outline-success"
-                    onclick="location.href=''">상품목록</button>
-                </td>
-            </tr>
-        </table>
+        <script>		
+		ClassicEditor
+		.create(document.querySelector('#editor'), {
+			ckfinder: {
+				uploadUrl : '/image/upload'
+			}
+		})
+		.then(editor => {
+			console.log('Editor was initialized');
+		})
+		.catch(error => {
+			console.error(error);
+		});
+		</script>
     </form>
 </div>
 

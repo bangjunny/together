@@ -96,7 +96,7 @@
 		margin-top: 50px;
 		width: 100%;
 		height: 700px;
-		background-image:url("./photo/mid_pic.jpg");
+		background-image:url("../photo/mid_pic.jpg");
   		background-attachment: fixed;			
 	} 
 	#main_mid_txt{

@@ -15,4 +15,5 @@ public interface MoimServiceInter {
 	public MoimDto getData(int mnum);
 	public void deleteMoim(int mnum);
 	public void updateMoim(MoimDto dto);
+	public int overlappedMname(MoimDto dto);
 }

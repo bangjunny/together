@@ -105,8 +105,6 @@ public class CityController {
 		return citylist;
 	}
 	
-
-	
 	@GetMapping("/detail")
 	public String detail(
 			int cbnum, Model model
@@ -114,14 +112,23 @@ public class CityController {
 		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
 		String precontent=cityService.preContent(cbnum);
 		String nxtcontent=cityService.nxtContent(cbnum);
+
 		String city1 = dto.getCity1();
 		String city2 = dto.getCity2();
 		int totalCountCity=cityService.getTotalCountCity(city1, city2);
+
+		String prenum=cityService.preNum(cbnum);
+		String nxtnum=cityService.nxtNum(cbnum);
+		int totalCountCity=cityService.getTotalCountCity();
+		int totalComment=cityService.getTotalComment();
+		System.out.println("댓글 수"+totalComment);
 		
 		model.addAttribute("dto",dto);
 		model.addAttribute("nxtcontent",nxtcontent);
+		model.addAttribute("nxtnum",nxtnum);
 		System.out.println(nxtcontent);
 		model.addAttribute("precontent",precontent);
+		model.addAttribute("prenum",prenum);
 		System.out.println(precontent);
 		model.addAttribute("totalCountCity",totalCountCity);
 		
@@ -143,20 +150,25 @@ public class CityController {
 	
 	@PostMapping("/cityinsert")
 	public String cityinsert(
-			CityBoardDto dto, MultipartFile upload
-	) {
-		String filename="";
-		if(!upload.getOriginalFilename().equals("")) {
-			filename=storageService.uploadFile(bucketName, "city", upload);
-		}
-		
-		
-		
-		
+			CityBoardDto dto
+	) 
+	{
 		cityService.insertCity(dto);
 		return "redirect:list";
 	}
 	
-	
+	@PostMapping("/newcommet")
+	public String newcomment(
+			@RequestParam (defaultValue = "0") int ref,
+			@RequestParam (defaultValue = "0") int step,
+			@RequestParam (defaultValue = "0") int depth,
+			Model model)
+	{
+		model.addAttribute("ref",ref);
+		model.addAttribute("step",step);
+		model.addAttribute("depth",depth);
+		
+		return "redirect:/main/city/CityDetail";
+	}
 
 }

@@ -16,7 +16,7 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 <style>
-	#layout_a{
+	.layout_a{
 		display: flex;
 		justify-content: flex-end;
 		position: relative;
@@ -26,7 +26,8 @@
 </style>
 </head>
 <body>
-	<a id="layout_a" href="/user/logout">로그아웃</a>
+	<a class="layout_a" href="/user/mypage">마이페이지</a>
+	<a class="layout_a" href="/user/logout">로그아웃</a>
 </body>
 </html>
 

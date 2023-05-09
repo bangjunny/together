@@ -12,6 +12,6 @@ public interface LoginServiceInter {
 	public int isEqualPassEmail(String email, String pass); 
 	public UserDto selectOneOfEmail(String email);
 	public int overlappedEmail(UserDto dto);
-
+	public UserPhotoDto getMyPhoto(int photo_idx);
 
 }

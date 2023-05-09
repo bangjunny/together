@@ -50,9 +50,13 @@ public class MoimService implements MoimServiceInter {
 	}
 
 	@Override
-	public void updateJjimcount(int mnum) {
+	public void updateJjimcount(int mnum, int unum) {
 		// TODO Auto-generated method stub
-		moimMapper.updateJjimcount(mnum);
+		Map<String, Integer>map = new HashMap<>();
+		map.put("mnum", mnum);
+		map.put("unum", unum);
+		
+		moimMapper.updateJjimcount(map);
 	}
 
 	@Override
@@ -77,6 +81,26 @@ public class MoimService implements MoimServiceInter {
 	public int overlappedMname(MoimDto dto) {
 		return moimMapper.overlappedMname(dto);
 	}
+
+	@Override
+	public boolean pressJjim(int unum, int mnum) {
+	
+		Map<String, Object> map = new HashMap<>();
+		map.put("unum", unum);
+		map.put("mnum", mnum);
+		System.out.println(map);
+		
+		boolean pressChk = moimMapper.pressJjim(map)==0?false:true;
+		System.out.println(pressChk);
+		
+		return pressChk;
+	}
+
+
+
+
+
+
 	
 	
 }

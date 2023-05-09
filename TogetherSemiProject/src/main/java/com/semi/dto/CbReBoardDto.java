@@ -18,4 +18,5 @@ public class CbReBoardDto {
 	private int ref;
 	private int step;
 	private int depth;
+	private int cbnum;
 }

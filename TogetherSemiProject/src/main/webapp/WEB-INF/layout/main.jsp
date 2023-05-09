@@ -73,7 +73,6 @@
 		justify-content: space-between;
 	}
 	#main_list_go{
-		width:800px;
 		margin: 150px auto 150px auto;
 		text-align: center;
 		display: flex;

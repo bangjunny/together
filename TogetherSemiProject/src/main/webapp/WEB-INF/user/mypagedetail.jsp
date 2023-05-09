@@ -9,7 +9,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Refresh" content="10;url=./list">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +16,17 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+<style>
+	.showimg{
+	
+	width:250px;
+	
+	}
+
+</style>
+
 <body>
+
 
 <div class="container text-center">
     <div class="row">
@@ -69,48 +78,93 @@
 </div>	
 
 <hr>
-<div class="Photo">
-  <form id="photoForm" method="post" enctype="multipart/form-data">
-    <!-- 사진 변경 모달 -->
-    <div class="modal" id="myPhotoModal">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title">사진 수정</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <!-- Modal body -->
-          <div class="modal-body">
-            <c:choose>
-              <c:when test="${pdto.file_name==null}">
-                <!-- Result값이 있다면 실행할 로직 -->
-                <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
-              </c:when>
-              <c:otherwise>
-                <!-- 그렇지 않다면 실행할 로직 -->
-                <img src="https://${imageUrl}/userprofile/${pdto.file_name}">    
-              </c:otherwise>
-            </c:choose>
-            <!-- 카메라 모양 -->
-            <i class="bi bi-camera-fill update-photo" style="font-size: 26px;cursor: pointer;"></i>
-            <!-- 파일 업로드 태그 -->
-            <div class="mb-3">
-              <label for="photoInput" class="form-label">사진 선택</label>
-              <input class="form-control" type="file" id="upload" name="upload">
-            </div>
-          </div>
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-            <button type="button" class="btn btn-primary" id="submitBtn">저장</button>
-          </div>
-        </div>
-      </div> 
+<div class="Container Photo">
+<form action="/user/mypageinsert" method="post" enctype="multipart/form-data">
+<!-- 사진 변경 모달 -->
+<div class="modal" id="myPhotoModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">사진 넣기</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+		
+		    <!-- Modal body -->
+		    <div class="modal-body">
+				 <c:choose>
+		          <c:when test="${pdto.file_name==null}">
+		         <!-- Result값이 있다면 실행할 로직 -->
+		         <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" class="showimg">
+		          </c:when>
+		          <c:otherwise>
+		       <!-- 그렇지 않다면 실행할 로직 -->
+		       <img src="https://${imageUrl}/userprofile/${pdto.file_name}" class="showimg">    
+		          </c:otherwise>
+		      </c:choose>
+		   	 
+		         <!-- 카메라 모양 -->
+		        <i class="bi bi-camera-fill update-photo"
+		        style="font-size: 26px;cursor: pointer;"></i>
+		        <!-- 파일 업로드 태그 -->
+			      <div class="mb-3">
+			      <label for="photoInput" class="form-label">사진 선택</label>
+			      <input class="form-control" type="file" id="upload" name="upload">
+			    </div>
+			</div>
+	      
+	      <!-- Modal footer -->
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+			  <button type="button" class="btn btn-primary" id="submitBtn">저장</button>
+			</div>
     </div>
-  </form>
-</div>
+  </div> 
+ </div>
+ </form>
+</div> 
+<script type="text/javascript">
+$("#upload").change(function(){
+	console.log("1:"+$(this)[0].files.length);
+	console.log("2:"+$(this)[0].files[0]);
+	//정규표현식
+	var reg = /(.*?)\/(jpg|jpeg|png|bmp)$/;
+	var f=$(this)[0].files[0];//현재 선택한 파일
+	if(!f.type.match(reg)){
+		alert("확장자가 이미지파일이 아닙니다");
+		return;
+	}
+	if($(this)[0].files[0]){
+		var reader=new FileReader();
+		reader.onload=function(e){
+		$(".showimg").attr("src",e.target.result);
+		}
+		reader.readAsDataURL($(this)[0].files[0]);
+	}
+});	
+</script>
+<script>
+$(document).ready(function() {
+  $('#submitBtn').click(function() {
+    var formData = new FormData($('form')[0]);
 
+    $.ajax({
+      url: "/user/mypageinsert",
+      type: 'POST',
+      data: formData,
+      async: false,
+      success: function (data) {
+        console.log(data);
+        window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
+      },
+      cache: false,
+      contentType: false,
+      processData: false
+    });
 
+  });
+});
+</script>
 </body>
 </html>

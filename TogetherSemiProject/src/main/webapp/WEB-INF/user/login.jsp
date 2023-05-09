@@ -143,10 +143,33 @@
             					success: res => {
             						const kakao_account = res.kakao_account;
             						console.log(kakao_account);
-            						console.log(kakao_account.email);
+            						const email = kakao_account.email;
+            	                    console.log(email);
+            						//console.log(kakao_account.email);
             						console.log(kakao_account.gender);
             						console.log(kakao_account.birthday);
             						console.log(res.properties.nickname);
+            						
+            						$.ajax({
+            							type: "get",
+            							async: false,
+            							url: "http://localhost:9000/user/emailCheck",
+            							data:{email:email},
+            							success: function(data){
+            								if(data == 0 && email!=''){
+            									
+            									location.href= "./kakaojoin?email=" + email 
+    											+ "&gender=" + kakao_account.gender 
+    											+ "&birthday=" + kakao_account.birthday 
+    											+ "&nickname=" + res.properties.nickname;
+            								}
+            								else{
+            									
+            									
+            									location.href="/";
+            								}
+            							}
+            						});
             					}
             				});
             			}

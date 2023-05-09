@@ -1,10 +1,10 @@
 package com.semi.controller;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +23,7 @@ import com.semi.dto.MoimDto;
 import com.semi.dto.UserDto;
 import com.semi.dto.UserPhotoDto;
 import com.semi.mapper.LoginMapper;
+
 import com.semi.service.LoginService;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -40,7 +41,6 @@ public class LoginController {
 	@Autowired
 	LoginMapper loginMapper;
 	
-	List<String> photoNames=new ArrayList<>();
 	
 	@Autowired
 	private NcpObjectStorageService storageService;
@@ -63,11 +63,24 @@ public class LoginController {
 		} 	
 		
 	}
-	
+		
 	@GetMapping("/join")
 	public String userJoinPage() {
 		return "/sub/user/join";
 		}
+	
+	@GetMapping("/kakaojoin")
+	public String kakaoJoinPage(String email, String gender, 
+			String birthday, String nickname, Model model) {
+		
+		model.addAttribute("email",email);
+		model.addAttribute("gender",gender);
+		model.addAttribute("birthday",birthday);
+		model.addAttribute("nickname",nickname);
+		
+		System.out.println(email);
+		return "/sub/user/kakaojoin";
+	}
 	
 	@PostMapping("/userinsert")
 	public String userinsert(UserDto dto){
@@ -91,44 +104,57 @@ public class LoginController {
 
 		return "/main/user/mypagelist";
 	}
-		
 	
+	@GetMapping("/mypage")
+	public String mypage(HttpSession session, Model model) {
+	    Integer loginUserUnum = (Integer) session.getAttribute("unum"); // 로그인한 사용자의 unum 값 가져오기
+	    if (loginUserUnum == null) {
+	        return "redirect:/login"; // 로그인하지 않은 사용자는 로그인 페이지로 이동
+	    } else {
+	        return "redirect:/user/mypagedetail?unum=" + loginUserUnum; // 로그인한 사용자는 자신의 mypagedetail 페이지로 이동
+	    }
+	}
+
 	@GetMapping("/mypagedetail")
-	public String detail(int unum,Model model)
-	{
+	public String mypagedetail(@RequestParam("unum") int unum, @RequestParam(required = false) Integer photo_idx, Model model) {
+	UserDto dto = loginMapper.getMypage(unum);
+	UserPhotoDto pdto = new UserPhotoDto(); // 초기화
+	if (dto == null) {
+	// 해당 유저를 찾을 수 없는 경우 에러 페이지 등을 보여줄 수 있습니다.
+	return "error";
+	} else if(photo_idx != null) {
+	pdto = loginMapper.getMyPhoto(unum);
+	}
+	model.addAttribute("dto", dto);
+	model.addAttribute("pdto", pdto);
+	return "/main/user/mypagedetail";
+	}
 		
-		UserDto dto=loginMapper.getMypage(unum);
-		model.addAttribute("dto", dto);
-		
-		return "/sub/user/mypagedetail";
-	}
-   
-	@PostMapping("/mypageupdatephoto")
-	@ResponseBody public String mypageupdatephoto(MultipartFile upload,int unum)
-	{
-		System.out.println("unum="+unum);
-		//s3 스토리지에 업로드된 기존 파일 지우기
-		String fileName=loginMapper.getMypage(unum).getUphoto();
-		storageService.deleteFile(bucketName, "user", fileName);
 
-		//네이버 클라우드의 버켓에 사진 업로드하기
-		String uphoto=storageService.uploadFile(bucketName, "user", upload);
-		Map<String, Object> map=new HashMap<>();
-		map.put("uphoto", uphoto);
-		map.put("unum", unum);
+	
+	@PostMapping("/mypageinsert")
+	public String insertMyPhoto(UserPhotoDto pdto, MultipartFile upload, HttpSession session) {
+	    try {
+	        int unum = (int) session.getAttribute("unum"); // 세션에서 unum 값 가져오기
 
-		loginMapper.updatePhoto(map);
-		return uphoto;//업로드된 파일명 리턴
+	        // 네이버 클라우드의 버켓에 사진 업로드하기
+	        String photo = storageService.uploadFile(bucketName, "userprofile", upload);
+	        // 반환된 암호화된 파일명을 dto에 넣기
+	        pdto.setFile_name(photo);
+	        pdto.setUnum(unum);
+
+	        // db insert
+	        loginMapper.insertMyPhoto(pdto);
+
+	        return "redirect:mypage";
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        // 에러 발생 시 alert 창 띄우기
+	        return "redirect:mypage?result=error";
+	    }
 	}
-	
-	@GetMapping("/updatemypage")
-	@ResponseBody public void updatemypage(UserDto dto)
-	{
-		System.out.println("dto.unum="+dto.getUnum());
-		loginMapper.updateMypage(dto);
-	}
-	
-       
+
+  
 	
 	 @PostMapping("/loginaction") 
 	 public String loginAction(

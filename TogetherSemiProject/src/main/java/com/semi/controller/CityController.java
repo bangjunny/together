@@ -118,20 +118,22 @@ public class CityController {
 	
 	@GetMapping("/detail")
 	public String detail(
-			int cbnum, Model model,
-			@RequestParam(defaultValue = "0") int renum,
+			int cbnum, Model model,HttpSession session,
 			@RequestParam(defaultValue = "0") int ref,
 			@RequestParam(defaultValue = "0") int step,
 			@RequestParam(defaultValue = "0") int depth
 	) {
 		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
-
-		List<CbReBoardDto> listcomment = cityService.getComment(cbnum);
+		int unum=(int)session.getAttribute("unum");
+		UserDto udto=cityMapper.getDetailbyunum(unum);
+		int totalrenum=cityMapper.getReboardNum();
+		
+		List<CbReBoardDto> listcomment = cityService.getCommentByCbnum(cbnum);
 		String precontent=cityService.preContent(dto);
 		String nxtcontent=cityService.nxtContent(dto);
 		String prenum=cityService.preNum(dto);
 		String nxtnum=cityService.nxtNum(dto);
-		int totalComment=cityService.getTotalComment();
+		String totalComment=cityService.getTotalComment(cbnum);
 		System.out.println("댓글 수"+totalComment);
 		
 		model.addAttribute("listcomment",listcomment);
@@ -139,6 +141,8 @@ public class CityController {
 		String city1 = dto.getCity1();
 		String city2 = dto.getCity2();
 		int totalCountCity=cityService.getTotalCountCity(city1, city2);
+
+		model.addAttribute("udto",udto);
 
 
 		model.addAttribute("dto",dto);
@@ -150,10 +154,12 @@ public class CityController {
 		System.out.println(precontent);
 		model.addAttribute("totalCountCity",totalCountCity);
 		model.addAttribute("totalComment",totalComment);
-		model.addAttribute("renum",renum);
+		model.addAttribute("totalrenum",totalrenum);
+
 		model.addAttribute("ref",ref);
 		model.addAttribute("step",step);
 		model.addAttribute("depth",depth);
+		model.addAttribute("sessionunum",unum);
 		
 		return "/main/city/CityDetail";
 	}
@@ -188,16 +194,34 @@ public class CityController {
 		return "redirect:list";
 	}
 	
-	@PostMapping("/newcommet")
+	@PostMapping("/newcomment")
 	public String newcomment(
-			@RequestParam (defaultValue = "0") int ref,
-			@RequestParam (defaultValue = "0") int step,
-			@RequestParam (defaultValue = "0") int depth,
+			CbReBoardDto dto)
+	{
+		cityService.newComment(dto);
+		
+		return "redirect:/main/city/CityDetail";
+	}
+	
+	@PostMapping("/addcomment")
+	public String addcomment(
+			CbReBoardDto dto,
 			Model model)
 	{
+		CbReBoardDto rdto=new CbReBoardDto();
+		int renum=dto.getRenum();
+		CbReBoardDto crdto=cityMapper.getCommentByRenum(renum);
+		int ref=crdto.getRef();
+		int step=crdto.getStep();
+		int depth=crdto.getDepth();
+		
+		System.out.println("sfff"+depth);
 		model.addAttribute("ref",ref);
 		model.addAttribute("step",step);
 		model.addAttribute("depth",depth);
+		
+		
+		cityService.addComment(dto);
 		
 		return "redirect:/main/city/CityDetail";
 	}
@@ -206,4 +230,37 @@ public class CityController {
 	public String newPost() {
 		return "/main/city/newPost";
 	}
+	
+	@GetMapping("/delete")
+	public String delete(int cbnum)
+	{
+		String filename=cityService.getDetailbycbnum(cbnum).getCbphoto();
+		storageService.deleteFile(bucketName, "city", filename);
+		cityService.deleteCityboard(cbnum);
+		return "redirect:/city/list";
+	}
+	
+//<-----------------------------------절취선-------------------------------------------->
+	
+	@GetMapping("/cityupdateform")
+	public String cityupdateform(int cbnum, Model model) {
+		System.out.println(cbnum);
+		CityBoardDto cbdto = cityService.getDetailbycbnum(cbnum);
+		int unum = cbdto.getUnum();
+		UserDto udto = cityService.getDetailbyunum(unum);
+		model.addAttribute("cbdto",cbdto);	
+		model.addAttribute("udto",udto);	
+		return "/main/city/cityupdateform";
+	}
+	
+	@GetMapping("/cityupdate")
+	public String cityupdate(CityBoardDto dto, MultipartFile upload) {
+		
+		
+		
+		
+		
+		return "/main/city/CityDetail";
+	}
+
 }

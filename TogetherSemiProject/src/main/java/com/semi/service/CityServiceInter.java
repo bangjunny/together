@@ -17,14 +17,16 @@ public interface CityServiceInter {
 	public String preNum(CityBoardDto dto);
 	public String nxtNum(CityBoardDto dto);
 	public void newComment(CbReBoardDto dto);
-	public int getTotalComment();
-	public List<CbReBoardDto> getComment(int cbnum);
+	public String getTotalComment(int cbnum);
+	public List<CbReBoardDto> getCommentByCbnum(int cbnum);
 	public void updateStep(int ref, int step);
 	public int getReboardNum();
 	public List<CityBoardDto> getCityList(String city1, String city2);
+	public void addComment(CbReBoardDto dto);
+	public CbReBoardDto getCommentByRenum(int renum);
+	public void deleteCityboard(int cbnum);
 
 	/**
 	public void updateCity(CityBoardDto dto);
-	public void deleteCity(int cbnum);
 	**/
 }

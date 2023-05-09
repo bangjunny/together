@@ -76,15 +76,15 @@ public class CityService implements CityServiceInter{
 	}
 
 	@Override
-	public int getTotalComment() {
+	public String getTotalComment(int cbnum) {
 		// TODO Auto-generated method stub
-		return cityMapper.getTotalComment();
+		return cityMapper.getTotalComment(cbnum);
 	}
 
 	@Override
-	public List<CbReBoardDto> getComment(int cbnum) {
+	public List<CbReBoardDto> getCommentByCbnum(int cbnum) {
 		// TODO Auto-generated method stub
-		return cityMapper.getComment(cbnum);
+		return cityMapper.getCommentByCbnum(cbnum);
 	}
 
 	@Override
@@ -96,24 +96,24 @@ public class CityService implements CityServiceInter{
 		
 		cityMapper.updateStep(map);
 	}
+	
+	@Override
+	public int getReboardNum() {
+		// TODO Auto-generated method stub
+		return cityMapper.getReboardNum();
+	}
+
 
 	@Override
 	public void newComment(CbReBoardDto dto) {
 		// TODO Auto-generated method stub
 		int ref=dto.getRef();
-		int step=dto.getStep();
-		int depth=dto.getDepth();
+		int step=dto.getRef();
+		int depth=dto.getRef();
 		
-		if(dto.getRenum()==0) {
-			step=0;
-			depth=0;
-			ref=cityMapper.getReboardNum()+1;
-		}
-		else {
-			this.updateStep(ref, step);
-			step++;
-			depth++;
-		}
+		step=0;
+		depth=0;
+		ref=cityMapper.getReboardNum()+1;
 		
 		dto.setRef(ref);
 		dto.setStep(step);
@@ -123,10 +123,35 @@ public class CityService implements CityServiceInter{
 	}
 
 	@Override
-	public int getReboardNum() {
+	public void addComment(CbReBoardDto dto) {
 		// TODO Auto-generated method stub
-		return cityMapper.getReboardNum();
+		
+		int ref=dto.getRef();
+		int step=dto.getStep();
+		int depth=dto.getDepth();
+		
+		this.updateStep(ref, step);
+		step++;
+		depth++;
+		
+		dto.setRef(ref);
+		dto.setStep(step);
+		dto.setDepth(depth);
+		
+		cityMapper.addComment(dto);
 	}
 
 
+	@Override
+	public CbReBoardDto getCommentByRenum(int renum) {
+		// TODO Auto-generated method stub
+		return cityMapper.getCommentByRenum(renum);
+	}
+
+
+	@Override
+	public void deleteCityboard(int cbnum) {
+		// TODO Auto-generated method stub
+		cityMapper.deleteCityboard(cbnum);	
+	}
 }

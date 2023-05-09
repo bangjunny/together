@@ -20,7 +20,6 @@ public class MoimDto {
 	private String category;
 	private String mcontent;
 	private Timestamp createday;
-	private String jjim;
 	private String open;
 	
 }

@@ -21,10 +21,17 @@
 body, body * {
 	font-family: 'Jua'
 }
+.cbcontent_img{
+	width:400px;
+	height:420px;
+	margin:20px;
+}
 </style>
 </head>
 <body>
-	<h1>지역 게시판</h1>
+<!-- 게시판 명 -->
+	<h1>지역 게시판 ${ref }</h1>
+	<!-- 해당 글 정보 영역 -->
 	<div
 		style="width: 500px; background-color: #ddd; margin: 0 auto; margin-top: 40px;">
 		<h3>제목${dto.subject}</h3>
@@ -35,10 +42,17 @@ body, body * {
 		<h6>작성일${dto.cbwriteday }</h6>
 
 		<hr>
-		<div>
-			<div>
-				<img style="margin-left:10px; border: 5px solid pink; width: 95%; min-height:200px;" src="https://${imageUrl}/city/${dto.cbphoto}">
-			</div>  
+		<div class="cbcontent" align="center">
+		 <c:choose>
+   		 <c:when test="${dto.cbphoto==null}">
+   		<!-- Result값이 있다면 실행할 로직 -->
+   		<img class="cbcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+   		 </c:when>
+   		 <c:otherwise>
+		 <!-- 그렇지 않다면 실행할 로직 -->
+		 <img class="cbcontent_img" src="https://${imageUrl}/city/${dto.cbphoto}">	 
+   		 </c:otherwise>
+		</c:choose>		
 		</div>
 		<br>	
 		<pre>
@@ -50,18 +64,41 @@ body, body * {
 			style="font-size: 40px; margin-left: 30px"></i>
 
 		<hr>
+		<!-- 버튼 영역 -->
 		<div style="margin: auto">
-			<button type="submit" class="btn btn-sm btn-success updatebtn"
-				style="margin-left: 180px" onclick="location.href='';">수정</button>
+			<!-- <button type="submit" class="btn btn-sm btn-success updatebtn"
+				style="margin-left: 180px" onclick="location.href='';">수정</button> -->
 			<button type="button" class="btn btn-sm btn-success"
 				onclick="history.back()">목록으로</button>
-			<button type="button" class="btn btn-sm btn-success" id="delbtn">삭제</button>
+			<!-- <button type="button" class="btn btn-sm btn-success" id="delbtn">삭제</button> -->
+			<c:choose>
+			 <c:when test="${sessionunum eq dto.unum}">
+			  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="location.href='updateboardform.jsp?num=${dto.cbnum}'">
+			    <i class="bi bi-pencil-square"></i>&nbsp;수정
+			  </button>
+			  
+			  <button type="button" id="delbtn" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="del(${dto.cbnum})">
+			    <i class="bi bi-trash"></i>&nbsp;삭제
+			  </button>
+				</c:when>
+				<c:otherwise>
+				  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="alert('작성자가 아닙니다')">
+				    <i class="bi bi-pencil-square"></i>&nbsp;수정
+				  </button>
+				  
+				  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="alert('작성자가 아닙니다')">
+				    <i class="bi bi-trash"></i>&nbsp;삭제
+				  </button>
+				</c:otherwise>
+				</c:choose>
 		</div>
 		<hr>
+		<!-- 댓글 입력 영역 -->
 		<form action="newcomment" method="post" id="newcomment">
-			<input type="hidden" name="unum">
-			<input type="hidden" name="uname">
-			<input type="hidden" name="cbnum">
+			<input name="unum" value="${udto.unum}">
+			<input name="uname" value="${udto.uname}">
+			<input name="cbnum" value="${dto.cbnum}">
+			<!-- 댓글 입력 창 -->
 			<div class="mb-3 mt-3">
 				<textarea class="form-control" rows="5" id="content" name="recontent"
 					style="height: 200px; resize: none; width: 500px;"
@@ -72,15 +109,17 @@ body, body * {
 		</form>
 		<br>
 		<div>
-			
+			<!-- 댓글 출력 영역 -->
 			<table>
 			<caption align="top" style="width: 500px">총 ${totalComment}개의 댓글</caption>
 			<hr>
+			<!-- 댓글이 없는 경우 -->
 			<c:if test="${totalComment=='0'}">
 				<tr>
 					<td>댓글이 없습니다</td>
 				</tr>
 			</c:if>
+			<!-- 댓글이 있는 경우 -->
 			<c:if test="${totalComment!='0' }">
 			<c:forEach var="listcomment" items="${listcomment}">
 				<tr>
@@ -96,8 +135,14 @@ body, body * {
 				<tr>
 					<td colspan="2"><button id="addComment" style="float:right">답글</button></td>
 				</tr>
+				<tr>
+				<!-- 답글 입력 영역 -->
 				<td class="addComment" colspan="2">
-					<form action="newcomment" method="post">
+					<form action="addcomment" method="post">
+						<input type="hidden" name="renum" value="${listcomment.renum}">
+						<input type="hidden" name="unum" value="${udto.unum}">
+						<input type="hidden" name="uname" value="${udto.uname}">
+						<input type="hidden" name="cbnum" value="${dto.cbnum}">
 						<div id="recontent" style="display: none;" >
 							<textarea class="form-control" rows="5" name="recontent"
 							style="height: 100px; resize: none; width: 498px;"
@@ -107,6 +152,7 @@ body, body * {
 						</div>
 					</form>
 					</td>
+				</tr>	
 				</c:forEach>
 			</c:if>
 			</table>
@@ -116,6 +162,7 @@ body, body * {
 		<hr>
 		<div>
 			<br><br>
+			<!-- 이전 글 다음 글 출력 영역 -->
 			<div><h4>이전 글</h4>
 				<c:if test="${not empty precontent}">
 					<a href="<c:url value='/city/detail?cbnum=${prenum}'/>"><h4>${precontent}</h4></a>
@@ -130,29 +177,29 @@ body, body * {
 					<a href="<c:url value='/city/detail?cbnum=${nxtnum}'/>"><h4>${nxtcontent}</h4></a>
 				</c:if>
 				<c:if test="${empty nxtcontent}">
-					<h4>다음 게시글이 없습니다 ${rdto.uname}</h4>
+					<h4>다음 게시글이 없습니다</h4>
 				</c:if>
 			</div>
 		</div>
 	</div>
-
+	
 	</div>
 </body>
 <script type="text/javascript">
-	$("#delbtn").click(function() {
-		let a = confirm("삭제하려면 확인을 눌러주세요");
-		if (a) {
-			location.href = ''
+	$(document).on("click", "#delbtn", function() {
+		let b=confirm("삭제를 하려면 [확인]을 눌러주세요");
+		if(b){
+			location.href="delete?cbnum="+${dto.cbnum};
 		}
 	});
 	
 	$(document).on("click", "#addComment", function() {
-    	let s=$("#recontent").css("display");
-    	if(s=="none"){
-			$("#recontent").css("display", "block");
-    	} else {
-    		$("#recontent").css("display", "none");
-    	}
+		let s = $(this).parent().parent().next().find("#recontent").css("display");
+	    if (s == "none") {
+	        $(this).parent().parent().next().find("#recontent").css("display", "block");
+	    } else {
+	        $(this).parent().parent().next().find("#recontent").css("display", "none");
+	    }
 	});
 	
 </script>

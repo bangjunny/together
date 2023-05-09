@@ -20,6 +20,9 @@ public interface LoginMapper {
 	public int overlappedEmail(UserDto dto);
 
 	/*마이페이지*/
+	
+	public void insertMyPhoto(UserPhotoDto dto);
+	public UserPhotoDto getMyPhoto(int photo_idx);
 	public UserDto getMypage(int unum);
 
 	public int getTotalCount();
@@ -29,6 +32,7 @@ public interface LoginMapper {
 	public void updatePhoto(Map<String, Object> map);
 	
 	public void updateMypage(UserDto dto);
+	
 	
 	
 }

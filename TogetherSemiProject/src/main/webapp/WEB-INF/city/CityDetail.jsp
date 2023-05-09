@@ -29,7 +29,9 @@ body, body * {
 </style>
 </head>
 <body>
-	<h1>지역 게시판</h1>
+<!-- 게시판 명 -->
+	<h1>지역 게시판 ${ref }</h1>
+	<!-- 해당 글 정보 영역 -->
 	<div
 		style="width: 500px; background-color: #ddd; margin: 0 auto; margin-top: 40px;">
 		<h3>제목${dto.subject}</h3>
@@ -62,6 +64,7 @@ body, body * {
 			style="font-size: 40px; margin-left: 30px"></i>
 
 		<hr>
+		<!-- 버튼 영역 -->
 		<div style="margin: auto">
 			<!-- <button type="submit" class="btn btn-sm btn-success updatebtn"
 				style="margin-left: 180px" onclick="location.href='';">수정</button> -->
@@ -90,10 +93,12 @@ body, body * {
 				</c:choose>
 		</div>
 		<hr>
+		<!-- 댓글 입력 영역 -->
 		<form action="newcomment" method="post" id="newcomment">
-			<input type="hidden" name="unum">
-			<input type="hidden" name="uname">
-			<input type="hidden" name="cbnum">
+			<input name="unum" value="${udto.unum}">
+			<input name="uname" value="${udto.uname}">
+			<input name="cbnum" value="${dto.cbnum}">
+			<!-- 댓글 입력 창 -->
 			<div class="mb-3 mt-3">
 				<textarea class="form-control" rows="5" id="content" name="recontent"
 					style="height: 200px; resize: none; width: 500px;"
@@ -104,15 +109,17 @@ body, body * {
 		</form>
 		<br>
 		<div>
-			
+			<!-- 댓글 출력 영역 -->
 			<table>
 			<caption align="top" style="width: 500px">총 ${totalComment}개의 댓글</caption>
 			<hr>
+			<!-- 댓글이 없는 경우 -->
 			<c:if test="${totalComment=='0'}">
 				<tr>
 					<td>댓글이 없습니다</td>
 				</tr>
 			</c:if>
+			<!-- 댓글이 있는 경우 -->
 			<c:if test="${totalComment!='0' }">
 			<c:forEach var="listcomment" items="${listcomment}">
 				<tr>
@@ -128,8 +135,14 @@ body, body * {
 				<tr>
 					<td colspan="2"><button id="addComment" style="float:right">답글</button></td>
 				</tr>
+				<tr>
+				<!-- 답글 입력 영역 -->
 				<td class="addComment" colspan="2">
-					<form action="newcomment" method="post">
+					<form action="addcomment" method="post">
+						<input type="hidden" name="renum" value="${listcomment.renum}">
+						<input type="hidden" name="unum" value="${udto.unum}">
+						<input type="hidden" name="uname" value="${udto.uname}">
+						<input type="hidden" name="cbnum" value="${dto.cbnum}">
 						<div id="recontent" style="display: none;" >
 							<textarea class="form-control" rows="5" name="recontent"
 							style="height: 100px; resize: none; width: 498px;"
@@ -139,6 +152,7 @@ body, body * {
 						</div>
 					</form>
 					</td>
+				</tr>	
 				</c:forEach>
 			</c:if>
 			</table>
@@ -148,6 +162,7 @@ body, body * {
 		<hr>
 		<div>
 			<br><br>
+			<!-- 이전 글 다음 글 출력 영역 -->
 			<div><h4>이전 글</h4>
 				<c:if test="${not empty precontent}">
 					<a href="<c:url value='/city/detail?cbnum=${prenum}'/>"><h4>${precontent}</h4></a>
@@ -162,12 +177,12 @@ body, body * {
 					<a href="<c:url value='/city/detail?cbnum=${nxtnum}'/>"><h4>${nxtcontent}</h4></a>
 				</c:if>
 				<c:if test="${empty nxtcontent}">
-					<h4>다음 게시글이 없습니다 ${rdto.uname}</h4>
+					<h4>다음 게시글이 없습니다</h4>
 				</c:if>
 			</div>
 		</div>
 	</div>
-
+	
 	</div>
 </body>
 <script type="text/javascript">
@@ -179,12 +194,12 @@ body, body * {
 	});
 	
 	$(document).on("click", "#addComment", function() {
-    	let s=$("#recontent").css("display");
-    	if(s=="none"){
-			$("#recontent").css("display", "block");
-    	} else {
-    		$("#recontent").css("display", "none");
-    	}
+		let s = $(this).parent().parent().next().find("#recontent").css("display");
+	    if (s == "none") {
+	        $(this).parent().parent().next().find("#recontent").css("display", "block");
+	    } else {
+	        $(this).parent().parent().next().find("#recontent").css("display", "none");
+	    }
 	});
 	
 </script>

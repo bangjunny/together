@@ -194,18 +194,19 @@
          
     </style>
 </head>
+
 <body>
     <div class="container-fluid">
        
        <form id="join-form" method="post" action="userinsert">
        
-       <h2>회원가입</h2>
+       <h2>kakao 회원가입</h2>
   
            <!-- ID -->
                 <div class="input-wrap">
                 <label for="id" class="la">이메일</label>                
                 <span class="box int_id">
-                   <input type="email" id="email" name="email" class="int" maxlength="20">                                     
+                   <input type="email" id="email" name="email" class="int" maxlength="20" value="${email }">                                     
                 </span>
                 <span id="olmessage"></span> 
                 <span class="error_next_box"></span>
@@ -237,7 +238,7 @@
                 <div class="input-wrap">
                     <label for="name" class="la">이름</label>
                     <span class="box int_name">
-                        <input type="text" id="uname" name="uname" class="int" maxlength="20">
+                        <input type="text" id="uname" name="uname" class="int" maxlength="20" value="${nickname }">
                     </span>
                     <span class="error_next_box"></span>
                 </div>

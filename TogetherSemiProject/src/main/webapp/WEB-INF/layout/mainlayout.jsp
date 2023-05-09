@@ -23,8 +23,9 @@
 	#main_container{
 		background-color: rgba(245, 245, 220, 0.2);	
 	}
-	#main_mid_txt h1, h3{
-		background-color: transparent;
+	.logout{
+		background-color: rgba(245, 245, 220, 0.2);	
+		height: 100px;
 	}
 	.footer{
 		margin-top: 100px;
@@ -33,35 +34,13 @@
 </style>
 </head>
 <body>
-	<ul>
-		<li>
-			<a href="/">Home</a>
-		</li>
-		<li>
-			<a href="/city/list">/city/list</a>
-		</li>
-		<li>
-			<a href="/city/detail">/city/detail</a>
-		</li>
-		<li>
-			<a href="/user/login">/user/login</a>
-		</li>
-		<li>
-			<a href="/user/join">/user/join</a>
-		</li>
-		<li>
-			<a href="/moim/moimlist">/moim/list</a>
-		</li>
-		<li>
-			<a href="/moim/moimform">/moim/form</a>
-		</li>
-	</ul>
+	
 <div class="mainlayout">
-	<section class="sidebar">
-		<tiles:insertAttribute name="sidebar"/>
-	</section>
 	<section class="logout">
 		<tiles:insertAttribute name="logout"/>
+	</section>
+	<section class="sidebar">
+		<tiles:insertAttribute name="sidebar"/>
 	</section>
 	<section class="main">
 		<tiles:insertAttribute name="main"/>

@@ -16,16 +16,17 @@
    body, body *{
       font-family: 'NanumPenScript';
    }
-   footer{
+   .footer{
+   		margin-top:400px;
    		width: 100%;
-   		height: 400px;
+   		height: 250px;
    		background-color: rgb(44, 42, 41);
    }
 </style>
 </head>
 <body>
 
-	<div id="footer">
+	<div class="footer">
 		
 	</div>
 	

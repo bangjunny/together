@@ -40,5 +40,11 @@ public class LoginService implements LoginServiceInter{
 	public UserDto selectOneOfEmail(String email) {
 		// TODO Auto-generated method stub
 		return loginMapper.selectOneOfEmail(email);
+	}
+
+	@Override
+	public int overlappedEmail(UserDto dto) {
+		// TODO Auto-generated method stub
+		return loginMapper.overlappedEmail(dto);
 	}	
 }

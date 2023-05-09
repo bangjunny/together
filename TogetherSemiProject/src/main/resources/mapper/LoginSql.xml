@@ -5,7 +5,7 @@
 		insert into user (uname,age,gender,email,pass,hp,city1,city2,joinday) values
 		(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},now())
 	</insert>
-
+	
 	<select id="getMypage" parameterType="int" resultType="UserDto">
 		select * from user where unum=#{unum}
 	</select>
@@ -25,5 +25,8 @@
 	<select id="selectOneOfEmail" parameterType="String" resultType="UserDto">
 		select * from user where email=#{email}
 	</select>
-
+	
+	<select id="overlappedEmail" parameterType="UserDto" resultType="int">
+		select count(email) from user where email=#{email}
+	</select>
 </mapper>

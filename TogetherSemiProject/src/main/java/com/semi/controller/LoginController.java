@@ -69,6 +69,19 @@ public class LoginController {
 		return "/sub/user/join";
 		}
 	
+	@GetMapping("/kakaojoin")
+	public String kakaoJoinPage(String email, String gender, 
+			String birthday, String nickname, Model model) {
+		
+		model.addAttribute("email",email);
+		model.addAttribute("gender",gender);
+		model.addAttribute("birthday",birthday);
+		model.addAttribute("nickname",nickname);
+		
+		System.out.println(email);
+		return "/sub/user/kakaojoin";
+	}
+	
 	@PostMapping("/userinsert")
 	public String userinsert(UserDto dto){
 		System.out.println(dto);

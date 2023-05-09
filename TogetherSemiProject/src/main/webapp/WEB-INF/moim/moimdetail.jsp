@@ -18,32 +18,36 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <style>
-body, body * {
-	font-family: 'NanumPenScript'
+	body, body * {
+		font-family: 'NanumPenScript'
+	}
+	a:link,a:visited,a:hover {
+		color: black;
+		text-decoration: none;
+	}
+	div.moim {
+		width: 900px;
+		height:1100px;
+		margin-left:250px;
+		background-color:#ccc;
+	}
+	div.mcontent {
+		font-size: 20px;
+		margin:20px 10px;
+		height:700px;
+		background-color:white;
+		text-align:center;
+	}
+	.mcontent_img{
+		width:838px;
+		height:420px;
+		margin:20px;
 }
-div.moim {
-	width: 900px;
-	height:1100px;
-	margin-left:250px;
-	background-color:#ccc;
-}
-div.mcontent {
-	font-size: 20px;
-	margin:20px 10px;
-	height:700px;
-	background-color:white;
-	text-align:center;
-}
-.mcontent_img{
-	width:838px;
-	height:420px;
-	margin:20px;
-}
-.jjim span{
-	position: relative;
-	right: 38px;
-	bottom:6px;
-	font-size: 25px;
+	.jjim span{
+		position: relative;
+		right: 38px;
+		bottom:6px;
+		font-size: 25px;
 	
 }
 
@@ -98,12 +102,46 @@ div.mcontent {
 		</div>	
 		<hr>
 		<div style="font-size: 35px;cursor:pointer; text-align:center">
-		<i class="bi bi-heart jjim" >
-			<span>3</span>
-		</i>&nbsp;
+		<a class="jjin_btn" onclick="updateJjimcount();">
+			
+		<c:choose>
+		<c:when test="${pressChk == 1 }">		
+			<i class="bi bi-heart"></i>
+		</c:when>			
+		<c:otherwise>
+			<i class="bi bi-heart-fill"></i>
+		</c:otherwise>
+		</c:choose>
+		</a>
 		<button type="button" style="width:370px;height:45px;text-align:center"
 			class="btn btn-secondary btn-block" onclick="">가입신청</button>
 		</div>	
 	</div>
+	<script type="text/javascript">
+	function updateJjimcount(){
+		
+		const mnum = ${dto.mnum};
+		const unum = ${sessionScope.unum};
+		alert("찜하셨습니다");
+	
+	$.ajax({
+		type:"get",
+		url:"updateJjimcount",
+		dataType:"json",
+		   data: {
+			      mnum: mnum,
+			      unum: unum
+			    },
+		success:function(res){
+			
+		},
+	});
+		
+	}
+
+
+	
+	
+	</script>
 </body>
 </html>

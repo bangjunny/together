@@ -1,6 +1,7 @@
 package com.semi.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,13 +80,20 @@ public class MoimController {
    }
    
    @GetMapping("/moimdetail")
-   private String moimdetail(int mnum,Model model)
+   private String moimdetail(int mnum, int unum, Model model)
    {
-	  
+	  System.out.println(unum);
 	  //dto얻기
 	  MoimDto dto=moimService.getData(mnum);
 	  //model
+	  
+	  boolean pressChk = moimService.pressJjim(mnum, unum);
+	  
+	  System.out.println("컨트롤러 불리언 : " + pressChk);
+	  
+
 	  model.addAttribute("dto",dto);
+	  model.addAttribute("pressChk", pressChk);
 	  
       return "/main/moim/moimdetail";
    }
@@ -106,7 +114,6 @@ public class MoimController {
 		
 		//db insert
 		moimMapper.insertMoim(dto);
-		
 		return "redirect:moimlist";
 	}
    
@@ -116,6 +123,11 @@ public class MoimController {
 	   int result=moimService.overlappedMname(dto);//중복 확인한 값을 int로 받음
 	   return result;
    }
-   
+   @ResponseBody
+   @GetMapping("/updateJjimcount")
+   public void updateJjimcount(int mnum, int unum) {
+	   moimService.updateJjimcount(mnum, unum);
+   }
+    
 }
 

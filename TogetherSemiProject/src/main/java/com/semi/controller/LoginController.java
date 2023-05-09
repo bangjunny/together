@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.semi.dto.MoimDto;
 import com.semi.dto.UserDto;
 import com.semi.dto.UserPhotoDto;
 import com.semi.mapper.LoginMapper;
+
 import com.semi.service.LoginService;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -52,7 +55,7 @@ public class LoginController {
 		
 		if(loginok==null) 
 		{ 
-			return "/main/user/login"; 
+			return "/sub/user/login"; 
 		} 
 		else 
 		{ 
@@ -60,10 +63,10 @@ public class LoginController {
 		} 	
 		
 	}
-	
+		
 	@GetMapping("/join")
 	public String userJoinPage() {
-		return "/main/user/join";
+		return "/sub/user/join";
 		}
 	
 	@PostMapping("/userinsert")
@@ -88,20 +91,62 @@ public class LoginController {
 
 		return "/main/user/mypagelist";
 	}
-		
 	
+	@GetMapping("/mypage")
+	public String mypage(HttpSession session, Model model) {
+	    Integer loginUserUnum = (Integer) session.getAttribute("unum"); // 로그인한 사용자의 unum 값 가져오기
+	    if (loginUserUnum == null) {
+	        return "redirect:/login"; // 로그인하지 않은 사용자는 로그인 페이지로 이동
+	    } else {
+	        return "redirect:/user/mypagedetail?unum=" + loginUserUnum; // 로그인한 사용자는 자신의 mypagedetail 페이지로 이동
+	    }
+	}
+
 	@GetMapping("/mypagedetail")
-	public String detail(int unum,Model model)
-	{
-		
-		UserDto dto=loginMapper.getMypage(unum);
-		model.addAttribute("dto", dto);
-		
+	public String mypagedetail(@RequestParam("unum") int unum, @RequestParam(required = false) Integer photo_idx, Model model) {
+	    UserDto dto = loginMapper.getMypage(unum);
+	    UserPhotoDto pdto = null;
+	    if (dto == null) {
+	        // 해당 유저를 찾을 수 없는 경우 에러 페이지 등을 보여줄 수 있습니다.
+	        return "error";
+	    } else if(photo_idx != null) {
+	    	pdto = loginMapper.getMyPhoto(photo_idx);
+	    
+	    }
+	    model.addAttribute("dto", dto);
+		model.addAttribute("pdto", pdto);
 		return "/main/user/mypagedetail";
 	}
-   
+		
+
 	
-       
+	@PostMapping("/mypageinsert")
+	public String insert(UserPhotoDto pdto,MultipartFile upload)
+	{
+		try {
+        //사용자 unum값 가져오기
+		UserDto dto = new UserDto();	
+        //UserPhotoDto 객체에 unum값 저장하기
+        pdto.setUnum(dto.getUnum());
+
+        //네이버 클라우드의 버켓에 사진 업로드하기
+        String photo = storageService.uploadFile(bucketName, "userprofile", upload);
+        //반환된 암호화된 파일명을 dto에 넣기
+        pdto.setFile_name(photo);
+
+        //db insert
+        loginMapper.insertMyPhoto(pdto);
+
+        return "redirect:mypage";
+    } catch (Exception e) {
+        e.printStackTrace();
+        //에러 발생 시 alert 창 띄우기
+        return "redirect:mypage?result=error";
+    }
+	
+	}
+
+  
 	
 	 @PostMapping("/loginaction") 
 	 public String loginAction(
@@ -140,6 +185,12 @@ public class LoginController {
 		 session.removeAttribute("loginok"); 
 		 return "redirect:/";
 	 }
-
+	 
+	  @ResponseBody //값 변환을 위해 꼭 필요함
+	  @GetMapping("emailCheck")//아이디 중복확인을 위한 값으로 따로 매핑
+	  public int overlappedMname(UserDto dto) throws Exception{
+		  int result=loginService.overlappedEmail(dto);//중복 확인한 값을 int로 받음
+		  return result;
+	  }
    
 }

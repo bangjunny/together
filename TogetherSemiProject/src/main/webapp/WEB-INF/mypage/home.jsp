@@ -2,6 +2,7 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+<%@ include file="../commonvar.jsp" %>
 
 <!DOCTYPE html>
 <html>
@@ -17,30 +18,25 @@
 		font-family: 'Jua'
 	}
 	
-	.mainphoto{
+	div.box{
 		width: 200px;
-		height: 200px;
-		border: 10px solid pink;
-		border-radius: 30px;
-		margin-right: 20px;
-		box-shadow: 3px 3px 3px gray;
+		height: 220px;
+		border: 5px solid gold;
+		border-radius: 20px;
+		float: left;
+		margin-right: 30px;
+		background-color: #ccffcc;
+		padding-left:20px;
+		padding-top: 20px;
 	}
 </style>
 </head>
 <body>
-<img class="mainphoto" src="./photo/k-045.png">
-<img class="mainphoto" src="./photo/k-046.png">
-<img class="mainphoto" src="./photo/k-052.png">
+<button>
+마이페이지
+</button>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
 
 

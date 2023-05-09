@@ -67,38 +67,46 @@
           </c:otherwise>
       </c:choose></div><h4>${dto.uname}님이 작성 중입니다</h4>
 <div class="container">
-    <form action="cityinsert" method="post">
+    <form action="cityinsert" method="post" enctype="multipart/form-data">
         <br>
-        제목&nbsp;<input type="text" class="form-control" name="subject" placeholder="제목을 입력해주세요" style="width: 100%">
+        <input type="text" class="form-control" name="subject" placeholder="제목을 입력해주세요" style="width: 100%">
         <br>
-        <input type="hidden" name="unum" value=${unum}>
-        <input type="hidden" name="city1" value=${city1}>
-        <input type="hidden" name="city2" value=${city2}>
-        <textarea name ="content" id="editor"></textarea>
-        <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
+        <input type="hidden" name="unum" value="${unum}">
+        <input type="hidden" name="city1" value="${city1}">
+        <input type="hidden" name="city2" value="${city2}">
+        <input type="hidden" name="uname" value="${uname}">
+        <input type="file" name="upload" id="myfile" multiple="multiple">
+        <br>
+        <textarea class = "showimg" name ="cbcontent" placeholder="내용입력"></textarea>
         <br>
         <hr>
             <button type="submit" class="btn btn-success" style="margin-left: 260px">작성</button>
             <button type="button" class="btn btn-success" onclick="history.back()" style="margin-left: 50px">취소</button>
         <br>
         <br>
-        <script>		
-		ClassicEditor
-		.create(document.querySelector('#editor'), {
-			ckfinder: {
-				uploadUrl : '/image/upload'
-			}
-		})
-		.then(editor => {
-			console.log('Editor was initialized');
-		})
-		.catch(error => {
-			console.error(error);
-		});
-		</script>
+
     </form>
 </div>
-
+<script type="text/javascript">
+	$("#myfile").change(function(){
+		console.log("1:"+$(this)[0].files.length);
+		console.log("2:"+$(this)[0].files[0]);
+		//정규표현식
+		var reg = /(.*?)\/(jpg|jpeg|png|bmp)$/;
+		var f=$(this)[0].files[0];//현재 선택한 파일
+		if(!f.type.match(reg)){
+			alert("확장자가 이미지파일이 아닙니다");
+			return;
+		}
+		if($(this)[0].files[0]){
+			var reader=new FileReader();
+			reader.onload=function(e){
+			$(".showimg").attr("src",e.target.result);
+			}
+			reader.readAsDataURL($(this)[0].files[0]);
+		}
+	});
+</script>
 </body>
 
 </html>

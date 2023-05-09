@@ -17,9 +17,6 @@
 	<select id="getPagingList" parameterType="Map" resultType="MoimDto">
 		select * from moim order by mnum desc limit #{start},#{perpage}
 	</select>
-	<update id="updateJjimcount" parameterType="int">
-		update moim set jjim=jjim+1 where mnum=#{mnum}
-	</update>
 	<select id="getData" parameterType="int" resultType="MoimDto">
 		select * from moim where mnum=#{mnum}
 	</select>
@@ -35,6 +32,12 @@
 	</update>
 	<select id="overlappedMname" parameterType="MoimDto" resultType="int">
 		select count(mname) from moim where mname=#{mname}
+	</select>
+	<insert id="updateJjimcount" parameterType="Map">
+		insert into jjim (unum, mnum) values (#{unum}, #{mnum})
+	</insert>
+	<select id="pressJjim" parameterType="Map" resultType="int">
+		select count(*) from jjim where unum=#{unum} and mnum=#{mnum}
 	</select>
 </mapper>
 

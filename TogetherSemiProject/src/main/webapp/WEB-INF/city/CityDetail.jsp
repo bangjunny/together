@@ -21,8 +21,12 @@
 body, body * {
 	font-family: 'Jua'
 }
+.cbcontent_img{
+	width:400px;
+	height:420px;
+	margin:20px;
+}
 </style>
-
 </head>
 <body>
 	<h1>지역 게시판</h1>
@@ -36,10 +40,17 @@ body, body * {
 		<h6>작성일${dto.cbwriteday }</h6>
 
 		<hr>
-		<div>
-			<div>
-				<img style="margin-left:10px; border: 5px solid pink; width: 95%; min-height:200px;" src="https://${imageUrl}/city/${dto.cbphoto}">
-			</div>  
+		<div class="cbcontent" align="center">
+		 <c:choose>
+   		 <c:when test="${dto.cbphoto==null}">
+   		<!-- Result값이 있다면 실행할 로직 -->
+   		<img class="cbcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+   		 </c:when>
+   		 <c:otherwise>
+		 <!-- 그렇지 않다면 실행할 로직 -->
+		 <img class="cbcontent_img" src="https://${imageUrl}/city/${dto.cbphoto}">	 
+   		 </c:otherwise>
+		</c:choose>		
 		</div>
 		<br>	
 		<pre>
@@ -52,11 +63,31 @@ body, body * {
 
 		<hr>
 		<div style="margin: auto">
-			<button type="submit" class="btn btn-sm btn-success updatebtn"
-				style="margin-left: 180px" onclick="location.href='cityupdateform?cbnum=${dto.cbnum}'">수정</button>
+			<!-- <button type="submit" class="btn btn-sm btn-success updatebtn"
+				style="margin-left: 180px" onclick="location.href='';">수정</button> -->
 			<button type="button" class="btn btn-sm btn-success"
 				onclick="history.back()">목록으로</button>
-			<button type="button" class="btn btn-sm btn-success" id="delbtn">삭제</button>
+			<!-- <button type="button" class="btn btn-sm btn-success" id="delbtn">삭제</button> -->
+			<c:choose>
+			 <c:when test="${sessionunum eq dto.unum}">
+			  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="location.href='updateboardform.jsp?num=${dto.cbnum}'">
+			    <i class="bi bi-pencil-square"></i>&nbsp;수정
+			  </button>
+			  
+			  <button type="button" id="delbtn" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="del(${dto.cbnum})">
+			    <i class="bi bi-trash"></i>&nbsp;삭제
+			  </button>
+				</c:when>
+				<c:otherwise>
+				  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="alert('작성자가 아닙니다')">
+				    <i class="bi bi-pencil-square"></i>&nbsp;수정
+				  </button>
+				  
+				  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="alert('작성자가 아닙니다')">
+				    <i class="bi bi-trash"></i>&nbsp;삭제
+				  </button>
+				</c:otherwise>
+				</c:choose>
 		</div>
 		<hr>
 		<form action="newcomment" method="post" id="newcomment">
@@ -140,24 +171,20 @@ body, body * {
 	</div>
 </body>
 <script type="text/javascript">
-	$("#delbtn").click(function() {
-		var pass = prompt("삭제하려면 비밀번호를 입력해주세요");
-        var cbnum=${dto.cbnum};
-        $.ajax({
-           type:"get",
-           url:"./citydelete",
-           data:{"cbnum":cbnum,"pass":pass},
-           dataType:"json",
-           success:function(res){
-               if(res.result=='success'){
-                   alert("삭제되었습니다");
-                   location.href='./list';
-                   //location.href='./list?currentPage='+${currentPage};//보던 페이지로 이동
-               }else{
-                   alert("비밀번호가 맞지 않습니다");
-               }
-           }
-        })
+	$(document).on("click", "#delbtn", function() {
+		let b=confirm("삭제를 하려면 [확인]을 눌러주세요");
+		if(b){
+			location.href="delete?cbnum="+${dto.cbnum};
+		}
+	});
+	
+	$(document).on("click", "#addComment", function() {
+    	let s=$("#recontent").css("display");
+    	if(s=="none"){
+			$("#recontent").css("display", "block");
+    	} else {
+    		$("#recontent").css("display", "none");
+    	}
 	});
 	
 </script>

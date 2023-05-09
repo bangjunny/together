@@ -109,8 +109,7 @@ body, body * {
                  </script>
 	<input type="button" id="search" onclick="search();" value="선택지역검색">
 	<button style="float: right" id="write" onclick="writeform();">글쓰기</button>
-	<span class="boardlist">
-	<table class="table table-bordered" >
+	<table class="table table-bordered boardlist" >
 		<tr bgcolor="#f5f5dc">
 			<th style="width: 100px">번호</th>
 			<th style="width: 400px">제목</th>
@@ -121,7 +120,7 @@ body, body * {
 		</tr>
 		<c:forEach var="citylist" items="${citylist}" varStatus="i">
 			<tr>
-				<td align="center">${citylist.cbnum }</td>
+				<td align="center">${totalCountCity - (i.count-1)}</td>
 
 				<td style="cursor: pointer" onclick="location.href='detail?cbnum=${citylist.cbnum}'">
 					<b>${citylist.subject}</b>
@@ -135,7 +134,6 @@ body, body * {
 			</tr>
 		</c:forEach>
 	</table>
-	</span>
 	
 	<div style="float: right">
 		<input type="text">
@@ -172,7 +170,7 @@ body, body * {
 		</c:if>
 
 	</div>
-<script type="text/javascript">
+	<script type="text/javascript">
 	function search(){
 		var city1 = $("#city").val();
 		var city2 = $("#district").val();
@@ -201,7 +199,7 @@ body, body * {
 					s+=`
 					<tr>
 					<td align="center">
-					\${ele.cbnum}
+					${totalCountCity}
 					</td>
 					<td style="cursor:pointer"
 					onclick="location.href='detail?cbnum=\${ele.cbnum}'">

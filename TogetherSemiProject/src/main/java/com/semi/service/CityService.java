@@ -130,21 +130,9 @@ public class CityService implements CityServiceInter{
 
 
 	@Override
-	public void deleteCity(int cbnum) {
+	public void deleteCityboard(int cbnum) {
 		// TODO Auto-generated method stub
-		cityMapper.deleteCity(cbnum);
-	}
-
-
-	@Override
-	public boolean isEqualPass(int cbnum, String pass) {
-		// TODO Auto-generated method stub
-		Map<String, Object> map = new HashMap<>();
-        map.put("cbnum",cbnum);
-        map.put("pass",pass);
-
-        boolean b = cityMapper.isEqualPass(map)==0?false:true;//비번이 맞으면 1->true
-        return b;
+		cityMapper.deleteCityboard(cbnum);	
 	}
 
 

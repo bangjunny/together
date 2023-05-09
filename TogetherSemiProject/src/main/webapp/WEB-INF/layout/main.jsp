@@ -19,32 +19,32 @@
 	body{
 		font-family: 'NanumPenScript';
 	}
-	a{
-		cursor: pointer;
+	a:link,a:visited,a:hover {
+		color: black;
+		text-decoration: none;
+	}
+	.list_a span{
+		text-decoration: none;
+	
 	}
 
 	#main_container{
 		width: 100%;
 		height: 100%;
 	}
-	#main_header{
-		width: 1200px;
-		height: 500px;
-		margin: 0 auto;
-		padding-top: 100px;
-		display: flex;
-    	align-items: center;
-    
-	}
+  	#main_header{
+      width: 1400px;
+      height: 500px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;      
+   }
+
 	#main_head_logo{
 		position: relative;
 		bottom: 200px;
 		left: 175px;
 	}	
-	#main_head_logo b{
-		font-size: 25px; 
-		width: 500px !important;
-	}
 	#main_header_txt{
 		margin-top: 25px;
 		margin-right:50px;
@@ -67,16 +67,18 @@
 	}
 	#main_btn_wrap{
 		margin-top: 50px;
+		margin-left:70px;
 		width: 200px;
 		display: flex;
 		justify-content: space-between;
 	}
 	#main_list_go{
-		margin-top: 200px;
-		margin-bottom: 100px;
+		width:800px;
+		margin: 150px auto 150px auto;
 		text-align: center;
 		display: flex;
 		justify-content: center;
+		align-items: center;
 	}
 	.mainphoto{
 		width: 200px;
@@ -218,11 +220,12 @@ $(document).ready(function() {
 <div id="main_container">
 <div id="main_header">
 	<div id="main_head_logo">
-		<img src="../photo/logo.png" style="width: 75px; height: 75px;"><b>다 함께!</b>
+		<img src="../photo/logo.png" style="width: 75px; height: 75px;"> <b style="font-size: 25px;">다 함께!</b>
 	</div>
 
 	<div id="main_header_txt">
 		Lorem ipsum dolor sit amet, consectetur adipisicing elited do eiusmod tempor incididunt ut labore e, st dolore magna aliqua. Ut enim ad <span id="rotate_word" style="color: red">communities</span>
+	
 		
 	<div id="main_btn_wrap">
 		<button type="button" class="btn btn-light" onclick="location.href='/user/login'">로그인</button>
@@ -235,17 +238,17 @@ $(document).ready(function() {
 	
 </div>
 <div id="main_list_go">
-	<a href="/moim/moimlist">
+	<a class="list_a" href="/moim/moimlist">
 	<img class="mainphoto" src="../photo/moim.png"><br>
-	<span>모임 게시판</span><br>
+	<span>모임 게시판</span>
 	</a>
-	<a href="/city/list">
+	<a class="list_a" href="/city/list">
 	<img class="mainphoto" src="../photo/local.png"><br>
-	<span>지역 게시판</span><br>
+	<span>지역 게시판</span>
 	</a>
-	<a href="/mapcontact">
+	<a class="list_a" href="/mapcontact">
 	<img class="mainphoto" src="../photo/map.png"><br>
-	<span>지도로 위치 검색</span><br>
+	<span>지도로 위치 검색</span>
 	</a>
 	<br>
 </div>

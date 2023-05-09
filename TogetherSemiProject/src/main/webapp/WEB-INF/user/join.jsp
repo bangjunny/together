@@ -189,8 +189,8 @@
           display: none;
       }
       
-      .olmessagef {color: red; font-style: Italic;}
-	  .olmessaget {color: green; font-style: Italic;}
+      .olmessagef {color: red; margin-top:9px; font-size:12px;}
+	  .olmessaget {color: green; margin-top:9px; font-size:12px;}
          
     </style>
 </head>
@@ -203,12 +203,11 @@
   
            <!-- ID -->
                 <div class="input-wrap">
-                <label for="id" class="la">이메일</label>
-                <span id="olmessage"></span>
+                <label for="id" class="la">이메일</label>                
                 <span class="box int_id">
-                   <input type="email" id="email" name="email" class="int" maxlength="20">                   
+                   <input type="email" id="email" name="email" class="int" maxlength="20">                                     
                 </span>
-                
+                <span id="olmessage"></span> 
                 <span class="error_next_box"></span>
                 </div>
            
@@ -412,7 +411,7 @@
         var emailPattern = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/;
 
         if(email.value === ""){ 
-           error[0].innerHTML = "필수 정보입니다.";
+           //error[0].innerHTML = "필수 정보입니다.";
             error[0].style.display = "block"; 
         } else if(!emailPattern.test(email.value)) {
            error[0].innerHTML = "이메일 주소를 다시 확인해주세요.";
@@ -513,15 +512,19 @@
     	url: "http://localhost:9000/user/emailCheck",
     	data: {email: email},
     	success: function (data) {
-    	if(data == 1 || email=='' ) {
-    		$("#olmessage").text("이미 사용중인 이메일 입니다.");
+    	if(data == 0 && email=='' ) {
+    		$("#olmessage").text("필수 정보입니다.");
     		$("#olmessage").addClass("olmessagef");
     		$("#olmessage").removeClass("olmessaget");
-    		}else {
+    		}else if(data == 0 && email!=''){
     		$("#olmessage").text("사용 가능한 이메일 입니다.");
     		$("#olmessage").addClass("olmessaget");
     		$("#olmessage").removeClass("olmessagef");
     		$(".btn-submit").attr("type", "submit");
+    		}else{
+    			$("#olmessage").text("이미 사용중인 이메일 입니다.");
+        		$("#olmessage").addClass("olmessagef");
+        		$("#olmessage").removeClass("olmessaget");	
     		}
     		}
     	})
@@ -529,11 +532,46 @@
     
     const form = document.querySelector('form');
     
-    form.addEventListener('submit', function(event) {
+    	form.addEventListener('submit', function(event) {
+    	    const nameInput = document.querySelector('#uname');
+    	    if (nameInput.value == ''){
+    	        event.preventDefault();
+    	        if (confirm('이름을 입력해주세요')) {
+    	            nameInput.focus();
+    	        }
+    	        return;
+    	    }
+    	    const genderInput = document.querySelector('#gender');
+    	    if (genderInput.value == '성별'){
+    	        event.preventDefault();
+    	        if (confirm('성별을 선택해주세요')) {
+    	            genderInput.focus();
+    	        }
+    	        return;
+    	    }
+    	    const cityInput=document.querySelector('#city');
+    	    if (cityInput.value == '시, 도 선택'){
+    	    	event.preventDefault();
+    	        if(confirm('지역을 선택해주세요')){
+    	    	    cityInput.focus();
+    	    	}
+    	    	return;
+    	    }
+    	    const hpInput=document.querySelector('#hp');
+    	    if (hpInput.value == ''){
+    	    	event.preventDefault();
+    	        if(confirm('전화번호를 입력해주세요')){
+    	        hpInput.focus();
+    	    	}
+    	    	return;
+    	    }
+    	});
+    /* form.addEventListener('submit', function(event) {
     	const nameInput=document.querySelector('#uname');
     	if (nameInput.value == ''){
     		event.preventDefault();
     	    alert('이름을 입력해주세요');
+    	    nameInput.focus();
     	}
     });
     
@@ -542,24 +580,11 @@
     	if (genderInput.value == '성별'){
     		event.preventDefault();
     	    alert('성별을 선택해주세요');
+    	    genderInput.focus();
     	}
-    });
+    }); */
     
-    form.addEventListener('submit', function(event) {
-    	const cityInput=document.querySelector('#district');
-    	if (cityInput.value == '시, 군, 구 선택'){
-    		event.preventDefault();
-    	    alert('지역을 선택해주세요');
-    	}
-    });
 
-    form.addEventListener('submit', function(event) {
-    	const hpInput=document.querySelector('#hp');
-    	if (hpInput.value == ''){
-    		event.preventDefault();
-    	    alert('전화번호를 입력해주세요');
-    	}
-    });
     </script>
 
   

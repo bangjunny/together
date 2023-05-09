@@ -50,8 +50,7 @@
 	<select id="getReboardNum" resultType="int">
 		select ifnull(max(num),0) form cb_reboard
 	</select>
-	<delete id="deleteCity" parameterType="int">
-		delete from city_board where cbnum=#{cbnum}	
+	<delete id="deleteCityboard" parameterType="int">
+		delete from city_board where cbnum=#{cbnum}
 	</delete>
-
 </mapper>

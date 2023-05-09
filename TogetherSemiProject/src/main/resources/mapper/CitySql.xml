@@ -57,5 +57,8 @@
 		insert into cb_reboard (unum,uname,recontent,rewriteday,ref,step,depth,cbnum) 
 		values (#{unum},#{uname},#{recontent},now(),#{ref},#{step},#{depth},#{cbnum})
 	</insert>
+	<delete id="deleteCityboard" parameterType="int">
+		delete from city_board where cbnum=#{cbnum}
+	</delete>
 
 </mapper>

@@ -121,7 +121,8 @@ public class CityController {
 			int cbnum, Model model,HttpSession session,
 			@RequestParam(defaultValue = "0") int ref,
 			@RequestParam(defaultValue = "0") int step,
-			@RequestParam(defaultValue = "0") int depth
+			@RequestParam(defaultValue = "0") int depth,
+			HttpSession session
 	) {
 		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
 		int unum=(int)session.getAttribute("unum");
@@ -141,8 +142,8 @@ public class CityController {
 		String city1 = dto.getCity1();
 		String city2 = dto.getCity2();
 		int totalCountCity=cityService.getTotalCountCity(city1, city2);
-
 		model.addAttribute("udto",udto);
+
 		model.addAttribute("dto",dto);
 		model.addAttribute("nxtcontent",nxtcontent);
 		model.addAttribute("nxtnum",nxtnum);
@@ -157,6 +158,7 @@ public class CityController {
 		model.addAttribute("ref",ref);
 		model.addAttribute("step",step);
 		model.addAttribute("depth",depth);
+		model.addAttribute("sessionunum",unum);
 		
 		return "/main/city/CityDetail";
 	}
@@ -226,5 +228,14 @@ public class CityController {
 	@GetMapping("/newPost")
 	public String newPost() {
 		return "/main/city/newPost";
+	}
+	
+	@GetMapping("/delete")
+	public String delete(int cbnum)
+	{
+		String filename=cityService.getDetailbycbnum(cbnum).getCbphoto();
+		storageService.deleteFile(bucketName, "city", filename);
+		cityService.deleteCityboard(cbnum);
+		return "redirect:/city/list";
 	}
 }

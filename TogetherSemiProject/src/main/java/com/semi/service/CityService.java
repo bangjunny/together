@@ -149,4 +149,11 @@ public class CityService implements CityServiceInter{
 	}
 
 
+	@Override
+	public void deleteCityboard(int cbnum) {
+		// TODO Auto-generated method stub
+		cityMapper.deleteCityboard(cbnum);	
+	}
+
+
 }

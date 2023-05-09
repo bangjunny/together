@@ -28,11 +28,11 @@ public interface CityMapper {
 	public int getReboardNum();
 	public void addComment(CbReBoardDto dto);
 	public CbReBoardDto getCommentByRenum(int renum);
-	
+	public void deleteCityboard(int cbnum);
+
 	/**
 	public void insertCity(CityBoardDto dto);
-	public void updateCity(CityBoardDto dto);
-	public void deleteCity(int cbnum);
+	public void updateCity(CityBoardDto dto);	
 	**/
 	}
 	

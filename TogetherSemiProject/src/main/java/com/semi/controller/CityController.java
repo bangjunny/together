@@ -121,8 +121,7 @@ public class CityController {
 			int cbnum, Model model,HttpSession session,
 			@RequestParam(defaultValue = "0") int ref,
 			@RequestParam(defaultValue = "0") int step,
-			@RequestParam(defaultValue = "0") int depth,
-			HttpSession session
+			@RequestParam(defaultValue = "0") int depth
 	) {
 		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
 		int unum=(int)session.getAttribute("unum");

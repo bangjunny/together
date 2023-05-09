@@ -104,47 +104,44 @@ public class LoginController {
 
 	@GetMapping("/mypagedetail")
 	public String mypagedetail(@RequestParam("unum") int unum, @RequestParam(required = false) Integer photo_idx, Model model) {
-	    UserDto dto = loginMapper.getMypage(unum);
-	    UserPhotoDto pdto = null;
-	    if (dto == null) {
-	        // 해당 유저를 찾을 수 없는 경우 에러 페이지 등을 보여줄 수 있습니다.
-	        return "error";
-	    } else if(photo_idx != null) {
-	    	pdto = loginMapper.getMyPhoto(photo_idx);
-	    
-	    }
-	    model.addAttribute("dto", dto);
-		model.addAttribute("pdto", pdto);
-		return "/main/user/mypagedetail";
+	UserDto dto = loginMapper.getMypage(unum);
+	UserPhotoDto pdto = new UserPhotoDto(); // 초기화
+	if (dto == null) {
+	// 해당 유저를 찾을 수 없는 경우 에러 페이지 등을 보여줄 수 있습니다.
+	return "error";
+	} else if(photo_idx != null) {
+	pdto = loginMapper.getMyPhoto(unum);
+	}
+	model.addAttribute("dto", dto);
+	model.addAttribute("pdto", pdto);
+	return "/main/user/mypagedetail";
 	}
 		
 
 	
 	@PostMapping("/mypageinsert")
-	public String insert(UserPhotoDto pdto,MultipartFile upload)
-	{
-		try {
-        //사용자 unum값 가져오기
-		UserDto dto = new UserDto();	
-        //UserPhotoDto 객체에 unum값 저장하기
-        pdto.setUnum(dto.getUnum());
+	public String insertMyPhoto(UserPhotoDto pdto, MultipartFile upload, HttpSession session) {
+	    try {
+	        int unum = (int) session.getAttribute("unum"); // 세션에서 unum 값 가져오기
 
-        //네이버 클라우드의 버켓에 사진 업로드하기
-        String photo = storageService.uploadFile(bucketName, "userprofile", upload);
-        //반환된 암호화된 파일명을 dto에 넣기
-        pdto.setFile_name(photo);
+	        // 네이버 클라우드의 버켓에 사진 업로드하기
+	        String photo = storageService.uploadFile(bucketName, "userprofile", upload);
+	        // 반환된 암호화된 파일명을 dto에 넣기
+	        pdto.setFile_name(photo);
+	        pdto.setUnum(unum);
 
-        //db insert
-        loginMapper.insertMyPhoto(pdto);
+	        // db insert
+	        loginMapper.insertMyPhoto(pdto);
 
-        return "redirect:mypage";
-    } catch (Exception e) {
-        e.printStackTrace();
-        //에러 발생 시 alert 창 띄우기
-        return "redirect:mypage?result=error";
-    }
-	
+	        return "redirect:mypage";
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        // 에러 발생 시 alert 창 띄우기
+	        return "redirect:mypage?result=error";
+	    }
 	}
+		
+		
 
   
 	

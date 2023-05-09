@@ -24,6 +24,10 @@
 		select * from user where unum=#{unum}
 	</select>
 	
+	<select id="getMyPhoto" parameterType="int" resultType="UserPhotoDto">
+		select * from user_photo where unum=#{unum}
+	</select>
+	
 	<select id="getAllUsers" resultType="UserDto">
 		select * from user order by unum asc
 	</select>
@@ -37,7 +41,7 @@
 	</select>
 
 	<insert id="insertMyPhoto" parameterType="UserPhotoDto">
-	insert into user_photo (file_name) values
-	(#{file_name})
+	  insert into user_photo (unum, file_name) values
+	  (#{unum}, #{file_name})
 	</insert>
 </mapper>

@@ -26,10 +26,10 @@ public interface CityMapper {
 	public List<CbReBoardDto> getComment(int cbnum);
 	public void updateStep(Map<String,Integer> map);
 	public int getReboardNum();
+	public void deleteCityboard(int cbnum);
 	/**
 	public void insertCity(CityBoardDto dto);
-	public void updateCity(CityBoardDto dto);
-	public void deleteCity(int cbnum);
+	public void updateCity(CityBoardDto dto);	
 	**/
 	}
 	

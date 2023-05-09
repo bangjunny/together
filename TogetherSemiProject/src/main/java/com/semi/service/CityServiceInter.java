@@ -22,9 +22,9 @@ public interface CityServiceInter {
 	public void updateStep(int ref, int step);
 	public int getReboardNum();
 	public List<CityBoardDto> getCityList(String city1, String city2);
+	public void deleteCityboard(int cbnum);
 
 	/**
 	public void updateCity(CityBoardDto dto);
-	public void deleteCity(int cbnum);
 	**/
 }

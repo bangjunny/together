@@ -142,7 +142,9 @@ public class CityController {
 		String city1 = dto.getCity1();
 		String city2 = dto.getCity2();
 		int totalCountCity=cityService.getTotalCountCity(city1, city2);
+
 		model.addAttribute("udto",udto);
+
 
 		model.addAttribute("dto",dto);
 		model.addAttribute("nxtcontent",nxtcontent);
@@ -238,4 +240,28 @@ public class CityController {
 		cityService.deleteCityboard(cbnum);
 		return "redirect:/city/list";
 	}
+	
+//<-----------------------------------절취선-------------------------------------------->
+	
+	@GetMapping("/cityupdateform")
+	public String cityupdateform(int cbnum, Model model) {
+		System.out.println(cbnum);
+		CityBoardDto cbdto = cityService.getDetailbycbnum(cbnum);
+		int unum = cbdto.getUnum();
+		UserDto udto = cityService.getDetailbyunum(unum);
+		model.addAttribute("cbdto",cbdto);	
+		model.addAttribute("udto",udto);	
+		return "/main/city/cityupdateform";
+	}
+	
+	@GetMapping("/cityupdate")
+	public String cityupdate(CityBoardDto dto, MultipartFile upload) {
+		
+		
+		
+		
+		
+		return "/main/city/CityDetail";
+	}
+
 }

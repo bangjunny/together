@@ -143,7 +143,6 @@
             					success: res => {
             						const kakao_account = res.kakao_account;
             						console.log(kakao_account);
-            						
             						const email = kakao_account.email;
             	                    console.log(email);
             						//console.log(kakao_account.email);
@@ -171,7 +170,6 @@
             								}
             							}
             						});
-            						
             					}
             				});
             			}

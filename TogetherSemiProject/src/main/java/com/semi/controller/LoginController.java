@@ -153,8 +153,6 @@ public class LoginController {
 	        return "redirect:mypage?result=error";
 	    }
 	}
-		
-		
 
   
 	

@@ -17,7 +17,7 @@
 	<select id="getTotalCount" resultType="int">
 		select count(*) from user
 	</select>
-
+  
 	<select id="isEqualPassEmail" parameterType="Map" resultType="int">
 		select count(*) from user where email=#{email} and pass=#{pass}
 	</select>
@@ -25,7 +25,7 @@
 	<select id="selectOneOfEmail" parameterType="String" resultType="UserDto">
 		select * from user where email=#{email}
 	</select>
-	
+  
 	<select id="overlappedEmail" parameterType="UserDto" resultType="int">
 		select count(email) from user where email=#{email}
 	</select>

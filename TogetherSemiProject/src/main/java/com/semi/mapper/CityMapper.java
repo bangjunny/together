@@ -22,10 +22,13 @@ public interface CityMapper {
 	public String preNum(CityBoardDto dto);
 	public String nxtNum(CityBoardDto dto);
 	public void newComment(CbReBoardDto dto);
-	public int getTotalComment();
-	public List<CbReBoardDto> getComment(int cbnum);
+	public String getTotalComment(int cbnum);
+	public List<CbReBoardDto> getCommentByCbnum(int cbnum);
 	public void updateStep(Map<String,Integer> map);
 	public int getReboardNum();
+	public void addComment(CbReBoardDto dto);
+	public CbReBoardDto getCommentByRenum(int renum);
+	
 	/**
 	public void insertCity(CityBoardDto dto);
 	public void updateCity(CityBoardDto dto);

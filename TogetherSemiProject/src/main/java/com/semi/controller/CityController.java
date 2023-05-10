@@ -196,11 +196,15 @@ public class CityController {
 	
 	@PostMapping("/newcomment")
 	public String newcomment(
-			CbReBoardDto dto)
+			int cbnum,
+			CbReBoardDto dto,
+			Model model)
 	{
 		cityService.newComment(dto);
 		
-		return "redirect:/main/city/CityDetail";
+		model.addAttribute("cbnum",cbnum);
+		
+		return "redirect:/city/detail?cbnum="+dto.getCbnum();
 	}
 	
 	@PostMapping("/addcomment")
@@ -215,7 +219,7 @@ public class CityController {
 		int step=crdto.getStep();
 		int depth=crdto.getDepth();
 		
-		System.out.println("sfff"+depth);
+		//System.out.println("sfff"+depth);
 		model.addAttribute("ref",ref);
 		model.addAttribute("step",step);
 		model.addAttribute("depth",depth);
@@ -223,7 +227,7 @@ public class CityController {
 		
 		cityService.addComment(dto);
 		
-		return "redirect:/main/city/CityDetail";
+		return "redirect:/city/detail?cbnum="+dto.getCbnum();
 	}
 	
 	@GetMapping("/newPost")

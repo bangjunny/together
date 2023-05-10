@@ -221,7 +221,7 @@ public class LoginController {
 		
 		System.out.println("로그인 성공");
 	}
-
+	
 	 @PostMapping("/loginaction") 
 	 public String loginAction(
 			 @RequestParam String email,

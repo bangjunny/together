@@ -7,6 +7,9 @@
 	<select id="getTotalCount" resultType="int">
 		select count(*) from moim
 	</select>
+	<select id="getCategoryCount" parameterType="String" resultType="int">
+		select count(*) from moim where category=#{category}
+	</select>
 	<select id="getAllMoim" resultType="MoimDto">
 		select * from moim order by mnum asc
 	</select>

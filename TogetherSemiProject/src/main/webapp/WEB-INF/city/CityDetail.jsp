@@ -145,8 +145,10 @@ body, body * {
 				</tr>
 				<tr>
 					<td colspan="2">
+					<c:if test="${sessionScope.unum==listcomment.unum}">
 					<button id="deleteComment" style="float:right">삭제</button>
 					<button id="updateComment" style="float:right">수정</button>
+					</c:if>
 					<button id="addComment" style="float:right">답글</button>
 					</td>
 				</tr>
@@ -164,6 +166,27 @@ body, body * {
 						
 						<div id="recontent" style="display: none;" >
 							<textarea class="form-control" rows="5" name="recontent"
+							style="height: 100px; resize: none; width: 494px;"
+							placeholder="내용을 입력해주세요"></textarea>
+							<button type="submit" class="btn btn-primary btn-sm"
+							id="submit" style="float: right; margin-right: 30px;">입력</button>
+						
+						</div>
+					</form>
+					</td>
+				<!-- 답글 수정 영역 -->
+				<td class="updateComment" colspan="2">
+					<form action="updatecomment" method="post">
+						<input type="hidden" name="renum" value="${listcomment.renum}">
+						<input type="hidden" name="unum" value="${udto.unum}">
+						<input type="hidden" name="uname" value="${udto.uname}">
+						<input type="hidden" name="cbnum" value="${dto.cbnum}">
+						<input type="hidden" name="ref" value="${listcomment.ref}">
+						<input type="hidden" name="step" value="${listcomment.step}">
+						<input type="hidden" name="depth" value="${listcomment.depth}">
+						
+						<div id="updatecontent" style="display: none;" >
+							<textarea class="form-control" rows="5" name="updatecontent"
 							style="height: 100px; resize: none; width: 494px;"
 							placeholder="내용을 입력해주세요"></textarea>
 							<button type="submit" class="btn btn-primary btn-sm"
@@ -222,6 +245,18 @@ body, body * {
 	    }
 	});
 	
+	$(document).on("click", "#updateComment", function() {
+		let s = $(this).parent().parent().next().find("#recontent").css("display");
+	    if (s == "none") {
+	        $(this).parent().parent().next().find("#recontent").css("display", "block");
+	    } else {
+	        $(this).parent().parent().next().find("#recontent").css("display", "none");
+	    }
+	});
+	
+	$(document).on("click", "#deleteComment",function(){
+		alert
+	});
 	
 </script>
 </html>

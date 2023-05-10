@@ -121,11 +121,11 @@
 		<c:choose>
    		 <c:when test="${dto.mphoto==null}">
    		<!-- Result값이 있다면 실행할 로직 -->
-   		<img src="http://sjrhsefqqpro17075801.cdn.ntruss.com/moim/together.png?type=f&w=200&h=200&ttype=jpg"
-		border="1" onclick="location.href='moimdetail?mnum=${dto.mnum}'" style="cursor:pointer;margin-top:10px">
-   		 <br>
-		<a	href="moimdetail?mnum=${dto.mnum}&currentPage=${currentPage}"
+		<a href="moimdetail?mnum=${dto.mnum}&currentPage=${currentPage}"
 		style="color: black; font-size:17px;text-decoration: none; cursor: pointer;">
+   		<img src="http://sjrhsefqqpro17075801.cdn.ntruss.com/moim/together.png?type=f&w=200&h=200&ttype=jpg"
+		border="1" style="cursor:pointer; margin-top:10px">
+   		 <br>
 		<span style="text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: inline-block;max-width: 220px;">	
    		 <b style="font-size:20px;">${dto.mname}</b>
 		</span>
@@ -138,11 +138,11 @@
    		 </c:when>
    		 <c:otherwise>
 		 <!-- 그렇지 않다면 실행할 로직 -->	 
-		 <img src="http://${imageUrl_small}/moim/${dto.mphoto}?type=f&w=200&h=200&ttype=jpg"
-				border="1" onclick="location.href='moimdetail?mnum=${dto.mnum}'" style="cursor:pointer;margin-top:10px">	 
-		<br>
 		<a	href="moimdetail?mnum=${dto.mnum}&currentPage=${currentPage}"
 		style="color: black; font-size:17px;text-decoration: none; cursor: pointer;">
+		 <img src="http://${imageUrl_small}/moim/${dto.mphoto}?type=f&w=200&h=200&ttype=jpg"
+				border="1" style="cursor:pointer;margin-top:10px">	 
+		<br>
 		<span style="text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: inline-block;max-width: 220px;">
    		<b style="font-size:20px;">${dto.mname}</b>
 		</span>

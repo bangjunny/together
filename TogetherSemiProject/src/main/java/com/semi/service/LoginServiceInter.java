@@ -12,9 +12,7 @@ public interface LoginServiceInter {
 	public UserDto selectOneOfEmail(String email);
 	public int overlappedEmail(UserDto dto);
 	public List<UserDto> getAllUsers();
-	public List<UserPhotoDto> getPhotosByUnum(int unum);
 	public UserDto getUserByUnum(int unum);
-	
-
+	public UserPhotoDto getMyPhoto(int photo_idx);
 
 }

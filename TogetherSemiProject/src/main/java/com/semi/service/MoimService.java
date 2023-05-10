@@ -50,9 +50,13 @@ public class MoimService implements MoimServiceInter {
 	}
 
 	@Override
-	public void updateJjimcount(int mnum) {
+	public void updateJjimcount(int mnum, int unum) {
 		// TODO Auto-generated method stub
-		moimMapper.updateJjimcount(mnum);
+		Map<String, Integer>map = new HashMap<>();
+		map.put("mnum", mnum);
+		map.put("unum", unum);
+		
+		moimMapper.updateJjimcount(map);
 	}
 
 	@Override
@@ -77,6 +81,67 @@ public class MoimService implements MoimServiceInter {
 	public int overlappedMname(MoimDto dto) {
 		return moimMapper.overlappedMname(dto);
 	}
+
+	@Override
+	public boolean pressJjim(int unum, int mnum) {
+	
+		Map<String, Object> map = new HashMap<>();
+		map.put("mnum", mnum);
+		map.put("unum", unum);
+		
+		boolean pressChk = moimMapper.pressJjim(map)==0?false:true;
+		return pressChk;
+	}
+
+	@Override
+	public void deleteJjim(int unum, int mnum) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("mnum", mnum);
+		map.put("unum", unum);
+		
+		moimMapper.deleteJjim(map);
+		
+	}
+
+	@Override
+	public void moimGaip(int unum, int mnum) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("mnum", mnum);
+		map.put("unum", unum);
+		
+		moimMapper.moimGaip(map);
+		
+	}
+
+	@Override
+	public void deleteGaip(int unum, int mnum) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("mnum", mnum);
+		map.put("unum", unum);
+		
+		moimMapper.deleteGaip(map);
+		
+	}
+
+	@Override
+	public boolean pressGaip(int unum, int mnum) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("mnum", mnum);
+		map.put("unum", unum);
+		System.out.println(map);
+		System.out.println("pressGaip service");
+		
+		boolean pressGaipChk = moimMapper.pressGaip(map)==0?false:true;
+		return pressGaipChk;
+	}
+
+
+
+
+
+
 	
 	
 }

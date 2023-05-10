@@ -194,18 +194,20 @@
          
     </style>
 </head>
+
 <body>
     <div class="container-fluid">
        
        <form id="join-form" method="post" action="userinsert">
        
-       <h2>회원가입</h2>
+       <h2>kakao 회원가입</h2>
   
            <!-- ID -->
                 <div class="input-wrap">
                 <label for="id" class="la">이메일</label>                
                 <span class="box int_id">
-                   <input type="email" id="email" name="email" class="int" maxlength="20">                                     
+                   <input type="email" id="email" name="email" class="int" maxlength="20" value="${email }"
+                   readonly>                                     
                 </span>
                 <span id="olmessage"></span> 
                 <span class="error_next_box"></span>
@@ -237,7 +239,8 @@
                 <div class="input-wrap">
                     <label for="name" class="la">이름</label>
                     <span class="box int_name">
-                        <input type="text" id="uname" name="uname" class="int" maxlength="20">
+                        <input type="text" id="uname" name="uname" class="int" maxlength="20" value="${nickname }"
+                        readonly>
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -251,15 +254,26 @@
             </div>
            
            <!-- GENDER -->
-                <div class="input-wrap">
+           
+           <div class="input-wrap">
+                    <label for="gender" class="la">성별</label>
+                    <span class="box int_gender">
+                        <input type="text" id="gender" name="gender" class="int" maxlength="20" 
+                        value="${gender == 'male' ? '남자' : '여자'}" readonly>
+                    </span>
+                    <span class="error_next_box"></span>
+           </div>
+           
+            
+                <!-- <div class="input-wrap">
                     <label for="gender" class="la">성별</label>
                         <select id="gender" name="gender" class="gen">
                            <option hidden>성별</option>
-                            <option value="남자">남자</option>
-                            <option value="여자">여자</option>
+                            <option value="M">남자</option>
+                            <option value="F">여자</option>
                         </select>                            
                     <span class="error_next_box">필수 정보입니다.</span>
-                </div>
+                </div> -->
            
            <div class="input-wrap">
              <label for="user_city" class="la">지역</label>

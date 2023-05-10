@@ -47,6 +47,7 @@ public class LoginService implements LoginServiceInter{
 		// TODO Auto-generated method stub
 		return loginMapper.overlappedEmail(dto);
 	}
+
 	@Override
 	public List<UserDto> getAllUsers() {
 		// TODO Auto-generated method stub
@@ -54,15 +55,14 @@ public class LoginService implements LoginServiceInter{
 	}
 
 	@Override
-	public List<UserPhotoDto> getPhotosByUnum(int unum) {
-	    return loginMapper.getPhotosByUnum(unum);
-	}
-	@Override
 	public UserDto getUserByUnum(int unum) {
 		// TODO Auto-generated method stub
 		return loginMapper.getUserByUnum(unum);
 	}
-
-
-	
+  
+	@Override
+	public UserPhotoDto getMyPhoto(int photo_idx) {
+		// TODO Auto-generated method stub
+		return loginMapper.getMyPhoto(photo_idx);
+	}	
 }

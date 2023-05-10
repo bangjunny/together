@@ -39,18 +39,25 @@
 	</update>
 	<insert id="newComment" parameterType="CbReBoardDto">
 		insert into cb_reboard (unum,uname,recontent,rewriteday,ref,step,depth,cbnum) 
-		value (#{unum},#{uname},#{recontent},now(),#{ref},#{step},#{depth},#{cbnum})
+		values (#{unum},#{uname},#{recontent},now(),#{ref},#{step},#{depth},#{cbnum})
 	</insert>
-	<select id="getTotalComment" parameterType="String" resultType="int">
-		select count(*) from cb_reboard;
+	<select id="getTotalComment" parameterType="int" resultType="String">
+		select count(*) from cb_reboard where cbnum=#{cbnum};
 	</select>
-	<select id="getComment" parameterType="int" resultType="CbReBoardDto">
-		select * from cb_reboard where cbnum=#{cbnum} order by renum asc
+	<select id="getCommentByCbnum" parameterType="int" resultType="CbReBoardDto">
+SELECT * FROM cb_reboard where cbnum=#{cbnum} ORDER BY ref ASC, CASE WHEN step = 0 THEN 0 ELSE 1 END ASC, step asc, depth asc	</select>
+	<select id="getCommentByRenum" parameterType="int" resultType="CbReBoardDto">
+		select * from cb_reboard where renum=#{renum}
 	</select>
 	<select id="getReboardNum" resultType="int">
-		select ifnull(max(num),0) form cb_reboard
+		select ifnull(max(renum),0) from cb_reboard
 	</select>
+	<insert id="addComment" parameterType="CbReBoardDto">
+		insert into cb_reboard (unum,uname,recontent,rewriteday,ref,step,depth,cbnum) 
+		values (#{unum},#{uname},#{recontent},now(),#{ref},#{step},#{depth},#{cbnum})
+	</insert>
 	<delete id="deleteCityboard" parameterType="int">
 		delete from city_board where cbnum=#{cbnum}
 	</delete>
+
 </mapper>

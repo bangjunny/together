@@ -18,34 +18,50 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <style>
-body, body * {
-	font-family: 'NanumPenScript'
+	body, body * {
+		font-family: 'NanumPenScript'
+	}
+	a:link,a:visited,a:hover {
+		color: black;
+		text-decoration: none;
+	}
+	div.moim {
+		width: 900px;
+		height:1100px;
+		margin-left:250px;
+		background-color:#ccc;
+	}
+	div.mcontent {
+		font-size: 20px;
+		margin:20px 10px;
+		height:700px;
+		background-color:white;
+		text-align:center;
+	}
+	.mcontent_img{
+		width:838px;
+		height:420px;
+		margin:20px;
 }
-div.moim {
-	width: 900px;
-	height:1100px;
-	margin-left:250px;
-	background-color:#ccc;
-}
-div.mcontent {
-	font-size: 20px;
-	margin:20px 10px;
-	height:700px;
-	background-color:white;
-	text-align:center;
-}
-.mcontent_img{
-	width:838px;
-	height:420px;
-	margin:20px;
-}
-.jjim span{
-	position: relative;
-	right: 38px;
-	bottom:6px;
-	font-size: 25px;
-	
-}
+	#moim_resi_wrap{
+		width: 100%;
+		display:flex;
+		text-align: center;
+	}
+	#moim_resi_wrap button{
+		width: 300px;
+		margin: 0 auto 0 10%;
+	}
+	#jjim{
+		width: 210px;
+		font-size: 30px;
+		display: flex;
+		justify-content: flex-end;
+	}
+	#jjim:hover{
+		cursor: pointer;
+	}
+
 
 </style>
 </head>
@@ -97,13 +113,138 @@ div.mcontent {
 				style="width: 70px;" onclick="">삭제</button>
 		</div>	
 		<hr>
-		<div style="font-size: 35px;cursor:pointer; text-align:center">
-		<i class="bi bi-heart jjim" >
-			<span>3</span>
-		</i>&nbsp;
-		<button type="button" style="width:370px;height:45px;text-align:center"
-			class="btn btn-secondary btn-block" onclick="">가입신청</button>
+		
+		<div id="moim_resi_wrap">
+		<div id="jjim">
+		<c:choose>
+		<c:when test="${!pressChk}">		
+			<a class="jjim_btn" onclick="updateJjimcount();">
+				<i class="bi bi-heart"></i>
+			</a>
+		</c:when>			
+		<c:otherwise>
+			<a class="jjim_cancle" onclick="deleteJjim();">
+				<i class="bi bi-heart-fill"></i>
+			</a>	
+		</c:otherwise>
+		</c:choose>
+		</div>
+		
+				<c:choose>
+		<c:when test="${!pressGaipChk}">		
+			<div id="gaip_btn">
+				<button type="button" onclick="moimGaip();">가입신청</button>
+			</div>
+		</c:when>			
+		<c:otherwise>
+				<div id="gaip_cancle">
+				<button type="button" onclick="deleteGaip();">가입대기</button>
+			</div>
+		</c:otherwise>
+		</c:choose>
+			
 		</div>	
 	</div>
+	<script type="text/javascript">
+	function updateJjimcount(){
+		
+		const mnum = ${dto.mnum};
+		const unum = ${sessionScope.unum};
+	
+	$.ajax({
+		type:"get",
+		url:"updateJjimcount",
+		dataType:"text",
+		   data: {
+			      mnum: mnum,
+			      unum: unum
+			    },
+		success:function(res){
+		
+			if(res == "success") {
+				alert("찜하셨습니다");
+				$("#jjim").html('<a class="jjim_cancle" onclick="deleteJjim();"><i class="bi bi-heart-fill"></i></a>');
+			} 
+		},
+	});
+		
+}
+	
+	function deleteJjim(){
+		
+		const mnum = ${dto.mnum};
+		const unum = ${sessionScope.unum};
+	
+	$.ajax({
+		type:"get",
+		url:"deleteJjim",
+		dataType:"text",
+		   data: {
+			      mnum: mnum,
+			      unum: unum
+			    },
+		success:function(res){
+			if(res == "success") {
+				alert("찜 취소");
+				$("#jjim").html('<a class="jjim_btn" onclick="updateJjimcount();"><i class="bi bi-heart"></i></a>');
+			} 
+		},
+	});	
+}
+	
+	function moimGaip(){
+
+		const mnum = ${dto.mnum};
+		const unum = ${sessionScope.unum};
+		
+	
+		  if (confirm("가입 신청을 하시겠습니까?")) {
+			    $.ajax({
+			      type: "get",
+			      url: "moimgaip",
+			      dataType: "text",
+			      data: {
+			        mnum: mnum,
+			        unum: unum
+			      },
+			      success: function(res) {
+			        if (res == "success") {
+			          alert("가입 신청이 성공적으로 완료됐습니다.");
+			          $("#gaip_btn").html('<div id="gaip_cancle"><button type="button" style="width: 300px; margin: 0 auto 0 10%;" onclick="deleteGaip();">가입대기</button></div>');
+			        }
+			      },
+			    });
+			  } else {
+			    return; // 함수 즉시 종료
+			  }
+			}
+	
+	
+	function deleteGaip(){
+
+		const mnum = ${dto.mnum};
+		const unum = ${sessionScope.unum};
+		alert("가입 신청을 취소하시겠습니까?")
+	
+			    $.ajax({
+			      type: "get",
+			      url: "deletegaip",
+			      dataType: "text",
+			      data: {
+			        mnum: mnum,
+			        unum: unum
+			      },
+			      success: function(res) {
+			        if (res == "success") {
+			          alert("가입 신청이 취소되었습니다.");
+			          $("#gaip_cancle").html('<div id="gaip_btn"><button type="button" style="width: 300px; margin: 0 auto 0 10%;" onclick="moimGaip();">가입신청</button></div>');
+			        }
+			      },
+			    });
+			
+			}
+	</script>
+	
+	
 </body>
 </html>

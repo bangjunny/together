@@ -1,7 +1,10 @@
 package com.semi.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -79,12 +82,25 @@ public class MoimController {
    }
    
    @GetMapping("/moimdetail")
-   private String moimdetail(int mnum,Model model)
+   private String moimdetail(int mnum, Model model,HttpSession session)
    {
-	  
+	 
 	  //dto얻기
 	  MoimDto dto=moimService.getData(mnum);
 	  //model
+
+	  System.out.println("detail");
+	  if (session.getAttribute("unum") != null) {
+		  int unum = (int)session.getAttribute("unum");
+		  boolean pressChk = moimService.pressJjim(unum, mnum);
+		  boolean pressGaipChk = moimService.pressGaip(unum, mnum);
+		  model.addAttribute("pressChk", pressChk);
+		  model.addAttribute("pressGaipChk", pressGaipChk);		
+	  }  
+	  
+	
+	  
+
 	  model.addAttribute("dto",dto);
 	  
       return "/main/moim/moimdetail";
@@ -106,7 +122,6 @@ public class MoimController {
 		
 		//db insert
 		moimMapper.insertMoim(dto);
-		
 		return "redirect:moimlist";
 	}
    
@@ -117,5 +132,34 @@ public class MoimController {
 	   return result;
    }
    
+   @ResponseBody
+   @GetMapping("/updateJjimcount")
+   public String updateJjimcount(int mnum, int unum) {
+       moimService.updateJjimcount(mnum, unum);
+       return "success";
+   }
+   @ResponseBody
+   @GetMapping("/deleteJjim")
+   public String deleteJjimcount(HttpSession session, int mnum) {
+	   int unum = (int) session.getAttribute("unum");
+	   System.out.println("1");
+       moimService.deleteJjim(unum, mnum);
+       return "success";
+   }
+   @ResponseBody
+   @GetMapping("/moimgaip")
+   public String moimgaip(HttpSession session, int mnum) {
+	   int unum = (int) session.getAttribute("unum");
+       moimService.moimGaip(unum, mnum);
+       return "success";
+   }
+   @ResponseBody
+   @GetMapping("/deletegaip")
+   public String deleteGaip(HttpSession session, int mnum) {
+	   int unum = (int) session.getAttribute("unum");
+       moimService.deleteGaip(unum, mnum);
+       return "success";
+   }
+    
 }
 

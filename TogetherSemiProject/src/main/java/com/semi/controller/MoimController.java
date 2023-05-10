@@ -89,7 +89,8 @@ public class MoimController {
 	  MoimDto dto=moimService.getData(mnum);
 	  //model
 
-	  System.out.println("detail");
+	  List<Map<String, Object>> list = moimService.getGaipmemberList(mnum);
+	  
 	  if (session.getAttribute("unum") != null) {
 		  int unum = (int)session.getAttribute("unum");
 		  boolean pressChk = moimService.pressJjim(unum, mnum);
@@ -97,7 +98,7 @@ public class MoimController {
 		  model.addAttribute("pressChk", pressChk);
 		  model.addAttribute("pressGaipChk", pressGaipChk);		
 	  }  
-	  
+	  model.addAttribute("list", list);
 	
 	  
 

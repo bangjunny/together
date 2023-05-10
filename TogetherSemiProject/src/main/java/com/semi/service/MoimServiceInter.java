@@ -21,4 +21,5 @@ public interface MoimServiceInter {
 	public boolean pressGaip(int unum, int mnum);
 	public void updateMoim(MoimDto dto);
 	public int overlappedMname(MoimDto dto);
+	public List<Map<String, Object>> getGaipmemberList(int mnum);
 }

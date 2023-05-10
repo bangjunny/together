@@ -140,6 +140,12 @@ public class MoimService implements MoimServiceInter {
 		return pressGaipChk;
 	}
 
+	@Override
+	public List<Map<String, Object>> getGaipmemberList(int mnum) {
+		
+		return moimMapper.getGaipmemberList(mnum);
+	}
+
 
 
 

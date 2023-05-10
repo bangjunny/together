@@ -24,4 +24,5 @@ public interface MoimMapper {
 	public void moimGaip(Map<String, Object> map);
 	public void deleteGaip(Map<String, Object> map);
 	public int pressGaip(Map<String, Object> map);//unum, mnum
+	public List<Map<String, Object>> getGaipmemberList(int mnum);
 }

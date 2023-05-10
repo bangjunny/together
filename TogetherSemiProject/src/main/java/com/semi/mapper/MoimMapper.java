@@ -20,4 +20,8 @@ public interface MoimMapper {
 	public void updateMoim(MoimDto dto);
 	public int overlappedMname(MoimDto dto);
 	public int pressJjim(Map<String, Object> map);//unum, mnum
+	public void deleteJjim(Map<String, Object> map);
+	public void moimGaip(Map<String, Object> map);
+	public void deleteGaip(Map<String, Object> map);
+	public int pressGaip(Map<String, Object> map);//unum, mnum
 }

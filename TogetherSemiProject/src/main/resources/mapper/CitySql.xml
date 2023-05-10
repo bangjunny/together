@@ -40,7 +40,8 @@
 		select count(*) from cb_reboard where cbnum=#{cbnum};
 	</select>
 	<select id="getCommentByCbnum" parameterType="int" resultType="CbReBoardDto">
-SELECT * FROM cb_reboard where cbnum=#{cbnum} ORDER BY ref ASC, CASE WHEN step = 0 THEN 0 ELSE 1 END ASC, step asc, depth asc	</select>
+		SELECT * FROM cb_reboard where cbnum=#{cbnum} ORDER BY ref ASC, CASE WHEN step = 0 THEN 0 ELSE 1 END ASC, step asc, depth asc
+	</select>
 	<select id="getCommentByRenum" parameterType="int" resultType="CbReBoardDto">
 		select * from cb_reboard where renum=#{renum}
 	</select>
@@ -67,7 +68,10 @@ SELECT * FROM cb_reboard where cbnum=#{cbnum} ORDER BY ref ASC, CASE WHEN step =
   	<select id="getAllCityPagingList" parameterType="Map" resultType="CityBoardDto">
   		select * from city_board order by cbnum desc limit #{start}, #{perpage}
   	</select>
-  	
-  	
-
+  	<update id="updateComment" parameterType="CbReBoardDto">
+  		update cb_reboard set recontent=#{recontent} where renum=#{renum}
+  	</update>
+  	<delete id="deleteComment" parameterType="int">
+  		delete from cb_reboard where renum=#{renum}
+  	</delete>
 </mapper>

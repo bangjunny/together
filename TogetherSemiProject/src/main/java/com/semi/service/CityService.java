@@ -182,6 +182,17 @@ public class CityService implements CityServiceInter{
 		return cityMapper.getAllCityPagingList(map);
 	}
 
+	@Override
+	public void updateComment(CbReBoardDto dto) {
+		// TODO Auto-generated method stub
+		cityMapper.updateComment(dto);
+	}
+
+	@Override
+	public void deleteComment(int renum) {
+		// TODO Auto-generated method stub
+		cityMapper.deleteComment(renum);
+	}
 
 
 }

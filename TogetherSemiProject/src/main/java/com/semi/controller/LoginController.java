@@ -208,6 +208,19 @@ public class LoginController {
 	        return "redirect:mypage?result=error";
 	    }
 	}
+  
+	@GetMapping("/otherlogin")
+	@ResponseBody
+	public void otherLogin(@RequestParam String email,
+			HttpSession session)
+	{
+		session.setAttribute("loginok", "yes");
+		
+		int unum = loginService.selectOneOfEmail(email).getUnum();
+		session.setAttribute("unum", unum);
+		
+		System.out.println("로그인 성공");
+	}
 	
 	 @PostMapping("/loginaction") 
 	 public String loginAction(

@@ -129,8 +129,7 @@
 		</c:otherwise>
 		</c:choose>
 		</div>
-		
-				<c:choose>
+		<c:choose>
 		<c:when test="${!pressGaipChk}">		
 			<div id="gaip_btn">
 				<button type="button" onclick="moimGaip();">가입신청</button>
@@ -144,6 +143,12 @@
 		</c:choose>
 			
 		</div>	
+	</div>
+	<div id="gaipmember">
+		<c:forEach items="${list }" var="ga">
+			${ga.uname }
+			dwadaw
+		</c:forEach>
 	</div>
 	<script type="text/javascript">
 	function updateJjimcount(){

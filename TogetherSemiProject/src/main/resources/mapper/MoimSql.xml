@@ -57,6 +57,9 @@
 	<select id="pressGaip" parameterType="Map" resultType="int">
 		select count(*) from moimmember where unum=#{unum} and mnum=#{mnum}
 	</select>
+	<select id="getGaipmemberList" parameterType="int" resultType="Map">
+		SELECT u.uname, u.gender, mm.acceptcall FROM user u JOIN moimmember mm ON u.unum=mm.unum where mnum=#{mnum}
+	</select>
 </mapper>
 
 

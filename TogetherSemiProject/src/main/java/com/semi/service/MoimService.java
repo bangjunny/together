@@ -146,6 +146,13 @@ public class MoimService implements MoimServiceInter {
 		// TODO Auto-generated method stub
 		return moimMapper.getCategoryCount(category);
 	}
+	
+	@Override
+	public List<Map<String, Object>> getGaipmemberList(int mnum) {
+		
+		return moimMapper.getGaipmemberList(mnum);
+
+	}
 
 
 

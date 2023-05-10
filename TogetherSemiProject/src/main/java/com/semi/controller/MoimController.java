@@ -92,22 +92,21 @@ public class MoimController {
 	  MoimDto dto=moimService.getData(mnum);
 	  //model
 
+
 	  System.out.println("detail");
 	  if (session.getAttribute("unum") != null) {
-		  int unum = (int)session.getAttribute("unum");
-		  boolean pressChk = moimService.pressJjim(unum, mnum);
-		  boolean pressGaipChk = moimService.pressGaip(unum, mnum);
-		  model.addAttribute("pressChk", pressChk);
-		  model.addAttribute("pressGaipChk", pressGaipChk);		
+	  int unum = (int)session.getAttribute("unum");
+	  boolean pressChk = moimService.pressJjim(unum, mnum);
+	  boolean pressGaipChk = moimService.pressGaip(unum, mnum);
+	  model.addAttribute("pressChk", pressChk);
+	  model.addAttribute("pressGaipChk", pressGaipChk);		
 	  }  
-	  
-	
-	  
-
+	  List<Map<String, Object>> list = moimService.getGaipmemberList(mnum);
+	  model.addAttribute("list", list);
 	  model.addAttribute("dto",dto);
 	  
       return "/main/moim/moimdetail";
-   }
+   	  }
    
    @GetMapping("/moimform")
    private String moimform()

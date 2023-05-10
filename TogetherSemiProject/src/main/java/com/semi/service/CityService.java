@@ -19,13 +19,6 @@ public class CityService implements CityServiceInter{
 	private CityMapper cityMapper;
 
 	@Override
-	public int getTotalCountCity(String city1, String city2) {
-		// TODO Auto-generated method stub
-		return cityMapper.getTotalCountCity(city1, city2);
-	}
-
-
-	@Override
 	public CityBoardDto getDetailbycbnum(int cbnum) {
 		// TODO Auto-generated method stub
 		return cityMapper.getDetailbycbnum(cbnum);
@@ -43,11 +36,7 @@ public class CityService implements CityServiceInter{
 		cityMapper.insertCity(dto);
 	}
 
-	@Override
-	public List<CityBoardDto> getCityList(String city1, String city2) {
-		// TODO Auto-generated method stub
-		return cityMapper.getCityList(city1, city2);
-	}
+
 	
 	@Override
 	public String preContent(CityBoardDto dto) {
@@ -154,4 +143,42 @@ public class CityService implements CityServiceInter{
 		// TODO Auto-generated method stub
 		cityMapper.deleteCityboard(cbnum);	
 	}
+	
+	@Override
+	public int getTotalCountCity(String city1, String city2) {
+		// TODO Auto-generated method stub
+		return cityMapper.getTotalCountCity(city1, city2);
+	}
+
+
+	@Override
+	public List<CityBoardDto> getCityPagingList(int start, int perpage, String city1, String city2) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("start", start);
+		map.put("perpage", perpage);
+		map.put("city1", city1);
+		map.put("city2", city2);
+		return cityMapper.getCityPagingList(map);
+	}
+
+
+	@Override
+	public int getAllTotalCountCity() {
+		// TODO Auto-generated method stub
+		return cityMapper.getAllTotalCountCity();
+	}
+
+
+	@Override
+	public List<CityBoardDto> getAllCityPagingList(int start, int perpage) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map = new HashMap<>();
+		map.put("start", start);
+		map.put("perpage", perpage);
+		return cityMapper.getAllCityPagingList(map);
+	}
+
+
+
 }

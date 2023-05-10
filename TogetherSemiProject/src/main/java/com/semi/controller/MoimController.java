@@ -44,7 +44,7 @@ public class MoimController {
    private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model, String category, HttpSession session)
    {   
 	   		// 게시물의 총 글 갯수
-			int totalCount = moimService.getTotalCount();	
+			int totalCount = moimService.getTotalCount();
 			int categoryCount = moimService.getCategoryCount(category);
 			
 			int totalPage;// 총페이지수

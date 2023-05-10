@@ -44,14 +44,14 @@ public class CityController {
 
 	@GetMapping("/list")
 	public String list(
-			 /**@RequestParam(defaultValue = "1") int currentPage**/
+			 @RequestParam(defaultValue = "1") int currentPage,
 			Model model, HttpSession session) {
 
-		/**
+		
 		int totalCount = cityService.getTotalCountCity();// 게시판의 총 글 갯수
 		int totalPage;// 총 페이지수
-		int perPage = 10;// 한 페이지당 보여질 글 갯수
-		int perBlock = 5;// 한 블럭당 보여질 페이지의 갯수
+		int perPage = 3;// 한 페이지당 보여질 글 갯수
+		int perBlock = 2;// 한 블럭당 보여질 페이지의 갯수
 		int startNum;// 각 페이지에서 보여질 글의 시작번호
 		int startPage;// 각 블럭에서 보여질 시작 페이지 번호
 		int endPage;// 각 블럭에서 보여질 끝 페이지 번호
@@ -73,7 +73,7 @@ public class CityController {
 		no = totalCount - startNum;
 
 		// 각 페이지에 필요한 게시글 db에서 가져오기
-		List<CityBoardDto> list = cityService.getPaginlistCity(startNum, perPage); // 출력시 필요한 변수들을 model에 모두 저장
+		List<CityBoardDto> list = cityService.getPagingList(startNum, perPage); // 출력시 필요한 변수들을 model에 모두 저장
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("list", list);
 		model.addAttribute("startPage", startPage);
@@ -81,7 +81,7 @@ public class CityController {
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("no", no);
-		**/
+		
 
 		int unum=(int)session.getAttribute("unum");
 		
@@ -89,8 +89,7 @@ public class CityController {
 		String city1 = udto.getCity1();
 		String city2 = udto.getCity2();
 		List<CityBoardDto> citylist = cityService.getCityList(city1, city2);
-		int totalCountCity=cityService.getTotalCountCity(city1, city2);
-		
+		int totalCountCity=cityService.getTotalCountCity();
 		
 		model.addAttribute("totalCountCity",totalCountCity);
 		model.addAttribute("citylist",citylist);
@@ -140,7 +139,7 @@ public class CityController {
 
 		String city1 = dto.getCity1();
 		String city2 = dto.getCity2();
-		int totalCountCity=cityService.getTotalCountCity(city1, city2);
+		int totalCountCity=cityService.getTotalCountCity();
 
 		model.addAttribute("udto",udto);
 

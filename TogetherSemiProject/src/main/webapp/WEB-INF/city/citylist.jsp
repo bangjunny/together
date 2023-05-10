@@ -109,7 +109,8 @@ body, body * {
                  </script>
 	<input type="button" id="search" onclick="search();" value="선택지역검색">
 	<button style="float: right" id="write" onclick="writeform();">글쓰기</button>
-	<table class="table table-bordered boardlist" >
+	<span id="displayCount"></span>
+	<table class="table table-bordered boardlist" id="dataTableBody">
 		<tr bgcolor="#f5f5dc">
 			<th style="width: 100px">번호</th>
 			<th style="width: 400px">제목</th>
@@ -118,21 +119,24 @@ body, body * {
 			<th style="width: 100px">조회수</th>
 			<th style="width: 100px">추천수</th>
 		</tr>
-		<c:forEach var="citylist" items="${citylist}" varStatus="i">
+		<c:if test="${totalCount>0 }">
+		<c:forEach var="dto" items="${list}">
 			<tr>
-				<td align="center">${citylist.cbnum }</td>
-
-				<td style="cursor: pointer" onclick="location.href='detail?cbnum=${citylist.cbnum}'">
-					<b>${citylist.subject}</b>
+				<td align="center">${no}</td>
+				<c:set var="no" value="${dto.cbnum-1}"/>
+				
+				<td style="cursor: pointer" onclick="location.href='detail?cbnum=${dto.cbnum}'">
+					<b>${dto.subject}</b>
 				</td>
-				<td>${citylist.uname}</td>
+				<td>${dto.uname}</td>
 				<td align="right" >
-				<fmt:formatDate value="${citylist.cbwriteday }" pattern="yyyy-MM-dd"/>
+				<fmt:formatDate value="${dto.cbwriteday }" pattern="yyyy-MM-dd"/>
 				</td>
-				<td>${citylist.readcount}</td>
-				<td>${citylist.cblike}</td>
+				<td>${dto.readcount}</td>
+				<td>${dto.cblike}</td>
 			</tr>
 		</c:forEach>
+		</c:if>
 	</table>
 	
 	<div style="float: right">
@@ -140,87 +144,107 @@ body, body * {
 		<button>검색</button>
 	</div>
 	<br>
-	<hr>
-	<!-- 페이징처리 -->
-	<div style="width: 700px; text-align: center; font-size: 20px;">
+	<hr>	
+	<!-- 페이징 처리 -->
+	<div style="width: 700px; text-align:center; font-size:20px;">
 		<!-- 이전 -->
-		<c:if test="${startPage>1 }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
-				href="list?currentPage=${startPage-1 }">이전</a>
+		<c:if test="${startPage>1}">
+			<a style="color:black; text-decoration:none; cursor:pointer;"
+			href="list?currentPage=${startPage-1}">이전</a>
 		</c:if>
-		&nbsp;
-
-		<!-- 페이지 번호 출력 -->
-		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
-			<c:if test="${currentPage==pp }">
-				<a style="color: green; text-decoration: none; cursor: pointer;"
-					href="list?currentPage=${pp }">${pp }</a>
+		<!-- 페이지번호 출력 -->
+		<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+			<c:if test="${currentPage==pp}">
+				<a style="color:green; text-decoration:none; cursor:pointer;"
+				href="list?currentPage=${pp}">${pp}</a>
 			</c:if>
-			<c:if test="${currentPage!=pp }">
-				<a style="color: black; text-decoration: none; cursor: pointer;"
-					href="list?currentPage=${pp }">${pp }</a>
+			<c:if test="${currentPage!=pp}">
+				<a style="color:black; text-decoration:none; cursor:pointer;"
+				href="list?currentPage=${pp}">${pp}</a>
 			</c:if>
-        &nbsp;
-    </c:forEach>
-
+			&nbsp;
+		</c:forEach>
 		<!-- 다음 -->
-		<c:if test="${endPage<totalPage }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
-				href="list?currentPage=${endPage+1 }">다음</a>
+		<c:if test="${endPage<totalPage}">
+			<a style="color:black; text-decoration:none; cursor:pointer;"
+			href="list?currentPage=${endPage+1}">다음</a>
 		</c:if>
-
 	</div>
 	<script type="text/javascript">
-	function search(){
-		var city1 = $("#city").val();
-		var city2 = $("#district").val();
-		$(".city1").html(city1);
-		$(".city2").html(city2);
-		 $.ajax({
-			type:"get",
-			url:"./searchlist",
-			data:{"city1":city1,"city2":city2},
-			dataType:"json",
-			success:function(res){
-				$(".totalCountCity").html(res.length);				
-				let s=`
-					<table class="table table-bordered boardlist">
-					<tr bgcolor='#f5f5dc'>
-					<th style="width: 100px">번호</th>
-					<th style="width: 400px">제목</th>
-					<th style="width: 200px">작성자</th>
-					<th style="width: 150px">작성일</th>
-					<th style="width: 100px">조회수</th>
-					<th style="width: 100px">추천수</th>
-					</tr>`;
-				$.each(res,function(idx,ele){
-					 var date = new Date(ele.cbwriteday);
-					 var formattedDate = date.toLocaleDateString('ko-KR', {year:'numeric', month: '2-digit', day: '2-digit'});
-					s+=`
-					<tr>
-					<td align="center">
-					\${ele.cbnum}
-					</td>
-					<td style="cursor:pointer"
-					onclick="location.href='detail?cbnum=\${ele.cbnum}'">
-					\${ele.subject}
-					</td>
-					<td>\${ele.uname}</td>
-					<td align="right">
-					\${formattedDate}
-					</td>
-					<td>\${ele.readcount}</td>
-					<td>\${ele.cblike}</td>
-					</tr>
-					`;
-				});
-				s+=`</table>`;
-				$(".boardlist").html(s);
+	function search(pageNum = 1) { // pageNum 기본값을 1로 설정
+		  var city1 = $("#city").val();
+		  var city2 = $("#district").val();
+		  $(".city1").html(city1);
+		  $(".city2").html(city2);
+		  var itemsPerPage = 10; // 한 페이지당 보여줄 게시글 수
+		  var start = (pageNum - 1) * itemsPerPage;
+		  var end = start + itemsPerPage;
 
-			}
-			
-		});
-	}
+		  $.ajax({
+		    type: "get",
+		    url: "./searchlist",
+		    data: { "city1": city1, "city2": city2, "start": start, "end": end },
+		    dataType: "json",
+		    success: function (res) {
+		      var totalCount = res.totalCount;
+		      var boardList = res.boardList;
+
+		      $(".totalCountCity").html(totalCount);
+		      var s = `
+		        <table class="table table-bordered boardlist">
+		          <tr bgcolor='#f5f5dc'>
+		            <th style="width: 100px">번호</th>
+		            <th style="width: 400px">제목</th>
+		            <th style="width: 200px">작성자</th>
+		            <th style="width: 150px">작성일</th>
+		            <th style="width: 100px">조회수</th>
+		            <th style="width: 100px">추천수</th>
+		          </tr>`;
+		      $.each(boardList, function (idx, ele) {
+		        var date = new Date(ele.cbwriteday);
+		        var formattedDate = date.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+		        s += `
+		          <tr>
+		            <td align="center">\${ele.cbnum}</td>
+		            <td style="cursor:pointer" onclick="location.href='detail?cbnum=\${ele.cbnum}'">\${ele.subject}</td>
+		            <td>\${ele.uname}</td>
+		            <td align="right">\${formattedDate}</td>
+		            <td>\${ele.readcount}</td>
+		            <td>\${ele.cblike}</td>
+		          </tr>`;
+		      });
+		      s += `</table>`;
+		      $(".boardlist").html(s);
+
+		   // 페이징 처리
+		      var totalPages = Math.ceil(totalCount / itemsPerPage);
+		      var currentPage = pageNum;
+		      var pagingHtml = "";
+		      if (totalPages > 1) {
+		        if (currentPage > 1) {
+		          pagingHtml += `<button onclick="search(${currentPage - 1})">이전</button>`;
+		        }
+		        for (var i = 1; i <= totalPages; i++) {
+		          if (i == currentPage) {
+		            pagingHtml += `<strong>${i}</strong>`;
+		          } else {
+		            pagingHtml += `<button onclick="search(${i})">${i}</button>`;
+		          }
+		        }
+		        if (currentPage < totalPages) {
+		          pagingHtml += `<button onclick="search(${currentPage + 1})">다음</button>`;
+		        }
+		        $(".pagination").html(pagingHtml);
+		      } else {
+		        $(".pagination").empty();
+		      }
+		    },
+		    error: function (xhr, status, error) {
+		      console.error(xhr.responseText);
+		    }
+		    });
+		    }
+
 	function writeform(){
 		var city1 = $("span.city1").text();
 		var city2 = $("span.city2").text();

@@ -95,7 +95,7 @@ public class CityController {
 				UserDto udto = cityService.getDetailbyunum(unum);
 				city1 = udto.getCity1();
 				city2 = udto.getCity2();
-
+        
 				int totalCount = cityService.getTotalCountCity(city1, city2);// 게시판의 총 글 갯수
 				int totalPage;// 총 페이지수
 				int perPage = 5;// 한 페이지당 보여질 글 갯수
@@ -210,7 +210,6 @@ public class CityController {
 				model.addAttribute("totalPage", totalPage);
 				model.addAttribute("currentPage", currentPage);
 				model.addAttribute("no", no);
-
 				model.addAttribute("udto", udto);
 				model.addAttribute("unum", unum);
 				model.addAttribute("city1", city1);
@@ -253,9 +252,7 @@ public class CityController {
 		String city1 = dto.getCity1();
 		String city2 = dto.getCity2();
 		int totalCountCity = cityService.getTotalCountCity(city1, city2);
-
 		model.addAttribute("udto", udto);
-
 		model.addAttribute("dto", dto);
 		model.addAttribute("nxtcontent", nxtcontent);
 		model.addAttribute("nxtnum", nxtnum);
@@ -356,6 +353,7 @@ public class CityController {
 		
 		return "redirect:/city/detail?cbnum="+cbnum;
 	}
+
 
 //<-----------------------------------절취선-------------------------------------------->
 

@@ -141,7 +141,6 @@ body, body * {
 					</c:forEach>
 					${listcomment.recontent}
 					</td>
-					
 				</tr>
 				<tr>
 					<td colspan="2">

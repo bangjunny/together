@@ -20,20 +20,17 @@
 	</select>
 	
 <!-- 마이페이지 -->
+
+
+	<select id="getMyProfilePhotos" resultType="UserPhotoDto">
+	  SELECT * FROM user_photo WHERE unum = #{unum}
+	</select>
 	<select id="getMypage" parameterType="int" resultType="UserDto">
 		select * from user where unum=#{unum}
 	</select>
 	
-	<select id="getMyPhoto" parameterType="int" resultType="UserPhotoDto">
-		select * from user_photo where unum=#{unum}
-	</select>
-	
 	<select id="getAllUsers" resultType="UserDto">
 		select * from user order by unum asc
-	</select>
-
-	<select id="getUserInfo" parameterType="int" resultType="UserDto">
-		select * from user order where unum=#{unum}
 	</select>
 
 	<select id="getTotalCount" resultType="int">

@@ -21,17 +21,15 @@ public interface LoginMapper {
 
 	/*마이페이지*/
 	
-	public void insertMyPhoto(UserPhotoDto dto);
+	public void insertMyPhoto(UserPhotoDto pdto);
 	public UserPhotoDto getMyPhoto(int photo_idx);
+	public UserPhotoDto getMyProfile(int unum);
 	public UserDto getMypage(int unum);
-
 	public int getTotalCount();
-
 	public List<UserDto> getAllUsers();
-	
-	public void updatePhoto(Map<String, Object> map);
-	
-	public void updateMypage(UserDto dto);
+	public List<UserPhotoDto> getPhotosByUnum(int unum);
+	public UserDto getUserByUnum(int unum);
+	public List<UserPhotoDto> getMyProfilePhotos(int unum);
 	
 	
 	

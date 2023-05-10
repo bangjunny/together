@@ -10,7 +10,11 @@
 <meta charset="utf-8">
 <meta id="ch-new-plugin-theme" name="theme-color" content="#686868">
 <title>로그인 페이지</title>
+
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gothic+A1&family=Gowun+Batang&family=Hahmlet&family=Song+Myung&display=swap" rel="stylesheet">
@@ -101,7 +105,8 @@
             <div class="form-group">
                <!--  <label for="user_id">아이디</label> -->
                 <input type="email" id="user_email" name="email" autofocus="autofocus" 
-                placeholder="아이디" required>
+                placeholder="아이디" required
+                value="${!(saveemail==null or saveemail=='no')?sessionScope.loginemail:''}">
             </div>
             
             <div class="form-group">
@@ -116,16 +121,39 @@
         
 
 			<div class="form-group">
-				<span>계정이 없으신가요? </span>
+				<!-- <span>계정이 없으신가요? </span> -->
+				
+				<label>
+					<input type="checkbox" name="saveemail"
+					${!(saveemail==null or saveemail=='no')?"checked":"" }> 이메일 저장	
+				</label>
 				<a href="/user/join">회원가입</a><br>
 			</div>
 			
+			<br>
 			
             <%-- 카카오 --%>
             <a href="javascript:kakaoLogin();">
 				<img src="/photo/kakao_login_large_wide.png" class="kakao">
 			</a>
 			<br><br>
+			
+			<!-- 네이버 로그인 버튼 노출 영역 -->
+			<div id="naver_id_login"></div>
+			
+			<!-- //네이버 로그인 버튼 노출 영역 -->
+			<script type="text/javascript">
+				var naver_id_login = new naver_id_login("eeKSBaviQtr4I8frMTNN", "http://localhost:9000/user/callback");
+			  	var state = naver_id_login.getUniqState();
+			  	naver_id_login.setButton("green", 3,50);
+			  	naver_id_login.setDomain("http://localhost:9000/user/login");
+			  	naver_id_login.setState(state);
+			  	//naver_id_login.setPopup(); // 팝업창으로 뜨게하는 코드
+			  	naver_id_login.init_naver_id_login();
+			</script>
+			
+			<br><br>
+			
 			<a href="javascript:kakaoLogout();">
 				<span>카카오 로그아웃</span>
 			</a>
@@ -153,7 +181,7 @@
             						$.ajax({
             							type: "get",
             							async: false,
-            							url: "http://localhost:9000/user/emailCheck",
+            							url: "emailCheck",
             							data:{email:email},
             							success: function(data){
             								if(data == 0 && email!=''){
@@ -165,8 +193,16 @@
             								}
             								else{
             									
-            									
-            									location.href="/";
+            									$.ajax({
+                        							type: "get",
+                        							url: "otherlogin",
+                        							dataType:"text",
+                        							data :{"email":email},
+                        							success: function(){
+            											//alert("성공");
+            											location.href="/";
+                        							}
+            									});
             								}
             							}
             						});

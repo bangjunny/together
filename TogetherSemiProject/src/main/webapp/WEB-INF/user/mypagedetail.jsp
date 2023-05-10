@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 <%@ include file="../commonvar.jsp" %>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,48 +21,97 @@
 	width:250px;
 	
 	}
+	
+	.container {
+	  max-width: 1800px;
+	  margin: 20 auto;
+	  flex : auto;
+	  padding: 40px 20px;
+	  background-color: #fff;
+	  border: 1px solid #ddd;
+	  box-shadow: 0px 0px 5px #ddd;
+	  text-align: center;
+	}
+	
+	.card {
+	  width: 18rem;
+	  margin: auto;
+	  margin-top: 50px;
+	  padding: 20px;
+	  flex : auto;
+	}
+	
+	.text {
+	  width: 18rem;
+	  margin: auto;
+	  font-size:30px;
+	  margin-top: 50px;
+	  padding: 20px;
+	  flex : auto;
+	}
+	.thumbnail {
+			max-width: 700px;
+			margin-bottom: 30px;
+			margin-right: 30px;
+			padding: 0;
+	}
 
 </style>
 
 <body>
-
-
 <div class="container text-center">
-    <div class="row">
-        <div class="card col">
-
-            <!-- 프로필 사진 출력 -->
-            <c:choose>
-                <c:when test="${pdto.unum==null}">
-                    <!-- Result값이 있다면 실행할 로직 -->
-                    <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
-                </c:when>
-                <c:otherwise>
-                    <!-- 그렇지 않다면 실행할 로직 -->
-                    <img src="https://${imageUrl}/userprofile/${pdto.file_name}">
-                </c:otherwise>
-            </c:choose>
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myPhotoModal">
-                사진 수정하기
+  <div class="row">
+    <div class="card col">
+      <h3>프로필 사진</h3>
+      <c:choose>
+        <c:when test="${not empty photoList}">
+          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="https://${imageUrl}/userprofile/${pdto.file_name}" class="d-block w-100" alt="대표 사진">
+              </div>
+             <c:forEach var="photo" items="${photoList}">
+                <div class="carousel-item">
+                <h2>포토사진 ${photo.photo_idx}</h2>
+                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="d-block w-100" alt="포토사진 ${photo.photo_idx}"> 
+              </div>
+              </c:forEach>
+            </div>
+             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
             </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </c:when>
+        <c:otherwise>
+          <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+          <p>프로필 사진을 한장씩 추가할 수 있어요.</p>
+        </c:otherwise>
+      </c:choose>  
+            <!-- Button trigger modal -->           
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myPhotoModal">
+                사진 업로드
+            </button>
+		</div>	
+		
+    	<div class="text col">
+        넘버 : ${dto.unum}<br>
+        이름 : ${dto.uname}<br>
+        생년월일 : ${dto.age}<br>
+        성별 : ${dto.gender}<br>
+        이메일 : ${dto.email}<br>
+        비밀번호 : ${dto.pass}<br>
+        전화번호 : ${dto.hp}<br>
+        지역 : ${dto.city1} &nbsp; ${dto.city2}<br>
+        가입일 : <fmt:formatDate value="${dto.joinday}" pattern="yyyy-MM-dd HH:mm"/><br>
+        <br>
+    	</div>
+   </div> 
 
-        </div>
-        <div class="text col">
-
-            넘버 : ${dto.unum}<br>
-            이름 : ${dto.uname}<br>
-            생년월일 : ${dto.age}<br>
-            성별 : ${dto.gender}<br>
-            이메일 : ${dto.email}<br>
-            비밀번호 : ${dto.pass}<br>
-            전화번호 : ${dto.hp}<br>
-            지역 : ${dto.city1} &nbsp; ${dto.city2}<br>
-            가입일 : <fmt:formatDate value="${dto.joinday}" pattern="yyyy-MM-dd HH:mm"/><br>
-            <br>
-        </div>
-    </div>
     <br><br><br><br>
     
     <div class="mybtn">
@@ -78,51 +126,52 @@
 </div>	
 
 <hr>
+
 <div class="Container Photo">
 <form action="/user/mypageinsert" method="post" enctype="multipart/form-data">
-<!-- 사진 변경 모달 -->
-<div class="modal" id="myPhotoModal">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-	
-	      <!-- Modal Header -->
-	      <div class="modal-header">
-	        <h4 class="modal-title">사진 넣기</h4>
-	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-	      </div>
+	<!-- 사진 변경 모달 -->
+	<div class="modal" id="myPhotoModal">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
 		
-		    <!-- Modal body -->
-		    <div class="modal-body">
-				 <c:choose>
-		          <c:when test="${pdto.file_name==null}">
-		         <!-- Result값이 있다면 실행할 로직 -->
-		         <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" class="showimg">
-		          </c:when>
-		          <c:otherwise>
-		       <!-- 그렇지 않다면 실행할 로직 -->
-		       <img src="https://${imageUrl}/userprofile/${pdto.file_name}" class="showimg">    
-		          </c:otherwise>
-		      </c:choose>
-		   	 
-		         <!-- 카메라 모양 -->
-		        <i class="bi bi-camera-fill update-photo"
-		        style="font-size: 26px;cursor: pointer;"></i>
-		        <!-- 파일 업로드 태그 -->
-			      <div class="mb-3">
-			      <label for="photoInput" class="form-label">사진 선택</label>
-			      <input class="form-control" type="file" id="upload" name="upload">
-			    </div>
-			</div>
-	      
-	      <!-- Modal footer -->
-			<div class="modal-footer">
-			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-			  <button type="button" class="btn btn-primary" id="submitBtn">저장</button>
-			</div>
-    </div>
-  </div> 
- </div>
- </form>
+		      <!-- Modal Header -->
+		      <div class="modal-header">
+		        <h4 class="modal-title">사진 넣기</h4>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+		      </div>
+			
+			    <!-- Modal body -->
+			    <div class="modal-body">
+					 <c:choose>
+			          <c:when test="${pdto.file_name==null}">
+			         <!-- Result값이 있다면 실행할 로직 -->
+			         <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" class="showimg">
+			          </c:when>
+			          <c:otherwise>
+			       <!-- 그렇지 않다면 실행할 로직 -->
+			       <img src="https://${imageUrl}/userprofile/${pdto.file_name}" class="showimg">    
+			          </c:otherwise>
+			      </c:choose>
+			   	 
+			   	 	<div class="mb-3">
+			         <!-- 카메라 모양 -->
+			        <i class="bi bi-camera-fill update-photo"
+			        style="font-size: 26px;cursor: pointer;"></i>
+			        <!-- 파일 업로드 태그 -->
+				      <label for="photoInput" class="form-label">사진 선택</label>
+				      <input class="form-control" type="file" id="upload" name="upload">
+				    </div>
+				</div>
+		      
+		      <!-- Modal footer -->
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				  <button type="button" class="btn btn-primary" id="submitBtn">저장</button>
+				</div>
+	    </div>
+	  </div> 
+	 </div>
+</form>
 </div> 
 <script type="text/javascript">
 $("#upload").change(function(){

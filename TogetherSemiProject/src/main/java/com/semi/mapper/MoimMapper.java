@@ -13,13 +13,13 @@ public interface MoimMapper {
 	public int getTotalCount();
 	public void insertMoim(MoimDto dto);
 	public List<MoimDto> getPagingList(Map<String, Integer> map);//map:start,perpage
-	public List<MoimDto> getAllMoim();
 	public void updateJjimcount(Map<String, Integer> map);//unum, mnum
 	public MoimDto getData(int mnum);
 	public void deleteMoim(int mnum);
 	public void updateMoim(MoimDto dto);
 	public int overlappedMname(MoimDto dto);
 	public int pressJjim(Map<String, Object> map);//unum, mnum
+	public List<MoimDto> getCategoryPagingList(Map<String, Integer> map);
 	public void deleteJjim(Map<String, Object> map);
 	public void moimGaip(Map<String, Object> map);
 	public void deleteGaip(Map<String, Object> map);

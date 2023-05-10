@@ -41,14 +41,14 @@ public class MoimController {
    
    @GetMapping("/moimlist")
 
-   private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model)
+   private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model, String category)
    {   
 	   		// 게시물의 총 글 갯수
 			int totalCount = moimService.getTotalCount();	
 			
 			int totalPage;// 총페이지수
 			int perPage = 6;// 한페이지당 보여질 글의 갯수
-			int perBlock = 5;// 한 블럭당 보여질 페이지 갯수
+			int perBlock = 2;// 한 블럭당 보여질 페이지 갯수
 			int startNum;// 각 페이지에서 보여질 글의 시작번호
 			int startPage;// 각 블럭에서 보여질 시작페이지 번호
 			int endPage;// 각 블럭에서 보여질 끝 페이지 번호'
@@ -67,7 +67,7 @@ public class MoimController {
 			// 각 글마다 출력할 글 번호(예: 10개 일 경우 1페이지 :10, 2페이지 :7....)
 			no = totalCount - startNum;
 			// 각페이지에 필요한 게시글 db에 가져오기
-			List<MoimDto> list = moimService.getPagingList(startNum, perPage);
+			List<MoimDto> list = moimService.getCategoryPagingList(startNum, perPage);
 			
 			// model 저장
 			model.addAttribute("totalCount", totalCount);
@@ -77,6 +77,7 @@ public class MoimController {
 			model.addAttribute("totalPage", totalPage);
 			model.addAttribute("currentPage", currentPage);
 			model.addAttribute("no", no);
+			model.addAttribute("category", category);
 			
    return "/main/moim/moimlist";
    }

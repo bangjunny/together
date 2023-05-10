@@ -22,13 +22,13 @@ public class UserDto {
 	private String city2;
 	private Timestamp joinday;
 	private int jjim;
-	private String uphoto;
+	private List<UserPhotoDto> photoList;
 	private int mnum;
 	@Override
 	public String toString() {
 		return "UserDto [unum=" + unum + ", uname=" + uname + ", age=" + age + ", gender=" + gender + ", email=" + email
 				+ ", pass=" + pass + ", hp=" + hp + ", city1=" + city1 + ", city2=" + city2 + ", joinday=" + joinday
-				+ ", jjim=" + jjim + ", uphoto=" + uphoto + ", mnum=" + mnum + "]";
+				+ "]";
 	}
 	
 	

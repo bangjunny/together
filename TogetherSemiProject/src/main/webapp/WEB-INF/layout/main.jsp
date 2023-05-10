@@ -224,6 +224,7 @@ $(document).ready(function() {
 
 	<div id="main_header_txt">
 		Lorem ipsum dolor sit amet, consectetur adipisicing elited do eiusmod tempor incididunt ut labore e, st dolore magna aliqua. Ut enim ad <span id="rotate_word" style="color: red">communities</span>
+	
 		
 	<div id="main_btn_wrap">
 		<button type="button" class="btn btn-light" onclick="location.href='/user/login'">로그인</button>

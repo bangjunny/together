@@ -27,12 +27,6 @@ public class MoimService implements MoimServiceInter {
 		// TODO Auto-generated method stub
 		return moimMapper.getTotalCount();
 	}
-	
-	@Override
-	public List<MoimDto> getAllMoim() {
-		// TODO Auto-generated method stub
-		return moimMapper.getAllMoim();
-	}
 
 	@Override
 	public void insertMoim(MoimDto dto) {
@@ -91,6 +85,15 @@ public class MoimService implements MoimServiceInter {
 		
 		boolean pressChk = moimMapper.pressJjim(map)==0?false:true;
 		return pressChk;
+	}
+
+	@Override
+	public List<MoimDto> getCategoryPagingList(int start, int perpage) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map=new HashMap<>();
+		map.put("start", start);
+		map.put("perpage", perpage);
+		return moimMapper.getCategoryPagingList(map);
 	}
 
 	@Override

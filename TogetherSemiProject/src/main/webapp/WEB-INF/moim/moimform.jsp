@@ -268,6 +268,15 @@ form.addEventListener('submit', (event) => {
   }
 });
 
+
+form.addEventListener('submit', function(event) {
+	const cityInput=document.querySelector('#city');
+	if (cityInput.value == "시, 도 선택"){
+		event.preventDefault();
+	    alert('지역을 선택해주세요');
+	}
+});
+
 </script>
 
 <!-- The Modal -->
@@ -295,6 +304,7 @@ form.addEventListener('submit', (event) => {
         <input type="checkbox" name="categorys" value="탁구">탁구        
         <input type="checkbox" name="categorys" value="러닝/마라톤">러닝/마라톤
         <input type="checkbox" name="categorys" value="골프">골프
+        <input type="checkbox" name="categorys" value="볼링">볼링
       </div>
 
       <!-- Modal footer -->

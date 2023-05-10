@@ -51,7 +51,12 @@ public class LoginController {
 	
 	@GetMapping("/login")
 	public String newLoginPage(HttpSession session) {
+		
+		// 로그인 여부를 판단할 세션
 		String loginok = (String)session.getAttribute("loginok");
+		
+		// 이메일 정보, 이메일 저장 여부에 대한 세션
+		String loginemail=(String)session.getAttribute("loginok");
 		
 		if(loginok==null) 
 		{ 
@@ -80,6 +85,24 @@ public class LoginController {
 		
 		System.out.println(email);
 		return "/sub/user/kakaojoin";
+	}
+	
+	@GetMapping("/naverjoin")
+	public String naverJoinPage(String email, String gender,
+			String birthday, String name, Model model)
+	{
+		model.addAttribute("email", email);
+		model.addAttribute("gender", gender);
+		model.addAttribute("birthday", birthday);
+		model.addAttribute("name", name);
+		
+		return "/sub/user/naverjoin";
+	}
+	
+	@GetMapping("/callback")
+	public String callbackPage()
+	{	
+		return "/sub/user/callback";
 	}
 	
 	@PostMapping("/userinsert")
@@ -159,7 +182,8 @@ public class LoginController {
 	 @PostMapping("/loginaction") 
 	 public String loginAction(
 			 @RequestParam String email,
-			 @RequestParam String pass, 
+			 @RequestParam String pass,
+			 @RequestParam (required = false) String saveemail,
 			 HttpSession session) 
 	 { 
 		 // 이메일과 비번이 일치한지 체크 
@@ -173,10 +197,13 @@ public class LoginController {
 			 
 			 // 로그인 성공시 세션에 저장 
 			 session.setAttribute("loginok", "yes");
+			 session.setAttribute("loginemail", email);
+			 session.setAttribute("saveemail", saveemail == null?"no":"yes");
 			 
 			 // 로그인 unum 세션에 저장
 			 int unum = loginService.selectOneOfEmail(email).getUnum();
-			 session.setAttribute("unum", unum); 
+			 session.setAttribute("unum", unum);
+			 
 			 
 			 System.out.println("로그인 성공"); 
 			 return "redirect:/"; 

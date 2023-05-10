@@ -206,7 +206,8 @@
                 <div class="input-wrap">
                 <label for="id" class="la">이메일</label>                
                 <span class="box int_id">
-                   <input type="email" id="email" name="email" class="int" maxlength="20" value="${email }">                                     
+                   <input type="email" id="email" name="email" class="int" maxlength="20" value="${email }"
+                   readonly>                                     
                 </span>
                 <span id="olmessage"></span> 
                 <span class="error_next_box"></span>
@@ -219,7 +220,7 @@
                     <span class="box int_pass">
                         <input type="password" id="pass" name="pass" class="int" maxlength="20">
                         <span id="alertTxt">사용불가</span>
-                        <img src="m_icon_pass.png" id="pswd1_img1" class="pswdImg">
+                        <img src="/photo/m_icon_pass.png" id="pswd1_img1" class="pswdImg">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -229,7 +230,7 @@
                     <label for="pswd2" class="la">비밀번호 재확인</label>
                     <span class="box int_pass_check">
                         <input type="password" id="pass_check" name="pass_check" class="int" maxlength="20">
-                        <img src="m_icon_check_disable.png" id="pswd2_img1" class="pswdImg">
+                        <img src="/photo/m_icon_check_disable.png" id="pswd2_img1" class="pswdImg">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -238,7 +239,8 @@
                 <div class="input-wrap">
                     <label for="name" class="la">이름</label>
                     <span class="box int_name">
-                        <input type="text" id="uname" name="uname" class="int" maxlength="20" value="${nickname }">
+                        <input type="text" id="uname" name="uname" class="int" maxlength="20" value="${nickname }"
+                        readonly>
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -252,7 +254,18 @@
             </div>
            
            <!-- GENDER -->
-                <div class="input-wrap">
+           
+           <div class="input-wrap">
+                    <label for="gender" class="la">성별</label>
+                    <span class="box int_gender">
+                        <input type="text" id="gender" name="gender" class="int" maxlength="20" 
+                        value="${gender == 'male' ? '남자' : '여자'}" readonly>
+                    </span>
+                    <span class="error_next_box"></span>
+           </div>
+           
+            
+                <!-- <div class="input-wrap">
                     <label for="gender" class="la">성별</label>
                         <select id="gender" name="gender" class="gen">
                            <option hidden>성별</option>
@@ -260,7 +273,7 @@
                             <option value="F">여자</option>
                         </select>                            
                     <span class="error_next_box">필수 정보입니다.</span>
-                </div>
+                </div> -->
            
            <div class="input-wrap">
              <label for="user_city" class="la">지역</label>
@@ -438,23 +451,23 @@
             error[1].style.display = "block";
             
             pwMsg.style.display = "block";
-            pwImg1.src = "m_icon_not_use.png";
+            pwImg1.src = "/photo/m_icon_not_use.png";
         } else {
             error[1].style.display = "none";
             pwMsg.innerHTML = "안전";
             pwMsg.style.display = "block";
             pwMsg.style.color = "#03c75a";
-            pwImg1.src = "m_icon_safe.png";
+            pwImg1.src = "/photo/m_icon_safe.png";
         }
     }
 
     function comparePw() {
         if(pw2.value === pw1.value && pw2.value != "") {
-            pwImg2.src = "m_icon_check_enable.png";
+            pwImg2.src = "/photo/m_icon_check_enable.png";
             error[2].style.color = "red";
             error[2].style.display = "none";
         } else if(pw2.value !== pw1.value) {
-            pwImg2.src = "m_icon_check_disable.png";
+            pwImg2.src = "/photo/m_icon_check_disable.png";
             error[2].style.color = "red";
             error[2].innerHTML = "비밀번호가 일치하지 않습니다.";
             error[2].style.display = "block";

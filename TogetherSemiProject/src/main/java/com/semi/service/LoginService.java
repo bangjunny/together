@@ -49,6 +49,18 @@ public class LoginService implements LoginServiceInter{
 	}
 
 	@Override
+	public List<UserDto> getAllUsers() {
+		// TODO Auto-generated method stub
+		return loginMapper.getAllUsers();
+	}
+
+	@Override
+	public UserDto getUserByUnum(int unum) {
+		// TODO Auto-generated method stub
+		return loginMapper.getUserByUnum(unum);
+	}
+  
+	@Override
 	public UserPhotoDto getMyPhoto(int photo_idx) {
 		// TODO Auto-generated method stub
 		return loginMapper.getMyPhoto(photo_idx);

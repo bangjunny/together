@@ -7,6 +7,9 @@
 	<select id="getTotalCount" resultType="int">
 		select count(*) from moim
 	</select>
+	<select id="getCategoryCount" parameterType="String" resultType="int">
+		select count(*) from moim where category=#{category}
+	</select>
 	<select id="getAllMoim" resultType="MoimDto">
 		select * from moim order by mnum asc
 	</select>
@@ -41,6 +44,18 @@
 	</insert>
 	<select id="pressJjim" parameterType="Map" resultType="int">
 		select count(*) from jjim where unum=#{unum} and mnum=#{mnum}
+	</select>
+	<delete id="deleteJjim" parameterType="Map">
+		delete from jjim where unum=#{unum} and mnum=#{mnum}
+	</delete>
+	<insert id="moimGaip" parameterType="Map">
+		insert into moimmember (unum, mnum) values (#{unum}, #{mnum})
+	</insert>
+	<delete id="deleteGaip" parameterType="Map">
+		delete from moimmember where unum=#{unum} and mnum=#{mnum}
+	</delete>
+	<select id="pressGaip" parameterType="Map" resultType="int">
+		select count(*) from moimmember where unum=#{unum} and mnum=#{mnum}
 	</select>
 </mapper>
 

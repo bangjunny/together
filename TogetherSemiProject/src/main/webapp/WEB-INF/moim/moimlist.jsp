@@ -225,31 +225,31 @@
 		<!-- 이전 -->
 		<c:if test="${startPage>1}">
 			<a style="color: black; text-decoration: none; cursor: pointer;"
-				href="moimlist?currentPage=${startPage-1}">이전</a>
+				href="moimlist?category=${category}&currentPage=${startPage-1}">이전</a>
 		</c:if>
 		&nbsp;
 		<!-- 페이지 번호 출력 -->
 		<c:forEach var="pp" begin="${startPage}" end="${endPage}">
 			<c:if test="${currentPage==pp}">
 				<a style="color: blue; font-size:23px; text-decoration: none; cursor: pointer;"
-					href="moimlist?currentPage=${pp}">${pp}</a>
+					href="moimlist?category=${category}&currentPage=${pp}">${pp}</a>
 			</c:if>
 			<c:if test="${currentPage!=pp}">
 				<a style="color: black; text-decoration: none; cursor: pointer;"
-					href="moimlist?currentPage=${pp}">${pp}</a>
+					href="moimlist?category=${category}&currentPage=${pp}">${pp}</a>
 			</c:if>
 		&nbsp;
 	</c:forEach>
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage}">
 			<a style="color: black; text-decoration: none; cursor: pointer;"
-				href="moimlist?currentPage=${endPage+1}">다음</a>
+				href="moimlist?category=${category}&currentPage=${endPage+1}">다음</a>
 		</c:if>
 	</div>
 	</div>
 	
 	
-	
+<form action = "moimlist" method="get">
 	<!-- The Modal -->
 <div class="modal" id="mySportsModal">
   <div class="modal-dialog modal-dialog-centered">
@@ -263,24 +263,24 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <input type="checkbox" name="categorys" value="축구">축구
-        <input type="checkbox" name="categorys" value="농구">농구
-        <input type="checkbox" name="categorys" value="야구">야구
-        <input type="checkbox" name="categorys" value="테니스">테니스
+        <label><input type="checkbox" name="category" value="축구">축구</label>
+        <label><input type="checkbox" name="category" value="농구">농구</label>
+        <label><input type="checkbox" name="category" value="야구">야구</label>
+        <label><input type="checkbox" name="category" value="테니스">테니스</label>
         <br>
-        <input type="checkbox" name="categorys" value="배드민턴">배드민턴        
-        <input type="checkbox" name="categorys" value="자전거">자전거
-        <input type="checkbox" name="categorys" value="클라이밍">클라이밍
+        <label><input type="checkbox" name="category" value="배드민턴">배드민턴</label>       
+        <label><input type="checkbox" name="category" value="자전거">자전거</label>
+        <label><input type="checkbox" name="category" value="클라이밍">클라이밍</label>
         <br>
-        <input type="checkbox" name="categorys" value="탁구">탁구        
-        <input type="checkbox" name="categorys" value="러닝/마라톤">러닝/마라톤
-        <input type="checkbox" name="categorys" value="골프">골프
-        <input type="checkbox" name="categorys" value="볼링">볼링
+        <label><input type="checkbox" name="category" value="탁구">탁구</label>
+        <label><input type="checkbox" name="category" value="러닝/마라톤">러닝/마라톤</label>
+        <label><input type="checkbox" name="category" value="골프">골프</label>
+        <label><input type="checkbox" name="category" value="볼링">볼링</label>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">선택</button>
       </div>
       
     </div>
@@ -300,22 +300,22 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <input type="checkbox" name="categorys" value="다트">다트
-        <input type="checkbox" name="categorys" value="보드게임">보드게임
-        <input type="checkbox" name="categorys" value="두뇌심리게임">두뇌심리게임
+        <label><input type="checkbox" name="category" value="다트">다트</label>
+        <label><input type="checkbox" name="category" value="보드게임">보드게임</label>
+        <label><input type="checkbox" name="category" value="두뇌심리게임">두뇌심리게임</label>
         <br>
-        <input type="checkbox" name="categorys" value="온라인게임">온라인게임
-        <input type="checkbox" name="categorys" value="콘솔게임">콘솔게임
-        <input type="checkbox" name="categorys" value="단체놀이">단체놀이
+        <label><input type="checkbox" name="category" value="온라인게임">온라인게임</label>
+        <label><input type="checkbox" name="category" value="콘솔게임">콘솔게임</label>
+        <label><input type="checkbox" name="category" value="단체놀이">단체놀이</label>
         <br>
-        <input type="checkbox" name="categorys" value="타로카드">타로카드
-        <input type="checkbox" name="categorys" value="마술">마술
-        <input type="checkbox" name="categorys" value="바둑">바둑
+        <label><input type="checkbox" name="category" value="타로카드">타로카드</label>
+        <label><input type="checkbox" name="category" value="마술">마술</label>
+        <label><input type="checkbox" name="category" value="바둑">바둑</label>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">선택</button>
       </div>
       
     </div>
@@ -335,19 +335,19 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <input type="checkbox" name="categorys" value="등산">등산
-        <input type="checkbox" name="categorys" value="산책/트래킹">산책/트래킹
-        <input type="checkbox" name="categorys" value="캠핑/백패킹">캠핑/백패킹
+        <label><input type="checkbox" name="categorys" value="등산">등산</label>
+        <label><input type="checkbox" name="categorys" value="산책/트래킹">산책/트래킹</label>
+        <label><input type="checkbox" name="categorys" value="캠핑/백패킹">캠핑/백패킹</label>
         <br>
-        <input type="checkbox" name="categorys" value="국내여행">국내여행
-        <input type="checkbox" name="categorys" value="해외여행">해외여행
-        <input type="checkbox" name="categorys" value="낚시">낚시
-        <input type="checkbox" name="categorys" value="패러글라이딩">패러글라이딩
+        <label><input type="checkbox" name="categorys" value="국내여행">국내여행</label>
+        <label><input type="checkbox" name="categorys" value="해외여행">해외여행</label>
+        <label><input type="checkbox" name="categorys" value="낚시">낚시</label>
+        <label><input type="checkbox" name="categorys" value="패러글라이딩">패러글라이딩</label>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">선택</button>
       </div>
       
     </div>
@@ -367,19 +367,19 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <input type="checkbox" name="categorys" value="책/독서">책/독서
-        <input type="checkbox" name="categorys" value="인문학">인문학
-        <input type="checkbox" name="categorys" value="심리학">심리학        
-        <input type="checkbox" name="categorys" value="철학">철학
+        <label><input type="checkbox" name="categorys" value="책/독서">책/독서</label>
+        <label><input type="checkbox" name="categorys" value="인문학">인문학</label>
+        <label><input type="checkbox" name="categorys" value="심리학">심리학</label>      
+        <label><input type="checkbox" name="categorys" value="철학">철학</label>
         <br>
-        <input type="checkbox" name="categorys" value="역사">역사
-        <input type="checkbox" name="categorys" value="시사/경제">시사/경제
-        <input type="checkbox" name="categorys" value="작문/글쓰기">작문/글쓰기
+        <label><input type="checkbox" name="categorys" value="역사">역사</label>
+        <label><input type="checkbox" name="categorys" value="시사/경제">시사/경제</label>
+        <label><input type="checkbox" name="categorys" value="작문/글쓰기">작문/글쓰기</label>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">선택</button>
       </div>
       
     </div>
@@ -399,26 +399,26 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <input type="checkbox" name="categorys" value="의료/건강/제약">의료/건강/제약
-        <input type="checkbox" name="categorys" value="IT/포털/인터넷">IT/포털/인터넷
-        <input type="checkbox" name="categorys" value="교육업">교육업
+        <label><input type="checkbox" name="categorys" value="의료/건강/제약">의료/건강/제약</label>
+        <label><input type="checkbox" name="categorys" value="IT/포털/인터넷">IT/포털/인터넷</label>
+        <label><input type="checkbox" name="categorys" value="교육업">교육업</label>
         <br>
-        <input type="checkbox" name="categorys" value="광고/마케팅업계">광고/마케팅업계
-        <input type="checkbox" name="categorys" value="디자인업계  ">디자인업계        
-        <input type="checkbox" name="categorys" value="무역/상사">무역/상사
+        <label><input type="checkbox" name="categorys" value="광고/마케팅업계">광고/마케팅업계</label>
+        <label><input type="checkbox" name="categorys" value="디자인업계  ">디자인업계</label>    
+        <label><input type="checkbox" name="categorys" value="무역/상사">무역/상사</label>
         <br>
-        <input type="checkbox" name="categorys" value="금융업">금융업
-        <input type="checkbox" name="categorys" value="세무/회계">세무/회계
-        <input type="checkbox" name="categorys" value="전자/기계/전기">전자/기계/전기
+        <label><input type="checkbox" name="categorys" value="금융업">금융업</label>
+        <label><input type="checkbox" name="categorys" value="세무/회계">세무/회계</label>
+        <label><input type="checkbox" name="categorys" value="전자/기계/전기">전자/기계/전기</label>
         <br>
-        <input type="checkbox" name="categorys" value="패션/의류/뷰티">패션/의류/뷰티
-        <input type="checkbox" name="categorys" value="서비스업">서비스업
-        <input type="checkbox" name="categorys" value="식음료/외식업">식음료/외식업
+        <label><input type="checkbox" name="categorys" value="패션/의류/뷰티">패션/의류/뷰티</label>
+        <label><input type="checkbox" name="categorys" value="서비스업">서비스업</label>
+        <label><input type="checkbox" name="categorys" value="식음료/외식업">식음료/외식업</label>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">선택</button>
       </div>
       
     </div>
@@ -438,17 +438,17 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <input type="checkbox" name="categorys" value="영어">영어
-        <input type="checkbox" name="categorys" value="일본어">일본어
-        <input type="checkbox" name="categorys" value="중국어">중국어
-        <input type="checkbox" name="categorys" value="프랑스어">프랑스어
-        <input type="checkbox" name="categorys" value="스페인어">스페인어
-        <input type="checkbox" name="categorys" value="러시아어">러시아어
+        <label><input type="checkbox" name="categorys" value="영어">영어</label>
+        <label><input type="checkbox" name="categorys" value="일본어">일본어</label>
+        <label><input type="checkbox" name="categorys" value="중국어">중국어</label>
+        <label><input type="checkbox" name="categorys" value="프랑스어">프랑스어</label>
+        <label><input type="checkbox" name="categorys" value="스페인어">스페인어</label>
+        <label><input type="checkbox" name="categorys" value="러시아어">러시아어</label>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">선택</button>
       </div>
       
     </div>
@@ -468,22 +468,22 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <input type="checkbox" name="categorys" value="노래/보컬">노래/보컬
-        <input type="checkbox" name="categorys" value="기타/베이스">기타/베이스
-        <input type="checkbox" name="categorys" value="드럼">드럼
-        <input type="checkbox" name="categorys" value="피아노">피아노
-        <input type="checkbox" name="categorys" value="바이올린">바이올린
+        <label><input type="checkbox" name="categorys" value="노래/보컬">노래/보컬</label>
+        <label><input type="checkbox" name="categorys" value="기타/베이스">기타/베이스</label>
+        <label><input type="checkbox" name="categorys" value="드럼">드럼</label>
+        <label><input type="checkbox" name="categorys" value="피아노">피아노</label>
+        <label><input type="checkbox" name="categorys" value="바이올린">바이올린</label>
         <br>
-        <input type="checkbox" name="categorys" value="밴드/합주">밴드/합주
-        <input type="checkbox" name="categorys" value="작사/작곡">작사/작곡
-        <input type="checkbox" name="categorys" value="힙합">힙합
-        <input type="checkbox" name="categorys" value="클래식">클래식
-        <input type="checkbox" name="categorys" value="재즈">재즈
+        <label><input type="checkbox" name="categorys" value="밴드/합주">밴드/합주</label>
+        <label><input type="checkbox" name="categorys" value="작사/작곡">작사/작곡</label>
+        <label><input type="checkbox" name="categorys" value="힙합">힙합</label>
+        <label><input type="checkbox" name="categorys" value="클래식">클래식</label>
+        <label><input type="checkbox" name="categorys" value="재즈">재즈</label>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">선택</button>
       </div>
       
     </div>
@@ -503,20 +503,20 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <input type="checkbox" name="categorys" value="지역">지역
-        <input type="checkbox" name="categorys" value="나이">나이
-        <input type="checkbox" name="categorys" value="성별">성별
-        <input type="checkbox" name="categorys" value="싱글/연애">싱글/연애
-        <input type="checkbox" name="categorys" value="기혼/유부">기혼/유부
+        <label><input type="checkbox" name="categorys" value="지역">지역</label>
+        <label><input type="checkbox" name="categorys" value="나이">나이</label>
+        <label><input type="checkbox" name="categorys" value="성별">성별</label>
+        <label><input type="checkbox" name="categorys" value="싱글/연애">싱글/연애</label>
+        <label><input type="checkbox" name="categorys" value="기혼/유부">기혼/유부</label>
         <br>
-        <input type="checkbox" name="categorys" value="돌싱">돌싱
-        <input type="checkbox" name="categorys" value="와인/커피/차">와인/커피/차
-        <input type="checkbox" name="categorys" value="맛집/미식회">맛집/미식회
+        <label><input type="checkbox" name="categorys" value="돌싱">돌싱</label>
+        <label><input type="checkbox" name="categorys" value="와인/커피/차">와인/커피/차</label>
+        <label><input type="checkbox" name="categorys" value="맛집/미식회">맛집/미식회</label>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">선택</button>
       </div>
       
     </div>
@@ -536,34 +536,35 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <input type="checkbox" name="categorys" value="미술/그림">미술/그림
-        <input type="checkbox" name="categorys" value="캘리그라피">캘리그라피
-        <input type="checkbox" name="categorys" value="천연비누/화장품">천연비누/화장품
+        <label><input type="checkbox" name="categorys" value="미술/그림">미술/그림</label>
+        <label><input type="checkbox" name="categorys" value="캘리그라피">캘리그라피</label>
+        <label><input type="checkbox" name="categorys" value="천연비누/화장품">천연비누/화장품</label>
         <br>
-        <input type="checkbox" name="categorys" value="캔들/디퓨저/석고 ">캔들/디퓨저/석고        
-        <input type="checkbox" name="categorys" value="가죽공예">가죽공예
-        <input type="checkbox" name="categorys" value="가구/목공예">가구/목공예
-        <input type="checkbox" name="categorys" value="도자/점토공예">도자/점토공예
+        <label><input type="checkbox" name="categorys" value="캔들/디퓨저/석고 ">캔들/디퓨저/석고  </label>      
+        <label><input type="checkbox" name="categorys" value="가죽공예">가죽공예</label>
+        <label><input type="checkbox" name="categorys" value="가구/목공예">가구/목공예</label>
+        <label><input type="checkbox" name="categorys" value="도자/점토공예">도자/점토공예</label>
         <br>
-        <input type="checkbox" name="categorys" value="자수/뜨개질">자수/뜨개질
-        <input type="checkbox" name="categorys" value="키덜트/프라모델">키덜트/프라모델
-        <input type="checkbox" name="categorys" value="메이크업/네일">메이크업/네일
+        <label><input type="checkbox" name="categorys" value="자수/뜨개질">자수/뜨개질</label>
+        <label><input type="checkbox" name="categorys" value="키덜트/프라모델">키덜트/프라모델</label>
+        <label><input type="checkbox" name="categorys" value="메이크업/네일">메이크업/네일</label>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">선택</button>
       </div>
       
     </div>
   </div>
 </div>
+</form>
 <script>
 $(function() {
     // 체크박스 값이 변경될 때마다 실행되는 함수
-    $('input[name="categorys"]').on('change', function() {
+    $('input[name="category"]').on('change', function() {
       // 모든 체크박스를 해제
-      $('input[name="categorys"]').not(this).prop('checked', false);
+      $('input[name="category"]').not(this).prop('checked', false);
       
       // 선택된 체크박스 값을 출력
       var selected = $(this).val();

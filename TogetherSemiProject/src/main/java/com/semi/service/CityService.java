@@ -80,8 +80,10 @@ public class CityService implements CityServiceInter{
 	public void updateStep(int ref, int step) {
 		// TODO Auto-generated method stub
 		Map<String, Integer> map=new HashMap<>();
+		
 		map.put("ref", ref);
 		map.put("step",step);
+		
 		
 		cityMapper.updateStep(map);
 	}
@@ -118,15 +120,16 @@ public class CityService implements CityServiceInter{
 		int ref=dto.getRef();
 		int step=dto.getStep();
 		int depth=dto.getDepth();
-		
+		//System.out.println("이전 : "+depth);
 		this.updateStep(ref, step);
+		
 		step++;
 		depth++;
 		
 		dto.setRef(ref);
 		dto.setStep(step);
 		dto.setDepth(depth);
-		
+		//System.out.println("변경 : "+depth);
 		cityMapper.addComment(dto);
 	}
 

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,14 +41,14 @@ public class MoimController {
    
    @GetMapping("/moimlist")
 
-   private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model)
+   private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model, String category)
    {   
 	   		// 게시물의 총 글 갯수
 			int totalCount = moimService.getTotalCount();	
 			
 			int totalPage;// 총페이지수
 			int perPage = 6;// 한페이지당 보여질 글의 갯수
-			int perBlock = 5;// 한 블럭당 보여질 페이지 갯수
+			int perBlock = 2;// 한 블럭당 보여질 페이지 갯수
 			int startNum;// 각 페이지에서 보여질 글의 시작번호
 			int startPage;// 각 블럭에서 보여질 시작페이지 번호
 			int endPage;// 각 블럭에서 보여질 끝 페이지 번호'
@@ -65,7 +67,7 @@ public class MoimController {
 			// 각 글마다 출력할 글 번호(예: 10개 일 경우 1페이지 :10, 2페이지 :7....)
 			no = totalCount - startNum;
 			// 각페이지에 필요한 게시글 db에 가져오기
-			List<MoimDto> list = moimService.getPagingList(startNum, perPage);
+			List<MoimDto> list = moimService.getCategoryPagingList(startNum, perPage);
 			
 			// model 저장
 			model.addAttribute("totalCount", totalCount);
@@ -75,25 +77,32 @@ public class MoimController {
 			model.addAttribute("totalPage", totalPage);
 			model.addAttribute("currentPage", currentPage);
 			model.addAttribute("no", no);
+			model.addAttribute("category", category);
 			
    return "/main/moim/moimlist";
    }
    
    @GetMapping("/moimdetail")
-   private String moimdetail(int mnum, int unum, Model model)
+   private String moimdetail(int mnum, Model model,HttpSession session)
    {
-	  System.out.println(unum);
+	 
 	  //dto얻기
 	  MoimDto dto=moimService.getData(mnum);
 	  //model
+
+	  System.out.println("detail");
+	  if (session.getAttribute("unum") != null) {
+		  int unum = (int)session.getAttribute("unum");
+		  boolean pressChk = moimService.pressJjim(unum, mnum);
+		  boolean pressGaipChk = moimService.pressGaip(unum, mnum);
+		  model.addAttribute("pressChk", pressChk);
+		  model.addAttribute("pressGaipChk", pressGaipChk);		
+	  }  
 	  
-	  boolean pressChk = moimService.pressJjim(mnum, unum);
-	  
-	  System.out.println("컨트롤러 불리언 : " + pressChk);
+	
 	  
 
 	  model.addAttribute("dto",dto);
-	  model.addAttribute("pressChk", pressChk);
 	  
       return "/main/moim/moimdetail";
    }
@@ -123,10 +132,34 @@ public class MoimController {
 	   int result=moimService.overlappedMname(dto);//중복 확인한 값을 int로 받음
 	   return result;
    }
+   
    @ResponseBody
    @GetMapping("/updateJjimcount")
-   public void updateJjimcount(int mnum, int unum) {
-	   moimService.updateJjimcount(mnum, unum);
+   public String updateJjimcount(int mnum, int unum) {
+       moimService.updateJjimcount(mnum, unum);
+       return "success";
+   }
+   @ResponseBody
+   @GetMapping("/deleteJjim")
+   public String deleteJjimcount(HttpSession session, int mnum) {
+	   int unum = (int) session.getAttribute("unum");
+	   System.out.println("1");
+       moimService.deleteJjim(unum, mnum);
+       return "success";
+   }
+   @ResponseBody
+   @GetMapping("/moimgaip")
+   public String moimgaip(HttpSession session, int mnum) {
+	   int unum = (int) session.getAttribute("unum");
+       moimService.moimGaip(unum, mnum);
+       return "success";
+   }
+   @ResponseBody
+   @GetMapping("/deletegaip")
+   public String deleteGaip(HttpSession session, int mnum) {
+	   int unum = (int) session.getAttribute("unum");
+       moimService.deleteGaip(unum, mnum);
+       return "success";
    }
     
 }

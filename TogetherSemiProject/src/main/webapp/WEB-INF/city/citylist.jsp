@@ -154,10 +154,20 @@ ${udto.uname }님이 로그인 중 입니다
 		<c:forEach var="list" items="${list}" varStatus="i">
 			<tr>
 				<td align="center">${list.cbnum }</td>
-
-				<td style="cursor: pointer" onclick="location.href='detail?cbnum=${list.cbnum}'">
+		
+				<c:choose>
+				<c:when test="${unum==0}">
+				<td style="cursor: pointer" onclick="guest();">
 					<b>${list.subject}</b>
 				</td>
+				</c:when>
+				<c:otherwise>
+				<td style="cursor: pointer" onclick="location.href='detail?cbnum=${list.cbnum}'">
+					<b>${list.subject}</b>
+				</c:otherwise>
+				</c:choose>
+		
+				
 				<td>${list.uname}</td>
 				<td align="right" >
 				<fmt:formatDate value="${list.cbwriteday }" pattern="yyyy-MM-dd"/>
@@ -176,6 +186,10 @@ ${udto.uname }님이 로그인 중 입니다
 	<hr>
 	<!-- 페이징처리 -->
 	<div style="width: 700px; text-align: center; font-size: 20px;">
+	
+		<c:choose>
+		<c:when test="${city1=='no'}">
+		
 		<!-- 이전 -->
 		<c:if test="${startPage>1 }">
 			<a style="color: green; text-decoration: none; cursor: pointer;"
@@ -194,13 +208,43 @@ ${udto.uname }님이 로그인 중 입니다
 					href="list?currentPage=${pp }">${pp }</a>
 			</c:if>
         &nbsp;
-    </c:forEach>
+    	</c:forEach>
 
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
 			<a style="color: green; text-decoration: none; cursor: pointer;"
 				href="list?currentPage=${endPage+1 }">다음</a>
 		</c:if>
+		
+		</c:when>
+		<c:otherwise>
+			<!-- 이전 -->
+		<c:if test="${startPage>1 }">
+			<a style="color: green; text-decoration: none; cursor: pointer;"
+				href="list?city1=${city1 }&city2=${city2 }&currentPage=${startPage-1 }">이전</a>
+		</c:if>
+		&nbsp;
+
+		<!-- 페이지 번호 출력 -->
+		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
+			<c:if test="${currentPage==pp }">
+				<a style="color: green; text-decoration: none; cursor: pointer;"
+					href="list?city1=${city1 }&city2=${city2 }&currentPage=${pp }">${pp }</a>
+			</c:if>
+			<c:if test="${currentPage!=pp }">
+				<a style="color: black; text-decoration: none; cursor: pointer;"
+					href="list?city1=${city1 }&city2=${city2 }&currentPage=${pp }">${pp }</a>
+			</c:if>
+        &nbsp;
+    	</c:forEach>
+
+		<!-- 다음 -->
+		<c:if test="${endPage<totalPage }">
+			<a style="color: green; text-decoration: none; cursor: pointer;"
+				href="list?city1=${city1 }&city2=${city2 }&currentPage=${endPage+1 }">다음</a>
+		</c:if>
+		</c:otherwise>
+		</c:choose>
 
 	</div>
 	<script type="text/javascript">
@@ -260,6 +304,9 @@ ${udto.uname }님이 로그인 중 입니다
 		} else {
 		location.href='cityform?unum=${unum}&city1=${city1}&city2=${city2}';
 		}
+	}
+	function guest() {
+		alert("비회원은 게시글을 조회할수 없습니다.(모달창으로 변경해서 회원가입 페이지로 이동할거냐고 묻는거 만들예정)")
 	}
 </script>
 

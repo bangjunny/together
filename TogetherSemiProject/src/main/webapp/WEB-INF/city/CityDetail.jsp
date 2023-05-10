@@ -32,7 +32,7 @@ body, body * {
 <!-- 게시판 명 -->
 	<h1>지역 게시판</h1>
 	<!-- 해당 글 정보 영역 -->
-	<div style="width: 500px; background-color: #ddd; margin: 0 auto; margin-top: 40px;">
+	<div style="width: 800px; background-color: #ddd; margin: 0 auto; margin-top: 40px;">
 		<h3>${dto.subject}</h3>
 		<h6 style="float: right;"><b>추천수</b> ${dto.cblike}</h6>
 		<h6 style="float: right;"><b>조회수</b> ${dto.readcount}&nbsp;</h6>
@@ -110,7 +110,7 @@ body, body * {
 		<div>
 			<!-- 댓글 출력 영역 -->
 			<caption align="top" style="width: 500px">총 ${totalComment}개의 댓글</caption>
-			<table style="border : 1px solid black;width:498px;">
+			<table style="border : 1px solid black;width:700px;">
 			
 			<hr>
 			<!-- 댓글이 없는 경우 -->
@@ -144,15 +144,17 @@ body, body * {
 				</tr>
 				<tr>
 					<td colspan="2">
+					<c:if test="${sessionScope.unum==listcomment.unum}">
 					<button id="deleteComment" style="float:right">삭제</button>
 					<button id="updateComment" style="float:right">수정</button>
+					</c:if>
 					<button id="addComment" style="float:right">답글</button>
 					</td>
 				</tr>
 				<tr>
 				<!-- 답글 입력 영역 -->
-				<td class="addComment" colspan="2">
-					<form action="addcomment" method="post">
+				<td colspan="2" >
+					<form id="fixComment" action="addcomment" method="post">
 						<input type="hidden" name="renum" value="${listcomment.renum}">
 						<input type="hidden" name="unum" value="${udto.unum}">
 						<input type="hidden" name="uname" value="${udto.uname}">
@@ -162,15 +164,28 @@ body, body * {
 						<input type="hidden" name="depth" value="${listcomment.depth}">
 						
 						<div id="recontent" style="display: none;" >
+							<textarea id="contentSide" class="form-control" rows="5" name="recontent"
+							style="height: 100px; resize: none; width: 494px;"
+							placeholder="${listcomment.recontent}"></textarea>
+							<button type="submit" class="btn btn-primary btn-sm"
+							id="submit" style="float: right; margin-right: 30px;">입력</button>
+						</div>
+					</form>
+					</td>
+				<!-- 답글 수정 영역 -->
+				<!-- <td class="updateComment" colspan="2">
+					<form action="updatecomment" method="post">
+						<input type="hidden" name="renum" value="${listcomment.renum}">						
+						<div id="updatecontent" style="display: none;" >
 							<textarea class="form-control" rows="5" name="recontent"
 							style="height: 100px; resize: none; width: 494px;"
 							placeholder="내용을 입력해주세요"></textarea>
 							<button type="submit" class="btn btn-primary btn-sm"
-							id="submit" style="float: right; margin-right: 30px;">입력</button>
+							style="float: right; margin-right: 30px;">입력</button>
 						
 						</div>
 					</form>
-					</td>
+					</td>-->
 				</tr>	
 				</c:forEach>
 			</c:if>
@@ -213,6 +228,8 @@ body, body * {
 	});
 	
 	$(document).on("click", "#addComment", function() {
+		$(this).parent().parent().next().find("#fixComment").attr("action","addcomment");
+		$(this).parent().parent().next().find("#contentSide").attr("placeholder","내용을 입력해주세요")
 		let s = $(this).parent().parent().next().find("#recontent").css("display");
 	    if (s == "none") {
 	        $(this).parent().parent().next().find("#recontent").css("display", "block");
@@ -221,6 +238,20 @@ body, body * {
 	    }
 	});
 	
+	$(document).on("click", "#updateComment", function() {
+		$(this).parent().parent().next().find("#fixComment").attr("action","updatecomment");
+		
+		let s = $(this).parent().parent().next().find("#recontent").css("display");
+	    if (s == "none") {
+	        $(this).parent().parent().next().find("#recontent").css("display", "block");
+	    } else {
+	        $(this).parent().parent().next().find("#recontent").css("display", "none");
+	    }
+	});
+	
+	$(document).on("click", "#deleteComment",function(){
+		let s=alert("삭제하시겠습니까?")
+	});
 	
 </script>
 </html>

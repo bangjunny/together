@@ -31,7 +31,9 @@ public interface CityMapper {
 	public void addComment(CbReBoardDto dto);
 	public CbReBoardDto getCommentByRenum(int renum);
 	public void deleteCityboard(int cbnum);
-
+	public void updateComment(CbReBoardDto dto);
+	public void deleteComment(int renum);
+	
 	/**
 	public void insertCity(CityBoardDto dto);
 	public void updateCity(CityBoardDto dto);	

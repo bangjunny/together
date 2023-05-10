@@ -71,7 +71,6 @@
 						+ "&name=" + name;
 					}
 					else{
-						
 						$.ajax({
 							type: "get",
 							url: "otherlogin",
@@ -82,7 +81,6 @@
 								location.href="/";
 							}
 						});
-	
 					}
 				}
 			});

@@ -91,8 +91,10 @@ public class CityService implements CityServiceInter{
 	public void updateStep(int ref, int step) {
 		// TODO Auto-generated method stub
 		Map<String, Integer> map=new HashMap<>();
+		
 		map.put("ref", ref);
 		map.put("step",step);
+		
 		
 		cityMapper.updateStep(map);
 	}

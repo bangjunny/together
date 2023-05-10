@@ -30,7 +30,7 @@ body, body * {
 </head>
 <body>
 <!-- 게시판 명 -->
-	<h1>지역 게시판 ${ref }</h1>
+	<h1>지역 게시판</h1>
 	<!-- 해당 글 정보 영역 -->
 	<div style="width: 500px; background-color: #ddd; margin: 0 auto; margin-top: 40px;">
 		<h3>${dto.subject}</h3>
@@ -109,8 +109,9 @@ body, body * {
 		<br>
 		<div>
 			<!-- 댓글 출력 영역 -->
-			<table>
 			<caption align="top" style="width: 500px">총 ${totalComment}개의 댓글</caption>
+			<table style="border : 1px solid black;width:498px;">
+			
 			<hr>
 			<!-- 댓글이 없는 경우 -->
 			<c:if test="${totalComment=='0'}">
@@ -121,18 +122,33 @@ body, body * {
 			<!-- 댓글이 있는 경우 -->
 			<c:if test="${totalComment!='0' }">
 			<c:forEach var="listcomment" items="${listcomment}">
-				<tr>
-				<c:forEach begin="1" end="${listcomment.depth}">
+				<tr style="border: 1px solid black;">				
+					<td>
+					<c:forEach begin="1" end="${listcomment.depth}">
 					&nbsp;&nbsp;
-				</c:forEach>
-					<td>${listcomment.uname}</td>
-				</tr>
-				<tr>
-					<td>${listcomment.recontent}</td>
+					</c:forEach>
+					<c:if test="${listcomment.step!='0' }">
+					<i class="bi bi-arrow-return-right"></i>
+					</c:if>
+					${listcomment.uname}
+					</td>
 					<td style="float:right">${listcomment.rewriteday}</td>
 				</tr>
 				<tr>
-					<td colspan="2"><button id="addComment" style="float:right">답글</button></td>
+					<td>
+					<c:forEach begin="1" end="${listcomment.depth}">
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					</c:forEach>
+					${listcomment.recontent}
+					</td>
+					
+				</tr>
+				<tr>
+					<td colspan="2">
+					<button id="deleteComment" style="float:right">삭제</button>
+					<button id="updateComment" style="float:right">수정</button>
+					<button id="addComment" style="float:right">답글</button>
+					</td>
 				</tr>
 				<tr>
 				<!-- 답글 입력 영역 -->
@@ -148,10 +164,11 @@ body, body * {
 						
 						<div id="recontent" style="display: none;" >
 							<textarea class="form-control" rows="5" name="recontent"
-							style="height: 100px; resize: none; width: 498px;"
+							style="height: 100px; resize: none; width: 494px;"
 							placeholder="내용을 입력해주세요"></textarea>
 							<button type="submit" class="btn btn-primary btn-sm"
-							style="float: right; margin-right: 30px;">입력</button>
+							id="submit" style="float: right; margin-right: 30px;">입력</button>
+						
 						</div>
 					</form>
 					</td>
@@ -204,6 +221,7 @@ body, body * {
 	        $(this).parent().parent().next().find("#recontent").css("display", "none");
 	    }
 	});
+	
 	
 </script>
 </html>

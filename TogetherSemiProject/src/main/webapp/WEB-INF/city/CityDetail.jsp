@@ -111,7 +111,6 @@ body, body * {
 			<!-- 댓글 출력 영역 -->
 			<caption align="top" style="width: 500px">총 ${totalComment}개의 댓글</caption>
 			<table style="border : 1px solid black;width:700px;">
-			
 			<hr>
 			<!-- 댓글이 없는 경우 -->
 			<c:if test="${totalComment=='0'}">
@@ -216,8 +215,7 @@ body, body * {
 			</div>
 		</div>
 	</div>
-	
-	</div>
+
 </body>
 <script type="text/javascript">
 	$(document).on("click", "#delbtn", function() {

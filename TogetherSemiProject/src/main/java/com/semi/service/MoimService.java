@@ -88,11 +88,12 @@ public class MoimService implements MoimServiceInter {
 	}
 
 	@Override
-	public List<MoimDto> getCategoryPagingList(int start, int perpage) {
+	public List<MoimDto> getCategoryPagingList(int start, int perpage, String category) {
 		// TODO Auto-generated method stub
-		Map<String, Integer> map=new HashMap<>();
+		Map<String, Object> map=new HashMap<>();
 		map.put("start", start);
 		map.put("perpage", perpage);
+		map.put("category", category);
 		return moimMapper.getCategoryPagingList(map);
 	}
 
@@ -141,9 +142,16 @@ public class MoimService implements MoimServiceInter {
 	}
 
 	@Override
+	public int getCategoryCount(String category) {
+		// TODO Auto-generated method stub
+		return moimMapper.getCategoryCount(category);
+	}
+	
+	@Override
 	public List<Map<String, Object>> getGaipmemberList(int mnum) {
 		
 		return moimMapper.getGaipmemberList(mnum);
+
 	}
 
 

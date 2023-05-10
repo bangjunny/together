@@ -11,6 +11,7 @@ import com.semi.dto.MoimDto;
 public interface MoimMapper {
 	public int getMaxNum();
 	public int getTotalCount();
+	public int getCategoryCount(String category);
 	public void insertMoim(MoimDto dto);
 	public List<MoimDto> getPagingList(Map<String, Integer> map);//map:start,perpage
 	public void updateJjimcount(Map<String, Integer> map);//unum, mnum
@@ -19,7 +20,7 @@ public interface MoimMapper {
 	public void updateMoim(MoimDto dto);
 	public int overlappedMname(MoimDto dto);
 	public int pressJjim(Map<String, Object> map);//unum, mnum
-	public List<MoimDto> getCategoryPagingList(Map<String, Integer> map);
+	public List<MoimDto> getCategoryPagingList(Map<String, Object>map);
 	public void deleteJjim(Map<String, Object> map);
 	public void moimGaip(Map<String, Object> map);
 	public void deleteGaip(Map<String, Object> map);

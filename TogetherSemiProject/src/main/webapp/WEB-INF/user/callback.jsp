@@ -24,73 +24,74 @@
 </head>
 <body>
 
-	<script type="text/javascript">
-		var naver_id_login = new naver_id_login("eeKSBaviQtr4I8frMTNN", "http://localhost:9000/user/callback");
-		
-		// 접근 토큰 값 출력
-		//alert(naver_id_login.oauthParams.access_token);
-		
-		// 네이버 사용자 프로필 조회
-		naver_id_login.get_naver_userprofile("naverSignInCallback()");
-		
-		// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-		function naverSignInCallback() {
-			
-			const email = naver_id_login.getProfileData('email');
-			const name = naver_id_login.getProfileData('name');
-			const gender = naver_id_login.getProfileData('gender');
-			const birthday = naver_id_login.getProfileData('birthday');
-			// var birthyear = naver_id_login.getProfileData('birthyear');
-			// var mobile = naver_id_login.getProfileData('mobile');
-			
-			//alert(email);
-			//alert(name);
-			//alert(gender);
-			//alert(birthday);
-			//alert(birthyear);
-			//alert(mobile);
-			
-			console.log(email);
-			console.log(name);
-			console.log(gender);
-			console.log(birthday);
-			// console.log(birthyear);
-			// console.log(mobile);
-			
-		$.ajax({
-				type: "get",
-				async: false,
-				url: "emailCheck",
-				data:{email:email},
-				success: function(data){
-					if(data == 0 && email!=''){
-						
-						location.href= "./naverjoin?email=" + email 
-						+ "&gender=" + gender
-						+ "&birthday=" + birthday 
-						+ "&name=" + name;
-					}
-					else{
-						$.ajax({
-							type: "get",
-							url: "otherlogin",
-							dataType:"text",
-							data :{"email":email},
-							success: function(){
-								//alert("성공");
-								location.href="/";
-							}
-						});
-					}
-				}
-			});
-		}
-		
-	</script>
+   <script type="text/javascript">
+      var naver_id_login = new naver_id_login("eeKSBaviQtr4I8frMTNN", "http://localhost:9000/user/callback");
+      
+      // 접근 토큰 값 출력
+      //alert(naver_id_login.oauthParams.access_token);
+      
+      // 네이버 사용자 프로필 조회
+      naver_id_login.get_naver_userprofile("naverSignInCallback()");
+      
+      // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+      function naverSignInCallback() {
+         
+         const email = naver_id_login.getProfileData('email');
+         const name = naver_id_login.getProfileData('name');
+         const gender = naver_id_login.getProfileData('gender');
+         const birthday = naver_id_login.getProfileData('birthday');
+         // var birthyear = naver_id_login.getProfileData('birthyear');
+         // var mobile = naver_id_login.getProfileData('mobile');
+         
+         //alert(email);
+         //alert(name);
+         //alert(gender);
+         //alert(birthday);
+         //alert(birthyear);
+         //alert(mobile);
+         
+         console.log(email);
+         console.log(name);
+         console.log(gender);
+         console.log(birthday);
+         // console.log(birthyear);
+         // console.log(mobile);
+         
+      $.ajax({
+            type: "get",
+            async: false,
+            url: "emailCheck",
+            data:{email:email},
+            success: function(data){
+               if(data == 0 && email!=''){
+                  
+                  location.href= "./naverjoin?email=" + email 
+                  + "&gender=" + gender
+                  + "&birthday=" + birthday 
+                  + "&name=" + name;
+               }
+               else{
+                  
+                  $.ajax({
+                     type: "get",
+                     url: "otherlogin",
+                     dataType:"text",
+                     data :{"email":email},
+                     success: function(){
+                        //alert("성공");
+                        location.href="/";
+                     }
+                  });
+   
+               }
+            }
+         });
+      }
+      
+   </script>
 
 </body>
 </html>
-
 
 
 

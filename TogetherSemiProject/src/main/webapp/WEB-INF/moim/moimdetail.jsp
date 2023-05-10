@@ -129,7 +129,6 @@
 		</c:otherwise>
 		</c:choose>
 		</div>
-		
 		<c:choose>
 		<c:when test="${!pressGaipChk}">		
 			<div id="gaip_btn">

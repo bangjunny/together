@@ -11,7 +11,7 @@ import com.semi.dto.UserDto;
 
 @Mapper
 public interface CityMapper {
-	public int getTotalCountCity();
+	public int getTotalCountCity(String city1, String city2);
 	public List<CityBoardDto> getCityList(String city1, String city2);
 
 	public CityBoardDto getDetailbycbnum(int cbnum);
@@ -29,7 +29,7 @@ public interface CityMapper {
 	public void addComment(CbReBoardDto dto);
 	public CbReBoardDto getCommentByRenum(int renum);
 	public void deleteCityboard(int cbnum);
-	public List<CityBoardDto> getPagingList(Map<String, Integer> map);
+
 	/**
 	public void insertCity(CityBoardDto dto);
 	public void updateCity(CityBoardDto dto);	

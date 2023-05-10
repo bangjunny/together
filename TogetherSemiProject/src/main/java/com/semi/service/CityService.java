@@ -19,9 +19,9 @@ public class CityService implements CityServiceInter{
 	private CityMapper cityMapper;
 
 	@Override
-	public int getTotalCountCity() {
+	public int getTotalCountCity(String city1, String city2) {
 		// TODO Auto-generated method stub
-		return cityMapper.getTotalCountCity();
+		return cityMapper.getTotalCountCity(city1, city2);
 	}
 
 
@@ -153,15 +153,5 @@ public class CityService implements CityServiceInter{
 	public void deleteCityboard(int cbnum) {
 		// TODO Auto-generated method stub
 		cityMapper.deleteCityboard(cbnum);	
-	}
-
-
-	@Override
-	public List<CityBoardDto> getPagingList(int start, int perpage) {
-		// TODO Auto-generated method stub
-		Map<String, Integer> map=new HashMap<>();
-		map.put("start", start);
-		map.put("perpage", perpage);
-		return cityMapper.getPagingList(map);
 	}
 }

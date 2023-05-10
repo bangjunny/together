@@ -122,14 +122,21 @@ body, body * {
 			<!-- 댓글이 있는 경우 -->
 			<c:if test="${totalComment!='0' }">
 			<c:forEach var="listcomment" items="${listcomment}">
-				<tr>
-				<c:forEach begin="1" end="${listcomment.depth}">
-					&nbsp;&nbsp;
-				</c:forEach>
-					<td>${listcomment.uname}</td>
+				<tr>				
+					<td>
+						<c:forEach begin="1" end="${listcomment.depth}">
+						&nbsp;&nbsp;
+						</c:forEach>
+						${listcomment.uname}
+					</td>
 				</tr>
 				<tr>
-					<td>${listcomment.recontent}</td>
+					<td>
+					<c:forEach begin="1" end="${listcomment.depth}">
+						&nbsp;&nbsp;&nbsp;
+					</c:forEach>
+					${listcomment.recontent}
+					</td>
 					<td style="float:right">${listcomment.rewriteday}</td>
 				</tr>
 				<tr>

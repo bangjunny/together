@@ -8,7 +8,7 @@ import com.semi.dto.CityBoardDto;
 import com.semi.dto.UserDto;
 
 public interface CityServiceInter {
-	public int getTotalCountCity();
+	public int getTotalCountCity(String city1, String city2);
 	public CityBoardDto getDetailbycbnum(int cbnum);
 	public UserDto getDetailbyunum(int unum);
 	public void insertCity(CityBoardDto dto);
@@ -25,7 +25,7 @@ public interface CityServiceInter {
 	public void addComment(CbReBoardDto dto);
 	public CbReBoardDto getCommentByRenum(int renum);
 	public void deleteCityboard(int cbnum);
-	public List<CityBoardDto> getPagingList(int start, int perpage);
+
 	/**
 	public void updateCity(CityBoardDto dto);
 	**/

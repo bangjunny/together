@@ -60,7 +60,7 @@
 		$.ajax({
 				type: "get",
 				async: false,
-				url: "http://localhost:9000/user/emailCheck",
+				url: "emailCheck",
 				data:{email:email},
 				success: function(data){
 					if(data == 0 && email!=''){
@@ -72,8 +72,17 @@
 					}
 					else{
 						
-						
-						location.href="/";
+						$.ajax({
+							type: "get",
+							url: "otherlogin",
+							dataType:"text",
+							data :{"email":email},
+							success: function(){
+								//alert("성공");
+								location.href="/";
+							}
+						});
+	
 					}
 				}
 			});

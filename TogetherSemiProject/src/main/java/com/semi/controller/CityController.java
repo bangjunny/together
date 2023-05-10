@@ -300,29 +300,38 @@ public class CityController {
 	}
 
 	@PostMapping("/newcomment")
-	public String newcomment(CbReBoardDto dto) {
+	public String newcomment(
+			int cbnum,
+			CbReBoardDto dto,
+			Model model)
+	{
 		cityService.newComment(dto);
-
-		return "redirect:/main/city/CityDetail";
+		
+		model.addAttribute("cbnum",cbnum);
+		
+		return "redirect:/city/detail?cbnum="+dto.getCbnum();
 	}
 
 	@PostMapping("/addcomment")
-	public String addcomment(CbReBoardDto dto, Model model) {
-		CbReBoardDto rdto = new CbReBoardDto();
-		int renum = dto.getRenum();
-		CbReBoardDto crdto = cityMapper.getCommentByRenum(renum);
-		int ref = crdto.getRef();
-		int step = crdto.getStep();
-		int depth = crdto.getDepth();
-
-		System.out.println("sfff" + depth);
-		model.addAttribute("ref", ref);
-		model.addAttribute("step", step);
-		model.addAttribute("depth", depth);
-
+	public String addcomment(
+			CbReBoardDto dto,
+			Model model)
+	{
+		CbReBoardDto rdto=new CbReBoardDto();
+		int renum=dto.getRenum();
+		CbReBoardDto crdto=cityMapper.getCommentByRenum(renum);
+		int ref=crdto.getRef();
+		int step=crdto.getStep();
+		int depth=crdto.getDepth();
+		
+		//System.out.println("sfff"+depth);
+		model.addAttribute("ref",ref);
+		model.addAttribute("step",step);
+		model.addAttribute("depth",depth);
+		
 		cityService.addComment(dto);
-
-		return "redirect:/main/city/CityDetail";
+		
+		return "redirect:/city/detail?cbnum="+dto.getCbnum();
 	}
 
 	@GetMapping("/newPost")

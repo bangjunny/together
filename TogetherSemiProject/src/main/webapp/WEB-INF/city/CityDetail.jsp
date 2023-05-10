@@ -30,16 +30,15 @@ body, body * {
 </head>
 <body>
 <!-- 게시판 명 -->
-	<h1>지역 게시판 ${ref }</h1>
+	<h1>지역 게시판</h1>
 	<!-- 해당 글 정보 영역 -->
-	<div
-		style="width: 500px; background-color: #ddd; margin: 0 auto; margin-top: 40px;">
-		<h3>제목${dto.subject}</h3>
-		<h6 style="float: right;">추천수${dto.cblike}</h6>
-		<h6 style="float: right;">조회수${dto.readcount}&nbsp;</h6>
+	<div style="width: 500px; background-color: #ddd; margin: 0 auto; margin-top: 40px;">
+		<h3>${dto.subject}</h3>
+		<h6 style="float: right;"><b>추천수</b> ${dto.cblike}</h6>
+		<h6 style="float: right;"><b>조회수</b> ${dto.readcount}&nbsp;</h6>
 
-		<h6 style="float: left">작성자${dto.uname}</h6>
-		<h6>작성일${dto.cbwriteday }</h6>
+		<h6 style="float: left"><b>작성자</b> ${dto.uname}&nbsp;</h6>
+		<h6><b>작성일</b> ${dto.cbwriteday }</h6>
 
 		<hr>
 		<div class="cbcontent" align="center">
@@ -56,7 +55,7 @@ body, body * {
 		</div>
 		<br>	
 		<pre>
-        게시글 영역${dto.cbcontent}
+        ${dto.cbcontent}
     	</pre>
 		<br> <br> <br> <i class="bi bi-hand-thumbs-up"
 			style="font-size: 40px; margin-left: 200px"></i> <i
@@ -95,9 +94,9 @@ body, body * {
 		<hr>
 		<!-- 댓글 입력 영역 -->
 		<form action="newcomment" method="post" id="newcomment">
-			<input name="unum" value="${udto.unum}">
-			<input name="uname" value="${udto.uname}">
-			<input name="cbnum" value="${dto.cbnum}">
+			<input type="hidden" name="unum" value="${udto.unum}">
+			<input type="hidden" name="uname" value="${udto.uname}">
+			<input type="hidden" name="cbnum" value="${dto.cbnum}">
 			<!-- 댓글 입력 창 -->
 			<div class="mb-3 mt-3">
 				<textarea class="form-control" rows="5" id="content" name="recontent"
@@ -110,8 +109,9 @@ body, body * {
 		<br>
 		<div>
 			<!-- 댓글 출력 영역 -->
-			<table>
 			<caption align="top" style="width: 500px">총 ${totalComment}개의 댓글</caption>
+			<table style="border : 1px solid black;width:498px;">
+			
 			<hr>
 			<!-- 댓글이 없는 경우 -->
 			<c:if test="${totalComment=='0'}">
@@ -122,18 +122,33 @@ body, body * {
 			<!-- 댓글이 있는 경우 -->
 			<c:if test="${totalComment!='0' }">
 			<c:forEach var="listcomment" items="${listcomment}">
-				<tr>
-				<c:forEach begin="1" end="${listcomment.depth}">
+				<tr style="border: 1px solid black;">				
+					<td>
+					<c:forEach begin="1" end="${listcomment.depth}">
 					&nbsp;&nbsp;
-				</c:forEach>
-					<td>${listcomment.uname}</td>
-				</tr>
-				<tr>
-					<td>${listcomment.recontent}</td>
+					</c:forEach>
+					<c:if test="${listcomment.step!='0' }">
+					<i class="bi bi-arrow-return-right"></i>
+					</c:if>
+					${listcomment.uname}
+					</td>
 					<td style="float:right">${listcomment.rewriteday}</td>
 				</tr>
 				<tr>
-					<td colspan="2"><button id="addComment" style="float:right">답글</button></td>
+					<td>
+					<c:forEach begin="1" end="${listcomment.depth}">
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					</c:forEach>
+					${listcomment.recontent}
+					</td>
+					
+				</tr>
+				<tr>
+					<td colspan="2">
+					<button id="deleteComment" style="float:right">삭제</button>
+					<button id="updateComment" style="float:right">수정</button>
+					<button id="addComment" style="float:right">답글</button>
+					</td>
 				</tr>
 				<tr>
 				<!-- 답글 입력 영역 -->
@@ -143,12 +158,17 @@ body, body * {
 						<input type="hidden" name="unum" value="${udto.unum}">
 						<input type="hidden" name="uname" value="${udto.uname}">
 						<input type="hidden" name="cbnum" value="${dto.cbnum}">
+						<input type="hidden" name="ref" value="${listcomment.ref}">
+						<input type="hidden" name="step" value="${listcomment.step}">
+						<input type="hidden" name="depth" value="${listcomment.depth}">
+						
 						<div id="recontent" style="display: none;" >
 							<textarea class="form-control" rows="5" name="recontent"
-							style="height: 100px; resize: none; width: 498px;"
+							style="height: 100px; resize: none; width: 494px;"
 							placeholder="내용을 입력해주세요"></textarea>
 							<button type="submit" class="btn btn-primary btn-sm"
-							style="float: right; margin-right: 30px;">입력</button>
+							id="submit" style="float: right; margin-right: 30px;">입력</button>
+						
 						</div>
 					</form>
 					</td>
@@ -201,6 +221,7 @@ body, body * {
 	        $(this).parent().parent().next().find("#recontent").css("display", "none");
 	    }
 	});
+	
 	
 </script>
 </html>

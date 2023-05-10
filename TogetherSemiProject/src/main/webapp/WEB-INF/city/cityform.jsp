@@ -106,6 +106,7 @@
 			reader.readAsDataURL($(this)[0].files[0]);
 		}
 	});
+	$("#")
 </script>
 </body>
 

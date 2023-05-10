@@ -14,6 +14,10 @@ public interface MoimServiceInter {
 	public MoimDto getData(int mnum);
 	public void deleteMoim(int mnum);
 	public boolean pressJjim(int unum, int mnum);
+	public void deleteJjim(int unum, int mnum);
+	public void moimGaip(int unum, int mnum);
+	public void deleteGaip(int unum, int mnum);
+	public boolean pressGaip(int unum, int mnum);
 	public void updateMoim(MoimDto dto);
 	public int overlappedMname(MoimDto dto);
 	public List<MoimDto> getCategoryPagingList(int start, int perpage);

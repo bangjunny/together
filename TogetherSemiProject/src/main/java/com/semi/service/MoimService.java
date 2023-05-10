@@ -80,13 +80,10 @@ public class MoimService implements MoimServiceInter {
 	public boolean pressJjim(int unum, int mnum) {
 	
 		Map<String, Object> map = new HashMap<>();
-		map.put("unum", unum);
 		map.put("mnum", mnum);
-		System.out.println(map);
+		map.put("unum", unum);
 		
 		boolean pressChk = moimMapper.pressJjim(map)==0?false:true;
-		System.out.println(pressChk);
-		
 		return pressChk;
 	}
 
@@ -97,6 +94,49 @@ public class MoimService implements MoimServiceInter {
 		map.put("start", start);
 		map.put("perpage", perpage);
 		return moimMapper.getCategoryPagingList(map);
+
+  @Override
+	public void deleteJjim(int unum, int mnum) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("mnum", mnum);
+		map.put("unum", unum);
+		
+		moimMapper.deleteJjim(map);
+		
+	}
+
+	@Override
+	public void moimGaip(int unum, int mnum) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("mnum", mnum);
+		map.put("unum", unum);
+		
+		moimMapper.moimGaip(map);
+		
+	}
+
+	@Override
+	public void deleteGaip(int unum, int mnum) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("mnum", mnum);
+		map.put("unum", unum);
+		
+		moimMapper.deleteGaip(map);
+		
+	}
+
+	@Override
+	public boolean pressGaip(int unum, int mnum) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("mnum", mnum);
+		map.put("unum", unum);
+		System.out.println(map);
+		System.out.println("pressGaip service");
+		
+		boolean pressGaipChk = moimMapper.pressGaip(map)==0?false:true;
+		return pressGaipChk;
 	}
 
 

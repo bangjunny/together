@@ -94,8 +94,9 @@ public class MoimService implements MoimServiceInter {
 		map.put("start", start);
 		map.put("perpage", perpage);
 		return moimMapper.getCategoryPagingList(map);
+	}
 
-  @Override
+	@Override
 	public void deleteJjim(int unum, int mnum) {
 		
 		Map<String, Object> map = new HashMap<>();

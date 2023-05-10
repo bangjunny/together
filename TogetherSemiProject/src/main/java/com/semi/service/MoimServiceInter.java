@@ -23,5 +23,4 @@ public interface MoimServiceInter {
 	public int overlappedMname(MoimDto dto);
 	public List<MoimDto> getCategoryPagingList(int start, int perpage, String category);
 	public List<Map<String, Object>> getGaipmemberList(int mnum);
-
 }

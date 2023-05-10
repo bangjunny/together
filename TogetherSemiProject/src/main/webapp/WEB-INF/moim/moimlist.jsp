@@ -272,10 +272,17 @@
         <label><input type="checkbox" name="category" value="자전거">자전거</label>
         <label><input type="checkbox" name="category" value="클라이밍">클라이밍</label>
         <br>
+<<<<<<< HEAD
+        <input type="checkbox" name="categorys" value="탁구">탁구        
+        <input type="checkbox" name="categorys" value="러닝/마라톤">러닝/마라톤
+        <input type="checkbox" name="categorys" value="골프">골프
+        <input type="checkbox" name="categorys" value="볼링">볼링
+=======
         <label><input type="checkbox" name="category" value="탁구">탁구</label>
         <label><input type="checkbox" name="category" value="러닝/마라톤">러닝/마라톤</label>
         <label><input type="checkbox" name="category" value="골프">골프</label>
         <label><input type="checkbox" name="category" value="볼링">볼링</label>
+>>>>>>> refs/heads/main
       </div>
 
       <!-- Modal footer -->

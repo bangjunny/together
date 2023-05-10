@@ -40,7 +40,6 @@ public class MoimController {
    private MoimService moimService;
    
    @GetMapping("/moimlist")
-
    private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model, String category, HttpSession session)
    {   
 	   		// 게시물의 총 글 갯수
@@ -91,8 +90,6 @@ public class MoimController {
 	  //dto얻기
 	  MoimDto dto=moimService.getData(mnum);
 	  //model
-
-
 	  System.out.println("detail");
 	  if (session.getAttribute("unum") != null) {
 	  int unum = (int)session.getAttribute("unum");

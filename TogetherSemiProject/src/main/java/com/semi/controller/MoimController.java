@@ -69,7 +69,7 @@ public class MoimController {
 			no = totalCount - startNum;
 			// 각페이지에 필요한 게시글 db에 가져오기
 			//List<MoimDto> list = moimService.getCategoryPagingList(startNum, perPage, category);
-			List<MoimDto> list = moimService.getPagingList(startNum, perPage); 
+			List<MoimDto> list = moimService.getPagingList(startNum, perPage);
 			// model 저장
 			model.addAttribute("totalCount", totalCount);
 			model.addAttribute("categoryCount", categoryCount);

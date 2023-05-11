@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.semi.dto.MoimDto;
+import com.semi.dto.UserDto;
 import com.semi.mapper.MoimMapper;
+import com.semi.service.CityService;
 import com.semi.service.MoimService;
 
 import naver.cloud.NcpObjectStorageService;
@@ -30,6 +33,9 @@ public class MoimController {
 	@Autowired
 	MoimMapper moimMapper;
 	
+	@Autowired
+	CityService cityService;
+	
 	//버켓이름지정
 	private String bucketName="together-bucket-104";
 		
@@ -40,11 +46,26 @@ public class MoimController {
    private MoimService moimService;
    
    @GetMapping("/moimlist")
-   private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model, String category, HttpSession session)
-   {   
+   private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model, String category, HttpSession session,
+		   String city1,String city2)
+   			{   		   	       
+	   		
+	   		
+	   		if(session.getAttribute("unum")==null) {
+	   			int unum=0;
+	   			UserDto udto = cityService.getDetailbyunum(unum);
+	   			model.addAttribute("unum", unum);
+				model.addAttribute("udto", udto);
+	   		}else {
+	   			int unum=(int)session.getAttribute("unum");
+	   			UserDto udto = cityService.getDetailbyunum(unum);
+	   			model.addAttribute("unum", unum);
+				model.addAttribute("udto", udto);
+	   		}
+	      
 	   		// 게시물의 총 글 갯수
-			int totalCount = moimService.getTotalCount();
-			int categoryCount = moimService.getCategoryCount(category);
+			int totalCount = moimService.getTotalCount(category,city1,city2);
+			int categoryCount = moimService.getCategoryCount(category,city2);
 			
 			int totalPage;// 총페이지수
 			int perPage = 6;// 한페이지당 보여질 글의 갯수
@@ -67,18 +88,22 @@ public class MoimController {
 			// 각 글마다 출력할 글 번호(예: 10개 일 경우 1페이지 :10, 2페이지 :7....)
 			no = totalCount - startNum;
 			// 각페이지에 필요한 게시글 db에 가져오기
-			//List<MoimDto> list = moimService.getCategoryPagingList(startNum, perPage, category);
-			List<MoimDto> list = moimService.getPagingList(startNum, perPage);
+			List<MoimDto> clist = moimService.getCategoryPagingList(startNum, perPage, category, city2);
+			List<MoimDto> list = moimService.getPagingList(startNum, perPage, category, city1, city2);
 			// model 저장
 			model.addAttribute("totalCount", totalCount);
 			model.addAttribute("categoryCount", categoryCount);
 			model.addAttribute("list",list);
+			model.addAttribute("clist",clist);
 			model.addAttribute("startPage", startPage);
 			model.addAttribute("endPage", endPage);
 			model.addAttribute("totalPage", totalPage);
 			model.addAttribute("currentPage", currentPage);
 			model.addAttribute("no", no);
 			model.addAttribute("category", category);
+			model.addAttribute("city1",city1);
+			model.addAttribute("city2",city2);
+			
 			
    return "/main/moim/moimlist";
    }

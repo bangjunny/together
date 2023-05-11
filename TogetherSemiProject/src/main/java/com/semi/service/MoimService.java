@@ -23,9 +23,9 @@ public class MoimService implements MoimServiceInter {
    }
 
    @Override
-   public int getTotalCount() {
+   public int getTotalCount(String category, String city1, String city2) {
       // TODO Auto-generated method stub
-      return moimMapper.getTotalCount();
+      return moimMapper.getTotalCount(category, city1, city2);
    }
 
    @Override
@@ -35,11 +35,14 @@ public class MoimService implements MoimServiceInter {
    }
 
    @Override
-   public List<MoimDto> getPagingList(int start, int perpage) {
+   public List<MoimDto> getPagingList(int start, int perpage, String category, String city1, String city2) {
       // TODO Auto-generated method stub
-      Map<String, Integer> map=new HashMap<>();
+      Map<String, Object> map=new HashMap<>();
       map.put("start", start);
       map.put("perpage", perpage);
+      map.put("category", category);
+      map.put("city1", city1);
+      map.put("city2", city2);
       return moimMapper.getPagingList(map);
    }
 
@@ -88,12 +91,13 @@ public class MoimService implements MoimServiceInter {
    }
 
    @Override
-   public List<MoimDto> getCategoryPagingList(int start, int perpage, String category) {
+   public List<MoimDto> getCategoryPagingList(int start, int perpage, String category, String city2) {
       // TODO Auto-generated method stub
       Map<String, Object> map=new HashMap<>();
       map.put("start", start);
       map.put("perpage", perpage);
       map.put("category", category);
+      map.put("city2", city2);
       return moimMapper.getCategoryPagingList(map);
    }
 
@@ -142,9 +146,9 @@ public class MoimService implements MoimServiceInter {
    }
 
    @Override
-   public int getCategoryCount(String category) {
+   public int getCategoryCount(String category, String city2) {
       // TODO Auto-generated method stub
-      return moimMapper.getCategoryCount(category);
+      return moimMapper.getCategoryCount(category, city2);
    }
    
    @Override

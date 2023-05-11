@@ -19,7 +19,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <style>
 	body, body * {
-		font-family: 'NanumPenScript'
+		font-family: 'NanumPenScript';
 	}
 	a:link,a:visited,a:hover {
 		color: black;
@@ -27,7 +27,7 @@
 	}
 	div.moim {
 		width: 900px;
-		height:1100px;
+		height:14 00px;
 		margin-left:250px;
 		background-color:#ccc;
 	}
@@ -61,7 +61,33 @@
 	#jjim:hover{
 		cursor: pointer;
 	}
-
+	#gaipmemberlist{
+		width: 900px;
+		display: flex;
+	}
+	#gaipmember0{
+		width: 50%;
+		height: 500px;
+		border: 1px red solid;
+	}
+	#memberlist0{
+		width: 400px;
+		display: flex;
+	}
+	.memberinfo{
+		width: 300px;
+	}
+	.memberaccept{
+		width: 100px;
+		margin-left: 150px;
+	}
+	#gaipmember1{
+		width: 50%;
+		height: 500px;
+		border: 1px red solid;
+	}
+	
+	
 
 </style>
 </head>
@@ -81,7 +107,7 @@
 		모임인원:${dto.unum}명</span>
 		<br>
 		
-		<span style="float: left; color:black; font-size:16px;">모임장: ${dto.jang}</span>
+		<span style="float: left; color:black; font-size:16px;">모임장: ${sessionScope.uname}</span>
 		
 		<br>
 		</div>
@@ -114,46 +140,82 @@
 		</div>	
 		<hr>
 		
-		<div id="moim_resi_wrap">
-		<div id="jjim">
-		<c:choose>
-		<c:when test="${!pressChk}">		
-			<a class="jjim_btn" onclick="updateJjimcount();">
-				<i class="bi bi-heart"></i>
-			</a>
-		</c:when>			
-		<c:otherwise>
-			<a class="jjim_cancle" onclick="deleteJjim();">
-				<i class="bi bi-heart-fill"></i>
-			</a>	
-		</c:otherwise>
-		</c:choose>
+			<c:if test="${sessionScope.unum != dto.unum }">
+				<div id="moim_resi_wrap">
+					<div id="jjim">
+						<c:choose>
+							<c:when test="${!pressChk}">		
+								<a class="jjim_btn" onclick="updateJjimcount();">
+									<i class="bi bi-heart"></i>
+								</a>
+							</c:when>			
+							<c:otherwise>
+								<a class="jjim_cancle" onclick="deleteJjim();">
+									<i class="bi bi-heart-fill"></i>
+								</a>	
+							</c:otherwise>
+						</c:choose>
+					</div>
+					
+					
+			<c:choose>
+			<c:when test="${acceptChk == 1}">
+					<div>
+						<button type="button" onclick="deleteGaip();">모임탈퇴</button>
+					</div>
+			</c:when>
+				<c:when test="${!pressGaipChk}">		
+					<div id="gaip_btn">
+						<button type="button" onclick="moimGaip();">가입신청</button>
+					</div>
+				</c:when>			
+				<c:otherwise>
+						<div id="gaip_cancle">
+							<button type="button" onclick="deleteGaip();">가입대기</button>
+						</div>
+				</c:otherwise>
+			</c:choose>
+					
+			</div>	
+		</c:if>
+		<c:if test="${dto.unum == sessionScope.unum }">
+		<div id="gaipmemberlist">
+			<div id="gaipmember0">
+					<c:forEach items="${list }" var="standby">
+					<ul class="member_list0">
+						<c:if test="${standby.acceptcall == 0 }">
+						<li>
+							<div class="memberinfo" >
+								멤버 이름 : ${standby.uname } 멤버 성별 : ${standby.gender }
+							</div>
+							<div class="memberaccpet">
+								<a onclick="acceptGaip(${standby.unum });"><i class="bi bi-check2" style="cursor: pointer;"></i></a> /
+								<a onclick="deniedGaip(${standby.unum });"><i class="bi bi-x" style="cursor: pointer;"></i></a>
+							</div>
+						</li>
+						</c:if>
+					</ul>
+					</c:forEach>
+			</div>
+			<div id="gaipmember1">
+				<c:forEach items="${list }" var="pass">
+				<ul>
+					<c:if test="${pass.acceptcall == 1 }">
+					<li>	
+						멤버 이름 : ${pass.uname } / 멤버 성별 : ${pass.gender }
+					</li>	
+					</c:if>
+				</ul>	
+				</c:forEach>
+			</div>
 		</div>
-		<c:choose>
-		<c:when test="${!pressGaipChk}">		
-			<div id="gaip_btn">
-				<button type="button" onclick="moimGaip();">가입신청</button>
-			</div>
-		</c:when>			
-		<c:otherwise>
-				<div id="gaip_cancle">
-				<button type="button" onclick="deleteGaip();">가입대기</button>
-			</div>
-		</c:otherwise>
-		</c:choose>
-			
-		</div>	
-	</div>
-	<div id="gaipmember">
-		<c:forEach items="${list }" var="ga">
-			${ga.uname }
-			dwadaw
-		</c:forEach>
+		</c:if>
 	</div>
 	<script type="text/javascript">
-	function updateJjimcount(){
-		
 		const mnum = ${dto.mnum};
+		
+		
+	function updateJjimcount(){
 		const unum = ${sessionScope.unum};
 	
 	$.ajax({
@@ -176,10 +238,8 @@
 }
 	
 	function deleteJjim(){
-		
-		const mnum = ${dto.mnum};
 		const unum = ${sessionScope.unum};
-	
+		
 	$.ajax({
 		type:"get",
 		url:"deleteJjim",
@@ -198,10 +258,7 @@
 }
 	
 	function moimGaip(){
-
-		const mnum = ${dto.mnum};
 		const unum = ${sessionScope.unum};
-		
 	
 		  if (confirm("가입 신청을 하시겠습니까?")) {
 			    $.ajax({
@@ -226,9 +283,8 @@
 	
 	
 	function deleteGaip(){
-
-		const mnum = ${dto.mnum};
 		const unum = ${sessionScope.unum};
+
 		alert("가입 신청을 취소하시겠습니까?")
 	
 			    $.ajax({
@@ -248,8 +304,62 @@
 			    });
 			
 			}
-	</script>
 	
+	function acceptGaip(unum){
+	
+	$.ajax({
+		type:"get",
+		url:"acceptgaip",
+		dataType:"text",
+		   data: {
+			      mnum: mnum,
+			      unum: unum
+			    },
+		success:function(res){
+			if(res == "success") {
+				alert("가입 신청을 승인하셨습니다.");
+			} 
+		},
+	});	
+}
+	function acceptGaip(unum){
+		
+		$.ajax({
+			type:"get",
+			url:"acceptgaip",
+			dataType:"text",
+			   data: {
+				      mnum: mnum,
+				      unum: unum
+				    },
+			success:function(res){
+				if(res == "success") {
+					alert("가입 신청을 반려하셨습니다.");
+				} 
+			},
+		});	
+	}
+	function deniedGaip(unum){
+		
+		$.ajax({
+			type:"get",
+			url:"deniedgaip",
+			dataType:"text",
+			   data: {
+				      mnum: mnum,
+				      unum: unum
+				    },
+			success:function(res){
+				if(res == "success") {
+					alert("가입 신청을 반려하셨습니다.");
+				} 
+			},
+		});	
+	}
+	
+	
+	</script>
+
 	
 </body>
 </html>

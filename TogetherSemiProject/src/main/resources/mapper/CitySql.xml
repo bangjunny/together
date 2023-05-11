@@ -57,17 +57,20 @@
 	</delete>
 	
 	<select id="getTotalCountCity" parameterType="String" resultType="int">
-		select count(*) from city_board where city1=#{city1} and city2=#{city2}
+		select count(*) from city_board 
+		<if test="city1!='no'">
+		where city1=#{city1} and city2=#{city2}
+		</if>
 	</select>
+	
 	<select id="getCityPagingList" parameterType="Map" resultType="CityBoardDto">
-  		select * from city_board where city1=#{city1} and city2=#{city2} order by cbnum desc limit #{start}, #{perpage}
+  		select * from city_board
+  		<if test="city1!='no'">
+  		where city1=#{city1} and city2=#{city2}
+  		</if>
+  		order by cbnum desc limit #{start}, #{perpage}
   	</select>
-  	<select id="getAllTotalCountCity" resultType="int">
-  		select count(*) from city_board
-  	</select>
-  	<select id="getAllCityPagingList" parameterType="Map" resultType="CityBoardDto">
-  		select * from city_board order by cbnum desc limit #{start}, #{perpage}
-  	</select>
+
   	<update id="updateComment" parameterType="CbReBoardDto">
   		update cb_reboard set recontent=#{recontent} where renum=#{renum}
   	</update>

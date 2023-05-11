@@ -41,26 +41,17 @@ ${udto.uname }님이 로그인 중 입니다
 	<br>
 <h1>
 <c:choose>
-
-  <c:when test="${unum==0}"><!-- 비회원일때 -->
-    <c:choose>
-      <c:when test="${city1=='no'}">
-        <span class="city">지역 전체에 게시글이 총</span>
-        <span class="totalCount">${totalCount}</span>개 있습니다
-      </c:when>
-      <c:when test="${city1!='no'}">
-        <span class="city">${city1}의 ${city2}에 글이 총 </span>
-        <span class="totalCount">${totalCount}</span>개 있습니다
-      </c:when>
-    </c:choose>
+  <c:when test="${unum == 0 && city1 == 'no'}"><!-- 비회원일 때, 지역 전체 -->
+    <span class="city">지역 전체에 게시글이 총</span>
   </c:when>
-  
-  <c:otherwise><!-- 회원일때 -->
-      <span class="city">${city1}의 ${city2}에 글이 총 </span>
-      <span class="totalCount">${totalCount}</span>개 있습니다
+  <c:when test="${unum == 0 && city1 != 'no'}"><!-- 비회원일 때, 특정 지역 -->
+    <span class="city">${city1}의 ${city2}에 글이 총 </span>
+  </c:when>
+  <c:otherwise><!-- 회원일 때 -->
+    <span class="city">${city1}의 ${city2}에 글이 총 </span>
   </c:otherwise>
-  
 </c:choose>
+ <span class="totalCount">${totalCount}</span>개 있습니다
 </h1>
 <form action = "list" method="get">
 <label for="user_city">지역</label>

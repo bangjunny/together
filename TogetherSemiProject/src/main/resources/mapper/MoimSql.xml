@@ -4,24 +4,38 @@
 	<select id="getMaxNum" resultType="int">
 		select ifnull(max(mnum),0) from moim
 	</select>
-	<select id="getTotalCount" resultType="int">
+	<select id="getTotalCount" parameterType="String" resultType="int">
 		select count(*) from moim
-	</select>
-	<select id="getCategoryCount" parameterType="String" resultType="int">
-		select count(*) from moim where category=#{category}
+		<if test="category!=null and city1!=null and city2!=null">where category=#{category} and city1=#{city1} and city2=#{city2}</if>
+		<if test="category!=null and city1!=null and city2==null">where category=#{category} and city1=#{city1}</if>
+		<if test="category!=null and city1==null and city2==null">where category=#{category}</if>
+		<if test="category==null and city1!=null and city2!=null">where city1=#{city1} and city2=#{city2}</if>
+		<if test="category==null and city1!=null and city2==null">where city1=#{city1}</if>
 	</select>
 	<select id="getAllMoim" resultType="MoimDto">
 		select * from moim order by mnum asc
 	</select>
 	<insert id="insertMoim" parameterType="MoimDto">
-		insert into moim (mname,jang,mphoto,mcontent,city1,city2,category,open,createday) values
-		(#{mname},#{jang},#{mphoto},#{mcontent},#{city1},#{city2},#{category},#{open},now())
+		insert into moim (mname,unum,mphoto,mcontent,city1,city2,category,open,createday) values
+		(#{mname},#{unum},#{mphoto},#{mcontent},#{city1},#{city2},#{category},#{open},now())
 	</insert>
 	<select id="getPagingList" parameterType="Map" resultType="MoimDto">
-		select * from moim order by mnum desc limit #{start},#{perpage}
+		select * from moim 
+		<if test="category!=null and city1!=null and city2!=null">where category=#{category} and city1=#{city1} and city2=#{city2}</if>
+		<if test="category!=null and city1!=null and city2==null">where category=#{category} and city1=#{city1}</if>
+		<if test="category!=null and city1==null and city2==null">where category=#{category}</if>
+		<if test="category==null and city1!=null and city2!=null">where city1=#{city1} and city2=#{city2}</if>
+		<if test="category==null and city1!=null and city2==null">where city1=#{city1}</if>
+		order by mnum desc limit #{start},#{perpage}
 	</select>
-	<select id="getCategoryPagingList" parameterType="Map" resultType="MoimDto">
-		select * from moim where category=#{category} order by mnum desc limit #{start},#{perpage}
+	<select id="getMembersunPagingList" parameterType="Map" resultType="MoimDto">
+		SELECT moim.* FROM moim LEFT JOIN moimmember ON moim.mnum = moimmember.mnum 
+		<if test="category!=null and city1!=null and city2!=null">where moim.category=#{category} and moim.city1=#{city1} and moim.city2=#{city2}</if>
+		<if test="category!=null and city1!=null and city2==null">where moim.category=#{category} and moim.city1=#{city1}</if>
+		<if test="category!=null and city1==null and city2==null">where moim.category=#{category}</if>
+		<if test="category==null and city1!=null and city2!=null">where moim.city1=#{city1} and moim.city2=#{city2}</if>
+		<if test="category==null and city1!=null and city2==null">where moim.city1=#{city1}</if>
+		GROUP BY moim.mnum ORDER BY COUNT(moimmember.mnum) desc limit #{start},#{perpage}
 	</select>
 	<select id="getData" parameterType="int" resultType="MoimDto">
 		select * from moim where mnum=#{mnum}
@@ -58,20 +72,17 @@
 		select count(*) from moimmember where unum=#{unum} and mnum=#{mnum}
 	</select>
 	<select id="getGaipmemberList" parameterType="int" resultType="Map">
-		SELECT u.uname, u.gender, mm.acceptcall FROM user u JOIN moimmember mm ON u.unum=mm.unum where mnum=#{mnum}
+		SELECT u.uname, u.gender, u.unum, mm.acceptcall FROM user u JOIN moimmember mm ON u.unum=mm.unum where mnum=#{mnum}
+	</select>
+	<update id="acceptGaip" parameterType="Map">
+		update moimmember set acceptcall=1 where unum=#{unum} and mnum=#{mnum}
+	</update>
+	<delete id="deniedGaip" parameterType="Map">
+		delete from moimmember where unum=#{unum} and mnum=#{mnum}
+	</delete>
+	<select id="acceptChk" parameterType="Map" resultType="Integer">
+		select acceptcall from moimmember where unum=#{unum} and mnum=#{mnum}
 	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
 
 

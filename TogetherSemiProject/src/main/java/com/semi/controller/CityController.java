@@ -122,7 +122,8 @@ public class CityController {
 	public String detail(int cbnum, Model model, HttpSession session, @RequestParam(defaultValue = "0") int ref,
 			@RequestParam(defaultValue = "0") int step, @RequestParam(defaultValue = "0") int depth, String keyword) {
 
-    cityService.updateReadcount(cbnum);
+		cityService.updateReadcount(cbnum);
+    	List<CityPhotoDto> pdto = cityService.getPhoto(cbnum);
 		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
 		int unum = (int) session.getAttribute("unum");
 		UserDto udto = cityMapper.getDetailbyunum(unum);
@@ -136,11 +137,14 @@ public class CityController {
 		String nxtnum = cityService.nxtNum(dto);
 		String totalComment = cityService.getTotalComment(cbnum);
 		System.out.println("댓글 수" + totalComment);
+		String photocount = cityService.getPhotoCount(cbnum);
 
 		String city1 = dto.getCity1();
 		String city2 = dto.getCity2();
 
 		
+		model.addAttribute("photocount",photocount);
+		model.addAttribute("pdto",pdto);
 		model.addAttribute("rdto",rdto);
 		model.addAttribute("listcomment", listcomment);
 
@@ -149,10 +153,10 @@ public class CityController {
 		model.addAttribute("dto", dto);
 		model.addAttribute("nxtcontent", nxtcontent);
 		model.addAttribute("nxtnum", nxtnum);
-		System.out.println(nxtcontent);
+		//System.out.println(nxtcontent);
 		model.addAttribute("precontent", precontent);
 		model.addAttribute("prenum", prenum);
-		System.out.println(precontent);
+		//System.out.println(precontent);
 		model.addAttribute("totalCountCity", totalCountCity);
 		model.addAttribute("totalComment", totalComment);
 		model.addAttribute("totalrenum", totalrenum);
@@ -163,7 +167,8 @@ public class CityController {
 
 		return "/main/city/CityDetail";
 	}
-
+	
+	
 	@GetMapping("/cityform")
 	public String cityform(int unum, String city1, String city2, Model model) {
 		UserDto dto = cityService.getDetailbyunum(unum);

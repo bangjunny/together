@@ -94,6 +94,10 @@
 </div>
 <script type="text/javascript">
 	$("#myfile").change(function(){
+		$("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
+		$("#showimg1").attr("src",null);
+		$("#showimg2").attr("src",null);
+		
 		console.log("1:"+$(this)[0].files.length);
 		let cnt=$(this)[0].files.length;
 		for(i=0;i<$(this)[0].files.length;i++){
@@ -110,28 +114,30 @@
 			};
 		};
 		
+		
+		
 		for(i=0;i<$(this)[0].files.length;i++){
 			console.log("번호"+i)
 			if($(this)[0].files[0]){
-				if(i==0){
+				if(i==2){
 					var reader=new FileReader();
 					reader.onload=function(e){
-					$("#showimg0").attr("src",e.target.result);
-					$("#showimg1").attr("src",null);
-					$("#showimg2").attr("src",null);
+					$("#showimg2").attr("src",e.target.result);
 					}
 				}
 				else if(i==1){
 					var reader=new FileReader();
 					reader.onload=function(e){
 					$("#showimg1").attr("src",e.target.result);
-					$("#showimg2").attr("src",null);
+					
 					}
 				}
-				else if(i==2){
+				else if(i==0){
 					var reader=new FileReader();
 					reader.onload=function(e){
-					$("#showimg2").attr("src",e.target.result);
+					$("#showimg0").attr("src",e.target.result);
+					
+					
 					}
 				}
 				

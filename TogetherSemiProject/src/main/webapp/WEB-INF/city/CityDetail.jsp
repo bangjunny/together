@@ -41,18 +41,18 @@ body, body * {
 		<h6><b>작성일</b> ${dto.cbwriteday }</h6>
 
 		<hr>
-		<%--<div class="cbcontent" align="center">--%>
-<%--    <c:choose>--%>
-<%--        <c:when test="${dto.cbphoto==null}">--%>
-<%--            <!-- Result값이 있다면 실행할 로직 -->--%>
-<%--            <img class="cbcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">--%>
-<%--        </c:when>--%>
-<%--        <c:otherwise>--%>
-<%--            <!-- 그렇지 않다면 실행할 로직 -->--%>
-<%--            <img class="cbcontent_img" src="https://${imageUrl}/city/${dto.cbphoto}">--%>
-<%--        </c:otherwise>--%>
-<%--    </c:choose>--%>
-<%--</div>--%>
+			<c:if test="${photocount=='0'}">
+			<div class="cbcontent" align="center">
+            	<img id="photoarea" class="cbcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+    		</div>
+    		</c:if>
+    		<c:if test="${photocount!='0'}">
+    		<c:forEach var="pdto" items="${pdto}">
+    		<div class="cbcontent" align="center">
+            	<img id="photoarea" class="cbcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/city/${pdto.photo_idx}">
+    		</div>
+    	</c:forEach>
+    	</c:if>
 		<br>	
 		<pre>
         ${dto.cbcontent}
@@ -125,10 +125,10 @@ body, body * {
 				<td>
 				<c:forEach begin="1" end="${listcomment.depth}">
 					&nbsp;&nbsp;
-					</c:forEach>
-					<c:if test="${listcomment.step!='0' }">
-					<i class="bi bi-arrow-return-right"></i>
-					</c:if>
+				</c:forEach>
+				<c:if test="${listcomment.step!='0' }">
+				<i class="bi bi-arrow-return-right"></i>
+				</c:if>
 				삭제된 댓글입니다
 				</td>
 			</tr>	

@@ -48,9 +48,9 @@ public class CityController {
 		UserDto udto;
 		int unum;
 		
-		if(city2=="지역전체" && city2==null) {
-			city2="no";
-		}
+//		if(city2=="지역전체" && city2==null) {
+//			city2="no";
+//		}
 
 		if (session.getAttribute("unum") == null) { // 비회원일때
 			unum = 0;

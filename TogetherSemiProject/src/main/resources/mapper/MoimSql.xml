@@ -12,12 +12,6 @@
 		<if test="category==null and city1!=null and city2!=null">where city1=#{city1} and city2=#{city2}</if>
 		<if test="category==null and city1!=null and city2==null">where city1=#{city1}</if>
 	</select>
-	<select id="getCategoryCount" parameterType="String" resultType="int">
-		select count(*) from moim
-		<if test="category!=null and city2!=null">where category=#{category} and city2=#{city2}</if>
-		<if test="category!=null and city2==null">where category=#{category}</if>
-		<if test="category==null and city2!=null">where city2=#{city2}</if>
-	</select>
 	<select id="getAllMoim" resultType="MoimDto">
 		select * from moim order by mnum asc
 	</select>
@@ -34,11 +28,13 @@
 		<if test="category==null and city1!=null and city2==null">where city1=#{city1}</if>
 		order by mnum desc limit #{start},#{perpage}
 	</select>
-	<select id="getCategoryPagingList" parameterType="Map" resultType="MoimDto">
+	<select id="getUsersunPagingList" parameterType="Map" resultType="MoimDto">
 		select * from moim 
-		<if test="category!=null and city2!=null">where category=#{category} and city2=#{city2}</if>
-		<if test="category!=null and city2==null">where category=#{category}</if>
-		<if test="category==null and city2!=null">where city2=#{city2}</if>
+		<if test="category!=null and city1!=null and city2!=null">where category=#{category} and city1=#{city1} and city2=#{city2}</if>
+		<if test="category!=null and city1!=null and city2==null">where category=#{category} and city1=#{city1}</if>
+		<if test="category!=null and city1==null and city2==null">where category=#{category}</if>
+		<if test="category==null and city1!=null and city2!=null">where city1=#{city1} and city2=#{city2}</if>
+		<if test="category==null and city1!=null and city2==null">where city1=#{city1}</if>
 		order by mnum desc limit #{start},#{perpage}
 	</select>
 	<select id="getData" parameterType="int" resultType="MoimDto">

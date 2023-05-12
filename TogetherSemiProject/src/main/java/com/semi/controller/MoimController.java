@@ -65,7 +65,6 @@ public class MoimController {
 	      
 	   		// 게시물의 총 글 갯수
 			int totalCount = moimService.getTotalCount(category,city1,city2);
-			int categoryCount = moimService.getCategoryCount(category,city2);
 			
 			int totalPage;// 총페이지수
 			int perPage = 6;// 한페이지당 보여질 글의 갯수
@@ -87,14 +86,11 @@ public class MoimController {
 			startNum = (currentPage - 1) * perPage;
 			// 각 글마다 출력할 글 번호(예: 10개 일 경우 1페이지 :10, 2페이지 :7....)
 			no = totalCount - startNum;
-			// 각페이지에 필요한 게시글 db에 가져오기
-			List<MoimDto> clist = moimService.getCategoryPagingList(startNum, perPage, category, city2);
+			// 각페이지에 필요한 게시글 db에 가져오기			
 			List<MoimDto> list = moimService.getPagingList(startNum, perPage, category, city1, city2);
 			// model 저장
 			model.addAttribute("totalCount", totalCount);
-			model.addAttribute("categoryCount", categoryCount);
 			model.addAttribute("list",list);
-			model.addAttribute("clist",clist);
 			model.addAttribute("startPage", startPage);
 			model.addAttribute("endPage", endPage);
 			model.addAttribute("totalPage", totalPage);

@@ -5,13 +5,14 @@ import java.util.Map;
 
 import com.semi.dto.CbReBoardDto;
 import com.semi.dto.CityBoardDto;
+import com.semi.dto.CityPhotoDto;
 import com.semi.dto.UserDto;
 
+
+
 public interface CityServiceInter {
-	public int getTotalCountCity(String city1, String city2);//특정지역갯수
-	public List<CityBoardDto> getCityPagingList(int start, int perpage, String city1, String city2);//특정지역리스트
-	public int getAllTotalCountCity();//전체지역갯수
-	public List<CityBoardDto> getAllCityPagingList(int start, int perpage);//전체지역리스트
+	public int getTotalCountCity(String city1, String city2, String keyword);//특정지역갯수
+	public List<CityBoardDto> getCityPagingList(int start, int perpage, String city1, String city2, String keyword);//특정지역리스트
 	
 	public CityBoardDto getDetailbycbnum(int cbnum);
 	public UserDto getDetailbyunum(int unum);
@@ -31,6 +32,9 @@ public interface CityServiceInter {
 	public void deleteCityboard(int cbnum);
 	public void updateComment(CbReBoardDto dto);
 	public void deleteComment(int renum);
+	public void updateReadcount(int cbnum);
+	public void newCityPhoto(CityPhotoDto dto);
+	public List<String> getAllPhoto(int cbnum);
 	/**
 	public void updateCity(CityBoardDto dto);
 	**/

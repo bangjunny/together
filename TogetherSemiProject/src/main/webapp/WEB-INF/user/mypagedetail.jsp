@@ -88,11 +88,20 @@ function list()
 }
 </script>
 <body>
-<div>
-   <b>찜한 모임 목록 보여주기</b>
-  <%@ include file="myjjimlist.jsp" %>
-</div>
 
+
+<div>
+	   <c:choose>
+        <c:when test="${not empty jjimList}">
+             <c:forEach var="j" items="${jjimList}">
+                <h2>내가 찜한 모임 이름 :  ${j.mname}</h2>
+              </c:forEach>
+        </c:when>
+        <c:otherwise>
+          <p>찜한 목록이 없어요</p>
+        </c:otherwise>
+      </c:choose>  
+</div>
 <div class="container text-center">
   <div class="row">
     <div class="card col">
@@ -150,11 +159,6 @@ function list()
 			  <!-- 가입한 모임 목록 보여주기 -->
 			  나의 모임 리스트 출력하기
 			  <%@ include file="mypagemoimlist.jsp" %>
-			</div>
-			 <div>
-			  <!-- 가입한 모임 목록 보여주기 -->
-			  나의 모임 리스트 출력하기
-			  <%@ include file="./myjjimlist.jsp" %>
 			</div>
 		
     <br><br><br><br>

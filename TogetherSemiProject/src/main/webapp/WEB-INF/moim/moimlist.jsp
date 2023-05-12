@@ -70,7 +70,9 @@ ${udto.uname }님이 로그인 중 입니다
 	<div style="width: 900px;">			
 		<table class="table">
 		<tr><td colspan="3">
-		<h2 align="center">모임리스트</h2><br><h4 align="right">${city1} ${city2} ${category} 모임이 총 ${totalCount}개 있습니다.</h4>
+		<h2 align="center">모임리스트</h2><button type="button" class="btn btn-success" onclick="checkCreate(event)">만들기</button>
+		<br>
+		<h4 align="right">${city1} ${city2} ${category} 모임이 총 ${totalCount}개 있습니다.</h4>
 		</td></tr>
 				<tr>
 					<td style="width:450px;">					
@@ -815,8 +817,21 @@ $(function() {
 	    alert('로그인을 해주세요.');
 	    event.preventDefault(); // 링크 이동을 막습니다.
 	    location.href="/user/login"
-	  }
+	  }	  
 	}
+	
+	function checkCreate(event) {
+		  // 현재 사용자의 세션에서 unum 값을 가져옵니다.
+		  //const unum = sessionStorage.getItem('unum');
+		  // unum 값이 null인 경우에만 alert을 호출합니다.
+		  if (${unum} === 0) {
+		    alert('로그인을 해주세요.');
+		    event.preventDefault(); // 링크 이동을 막습니다.
+		    location.href="/user/login"
+		  }else{
+			  location.href="/moim/moimform"
+		  }
+		  }
 </script>
 </body>
 </html>

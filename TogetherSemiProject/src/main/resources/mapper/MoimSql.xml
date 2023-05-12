@@ -22,8 +22,8 @@
 		select * from moim order by mnum asc
 	</select>
 	<insert id="insertMoim" parameterType="MoimDto">
-		insert into moim (mname,jang,mphoto,mcontent,city1,city2,category,open,createday) values
-		(#{mname},#{jang},#{mphoto},#{mcontent},#{city1},#{city2},#{category},#{open},now())
+		insert into moim (mname,unum,mphoto,mcontent,city1,city2,category,open,createday) values
+		(#{mname},#{unum},#{mphoto},#{mcontent},#{city1},#{city2},#{category},#{open},now())
 	</insert>
 	<select id="getPagingList" parameterType="Map" resultType="MoimDto">
 		select * from moim 

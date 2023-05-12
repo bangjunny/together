@@ -28,6 +28,10 @@
 	
 	.olmessagef {color: red; font-style: Italic;}
 	.olmessaget {color: green; font-style: Italic;}
+	
+	#overlappedMname {
+		margin-top:10px;
+	}
 </style>
 </head>
 <script>
@@ -54,7 +58,8 @@ style="position: absolute;left:350px;top:0px; width: 200px; height:200px; border
 		<tr>
 			<td style="width:100px;">모임장</td>
 			<td>
-				<input type="text" class="form-control" name="jang" required="required" placeholder="모임장 이름을 입력해주세요">
+				<input type="text" class="form-control" value="${uname}">
+				<input type="hidden" name="unum" value="${unum}">
 			</td>
 		</tr>
 		<tr>

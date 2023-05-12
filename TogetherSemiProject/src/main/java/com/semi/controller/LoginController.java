@@ -261,7 +261,7 @@ public class LoginController {
 	        return "redirect:mypage?result=error";
 	    }
 	}
-  
+
 	@GetMapping("/otherlogin")
 	@ResponseBody
 	public void otherLogin(@RequestParam String email,

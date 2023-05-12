@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.semi.dto.CbReBoardDto;
 import com.semi.dto.CityBoardDto;
+import com.semi.dto.CityPhotoDto;
 import com.semi.dto.UserDto;
 import com.semi.mapper.CityMapper;
 import com.semi.service.CityService;
@@ -120,12 +121,15 @@ public class CityController {
 	@GetMapping("/detail")
 	public String detail(int cbnum, Model model, HttpSession session, @RequestParam(defaultValue = "0") int ref,
 			@RequestParam(defaultValue = "0") int step, @RequestParam(defaultValue = "0") int depth, String keyword) {
+
+    cityService.updateReadcount(cbnum);
 		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
 		int unum = (int) session.getAttribute("unum");
 		UserDto udto = cityMapper.getDetailbyunum(unum);
 		int totalrenum = cityMapper.getReboardNum();
-
 		List<CbReBoardDto> listcomment = cityService.getCommentByCbnum(cbnum);
+		CbReBoardDto rdto=new CbReBoardDto();
+		
 		String precontent = cityService.preContent(dto);
 		String nxtcontent = cityService.nxtContent(dto);
 		String prenum = cityService.preNum(dto);
@@ -133,10 +137,13 @@ public class CityController {
 		String totalComment = cityService.getTotalComment(cbnum);
 		System.out.println("댓글 수" + totalComment);
 
-		model.addAttribute("listcomment", listcomment);
-
 		String city1 = dto.getCity1();
 		String city2 = dto.getCity2();
+
+		
+		model.addAttribute("rdto",rdto);
+		model.addAttribute("listcomment", listcomment);
+
 		int totalCountCity = cityService.getTotalCountCity(city1, city2, keyword);
 		model.addAttribute("udto", udto);
 		model.addAttribute("dto", dto);
@@ -169,16 +176,21 @@ public class CityController {
 	}
 
 	@PostMapping("/cityinsert")
-	public String cityinsert(CityBoardDto dto, MultipartFile upload) {
-		String photo = storageService.uploadFile(bucketName, "city", upload);
-		dto.setCbphoto(photo);
-		int cbnum = dto.getCbnum();
-		System.out.println("사진" + photo);
-		System.out.println(cbnum);
-
+	@ResponseBody void cityinsert(CityBoardDto dto, List<MultipartFile> upload) {
+		//System.out.println("나오냐?");
 		cityService.insertCity(dto);
-
-		return "redirect:list";
+		//System.out.println("너는 나오냐?");
+		if(upload!=null) {
+			for(MultipartFile file : upload)
+			{
+				String photoname=storageService.uploadFile(bucketName, "city", file);
+				CityPhotoDto pdto=new CityPhotoDto();
+				pdto.setCbnum(dto.getCbnum());
+				pdto.setPhoto_idx(photoname);
+				cityService.newCityPhoto(pdto);
+			}
+		}
+		
 	}
 
 	@PostMapping("/newcomment")
@@ -216,18 +228,29 @@ public class CityController {
 
 	@GetMapping("/delete")
 	public String delete(int cbnum) {
-		String filename = cityService.getDetailbycbnum(cbnum).getCbphoto();
-		storageService.deleteFile(bucketName, "city", filename);
+		List<String> list=cityService.getAllPhoto(cbnum);
+		for(String photo_idx:list) {
+			storageService.deleteFile(bucketName, "city", photo_idx);
+		}
 		cityService.deleteCityboard(cbnum);
 		return "redirect:/city/list";
 	}
 
 	@PostMapping("/updatecomment")
 	public String updateComment(CbReBoardDto dto) {
-		cityService.updateComment(dto);
-		int cbnum = dto.getCbnum();
-
-		return "redirect:/city/detail?cbnum=" + cbnum;
+		cityService.updateComment(dto);   
+		int cbnum=dto.getCbnum();
+		
+		return "redirect:/city/detail?cbnum="+cbnum;
+	}
+	
+	@GetMapping("/deleteComment")
+	public String deleteComment(int renum, CbReBoardDto dto) {		
+		
+		cityService.deleteComment(renum);
+		int cbnum=dto.getCbnum();
+		
+		return "redirect:/city/detail?cbnum="+cbnum;
 	}
 
 //<-----------------------------------절취선-------------------------------------------->

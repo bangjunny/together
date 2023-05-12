@@ -14,7 +14,6 @@ public class CityBoardDto {
 	private String subject;
 	private int unum;
 	private String cbcontent;
-	private String cbphoto;
 	private int readcount;
 	private Timestamp cbwriteday; //Timestamp 가 들어가야 하는데 지금 데이터가 없어서 임시로 int로 바꿈
 	private String city1;

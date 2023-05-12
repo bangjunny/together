@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.semi.dto.CbReBoardDto;
 import com.semi.dto.CityBoardDto;
+import com.semi.dto.CityPhotoDto;
 import com.semi.dto.UserDto;
 
 @Mapper
@@ -16,6 +17,8 @@ public interface CityMapper {
 
 	public CityBoardDto getDetailbycbnum(int cbnum);
 	public UserDto getDetailbyunum(int unum);
+	public CbReBoardDto getCommentByRenum(int renum);
+
 	public void insertCity(CityBoardDto dto);
 	public String preContent(CityBoardDto dto);
 	public String nxtContent(CityBoardDto dto);
@@ -27,10 +30,12 @@ public interface CityMapper {
 	public void updateStep(Map<String,Integer> map);
 	public int getReboardNum();
 	public void addComment(CbReBoardDto dto);
-	public CbReBoardDto getCommentByRenum(int renum);
 	public void deleteCityboard(int cbnum);
 	public void updateComment(CbReBoardDto dto);
 	public void deleteComment(int renum);
+	public void updateReadcount(int cbnum);
+	public void newCityPhoto(CityPhotoDto dto);
+	public List<String> getAllPhoto(int cbnum);
 	
 	/**
 	public void insertCity(CityBoardDto dto);

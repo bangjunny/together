@@ -30,8 +30,6 @@ public interface MoimMapper {
 	public void acceptGaip(Map<String, Object> map);
 	public void deniedGaip(Map<String, Object> map);
 	public Integer acceptChk(Map<String, Object> map);//unum, mnum
-	
 	public List<MoimDto> getJoinedMoimList(int unum);
-	public List<JJimDto> getJJimList(int mnum);
-	
+	public List<JJimDto> getJJimList(int mnum);	
 }

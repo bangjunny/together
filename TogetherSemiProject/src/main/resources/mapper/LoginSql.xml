@@ -2,18 +2,18 @@
 <mapper namespace="com.semi.mapper.LoginMapper">
 
 
-<insert id="insertUser" parameterType="UserDto">
-	insert into user (uname,age,gender,email,pass,hp,city1,city2,joinday) values
-	(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},now())
-</insert>
-
-<select id="isEqualPassEmail" parameterType="Map" resultType="int">
-	select count(*) from user where email=#{email} and pass=#{pass}
-</select>
-
-<select id="selectOneOfEmail" parameterType="String" resultType="UserDto">
-	select * from user where email=#{email}
-</select>
+	<insert id="insertUser" parameterType="UserDto">
+		insert into user (uname,age,gender,email,pass,hp,city1,city2,category,joinday) values
+		(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},#{category},now())
+	</insert>
+	
+	<select id="isEqualPassEmail" parameterType="Map" resultType="int">
+		select count(*) from user where email=#{email} and pass=#{pass}
+	</select>
+	
+	<select id="selectOneOfEmail" parameterType="String" resultType="UserDto">
+		select * from user where email=#{email}
+	</select>
 
 	<select id="overlappedEmail" parameterType="UserDto" resultType="int">
 		select count(email) from user where email=#{email}

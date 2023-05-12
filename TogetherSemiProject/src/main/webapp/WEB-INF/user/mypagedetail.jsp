@@ -1,3 +1,5 @@
+<%@page import="com.semi.dto.MoimDto"%>
+<%@page import="com.semi.mapper.MoimMapper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -57,8 +59,49 @@
 	}
 
 </style>
+<script type="text/javascript">
+$(function() {
+	
+	list();
+	
+});//function close
 
+function list()
+{
+	$.ajax({
+	    type: "GET",
+	    url: "/myjjimlist",
+	    dataType:"json",
+	    success: function(res) {
+	    	let s="";
+	    	$.each(res,function(idx,ele){
+	    		s+=`
+	    			<div class = 'jjim_box'>
+	    				<b>\${ele.mname}</b>
+	    			</div>	
+	    		`;
+	    	});
+	    	$("div.jjimlist").html(s);
+	    }
+	     
+	 });
+}
+</script>
 <body>
+
+
+<div>
+	   <c:choose>
+        <c:when test="${not empty jjimList}">
+             <c:forEach var="j" items="${jjimList}">
+                <h2>내가 찜한 모임 이름 :  ${j.mname}</h2>
+              </c:forEach>
+        </c:when>
+        <c:otherwise>
+          <p>찜한 목록이 없어요</p>
+        </c:otherwise>
+      </c:choose>  
+</div>
 <div class="container text-center">
   <div class="row">
     <div class="card col">
@@ -111,7 +154,13 @@
         <br>
     	</div>
    </div> 
-
+		
+			 <div>
+			  <!-- 가입한 모임 목록 보여주기 -->
+			  나의 모임 리스트 출력하기
+			  <%@ include file="mypagemoimlist.jsp" %>
+			</div>
+		
     <br><br><br><br>
     
     <div class="mybtn">

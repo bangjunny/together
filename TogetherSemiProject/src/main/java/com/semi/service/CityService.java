@@ -147,41 +147,21 @@ public class CityService implements CityServiceInter{
 		// TODO Auto-generated method stub
 		cityMapper.deleteCityboard(cbnum);	
 	}
-	
-	@Override
-	public int getTotalCountCity(String city1, String city2) {
-		// TODO Auto-generated method stub
-		return cityMapper.getTotalCountCity(city1, city2);
-	}
 
 
 	@Override
-	public List<CityBoardDto> getCityPagingList(int start, int perpage, String city1, String city2) {
+	public List<CityBoardDto> getCityPagingList(int start, int perpage, String city1, String city2, String keyword) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
 		map.put("start", start);
 		map.put("perpage", perpage);
 		map.put("city1", city1);
 		map.put("city2", city2);
+		map.put("keyword", keyword);
 		return cityMapper.getCityPagingList(map);
 	}
 
 
-	@Override
-	public int getAllTotalCountCity() {
-		// TODO Auto-generated method stub
-		return cityMapper.getAllTotalCountCity();
-	}
-
-
-	@Override
-	public List<CityBoardDto> getAllCityPagingList(int start, int perpage) {
-		// TODO Auto-generated method stub
-		Map<String, Integer> map = new HashMap<>();
-		map.put("start", start);
-		map.put("perpage", perpage);
-		return cityMapper.getAllCityPagingList(map);
-	}
 
 	@Override
 	public void updateComment(CbReBoardDto dto) {
@@ -224,5 +204,11 @@ public class CityService implements CityServiceInter{
 		// TODO Auto-generated method stub
 		return cityMapper.getPhotoCount(cbnum);
 	}
-
+  
+  @Override
+	public int getTotalCountCity(String city1, String city2, String keyword) {
+		// TODO Auto-generated method stub
+		return cityMapper.getTotalCountCity(city1, city2, keyword);
+	}
+  
 }

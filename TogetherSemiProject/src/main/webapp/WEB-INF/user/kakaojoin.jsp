@@ -14,203 +14,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gothic+A1&family=Gowun+Batang&family=Hahmlet&family=Song+Myung&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="login.css">
-  <style>
-        * {
-            box-sizing: border-box;
-        }
-        
-        body {
-            margin: 0;
-            background-color: #f7f7f7;
-            font-family: "맑은 고딕", sans-serif;
-        }
-        
-        .container {
-            max-width: 400px;
-            margin: 20 auto;
-            padding: 40px 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 0px 0px 5px #ddd;
-            text-align: center;
-        }
-        
-        .container h1 {
-            margin-top: 0;
-            margin-bottom: 20px;
-            color: #333;
-            font-size: 2em;
-        }
-        
-       #join-form {
-        width: 500px;
-        margin: 0 auto;
-        padding: 50px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px #ccc;
-      }
-      
-      #join-form h2 {
-        margin-bottom: 20px;
-        font-size: 2rem;
-      }
-      
-      .input-wrap {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 20px;
-      }
-      
-      .btn-wrap {
-        display: flex;
-        flex-direction: column;
-      }
-      
-      .in {
-         height:50px;
-         width: 100%;
-      }
-      
-      .gen {
-         height:50px;
-         width:100%;
-      }
-      
-      .cit {
-         height:50px;
-         width:197px;
-      }
-      
-      .btn-submit {
-        width:100%;
-        height:50px;
-        background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
-        background-position: left;
-        background-size: 200%;
-        color:white;
-        font-weight: 700;
-        border:none;
-        cursor:pointer;
-        transition: 0.4s;
-        margin-top:20px;
-        font-size:18px;
-      }
-
-      .btn-submit:hover {
-           background-position: right;
-      }
-      
-      input:focus {
-          outline: none;
-      }
-      
-      .pswdImg {
-          width: 18px;
-          height: 20px;
-          display: inline-block;
-          position: absolute;
-          top: 50%;
-          right: 16px;
-          margin-top: -10px;
-          cursor: pointer;
-      }
-      
-      .box {
-          display: block;
-          width: 100%;
-          height: 50px;
-          border: solid 1px #dadada;
-          padding: 10px 14px 10px 14px;
-          box-sizing: border-box;
-          background: #fff;
-          position: relative;
-      }
-      
-      .int {
-          display: block;
-          position: relative;
-          width: 100%;
-          height: 29px;
-          border: none;
-          background: #fff;
-          font-size: 15px;
-      }
-      
-      .box.int_pass {
-          padding-right: 40px;
-      }
-
-      .box.int_pass_check {
-          padding-right: 40px;
-      }
-      
-      .step_url {
-          /*@daham.com*/
-          position: absolute;
-          top: 16px;
-          right: 13px;
-          font-size: 15px;
-          color: #8e8e8e;
-      }
-      
-      select {
-          width: 100%;
-          height: 29px;
-          font-size: 15px;
-          background: #fff
-          background-size: 20px 8px;
-          -webkit-appearance: none;
-          display: inline-block;
-          text-align: start;
-          border: solid 1px #dadada;
-          cursor: default;
-      }
-      
-      .la{
-       font-size:18px;
-      }
-      
-      /* 에러메세지 */
-   
-      .error_next_box {
-          margin-top: 9px;
-          font-size: 12px;
-          color: red;    
-          display: none;
-      }
-      
-      #alertTxt {
-          position: absolute;
-          top: 19px;
-          right: 38px;
-          font-size: 12px;
-          color: red;
-          display: none;
-      }
-      
-      .olmessagef {color: red; margin-top:9px; font-size:12px;}
-	  .olmessaget {color: green; margin-top:9px; font-size:12px;}
-         
-    </style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="/css/join.css">
 </head>
-
 <body>
     <div class="container-fluid">
        
        <form id="join-form" method="post" action="userinsert">
        
-       <h2>kakao 회원가입</h2>
+       <h2>카카오 회원가입</h2>
   
            <!-- ID -->
                 <div class="input-wrap">
                 <label for="id" class="la">이메일</label>                
                 <span class="box int_id">
-                   <input type="email" id="email" name="email" class="int" maxlength="20" value="${email }"
-                   readonly>                                     
+                   <input type="email" id="email" name="email" class="int" maxlength="20"
+                   value="${email }" readonly>                                     
                 </span>
                 <span id="olmessage"></span> 
-                <span class="error_next_box"></span>
+                <span class="error_next_box e0"></span>
                 </div>
            
            
@@ -222,7 +44,7 @@
                         <span id="alertTxt">사용불가</span>
                         <img src="/photo/m_icon_pass.png" id="pswd1_img1" class="pswdImg">
                     </span>
-                    <span class="error_next_box"></span>
+                    <span class="error_next_box e1"></span>
                 </div>
 
                 <!-- PW2 -->
@@ -232,7 +54,7 @@
                         <input type="password" id="pass_check" name="pass_check" class="int" maxlength="20">
                         <img src="/photo/m_icon_check_disable.png" id="pswd2_img1" class="pswdImg">
                     </span>
-                    <span class="error_next_box"></span>
+                    <span class="error_next_box e2"></span>
                 </div>
            
            <!-- NAME -->
@@ -242,7 +64,7 @@
                         <input type="text" id="uname" name="uname" class="int" maxlength="20" value="${nickname }"
                         readonly>
                     </span>
-                    <span class="error_next_box"></span>
+                    <span class="error_next_box e3"></span>
                 </div>
            
            <div class="input-wrap">
@@ -250,7 +72,7 @@
              <span class="box int_age">
                 <input type="date" id="age" name="age" class="int">
              </span>
-             <span class="error_next_box"></span>
+             <span class="error_next_box e4"></span>
             </div>
            
            <!-- GENDER -->
@@ -263,17 +85,6 @@
                     </span>
                     <span class="error_next_box"></span>
            </div>
-           
-            
-                <!-- <div class="input-wrap">
-                    <label for="gender" class="la">성별</label>
-                        <select id="gender" name="gender" class="gen">
-                           <option hidden>성별</option>
-                            <option value="M">남자</option>
-                            <option value="F">여자</option>
-                        </select>                            
-                    <span class="error_next_box">필수 정보입니다.</span>
-                </div> -->
            
            <div class="input-wrap">
              <label for="user_city" class="la">지역</label>
@@ -354,15 +165,98 @@
                      });
                    });
                  </script>
-               </div>
+                 <span class="error_next_box e6">필수 정보입니다.</span>
+               </div>     
            </div>
            
+           <!-- Category -->
+           <div class="input-wrap">
+           	<label for="user_category" class="la">카테고리</label>
+           	
+           	<label data-bs-toggle="modal" data-bs-target="#mySportsModal">
+				<table class=catego>
+					<tr>
+						<td>
+							<i class="bi bi-dribbble"></i>
+							<h7>운동/스포츠</h7>
+							</label>
+						</td>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myGameModal">
+							<i class="bi bi-controller"></i>
+							<h7>게임/오락</h7>
+							</label>
+						</td>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myTravelModal">
+							<i class="bi bi-geo-alt"></i>
+							<h7>여행/아웃도어</h7>
+							</label>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myBookModal">
+							<i class="bi bi-book"></i>
+							<h7>책/글</h7>
+							</label>
+						</td>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myWorkModal">
+							<i class="bi bi-briefcase"></i>
+							<h7>업종/직무</h7>
+							</label>
+						</td>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myLangModal">
+							<i class="bi bi-translate"></i>
+							<h7>외국/언어</h7>
+							</label>
+						</td>
+					</tr>
+				
+					<tr>
+					<td>
+						<label data-bs-toggle="modal" data-bs-target="#myMusicModal">
+						<i class="bi bi-music-note-beamed"></i>
+						<h7>음악/악기</h7>
+						</label>
+					</td>
+					<td>	
+						<label data-bs-toggle="modal" data-bs-target="#mySocialModal">
+						<i class="bi bi-cup-straw"></i>
+						<h7>사교/인맥</h7>
+						</label>
+					</td>
+					<td>
+						<label data-bs-toggle="modal" data-bs-target="#myCraftsModal">
+						<i class="bi bi-palette"></i>
+						<h7>공예/만들기</h7>
+						</label>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						선택한 카테고리 :
+					</td>
+					<td colspan="2">
+						<div type="text" id="selcategory"></div>
+						<input type="hidden" class="selcategory" name="category" value="null" id="category">	
+					</td>
+				</tr>
+			</table>
+			<span class="error_next_box e7">필수 정보입니다.</span>           	
+           </div>
+           
+           <!-- Hp -->
            <div class="input-wrap">
              <label for="user_phone" class="la">휴대전화</label>
              <span class="box int_mobile">
                 <input type="tel" id="hp" name="hp" class="int" maxlength="16" placeholder="전화번호 입력">
              </span>
-             <span class="error_next_box"></span>
+             <span class="error_next_box e8"></span>
            </div>
            
             
@@ -372,233 +266,405 @@
            </div>
          </form>
     </div>
+<!-- Modal -->
+	<!-- The Modal -->
+	<div class="modal" id="mySportsModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">운동/스포츠</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="축구">축구</td>
+			      	<td><input type="checkbox" name="categorys" value="농구">농구</td>
+			      	<td><input type="checkbox" name="categorys" value="야구">야구</td>
+			      	<td><input type="checkbox" name="categorys" value="테니스">테니스</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="배드민턴">배드민턴</td>
+			      	<td><input type="checkbox" name="categorys" value="자전거">자전거</td>
+			      	<td><input type="checkbox" name="categorys" value="클라이밍">클라이밍</td>
+			      	<td><input type="checkbox" name="categorys" value="탁구">탁구</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="러닝/마라톤">러닝/마라톤</td>
+			      	<td><input type="checkbox" name="categorys" value="골프">골프</td>
+			      	<td><input type="checkbox" name="categorys" value="볼링">볼링</td>
+			      	<td></td>
+		      	</tr>
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myGameModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">게임/오락</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="다트">다트</td>
+			      	<td><input type="checkbox" name="categorys" value="보드게임">보드게임</td>
+			      	<td><input type="checkbox" name="categorys" value="두뇌심리게임">두뇌심리게임</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="온라인게임">온라인게임</td>
+			      	<td><input type="checkbox" name="categorys" value="콘솔게임">콘솔게임</td>
+			      	<td><input type="checkbox" name="categorys" value="단체놀이">단체놀이</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="타로카드">타로카드</td>
+			      	<td><input type="checkbox" name="categorys" value="마술">마술</td>
+			      	<td><input type="checkbox" name="categorys" value="바둑">바둑</td>  
+		      	</tr>
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myTravelModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">여행/아웃도어</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="등산">등산</td>
+			      	<td><input type="checkbox" name="categorys" value="국내여행">국내여행</td>
+			      	<td><input type="checkbox" name="categorys" value="산책/트래킹">산책/트래킹</td>
+			      	<td><input type="checkbox" name="categorys" value="패러글라이딩">패러글라이딩</td>
+			      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="낚시">낚시</td>
+			      	<td><input type="checkbox" name="categorys" value="해외여행">해외여행</td>
+			      	<td><input type="checkbox" name="categorys" value="캠핑/백패킹">캠핑/백패킹</td>
+			      	<td></td>
+		      	</tr>
+	      	</table>     
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myBookModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">책/글</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="책/독서">책/독서</td>
+			      	<td><input type="checkbox" name="categorys" value="인문학">인문학</td>
+			      	<td><input type="checkbox" name="categorys" value="심리학">심리학</td>
+			      	<td><input type="checkbox" name="categorys" value="철학">철학</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="역사">역사</td>
+			      	<td><input type="checkbox" name="categorys" value="시사/경제">시사/경제</td>
+			      	<td><input type="checkbox" name="categorys" value="작문/글쓰기">작문/글쓰기</td>
+			      	<td></td>
+		      	</tr>
+		    </table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myWorkModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">업족/직무</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="의료/건강/제약">의료/건강/제약</td>
+			      	<td><input type="checkbox" name="categorys" value="IT/포털/인터넷">IT/포털/인터넷</td>
+			      	<td><input type="checkbox" name="categorys" value="교육업">교육업</td> 	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="광고/마케팅업계">광고/마케팅업계</td>
+			      	<td><input type="checkbox" name="categorys" value="디자인업계  ">디자인업계</td>
+			      	<td><input type="checkbox" name="categorys" value="무역/상사">무역/상사</td>      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="금융업">금융업</td>
+			      	<td><input type="checkbox" name="categorys" value="세무/회계">세무/회계</td>
+			      	<td><input type="checkbox" name="categorys" value="전자/기계/전기">전자/기계/전기</td>  	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="패션/의류/뷰티">패션/의류/뷰티</td>
+			      	<td><input type="checkbox" name="categorys" value="서비스업">서비스업</td>
+			      	<td><input type="checkbox" name="categorys" value="식음료/외식업">식음료/외식업</td>
+		      	</tr>      	
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myLangModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">외국/언어</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="영어">영어</td>
+			      	<td><input type="checkbox" name="categorys" value="일본어">일본어</td>
+			      	<td><input type="checkbox" name="categorys" value="중국어">중국어</td>
+			      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="프랑스어">프랑스어</td>
+			      	<td><input type="checkbox" name="categorys" value="스페인어">스페인어</td>
+			      	<td><input type="checkbox" name="categorys" value="러시아어">러시아어</td>
+		      	</tr>
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myMusicModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">음악/악기</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="노래/보컬">노래/보컬</td>
+			      	<td><input type="checkbox" name="categorys" value="기타/베이스">기타/베이스</td>
+			      	<td><input type="checkbox" name="categorys" value="드럼">드럼</td>
+			      	<td><input type="checkbox" name="categorys" value="피아노">피아노</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="바이올린">바이올린</td>
+			      	<td><input type="checkbox" name="categorys" value="밴드/합주">밴드/합주</td>
+			      	<td><input type="checkbox" name="categorys" value="작사/작곡">작사/작곡</td>
+			      	<td><input type="checkbox" name="categorys" value="힙합">힙합</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="클래식">클래식</td>
+			      	<td><input type="checkbox" name="categorys" value="재즈">재즈</td>
+			      	<td></td>
+			      	<td></td>
+		      	</tr>	      	
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="mySocialModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">사교/인맥</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="지역">지역</td>
+			      	<td><input type="checkbox" name="categorys" value="나이">나이</td>
+			      	<td><input type="checkbox" name="categorys" value="성별">성별</td>
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="싱글/연애">싱글/연애</td>
+			      	<td><input type="checkbox" name="categorys" value="기혼/유부">기혼/유부</td>
+			      	<td><input type="checkbox" name="categorys" value="돌싱">돌싱</td> 	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="와인/커피/차">와인/커피/차</td>
+			      	<td><input type="checkbox" name="categorys" value="맛집/미식회">맛집/미식회</td>
+			      	<td></td>
+		      	</tr>
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myCraftsModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">공예/만들기</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="미술/그림">미술/그림</td>
+			      	<td><input type="checkbox" name="categorys" value="캘리그라피">캘리그라피</td>
+			      	<td><input type="checkbox" name="categorys" value="천연비누/화장품">천연비누/화장품</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="가죽공예">가죽공예</td>
+			      	<td><input type="checkbox" name="categorys" value="가구/목공예">가구/목공예</td>
+			      	<td><input type="checkbox" name="categorys" value="도자/점토공예">도자/점토공예</td>
+			      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="자수/뜨개질">자수/뜨개질</td>
+			      	<td><input type="checkbox" name="categorys" value="키덜트/프라모델">키덜트/프라모델</td>
+			      	<td><input type="checkbox" name="categorys" value="메이크업/네일">메이크업/네일</td>
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="캔들/디퓨저/석고 ">캔들/디퓨저/석고</td>
+		      		<td></td>
+			      	<td></td>
+		      	</tr>	
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
     
-    <script type="text/javascript">
+    <script src="/js/join.js">
     
-    /*변수 선언*/
-    
-    var email = document.querySelector('#email');
-    
-    var pw1 = document.querySelector('#pass');
-    var pwMsg = document.querySelector('#alertTxt');
-    var pwImg1 = document.querySelector('#pswd1_img1');
-
-    var pw2 = document.querySelector('#pass_check');
-    var pwImg2 = document.querySelector('#pswd2_img1');
-    var pwMsgArea = document.querySelector('.int_pass');
-    
-    var userName = document.querySelector('#uname');
-    
-    var age = document.querySelector('#age');
-    
-    var gender = document.querySelector('#gender');
-    
-    var mobile = document.querySelector('#hp');
-    
-    var error = document.querySelectorAll('.error_next_box');
-    
-    /*이벤트 핸들러 연결*/
-    
-    email.addEventListener("focusout", isEmailCorrect);
-    
-    pw1.addEventListener("focusout", checkPw);
-    pw2.addEventListener("focusout", comparePw);
-    
-    userName.addEventListener("focusout", checkName);
-    
-    age.addEventListener("focusout", checkage);
-    
-    gender.addEventListener("focusout", function() {
-        if(gender.value === "성별") {
-            error[5].style.display = "block";
-        } else {
-            error[5].style.display = "none";
-        }
-    });
-    
-    mobile.addEventListener("focusout", checkPhoneNum);
-    
-    
-    /*콜백 함수*/
-    
-    function isEmailCorrect() {
-        var emailPattern = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/;
-
-        if(email.value === ""){ 
-           //error[0].innerHTML = "필수 정보입니다.";
-            error[0].style.display = "block"; 
-        } else if(!emailPattern.test(email.value)) {
-           error[0].innerHTML = "이메일 주소를 다시 확인해주세요.";
-            error[0].style.display = "block";
-        } else {
-            error[0].style.display = "none"; 
-        }
-
-    }
-    
-    function checkPw() {
-        var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}/;
-        if(pw1.value === "") {
-            error[1].innerHTML = "필수 정보입니다.";
-            error[1].style.color = "red";
-            error[1].style.display = "block";
-        } else if(!pwPattern.test(pw1.value)) {
-            error[1].innerHTML = "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
-            error[1].style.color = "red";
-            pwMsg.innerHTML = "사용불가";
-            pwMsg.style.color = "red";
-            pwMsgArea.style.paddingRight = "93px";
-            error[1].style.display = "block";
-            
-            pwMsg.style.display = "block";
-            pwImg1.src = "/photo/m_icon_not_use.png";
-        } else {
-            error[1].style.display = "none";
-            pwMsg.innerHTML = "안전";
-            pwMsg.style.display = "block";
-            pwMsg.style.color = "#03c75a";
-            pwImg1.src = "/photo/m_icon_safe.png";
-        }
-    }
-
-    function comparePw() {
-        if(pw2.value === pw1.value && pw2.value != "") {
-            pwImg2.src = "/photo/m_icon_check_enable.png";
-            error[2].style.color = "red";
-            error[2].style.display = "none";
-        } else if(pw2.value !== pw1.value) {
-            pwImg2.src = "/photo/m_icon_check_disable.png";
-            error[2].style.color = "red";
-            error[2].innerHTML = "비밀번호가 일치하지 않습니다.";
-            error[2].style.display = "block";
-        } 
-
-        if(pw2.value === "") {
-            error[2].innerHTML = "필수 정보입니다.";
-            error[2].style.color = "red";
-            error[2].style.display = "block";
-        }
-    }
-    
-    function checkName() {
-         var namePattern = /^[a-zA-Z가-힣]+$/; // 특수기호, 공백 사용 불가능
-         if (userName.value === "") {
-           error[3].innerHTML = "필수 정보입니다.";
-           error[3].style.display = "block";
-         } else if (!namePattern.test(userName.value)) {
-           error[3].innerHTML = "한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)";
-           error[3].style.display = "block";
-         } else {
-           error[3].style.display = "none";
-         }
-       }
-    
-    function checkage() {
-       
-       if(age.value === "") {
-            error[4].innerHTML = "필수 정보입니다.";
-            error[4].style.display = "block";
-        } else {
-            error[4].style.display = "none";
-        }
-    }
-    
-    function checkPhoneNum() {
-         var isPhoneNum = /^[0-9]*$/;
-
-         if(mobile.value === "") {
-           error[6].innerHTML = "필수 정보입니다.";
-           error[6].style.display = "block";
-         } else if(!isPhoneNum.test(mobile.value)) {
-           error[6].innerHTML = "숫자로만 입력해주세요.";
-           error[6].style.display = "block";
-         } else {
-           error[6].style.display = "none";
-         }
-       }
-    
-    $("#email").focusout(function(){
-    	$(".btn-submit").attr("type", "button");
-    	const email = $("#email").val();
-    	$.ajax({
-    		type: "get",
-    		async: false,
-    		url: "http://localhost:9000/user/emailCheck",
-    		data: {email: email},
-    		success: function (data) {
-    			if(data == 0 && email=='' ) {
-		    		$("#olmessage").text("필수 정보입니다.");
-		    		$("#olmessage").addClass("olmessagef");
-		    		$("#olmessage").removeClass("olmessaget");
-    			}else if(data == 0 && email!=''){
-		    		$("#olmessage").text("사용 가능한 이메일 입니다.");
-		    		$("#olmessage").addClass("olmessaget");
-		    		$("#olmessage").removeClass("olmessagef");
-		    		$(".btn-submit").attr("type", "submit");
-    			}else{
-	    			$("#olmessage").text("이미 사용중인 이메일 입니다.");
-	        		$("#olmessage").addClass("olmessagef");
-	        		$("#olmessage").removeClass("olmessaget");	
-    			}
-    		}
-    	});
-    });
-    
-    const form = document.querySelector('form');
-    
-    	form.addEventListener('submit', function(event) {
-    	    const nameInput = document.querySelector('#uname');
-    	    if (nameInput.value == ''){
-    	        event.preventDefault();
-    	        if (confirm('이름을 입력해주세요')) {
-    	            nameInput.focus();
-    	        }
-    	        return;
-    	    }
-    	    const genderInput = document.querySelector('#gender');
-    	    if (genderInput.value == '성별'){
-    	        event.preventDefault();
-    	        if (confirm('성별을 선택해주세요')) {
-    	            genderInput.focus();
-    	        }
-    	        return;
-    	    }
-    	    const cityInput=document.querySelector('#city');
-    	    if (cityInput.value == '시, 도 선택'){
-    	    	event.preventDefault();
-    	        if(confirm('지역을 선택해주세요')){
-    	    	    cityInput.focus();
-    	    	}
-    	    	return;
-    	    }
-    	    const hpInput=document.querySelector('#hp');
-    	    if (hpInput.value == ''){
-    	    	event.preventDefault();
-    	        if(confirm('전화번호를 입력해주세요')){
-    	        hpInput.focus();
-    	    	}
-    	    	return;
-    	    }
-    	});
-    /* form.addEventListener('submit', function(event) {
-    	const nameInput=document.querySelector('#uname');
-    	if (nameInput.value == ''){
-    		event.preventDefault();
-    	    alert('이름을 입력해주세요');
-    	    nameInput.focus();
-    	}
-    });
-    
-    form.addEventListener('submit', function(event) {
-    	const genderInput=document.querySelector('#gender');
-    	if (genderInput.value == '성별'){
-    		event.preventDefault();
-    	    alert('성별을 선택해주세요');
-    	    genderInput.focus();
-    	}
-    }); */
-    
-
     </script>
 
   

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.semi.dto.JJimDto;
 import com.semi.dto.MoimDto;
 
 @Mapper
@@ -29,4 +30,6 @@ public interface MoimMapper {
 	public void acceptGaip(Map<String, Object> map);
 	public void deniedGaip(Map<String, Object> map);
 	public Integer acceptChk(Map<String, Object> map);//unum, mnum
+	public List<MoimDto> getJoinedMoimList(int unum);
+	public List<JJimDto> getJJimList(int mnum);	
 }

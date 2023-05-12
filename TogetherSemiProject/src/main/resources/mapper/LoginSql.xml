@@ -20,7 +20,19 @@
 	</select>
 	
 <!-- 마이페이지 -->
-
+	<select id="getMyMoimList" resultType="MoimDto">
+		select * from moim where unum=#{unum}
+	</select>
+	<select id="getJJimDto" resultType="JJimDto">
+		select * from jjim where unum=#{mnum}
+	</select>
+	<select id="getMyJJImList" resultType="JJimDto">
+		select * from jjim where unum=#{unum}
+	</select>
+	<select id="getJJimMoimList" resultType="JJimDto">
+		select * from jjim where unum=#{unum}
+	</select>
+	
 
 	<select id="getMyProfilePhotos" resultType="UserPhotoDto">
 	  SELECT * FROM user_photo WHERE unum = #{unum}

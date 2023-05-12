@@ -44,11 +44,13 @@ public class CityController {
 
 	@GetMapping("/list")
 	public String list(@RequestParam(defaultValue = "1") int currentPage, Model model, HttpSession session,
-			String city1, String city2) {
-		System.out.println("검색하려는 city1:" + city1);
-		System.out.println("검색하려는 city2:" + city2);
+			String city1, String city2, String keyword) {
 		UserDto udto;
 		int unum;
+		
+		if(city2=="지역전체" && city2==null) {
+			city2="no";
+		}
 
 		if (session.getAttribute("unum") == null) { // 비회원일때
 			unum = 0;
@@ -60,8 +62,11 @@ public class CityController {
 			city1 = udto.getCity1();
 			city2 = udto.getCity2();
 		}
+		System.out.println("검색하려는 city1:" + city1);
+		System.out.println("검색하려는 city2:" + city2);
+		System.out.println("검색하려는 keyword:" + keyword);
 
-		int totalCount = cityService.getTotalCountCity(city1, city2);// 게시판의 총 글 갯수
+		int totalCount = cityService.getTotalCountCity(city1, city2, keyword);// 게시판의 총 글 갯수
 		int totalPage;// 총 페이지수
 		int perPage = 5;// 한 페이지당 보여질 글 갯수
 		int perBlock = 2;// 한 블럭당 보여질 페이지의 갯수
@@ -84,7 +89,7 @@ public class CityController {
 		// 각 글마다 출력할 글 번호(예:10개일경우 1페이지:10, 2페이지:7...)
 		no = totalCount - startNum;
 
-		List<CityBoardDto> list = cityService.getCityPagingList(startNum, perPage, city1, city2);
+		List<CityBoardDto> list = cityService.getCityPagingList(startNum, perPage, city1, city2, keyword);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("list", list);
 		model.addAttribute("startPage", startPage);
@@ -114,7 +119,7 @@ public class CityController {
 
 	@GetMapping("/detail")
 	public String detail(int cbnum, Model model, HttpSession session, @RequestParam(defaultValue = "0") int ref,
-			@RequestParam(defaultValue = "0") int step, @RequestParam(defaultValue = "0") int depth) {
+			@RequestParam(defaultValue = "0") int step, @RequestParam(defaultValue = "0") int depth, String keyword) {
 		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
 		int unum = (int) session.getAttribute("unum");
 		UserDto udto = cityMapper.getDetailbyunum(unum);
@@ -132,7 +137,7 @@ public class CityController {
 
 		String city1 = dto.getCity1();
 		String city2 = dto.getCity2();
-		int totalCountCity = cityService.getTotalCountCity(city1, city2);
+		int totalCountCity = cityService.getTotalCountCity(city1, city2, keyword);
 		model.addAttribute("udto", udto);
 		model.addAttribute("dto", dto);
 		model.addAttribute("nxtcontent", nxtcontent);

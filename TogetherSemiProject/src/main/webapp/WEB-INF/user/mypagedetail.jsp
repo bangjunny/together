@@ -111,15 +111,15 @@ function list()
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="https://${imageUrl}/userprofile/${pdto.file_name}" class="d-block w-100" alt="대표 사진">
+              
               </div>
              <c:forEach var="photo" items="${photoList}">
                 <div class="carousel-item">
                 <h2>포토사진 ${photo.photo_idx}</h2>
                     <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="d-block w-100" alt="포토사진 ${photo.photo_idx}"> 
               		  <form method="post" action="/setMainPhoto">
-                      <input type="hidden" name="photo_idx" value="${photo.photo_idx}">
-                      <button type="submit" class="btn btn-primary" id="setMain">대표 사진으로 지정</button>
+                      <input type="hidden" name="photo_idx" value="${photo.photo_idx}" id="main">
+                      <button type="submit" class="btn btn-primary" id="setMain">대표 사진으로 지정하기</button>
                     </form>
               
               </div>
@@ -246,8 +246,8 @@ $("#upload").change(function(){
 		reader.readAsDataURL($(this)[0].files[0]);
 	}
 });	
-</script>
-<script>
+
+
 $(document).ready(function() {
   $('#submitBtn').click(function() {
     var formData = new FormData($('form')[0]);
@@ -268,16 +268,15 @@ $(document).ready(function() {
 
   });
 });
-</script>
-<script>
- $(document).ready(function(){
+
+	//setMain 클릭시 메인사진으로 지정
 	$("#setMain").click(function(){
-		var photo_idx = $(this).attr("photo_idx");
+		let photo_idx = parseInt($("#main").val());
 		
 		$.ajax({
 	        type: "POST",
-	        url: "/setMainPhoto",
-	        data: {photo_idx: photo_idx},
+	        url: "/user/SetMainPhoto",
+	        data: {"photo_idx": photo_idx},
 	        success: function(data) {
 	            if(data.result == "success"){
 	            	alert("대표사진으로 설정되었습니다");
@@ -293,7 +292,7 @@ $(document).ready(function() {
 	        }
 	    });
 	})	 
- })
+
  
  
 

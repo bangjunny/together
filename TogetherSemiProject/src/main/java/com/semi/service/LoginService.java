@@ -99,6 +99,12 @@ public class LoginService implements LoginServiceInter{
 	    // 찜한 모임 목록을 반환한다.
 	    return jjimList;
 	}
+	@Override
+	public void updateMainphoto(int unum, int photo_idx) {
+		// TODO Auto-generated method stub
+		loginMapper.updateMainphoto(unum,photo_idx);
+		
+	}
 
 
 	

@@ -2,18 +2,18 @@
 <mapper namespace="com.semi.mapper.LoginMapper">
 
 
-<insert id="insertUser" parameterType="UserDto">
-	insert into user (uname,age,gender,email,pass,hp,city1,city2,joinday) values
-	(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},now())
-</insert>
-
-<select id="isEqualPassEmail" parameterType="Map" resultType="int">
-	select count(*) from user where email=#{email} and pass=#{pass}
-</select>
-
-<select id="selectOneOfEmail" parameterType="String" resultType="UserDto">
-	select * from user where email=#{email}
-</select>
+	<insert id="insertUser" parameterType="UserDto">
+		insert into user (uname,age,gender,email,pass,hp,city1,city2,category,joinday) values
+		(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},#{category},now())
+	</insert>
+	
+	<select id="isEqualPassEmail" parameterType="Map" resultType="int">
+		select count(*) from user where email=#{email} and pass=#{pass}
+	</select>
+	
+	<select id="selectOneOfEmail" parameterType="String" resultType="UserDto">
+		select * from user where email=#{email}
+	</select>
 
 	<select id="overlappedEmail" parameterType="UserDto" resultType="int">
 		select count(email) from user where email=#{email}
@@ -22,6 +22,12 @@
 <!-- 마이페이지 -->
 	<select id="getMyMoimList" resultType="MoimDto">
 		select * from moim where unum=#{unum}
+	</select>
+	<select id="updateOtherphoto" resultType="UserPhotoDto">
+		select * from user_photo set is_main = 0 where unum=#{unum}
+	</select>
+	<select id="updateMainphoto" resultType="UserPhotoDto">
+		select * from user_photo set is_main = 1 where photo_idx=#{photo_idx}
 	</select>
 	<select id="getJJimDto" resultType="JJimDto">
 		select * from jjim where unum=#{mnum}

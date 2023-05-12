@@ -127,5 +127,10 @@
   	<select id="getAllPhoto" parameterType="int" resultType="String">
   		select photo_idx from city_photo where cbnum=#{cbnum}
   	</select>
-  	
+  	<select id="getPhoto" parameterType="int" resultType="CityPhotoDto">
+  		select * from city_photo where cbnum=#{cbnum}
+  	</select>
+  	<select id="getPhotoCount" parameterType="int" resultType="String">
+  		select count(*) from city_photo where cbnum=#{cbnum}
+  	</select>
 </mapper>

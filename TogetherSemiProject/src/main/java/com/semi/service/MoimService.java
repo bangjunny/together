@@ -45,6 +45,18 @@ public class MoimService implements MoimServiceInter {
       map.put("city2", city2);
       return moimMapper.getPagingList(map);
    }
+   
+   @Override
+   public List<MoimDto> getMembersunPagingList(int start, int perpage, String category, String city1, String city2) {
+      // TODO Auto-generated method stub
+      Map<String, Object> map=new HashMap<>();
+      map.put("start", start);
+      map.put("perpage", perpage);
+      map.put("category", category);
+      map.put("city1", city1);
+      map.put("city2", city2);
+      return moimMapper.getMembersunPagingList(map);
+   }
 
    @Override
    public void updateJjimcount(int mnum, int unum) {
@@ -91,17 +103,6 @@ public class MoimService implements MoimServiceInter {
    }
 
    @Override
-   public List<MoimDto> getCategoryPagingList(int start, int perpage, String category, String city2) {
-      // TODO Auto-generated method stub
-      Map<String, Object> map=new HashMap<>();
-      map.put("start", start);
-      map.put("perpage", perpage);
-      map.put("category", category);
-      map.put("city2", city2);
-      return moimMapper.getCategoryPagingList(map);
-   }
-
-   @Override
    public void deleteJjim(int unum, int mnum) {
       
       Map<String, Object> map = new HashMap<>();
@@ -141,12 +142,6 @@ public class MoimService implements MoimServiceInter {
       
       boolean pressGaipChk = moimMapper.pressGaip(map)==0?false:true;
       return pressGaipChk;
-   }
-
-   @Override
-   public int getCategoryCount(String category, String city2) {
-      // TODO Auto-generated method stub
-      return moimMapper.getCategoryCount(category, city2);
    }
    
    @Override

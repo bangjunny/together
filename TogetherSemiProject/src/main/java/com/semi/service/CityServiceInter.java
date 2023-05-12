@@ -35,6 +35,8 @@ public interface CityServiceInter {
 	public void updateReadcount(int cbnum);
 	public void newCityPhoto(CityPhotoDto dto);
 	public List<String> getAllPhoto(int cbnum);
+	public List<CityPhotoDto> getPhoto (int cbnum);
+	public String getPhotoCount(int cbnum);
 	/**
 	public void updateCity(CityBoardDto dto);
 	**/

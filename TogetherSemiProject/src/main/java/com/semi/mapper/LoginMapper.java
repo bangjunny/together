@@ -37,5 +37,9 @@ public interface LoginMapper {
 
 	public List<JJimDto> getJJimDto(int unum);
 
+	public void updateMainphoto(int unum, int photo_idx);
+	
+	public void updateOtherphoto(int unum, int photo_idx);
+
 	
 }

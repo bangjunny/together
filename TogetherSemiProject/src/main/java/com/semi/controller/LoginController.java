@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -207,7 +208,29 @@ public class LoginController {
 		    
 		    return "/main/user/myjjimlist";
 	   	  }
+	 
+		@PostMapping("/SetMainPhoto")
+		@ResponseBody
+		public Map<String, String> SetMainPhoto(@RequestParam("photo_idx")int photo_idx, HttpSession session) {
+		
+			Map<String, String> resultMap = new HashMap<String, String>();
+			
+			try {
+				int unum = (int) session.getAttribute("unum"); // 세션에서 unum 값 가져오기
+				loginMapper.updateOtherphoto(unum, photo_idx);
+				loginMapper.updateMainphoto(unum,photo_idx);
+				resultMap.put("result", "success");
+			}catch(Exception e) {
+				resultMap.put("result", "failure");
+		        e.printStackTrace();
+			}
+				return resultMap;
+				
+		}
 	
+  
+	 
+	 
 
 	
 //	@GetMapping("/mypagedetail")
@@ -300,6 +323,9 @@ public class LoginController {
 			 int unum = loginService.selectOneOfEmail(email).getUnum();
 			 session.setAttribute("unum", unum);
 			 
+			 // 로그인 uname 세션에 저장
+			 String uname = loginService.selectOneOfEmail(email).getUname();
+			 session.setAttribute("uname", uname );
 			 
 			 System.out.println("로그인 성공"); 
 			 return "redirect:/"; 

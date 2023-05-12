@@ -238,7 +238,14 @@ ${udto.uname }님이 로그인 중 입니다
 					</script>
 					</tr>				
 			</tr>
+			<tr>
+				<td align="right" colspan="2">
+				<button type="button" class="btn btn-secondary" id="createlist">생성일순</button>
+				<button type="button" class="btn btn-secondary" id="gaiplist">가입자순</button>
+				</td>
+			</tr>
 			<!-- 리스트 출력 부분 -->
+			
 			<c:forEach var="dto" items="${list}" varStatus="i">
 				<c:if test="${i.count % 2 == 1}">
 					<tr>
@@ -832,6 +839,15 @@ $(function() {
 			  location.href="/moim/moimform"
 		  }
 		  }
+	
+	function changeList(type) {
+		  var items = (type === 'list') ? '${list}' : '${mlist}';
+		  // items 변수를 생성일순 버튼을 눌렀을 때는 '${list}'로, 가입자순 버튼을 눌렀을 때는 '${mlist}'로 할당한다.
+
+		  // 변경된 items를 사용하여 페이지를 다시 로드한다.
+		  location.reload();
+		}
+
 </script>
 </body>
 </html>

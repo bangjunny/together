@@ -8,9 +8,9 @@ import com.semi.dto.MoimDto;
 public interface MoimServiceInter {
 	public int getMaxNum();
 	public int getTotalCount(String category,String city1, String city2);
-	public int getCategoryCount(String category, String city2);
 	public void insertMoim(MoimDto dto);
 	public List<MoimDto> getPagingList(int start, int perpage, String category, String city1, String city2);//map:start,perpage
+	public List<MoimDto> getMembersunPagingList(int start, int perpage, String category, String city1, String city2);
 	public void updateJjimcount(int mnum, int unum);
 	public MoimDto getData(int mnum);
 	public void deleteMoim(int mnum);
@@ -21,7 +21,6 @@ public interface MoimServiceInter {
 	public boolean pressGaip(int unum, int mnum);
 	public void updateMoim(MoimDto dto);
 	public int overlappedMname(MoimDto dto);
-	public List<MoimDto> getCategoryPagingList(int start, int perpage, String category, String city2);
 	public List<Map<String, Object>> getGaipmemberList(int mnum);
 	public void acceptGaip(int unum, int mnum);
 	public void deniedGaip(int unum, int mnum);

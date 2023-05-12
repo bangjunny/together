@@ -17,4 +17,6 @@ public interface LoginServiceInter {
 	public UserPhotoDto getMyPhoto(int photo_idx);
 	List<Map<String, Object>> getJJimMoimList(int unum);
 
+	public void updateMainphoto(int unum, int photo_idx);
+
 }

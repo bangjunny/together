@@ -192,6 +192,18 @@ public class CityService implements CityServiceInter{
 		// TODO Auto-generated method stub
 		return cityMapper.getAllPhoto(cbnum);
 	}
+
+	@Override
+	public List<CityPhotoDto> getPhoto(int cbnum) {
+		// TODO Auto-generated method stub
+		return cityMapper.getPhoto(cbnum);
+	}
+
+	@Override
+	public String getPhotoCount(int cbnum) {
+		// TODO Auto-generated method stub
+		return cityMapper.getPhotoCount(cbnum);
+	}
   
   @Override
 	public int getTotalCountCity(String city1, String city2, String keyword) {

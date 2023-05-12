@@ -14,10 +14,11 @@ public class UserPhotoDto {
 	private int photo_idx;
 	private int unum;
 	private String file_name;
+	private boolean is_main;
 	
 	@Override
 	public String toString() {
-		return "UserPhotoDto [photo_idx=" + photo_idx + ", unum=" + unum + ", file_name=" + file_name + "]";
+		return "UserPhotoDto [photo_idx=" + photo_idx + ", unum=" + unum + ", file_name=" + file_name + ", is_main=" + is_main + "]";
 	}
 	
 	

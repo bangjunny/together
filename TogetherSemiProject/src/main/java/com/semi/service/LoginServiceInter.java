@@ -16,5 +16,6 @@ public interface LoginServiceInter {
 	public UserDto getUserByUnum(int unum);
 	public UserPhotoDto getMyPhoto(int photo_idx);
 	List<Map<String, Object>> getJJimMoimList(int unum);
+	public List<Map<String, Object>> getGaipMoimList(int unum);
 
 }

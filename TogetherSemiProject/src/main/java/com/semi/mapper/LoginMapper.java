@@ -36,6 +36,7 @@ public interface LoginMapper {
 	public List<Map<String, Object>> getMyJJImList(int unum);
 
 	public List<JJimDto> getJJimDto(int unum);
+	public List<Map<String, Object>> getGaipMoimList(int unum);	
 
 	
 }

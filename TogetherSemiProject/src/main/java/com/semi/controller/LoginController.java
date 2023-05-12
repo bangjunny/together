@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
-
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -185,19 +185,13 @@ public class LoginController {
 	    List<Map<String, Object>> jjimList = loginService.getJJimMoimList(unum);
 	    model.addAttribute("jjimList", jjimList);
 	    
+	 //가입한 모임의 리스트 가져오기    
+	    List<Map<String, Object>> gaipMoimList = loginService.getGaipMoimList(unum);
+		model.addAttribute("gaipMoimList" , gaipMoimList);
+	    
 	    return "/main/user/mypagedetail";
 	
-}	
-	
-	@GetMapping("/mypagemoimlist")
-	public String mypagemoimlist(@RequestParam("unum") int unum, Model model) {
-
-	    List<MoimDto> moimList = moimMapper.getJoinedMoimList(unum);
-	    model.addAttribute("moimList", moimList);
-	    
-	    return "/main/user/mypagemoimlist";
-	}
-	
+	 }	
 	 @GetMapping("/myjjimList")
 	   private String MyJJimList(@RequestParam("unum") int unum, Model model)
 	   {

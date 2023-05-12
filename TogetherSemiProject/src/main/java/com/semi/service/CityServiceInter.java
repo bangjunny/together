@@ -5,7 +5,10 @@ import java.util.Map;
 
 import com.semi.dto.CbReBoardDto;
 import com.semi.dto.CityBoardDto;
+import com.semi.dto.CityPhotoDto;
 import com.semi.dto.UserDto;
+
+
 
 public interface CityServiceInter {
 	public int getTotalCountCity(String city1, String city2);//특정지역갯수
@@ -31,6 +34,9 @@ public interface CityServiceInter {
 	public void deleteCityboard(int cbnum);
 	public void updateComment(CbReBoardDto dto);
 	public void deleteComment(int renum);
+	public void updateReadcount(int cbnum);
+	public void newCityPhoto(CityPhotoDto dto);
+	public List<String> getAllPhoto(int cbnum);
 	/**
 	public void updateCity(CityBoardDto dto);
 	**/

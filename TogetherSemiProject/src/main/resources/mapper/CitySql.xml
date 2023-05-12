@@ -6,10 +6,19 @@
 	<select id="getDetailbyunum" parameterType="int" resultType="UserDto">
 		select * from user where unum=#{unum}
 	</select>
+	<select id="getCommentByCBnum" parameterType="int" resultType="CbReBoardDto">
+		select * from cb_reboard where cbnum=#{cbnum}
+	</select>
 	<insert id="insertCity" parameterType="CityBoardDto">
-		insert into city_board (subject, unum, cbcontent, cbwriteday, city1, city2, uname, cbphoto)
-		value (#{subject}, #{unum}, #{cbcontent}, now(), #{city1}, #{city2}, #{uname}, #{cbphoto})
+		insert into city_board (subject, unum, cbcontent, cbwriteday, city1, city2, uname)
+		value (#{subject}, #{unum}, #{cbcontent}, now(), #{city1}, #{city2}, #{uname})
+		<selectKey keyProperty="cbnum" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
+	<insert id="newCityPhoto" parameterType="CityPhotoDto">
+  		insert into city_photo (cbnum,photo_idx) values (#{cbnum},#{photo_idx})
+  	</insert>
 	<select id="preContent" parameterType="CityBoardDto" resultType="String">
 		select subject from city_board where cbnum <![CDATA[<]]> #{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum desc limit 1
 	</select>
@@ -72,6 +81,13 @@
   		update cb_reboard set recontent=#{recontent} where renum=#{renum}
   	</update>
   	<delete id="deleteComment" parameterType="int">
-  		delete from cb_reboard where renum=#{renum}
+  		update cb_reboard set recontent='' where renum=#{renum}
   	</delete>
+  	<update id="updateReadcount" parameterType="int">
+  		update city_board set readcount=readcount +1 where cbnum=#{cbnum}
+  	</update>
+  	<select id="getAllPhoto" parameterType="int" resultType="String">
+  		select photo_idx from city_photo where cbnum=#{cbnum}
+  	</select>
+  	
 </mapper>

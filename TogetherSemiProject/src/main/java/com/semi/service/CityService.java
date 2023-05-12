@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.semi.dto.CbReBoardDto;
 import com.semi.dto.CityBoardDto;
+import com.semi.dto.CityPhotoDto;
 import com.semi.dto.UserDto;
 import com.semi.mapper.CityMapper;
 
@@ -194,5 +195,22 @@ public class CityService implements CityServiceInter{
 		cityMapper.deleteComment(renum);
 	}
 
+	@Override
+	public void updateReadcount(int cbnum) {
+		// TODO Auto-generated method stub
+		cityMapper.updateReadcount(cbnum);
+	}
+
+	@Override
+	public void newCityPhoto(CityPhotoDto dto) {
+		// TODO Auto-generated method stub
+		cityMapper.newCityPhoto(dto);
+	}
+
+	@Override
+	public List<String> getAllPhoto(int cbnum) {
+		// TODO Auto-generated method stub
+		return cityMapper.getAllPhoto(cbnum);
+	}
 
 }

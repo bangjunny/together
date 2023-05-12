@@ -134,8 +134,6 @@ public class MoimService implements MoimServiceInter {
       Map<String, Object> map = new HashMap<>();
       map.put("mnum", mnum);
       map.put("unum", unum);
-      System.out.println(map);
-      System.out.println("pressGaip service");
       
       boolean pressGaipChk = moimMapper.pressGaip(map)==0?false:true;
       return pressGaipChk;
@@ -153,6 +151,35 @@ public class MoimService implements MoimServiceInter {
       return moimMapper.getGaipmemberList(mnum);
 
    }
+
+@Override
+public void acceptGaip(int unum, int mnum) {
+	 Map<String, Object> map = new HashMap<>();
+     map.put("mnum", mnum);
+     map.put("unum", unum);
+     
+     moimMapper.acceptGaip(map);
+	
+}
+
+@Override
+public void deniedGaip(int unum, int mnum) {
+	 Map<String, Object> map = new HashMap<>();
+     map.put("mnum", mnum);
+     map.put("unum", unum);
+     
+     moimMapper.deleteGaip(map);
+	
+}
+
+@Override
+public Integer acceptChk(int unum, int mnum) {
+	 Map<String, Object> map = new HashMap<>();
+     map.put("mnum", mnum);
+     map.put("unum", unum);
+     
+	return moimMapper.acceptChk(map);
+}
 
 
 

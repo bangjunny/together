@@ -58,20 +58,17 @@
 		select count(*) from moimmember where unum=#{unum} and mnum=#{mnum}
 	</select>
 	<select id="getGaipmemberList" parameterType="int" resultType="Map">
-		SELECT u.uname, u.gender, mm.acceptcall FROM user u JOIN moimmember mm ON u.unum=mm.unum where mnum=#{mnum}
+		SELECT u.uname, u.gender, u.unum, mm.acceptcall FROM user u JOIN moimmember mm ON u.unum=mm.unum where mnum=#{mnum}
+	</select>
+	<update id="acceptGaip" parameterType="Map">
+		update moimmember set acceptcall=1 where unum=#{unum} and mnum=#{mnum}
+	</update>
+	<delete id="deniedGaip" parameterType="Map">
+		delete from moimmember where unum=#{unum} and mnum=#{mnum}
+	</delete>
+	<select id="acceptChk" parameterType="Map" resultType="Integer">
+		select acceptcall from moimmember where unum=#{unum} and mnum=#{mnum}
 	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
 
 

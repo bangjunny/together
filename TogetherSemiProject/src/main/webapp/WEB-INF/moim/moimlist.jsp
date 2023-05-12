@@ -238,6 +238,12 @@ ${udto.uname }님이 로그인 중 입니다
 					</script>
 					</tr>				
 			</tr>
+			<tr>
+				<td align="right" colspan="2">
+				<button type="button" class="btn btn-secondary">생성일순</button>
+				<button type="button" class="btn btn-secondary">가입자순</button>
+				</td>
+			</tr>
 			<!-- 리스트 출력 부분 -->
 			<c:forEach var="dto" items="${list}" varStatus="i">
 				<c:if test="${i.count % 2 == 1}">

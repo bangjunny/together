@@ -90,14 +90,22 @@ public class MoimController {
 	  //dto얻기
 	  MoimDto dto=moimService.getData(mnum);
 	  //model
-	  System.out.println("detail");
 	  if (session.getAttribute("unum") != null) {
-	  int unum = (int)session.getAttribute("unum");
-	  boolean pressChk = moimService.pressJjim(unum, mnum);
-	  boolean pressGaipChk = moimService.pressGaip(unum, mnum);
-	  model.addAttribute("pressChk", pressChk);
-	  model.addAttribute("pressGaipChk", pressGaipChk);		
-	  }  
+		  int unum = (int)session.getAttribute("unum");
+		  boolean pressChk = moimService.pressJjim(unum, mnum);
+		  boolean pressGaipChk = moimService.pressGaip(unum, mnum);
+	  
+		  Integer acceptChk = moimService.acceptChk(unum, mnum);
+		  model.addAttribute("pressChk", pressChk);
+		  model.addAttribute("pressGaipChk", pressGaipChk);
+		  
+		  if (acceptChk == null) {
+			model.addAttribute("acceptChk", 0);
+		  }else {
+			model.addAttribute("acceptChk", acceptChk);			
+		}
+		  
+	  	}  
 	  List<Map<String, Object>> list = moimService.getGaipmemberList(mnum);
 	  model.addAttribute("list", list);
 	  model.addAttribute("dto",dto);
@@ -141,7 +149,6 @@ public class MoimController {
    @GetMapping("/deleteJjim")
    public String deleteJjimcount(HttpSession session, int mnum) {
 	   int unum = (int) session.getAttribute("unum");
-	   System.out.println("1");
        moimService.deleteJjim(unum, mnum);
        return "success";
    }
@@ -158,6 +165,30 @@ public class MoimController {
 	   int unum = (int) session.getAttribute("unum");
        moimService.deleteGaip(unum, mnum);
        return "success";
+   }
+   @ResponseBody
+   @GetMapping("acceptgaip")
+   public String acceptGaip(int mnum, int unum) {
+	   
+	   moimService.acceptGaip(unum, mnum);
+	   
+	   return "success";
+   }
+   @ResponseBody
+   @GetMapping("deniedgaip")
+   public String deniedGaip(int mnum, int unum) {
+	   
+	   moimService.deniedGaip(unum, mnum);
+	   
+	   return "success";
+   }
+   @ResponseBody
+   @GetMapping("moimout")
+   public String moimOut(int mnum, int unum) {
+	   
+	   moimService.deniedGaip(unum, mnum);
+	   
+	   return "success";
    }
     
 }

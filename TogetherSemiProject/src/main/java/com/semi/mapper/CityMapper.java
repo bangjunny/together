@@ -12,10 +12,8 @@ import com.semi.dto.UserDto;
 
 @Mapper
 public interface CityMapper {
-	public int getTotalCountCity(String city1, String city2);//특정지역리스트갯수
+	public int getTotalCountCity(String city1, String city2, String keyword);//특정지역리스트갯수
 	public List<CityBoardDto> getCityPagingList(Map<String, Object>map);//특정지역리스트
-	public int getAllTotalCountCity();//전체지역리스트갯수
-	public List<CityBoardDto> getAllCityPagingList(Map<String, Integer>map);//전체지역리스트
 
 	public CityBoardDto getDetailbycbnum(int cbnum);
 	public UserDto getDetailbyunum(int unum);

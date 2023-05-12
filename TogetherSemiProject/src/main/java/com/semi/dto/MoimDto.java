@@ -12,7 +12,6 @@ public class MoimDto {
 
 	private int mnum;
 	private String mname;
-	private String jang;
 	private int unum;
 	private String mphoto;
 	private String city1;

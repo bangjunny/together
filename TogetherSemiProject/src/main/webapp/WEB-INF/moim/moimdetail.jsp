@@ -116,15 +116,15 @@
 		
 		<div class="mcontent">
 		 <c:choose>
-   		 <c:when test="${dto.mphoto==null}">
+   		 	<c:when test="${dto.mphoto==null}">
    		<!-- Result값이 있다면 실행할 로직 -->
-   		<img class="mcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
-   		 </c:when>
-   		 <c:otherwise>
+   				<img class="mcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+   		 	</c:when>
+   		 	<c:otherwise>
 		 <!-- 그렇지 않다면 실행할 로직 -->
-		 <img class="mcontent_img" src="https://${imageUrl}/moim/${dto.mphoto}">	 
-   		 </c:otherwise>
-		</c:choose>
+		 		<img class="mcontent_img" src="https://${imageUrl}/moim/${dto.mphoto}">	 
+   		 	</c:otherwise>
+		 </c:choose>
 		
 		${dto.mcontent}
 		
@@ -161,7 +161,7 @@
 			<c:choose>
 			<c:when test="${acceptChk == 1}">
 					<div>
-						<button type="button" onclick="deleteGaip();">모임탈퇴</button>
+						<button type="button" onclick="moimOut();">모임탈퇴</button>
 					</div>
 			</c:when>
 				<c:when test="${!pressGaipChk}">		
@@ -171,7 +171,7 @@
 				</c:when>			
 				<c:otherwise>
 						<div id="gaip_cancle">
-							<button type="button" onclick="deleteGaip();">가입대기</button>
+							<button type="button" onclick="deleteGaip(${acceptChk});">가입대기</button>
 						</div>
 				</c:otherwise>
 			</c:choose>
@@ -318,27 +318,11 @@
 		success:function(res){
 			if(res == "success") {
 				alert("가입 신청을 승인하셨습니다.");
+				window.location.reload();
 			} 
 		},
 	});	
 }
-	function acceptGaip(unum){
-		
-		$.ajax({
-			type:"get",
-			url:"acceptgaip",
-			dataType:"text",
-			   data: {
-				      mnum: mnum,
-				      unum: unum
-				    },
-			success:function(res){
-				if(res == "success") {
-					alert("가입 신청을 반려하셨습니다.");
-				} 
-			},
-		});	
-	}
 	function deniedGaip(unum){
 		
 		$.ajax({
@@ -352,9 +336,39 @@
 			success:function(res){
 				if(res == "success") {
 					alert("가입 신청을 반려하셨습니다.");
+					window.location.reload();
 				} 
 			},
 		});	
+	}
+
+	function moimOut(){
+		const unum = ${sessionScope.unum};
+
+		
+		if(confirm("모임에서 탈퇴하시겠습니까?")){
+			
+		
+	
+			    $.ajax({
+			      type: "get",
+			      url: "moimout",
+			      dataType: "text",
+			      data: {
+			        mnum: mnum,
+			        unum: unum
+			      },
+			      success: function(res) {
+			        if (res == "success") {
+			          alert("모임에서 탈퇴했습니다.");
+			          window.location.reload();
+			        }
+			      },
+			    });
+			
+		}else{
+			return;
+		}
 	}
 	
 	

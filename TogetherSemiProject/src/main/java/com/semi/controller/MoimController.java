@@ -182,6 +182,14 @@ public class MoimController {
 	   
 	   return "success";
    }
+   @ResponseBody
+   @GetMapping("moimout")
+   public String moimOut(int mnum, int unum) {
+	   
+	   moimService.deniedGaip(unum, mnum);
+	   
+	   return "success";
+   }
     
 }
 

@@ -213,4 +213,16 @@ public class CityService implements CityServiceInter{
 		return cityMapper.getAllPhoto(cbnum);
 	}
 
+	@Override
+	public List<CityPhotoDto> getPhoto(int cbnum) {
+		// TODO Auto-generated method stub
+		return cityMapper.getPhoto(cbnum);
+	}
+
+	@Override
+	public String getPhotoCount(int cbnum) {
+		// TODO Auto-generated method stub
+		return cityMapper.getPhotoCount(cbnum);
+	}
+
 }

@@ -20,6 +20,7 @@ public class UserDto {
 	private String hp;
 	private String city1;
 	private String city2;
+	private String category;
 	private Timestamp joinday;
 	private int jjim;
 	private List<UserPhotoDto> photoList;
@@ -27,7 +28,8 @@ public class UserDto {
 	@Override
 	public String toString() {
 		return "UserDto [unum=" + unum + ", uname=" + uname + ", age=" + age + ", gender=" + gender + ", email=" + email
-				+ ", pass=" + pass + ", hp=" + hp + ", city1=" + city1 + ", city2=" + city2 + ", joinday=" + joinday
+				+ ", pass=" + pass + ", hp=" + hp + ", city1=" + city1 + ", city2=" + city2 + ",category=" + category + 
+				", joinday=" + joinday
 				+ "]";
 	}
 	

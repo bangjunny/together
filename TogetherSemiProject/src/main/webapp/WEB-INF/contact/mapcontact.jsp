@@ -65,7 +65,7 @@
             <div>
                 <form onsubmit="searchPlaces(); return false;">
                     키워드 : <input type="text" value="강남역 맛집" id="keyword" size="15"> 
-                    <button type="submit" class="btn btn-outline-primary btn-sm">검색</button> 
+                    <button type="submit" class="btn btn-secondary btn-sm">검색</button> 
                 </form>
             </div>
         </div>

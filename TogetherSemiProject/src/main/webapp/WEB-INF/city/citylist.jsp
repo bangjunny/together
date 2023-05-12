@@ -41,7 +41,7 @@ body, body * {
 <br>
 <h1>
 	<c:choose>
-		<c:when test="${unum == 0 && city1 == 'no'}">
+		<c:when test="${unum == 0 && city1 == 'no' || city1==null}">
 			<!-- 비회원일 때, 지역 전체 -->
 			지역 전체에 게시글이 총
 		</c:when>

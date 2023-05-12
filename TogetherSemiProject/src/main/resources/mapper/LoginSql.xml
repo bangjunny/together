@@ -53,4 +53,8 @@
 	  insert into user_photo (unum, file_name) values
 	  (#{unum}, #{file_name})
 	</insert>
+	
+	<select id="getGaipMoimList" parameterType="int" resultType="Map">
+		select m.mname, m.mnum from moim m join moimmember mm on m.unum=mm.unum where m.unum=#{mnum};
+	</select>
 </mapper>

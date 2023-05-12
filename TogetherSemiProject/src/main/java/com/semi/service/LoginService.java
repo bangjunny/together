@@ -100,6 +100,12 @@ public class LoginService implements LoginServiceInter{
 	    return jjimList;
 	}
 
+	@Override
+	public List<Map<String, Object>> getGaipMoimList(int unum) {
+		
+		return loginMapper.getGaipMoimList(unum);
+	}
+
 
 	
 

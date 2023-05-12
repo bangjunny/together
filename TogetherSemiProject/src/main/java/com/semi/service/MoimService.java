@@ -45,6 +45,18 @@ public class MoimService implements MoimServiceInter {
       map.put("city2", city2);
       return moimMapper.getPagingList(map);
    }
+   
+   @Override
+   public List<MoimDto> getMembersunPagingList(int start, int perpage, String category, String city1, String city2) {
+      // TODO Auto-generated method stub
+      Map<String, Object> map=new HashMap<>();
+      map.put("start", start);
+      map.put("perpage", perpage);
+      map.put("category", category);
+      map.put("city1", city1);
+      map.put("city2", city2);
+      return moimMapper.getMembersunPagingList(map);
+   }
 
    @Override
    public void updateJjimcount(int mnum, int unum) {

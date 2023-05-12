@@ -10,6 +10,7 @@ public interface MoimServiceInter {
 	public int getTotalCount(String category,String city1, String city2);
 	public void insertMoim(MoimDto dto);
 	public List<MoimDto> getPagingList(int start, int perpage, String category, String city1, String city2);//map:start,perpage
+	public List<MoimDto> getMembersunPagingList(int start, int perpage, String category, String city1, String city2);
 	public void updateJjimcount(int mnum, int unum);
 	public MoimDto getData(int mnum);
 	public void deleteMoim(int mnum);

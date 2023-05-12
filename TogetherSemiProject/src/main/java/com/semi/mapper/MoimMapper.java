@@ -14,6 +14,7 @@ public interface MoimMapper {
 	public int getTotalCount(String category, String city1, String city2);
 	public void insertMoim(MoimDto dto);
 	public List<MoimDto> getPagingList(Map<String, Object> map);//map:start,perpage
+	public List<MoimDto> getMembersunPagingList(Map<String, Object> map);//map:start,perpage
 	public void updateJjimcount(Map<String, Integer> map);//unum, mnum
 	public MoimDto getData(int mnum);
 	public void deleteMoim(int mnum);

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,13 +45,12 @@ public class MoimController {
 	
    @Autowired
    private MoimService moimService;
-   
+      
    @GetMapping("/moimlist")
    private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model, String category, HttpSession session,
-		   String city1,String city2)
-   			{   		   	       
-	   		
-	   		
+		   String city1,String city2, String items)
+   			{   		   	       		
+		  
 	   		if(session.getAttribute("unum")==null) {
 	   			int unum=0;
 	   			UserDto udto = cityService.getDetailbyunum(unum);
@@ -88,9 +88,12 @@ public class MoimController {
 			no = totalCount - startNum;
 			// 각페이지에 필요한 게시글 db에 가져오기			
 			List<MoimDto> list = moimService.getPagingList(startNum, perPage, category, city1, city2);
+			List<MoimDto> mlist = moimService.getMembersunPagingList(startNum, perPage, category, city1, city2);
+			 
 			// model 저장
 			model.addAttribute("totalCount", totalCount);
 			model.addAttribute("list",list);
+			model.addAttribute("mlist",mlist);
 			model.addAttribute("startPage", startPage);
 			model.addAttribute("endPage", endPage);
 			model.addAttribute("totalPage", totalPage);

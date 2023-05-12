@@ -43,182 +43,67 @@ public class CityController {
 	private String bucketName = "together-bucket-104";
 
 	@GetMapping("/list")
-	   public String list(@RequestParam(defaultValue = "1") int currentPage, Model model, HttpSession session,
-	         String city1, String city2) {
-	      System.out.println("검색하려는 city1:" + city1);
-	      System.out.println("검색하려는 city2:" + city2);
-	      if (city1 == null) { //검색값이 없을때
-	         if (session.getAttribute("unum") == null) { //비회원일때
-	            int unum = 0;
-	            UserDto udto = cityService.getDetailbyunum(unum);
-	            city1 = udto.getCity1();
-	            city2 = udto.getCity2();
-	            int totalCount = cityService.getAllTotalCountCity();// 게시판의 총 글 갯수
-	            int totalPage;// 총 페이지수
-	            int perPage = 5;// 한 페이지당 보여질 글 갯수
-	            int perBlock = 2;// 한 블럭당 보여질 페이지의 갯수
-	            int startNum;// 각 페이지에서 보여질 글의 시작번호
-	            int startPage;// 각 블럭에서 보여질 시작 페이지 번호
-	            int endPage;// 각 블럭에서 보여질 끝 페이지 번호
-	            int no;// 글 출력시 출력할 시작번호
-	            // 총 페이지수
-	            totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);// 딱 떨어지면 0을 더하고 나머지가 있으면 1(페이지)을
-	                                                                  // 더해준다
-	            // 시작 페이지
-	            startPage = (currentPage - 1) / perBlock * perBlock + 1;
-	            // 끝페이지
-	            endPage = startPage + perBlock - 1;
-	            // 이때 문제점 ... endPage가 totalPage보다 크면 안된다
-	            if (endPage > totalPage)
-	               endPage = totalPage;
-	            // 각 페이지의 시작번호(1페이지:0, 2페이지:3, 3페이지:6...)
-	            startNum = (currentPage - 1) * perPage;
-	            // 각 글마다 출력할 글 번호(예:10개일경우 1페이지:10, 2페이지:7...)
-	            no = totalCount - startNum;
-	            // 각 페이지에 필요한 게시글 db에서 가져오기
-	            List<CityBoardDto> list = cityService.getAllCityPagingList(startNum, perPage);
-	            // 출력시 필요한 변수들을 model에 모두 저장
-	            model.addAttribute("totalCount", totalCount);
-	            model.addAttribute("list", list);
-	            model.addAttribute("startPage", startPage);
-	            model.addAttribute("endPage", endPage);
-	            model.addAttribute("totalPage", totalPage);
-	            model.addAttribute("currentPage", currentPage);
-	            model.addAttribute("no", no);
+	public String list(@RequestParam(defaultValue = "1") int currentPage, Model model, HttpSession session,
+			String city1, String city2, String keyword) {
+		UserDto udto;
+		int unum;
+		
+//		if(city2=="지역전체" && city2==null) {
+//			city2="no";
+//		}
 
-	            model.addAttribute("udto", udto);
-	            model.addAttribute("unum", unum);
-	            model.addAttribute("city1", city1);
-	            model.addAttribute("city2", city2);
-	         } else {
-	            int unum = (int) session.getAttribute("unum");
-	            UserDto udto = cityService.getDetailbyunum(unum);
-	            city1 = udto.getCity1();
-	            city2 = udto.getCity2();
+		if (session.getAttribute("unum") == null) { // 비회원일때
+			unum = 0;
+		} else {
+			unum = (int) session.getAttribute("unum"); //회원일때
+		}
+		udto = cityService.getDetailbyunum(unum);
+		if (city1==null) {
+			city1 = udto.getCity1();
+			city2 = udto.getCity2();
+		}
+		System.out.println("검색하려는 city1:" + city1);
+		System.out.println("검색하려는 city2:" + city2);
+		System.out.println("검색하려는 keyword:" + keyword);
 
-	            int totalCount = cityService.getTotalCountCity(city1, city2);// 게시판의 총 글 갯수
-	            int totalPage;// 총 페이지수
-	            int perPage = 5;// 한 페이지당 보여질 글 갯수
-	            int perBlock = 2;// 한 블럭당 보여질 페이지의 갯수
-	            int startNum;// 각 페이지에서 보여질 글의 시작번호
-	            int startPage;// 각 블럭에서 보여질 시작 페이지 번호
-	            int endPage;// 각 블럭에서 보여질 끝 페이지 번호
-	            int no;// 글 출력시 출력할 시작번호
-	            // 총 페이지수
-	            totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);// 딱 떨어지면 0을 더하고 나머지가 있으면 1(페이지)을
-	                                                                  // 더해준다
-	            // 시작 페이지
-	            startPage = (currentPage - 1) / perBlock * perBlock + 1;
-	            // 끝페이지
-	            endPage = startPage + perBlock - 1;
-	            // 이때 문제점 ... endPage가 totalPage보다 크면 안된다
-	            if (endPage > totalPage)
-	               endPage = totalPage;
-	            // 각 페이지의 시작번호(1페이지:0, 2페이지:3, 3페이지:6...)
-	            startNum = (currentPage - 1) * perPage;
-	            // 각 글마다 출력할 글 번호(예:10개일경우 1페이지:10, 2페이지:7...)
-	            no = totalCount - startNum;
+		int totalCount = cityService.getTotalCountCity(city1, city2, keyword);// 게시판의 총 글 갯수
+		int totalPage;// 총 페이지수
+		int perPage = 5;// 한 페이지당 보여질 글 갯수
+		int perBlock = 2;// 한 블럭당 보여질 페이지의 갯수
+		int startNum;// 각 페이지에서 보여질 글의 시작번호
+		int startPage;// 각 블럭에서 보여질 시작 페이지 번호
+		int endPage;// 각 블럭에서 보여질 끝 페이지 번호
+		int no;// 글 출력시 출력할 시작번호
 
-	            List<CityBoardDto> list = cityService.getCityPagingList(startNum, perPage, city1, city2);
-	            model.addAttribute("totalCount", totalCount);
-	            model.addAttribute("list", list);
-	            model.addAttribute("startPage", startPage);
-	            model.addAttribute("endPage", endPage);
-	            model.addAttribute("totalPage", totalPage);
-	            model.addAttribute("currentPage", currentPage);
-	            model.addAttribute("no", no);
+		// 총 페이지수
+		totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);// 딱 떨어지면 0을 더하고 나머지가 있으면 1(페이지)을 더해준다
+		// 시작 페이지
+		startPage = (currentPage - 1) / perBlock * perBlock + 1;
+		// 끝페이지
+		endPage = startPage + perBlock - 1;
+		// 이때 문제점 ... endPage가 totalPage보다 크면 안된다
+		if (endPage > totalPage)
+			endPage = totalPage;
+		// 각 페이지의 시작번호(1페이지:0, 2페이지:3, 3페이지:6...)
+		startNum = (currentPage - 1) * perPage;
+		// 각 글마다 출력할 글 번호(예:10개일경우 1페이지:10, 2페이지:7...)
+		no = totalCount - startNum;
 
-	            model.addAttribute("udto", udto);
-	            model.addAttribute("unum", unum);
-	            model.addAttribute("city1", city1);
-	            model.addAttribute("city2", city2);
-	         }
+		List<CityBoardDto> list = cityService.getCityPagingList(startNum, perPage, city1, city2, keyword);
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("list", list);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("no", no);
+		model.addAttribute("udto", udto);
+		model.addAttribute("unum", unum);
+		model.addAttribute("city1", city1);
+		model.addAttribute("city2", city2);
 
-	      } else { //검색값이 있을때
-	         if (session.getAttribute("unum") == null) { //비회원일때
-	            int unum = 0;
-	            UserDto udto = cityService.getDetailbyunum(unum);
-	            int totalCount = cityService.getTotalCountCity(city1, city2);
-	            int totalPage;// 총 페이지수
-	            int perPage = 5;// 한 페이지당 보여질 글 갯수
-	            int perBlock = 2;// 한 블럭당 보여질 페이지의 갯수
-	            int startNum;// 각 페이지에서 보여질 글의 시작번호
-	            int startPage;// 각 블럭에서 보여질 시작 페이지 번호
-	            int endPage;// 각 블럭에서 보여질 끝 페이지 번호
-	            int no;// 글 출력시 출력할 시작번호
-	            // 총 페이지수
-	            totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);// 딱 떨어지면 0을 더하고 나머지가 있으면 1(페이지)을
-	                                                                  // 더해준다
-	            // 시작 페이지
-	            startPage = (currentPage - 1) / perBlock * perBlock + 1;
-	            // 끝페이지
-	            endPage = startPage + perBlock - 1;
-	            // 이때 문제점 ... endPage가 totalPage보다 크면 안된다
-	            if (endPage > totalPage)
-	               endPage = totalPage;
-	            // 각 페이지의 시작번호(1페이지:0, 2페이지:3, 3페이지:6...)
-	            startNum = (currentPage - 1) * perPage;
-	            // 각 글마다 출력할 글 번호(예:10개일경우 1페이지:10, 2페이지:7...)
-	            no = totalCount - startNum;
-	            // 각 페이지에 필요한 게시글 db에서 가져오기
-	            List<CityBoardDto> list = cityService.getCityPagingList(startNum, perPage, city1, city2);
-	            // 출력시 필요한 변수들을 model에 모두 저장
-	            model.addAttribute("totalCount", totalCount);
-	            model.addAttribute("list", list);
-	            model.addAttribute("startPage", startPage);
-	            model.addAttribute("endPage", endPage);
-	            model.addAttribute("totalPage", totalPage);
-	            model.addAttribute("currentPage", currentPage);
-	            model.addAttribute("no", no);
-
-	            model.addAttribute("udto", udto);
-	            model.addAttribute("unum", unum);
-	            model.addAttribute("city1", city1);
-	            model.addAttribute("city2", city2);
-	         } else {//회원일때
-	            int unum = (int) session.getAttribute("unum");
-	            UserDto udto = cityService.getDetailbyunum(unum);
-
-	            int totalCount = cityService.getTotalCountCity(city1, city2);// 게시판의 총 글 갯수
-	            int totalPage;// 총 페이지수
-	            int perPage = 5;// 한 페이지당 보여질 글 갯수
-	            int perBlock = 2;// 한 블럭당 보여질 페이지의 갯수
-	            int startNum;// 각 페이지에서 보여질 글의 시작번호
-	            int startPage;// 각 블럭에서 보여질 시작 페이지 번호
-	            int endPage;// 각 블럭에서 보여질 끝 페이지 번호
-	            int no;// 글 출력시 출력할 시작번호
-	            // 총 페이지수
-	            totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);// 딱 떨어지면 0을 더하고 나머지가 있으면 1(페이지)을
-	                                                                  // 더해준다
-	            // 시작 페이지
-	            startPage = (currentPage - 1) / perBlock * perBlock + 1;
-	            // 끝페이지
-	            endPage = startPage + perBlock - 1;
-	            // 이때 문제점 ... endPage가 totalPage보다 크면 안된다
-	            if (endPage > totalPage)
-	               endPage = totalPage;
-	            // 각 페이지의 시작번호(1페이지:0, 2페이지:3, 3페이지:6...)
-	            startNum = (currentPage - 1) * perPage;
-	            // 각 글마다 출력할 글 번호(예:10개일경우 1페이지:10, 2페이지:7...)
-	            no = totalCount - startNum;
-
-	            List<CityBoardDto> list = cityService.getCityPagingList(startNum, perPage, city1, city2);
-	            model.addAttribute("totalCount", totalCount);
-	            model.addAttribute("list", list);
-	            model.addAttribute("startPage", startPage);
-	            model.addAttribute("endPage", endPage);
-	            model.addAttribute("totalPage", totalPage);
-	            model.addAttribute("currentPage", currentPage);
-	            model.addAttribute("no", no);
-
-	            model.addAttribute("udto", udto);
-	            model.addAttribute("unum", unum);
-	            model.addAttribute("city1", city1);
-	            model.addAttribute("city2", city2);
-	         }
-	      }
-	      return "/main/city/citylist";
-	   }
+		return "/main/city/citylist";
+	}
 
 //	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 //	@GetMapping("/searchlist")
@@ -234,7 +119,7 @@ public class CityController {
 
 	@GetMapping("/detail")
 	public String detail(int cbnum, Model model, HttpSession session, @RequestParam(defaultValue = "0") int ref,
-			@RequestParam(defaultValue = "0") int step, @RequestParam(defaultValue = "0") int depth) {
+			@RequestParam(defaultValue = "0") int step, @RequestParam(defaultValue = "0") int depth, String keyword) {
 		CityBoardDto dto = cityService.getDetailbycbnum(cbnum);
 		int unum = (int) session.getAttribute("unum");
 		UserDto udto = cityMapper.getDetailbyunum(unum);
@@ -252,7 +137,7 @@ public class CityController {
 
 		String city1 = dto.getCity1();
 		String city2 = dto.getCity2();
-		int totalCountCity = cityService.getTotalCountCity(city1, city2);
+		int totalCountCity = cityService.getTotalCountCity(city1, city2, keyword);
 		model.addAttribute("udto", udto);
 		model.addAttribute("dto", dto);
 		model.addAttribute("nxtcontent", nxtcontent);
@@ -264,7 +149,6 @@ public class CityController {
 		model.addAttribute("totalCountCity", totalCountCity);
 		model.addAttribute("totalComment", totalComment);
 		model.addAttribute("totalrenum", totalrenum);
-
 		model.addAttribute("ref", ref);
 		model.addAttribute("step", step);
 		model.addAttribute("depth", depth);
@@ -298,38 +182,31 @@ public class CityController {
 	}
 
 	@PostMapping("/newcomment")
-	public String newcomment(
-			int cbnum,
-			CbReBoardDto dto,
-			Model model)
-	{
+	public String newcomment(int cbnum, CbReBoardDto dto, Model model) {
 		cityService.newComment(dto);
-		
-		model.addAttribute("cbnum",cbnum);
-		
-		return "redirect:/city/detail?cbnum="+dto.getCbnum();
+
+		model.addAttribute("cbnum", cbnum);
+
+		return "redirect:/city/detail?cbnum=" + dto.getCbnum();
 	}
 
 	@PostMapping("/addcomment")
-	public String addcomment(
-			CbReBoardDto dto,
-			Model model)
-	{
-		CbReBoardDto rdto=new CbReBoardDto();
-		int renum=dto.getRenum();
-		CbReBoardDto crdto=cityMapper.getCommentByRenum(renum);
-		int ref=crdto.getRef();
-		int step=crdto.getStep();
-		int depth=crdto.getDepth();
-		
-		//System.out.println("sfff"+depth);
-		model.addAttribute("ref",ref);
-		model.addAttribute("step",step);
-		model.addAttribute("depth",depth);
-		
+	public String addcomment(CbReBoardDto dto, Model model) {
+		CbReBoardDto rdto = new CbReBoardDto();
+		int renum = dto.getRenum();
+		CbReBoardDto crdto = cityMapper.getCommentByRenum(renum);
+		int ref = crdto.getRef();
+		int step = crdto.getStep();
+		int depth = crdto.getDepth();
+
+		// System.out.println("sfff"+depth);
+		model.addAttribute("ref", ref);
+		model.addAttribute("step", step);
+		model.addAttribute("depth", depth);
+
 		cityService.addComment(dto);
-		
-		return "redirect:/city/detail?cbnum="+dto.getCbnum();
+
+		return "redirect:/city/detail?cbnum=" + dto.getCbnum();
 	}
 
 	@GetMapping("/newPost")
@@ -344,17 +221,14 @@ public class CityController {
 		cityService.deleteCityboard(cbnum);
 		return "redirect:/city/list";
 	}
-	
-	@PostMapping("/updatecomment")
-	public String updateComment(
-			CbReBoardDto dto
-			) {
-		cityService.updateComment(dto);
-		int cbnum=dto.getCbnum();
-		
-		return "redirect:/city/detail?cbnum="+cbnum;
-	}
 
+	@PostMapping("/updatecomment")
+	public String updateComment(CbReBoardDto dto) {
+		cityService.updateComment(dto);
+		int cbnum = dto.getCbnum();
+
+		return "redirect:/city/detail?cbnum=" + cbnum;
+	}
 
 //<-----------------------------------절취선-------------------------------------------->
 

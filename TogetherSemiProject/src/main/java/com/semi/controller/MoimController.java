@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.semi.dto.JJimDto;
 import com.semi.dto.MoimDto;
 import com.semi.mapper.MoimMapper;
 import com.semi.service.MoimService;
@@ -40,15 +41,15 @@ public class MoimController {
    private MoimService moimService;
    
    @GetMapping("/moimlist")
-
-   private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model)
+   private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model, String category, HttpSession session)
    {   
 	   		// 게시물의 총 글 갯수
-			int totalCount = moimService.getTotalCount();	
+			int totalCount = moimService.getTotalCount();
+			int categoryCount = moimService.getCategoryCount(category);
 			
 			int totalPage;// 총페이지수
 			int perPage = 6;// 한페이지당 보여질 글의 갯수
-			int perBlock = 5;// 한 블럭당 보여질 페이지 갯수
+			int perBlock = 2;// 한 블럭당 보여질 페이지 갯수
 			int startNum;// 각 페이지에서 보여질 글의 시작번호
 			int startPage;// 각 블럭에서 보여질 시작페이지 번호
 			int endPage;// 각 블럭에서 보여질 끝 페이지 번호'
@@ -67,16 +68,18 @@ public class MoimController {
 			// 각 글마다 출력할 글 번호(예: 10개 일 경우 1페이지 :10, 2페이지 :7....)
 			no = totalCount - startNum;
 			// 각페이지에 필요한 게시글 db에 가져오기
+			//List<MoimDto> list = moimService.getCategoryPagingList(startNum, perPage, category);
 			List<MoimDto> list = moimService.getPagingList(startNum, perPage);
-			
 			// model 저장
 			model.addAttribute("totalCount", totalCount);
+			model.addAttribute("categoryCount", categoryCount);
 			model.addAttribute("list",list);
 			model.addAttribute("startPage", startPage);
 			model.addAttribute("endPage", endPage);
 			model.addAttribute("totalPage", totalPage);
 			model.addAttribute("currentPage", currentPage);
 			model.addAttribute("no", no);
+			model.addAttribute("category", category);
 			
    return "/main/moim/moimlist";
    }
@@ -88,23 +91,20 @@ public class MoimController {
 	  //dto얻기
 	  MoimDto dto=moimService.getData(mnum);
 	  //model
-
 	  System.out.println("detail");
 	  if (session.getAttribute("unum") != null) {
-		  int unum = (int)session.getAttribute("unum");
-		  boolean pressChk = moimService.pressJjim(unum, mnum);
-		  boolean pressGaipChk = moimService.pressGaip(unum, mnum);
-		  model.addAttribute("pressChk", pressChk);
-		  model.addAttribute("pressGaipChk", pressGaipChk);		
+	  int unum = (int)session.getAttribute("unum");
+	  boolean pressChk = moimService.pressJjim(unum, mnum);
+	  boolean pressGaipChk = moimService.pressGaip(unum, mnum);
+	  model.addAttribute("pressChk", pressChk);
+	  model.addAttribute("pressGaipChk", pressGaipChk);		
 	  }  
-	  
-	
-	  
-
+	  List<Map<String, Object>> list = moimService.getGaipmemberList(mnum);
+	  model.addAttribute("list", list);
 	  model.addAttribute("dto",dto);
 	  
       return "/main/moim/moimdetail";
-   }
+   	  }
    
    @GetMapping("/moimform")
    private String moimform()
@@ -160,6 +160,11 @@ public class MoimController {
        moimService.deleteGaip(unum, mnum);
        return "success";
    }
+   
+   
+ 
+   
+   
     
 }
 

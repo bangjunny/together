@@ -25,12 +25,44 @@ body, body * {
 
 </head>
 <body>
-	<div style="border: 1px solid black; width: 100%; height: 100px; font-size: 50px">${udto.uname }님이 로그인 중입니다</div>
+<div style="border: 1px solid black; width: 100%; height: 100px; font-size: 50px">
+<c:choose>
+<c:when test="${unum==0 }">
+GUEST로 게시판 조회 중 입니다
+</c:when>
+<c:otherwise>
+${udto.uname }님이 로그인 중 입니다
+</c:otherwise>
+</c:choose>
+</div>
 	<br>
 	<br>
 	<br>
 	<br>
-<h1><span class="city1">${city1 }</span>의 <span class="city2">${city2 }</span>에 글이 총 <span class="totalCountCity">${totalCountCity }</span>개 있습니다</h1>
+<h1>
+<c:choose>
+
+  <c:when test="${unum==0}"><!-- 비회원일때 -->
+    <c:choose>
+      <c:when test="${city1=='no'}">
+        <span class="city">지역 전체에 게시글이 총</span>
+        <span class="totalCount">${totalCount}</span>개 있습니다
+      </c:when>
+      <c:when test="${city1!='no'}">
+        <span class="city">${city1}의 ${city2}에 글이 총 </span>
+        <span class="totalCount">${totalCount}</span>개 있습니다
+      </c:when>
+    </c:choose>
+  </c:when>
+  
+  <c:otherwise><!-- 회원일때 -->
+      <span class="city">${city1}의 ${city2}에 글이 총 </span>
+      <span class="totalCount">${totalCount}</span>개 있습니다
+  </c:otherwise>
+  
+</c:choose>
+</h1>
+<form action = "list" method="get">
 <label for="user_city">지역</label>
 	<select id="city" name="city1">
 		<option hidden>시, 도 선택</option>
@@ -107,7 +139,8 @@ body, body * {
                      });
                    });
                  </script>
-	<input type="button" id="search" onclick="search();" value="선택지역검색">
+	<button id="search" type="submit">선택지역검색</button>
+	</form>
 	<button style="float: right" id="write" onclick="writeform();">글쓰기</button>
 	<table class="table table-bordered boardlist" >
 		<tr bgcolor="#f5f5dc">
@@ -118,19 +151,29 @@ body, body * {
 			<th style="width: 100px">조회수</th>
 			<th style="width: 100px">추천수</th>
 		</tr>
-		<c:forEach var="citylist" items="${citylist}" varStatus="i">
+		<c:forEach var="list" items="${list}" varStatus="i">
 			<tr>
-				<td align="center">${citylist.cbnum }</td>
-
-				<td style="cursor: pointer" onclick="location.href='detail?cbnum=${citylist.cbnum}'">
-					<b>${citylist.subject}</b>
+				<td align="center">${list.cbnum }</td>
+		
+				<c:choose>
+				<c:when test="${unum==0}">
+				<td style="cursor: pointer" onclick="guest();">
+					<b>${list.subject}</b>
 				</td>
-				<td>${citylist.uname}</td>
+				</c:when>
+				<c:otherwise>
+				<td style="cursor: pointer" onclick="location.href='detail?cbnum=${list.cbnum}'">
+					<b>${list.subject}</b>
+				</c:otherwise>
+				</c:choose>
+		
+				
+				<td>${list.uname}</td>
 				<td align="right" >
-				<fmt:formatDate value="${citylist.cbwriteday }" pattern="yyyy-MM-dd"/>
+				<fmt:formatDate value="${list.cbwriteday }" pattern="yyyy-MM-dd"/>
 				</td>
-				<td>${citylist.readcount}</td>
-				<td>${citylist.cblike}</td>
+				<td>${list.readcount}</td>
+				<td>${list.cblike}</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -143,6 +186,10 @@ body, body * {
 	<hr>
 	<!-- 페이징처리 -->
 	<div style="width: 700px; text-align: center; font-size: 20px;">
+	
+		<c:choose>
+		<c:when test="${city1=='no'}">
+		
 		<!-- 이전 -->
 		<c:if test="${startPage>1 }">
 			<a style="color: green; text-decoration: none; cursor: pointer;"
@@ -161,17 +208,47 @@ body, body * {
 					href="list?currentPage=${pp }">${pp }</a>
 			</c:if>
         &nbsp;
-    </c:forEach>
+    	</c:forEach>
 
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
 			<a style="color: green; text-decoration: none; cursor: pointer;"
 				href="list?currentPage=${endPage+1 }">다음</a>
 		</c:if>
+		
+		</c:when>
+		<c:otherwise>
+			<!-- 이전 -->
+		<c:if test="${startPage>1 }">
+			<a style="color: green; text-decoration: none; cursor: pointer;"
+				href="list?city1=${city1 }&city2=${city2 }&currentPage=${startPage-1 }">이전</a>
+		</c:if>
+		&nbsp;
+
+		<!-- 페이지 번호 출력 -->
+		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
+			<c:if test="${currentPage==pp }">
+				<a style="color: green; text-decoration: none; cursor: pointer;"
+					href="list?city1=${city1 }&city2=${city2 }&currentPage=${pp }">${pp }</a>
+			</c:if>
+			<c:if test="${currentPage!=pp }">
+				<a style="color: black; text-decoration: none; cursor: pointer;"
+					href="list?city1=${city1 }&city2=${city2 }&currentPage=${pp }">${pp }</a>
+			</c:if>
+        &nbsp;
+    	</c:forEach>
+
+		<!-- 다음 -->
+		<c:if test="${endPage<totalPage }">
+			<a style="color: green; text-decoration: none; cursor: pointer;"
+				href="list?city1=${city1 }&city2=${city2 }&currentPage=${endPage+1 }">다음</a>
+		</c:if>
+		</c:otherwise>
+		</c:choose>
 
 	</div>
 	<script type="text/javascript">
-	function search(){
+	/* function search(){
 		var city1 = $("#city").val();
 		var city2 = $("#district").val();
 		$(".city1").html(city1);
@@ -220,12 +297,16 @@ body, body * {
 			}
 			
 		});
-	}
+	} */
 	function writeform(){
-		var city1 = $("span.city1").text();
-		var city2 = $("span.city2").text();
-		var unum = ${udto.unum}
-		location.href="cityform?unum="+(unum)+"&city1="+(city1)+"&city2="+(city2);
+		if(${unum==0}){
+			alert("비회원은 게시글을 작성할수 없습니다")
+		} else {
+		location.href='cityform?unum=${unum}&city1=${city1}&city2=${city2}';
+		}
+	}
+	function guest() {
+		alert("비회원은 게시글을 조회할수 없습니다.(모달창으로 변경해서 회원가입 페이지로 이동할거냐고 묻는거 만들예정)")
 	}
 </script>
 

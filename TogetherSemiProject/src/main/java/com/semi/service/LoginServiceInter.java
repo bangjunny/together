@@ -1,7 +1,11 @@
 package com.semi.service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
+import com.semi.dto.JJimDto;
+import com.semi.dto.MoimDto;
 import com.semi.dto.UserDto;
 import com.semi.dto.UserPhotoDto;
 
@@ -14,5 +18,7 @@ public interface LoginServiceInter {
 	public List<UserDto> getAllUsers();
 	public UserDto getUserByUnum(int unum);
 	public UserPhotoDto getMyPhoto(int photo_idx);
+	
+	public List<Map<String, Object>> getJJimMoimList(int unum);
 
 }

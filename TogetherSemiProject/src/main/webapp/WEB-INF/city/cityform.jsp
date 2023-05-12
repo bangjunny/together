@@ -2,7 +2,7 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
-
+<%@ include file="../commonvar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,16 +56,18 @@
 <h1>지역 게시판</h1>
 
 <div style="float:left;">
-		<c:choose>
-          <c:when test="${dto.uphoto==null}">
-         <!-- Result값이 있다면 실행할 로직 -->
-         <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width:40px; border-radius:100px;">
-          </c:when>
-          <c:otherwise>
-       <!-- 그렇지 않다면 실행할 로직 -->
-       <img src="https://${imageUrl}/moim/${dto.uphoto}" style="width:40px;">    
-          </c:otherwise>
-      </c:choose></div><h4>${dto.uname}님이 작성 중입니다</h4>
+	<%-- <c:choose>
+		<c:when test="${dto.uphoto==null}">
+			<!-- Result값이 있다면 실행할 로직 -->
+			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width:40px; border-radius:100px;">
+		</c:when>
+		<c:otherwise>
+			<!-- 그렇지 않다면 실행할 로직 -->
+			<img src="https://${imageUrl}/userprofile/${dto.uphoto}" style="width:40px;">    
+		</c:otherwise>
+	</c:choose> --%>
+</div>
+      <h4>${dto.uname}님이 작성 중입니다</h4>
 <div class="container">
     <form action="cityinsert" method="post" enctype="multipart/form-data">
         <br>
@@ -106,6 +108,7 @@
 			reader.readAsDataURL($(this)[0].files[0]);
 		}
 	});
+	$("#")
 </script>
 </body>
 

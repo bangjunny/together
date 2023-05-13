@@ -227,8 +227,14 @@ $(document).ready(function() {
 	
 		
 	<div id="main_btn_wrap">
-		<button type="button" class="btn btn-light" onclick="location.href='/user/login'">로그인</button>
-		<button type="button" class="btn btn-light" onclick="location.href='/user/join'">회원가입</button>
+		<c:choose>
+			<c:when test="${sessionScope.unum ne null }">
+				<a class="layout_a" href="/user/mypage">마이페이지</a>
+			</c:when>
+			<c:otherwise>
+				<button type="button" class="btn btn-light" onclick="location.href='/user/login'">로그인</button>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	</div>
 	<div id="main_header_pic">

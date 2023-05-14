@@ -787,7 +787,7 @@ ${udto.uname }님이 로그인 중 입니다
 			</div>
 		</div>
 	</form>
-	<script>
+	<script> 
 $(function() {
     // 체크박스 값이 변경될 때마다 실행되는 함수
     $('input[name="category"]').on('change', function() {

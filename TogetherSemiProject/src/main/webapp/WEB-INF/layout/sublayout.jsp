@@ -16,6 +16,7 @@
 	body, body *{
 		font-family: 'Jua'
 	}
+	
 	a:link,a:visited,a:hover {
 		color: black;
 		text-decoration: none;

@@ -85,6 +85,7 @@ $(document).scroll(function() {
 	  console.log(scrollY);
 	  $("#sidebar_wrap").css("transform", `translate(0, ${scrollY}px)`);
 	});
+	
 </script>
 </head>
 <body>

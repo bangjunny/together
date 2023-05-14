@@ -16,6 +16,7 @@
    body, body *{
       font-family: 'NanumPenScript';
    }
+   
    .footer{
    		width: 100%;
    		height: 300px;

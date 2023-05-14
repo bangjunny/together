@@ -83,6 +83,7 @@
 	.list_a{
 		width: 100%;
 	}
+	
 	.mainphoto{
 		width: 200px;
 		height: 200px;

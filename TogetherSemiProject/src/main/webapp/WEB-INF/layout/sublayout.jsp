@@ -27,9 +27,6 @@
 		background-color: rgba(245, 245, 220, 0.2);	
 		height: 100px;
 	}
-	.footer{
-		margin-top: 100px;
-	}
 </style>
 </head>
 <body>

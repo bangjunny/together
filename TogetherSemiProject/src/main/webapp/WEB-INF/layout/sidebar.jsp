@@ -28,6 +28,8 @@
     position: fixed;
     left: 1700px;
     top: 100px;
+    transform: translate(0, 0);
+  	transition: transform 0.2s ease-out;
   }
   #sidebar_wrap ul {
     list-style: none;
@@ -78,6 +80,11 @@ $(document).on("mouseout", "#sidebar_wrap", function(event) {
         });
     }
 });
+$(document).scroll(function() {
+	  const scrollY = $(this).scrollTop();
+	  console.log(scrollY);
+	  $("#sidebar_wrap").css("transform", `translate(0, ${scrollY}px)`);
+	});
 </script>
 </head>
 <body>

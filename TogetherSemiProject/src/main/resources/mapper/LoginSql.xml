@@ -55,6 +55,6 @@
 	</insert>
 	
 	<select id="getGaipMoimList" parameterType="int" resultType="Map">
-		select m.mname, m.mnum from moim m join moimmember mm on m.unum=mm.unum where m.unum=#{mnum};
+		select m.mnum, m.mname from moim m join moimmember mm on m.mnum=mm.mnum where mm.unum=#{unum} and acceptcall=1;
 	</select>
 </mapper>

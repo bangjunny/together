@@ -70,14 +70,18 @@
 		margin-left:70px;
 		width: 200px;
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-end;
 	}
 	#main_list_go{
+		width: 1000px;
 		margin: 150px auto 150px auto;
 		text-align: center;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+	.list_a{
+		width: 100%;
 	}
 	.mainphoto{
 		width: 200px;
@@ -229,7 +233,7 @@ $(document).ready(function() {
 	<div id="main_btn_wrap">
 		<c:choose>
 			<c:when test="${sessionScope.unum ne null }">
-				<a class="layout_a" href="/user/mypage">마이페이지</a>
+				<button type="button" class="btn btn-light layout_a" onclick="location.href='/user/mypage'">마이페이지</button>
 			</c:when>
 			<c:otherwise>
 				<button type="button" class="btn btn-light" onclick="location.href='/user/login'">로그인</button>
@@ -242,21 +246,21 @@ $(document).ready(function() {
 	</div>
 	
 </div>
-<div id="main_list_go">
-	<a class="list_a" href="/moim/moimlist">
-	<img class="mainphoto" src="../photo/moim.png"><br>
-	<span>모임 게시판</span>
-	</a>
-	<a class="list_a" href="/city/list">
-	<img class="mainphoto" src="../photo/local.png"><br>
-	<span>지역 게시판</span>
-	</a>
-	<a class="list_a" href="/mapcontact">
-	<img class="mainphoto" src="../photo/map.png"><br>
-	<span>지도로 위치 검색</span>
-	</a>
-	<br>
-</div>
+	<div id="main_list_go">
+		<a class="list_a" href="/moim/moimlist">
+			<img class="mainphoto" src="../photo/moim.png"><br>
+			<span>모임 게시판</span>
+		</a>
+			<a class="list_a" href="/city/list">
+			<img class="mainphoto" src="../photo/local.png"><br>
+			<span>지역 게시판</span>
+		</a>
+			<a class="list_a" href="/mapcontact">
+			<img class="mainphoto" src="../photo/map.png"><br>
+			<span>지도로 위치 검색</span>
+		</a>
+		<br>
+	</div>
 	
 	<div id="main_mid_pic">
 	</div>

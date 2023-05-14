@@ -97,17 +97,18 @@
 		<div><br>
 		<h2 style="text-align:center;">${dto.mname}</h2>
 		
-		<span style="float: left;font-size: 14px;">지역: ${dto.city1} ${dto.city2}</span>
+		<span style="float: left;font-size: 14px;">지역 : ${dto.city1} ${dto.city2}</span>
 		<span style="float: right; color:black; font-size: 14px;">
-		작성일:
-		<fmt:formatDate value="${dto.createday}" pattern="yyyy-MM-dd HH:mm" />
+		모임 시작일 :
+		<fmt:formatDate value="${dto.createday}" pattern="yyyy-MM-dd" />
 		</span> 
 		<br> 
-		<span style="color:black; font-size: 14px;">카테고리:${dto.category},
-		모임인원:${dto.unum}명</span>
+		<span style="color:black; font-size: 14px;">카테고리 : ${dto.category}</span>
+		<br>
+		<span style="color:black; font-size: 14px;">모임원 : 총 ${dto.mcount}명</span>
 		<br>
 		
-		<span style="float: left; color:black; font-size:16px;">모임장: ${sessionScope.uname}</span>
+		<span style="float: left; color:black; font-size:16px;">모임장 : ${sessionScope.uname}</span>
 		
 		<br>
 		</div>
@@ -132,7 +133,7 @@
 		
 		<div style="text-align:center;">
 			<button type="button" class="btn btn-sm btn-outline-secondary"
-				style="width: 70px;" onclick="location.href='./moimlist?currentPage=${currentPage}'">목록</button>
+				style="width: 70px;" onclick="history.back()">목록</button>
 			<button type="button" class="btn btn-sm btn-outline-secondary"
 				style="width: 70px;" onclick="">수정</button>
 			<button type="button" class="btn btn-sm btn-outline-secondary" 

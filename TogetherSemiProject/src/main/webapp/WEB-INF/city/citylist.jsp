@@ -35,6 +35,7 @@ body, body * {
 		</c:otherwise>
 	</c:choose>
 </div>
+
 <br>
 <br>
 <br>
@@ -143,6 +144,63 @@ body, body * {
 			<th style="width: 100px">조회수</th>
 			<th style="width: 100px">추천수</th>
 		</tr>
+		<tr bgcolor="cdcdcd">
+			<td align="center" colspan="6">조회수 TOP3</td>
+		</tr>
+		<c:forEach var="readlist" items="${readlist}" varStatus="i">
+			
+			<tr bgcolor="cdcdcd">
+				<td align="center">${readlist.cbnum }</td>
+
+				<c:choose>
+					<c:when test="${unum==0}">
+						<td style="cursor: pointer" onclick="guest();"><b>${readlist.subject}</b>
+						</td>
+					</c:when>
+					<c:otherwise>
+						<td style="cursor: pointer"
+							onclick="location.href='detail?cbnum=${readlist.cbnum}'"><b>${readlist.subject}</b>
+					</c:otherwise>
+				</c:choose>
+
+
+				<td>${readlist.uname}</td>
+				<td align="right"><fmt:formatDate value="${readlist.cbwriteday }"
+						pattern="yyyy-MM-dd" /></td>
+				<td>${readlist.readcount} </td>
+				<td>${readlist.cblike}</td>
+			</tr>
+		</c:forEach>
+		
+		
+		<tr bgcolor="cdcdcd">
+			<td align="center" colspan="6">추천수 TOP3</td>
+		</tr>
+		<c:forEach var="likelist" items="${likelist}" varStatus="i">
+			
+			<tr bgcolor="cdcdcd">
+				<td align="center">${likelist.cbnum }</td>
+
+				<c:choose>
+					<c:when test="${unum==0}">
+						<td style="cursor: pointer" onclick="guest();"><b>${likelist.subject}</b>
+						</td>
+					</c:when>
+					<c:otherwise>
+						<td style="cursor: pointer"
+							onclick="location.href='detail?cbnum=${likelist.cbnum}'"><b>${likelist.subject}</b>
+					</c:otherwise>
+				</c:choose>
+
+
+				<td>${likelist.uname}</td>
+				<td align="right"><fmt:formatDate value="${likelist.cbwriteday }"
+						pattern="yyyy-MM-dd" /></td>
+				<td>${likelist.readcount} </td>
+				<td>${likelist.cblike}</td>
+			</tr>
+		</c:forEach>
+		
 		<c:forEach var="list" items="${list}" varStatus="i">
 			<tr>
 				<td align="center">${list.cbnum }</td>
@@ -172,7 +230,7 @@ body, body * {
 		<form action="list" method="get">
 		<input type="hidden" name="city1" value="${city1}">
 		<input type="hidden" name="city2" value="${city2}">
-			<input name="keyword" type="text">
+			<input name="keyword" value="${keyword }" type="text">
 			<button type="submit" id="keyword">검색</button>
 		</form>
 	</div>
@@ -181,7 +239,7 @@ body, body * {
 	<!-- 페이징처리 -->
 <div style="width: 700px; text-align: center; font-size: 20px;">
 <c:choose>
-	<c:when test="${city1!='no' && keyword!=null}">
+	<c:when test="${city1!='no' && keyword!=null}"> 
 		<!-- 이전 -->
 		<c:if test="${startPage>1 }">
 			<a style="color: green; text-decoration: none; cursor: pointer;"
@@ -297,13 +355,20 @@ body, body * {
 
 	function writeform(){
 		if(${unum==0}){
-			alert("비회원은 게시글을 작성할수 없습니다")
+			let a = confirm("비회원은 게시글을 작성할수 없습니다. \n\"확인\" 버튼 클릭시 회원가입 페이지로 이동합니다");
+			if(a){
+				location.href='/user/join';
+			}
+			
 		} else {
 		location.href='cityform?unum=${unum}&city1=${city1}&city2=${city2}';
 		}
 	}
 	function guest() {
-		alert("비회원은 게시글을 조회할수 없습니다.(모달창으로 변경해서 회원가입 페이지로 이동할거냐고 묻는거 만들예정)")
+		let b = confirm("비회원은 게시글을 조회할수 없습니다.\n\"확인\" 버튼 클릭시 회원가입 페이지로 이동합니다");
+		if(b){
+			location.href='/user/join';
+		}
 	}
 </script>
 

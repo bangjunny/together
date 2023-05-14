@@ -97,9 +97,13 @@ public class CityController {
 		System.out.println("페이징 city2:" + city2);
 		System.out.println("페이징 keyword:" + keyword);
 		List<CityBoardDto> list = cityService.getCityPagingList(startNum, perPage, city1, city2, keyword);
+		List<CityBoardDto> readlist = cityService.getCityPagingListReadTop(city1, city2, keyword);
+		List<CityBoardDto> likelist = cityService.getCityPagingListLikeTop(city1, city2, keyword);
 		
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("list", list);
+		model.addAttribute("readlist", readlist);
+		model.addAttribute("likelist", likelist);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("totalPage", totalPage);
@@ -109,6 +113,7 @@ public class CityController {
 		model.addAttribute("unum", unum);
 		model.addAttribute("city1", city1);
 		model.addAttribute("city2", city2);
+		model.addAttribute("keyword", keyword);
 
 		return "/main/city/citylist";
 	}

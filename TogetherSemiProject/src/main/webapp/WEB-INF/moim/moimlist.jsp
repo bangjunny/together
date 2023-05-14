@@ -72,7 +72,19 @@ ${udto.uname }님이 로그인 중 입니다
 		<tr><td colspan="3">
 		<h2 align="center">모임리스트</h2><button type="button" class="btn btn-success" onclick="checkCreate(event)">만들기</button>
 		<br>
-		<h4 align="right">${city1} ${city2} ${category} 모임이 총 ${totalCount}개 있습니다.</h4>
+		<h4 align="right">
+			<c:choose>
+				<c:when test="${unum == 0 && city1 == 'no'}">
+					<!-- 비회원일 때, 지역 전체 -->
+					모임이 총
+				</c:when>
+				<c:otherwise>
+					<!-- 회원일 때 -->
+					${city1} ${city2} ${category} 모임이 총
+				</c:otherwise>
+			</c:choose>
+			${totalCount}개 있습니다
+		</h4>
 		</td></tr>
 				<tr>
 					<td style="width:450px;">					
@@ -240,10 +252,59 @@ ${udto.uname }님이 로그인 중 입니다
 			</tr>
 			<tr>
 				<td align="right" colspan="2">
-				<button type="button" class="btn btn-secondary" id="createlist">생성일순</button>
-				<button type="button" class="btn btn-secondary" id="gaiplist">가입자순</button>
+				<form id="sort-form" action="moimlist" method="get">
+				  <input type="hidden" id="sortcity1" name="city1" value="">
+				  <input type="hidden" id="sortcity2" name="city2" value="">
+				  <input type="hidden" id="sortcategory" name="category" value="">
+				  <input type="hidden" class="selsortmnum" value="">
+				  <input type="hidden" class="selsortmcount" name="sort" value="mcount">
+				  <button type="button" onclick="submitSelectedSortmnum()" class="btn btn-dark">최신순</button>
+				  <button type="button" onclick="submitSelectedSortmcount()" class="btn btn-dark">가입자순</button>
+				</form>
 				</td>
 			</tr>
+			
+			<script>
+				  const urlParams = new URLSearchParams(window.location.search);
+				  const city1 = urlParams.get('city1');
+				  const city2 = urlParams.get('city2');
+				  const category = urlParams.get('category');
+				  if (city1 && city2 && category) {
+					  document.querySelector('input[id="sortcity1"]').value = city1;
+					  document.querySelector('input[id="sortcity2"]').value = city2;
+					  document.querySelector('input[id="sortcategory"]').value = category;
+				  } else if (city1 && city2 && !category) {
+					  document.querySelector('input[id="sortcity1"]').value = city1;
+					  document.querySelector('input[id="sortcity2"]').value = city2;
+					  document.querySelector('input[id="sortcategory"]').removeAttribute('name');
+				  } else if (city1 && !city2 && !category) {
+					  document.querySelector('input[id="sortcity1"]').value = city1;
+					  document.querySelector('input[id="sortcity2"]').removeAttribute('name');
+					  document.querySelector('input[id="sortcategory"]').removeAttribute('name');
+				  } else if (!city1 && !city2 && category) {
+					  document.querySelector('input[id="sortcategory"]').value = category;
+					  document.querySelector('input[id="sortcity1"]').removeAttribute('name');
+					  document.querySelector('input[id="sortcity2"]').removeAttribute('name');
+				  }	else if (city1 && !city2 && category) {
+					  document.querySelector('input[id="sortcity1"]').value = city1;
+					  document.querySelector('input[id="sortcategory"]').value = category;
+					  document.querySelector('input[id="sortcity2"]').removeAttribute('name');
+				  } else if (!city1 && !city2 && !category) {
+					  document.querySelector('input[id="sortcity1"]').removeAttribute('name');
+					  document.querySelector('input[id="sortcity2"]').removeAttribute('name');
+					  document.querySelector('input[id="sortcategory"]').removeAttribute('name');
+				  }
+				
+				  function submitSelectedSortmnum() {
+				    document.querySelector('.selsortmcount').removeAttribute('name');
+				    document.querySelector('#sort-form').submit();
+				  }
+				  function submitSelectedSortmcount() {
+				    document.querySelector('.selsortmnum').removeAttribute('name');
+				    document.querySelector('#sort-form').submit();
+				  }				 
+			</script>
+					
 			<!-- 리스트 출력 부분 -->
 			
 			<c:forEach var="dto" items="${list}" varStatus="i">
@@ -256,7 +317,7 @@ ${udto.uname }님이 로그인 중 입니다
 					<div class="listmid">
 						<c:choose>
 							<c:when test="${dto.mphoto==null}">
-								<!-- Result값이 있다면 실행할 로직 -->								
+								<!-- Result값이 없다면 실행할 로직 -->								
 									<img
 									src="http://sjrhsefqqpro17075801.cdn.ntruss.com/moim/together.png?type=f&w=200&h=200&ttype=jpg"
 									border="1" style="cursor: pointer; margin-top: 10px"> <br>
@@ -264,16 +325,14 @@ ${udto.uname }님이 로그인 중 입니다
 							<c:otherwise>
 								<img
 									src="http://${imageUrl_small}/moim/${dto.mphoto}?type=f&w=200&h=200&ttype=jpg"
-									border="1"
-									onclick="location.href='moimdetail?mnum=${dto.mnum}'"
-									style="cursor: pointer; margin-top: 10px; border-radius:30px;">
+									border="1" style="cursor: pointer; margin-top: 10px; border-radius:30px;">
 								<br>
 							</c:otherwise>
 						</c:choose>
 						<span
 							style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; display: inline-block; max-width: 200px;">
 							<b style="font-size: 20px;">${dto.mname}</b>
-						</span> <br> 지역:${dto.city1} ${dto.city2} <br> 카테고리:${dto.category} <br> 모임인원:${dto.unum}명						
+						</span> <br> 지역:${dto.city1} ${dto.city2} <br> 카테고리:${dto.category} <br> 모임인원:${dto.mcount}명						
 					</div>
 					</a>
 				</td>
@@ -286,7 +345,36 @@ ${udto.uname }님이 로그인 중 입니다
 
 		<!-- 페이징처리하기 -->
 		<c:choose>
-			<c:when test="${category ne null and city1 ne null and city2 ne null}">
+			<c:when test="${category ne null and city1 ne null and city2 ne null and sort eq 'mcount'}">
+				<div
+					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					<!-- 이전 -->
+					<c:if test="${startPage>1}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?category=${category}&city1=${city1}&city2=${city2}&sort=mcount&currentPage=${startPage-1}">이전</a>
+					</c:if>
+					&nbsp;
+					<!-- 페이지 번호 출력 -->
+					<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+						<c:if test="${currentPage==pp}">
+							<a
+								style="color: blue; font-size: 23px; text-decoration: none; cursor: pointer;"
+								href="moimlist?category=${category}&city1=${city1}&city2=${city2}&sort=mcount&currentPage=${pp}">${pp}</a>
+						</c:if>
+						<c:if test="${currentPage!=pp}">
+							<a style="color: black; text-decoration: none; cursor: pointer;"
+								href="moimlist?category=${category}&city1=${city1}&city2=${city2}&sort=mcount&currentPage=${pp}">${pp}</a>
+						</c:if>
+						&nbsp;
+					</c:forEach>
+					<!-- 다음 -->
+					<c:if test="${endPage<totalPage}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?category=${category}&city1=${city1}&city2=${city2}&sort=mcount&currentPage=${endPage+1}">다음</a>
+					</c:if>
+				</div>
+			</c:when>
+			<c:when test="${category ne null and city1 ne null and city2 ne null and sort eq null}">
 				<div
 					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
 					<!-- 이전 -->
@@ -315,7 +403,36 @@ ${udto.uname }님이 로그인 중 입니다
 					</c:if>
 				</div>
 			</c:when>
-			<c:when test="${category ne null and city1 ne null and city2 eq null}">
+			<c:when test="${category ne null and city1 ne null and city2 eq null and sort eq 'mcount'}">
+				<div
+					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					<!-- 이전 -->
+					<c:if test="${startPage>1}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?category=${category}&city1=${city1}&sort=mcount&currentPage=${startPage-1}">이전</a>
+					</c:if>
+					&nbsp;
+					<!-- 페이지 번호 출력 -->
+					<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+						<c:if test="${currentPage==pp}">
+							<a
+								style="color: blue; font-size: 23px; text-decoration: none; cursor: pointer;"
+								href="moimlist?category=${category}&city1=${city1}&sort=mcount&currentPage=${pp}">${pp}</a>
+						</c:if>
+						<c:if test="${currentPage!=pp}">
+							<a style="color: black; text-decoration: none; cursor: pointer;"
+								href="moimlist?category=${category}&city1=${city1}&sort=mcount&currentPage=${pp}">${pp}</a>
+						</c:if>
+						&nbsp;
+					</c:forEach>
+					<!-- 다음 -->
+					<c:if test="${endPage<totalPage}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?category=${category}&city1=${city1}&sort=mcount&currentPage=${endPage+1}">다음</a>
+					</c:if>
+				</div>
+			</c:when>
+			<c:when test="${category ne null and city1 ne null and city2 eq null and sort eq null}">
 				<div
 					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
 					<!-- 이전 -->
@@ -344,7 +461,36 @@ ${udto.uname }님이 로그인 중 입니다
 					</c:if>
 				</div>
 			</c:when>
-			<c:when test="${category ne null and city1 eq null and city2 eq null}">
+			<c:when test="${category ne null and city1 eq null and city2 eq null and sort eq 'mcount'}">
+				<div
+					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					<!-- 이전 -->
+					<c:if test="${startPage>1}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?category=${category}&sort=mcount&currentPage=${startPage-1}">이전</a>
+					</c:if>
+					&nbsp;
+					<!-- 페이지 번호 출력 -->
+					<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+						<c:if test="${currentPage==pp}">
+							<a
+								style="color: blue; font-size: 23px; text-decoration: none; cursor: pointer;"
+								href="moimlist?category=${category}&sort=mcount&currentPage=${pp}">${pp}</a>
+						</c:if>
+						<c:if test="${currentPage!=pp}">
+							<a style="color: black; text-decoration: none; cursor: pointer;"
+								href="moimlist?category=${category}&sort=mcount&currentPage=${pp}">${pp}</a>
+						</c:if>
+						&nbsp;
+					</c:forEach>
+					<!-- 다음 -->
+					<c:if test="${endPage<totalPage}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?category=${category}&sort=mcount&currentPage=${endPage+1}">다음</a>
+					</c:if>
+				</div>
+			</c:when>
+			<c:when test="${category ne null and city1 eq null and city2 eq null and sort eq null}">
 				<div
 					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
 					<!-- 이전 -->
@@ -373,7 +519,36 @@ ${udto.uname }님이 로그인 중 입니다
 					</c:if>
 				</div>
 			</c:when>
-			<c:when test="${category eq null and city1 ne null and city2 eq null}">
+			<c:when test="${category eq null and city1 ne null and city2 eq null and sort eq 'mcount'}">
+				<div
+					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					<!-- 이전 -->
+					<c:if test="${startPage>1}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?city1=${city1}&sort=mcount&currentPage=${startPage-1}">이전</a>
+					</c:if>
+					&nbsp;
+					<!-- 페이지 번호 출력 -->
+					<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+						<c:if test="${currentPage==pp}">
+							<a
+								style="color: blue; font-size: 23px; text-decoration: none; cursor: pointer;"
+								href="moimlist?city1=${city1}&sort=mcount&currentPage=${pp}">${pp}</a>
+						</c:if>
+						<c:if test="${currentPage!=pp}">
+							<a style="color: black; text-decoration: none; cursor: pointer;"
+								href="moimlist?city1=${city1}&sort=mcount&currentPage=${pp}">${pp}</a>
+						</c:if>
+						&nbsp;
+					</c:forEach>
+					<!-- 다음 -->
+					<c:if test="${endPage<totalPage}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?city1=${city1}&sort=mcount&currentPage=${endPage+1}">다음</a>
+					</c:if>
+				</div>
+			</c:when>
+			<c:when test="${category eq null and city1 ne null and city2 eq null and sort eq null}">
 				<div
 					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
 					<!-- 이전 -->
@@ -402,7 +577,36 @@ ${udto.uname }님이 로그인 중 입니다
 					</c:if>
 				</div>
 			</c:when>
-			<c:when test="${category eq null and city1 ne null and city2 ne null}">
+			<c:when test="${category eq null and city1 ne null and city2 ne null and sort eq 'mcount'}">
+				<div
+					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					<!-- 이전 -->
+					<c:if test="${startPage>1}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?city1=${city1}&city2=${city2}&sort=mcount&currentPage=${startPage-1}">이전</a>
+					</c:if>
+					&nbsp;
+					<!-- 페이지 번호 출력 -->
+					<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+						<c:if test="${currentPage==pp}">
+							<a
+								style="color: blue; font-size: 23px; text-decoration: none; cursor: pointer;"
+								href="moimlist?city1=${city1}&city2=${city2}&sort=mcount&currentPage=${pp}">${pp}</a>
+						</c:if>
+						<c:if test="${currentPage!=pp}">
+							<a style="color: black; text-decoration: none; cursor: pointer;"
+								href="moimlist?city1=${city1}&city2=${city2}&sort=mcount&currentPage=${pp}">${pp}</a>
+						</c:if>
+						&nbsp;
+					</c:forEach>
+					<!-- 다음 -->
+					<c:if test="${endPage<totalPage}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?city1=${city1}&city2=${city2}&sort=mcount&currentPage=${endPage+1}">다음</a>
+					</c:if>
+				</div>
+			</c:when>
+			<c:when test="${category eq null and city1 ne null and city2 ne null and sort eq null}">
 				<div
 					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
 					<!-- 이전 -->
@@ -431,6 +635,64 @@ ${udto.uname }님이 로그인 중 입니다
 					</c:if>
 				</div>
 			</c:when>
+			<c:when test="${category eq null and city1 eq null and city2 eq null and sort eq 'mcount'}">
+				<div
+					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					<!-- 이전 -->
+					<c:if test="${startPage>1}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?sort=mcount&currentPage=${startPage-1}">이전</a>
+					</c:if>
+					&nbsp;
+					<!-- 페이지 번호 출력 -->
+					<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+						<c:if test="${currentPage==pp}">
+							<a
+								style="color: blue; font-size: 23px; text-decoration: none; cursor: pointer;"
+								href="moimlist?sort=mcount&currentPage=${pp}">${pp}</a>
+						</c:if>
+						<c:if test="${currentPage!=pp}">
+							<a style="color: black; text-decoration: none; cursor: pointer;"
+								href="moimlist?sort=mcount&currentPage=${pp}">${pp}</a>
+						</c:if>
+						&nbsp;
+					</c:forEach>
+					<!-- 다음 -->
+					<c:if test="${endPage<totalPage}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?sort=mcount&currentPage=${endPage+1}">다음</a>
+					</c:if>
+				</div>
+			</c:when>
+			<c:when test="${category eq null and city1 eq null and city2 eq null and sort eq null}">
+				<div
+					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					<!-- 이전 -->
+					<c:if test="${startPage>1}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?currentPage=${startPage-1}">이전</a>
+					</c:if>
+					&nbsp;
+					<!-- 페이지 번호 출력 -->
+					<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+						<c:if test="${currentPage==pp}">
+							<a
+								style="color: blue; font-size: 23px; text-decoration: none; cursor: pointer;"
+								href="moimlist?currentPage=${pp}">${pp}</a>
+						</c:if>
+						<c:if test="${currentPage!=pp}">
+							<a style="color: black; text-decoration: none; cursor: pointer;"
+								href="moimlist?currentPage=${pp}">${pp}</a>
+						</c:if>
+						&nbsp;
+					</c:forEach>
+					<!-- 다음 -->
+					<c:if test="${endPage<totalPage}">
+						<a style="color: black; text-decoration: none; cursor: pointer;"
+							href="moimlist?currentPage=${endPage+1}">다음</a>
+					</c:if>
+				</div>
+			</c:when>			
 			<c:otherwise>
 				<div
 					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
@@ -839,14 +1101,6 @@ $(function() {
 			  location.href="/moim/moimform"
 		  }
 		  }
-	
-	function changeList(type) {
-		  var items = (type === 'list') ? '${list}' : '${mlist}';
-		  // items 변수를 생성일순 버튼을 눌렀을 때는 '${list}'로, 가입자순 버튼을 눌렀을 때는 '${mlist}'로 할당한다.
-
-		  // 변경된 items를 사용하여 페이지를 다시 로드한다.
-		  location.reload();
-		}
 
 </script>
 </body>

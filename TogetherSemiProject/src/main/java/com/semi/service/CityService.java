@@ -202,6 +202,24 @@ public class CityService implements CityServiceInter {
 		return cityMapper.getTotalCountCity(city1, city2, keyword);
 	}
 
+  @Override
+  	public void updateCity(CityBoardDto dto) {
+	  	// TODO Auto-generated method stub
+	  	cityMapper.updateCity(dto);
+  	}
+
+  @Override
+  	public void updateCityPhoto(CityBoardDto dto) {
+	  	// TODO Auto-generated method stub
+	  	cityMapper.updateCityPhoto(dto);
+  	}
+
+  	@Override
+  	public void deleteCityPhoto(String photo_idx) {
+  		// TODO Auto-generated method stub
+  		cityMapper.deleteCityPhoto(photo_idx);
+  	}
+
 	@Override
 	public List<CityBoardDto> getCityPagingListReadTop(String city1, String city2, String keyword) {
 		// TODO Auto-generated method stub
@@ -223,5 +241,4 @@ public class CityService implements CityServiceInter {
 		return cityMapper.getCityPagingListLikeTop(map);
 	}
 	
-
 }

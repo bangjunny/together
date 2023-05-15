@@ -39,6 +39,10 @@ public interface CityServiceInter {
 	public List<String> getAllPhoto(int cbnum);
 	public List<CityPhotoDto> getPhoto (int cbnum);
 	public String getPhotoCount(int cbnum);
+	public void updateCity(CityBoardDto dto);
+	public void updateCityPhoto(CityBoardDto dto);
+	public void deleteCityPhoto(String photo_idx);
+	
 	/**
 	public void updateCity(CityBoardDto dto);
 	**/

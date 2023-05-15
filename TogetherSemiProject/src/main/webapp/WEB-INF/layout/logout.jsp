@@ -29,7 +29,6 @@
 	<a class="layout_a" href="/">메인</a>
 	
 	<c:if test="${sessionScope.unum ne null }">
-	<a class="layout_a" href="/user/mypage">마이페이지</a>
 	<a class="layout_a" href="/user/logout">로그아웃</a>
 	</c:if>
 	

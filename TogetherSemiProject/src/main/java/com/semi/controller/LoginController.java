@@ -7,12 +7,13 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
-
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -186,19 +187,13 @@ public class LoginController {
 	    List<Map<String, Object>> jjimList = loginService.getJJimMoimList(unum);
 	    model.addAttribute("jjimList", jjimList);
 	    
+	 //가입한 모임의 리스트 가져오기    
+	    List<Map<String, Object>> gaipMoimList = loginService.getGaipMoimList(unum);
+		model.addAttribute("gaipMoimList" , gaipMoimList);
+	    
 	    return "/main/user/mypagedetail";
 	
-}	
-	
-	@GetMapping("/mypagemoimlist")
-	public String mypagemoimlist(@RequestParam("unum") int unum, Model model) {
-
-	    List<MoimDto> moimList = moimMapper.getJoinedMoimList(unum);
-	    model.addAttribute("moimList", moimList);
-	    
-	    return "/main/user/mypagemoimlist";
-	}
-	
+	 }	
 	 @GetMapping("/myjjimList")
 	   private String MyJJimList(@RequestParam("unum") int unum, Model model)
 	   {
@@ -209,60 +204,21 @@ public class LoginController {
 		    return "/main/user/myjjimlist";
 	   	  }
 	 
-		@PostMapping("/SetMainPhoto")
-		@ResponseBody
-		public Map<String, String> SetMainPhoto(@RequestParam("photo_idx")int photo_idx, HttpSession session) {
-		
-			Map<String, String> resultMap = new HashMap<String, String>();
-			
-			try {
-				int unum = (int) session.getAttribute("unum"); // 세션에서 unum 값 가져오기
-				loginMapper.updateOtherphoto(unum, photo_idx);
-				loginMapper.updateMainphoto(unum,photo_idx);
-				resultMap.put("result", "success");
-			}catch(Exception e) {
-				resultMap.put("result", "failure");
-		        e.printStackTrace();
-			}
-				return resultMap;
-				
-		}
-	
-  
 	 
-	 
+		@PostMapping("/setMainPhoto")
+		public String SetMainPhoto(@RequestParam int photo_idx, HttpSession session) {
+		    try {
+		       
+		        loginMapper.updateMainphoto(photo_idx);
 
-	
-//	@GetMapping("/mypagedetail")
-//	public String mypageDetail(@RequestParam("unum") int unum, @RequestParam(required = false) Integer photo_idx, Model model) {
-//	    // 로그인한 사용자 아이디를 가져옵니다.
-//	    UserDto dto = loginMapper.getMypage(unum);
-//	    if (dto == null) {
-//	        // 해당 유저를 찾을 수 없는 경우 에러 페이지 등을 보여줄 수 있습니다.
-//	        return "error";
-//	    }
-//
-//	    model.addAttribute("dto", dto);
-//	    
-//
-//	    // 사용자 프로필 사진 정보 가져오기
-//	    List<UserPhotoDto> photoList = loginMapper.getMyProfilePhotos(unum);
-//	    if (photoList != null && !photoList.isEmpty()) {
-//	        // 대표 사진이 지정되지 않은 경우 photo_idx 파라미터로 지정된 값을 사용합니다.
-//	        // photo_idx 파라미터가 없는 경우 첫 번째 사진을 대표 사진으로 사용합니다.
-//	        int index = (photo_idx != null && photo_idx < photoList.size()) ? photo_idx : 0;
-//	        UserPhotoDto pdto = photoList.get(index);
-//	        model.addAttribute("pdto", pdto);
-//	        model.addAttribute("photoList", photoList);
-//	    } else {
-//	        model.addAttribute("pdto", null);
-//	        model.addAttribute("photoList", null);
-//	    }
-//
-//	    return "/main/user/mypagedetail";
-//	}
-//	
-	
+		        return "redirect:mypage";
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        // 에러 발생 시 alert 창 띄우기
+		        return "redirect:mypage?result=error";
+		    }
+		}
+		
 	@PostMapping("/mypageinsert")
 	public String insertMyPhoto(UserPhotoDto pdto, MultipartFile upload, HttpSession session) {
 	    try {

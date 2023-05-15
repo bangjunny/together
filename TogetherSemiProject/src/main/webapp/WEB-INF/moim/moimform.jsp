@@ -21,6 +21,10 @@
 		position: absolute;
 		margin-left: 200px;
 	}
+	.mainlayout .main{
+		width: 100%;
+		height: 1200px;
+	}
 	
 	label {
 		cursor: pointer;
@@ -40,9 +44,9 @@
 <body>
 <!-- 이미지 출력할곳 -->
 <img id="showimg"
-style="position: absolute;left:350px;top:0px; width: 200px; height:200px; border-radius:200px">
+style="width: 200px; height:200px; border-radius:200px">
 
-<div style="width:500px" id="tableform">
+<div id="tableform" style="width:700px" >
 	<form action="insert" method="post" enctype="multipart/form-data" id="moimform">
 	<table class="table table-bordered" border="1" bgcolor="#ddd" style="width:500px">
 		<tr>

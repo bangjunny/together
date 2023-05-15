@@ -23,9 +23,13 @@ public interface LoginMapper {
 	/*마이페이지*/
 	
 	public void insertMyPhoto(UserPhotoDto pdto);
-	public UserPhotoDto getMyPhoto(int photo_idx);
+	
+	public void updateMyPhoto(UserPhotoDto pdto);
+	
 	public UserPhotoDto getMyProfile(int unum);
+	
 	public UserDto getMypage(int unum);
+	
 	public int getTotalCount();
 	public List<UserDto> getAllUsers();
 	public List<UserPhotoDto> getPhotosByUnum(int unum);
@@ -37,6 +41,10 @@ public interface LoginMapper {
 
 	public List<JJimDto> getJJimDto(int unum);
 	public List<Map<String, Object>> getGaipMoimList(int unum);	
+
+	public void updateMainphoto(int photo_idx);
+	
+	public void updateOtherphoto(int unum);
 
 	
 }

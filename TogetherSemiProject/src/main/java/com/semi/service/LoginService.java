@@ -67,11 +67,6 @@ public class LoginService implements LoginServiceInter{
 		return loginMapper.getUserByUnum(unum);
 	}
   
-	@Override
-	public UserPhotoDto getMyPhoto(int photo_idx) {
-		// TODO Auto-generated method stub
-		return loginMapper.getMyPhoto(photo_idx);
-	}
 
 	@Override
 	public List<Map<String, Object>> getJJimMoimList(int unum) {
@@ -99,11 +94,18 @@ public class LoginService implements LoginServiceInter{
 	    // 찜한 모임 목록을 반환한다.
 	    return jjimList;
 	}
+	
 
 	@Override
 	public List<Map<String, Object>> getGaipMoimList(int unum) {
 		
 		return loginMapper.getGaipMoimList(unum);
+	}
+
+	@Override
+	public void updateMyPhoto(UserPhotoDto pdto) {
+		// TODO Auto-generated method stub
+		loginMapper.updateMyPhoto(pdto);
 	}
 
 

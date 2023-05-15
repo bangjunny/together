@@ -100,12 +100,17 @@ function list()
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="https://${imageUrl}/userprofile/${pdto.file_name}" class="d-block w-100" alt="대표 사진">
+              
               </div>
              <c:forEach var="photo" items="${photoList}">
                 <div class="carousel-item">
                 <h2>포토사진 ${photo.photo_idx}</h2>
                     <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="d-block w-100" alt="포토사진 ${photo.photo_idx}"> 
+              		  <form method="post" action="/user/setMainPhoto">
+                      <input type="hidden" name="photo_idx" value="${photo.photo_idx}" id="main">
+                      <button type="submit" class="btn btn-primary" id="setMainBtn">대표 사진으로 지정하기</button>
+                    </form>
+              
               </div>
               </c:forEach>
             </div>
@@ -272,14 +277,14 @@ $("#upload").change(function(){
 		reader.readAsDataURL($(this)[0].files[0]);
 	}
 });	
-</script>
-<script>
+
+
 $(document).ready(function() {
   $('#submitBtn').click(function() {
     var formData = new FormData($('form')[0]);
 
     $.ajax({
-      url: "/user/mypageinsert",
+      url: "/user/mypageup",
       type: 'POST',
       data: formData,
       async: false,
@@ -294,6 +299,33 @@ $(document).ready(function() {
 
   });
 });
+//setMain 대표사진  버튼 이벤트
+$(document).ready(function() {
+  $('#setMainBtn').click(function() {
+    var formData = new FormData($('form')[0]);
+
+    $.ajax({
+      url: "/user/SetMainPhoto",
+      type: 'POST',
+      data: formData,
+      async: false,
+      success: function (data) {
+        console.log(data);
+        window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
+      },
+      cache: false,
+      contentType: false,
+      processData: false
+    });
+
+  });
+});
+
+
+ 
+ 
+
 </script>
+
 </body>
 </html>

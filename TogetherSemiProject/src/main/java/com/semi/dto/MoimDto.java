@@ -12,7 +12,6 @@ public class MoimDto {
 
 	private int mnum;
 	private String mname;
-	private String jang;
 	private int unum;
 	private String mphoto;
 	private String city1;
@@ -21,5 +20,6 @@ public class MoimDto {
 	private String mcontent;
 	private Timestamp createday;
 	private String open;
-	
+	private String mcount;
+	private String sort;
 }

@@ -7,11 +7,13 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
-
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,12 +23,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.semi.dto.JJimDto;
 import com.semi.dto.MoimDto;
 import com.semi.dto.UserDto;
 import com.semi.dto.UserPhotoDto;
 import com.semi.mapper.LoginMapper;
-
+import com.semi.mapper.MoimMapper;
 import com.semi.service.LoginService;
+import com.semi.service.MoimService;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -39,9 +44,15 @@ public class LoginController {
 	
 	@Autowired
 	LoginService loginService;
+	@Autowired
+	MoimService moimService;
 
 	@Autowired
 	LoginMapper loginMapper;
+	
+	
+	@Autowired
+	MoimMapper moimMapper;
 	
 	
 	@Autowired
@@ -141,26 +152,11 @@ public class LoginController {
 	}
 	
 
-
-//	@GetMapping("/mypagedetail")
-//	public String mypagedetail(@RequestParam("unum") int unum, @RequestParam(required = false) Integer photo_idx, Model model) {
-//	UserDto dto = loginMapper.getMypage(unum);
-//	UserPhotoDto pdto = new UserPhotoDto(); // 초기화
-//	if (dto == null) {
-//	// 해당 유저를 찾을 수 없는 경우 에러 페이지 등을 보여줄 수 있습니다.
-//	return "error";
-//	} else if(photo_idx != null) {
-//	pdto = loginMapper.getMyPhoto(unum);
-//	}
-//	model.addAttribute("dto", dto);
-//	model.addAttribute("pdto", pdto);
-//	return "/main/user/mypagedetail";
-//	}
-//		
-	
 	@GetMapping("/mypagedetail")
-	public String mypageDetail(@RequestParam("unum") int unum, @RequestParam(required = false) Integer photo_idx, Model model) {
-	    // 로그인한 사용자 아이디를 가져옵니다.
+	public String mypageDetail(@RequestParam("unum") int unum, Integer mnum, @RequestParam(required = false) Integer photo_idx, Model model) {
+	
+	    
+		// 로그인한 사용자 아이디를 가져옵니다.
 	    UserDto dto = loginMapper.getMypage(unum);
 	    if (dto == null) {
 	        // 해당 유저를 찾을 수 없는 경우 에러 페이지 등을 보여줄 수 있습니다.
@@ -168,6 +164,7 @@ public class LoginController {
 	    }
 
 	    model.addAttribute("dto", dto);
+	    
 
 	    // 사용자 프로필 사진 정보 가져오기
 	    List<UserPhotoDto> photoList = loginMapper.getMyProfilePhotos(unum);
@@ -182,11 +179,46 @@ public class LoginController {
 	        model.addAttribute("pdto", null);
 	        model.addAttribute("photoList", null);
 	    }
-
+	    
+	 // 모임 리스트 가져오기
+	    List<MoimDto> moimList = loginMapper.getMyMoimList(unum);
+	    model.addAttribute("moimList", moimList);
+	 // 찜모임 리스트 가져오기
+	    List<Map<String, Object>> jjimList = loginService.getJJimMoimList(unum);
+	    model.addAttribute("jjimList", jjimList);
+	    
+	 //가입한 모임의 리스트 가져오기    
+	    List<Map<String, Object>> gaipMoimList = loginService.getGaipMoimList(unum);
+		model.addAttribute("gaipMoimList" , gaipMoimList);
+	    
 	    return "/main/user/mypagedetail";
-	}
-
 	
+	 }	
+	 @GetMapping("/myjjimList")
+	   private String MyJJimList(@RequestParam("unum") int unum, Model model)
+	   {
+		 
+		 List<Map<String, Object>> jjimList = loginService.getJJimMoimList(unum);
+		 model.addAttribute("jjimList", jjimList);
+		    
+		    return "/main/user/myjjimlist";
+	   	  }
+	 
+	 
+		@PostMapping("/setMainPhoto")
+		public String SetMainPhoto(@RequestParam int photo_idx, HttpSession session) {
+		    try {
+		       
+		        loginMapper.updateMainphoto(photo_idx);
+
+		        return "redirect:mypage";
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        // 에러 발생 시 alert 창 띄우기
+		        return "redirect:mypage?result=error";
+		    }
+		}
+		
 	@PostMapping("/mypageinsert")
 	public String insertMyPhoto(UserPhotoDto pdto, MultipartFile upload, HttpSession session) {
 	    try {
@@ -208,7 +240,7 @@ public class LoginController {
 	        return "redirect:mypage?result=error";
 	    }
 	}
-  
+
 	@GetMapping("/otherlogin")
 	@ResponseBody
 	public void otherLogin(@RequestParam String email,
@@ -274,5 +306,8 @@ public class LoginController {
 		  int result=loginService.overlappedEmail(dto);//중복 확인한 값을 int로 받음
 		  return result;
 	  }
+	  
+	  
+	  
    
 }

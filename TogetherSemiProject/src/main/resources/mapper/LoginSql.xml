@@ -20,7 +20,26 @@
 	</select>
 	
 <!-- 마이페이지 -->
+	<select id="getMyMoimList" resultType="MoimDto">
+		select * from moim where unum=#{unum}
+	</select>
+	
+	<update id="updateOtherphoto" parameterType="int">
+		update user_photo set is_main = 0 where unum=#{unum}
+	</update>
+	<update id="updateMainphoto" parameterType="int">
+		update user_photo set is_main = case when photo_idx = #{photo_idx} then 1 else 0 end
+	</update>
 
+	<select id="getJJimDto" resultType="JJimDto">
+		select * from jjim where unum=#{mnum}
+	</select>
+	<select id="getMyJJImList" resultType="JJimDto">
+		select * from jjim where unum=#{unum}
+	</select>
+	<select id="getJJimMoimList" resultType="JJimDto">
+		select * from jjim where unum=#{unum}
+	</select>
 
 	<select id="getMyProfilePhotos" resultType="UserPhotoDto">
 	  SELECT * FROM user_photo WHERE unum = #{unum}
@@ -41,4 +60,8 @@
 	  insert into user_photo (unum, file_name) values
 	  (#{unum}, #{file_name})
 	</insert>
+	
+	<select id="getGaipMoimList" parameterType="int" resultType="Map">
+		select m.mnum, m.mname from moim m join moimmember mm on m.mnum=mm.mnum where mm.unum=#{unum} and acceptcall=1;
+	</select>
 </mapper>

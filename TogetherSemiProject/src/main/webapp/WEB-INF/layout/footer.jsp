@@ -16,18 +16,48 @@
    body, body *{
       font-family: 'NanumPenScript';
    }
+   
    .footer{
-   		margin-top:400px;
    		width: 100%;
-   		height: 250px;
+   		height: 300px;
    		background-color: rgb(44, 42, 41);
    }
+   .footer_wrap{
+   		width:700px;
+   		height: 100%;
+   		margin: 0 auto;
+   		text-align: center;
+   		color: gray;
+   		
+   }
+   .footer h2{
+   		position: relative;
+   		top: 50px; 		
+   }
+   .footer_bot_txt{
+   		position: relative;
+   		top: 100px;
+   }
+
 </style>
 </head>
 <body>
 
 	<div class="footer">
-		
+		<div class="footer_wrap">
+			<h2>TOGETHER</h2>
+			<div class="footer_bot_txt">
+			<p>
+			<span>서울특별시 강남구 819 3 삼오빌딩 7층 701호 </span>
+			<span>대표 : 김똘똘</span>
+			<span>사업자 등록번호 : 533-6433-1.16.1</span>
+			<span>TEL. 02-4444-4444</span>
+			</p>
+			<br>
+			<br> 
+			<span>COPYRIGHT ⓒ 2022 TOGETHER CORP. ALL RIGHTS RESERVED.</span>
+			</div>
+		</div>
 	</div>
 	
 </body>

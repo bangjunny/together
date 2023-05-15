@@ -1,3 +1,5 @@
+<%@page import="com.semi.dto.MoimDto"%>
+<%@page import="com.semi.mapper.MoimMapper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -57,8 +59,38 @@
 	}
 
 </style>
+<script type="text/javascript">
+$(function() {
+	
+	list();
+	
+});//function close
 
+function list()
+{
+	$.ajax({
+	    type: "GET",
+	    url: "/myjjimlist",
+	    dataType:"json",
+	    success: function(res) {
+	    	let s="";
+	    	$.each(res,function(idx,ele){
+	    		s+=`
+	    			<div class = 'jjim_box'>
+	    				<b>\${ele.mname}</b>
+	    			</div>	
+	    		`;
+	    	});
+	    	$("div.jjimlist").html(s);
+	    }
+	     
+	 });
+}
+</script>
 <body>
+
+
+
 <div class="container text-center">
   <div class="row">
     <div class="card col">
@@ -68,12 +100,17 @@
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="https://${imageUrl}/userprofile/${pdto.file_name}" class="d-block w-100" alt="대표 사진">
+              
               </div>
              <c:forEach var="photo" items="${photoList}">
                 <div class="carousel-item">
                 <h2>포토사진 ${photo.photo_idx}</h2>
                     <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="d-block w-100" alt="포토사진 ${photo.photo_idx}"> 
+              		  <form method="post" action="/user/setMainPhoto">
+                      <input type="hidden" name="photo_idx" value="${photo.photo_idx}" id="main">
+                      <button type="submit" class="btn btn-primary" id="setMainBtn">대표 사진으로 지정하기</button>
+                    </form>
+              
               </div>
               </c:forEach>
             </div>
@@ -111,7 +148,55 @@
         <br>
     	</div>
    </div> 
-
+		
+			 <div id="mylist_wrap">
+			  <!-- 가입한 모임 목록 보여주기 -->
+			  나의 모임 리스트 출력하기
+			  <button id="mylist_1_btn">만든 모임</button>
+			  <button id="mylist_2_btn">찜한 모임</button>
+			  <button id="mylist_3_btn">가입한 모임</button>
+			  
+			  <div id="mylist_1" style="display: block;">
+			  <%@ include file="mypagemoimlist.jsp" %>
+			  </div>
+			  
+			  <div id="mylist_2" style="display: none;">
+			   <c:choose>
+       			 <c:when test="${not empty jjimList}">
+          		   <c:forEach var="j" items="${jjimList}">
+              		  <h2>내가 찜한 모임 이름 :  ${j.mname}</h2>
+             		 </c:forEach>
+      			  </c:when>
+       			  <c:otherwise>
+        			  <p>찜한 목록이 없어요</p>
+       			  </c:otherwise>
+      		</c:choose>  
+			</div>
+			<div id="mylist_3" style="display: none;">
+				 <%@ include file="mypagegaiplist.jsp" %>
+			</div>
+			
+			</div>
+			
+			<script type="text/javascript">
+				$("#mylist_2_btn").click(function() {
+					$("#mylist_1").css("display", "none");
+					$("#mylist_2").css("display", "block");
+					$("#mylist_3").css("display", "none");
+				});
+				$("#mylist_1_btn").click(function() {
+					$("#mylist_1").css("display", "block");
+					$("#mylist_2").css("display", "none");
+					$("#mylist_3").css("display", "none");
+				});
+				$("#mylist_3_btn").click(function() {
+					$("#mylist_1").css("display", "none");
+					$("#mylist_2").css("display", "none");
+					$("#mylist_3").css("display", "block");
+				});
+				
+			</script>
+		
     <br><br><br><br>
     
     <div class="mybtn">
@@ -192,14 +277,14 @@ $("#upload").change(function(){
 		reader.readAsDataURL($(this)[0].files[0]);
 	}
 });	
-</script>
-<script>
+
+
 $(document).ready(function() {
   $('#submitBtn').click(function() {
     var formData = new FormData($('form')[0]);
 
     $.ajax({
-      url: "/user/mypageinsert",
+      url: "/user/mypageup",
       type: 'POST',
       data: formData,
       async: false,
@@ -214,6 +299,33 @@ $(document).ready(function() {
 
   });
 });
+//setMain 대표사진  버튼 이벤트
+$(document).ready(function() {
+  $('#setMainBtn').click(function() {
+    var formData = new FormData($('form')[0]);
+
+    $.ajax({
+      url: "/user/SetMainPhoto",
+      type: 'POST',
+      data: formData,
+      async: false,
+      success: function (data) {
+        console.log(data);
+        window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
+      },
+      cache: false,
+      contentType: false,
+      processData: false
+    });
+
+  });
+});
+
+
+ 
+ 
+
 </script>
+
 </body>
 </html>

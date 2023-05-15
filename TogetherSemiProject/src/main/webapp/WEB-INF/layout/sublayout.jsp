@@ -16,6 +16,7 @@
 	body, body *{
 		font-family: 'Jua'
 	}
+	
 	a:link,a:visited,a:hover {
 		color: black;
 		text-decoration: none;
@@ -26,9 +27,6 @@
 	.logout{
 		background-color: rgba(245, 245, 220, 0.2);	
 		height: 100px;
-	}
-	.footer{
-		margin-top: 100px;
 	}
 </style>
 </head>

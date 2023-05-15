@@ -258,23 +258,50 @@ public class CityController {
 		return "redirect:/city/detail?cbnum="+cbnum;
 	}
 
-//<-----------------------------------절취선-------------------------------------------->
-
 	@GetMapping("/cityupdateform")
 	public String cityupdateform(int cbnum, Model model) {
-		System.out.println(cbnum);
+		//System.out.println(cbnum);
+		List<CityPhotoDto> pdto = cityService.getPhoto(cbnum);
 		CityBoardDto cbdto = cityService.getDetailbycbnum(cbnum);
 		int unum = cbdto.getUnum();
 		UserDto udto = cityService.getDetailbyunum(unum);
+		
+		model.addAttribute("pdto",pdto);
 		model.addAttribute("cbdto", cbdto);
 		model.addAttribute("udto", udto);
 		return "/main/city/cityupdateform";
 	}
 
 	@GetMapping("/cityupdate")
-	public String cityupdate(CityBoardDto dto, MultipartFile upload) {
-
-		return "/main/city/CityDetail";
+	@ResponseBody public void cityupdate(
+			int cbnum,
+			CityBoardDto dto, 
+			List<MultipartFile> upload, 
+			String delcheck)
+	{
+		System.out.println("나옴?");
+		System.out.println("사진 지워짐?"+delcheck);
+		cityService.updateCity(dto);
+		System.out.println("여긴 나옴?");
+		if(upload!=null) {
+			for(MultipartFile file : upload)
+			{
+				CityPhotoDto pdto=new CityPhotoDto();
+				storageService.deleteFile(bucketName, "city", pdto.getPhoto_idx());
+				String photoname=storageService.uploadFile(bucketName, "city", file);
+				pdto.setCbnum(dto.getCbnum());
+				pdto.setPhoto_idx(photoname);
+				cityService.newCityPhoto(pdto);
+			}
+		}
+		else if(upload==null &&"1".equals(delcheck)) {
+			List<CityPhotoDto> originalPhotos = cityService.getPhoto(cbnum);
+			for (CityPhotoDto photo : originalPhotos) {
+	            storageService.deleteFile(bucketName, "city", photo.getPhoto_idx());
+	            cityService.deleteCityPhoto(photo.getPhoto_idx());
+	        }
+		}
+	
 	}
 
 }

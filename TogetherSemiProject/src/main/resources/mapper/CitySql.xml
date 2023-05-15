@@ -133,4 +133,13 @@
   	<select id="getPhotoCount" parameterType="int" resultType="String">
   		select count(*) from city_photo where cbnum=#{cbnum}
   	</select>
+  	<update id="updateCity" parameterType="CityBoardDto">
+  		update city_board set subject = #{subject}, cbcontent = #{cbcontent} where cbnum=#{cbnum}
+  	</update>
+  	<update id="updateCityPhoto" parameterType="CityBoardDto">
+  		update city_photo set photo_idx = #{photo_idx} where cbnum=#{cbnum}
+  	</update>
+  	<delete id="deleteCityPhoto" parameterType="String">
+  		delete from city_photo where photo_idx=#{photo_idx}
+  	</delete>
 </mapper>

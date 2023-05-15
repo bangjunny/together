@@ -19,26 +19,29 @@
 		insert into moim (mname,unum,mphoto,mcontent,city1,city2,category,open,createday) values
 		(#{mname},#{unum},#{mphoto},#{mcontent},#{city1},#{city2},#{category},#{open},now())
 	</insert>
-	<select id="getPagingList" parameterType="Map" resultType="MoimDto">
-		select * from moim 
+	<select id="getPagingList" parameterType="Map" resultType="MoimDto">		
+		SELECT *,(SELECT COUNT(mm.mmnum) as mcoun from moimmember mm where mm.mnum = m.mnum) as mcount from moim m 
 		<if test="category!=null and city1!=null and city2!=null">where category=#{category} and city1=#{city1} and city2=#{city2}</if>
 		<if test="category!=null and city1!=null and city2==null">where category=#{category} and city1=#{city1}</if>
 		<if test="category!=null and city1==null and city2==null">where category=#{category}</if>
 		<if test="category==null and city1!=null and city2!=null">where city1=#{city1} and city2=#{city2}</if>
 		<if test="category==null and city1!=null and city2==null">where city1=#{city1}</if>
+		<include refid="sort" />
+		<!-- order by mnum desc limit #{start},#{perpage} -->
+	</select>
+	<sql id="sort">
+		<if test="sort == null">
 		order by mnum desc limit #{start},#{perpage}
-	</select>
-	<select id="getMembersunPagingList" parameterType="Map" resultType="MoimDto">
-		SELECT moim.* FROM moim LEFT JOIN moimmember ON moim.mnum = moimmember.mnum 
-		<if test="category!=null and city1!=null and city2!=null">where moim.category=#{category} and moim.city1=#{city1} and moim.city2=#{city2}</if>
-		<if test="category!=null and city1!=null and city2==null">where moim.category=#{category} and moim.city1=#{city1}</if>
-		<if test="category!=null and city1==null and city2==null">where moim.category=#{category}</if>
-		<if test="category==null and city1!=null and city2!=null">where moim.city1=#{city1} and moim.city2=#{city2}</if>
-		<if test="category==null and city1!=null and city2==null">where moim.city1=#{city1}</if>
-		GROUP BY moim.mnum ORDER BY COUNT(moimmember.mnum) desc limit #{start},#{perpage}
-	</select>
-	<select id="getData" parameterType="int" resultType="MoimDto">
-		select * from moim where mnum=#{mnum}
+		</if>
+		<if test="sort == 'moimnum'">
+		order by mnum desc limit #{start},#{perpage}
+		</if>		
+		<if test="sort == 'mcount'">
+		order by mcount desc limit #{start},#{perpage}
+		</if>
+	</sql>
+	<select id="getData" parameterType="int" resultType="MoimDto">		
+		SELECT *,(SELECT COUNT(mm.mmnum) as mcoun from moimmember mm where mm.mnum = m.mnum) as mcount from moim m where mnum=#{mnum}
 	</select>
 	<delete id="deleteMoim" parameterType="int">
 		delete from moim where mnum=#{mnum}
@@ -84,5 +87,4 @@
 		select acceptcall from moimmember where unum=#{unum} and mnum=#{mnum}
 	</select>
 </mapper>
-
 

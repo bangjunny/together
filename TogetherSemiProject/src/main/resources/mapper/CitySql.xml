@@ -1,71 +1,100 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.semi.mapper.CityMapper">
-	<select id="getDetailbycbnum" parameterType="int" resultType="CityBoardDto">
+	<select id="getDetailbycbnum" parameterType="int"
+		resultType="CityBoardDto">
 		select * from city_board where cbnum=#{cbnum}
 	</select>
-	<select id="getDetailbyunum" parameterType="int" resultType="UserDto">
+	<select id="getDetailbyunum" parameterType="int"
+		resultType="UserDto">
 		select * from user where unum=#{unum}
 	</select>
-	<select id="getCommentByCBnum" parameterType="int" resultType="CbReBoardDto">
+	<select id="getCommentByCBnum" parameterType="int"
+		resultType="CbReBoardDto">
 		select * from cb_reboard where cbnum=#{cbnum}
 	</select>
 	<insert id="insertCity" parameterType="CityBoardDto">
-		insert into city_board (subject, unum, cbcontent, cbwriteday, city1, city2, uname)
-		value (#{subject}, #{unum}, #{cbcontent}, now(), #{city1}, #{city2}, #{uname})
-		<selectKey keyProperty="cbnum" resultType="int" order="AFTER">
+		insert into city_board (subject, unum, cbcontent, cbwriteday, city1,
+		city2, uname)
+		value (#{subject}, #{unum}, #{cbcontent}, now(),
+		#{city1}, #{city2}, #{uname})
+		<selectKey keyProperty="cbnum" resultType="int"
+			order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>
 	<insert id="newCityPhoto" parameterType="CityPhotoDto">
-  		insert into city_photo (cbnum,photo_idx) values (#{cbnum},#{photo_idx})
-  	</insert>
-	<select id="preContent" parameterType="CityBoardDto" resultType="String">
-		select subject from city_board where cbnum <![CDATA[<]]> #{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum desc limit 1
+		insert into city_photo (cbnum,photo_idx) values (#{cbnum},#{photo_idx})
+	</insert>
+	<select id="preContent" parameterType="CityBoardDto"
+		resultType="String">
+		select subject from city_board where cbnum <![CDATA[<]]>
+		#{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum desc
+		limit 1
 	</select>
 	<select id="getJoinByunum" resultType="UserDto">
 		SELECT *
- 		FROM user
-  		INNER JOIN city_board ON user.unum = city_board.unum
-  		WHERE user.unum = #{unum}
-  	</select>
-  	
-	<select id="nxtContent" parameterType="CityBoardDto" resultType="String">
-		select subject from city_board where cbnum <![CDATA[>]]> #{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum asc limit 1
+		FROM user
+		INNER JOIN city_board ON user.unum = city_board.unum
+		WHERE user.unum = #{unum}
 	</select>
-	<select id="preNum" parameterType="CityBoardDto" resultType="String">
-		select cbnum from city_board where cbnum <![CDATA[<]]> #{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum desc limit 1
+
+	<select id="nxtContent" parameterType="CityBoardDto"
+		resultType="String">
+		select subject from city_board where cbnum <![CDATA[>]]>
+		#{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum asc
+		limit 1
 	</select>
-	<select id="nxtNum" parameterType="CityBoardDto" resultType="String">
-		select cbnum from city_board where cbnum <![CDATA[>]]> #{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum asc limit 1
+	<select id="preNum" parameterType="CityBoardDto"
+		resultType="String">
+		select cbnum from city_board where cbnum <![CDATA[<]]>
+		#{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum desc
+		limit 1
+	</select>
+	<select id="nxtNum" parameterType="CityBoardDto"
+		resultType="String">
+		select cbnum from city_board where cbnum <![CDATA[>]]>
+		#{cbnum} and city1 = #{city1} and city2 = #{city2} order by cbnum asc
+		limit 1
 	</select>
 	<update id="updateStep" parameterType="Map">
-		update cb_reboard set step=step+1 where ref=${ref} and step <![CDATA[>]]> #{step}
+		update cb_reboard set step=step+1 where ref=${ref} and step <![CDATA[>]]>
+		#{step}
 	</update>
 	<insert id="newComment" parameterType="CbReBoardDto">
-		insert into cb_reboard (unum,uname,recontent,rewriteday,ref,step,depth,cbnum) 
-		values (#{unum},#{uname},#{recontent},now(),#{ref},#{step},#{depth},#{cbnum})
+		insert into cb_reboard
+		(unum,uname,recontent,rewriteday,ref,step,depth,cbnum)
+		values
+		(#{unum},#{uname},#{recontent},now(),#{ref},#{step},#{depth},#{cbnum})
 	</insert>
-	<select id="getTotalComment" parameterType="int" resultType="String">
+	<select id="getTotalComment" parameterType="int"
+		resultType="String">
 		select count(*) from cb_reboard where cbnum=#{cbnum};
 	</select>
-	<select id="getCommentByCbnum" parameterType="int" resultType="CbReBoardDto">
-		SELECT * FROM cb_reboard where cbnum=#{cbnum} ORDER BY ref ASC, CASE WHEN step = 0 THEN 0 ELSE 1 END ASC, step asc, depth asc
+	<select id="getCommentByCbnum" parameterType="int"
+		resultType="CbReBoardDto">
+		SELECT * FROM cb_reboard where cbnum=#{cbnum} ORDER BY ref
+		ASC, CASE WHEN step = 0 THEN 0 ELSE 1 END ASC, step asc, depth asc
 	</select>
-	<select id="getCommentByRenum" parameterType="int" resultType="CbReBoardDto">
+	<select id="getCommentByRenum" parameterType="int"
+		resultType="CbReBoardDto">
 		select * from cb_reboard where renum=#{renum}
 	</select>
 	<select id="getReboardNum" resultType="int">
-		select ifnull(max(renum),0) from cb_reboard
+		select
+		ifnull(max(renum),0) from cb_reboard
 	</select>
 	<insert id="addComment" parameterType="CbReBoardDto">
-		insert into cb_reboard (unum,uname,recontent,rewriteday,ref,step,depth,cbnum) 
-		values (#{unum},#{uname},#{recontent},now(),#{ref},#{step},#{depth},#{cbnum})
+		insert into cb_reboard
+		(unum,uname,recontent,rewriteday,ref,step,depth,cbnum)
+		values
+		(#{unum},#{uname},#{recontent},now(),#{ref},#{step},#{depth},#{cbnum})
 	</insert>
 	<delete id="deleteCityboard" parameterType="int">
-		delete from city_board where cbnum=#{cbnum}
+		delete from
+		city_board where cbnum=#{cbnum}
 	</delete>
-	
-	<select id="getTotalCountCity" parameterType="String" resultType="int">
+
+	<!-- <select id="getTotalCountCity" parameterType="String" resultType="int">
 		select count(*) from city_board 
 		<if test="keyword==null and city1=='no'">
 
@@ -79,43 +108,102 @@
 		<if test="keyword!=null and city1=='no'">
 		where concat(subject, cbcontent, uname, city1, city2) like concat('%',#{keyword},'%')
 		</if>
-	</select>
-	
-	<select id="getCityPagingList" parameterType="Map" resultType="CityBoardDto">
-  		select * from city_board
-		<if test="keyword==null and city1!='no'">
-		where city1=#{city1} and city2=#{city2}
-		</if>
-		<if test="keyword!=null and city1!='no'">
-		where concat(subject, cbcontent, uname, city1, city2) like concat('%',#{keyword},'%') and city1=#{city1} and city2=#{city2}
-		</if>
-		<if test="keyword!=null and city1=='no'">
-		where concat(subject, cbcontent, uname, city1, city2) like concat('%',#{keyword},'%')
-		</if>
-		
-		
-		<!-- where 1=1
-		<if test="keyword!=null">
-		and (
+	</select> -->
+
+	<select id="getTotalCountCity" parameterType="String"
+		resultType="int">
+		select count(*) from city_board
+		where 1=1
+		<if test="keyword != null">
+			and (
 			subject like concat('%',#{keyword},'%')
 			or cbcontent like concat('%',#{keyword},'%')
 			or uname like concat('%',#{keyword},'%')
 			or city1 like concat('%',#{keyword},'%')
 			or city2 like concat('%',#{keyword},'%')
-		)
-		
+			)
 		</if>
-		<if test="!city1.equals('no')">
-		and city1=#{city1}
+		<if test="city1 != 'no'">
+			and city1 = #{city1}
 		</if>
-		<if test="!city2.equals('no')">
-		and city2=#{city2}
-		</if> -->
-		
-		order by cbnum desc limit #{start}, #{perpage}
-  	</select>
+		<if test="city2 != 'no' and city2!='지역전체'">
+			and city2 = #{city2}
+		</if>
+	</select>
 
-  	<update id="updateComment" parameterType="CbReBoardDto">
+	<!-- <select id="getCityPagingList" parameterType="Map" resultType="CityBoardDto"> 
+		select * from city_board <if test="keyword==null and city1!='no'"> where 
+		city1=#{city1} and city2=#{city2} </if> <if test="keyword!=null and city1!='no'"> 
+		where concat(subject, cbcontent, uname, city1, city2) like concat('%',#{keyword},'%') 
+		and city1=#{city1} and city2=#{city2} </if> <if test="keyword!=null and city1=='no'"> 
+		where concat(subject, cbcontent, uname, city1, city2) like concat('%',#{keyword},'%') 
+		</if> </select> -->
+
+	<select id="getCityPagingList" parameterType="Map"
+		resultType="CityBoardDto">
+		select * from city_board
+		where 1=1
+		<if test="keyword != null">
+			and (
+			subject like concat('%',#{keyword},'%')
+			or cbcontent like concat('%',#{keyword},'%')
+			or uname like concat('%',#{keyword},'%')
+			or city1 like concat('%',#{keyword},'%')
+			or city2 like concat('%',#{keyword},'%')
+			)
+		</if>
+		<if test="city1 != 'no'">
+			and city1 = #{city1}
+		</if>
+		<if test="city2 != 'no' and city2!='지역전체'">
+			and city2 = #{city2}
+		</if>
+
+		order by cbnum desc limit #{start}, #{perpage}
+	</select>
+	<select id="getCityPagingListReadTop" parameterType="Map"
+		resultType="CityBoardDto">
+		select * from city_board
+		where 1=1
+		<if test="keyword != null">
+			and (
+			subject like concat('%',#{keyword},'%')
+			or cbcontent like concat('%',#{keyword},'%')
+			or uname like concat('%',#{keyword},'%')
+			or city1 like concat('%',#{keyword},'%')
+			or city2 like concat('%',#{keyword},'%')
+			)
+		</if>
+		<if test="city1 != 'no'">
+			and city1 = #{city1}
+		</if>
+		<if test="city2 != 'no' and city2!='지역전체'">
+			and city2 = #{city2}
+		</if>
+		order by readcount desc limit 3
+	</select>
+	<select id="getCityPagingListLikeTop" parameterType="Map"
+		resultType="CityBoardDto">
+		select * from city_board
+		where 1=1
+		<if test="keyword != null">
+			and (
+			subject like concat('%',#{keyword},'%')
+			or cbcontent like concat('%',#{keyword},'%')
+			or uname like concat('%',#{keyword},'%')
+			or city1 like concat('%',#{keyword},'%')
+			or city2 like concat('%',#{keyword},'%')
+			)
+		</if>
+		<if test="city1 != 'no'">
+			and city1 = #{city1}
+		</if>
+		<if test="city2 != 'no' and city2!='지역전체'">
+			and city2 = #{city2}
+		</if>
+		order by cblike desc limit 3
+	 </select>
+    <update id="updateComment" parameterType="CbReBoardDto">
   		update cb_reboard set recontent=#{recontent} where renum=#{renum}
   	</update>
   	<delete id="deleteComment" parameterType="int">

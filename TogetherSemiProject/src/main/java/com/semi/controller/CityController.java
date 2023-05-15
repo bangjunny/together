@@ -46,12 +46,16 @@ public class CityController {
 	@GetMapping("/list")
 	public String list(@RequestParam(defaultValue = "1") int currentPage, Model model, HttpSession session,
 			String city1, String city2, String keyword) {
+		
+
+		
+		
 		UserDto udto;
 		int unum;
 		
-//		if(city2=="지역전체" && city2==null) {
-//			city2="no";
-//		}
+		if(city2=="지역전체" || city2==null) {
+			city2="no";
+		}
 
 		if (session.getAttribute("unum") == null) { // 비회원일때
 			unum = 0;
@@ -63,9 +67,9 @@ public class CityController {
 			city1 = udto.getCity1();
 			city2 = udto.getCity2();
 		}
-		System.out.println("검색하려는 city1:" + city1);
-		System.out.println("검색하려는 city2:" + city2);
-		System.out.println("검색하려는 keyword:" + keyword);
+		System.out.println("total city1:" + city1);
+		System.out.println("total city2:" + city2);
+		System.out.println("total keyword:" + keyword);
 
 		int totalCount = cityService.getTotalCountCity(city1, city2, keyword);// 게시판의 총 글 갯수
 		int totalPage;// 총 페이지수
@@ -89,10 +93,17 @@ public class CityController {
 		startNum = (currentPage - 1) * perPage;
 		// 각 글마다 출력할 글 번호(예:10개일경우 1페이지:10, 2페이지:7...)
 		no = totalCount - startNum;
-
+		System.out.println("페이징 city1:" + city1);
+		System.out.println("페이징 city2:" + city2);
+		System.out.println("페이징 keyword:" + keyword);
 		List<CityBoardDto> list = cityService.getCityPagingList(startNum, perPage, city1, city2, keyword);
+		List<CityBoardDto> readlist = cityService.getCityPagingListReadTop(city1, city2, keyword);
+		List<CityBoardDto> likelist = cityService.getCityPagingListLikeTop(city1, city2, keyword);
+		
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("list", list);
+		model.addAttribute("readlist", readlist);
+		model.addAttribute("likelist", likelist);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("totalPage", totalPage);
@@ -102,6 +113,7 @@ public class CityController {
 		model.addAttribute("unum", unum);
 		model.addAttribute("city1", city1);
 		model.addAttribute("city2", city2);
+		model.addAttribute("keyword", keyword);
 
 		return "/main/city/citylist";
 	}

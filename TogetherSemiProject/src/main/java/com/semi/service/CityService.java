@@ -14,8 +14,8 @@ import com.semi.dto.UserDto;
 import com.semi.mapper.CityMapper;
 
 @Service
-public class CityService implements CityServiceInter{
-	
+public class CityService implements CityServiceInter {
+
 	@Autowired
 	private CityMapper cityMapper;
 
@@ -37,8 +37,6 @@ public class CityService implements CityServiceInter{
 		cityMapper.insertCity(dto);
 	}
 
-
-	
 	@Override
 	public String preContent(CityBoardDto dto) {
 		// TODO Auto-generated method stub
@@ -48,7 +46,7 @@ public class CityService implements CityServiceInter{
 	@Override
 	public String nxtContent(CityBoardDto dto) {
 		// TODO Auto-generated method stub
-    
+
 		return cityMapper.nxtContent(dto);
 
 	}
@@ -80,60 +78,57 @@ public class CityService implements CityServiceInter{
 	@Override
 	public void updateStep(int ref, int step) {
 		// TODO Auto-generated method stub
-		Map<String, Integer> map=new HashMap<>();
-		
+		Map<String, Integer> map = new HashMap<>();
+
 		map.put("ref", ref);
-		map.put("step",step);
-		
-		
+		map.put("step", step);
+
 		cityMapper.updateStep(map);
 	}
-	
+
 	@Override
 	public int getReboardNum() {
 		// TODO Auto-generated method stub
 		return cityMapper.getReboardNum();
 	}
 
-
 	@Override
 	public void newComment(CbReBoardDto dto) {
 		// TODO Auto-generated method stub
-		int ref=dto.getRef();
-		int step=dto.getRef();
-		int depth=dto.getRef();
-		
-		step=0;
-		depth=0;
-		ref=cityMapper.getReboardNum()+1;
-		
+		int ref = dto.getRef();
+		int step = dto.getRef();
+		int depth = dto.getRef();
+
+		step = 0;
+		depth = 0;
+		ref = cityMapper.getReboardNum() + 1;
+
 		dto.setRef(ref);
 		dto.setStep(step);
 		dto.setDepth(depth);
-		
+
 		cityMapper.newComment(dto);
 	}
 
 	@Override
 	public void addComment(CbReBoardDto dto) {
 		// TODO Auto-generated method stub
-		
-		int ref=dto.getRef();
-		int step=dto.getStep();
-		int depth=dto.getDepth();
-		//System.out.println("이전 : "+depth);
+
+		int ref = dto.getRef();
+		int step = dto.getStep();
+		int depth = dto.getDepth();
+		// System.out.println("이전 : "+depth);
 		this.updateStep(ref, step);
-		
+
 		step++;
 		depth++;
-		
+
 		dto.setRef(ref);
 		dto.setStep(step);
 		dto.setDepth(depth);
-		//System.out.println("변경 : "+depth);
+		// System.out.println("변경 : "+depth);
 		cityMapper.addComment(dto);
 	}
-
 
 	@Override
 	public CbReBoardDto getCommentByRenum(int renum) {
@@ -141,13 +136,11 @@ public class CityService implements CityServiceInter{
 		return cityMapper.getCommentByRenum(renum);
 	}
 
-
 	@Override
 	public void deleteCityboard(int cbnum) {
 		// TODO Auto-generated method stub
-		cityMapper.deleteCityboard(cbnum);	
+		cityMapper.deleteCityboard(cbnum);
 	}
-
 
 	@Override
 	public List<CityBoardDto> getCityPagingList(int start, int perpage, String city1, String city2, String keyword) {
@@ -160,8 +153,6 @@ public class CityService implements CityServiceInter{
 		map.put("keyword", keyword);
 		return cityMapper.getCityPagingList(map);
 	}
-
-
 
 	@Override
 	public void updateComment(CbReBoardDto dto) {
@@ -204,11 +195,50 @@ public class CityService implements CityServiceInter{
 		// TODO Auto-generated method stub
 		return cityMapper.getPhotoCount(cbnum);
 	}
-  
-  @Override
+
+	@Override
 	public int getTotalCountCity(String city1, String city2, String keyword) {
 		// TODO Auto-generated method stub
 		return cityMapper.getTotalCountCity(city1, city2, keyword);
 	}
-  
+
+  @Override
+  	public void updateCity(CityBoardDto dto) {
+	  	// TODO Auto-generated method stub
+	  	cityMapper.updateCity(dto);
+  	}
+
+  @Override
+  	public void updateCityPhoto(CityBoardDto dto) {
+	  	// TODO Auto-generated method stub
+	  	cityMapper.updateCityPhoto(dto);
+  	}
+
+  	@Override
+  	public void deleteCityPhoto(String photo_idx) {
+  		// TODO Auto-generated method stub
+  		cityMapper.deleteCityPhoto(photo_idx);
+  	}
+
+	@Override
+	public List<CityBoardDto> getCityPagingListReadTop(String city1, String city2, String keyword) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("city1", city1);
+		map.put("city2", city2);
+		map.put("keyword", keyword);
+		return cityMapper.getCityPagingListReadTop(map);
+		
+	}
+
+	@Override
+	public List<CityBoardDto> getCityPagingListLikeTop(String city1, String city2, String keyword) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("city1", city1);
+		map.put("city2", city2);
+		map.put("keyword", keyword);
+		return cityMapper.getCityPagingListLikeTop(map);
+	}
+	
 }

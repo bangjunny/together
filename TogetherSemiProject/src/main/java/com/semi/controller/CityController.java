@@ -46,12 +46,16 @@ public class CityController {
 	@GetMapping("/list")
 	public String list(@RequestParam(defaultValue = "1") int currentPage, Model model, HttpSession session,
 			String city1, String city2, String keyword) {
+		
+
+		
+		
 		UserDto udto;
 		int unum;
 		
-//		if(city2=="지역전체" && city2==null) {
-//			city2="no";
-//		}
+		if(city2=="지역전체" || city2==null) {
+			city2="no";
+		}
 
 		if (session.getAttribute("unum") == null) { // 비회원일때
 			unum = 0;
@@ -63,9 +67,9 @@ public class CityController {
 			city1 = udto.getCity1();
 			city2 = udto.getCity2();
 		}
-		System.out.println("검색하려는 city1:" + city1);
-		System.out.println("검색하려는 city2:" + city2);
-		System.out.println("검색하려는 keyword:" + keyword);
+		System.out.println("total city1:" + city1);
+		System.out.println("total city2:" + city2);
+		System.out.println("total keyword:" + keyword);
 
 		int totalCount = cityService.getTotalCountCity(city1, city2, keyword);// 게시판의 총 글 갯수
 		int totalPage;// 총 페이지수
@@ -89,10 +93,17 @@ public class CityController {
 		startNum = (currentPage - 1) * perPage;
 		// 각 글마다 출력할 글 번호(예:10개일경우 1페이지:10, 2페이지:7...)
 		no = totalCount - startNum;
-
+		System.out.println("페이징 city1:" + city1);
+		System.out.println("페이징 city2:" + city2);
+		System.out.println("페이징 keyword:" + keyword);
 		List<CityBoardDto> list = cityService.getCityPagingList(startNum, perPage, city1, city2, keyword);
+		List<CityBoardDto> readlist = cityService.getCityPagingListReadTop(city1, city2, keyword);
+		List<CityBoardDto> likelist = cityService.getCityPagingListLikeTop(city1, city2, keyword);
+		
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("list", list);
+		model.addAttribute("readlist", readlist);
+		model.addAttribute("likelist", likelist);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("totalPage", totalPage);
@@ -102,6 +113,7 @@ public class CityController {
 		model.addAttribute("unum", unum);
 		model.addAttribute("city1", city1);
 		model.addAttribute("city2", city2);
+		model.addAttribute("keyword", keyword);
 
 		return "/main/city/citylist";
 	}
@@ -258,23 +270,50 @@ public class CityController {
 		return "redirect:/city/detail?cbnum="+cbnum;
 	}
 
-//<-----------------------------------절취선-------------------------------------------->
-
 	@GetMapping("/cityupdateform")
 	public String cityupdateform(int cbnum, Model model) {
-		System.out.println(cbnum);
+		//System.out.println(cbnum);
+		List<CityPhotoDto> pdto = cityService.getPhoto(cbnum);
 		CityBoardDto cbdto = cityService.getDetailbycbnum(cbnum);
 		int unum = cbdto.getUnum();
 		UserDto udto = cityService.getDetailbyunum(unum);
+		
+		model.addAttribute("pdto",pdto);
 		model.addAttribute("cbdto", cbdto);
 		model.addAttribute("udto", udto);
 		return "/main/city/cityupdateform";
 	}
 
 	@GetMapping("/cityupdate")
-	public String cityupdate(CityBoardDto dto, MultipartFile upload) {
-
-		return "/main/city/CityDetail";
+	@ResponseBody public void cityupdate(
+			int cbnum,
+			CityBoardDto dto, 
+			List<MultipartFile> upload, 
+			String delcheck)
+	{
+		System.out.println("나옴?");
+		System.out.println("사진 지워짐?"+delcheck);
+		cityService.updateCity(dto);
+		System.out.println("여긴 나옴?");
+		if(upload!=null) {
+			for(MultipartFile file : upload)
+			{
+				CityPhotoDto pdto=new CityPhotoDto();
+				storageService.deleteFile(bucketName, "city", pdto.getPhoto_idx());
+				String photoname=storageService.uploadFile(bucketName, "city", file);
+				pdto.setCbnum(dto.getCbnum());
+				pdto.setPhoto_idx(photoname);
+				cityService.newCityPhoto(pdto);
+			}
+		}
+		else if(upload==null &&"1".equals(delcheck)) {
+			List<CityPhotoDto> originalPhotos = cityService.getPhoto(cbnum);
+			for (CityPhotoDto photo : originalPhotos) {
+	            storageService.deleteFile(bucketName, "city", photo.getPhoto_idx());
+	            cityService.deleteCityPhoto(photo.getPhoto_idx());
+	        }
+		}
+	
 	}
 
 }

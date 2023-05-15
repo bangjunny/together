@@ -14,6 +14,8 @@ import com.semi.dto.UserDto;
 public interface CityMapper {
 	public int getTotalCountCity(String city1, String city2, String keyword);//특정지역리스트갯수
 	public List<CityBoardDto> getCityPagingList(Map<String, Object>map);//특정지역리스트
+	public List<CityBoardDto> getCityPagingListReadTop(Map<String, Object>map);//조회수top3
+	public List<CityBoardDto> getCityPagingListLikeTop(Map<String, Object>map);//추천수top3
 
 	public CityBoardDto getDetailbycbnum(int cbnum);
 	public UserDto getDetailbyunum(int unum);
@@ -38,6 +40,10 @@ public interface CityMapper {
 	public List<String> getAllPhoto(int cbnum);
 	public List<CityPhotoDto> getPhoto (int cbnum);
 	public String getPhotoCount(int cbnum);
+	public void updateCity(CityBoardDto dto);
+	public void updateCityPhoto(CityBoardDto dto);
+	public void deleteCityPhoto(String photo_idx);
+	
 	/**
 	public void insertCity(CityBoardDto dto);
 	public void updateCity(CityBoardDto dto);	

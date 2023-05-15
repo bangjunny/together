@@ -70,7 +70,7 @@ body, body * {
 			<!-- <button type="button" class="btn btn-sm btn-success" id="delbtn">삭제</button> -->
 			<c:choose>
 			 <c:when test="${sessionunum eq dto.unum}">
-			  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="location.href='updateboardform.jsp?num=${dto.cbnum}'">
+			  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" id="btnupdate">
 			    <i class="bi bi-pencil-square"></i>&nbsp;수정
 			  </button>
 			  
@@ -142,7 +142,7 @@ body, body * {
 					<c:if test="${listcomment.step!='0' }">
 					<i class="bi bi-arrow-return-right"></i>
 					</c:if>
-					<input id="renum" type=hidden name="renum" value="${listcomment.renum}">
+					<input id="renum" type="hidden" name="renum" value="${listcomment.renum}">
 					${listcomment.uname}
 					</td>
 					<td style="float:right">
@@ -154,6 +154,7 @@ body, body * {
 					<c:forEach begin="1" end="${listcomment.depth}">
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					</c:forEach>
+					<input id="recomment" type="hidden" value="${listcomment.recontent}"></div>
 					${listcomment.recontent}
 					</td>
 				</tr>
@@ -241,7 +242,9 @@ body, body * {
 	});
 	
 	$(document).on("click", "#updateComment", function() {
+		var placeHolder=$(this).parent().parent().prev().find('#recomment').val();
 		$(this).parent().parent().next().find("#fixComment").attr("action","updatecomment");
+		$(this).parent().parent().next().find("#contentSide").attr("placeholder",placeHolder);
 		
 		let s = $(this).parent().parent().next().find("#recontent").css("display");
 	    if (s == "none") {
@@ -259,6 +262,15 @@ body, body * {
 			location.href='deleteComment?renum='+valueByName+'&cbnum='+${dto.cbnum}
 		}
 	});
+	
+	$(document).on("click","#btnupdate",function(){
+		var unum=${dto.unum}
+		var cbnum=${dto.cbnum}
+		let s=confirm("게시글을 수정하시겠습니까?")
+		if(s){
+		location.href='cityupdateform?unum='+unum+'&cbnum='+cbnum;
+		}
+	})
 	
 </script>
 </html>

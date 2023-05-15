@@ -48,24 +48,30 @@ public class MoimController {
       
    @GetMapping("/moimlist")
    private String moimlist(@RequestParam(defaultValue = "1") int currentPage,Model model, String category, HttpSession session,
-		   String city1,String city2, String items)
+		   String city1,String city2, String mcount, String sort)
    			{   		   	       		
-		  
+	   		
+	   		int unum;	   			   		
+	   		
 	   		if(session.getAttribute("unum")==null) {
-	   			int unum=0;
-	   			UserDto udto = cityService.getDetailbyunum(unum);
-	   			model.addAttribute("unum", unum);
-				model.addAttribute("udto", udto);
+	   			unum=0;	   			
 	   		}else {
-	   			int unum=(int)session.getAttribute("unum");
-	   			UserDto udto = cityService.getDetailbyunum(unum);
-	   			model.addAttribute("unum", unum);
-				model.addAttribute("udto", udto);
+	   			unum=(int)session.getAttribute("unum");	   			
 	   		}
-	      
+	   		
+	   		UserDto udto = cityService.getDetailbyunum(unum);
+   			model.addAttribute("unum", unum);
+			model.addAttribute("udto", udto);
+	   		
+	   		if (city1==null && category==null && session.getAttribute("unum")!=null) {
+	   			category = udto.getCategory();
+				city1 = udto.getCity1();
+				city2 = udto.getCity2();
+			}
+	   		
 	   		// 게시물의 총 글 갯수
-			int totalCount = moimService.getTotalCount(category,city1,city2);
-			
+			int totalCount = moimService.getTotalCount(category,city1,city2);			
+					
 			int totalPage;// 총페이지수
 			int perPage = 6;// 한페이지당 보여질 글의 갯수
 			int perBlock = 2;// 한 블럭당 보여질 페이지 갯수
@@ -87,13 +93,11 @@ public class MoimController {
 			// 각 글마다 출력할 글 번호(예: 10개 일 경우 1페이지 :10, 2페이지 :7....)
 			no = totalCount - startNum;
 			// 각페이지에 필요한 게시글 db에 가져오기			
-			List<MoimDto> list = moimService.getPagingList(startNum, perPage, category, city1, city2);
-			List<MoimDto> mlist = moimService.getMembersunPagingList(startNum, perPage, category, city1, city2);
+			List<MoimDto> list = moimService.getPagingList(startNum, perPage, category, city1, city2, sort);			
 			 
 			// model 저장
 			model.addAttribute("totalCount", totalCount);
 			model.addAttribute("list",list);
-			model.addAttribute("mlist",mlist);
 			model.addAttribute("startPage", startPage);
 			model.addAttribute("endPage", endPage);
 			model.addAttribute("totalPage", totalPage);
@@ -102,6 +106,8 @@ public class MoimController {
 			model.addAttribute("category", category);
 			model.addAttribute("city1",city1);
 			model.addAttribute("city2",city2);
+			model.addAttribute("mcount",mcount);
+			model.addAttribute("sort", sort);
 			
 			
    return "/main/moim/moimlist";
@@ -216,4 +222,3 @@ public class MoimController {
    }
     
 }
-

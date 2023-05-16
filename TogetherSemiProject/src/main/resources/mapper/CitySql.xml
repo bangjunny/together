@@ -230,4 +230,19 @@
   	<delete id="deleteCityPhoto" parameterType="String">
   		delete from city_photo where photo_idx=#{photo_idx}
   	</delete>
+  	<insert id="cblike" parameterType="Map">
+  		insert into cblike (unum, cbnum) values (#{unum}, #{cbnum}) 
+  	</insert>
+  	<insert id="cbdislike" parameterType="Map">
+  		delete from cblike where unum=#{unum} and cbnum=#{cbnum}
+  	</insert>
+  	<select id="cblikecheck" parameterType="Map" resultType="int">
+  		select count(*) from cblike where unum=#{unum} and cbnum=#{cbnum}
+  	</select>
+  	<update id="cblikecountplus" parameterType="int">
+  		update city_board set cblike=cblike+1 where cbnum=#{cbnum}
+  	</update>
+  	<update id="cblikecountminus" parameterType="int">
+  		update city_board set cblike=cblike-1 where cbnum=#{cbnum}
+  	</update>
 </mapper>

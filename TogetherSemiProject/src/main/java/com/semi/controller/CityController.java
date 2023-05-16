@@ -153,6 +153,9 @@ public class CityController {
 
 		String city1 = dto.getCity1();
 		String city2 = dto.getCity2();
+		
+		int cblikecheck = cityService.cblikecheck(unum, cbnum);
+		model.addAttribute("cblikecheck",cblikecheck);
 
 		
 		model.addAttribute("photocount",photocount);
@@ -176,6 +179,7 @@ public class CityController {
 		model.addAttribute("step", step);
 		model.addAttribute("depth", depth);
 		model.addAttribute("sessionunum", unum);
+		
 
 		return "/main/city/CityDetail";
 	}
@@ -245,10 +249,6 @@ public class CityController {
 
 	@GetMapping("/delete")
 	public String delete(int cbnum) {
-		List<String> list=cityService.getAllPhoto(cbnum);
-		for(String photo_idx:list) {
-			storageService.deleteFile(bucketName, "city", photo_idx);
-		}
 		cityService.deleteCityboard(cbnum);
 		return "redirect:/city/list";
 	}
@@ -271,49 +271,73 @@ public class CityController {
 	}
 
 	@GetMapping("/cityupdateform")
-	public String cityupdateform(int cbnum, Model model) {
-		//System.out.println(cbnum);
-		List<CityPhotoDto> pdto = cityService.getPhoto(cbnum);
-		CityBoardDto cbdto = cityService.getDetailbycbnum(cbnum);
-		int unum = cbdto.getUnum();
-		UserDto udto = cityService.getDetailbyunum(unum);
-		
-		model.addAttribute("pdto",pdto);
-		model.addAttribute("cbdto", cbdto);
-		model.addAttribute("udto", udto);
-		return "/main/city/cityupdateform";
-	}
+	   public String cityupdateform(int cbnum, Model model) {
+	      //System.out.println(cbnum);
+	      List<CityPhotoDto> pdto = cityService.getPhoto(cbnum);
+	      CityBoardDto cbdto = cityService.getDetailbycbnum(cbnum);
+	      int unum = cbdto.getUnum();
+	      UserDto udto = cityService.getDetailbyunum(unum);
+	      
+	      model.addAttribute("pdto",pdto);
+	      model.addAttribute("cbdto", cbdto);
+	      model.addAttribute("udto", udto);
+	      return "/main/city/cityupdateform";
+	   }
 
-	@GetMapping("/cityupdate")
-	@ResponseBody public void cityupdate(
-			int cbnum,
-			CityBoardDto dto, 
-			List<MultipartFile> upload, 
-			String delcheck)
-	{
-		System.out.println("나옴?");
-		System.out.println("사진 지워짐?"+delcheck);
-		cityService.updateCity(dto);
-		System.out.println("여긴 나옴?");
-		if(upload!=null) {
-			for(MultipartFile file : upload)
-			{
-				CityPhotoDto pdto=new CityPhotoDto();
-				storageService.deleteFile(bucketName, "city", pdto.getPhoto_idx());
-				String photoname=storageService.uploadFile(bucketName, "city", file);
-				pdto.setCbnum(dto.getCbnum());
-				pdto.setPhoto_idx(photoname);
-				cityService.newCityPhoto(pdto);
-			}
-		}
-		else if(upload==null &&"1".equals(delcheck)) {
-			List<CityPhotoDto> originalPhotos = cityService.getPhoto(cbnum);
-			for (CityPhotoDto photo : originalPhotos) {
+	   @PostMapping("/cityupdate")
+	   @ResponseBody public void cityupdate(
+	         int cbnum,
+	         CityBoardDto dto, 
+	         List<MultipartFile> upload, 
+	         String delcheck)
+	   {
+	      System.out.println("나옴?");
+	      System.out.println("사진 지워짐?"+delcheck);
+	      cityService.updateCity(dto);
+
+	      System.out.println("여긴 나옴?");
+	      if(upload!=null) {
+	         List<CityPhotoDto> originalPhotos = cityService.getPhoto(cbnum);
+	         for(CityPhotoDto photo : originalPhotos) {
 	            storageService.deleteFile(bucketName, "city", photo.getPhoto_idx());
 	            cityService.deleteCityPhoto(photo.getPhoto_idx());
-	        }
-		}
-	
-	}
+	         }
+	         for(MultipartFile file : upload)
+	         {
+	            CityPhotoDto pdto=new CityPhotoDto();
+	            String photoname=storageService.uploadFile(bucketName, "city", file);
+	            pdto.setCbnum(dto.getCbnum());
+	            pdto.setPhoto_idx(photoname);
+	            cityService.newCityPhoto(pdto);
+	         }
+	      }
+	      else if(upload==null &&"1".equals(delcheck)) {
+	         List<CityPhotoDto> originalPhotos = cityService.getPhoto(cbnum);
+	         for (CityPhotoDto photo : originalPhotos) {
+	               storageService.deleteFile(bucketName, "city", photo.getPhoto_idx());
+	               cityService.deleteCityPhoto(photo.getPhoto_idx());
+	           }
+	      }
+	   
+	   }
+	   @ResponseBody
+	   @GetMapping("/cblike")
+	   public int cblike(int unum, int cbnum) {
+		   cityService.cblike(unum, cbnum);
+		   cityService.cblikecountplus(cbnum);
+		   CityBoardDto cdto = cityService.getDetailbycbnum(cbnum);
+		   int cblike=cdto.getCblike();
+		   return cblike;
+	   }
+	   @ResponseBody
+	   @GetMapping("/cbdislike")
+	   public int cbdislike(int unum, int cbnum) {
+		   cityService.cbdislike(unum, cbnum);
+		   cityService.cblikecountminus(cbnum);
+		   CityBoardDto cdto = cityService.getDetailbycbnum(cbnum);
+		   int cblike=cdto.getCblike();
+		   return cblike;
+	   }
+	   
 
 }

@@ -141,25 +141,26 @@
 
 	<select id="getCityPagingList" parameterType="Map"
 		resultType="CityBoardDto">
-		select * from city_board
+		select *, (select photo_idx from city_photo where cbnum=cb.cbnum limit 1) as photo_idx
+		from city_board as cb
 		where 1=1
 		<if test="keyword != null">
 			and (
-			subject like concat('%',#{keyword},'%')
-			or cbcontent like concat('%',#{keyword},'%')
-			or uname like concat('%',#{keyword},'%')
-			or city1 like concat('%',#{keyword},'%')
-			or city2 like concat('%',#{keyword},'%')
+			cb.subject like concat('%',#{keyword},'%')
+			or cb.cbcontent like concat('%',#{keyword},'%')
+			or cb.uname like concat('%',#{keyword},'%')
+			or cb.city1 like concat('%',#{keyword},'%')
+			or cb.city2 like concat('%',#{keyword},'%')
 			)
 		</if>
 		<if test="city1 != 'no'">
-			and city1 = #{city1}
+			and cb.city1 = #{city1}
 		</if>
 		<if test="city2 != 'no' and city2!='지역전체'">
-			and city2 = #{city2}
+			and cb.city2 = #{city2}
 		</if>
 
-		order by cbnum desc limit #{start}, #{perpage}
+		order by cb.cbnum desc limit #{start}, #{perpage}
 	</select>
 	<select id="getCityPagingListReadTop" parameterType="Map"
 		resultType="CityBoardDto">
@@ -245,4 +246,7 @@
     <update id="cblikecountminus" parameterType="int">
         update city_board set cblike=cblike-1 where cbnum=#{cbnum}
     </update>
+    <select id="getMainPhoto" parameterType="int" resultType="String">
+    	select file_name from user_photo where unum=#{unum} and is_main=1
+    </select>
 </mapper>

@@ -20,6 +20,14 @@ public interface LoginServiceInter {
 
 	List<Map<String, Object>> getJJimMoimList(int unum);
 	public List<Map<String, Object>> getGaipMoimList(int unum);
+
+	public String getSelectPhoto(int photo_idx);
+
+	public void deletePhoto(int photo_idx);
+
+	public boolean mypagePassCheck(int unum, String pass);
+
+	public void updateMypage(UserDto dto);
 	
 
 	

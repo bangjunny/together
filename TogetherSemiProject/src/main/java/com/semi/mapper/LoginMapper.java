@@ -19,6 +19,7 @@ public interface LoginMapper {
 	public int isEqualPassEmail(Map<String, String> map); // map : email, pass
 	public UserDto selectOneOfEmail(String email);
 	public int overlappedEmail(UserDto dto);
+	public int chEmail(String inemail);	// 인증 이메일 중복
 
 	/*마이페이지*/
 	
@@ -45,6 +46,10 @@ public interface LoginMapper {
 	public void updateMainphoto(int photo_idx);
 	
 	public void updateOtherphoto(int unum);
+	public String getSelectPhoto(int photo_idx);
+	public void deletePhoto(int photo_idx);
+	public int mypagePassCheck(Map<String, Object> map);
+	public void updateMypage(UserDto dto);
 
 	
 }

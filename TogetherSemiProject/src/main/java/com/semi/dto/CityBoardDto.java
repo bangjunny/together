@@ -21,6 +21,8 @@ public class CityBoardDto {
 	private int cblike;
 	private String uname;
 	
+	private String photo_idx;
+	
 	
 	
 }

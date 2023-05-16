@@ -30,17 +30,26 @@ body, body * {
 </head>
 <body>
 <!-- 게시판 명 -->
-	<h1>지역 게시판</h1>
+	<br>
+	<br>
 	<!-- 해당 글 정보 영역 -->
-	<div style="width: 800px; background-color: #ddd; margin: 0 auto; margin-top: 40px;">
+	<div style="width: 800px; margin: 0 auto; margin-top: 40px; border: 1px solid skyblue; border-radius: 10px;">
 		<h3>${dto.subject}</h3>
 		<h6 style="float: right;">
-         <b>추천수</b>
-         <div class="likecount">${dto.cblike}</div>
+         
+        <b>추천수</b>&nbsp;<span class="likecount">${dto.cblike}</span>&nbsp;
       	</h6>
 		<h6 style="float: right;"><b>조회수</b> ${dto.readcount}&nbsp;</h6>
-		<h6 style="float: left"><b>작성자</b> ${dto.uname}&nbsp;</h6>
-		<h6><b>작성일</b> ${dto.cbwriteday }</h6>
+		<c:choose>
+		<c:when test="${mainPhoto!=null }">
+		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-bottm:10px; border-radius:100px;">
+		</c:when>
+		<c:otherwise>
+		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left;margin-bottm:10px; border-radius:100px;">                               
+		</c:otherwise>
+		</c:choose>
+		<h6 style="float: left">${dto.uname}&nbsp;</h6>
+		<h6 style="font-color:"> <fmt:formatDate value="${dto.cbwriteday }" pattern="yyyy.MM.dd HH:MM"/> </h6>
 		<hr>
 			<c:if test="${photocount=='0'}">
 			<div class="cbcontent" align="center">
@@ -60,29 +69,26 @@ body, body * {
     	</pre>
 		<br> <br> <br> 
 		<!-- 좋아요 버튼 -->
-      <div id="likebutton">
+      <div id="likebutton" style="text-align:center ">
       <c:choose>
          <c:when test="${cblikecheck==0}">
             <i class="bi bi-hand-thumbs-up like"
-               style="font-size: 40px; margin-left: 200px; cursor: pointer;" onclick="cblike();"></i>
+               style="font-size: 40px; cursor: pointer;" onclick="cblike();"></i>
             <br>
          </c:when>
          <c:otherwise>
             <i class="bi bi-hand-thumbs-up-fill like2"
-               style="font-size: 40px; margin-left: 200px; cursor: pointer;" onclick="cbdislike();"></i>
+               style="font-size: 40px; cursor: pointer;" onclick="cbdislike();"></i>
             <br>
          </c:otherwise>
       </c:choose>
       </div>
-      <div class="likecount">${dto.cblike}</div>
+      <div class="likecount" style="text-align:center">${dto.cblike}</div>
 		<hr>
 		<!-- 버튼 영역 -->
-		<div style="margin: auto">
-			<!-- <button type="submit" class="btn btn-sm btn-success updatebtn"
-				style="margin-left: 180px" onclick="location.href='';">수정</button> -->
-			<button type="button" class="btn btn-sm btn-success"
-				onclick="history.back()">목록으로</button>
-			<!-- <button type="button" class="btn btn-sm btn-success" id="delbtn">삭제</button> -->
+		<div>
+			<button type="button" class="btn btn-sm btn-success" onclick="history.back()" style="margin-left:10px; width:100px;"><i class="bi bi-card-list"></i>
+			목록으로</button>
 			<c:choose>
 			 <c:when test="${sessionunum eq dto.unum}">
 			  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" id="btnupdate">
@@ -113,18 +119,19 @@ body, body * {
 			<!-- 댓글 입력 창 -->
 			<div class="mb-3 mt-3">
 				<textarea class="form-control" rows="5" id="content" name="recontent"
-					style="height: 200px; resize: none; width: 500px;"
+					style="height: 200px; resize: none; width: 750px;margin:0 auto"
 					placeholder="내용을 입력해주세요"></textarea>
 			</div>
-			<button type="submit" class="btn btn-primary btn-sm"
+			<button type="submit" class="btn btn-primary"
 				style="float: right; margin-right: 30px;">입력</button>
 		</form>
 		<br>
 		<div>
 			<!-- 댓글 출력 영역 -->
-			<caption align="top" style="width: 500px">총 ${totalComment}개의 댓글</caption>
-			<table style="border : 1px solid black;width:700px;">
 			<hr>
+			<button type="button" id="showComment" style="margin-left: 25px; margin-bottom: 10px;">댓글 보기</button>
+			<br>
+			<table id="commentArea" style="border : 1px solid black;width:700px;margin:0 auto;display:none; background-color:#ddd">
 			<!-- 댓글이 없는 경우 -->
 				<c:if test="${totalComment=='0'}">
 					<tr>
@@ -135,8 +142,8 @@ body, body * {
 				<c:if test="${totalComment!='0' }">
 					<c:forEach var="listcomment" items="${listcomment}" varStatus="">
 						<c:if test="${listcomment.recontent=='' }">
-							<tr style="border: 1px solid black" value="${listcomment.ref}">
-								<td>
+							<tr style="border: 1px solid black;height:80px;" value="${listcomment.ref}">
+								<td style="width:700px">
 								<c:forEach begin="1" end="${listcomment.depth}">
 									&nbsp;&nbsp;
 								</c:forEach>
@@ -181,10 +188,10 @@ body, body * {
 						<c:if test="${listcomment.depth=='0' }">
 						<button type="button" id="commentFunction">답글 보기</button>
 						</c:if>
-						<button type="submit" id="deleteComment" style="float:right">삭제</button>
-						<button id="updateComment" style="float:right">수정</button>
+						<button type="submit" id="deleteComment" style="float:right" class="btn btn-danger">삭제</button>
+						<button id="updateComment" style="float:right" class="btn btn-secondary">수정</button>
 						</c:if>
-						<button id="addComment" style="float:right">답글</button>
+            <button id="addComment" style="float:right" class="btn btn-secondary">답글</button>
 					</td>
 				</tr>
 				<tr>
@@ -200,10 +207,10 @@ body, body * {
 						<input type="hidden" name="depth" value="${listcomment.depth}">
 						<div id="recontent" style="display: none;" >
 							<textarea id="contentSide" class="form-control" rows="5" name="recontent"
-							style="height: 100px; resize: none; width: 494px;"
+							style="height: 100px; resize: none; width: 600px;margin: 0 auto"
 							placeholder="${listcomment.recontent}"></textarea>
 							<button type="submit" class="btn btn-primary btn-sm"
-							id="submit" style="float: right; margin-right: 30px;">입력</button>
+							id="submit" style="float: right; margin-right: 30px; margin-top: 20px;">입력</button>
 						</div>
 					</form>
 					</td>
@@ -242,15 +249,15 @@ body, body * {
 						<c:if test="${sessionScope.unum==listcomment.unum}">
 						<c:if test="${listcomment.depth=='0' }">
 						</c:if>
-						<button type="submit" id="deleteComment" style="float:right">삭제</button>
-						<button id="updateComment" style="float:right">수정</button>
+						<button type="submit" id="deleteComment" style="float:right" class="btn btn-danger">삭제</button>
+						<button id="updateComment" style="float:right" class="btn btn-secondary">수정</button>
 						</c:if>
-						<button id="addComment" style="float:right">답글</button>
+						<button id="addComment" style="float:right" class="btn btn-secondary">답글</button>
 					</td>
 				</tr>
 				<tr>
 				<!-- 답글 입력 영역 -->
-				<td colspan="3" >
+				<td colspan="3" style="height:10px;">
 					<form id="fixComment" action="addcomment" method="post">
 						<input type="hidden" name="renum" value="${listcomment.renum}">
 						<input type="hidden" name="unum" value="${udto.unum}">
@@ -261,10 +268,10 @@ body, body * {
 						<input type="hidden" name="depth" value="${listcomment.depth}">
 						<div id="recontent" style="display: none;" >
 							<textarea id="contentSide" class="form-control" rows="5" name="recontent"
-							style="height: 100px; resize: none; width: 494px;"
+							style="height: 100px; resize: none;width: 600px;margin: 0 auto"
 							placeholder="${listcomment.recontent}"></textarea>
-							<button type="submit" class="btn btn-primary btn-sm"
-							id="submit" style="float: right; margin-right: 30px;">입력</button>
+							<button type="submit" class="btn btn-primary"
+							id="submit" style="float: right; margin-right: 30px; margin-top: 50px;">입력</button>
 						</div>
 					</form>
 					</td>
@@ -279,10 +286,9 @@ body, body * {
 			</table>
 			
 		</div>
-		<br>
 		<hr>
 		<div>
-			<br><br>
+			
 			<!-- 이전 글 다음 글 출력 영역 -->
 			<div><h4>이전 글</h4>
 				<c:if test="${not empty precontent}">
@@ -292,7 +298,7 @@ body, body * {
 					<h4>이전 게시글이 없습니다</h4>
 				</c:if>
 			</div>
-			<br>
+			<hr>
 			<div><h4>다음 글</h4>
 				<c:if test="${not empty nxtcontent}">
 					<a href="<c:url value='/city/detail?cbnum=${nxtnum}'/>"><h4>${nxtcontent}</h4></a>
@@ -320,6 +326,7 @@ body, body * {
 		let s = $(this).parent().parent().next().find("#recontent").css("display");
 	    if (s == "none") {
 	        $(this).parent().parent().next().find("#recontent").css("display", "block");
+	        $(this).parent().parent().parent().siblings().find("#recontent").css("display","none")
 	    } else {
 	        $(this).parent().parent().next().find("#recontent").css("display", "none");
 	    }
@@ -333,6 +340,7 @@ body, body * {
 		let s = $(this).parent().parent().next().find("#recontent").css("display");
 	    if (s == "none") {
 	        $(this).parent().parent().next().find("#recontent").css("display", "block");
+	        $(this).parent().parent().parent().siblings().find("#recontent").css("display","none")
 	    } else {
 	        $(this).parent().parent().next().find("#recontent").css("display", "none");
 	    }
@@ -370,7 +378,7 @@ body, body * {
             alert("추천되었습니다");
             $(".likecount").html(res);
             $("#likebutton").html(`<i class="bi bi-hand-thumbs-up-fill like2"
-               style="font-size: 40px; margin-left: 200px; cursor: pointer;" onclick="cbdislike();"></i>`);
+               style="font-size: 40px; cursor: pointer;" onclick="cbdislike();"></i>`);
          }
          
       });
@@ -389,7 +397,7 @@ body, body * {
 	            alert("추천이 취소되었습니다");
 	            $(".likecount").html(res);
 	            $("#likebutton").html(`<i class="bi bi-hand-thumbs-up like"
-	                  style="font-size: 40px; margin-left: 200px; cursor: pointer;" onclick="cblike();"></i>`);
+	                  style="font-size: 40px; cursor: pointer;" onclick="cblike();"></i>`);
 	         }
 	         
 	      });
@@ -407,6 +415,18 @@ body, body * {
 		
 	})
 	
+	$("#commentArea").hide();
+
+$("#showComment").click(function() {
+  if ($("#commentArea").css("display") === "none") {
+    $("#commentArea").css("display", "block");
+    $("#commentArea").slideUp(0).slideDown("slow");
+  } else {
+    $("#commentArea").slideUp("slow", function() {
+      $("#commentArea").css("display", "none");
+    });
+  }
+});
 </script>
 </html>
 

@@ -191,7 +191,7 @@ body, body * {
 						<button type="submit" id="deleteComment" style="float:right" class="btn btn-danger">삭제</button>
 						<button id="updateComment" style="float:right" class="btn btn-secondary">수정</button>
 						</c:if>
-						<button id="addComment" style="float:right" class="btn btn-secondary">답글</button>
+            <button id="addComment" style="float:right" class="btn btn-secondary">답글</button>
 					</td>
 				</tr>
 				<tr>

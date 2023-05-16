@@ -56,7 +56,6 @@ body, body * {
 }
 #moim_sort_btn button{
 	margin-left: 5px;
-
 }
 #moim_table{
 	width: 1200px;
@@ -67,8 +66,6 @@ body, body * {
 	margin-top:25px;
 	text-align: center;
 }
-
-
 </style>
 </head>
 <body>
@@ -223,7 +220,6 @@ body, body * {
                      });
                    });
             </script>
-
 					
 						<div colspan="2" align="center">
 							선택한 카테고리 : <span type="text" class="selcategory"></span><br>
@@ -238,7 +234,6 @@ body, body * {
 						    <button type="submit" onclick="submitSelectedConditions()">선택 조건 검색</button>
 				 		</div>
 						</form>
-
 				<script>
 					function submitSelectedConditions() {
 					  // 선택된 카테고리와 지역 정보를 가져옴
@@ -279,7 +274,6 @@ body, body * {
 					  document.querySelector('form').submit();
 					}
 					</script>
-
 				<div>
 					<form id="sort-form" action="moimlist" method="get">
 					    <input type="hidden" id="sortcity1" name="city1" value="">
@@ -378,7 +372,6 @@ body, body * {
 		</table>
 					<button type="button" class="btn btn-success" onclick="checkCreate(event)">만들기</button>
 			
-
 		<!-- 페이징처리하기 -->
 		<c:choose>
 			<c:when test="${category ne null and city1 ne null and city2 ne null and sort eq 'mcount'}">
@@ -747,20 +740,16 @@ body, body * {
 			</c:otherwise>
 		</c:choose>
 	
-
-
 	<form action="moimlist" method="get">
 		<!-- The Modal -->
 		<div class="modal" id="mySportsModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">운동/스포츠</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category" value="축구">축구</label>
@@ -777,28 +766,23 @@ body, body * {
 							type="checkbox" name="category" value="골프">골프</label> <label><input
 							type="checkbox" name="category" value="볼링">볼링</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myGameModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">게임/오락</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category" value="다트">다트</label>
@@ -812,28 +796,23 @@ body, body * {
 						<label><input type="checkbox" name="category" value="마술">마술</label>
 						<label><input type="checkbox" name="category" value="바둑">바둑</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myTravelModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">여행/아웃도어</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category" value="등산">등산</label>
@@ -846,28 +825,23 @@ body, body * {
 						<label><input type="checkbox" name="category"
 							value="패러글라이딩">패러글라이딩</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myBookModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">책/글</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category" value="책/독서">책/독서</label>
@@ -879,28 +853,23 @@ body, body * {
 							name="category" value="시사/경제">시사/경제</label> <label><input
 							type="checkbox" name="category" value="작문/글쓰기">작문/글쓰기</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myWorkModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">업족/직무</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category"
@@ -920,28 +889,23 @@ body, body * {
 						<label><input type="checkbox" name="category"
 							value="식음료/외식업">식음료/외식업</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myLangModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">외국/언어</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category" value="영어">영어</label>
@@ -951,28 +915,23 @@ body, body * {
 						<label><input type="checkbox" name="category" value="스페인어">스페인어</label>
 						<label><input type="checkbox" name="category" value="러시아어">러시아어</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myMusicModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">음악/악기</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category"
@@ -988,28 +947,23 @@ body, body * {
 							type="checkbox" name="category" value="클래식">클래식</label> <label><input
 							type="checkbox" name="category" value="재즈">재즈</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="mySocialModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">사교/인맥</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category" value="지역">지역</label>
@@ -1022,28 +976,23 @@ body, body * {
 							type="checkbox" name="category" value="와인/커피/차">와인/커피/차</label> <label><input
 							type="checkbox" name="category" value="맛집/미식회">맛집/미식회</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myCraftsModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">공예/만들기</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category"
@@ -1061,13 +1010,11 @@ body, body * {
 						<label><input type="checkbox" name="category"
 							value="메이크업/네일">메이크업/네일</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -1124,8 +1071,6 @@ $(function() {
 			  location.href="/moim/moimform"
 		  }
 		  }
-
 </script>
 </body>
 </html>
-

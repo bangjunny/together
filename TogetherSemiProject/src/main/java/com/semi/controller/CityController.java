@@ -358,6 +358,5 @@ public class CityController {
        int cblike=cdto.getCblike();
        return cblike;
     }
-
 }
 

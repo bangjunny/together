@@ -119,7 +119,6 @@ function list()
                     <h2>마이 프로필사진</h2>
                     <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo main" alt="대표사진">
                     <br><br>
-           
                   </div>
                 </c:if>
                 <c:if test="${photo.is_main != 1}">
@@ -128,7 +127,6 @@ function list()
                     <br><br>
                     <label><i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}">사진 삭제하기</i></label>
                     <label><i class="bi bi-award-fill setmain" photo_idx="${photo.photo_idx}">대표사진으로 지정하기</i></label>
-                    
                   </div>
                 </c:if>
               </c:forEach>
@@ -240,7 +238,7 @@ function list()
     
     <div class="mybtn">
 		<button type="button" class="btn btn-outline-success btn-sm"
-		style="width: 200px;" onclick="location.href='login'">모임리스트</button>
+		style="width: 200px;" onclick="location.href='/moim/moimlist'">모임리스트</button>
 		<button type="button" class="btn btn-outline-success btn-sm"
 		style="width: 200px;" onclick="location.href='mypagelist'">마이페이지리스트</button>
 		

@@ -339,8 +339,7 @@
           $('.selcategory').val(selected);
         });
       });
-      
-      
+
       $("#inem").click(function(){	 
 		 let inemail = $("#inemail").val();
 		 

@@ -16,8 +16,8 @@
 		select * from moim order by mnum asc
 	</select>
 	<insert id="insertMoim" parameterType="MoimDto">
-		insert into moim (mname,unum,mphoto,mcontent,city1,city2,category,open,createday) values
-		(#{mname},#{unum},#{mphoto},#{mcontent},#{city1},#{city2},#{category},#{open},now())
+		insert into moim (mname,unum,mphoto,mcontent,city1,city2,category,createday) values
+		(#{mname},#{unum},#{mphoto},#{mcontent},#{city1},#{city2},#{category},now())
 	</insert>
 	<select id="getPagingList" parameterType="Map" resultType="MoimDto">		
 		SELECT *,(SELECT COUNT(mm.mmnum) as mcoun from moimmember mm where mm.mnum = m.mnum and acceptcall=1) as mcount from moim m 

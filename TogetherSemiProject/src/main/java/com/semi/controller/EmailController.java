@@ -15,9 +15,9 @@ public class EmailController {
 
 	@Autowired
 	EmailService emailService;
-	
+
 	HashMap<String, String> hmap =new HashMap<String, String>();
-	
+
 	@GetMapping("/inemail")
 	@ResponseBody
 	public void suEmail(String inemail)
@@ -68,16 +68,6 @@ public class EmailController {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

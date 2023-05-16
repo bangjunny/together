@@ -113,11 +113,13 @@ function list()
                     <!-- 대표사진으로 출력하는 코드 -->
                     <h2>마이 프로필사진</h2>
                     <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo main" alt="대표사진">
+                    <i class="bi bi-x-square photodel" photo_idx="\${pele.photo_idx}"></i>
                   </div>
                 </c:if>
                 <c:if test="${photo.is_main != 1}">
                   <div class="carousel-item">
                     <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo" alt="포토사진 ${photo.photo_idx}">
+                    <i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}"></i>
                     <form method="post" action="/user/setMainPhoto">
                       <input type="hidden" name="photo_idx" value="${photo.photo_idx}" id="main">
                       <button type="submit" class="btn btn-primary" id="setMainBtn">대표 사진으로 지정하기</button>
@@ -224,7 +226,7 @@ function list()
 
 <hr>
 <div class="Container Photo">
-<form action="/user/mypageinsert" method="post" enctype="multipart/form-data">
+
 	<!-- 사진 변경 모달 -->
 	<div class="modal" id="myPhotoModal">
 	  <div class="modal-dialog modal-sm">
@@ -249,10 +251,7 @@ function list()
 			          </c:otherwise>
 			      </c:choose>
 			   	 
-			   	 	<div class="mb-3">
-			         <!-- 카메라 모양 -->
-			        <i class="bi bi-camera-fill update-photo"
-			        style="font-size: 26px;cursor: pointer;"></i>
+			   	 	<div class="mb-3">			        
 			        <!-- 파일 업로드 태그 -->
 				      <label for="photoInput" class="form-label">사진 선택</label>
 				      <input class="form-control" type="file" id="upload" name="upload">
@@ -267,7 +266,7 @@ function list()
 	    </div>
 	  </div> 
 	 </div>
-</form>
+
 </div> 
 <script type="text/javascript">
 $("#upload").change(function(){
@@ -300,6 +299,7 @@ $(document).ready(function() {
       data: formData,
       async: false,
       success: function (data) {
+    	 alert("사진이 업로드 되었습니다") 
         console.log(data);
         window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
       },
@@ -311,6 +311,27 @@ $(document).ready(function() {
   });
 });
 
+//x아이콘 이벤트		
+$(document).on("click",".photodel",function(e){
+	
+	console.log('click');
+	let b=confirm("해당 사진을 삭제하시겠습니까?");
+	if(b){
+		let photo_idx=$(this).attr("photo_idx");
+		//alert(photo_idx);
+		$.ajax({
+			type:"get",
+			url:"/user/deletephoto",
+			data:{"photo_idx":photo_idx},
+			dataType:"text",
+			success:function(){
+				alert("삭제되었습니다");
+				window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
+				
+			}
+		});
+	}
+});
 </script>
 </body>
 </html>

@@ -237,6 +237,18 @@ public class LoginController {
 	        return "redirect:mypage?result=error";
 	    }
 	}
+	@GetMapping("/deletephoto")
+	@ResponseBody public void deletePhoto(int photo_idx)
+	{
+		//db의 데이타 삭제전 스토리지 사진부터 삭제하기
+		
+		//photo_idx 에 해당하는 파일명 얻기
+		String photoname=loginService.getSelectPhoto(photo_idx);
+		//스토리지에서 사진 삭제
+		storageService.deleteFile(bucketName, "userphoto", photoname);
+		//db 에서도 삭제
+		loginService.deletePhoto(photo_idx);
+	}
 
 	@GetMapping("/otherlogin")
 	@ResponseBody

@@ -1,7 +1,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.semi.mapper.LoginMapper">
-
-
+	<select id="getSelectPhoto" parameterType="int" resultType="String">
+		select file_name from user_photo where photo_idx=#{photo_idx}
+	</select>
+	<delete id="deletePhoto" parameterType="int">
+		delete from user_photo where photo_idx=#{photo_idx}
+	</delete>
 	<insert id="insertUser" parameterType="UserDto">
 		insert into user (uname,age,gender,email,pass,hp,city1,city2,category,joinday) values
 		(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},#{category},now())

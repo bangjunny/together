@@ -5,15 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import com.semi.mapper.LoginMapper;
 
 @Service
 public class EmailService {
 	
 	@Autowired
 	JavaMailSender inEmail;		// 자바 메일 기능
+
+	@Autowired
+	LoginMapper loginMapper;
 	
-	
-	
+	// 인증 메일 보내기
 	public void suEmail(String inemail, String code) {
 		
 		SimpleMailMessage msg = new SimpleMailMessage();
@@ -30,7 +33,9 @@ public class EmailService {
 	
 	
 	// 인증번호 맞았을때
-	
+	public int chEmail(String inemail) {
+		return loginMapper.chEmail(inemail);
+	}
 	
 }
 

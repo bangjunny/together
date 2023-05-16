@@ -23,113 +23,153 @@
 body, body * {
 	font-family: 'Jua'
 }
-#moim_container{
-	width: 900px;
-	margin: 200px auto 0 auto;
+#moim_head_container{
+	width: 1000px;
+	margin: 50px auto 0 auto;
 }
-table {
-	border: 0.5px solid gray;
-	background-color: #ffd;
+#moim_header{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 100px;
 }
-
-div.listmid {
-	width: 350px;
-	height: 330px;
-	margin-top: 20px;
-	margin-left: 50px;
-	margin-bottom: 20px;
-	cursor: pointer;
-	border: 1px solid gray;
-	border-radius:30px;
+#moim_cate{
+	border: 1px red solid;
+	width: 1000px;
+	display: flex;
+	justify-content: space-around;	
+}
+#moim_cate label{
+	display: flex;
+	flex-direction: column;
+  	align-items: center;
+  	text-align: center;
+}
+#moim_sel_locale{
+	margin-top: 50px;
 	text-align: center;
-	background-color: #ffc;
 }
-
-label {
-	cursor: pointer;
+#moim_sort_btn{
+	width: 80%;
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 10px;
 }
-
-div>img {
-	border-radius: 30px;
+#moim_sort_btn button{
+	margin-left: 5px;
+}
+#moim_table{
+	width: 1200px;
+	margin: 0 auto;
+	text-align: center;
+}
+.moim_paging{
+	margin-top:25px;
+	text-align: center;
 }
 </style>
 </head>
 <body>
-	<div id="moim_container">			
-		<table class="table">
-		<tr><td colspan="3">
-		<h2 align="center">모임리스트</h2><button type="button" class="btn btn-success" onclick="checkCreate(event)">만들기</button>
-		<br>
-		<h4 align="right">
-			<c:choose>
-				<c:when test="${unum == 0 && city1 == 'no'}">
-					<!-- 비회원일 때, 지역 전체 -->
-					모임이 총
-				</c:when>
-				<c:otherwise>
-					<!-- 회원일 때 -->
-					${city1} ${city2} ${category} 모임이 총
-				</c:otherwise>
-			</c:choose>
-			${totalCount}개 있습니다
-		</h4>
-		</td></tr>
-				<tr>
-					<td style="width:450px;">					
-						<label data-bs-toggle="modal" data-bs-target="#mySportsModal">
-							&nbsp;&nbsp;&nbsp;&nbsp; <i class="bi bi-dribbble"></i> <h7>운동/스포츠</h7>
-						</label> &nbsp;&nbsp;&nbsp; <label data-bs-toggle="modal"
-							data-bs-target="#myGameModal"> <i
-							class="bi bi-controller"></i> <h7>게임/오락</h7>
-						</label> &nbsp;&nbsp;&nbsp; <label data-bs-toggle="modal"
-							data-bs-target="#myTravelModal"> <i class="bi bi-geo-alt"></i>
-							<h7>여행/아웃도어</h7>
-						</label> <br> <label data-bs-toggle="modal"
-							data-bs-target="#myBookModal"> &nbsp;&nbsp;&nbsp; <i
-							class="bi bi-book"></i> <h7>책/글</h7>
-						</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
-							data-bs-toggle="modal" data-bs-target="#myWorkModal"> <i
-							class="bi bi-briefcase"></i> <h7>업종/직무</h7>
-						</label> &nbsp;&nbsp; <label data-bs-toggle="modal"
-							data-bs-target="#myLangModal"> &nbsp;&nbsp;&nbsp; <i
-							class="bi bi-translate"></i> <h7>외국/언어</h7>
-						</label> <br> <label data-bs-toggle="modal"
-							data-bs-target="#myMusicModal"> <i
-							class="bi bi-music-note-beamed"></i> <h7>음악/악기</h7>
-						</label> &nbsp;&nbsp;&nbsp;&nbsp; <label data-bs-toggle="modal"
-							data-bs-target="#mySocialModal"> <i
-							class="bi bi-cup-straw"></i> <h7>사교/인맥</h7>
-						</label> &nbsp; <label data-bs-toggle="modal"
-							data-bs-target="#myCraftsModal"> &nbsp;&nbsp;&nbsp; <i
-							class="bi bi-palette"></i> <h7>공예/만들기</h7>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						</label>
-						</td>
-				<td colspan="2" align="center" style="width: 450px;">					 
-						<label for="user_city">지역</label> <select id="city" name="city1">
-							<option hidden>시, 도 선택</option>
-							<option value="서울특별시">서울특별시</option>
-							<option value="부산광역시">부산광역시</option>
-							<option value="대구광역시">대구광역시</option>
-							<option value="인천광역시">인천광역시</option>
-							<option value="광주광역시">광주광역시</option>
-							<option value="대전광역시">대전광역시</option>
-							<option value="울산광역시">울산광역시</option>
-							<option value="세종특별자치시">세종특별자치시</option>
-							<option value="경기도">경기도</option>
-							<option value="강원도">강원도</option>
-							<option value="충청북도">충청북도</option>
-							<option value="충청남도">충청남도</option>
-							<option value="전라북도">전라북도</option>
-							<option value="전라남도">전라남도</option>
-							<option value="경상북도">경상북도</option>
-							<option value="경상남도">경상남도</option>
-							<option value="제주특별자치도">제주특별자치도</option>
-						</select>						
-						<select id="district" name="city2">
-							<option>시, 군, 구 선택</option>
-						</select>
-						<script>
+		<div id="moim_header">		
+			<h2>모임리스트</h2>
+			
+			<div id="moim_sel_locale">					 
+							<label for="user_city">지역</label> 
+								<select id="city" name="city1">
+									<option hidden>시, 도 선택</option>
+									<option value="서울특별시">서울특별시</option>
+									<option value="부산광역시">부산광역시</option>
+									<option value="대구광역시">대구광역시</option>
+									<option value="인천광역시">인천광역시</option>
+									<option value="광주광역시">광주광역시</option>
+									<option value="대전광역시">대전광역시</option>
+									<option value="울산광역시">울산광역시</option>
+									<option value="세종특별자치시">세종특별자치시</option>
+									<option value="경기도">경기도</option>
+									<option value="강원도">강원도</option>
+									<option value="충청북도">충청북도</option>
+									<option value="충청남도">충청남도</option>
+									<option value="전라북도">전라북도</option>
+									<option value="전라남도">전라남도</option>
+									<option value="경상북도">경상북도</option>
+									<option value="경상남도">경상남도</option>
+									<option value="제주특별자치도">제주특별자치도</option>
+								</select>						
+								<select id="district" name="city2">
+									<option>시, 군, 구 선택</option>
+								</select>
+						</div>
+		</div>	
+		
+		
+		
+	<div id="moim_head_container">	
+					
+				<div id="moimlist_head" colspan="3">
+					<h4>
+					<c:choose>
+						<c:when test="${unum == 0 && city1 == 'no'}">
+							<!-- 비회원일 때, 지역 전체 -->
+								모임이 총
+						</c:when>
+						<c:otherwise>
+							<!-- 회원일 때 -->
+							${city1} ${city2} ${category} 모임이 총
+						</c:otherwise>
+					</c:choose>
+						${totalCount}개 있습니다
+					</h4>
+				</div>
+			
+			
+				
+						<div id="moim_cate">					
+							<label data-bs-toggle="modal" data-bs-target="#mySportsModal">
+								<i class="bi bi-dribbble"></i> 
+								<h7>운동/스포츠</h7>
+							</label>
+							<label data-bs-toggle="modal" data-bs-target="#myGameModal"> 
+								<i class="bi bi-controller"></i>
+								<h7>게임/오락</h7>
+							</label>
+							<label data-bs-toggle="modal" data-bs-target="#myTravelModal"> 
+								<i class="bi bi-geo-alt"></i>
+								<h7>여행/아웃도어</h7>
+							</label> 
+							<label data-bs-toggle="modal" data-bs-target="#myBookModal">
+								<i class="bi bi-book"></i> 
+								<h7>책/글</h7>
+							</label>
+							<label data-bs-toggle="modal" data-bs-target="#myWorkModal"> 
+								<i class="bi bi-briefcase"></i> 
+								<h7>업종/직무</h7>
+							</label>  
+							<label data-bs-toggle="modal" data-bs-target="#myLangModal">
+								<i class="bi bi-translate"></i> 
+								<h7>외국/언어</h7>
+							</label>
+							<label data-bs-toggle="modal"data-bs-target="#myMusicModal"> 
+								<i class="bi bi-music-note-beamed"></i> 
+								<h7>음악/악기</h7>
+							</label>
+							<label data-bs-toggle="modal" data-bs-target="#mySocialModal"> 
+								<i class="bi bi-cup-straw"></i> 
+								<h7>사교/인맥</h7>
+							</label>
+							<label data-bs-toggle="modal" data-bs-target="#myCraftsModal">
+								<i class="bi bi-palette"></i> 
+								<h7>공예/만들기</h7>
+							</label>
+						</div>
+				
+						
+						
+			
+			
+			
+			
+			
+			
+			<script>
                $(document).ready(function() {
                      $('#city').change(function() {
                        var city = $(this).val();
@@ -179,24 +219,22 @@ div>img {
                        districtSelect.prop('disabled', false);
                      });
                    });
-                 </script>						
-					</td>															
-					<tr>					
-					<td colspan="2" align="center">
-					선택한 카테고리 : <span type="text" class="selcategory"></span><br>
-					선택한 지역 :
-					<span type="text" id="seldistrict1"></span>
-					<span type="text" id="seldistrict2"></span>				
-					<form action="moimlist" method="get">
-					<input type="hidden" class="seldistrict1" name="city1" value="">
-					<input type="hidden" class="seldistrict2" name="city2" value="">
-					<input type="hidden" id="selcategory" name="category" value="">
-					<br>
-				    <button type="submit" onclick="submitSelectedConditions()">선택 조건 검색</button>
-				 	</td>
-					</form>
-
-					<script>
+            </script>
+					
+						<div colspan="2" align="center">
+							선택한 카테고리 : <span type="text" class="selcategory"></span><br>
+							선택한 지역 :
+							<span type="text" id="seldistrict1"></span>
+							<span type="text" id="seldistrict2"></span>				
+						<form action="moimlist" method="get">
+							<input type="hidden" class="seldistrict1" name="city1" value="">
+							<input type="hidden" class="seldistrict2" name="city2" value="">
+							<input type="hidden" id="selcategory" name="category" value="">
+				
+						    <button type="submit" onclick="submitSelectedConditions()">선택 조건 검색</button>
+				 		</div>
+						</form>
+				<script>
 					function submitSelectedConditions() {
 					  // 선택된 카테고리와 지역 정보를 가져옴
 					  const selectedCategory = document.querySelector('#selcategory').value;
@@ -236,21 +274,18 @@ div>img {
 					  document.querySelector('form').submit();
 					}
 					</script>
-					</tr>				
-			</tr>
-			<tr>
-				<td align="right" colspan="2">
-				<form id="sort-form" action="moimlist" method="get">
-				  <input type="hidden" id="sortcity1" name="city1" value="">
-				  <input type="hidden" id="sortcity2" name="city2" value="">
-				  <input type="hidden" id="sortcategory" name="category" value="">
-				  <input type="hidden" class="selsortmnum" value="">
-				  <input type="hidden" class="selsortmcount" name="sort" value="mcount">
-				  <button type="button" onclick="submitSelectedSortmnum()" class="btn btn-dark">최신순</button>
-				  <button type="button" onclick="submitSelectedSortmcount()" class="btn btn-dark">가입자순</button>
-				</form>
-				</td>
-			</tr>
+				<div>
+					<form id="sort-form" action="moimlist" method="get">
+					    <input type="hidden" id="sortcity1" name="city1" value="">
+					    <input type="hidden" id="sortcity2" name="city2" value="">
+				  		<input type="hidden" id="sortcategory" name="category" value="">
+				  		<input type="hidden" class="selsortmnum" value="">
+				  		<input type="hidden" class="selsortmcount" name="sort" value="mcount">
+					</form>
+				</div>
+			
+			
+			
 			
 			<script>
 				  const urlParams = new URLSearchParams(window.location.search);
@@ -293,49 +328,54 @@ div>img {
 				  }				 
 			</script>
 					
+		</div>	
+					
 			<!-- 리스트 출력 부분 -->
-			
+			<div id="moim_sort_btn">
+				<button type="button" onclick="submitSelectedSortmnum()" class="btn btn-dark">최신순</button>
+				<button type="button" onclick="submitSelectedSortmcount()" class="btn btn-dark">가입자순</button>
+			</div>		
+			<table id="moim_table">
+					
 			<c:forEach var="dto" items="${list}" varStatus="i">
-				<c:if test="${i.count % 2 == 1}">
+				<c:if test="${i.count % 4 == 1}">
 					<tr>
 				</c:if>
 				<td style="width: 350px;">
 				<a href="moimdetail?mnum=${dto.mnum }&mname=${dto.mname}"
 									style="color: black; font-size: 17px; text-decoration: none; cursor: pointer;" id="godetail" onclick="checkUnum(event)">
-					<div class="listmid">
+					<div>
 						<c:choose>
 							<c:when test="${dto.mphoto==null}">
 								<!-- Result값이 없다면 실행할 로직 -->								
 									<img
-									src="http://sjrhsefqqpro17075801.cdn.ntruss.com/moim/together.png?type=f&w=200&h=200&ttype=jpg"
-									border="1" style="cursor: pointer; margin-top: 10px"> <br>
+									src="http://sjrhsefqqpro17075801.cdn.ntruss.com/moim/together.png?type=f&w=200&h=200&ttype=jpg">
 							</c:when>
 							<c:otherwise>
 								<img
-									src="http://${imageUrl_small}/moim/${dto.mphoto}?type=f&w=200&h=200&ttype=jpg"
-									border="1" style="cursor: pointer; margin-top: 10px; border-radius:30px;">
+									src="http://${imageUrl_small}/moim/${dto.mphoto}?type=f&w=200&h=200&ttype=jpg">
 								<br>
 							</c:otherwise>
 						</c:choose>
-						<span
-							style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; display: inline-block; max-width: 200px;">
+						<br>
+						<span>
 							<b style="font-size: 20px;">${dto.mname}</b>
 						</span> <br> 지역:${dto.city1} ${dto.city2} <br> 카테고리:${dto.category} <br> 모임인원:${dto.mcount}명						
 					</div>
 					</a>
 				</td>
-				<c:if test="${i.count % 2 == 0}">
+				<c:if test="${i.count % 4 == 0}">
 					</tr>
 					<tr>
 				</c:if>
 			</c:forEach>
 		</table>
-
+					<button type="button" class="btn btn-success" onclick="checkCreate(event)">만들기</button>
+			
 		<!-- 페이징처리하기 -->
 		<c:choose>
 			<c:when test="${category ne null and city1 ne null and city2 ne null and sort eq 'mcount'}">
-				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+				<div class="moim_paging">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
@@ -363,8 +403,7 @@ div>img {
 				</div>
 			</c:when>
 			<c:when test="${category ne null and city1 ne null and city2 ne null and sort eq null}">
-				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+				<div class="moim_paging">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
@@ -392,8 +431,7 @@ div>img {
 				</div>
 			</c:when>
 			<c:when test="${category ne null and city1 ne null and city2 eq null and sort eq 'mcount'}">
-				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+				<div class="moim_paging">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
@@ -421,8 +459,7 @@ div>img {
 				</div>
 			</c:when>
 			<c:when test="${category ne null and city1 ne null and city2 eq null and sort eq null}">
-				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+				<div class="moim_paging">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
@@ -450,8 +487,7 @@ div>img {
 				</div>
 			</c:when>
 			<c:when test="${category ne null and city1 eq null and city2 eq null and sort eq 'mcount'}">
-				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+				<div class="moim_paging">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
@@ -479,8 +515,7 @@ div>img {
 				</div>
 			</c:when>
 			<c:when test="${category ne null and city1 eq null and city2 eq null and sort eq null}">
-				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+				<div class="moim_paging">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
@@ -508,8 +543,7 @@ div>img {
 				</div>
 			</c:when>
 			<c:when test="${category eq null and city1 ne null and city2 eq null and sort eq 'mcount'}">
-				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+				<div class="moim_paging">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
@@ -537,8 +571,7 @@ div>img {
 				</div>
 			</c:when>
 			<c:when test="${category eq null and city1 ne null and city2 eq null and sort eq null}">
-				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+				<div class="moim_paging">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
@@ -566,8 +599,7 @@ div>img {
 				</div>
 			</c:when>
 			<c:when test="${category eq null and city1 ne null and city2 ne null and sort eq 'mcount'}">
-				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+				<div class="moim_paging">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
@@ -595,8 +627,7 @@ div>img {
 				</div>
 			</c:when>
 			<c:when test="${category eq null and city1 ne null and city2 ne null and sort eq null}">
-				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+				<div class="moim_paging">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
@@ -624,8 +655,7 @@ div>img {
 				</div>
 			</c:when>
 			<c:when test="${category eq null and city1 eq null and city2 eq null and sort eq 'mcount'}">
-				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+				<div class="moim_paging">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
@@ -653,8 +683,7 @@ div>img {
 				</div>
 			</c:when>
 			<c:when test="${category eq null and city1 eq null and city2 eq null and sort eq null}">
-				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+				<div class="moim_paging">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
@@ -682,8 +711,7 @@ div>img {
 				</div>
 			</c:when>			
 			<c:otherwise>
-				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+				<div class="moim_paging">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
@@ -711,21 +739,17 @@ div>img {
 				</div>
 			</c:otherwise>
 		</c:choose>
-	</div>
-
-
+	
 	<form action="moimlist" method="get">
 		<!-- The Modal -->
 		<div class="modal" id="mySportsModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">운동/스포츠</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category" value="축구">축구</label>
@@ -742,28 +766,23 @@ div>img {
 							type="checkbox" name="category" value="골프">골프</label> <label><input
 							type="checkbox" name="category" value="볼링">볼링</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myGameModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">게임/오락</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category" value="다트">다트</label>
@@ -777,28 +796,23 @@ div>img {
 						<label><input type="checkbox" name="category" value="마술">마술</label>
 						<label><input type="checkbox" name="category" value="바둑">바둑</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myTravelModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">여행/아웃도어</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category" value="등산">등산</label>
@@ -811,28 +825,23 @@ div>img {
 						<label><input type="checkbox" name="category"
 							value="패러글라이딩">패러글라이딩</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myBookModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">책/글</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category" value="책/독서">책/독서</label>
@@ -844,28 +853,23 @@ div>img {
 							name="category" value="시사/경제">시사/경제</label> <label><input
 							type="checkbox" name="category" value="작문/글쓰기">작문/글쓰기</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myWorkModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">업족/직무</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category"
@@ -885,28 +889,23 @@ div>img {
 						<label><input type="checkbox" name="category"
 							value="식음료/외식업">식음료/외식업</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myLangModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">외국/언어</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category" value="영어">영어</label>
@@ -916,28 +915,23 @@ div>img {
 						<label><input type="checkbox" name="category" value="스페인어">스페인어</label>
 						<label><input type="checkbox" name="category" value="러시아어">러시아어</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myMusicModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">음악/악기</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category"
@@ -953,28 +947,23 @@ div>img {
 							type="checkbox" name="category" value="클래식">클래식</label> <label><input
 							type="checkbox" name="category" value="재즈">재즈</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="mySocialModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">사교/인맥</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category" value="지역">지역</label>
@@ -987,28 +976,23 @@ div>img {
 							type="checkbox" name="category" value="와인/커피/차">와인/커피/차</label> <label><input
 							type="checkbox" name="category" value="맛집/미식회">맛집/미식회</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<!-- The Modal -->
 		<div class="modal" id="myCraftsModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-
 					<!-- Modal Header -->
 					<div class="modal-header">
 						<h4 class="modal-title">공예/만들기</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
-
 					<!-- Modal body -->
 					<div class="modal-body">
 						<label><input type="checkbox" name="category"
@@ -1026,13 +1010,11 @@ div>img {
 						<label><input type="checkbox" name="category"
 							value="메이크업/네일">메이크업/네일</label>
 					</div>
-
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"
 							data-bs-dismiss="modal">선택</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -1089,17 +1071,6 @@ $(function() {
 			  location.href="/moim/moimform"
 		  }
 		  }
-
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

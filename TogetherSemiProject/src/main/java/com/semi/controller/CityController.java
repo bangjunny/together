@@ -118,17 +118,35 @@ public class CityController {
 		return "/main/city/citylist";
 	}
 
-//	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
-//	@GetMapping("/searchlist")
-//	@ResponseBody public List<CityBoardDto> search(String city1, String city2, Model model){
-//		List<CityBoardDto> citylist = cityService.getCityList(city1, city2);
-//		
-//		System.out.println(city1);
-//		System.out.println(city2);
-//		System.out.println(citylist.size());
-//		
-//		return citylist;
-//	}
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@ResponseBody
+	@GetMapping("/liketop")
+	public List<CityBoardDto> likelist(String city1, String city2, String keyword){
+		List<CityBoardDto> likelist = cityService.getCityPagingListLikeTop(city1, city2, keyword);
+		
+		System.out.println("ajax1"+city1);
+		System.out.println(city2);
+		System.out.println(likelist.size());
+		System.out.println(keyword);
+		
+		
+		return likelist;
+	}
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@ResponseBody
+	@GetMapping("/readtop")
+	public List<CityBoardDto> readlist(String city1, String city2, String keyword){
+		List<CityBoardDto> readlist = cityService.getCityPagingListReadTop(city1, city2, keyword);
+		
+		System.out.println("ajax2"+city1);
+		System.out.println(city2);
+		System.out.println(readlist.size());
+		System.out.println(keyword);
+		
+		
+		return readlist;
+	}
 
 	@GetMapping("/detail")
 	public String detail(int cbnum, Model model, HttpSession session, @RequestParam(defaultValue = "0") int ref,
@@ -142,6 +160,7 @@ public class CityController {
 		int totalrenum = cityMapper.getReboardNum();
 		List<CbReBoardDto> listcomment = cityService.getCommentByCbnum(cbnum);
 		CbReBoardDto rdto=new CbReBoardDto();
+		String mainPhoto=cityService.getMainPhoto(unum);
 		
 		String precontent = cityService.preContent(dto);
 		String nxtcontent = cityService.nxtContent(dto);
@@ -166,10 +185,8 @@ public class CityController {
 		model.addAttribute("dto", dto);
 		model.addAttribute("nxtcontent", nxtcontent);
 		model.addAttribute("nxtnum", nxtnum);
-		//System.out.println(nxtcontent);
 		model.addAttribute("precontent", precontent);
 		model.addAttribute("prenum", prenum);
-		//System.out.println(precontent);
 		model.addAttribute("totalCountCity", totalCountCity);
 		model.addAttribute("totalComment", totalComment);
 		model.addAttribute("totalrenum", totalrenum);
@@ -177,6 +194,7 @@ public class CityController {
 		model.addAttribute("step", step);
 		model.addAttribute("depth", depth);
 		model.addAttribute("sessionunum", unum);
+		model.addAttribute("mainPhoto",mainPhoto);
 		
 
 		return "/main/city/CityDetail";
@@ -340,6 +358,5 @@ public class CityController {
        int cblike=cdto.getCblike();
        return cblike;
     }
-	
 }
 

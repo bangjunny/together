@@ -145,7 +145,7 @@ public class LoginController {
 	public String mypage(HttpSession session, Model model) {
 	    Integer loginUserUnum = (Integer) session.getAttribute("unum"); // 로그인한 사용자의 unum 값 가져오기
 	    if (loginUserUnum == null) {
-	        return "redirect:/login"; // 로그인하지 않은 사용자는 로그인 페이지로 이동
+	        return "redirect:/user/login"; // 로그인하지 않은 사용자는 로그인 페이지로 이동
 	    } else {
 	        return "redirect:/user/mypagedetail?unum=" + loginUserUnum; // 로그인한 사용자는 자신의 mypagedetail 페이지로 이동
 	    }
@@ -201,20 +201,20 @@ public class LoginController {
 		    return "/main/user/myjjimlist";
 	   	  }
 	 
-	 
-		@PostMapping("/setMainPhoto")
-		public String SetMainPhoto(@RequestParam int photo_idx, HttpSession session) {
-		    try {
-		       
-		        loginMapper.updateMainphoto(photo_idx);
-
-		        return "redirect:mypage";
-		    } catch (Exception e) {
-		        e.printStackTrace();
-		        // 에러 발생 시 alert 창 띄우기
-		        return "redirect:mypage?result=error";
-		    }
-		}
+//	 
+//		@PostMapping("/setMainPhoto")
+//		public String SetMainPhoto(@RequestParam int photo_idx, HttpSession session) {
+//		    try {
+//		       
+//		        loginMapper.updateMainphoto(photo_idx);
+//
+//		        return "redirect:mypage";
+//		    } catch (Exception e) {
+//		        e.printStackTrace();
+//		        // 에러 발생 시 alert 창 띄우기
+//		        return "redirect:mypage?result=error";
+//		    }
+//		}
 		
 	@PostMapping("/mypageinsert")
 	public String insertMyPhoto(UserPhotoDto pdto, MultipartFile upload, HttpSession session) {
@@ -237,6 +237,62 @@ public class LoginController {
 	        return "redirect:mypage?result=error";
 	    }
 	}
+	@GetMapping("/deletephoto")
+	@ResponseBody public void deletePhoto(int photo_idx)
+	{
+		//db의 데이타 삭제전 스토리지 사진부터 삭제하기
+		
+		//photo_idx 에 해당하는 파일명 얻기
+		String photoname=loginService.getSelectPhoto(photo_idx);
+		//스토리지에서 사진 삭제
+		storageService.deleteFile(bucketName, "userphoto", photoname);
+		//db 에서도 삭제
+		loginService.deletePhoto(photo_idx);
+	}
+	
+	@GetMapping("/updatephoto")
+	@ResponseBody public void updatePhoto(int photo_idx)
+	{
+		
+        loginMapper.updateMainphoto(photo_idx);
+	}
+	@PostMapping("/mypagePassCheck")
+	public String mypagepasscheck(@RequestParam String pass,HttpSession session)
+	{
+		int unum = (int) session.getAttribute("unum"); // 세션에서 unum 값 가져오기
+		
+		boolean pck=loginService.mypagePassCheck(unum, pass);
+		if(pck) {
+			return "redirect:/user/mypageupdateform?unum=" + unum;			
+		}else {
+			 return "error";
+		}
+		
+	}
+	@GetMapping("/mypageupdateform")
+	public String mypageupdateform(@RequestParam("unum") int unum,Model model)
+	{
+		// 로그인한 사용자 아이디를 가져옵니다.
+	    UserDto dto = loginMapper.getMypage(unum);
+	    if (dto == null) {
+	        // 해당 유저를 찾을 수 없는 경우 에러 페이지 등을 보여줄 수 있습니다.
+	        return "error";
+	    }
+
+	    model.addAttribute("dto", dto);
+	    return "/main/user/mypageupdateform";
+	}
+	
+	@PostMapping("/updatemypage")
+	public String update(UserDto dto)
+	{		
+		//수정
+		loginService.updateMypage(dto);
+		
+		//수정후 내용보기로 이동한다
+		return "redirect:/user/mypagedetail?unum="+dto.getUnum();
+	}
+	
 
 	@GetMapping("/otherlogin")
 	@ResponseBody

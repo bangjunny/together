@@ -27,8 +27,8 @@
 	}
 	div.moim {
 		width: 900px;
-		height:14 00px;
-		margin-left:250px;
+		height:1500px;
+		margin: 200px auto 0 auto;
 		background-color:#ccc;
 	}
 	div.mcontent {
@@ -40,7 +40,7 @@
 	}
 	.mcontent_img{
 		width:838px;
-		height:420px;
+		height:500px;
 		margin:20px;
 }
 	#moim_resi_wrap{
@@ -92,7 +92,6 @@
 </style>
 </head>
 <body>
-<h3>상세페이지</h3>
 	<div class="moim">
 		<div><br>
 		<h2 style="text-align:center;">${dto.mname}</h2>
@@ -133,11 +132,21 @@
 		<!-- 버튼영역 -->
 		<div style="text-align:center;">
 			<button type="button" class="btn btn-sm btn-outline-secondary"
-				style="width: 70px;" onclick="location.href='./moimlist'">목록</button>
+				style="width: 70px;" onclick="location.href='./moimlist'"><i class="bi bi-list-stars"></i>목록</button>
+			<c:choose>
+			 <c:when test="${sessionScope.unum eq udto.unum}">
 			<button type="button" class="btn btn-sm btn-outline-secondary"
 				style="width: 70px;" onclick="location.href='./updateform?mnum=${dto.mnum}'"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
-			<button type="button" class="btn btn-sm btn-outline-secondary" id="delmoim"
+			<button type="button" class="btn btn-sm btn-outline-secondary" id="delmoim" onclick="del(${dto.mnum})"
 				style="width: 70px;"><i class="bi bi-trash"></i>&nbsp;삭제</button>
+			</c:when>
+			<c:otherwise>
+			<button type="button" class="btn btn-sm btn-outline-secondary"
+				style="width: 70px;" onclick="alert('작성자가 아닙니다')"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
+			<button type="button" class="btn btn-sm btn-outline-secondary" 
+				style="width: 70px;" onclick="alert('작성자가 아닙니다')"><i class="bi bi-trash"></i>&nbsp;삭제</button>
+			</c:otherwise>
+			</c:choose>
 		</div>	
 		<script>
 		$(document).on("click", "#delmoim", function() {

@@ -18,8 +18,13 @@
 		font-family: 'Jua'
 	}
 	table {
-		position: absolute;
-		margin-left: 200px;
+		margin:50px auto 0 auto;
+	}
+	#showimg{
+	width: 200px;
+	height:200px; 
+	margin-top:100px;
+	border-radius:100px;
 	}
 	.mainlayout .main{
 		width: 100%;
@@ -40,8 +45,7 @@
 </head>
 <body>
 <!-- 이미지 출력할곳 -->
-<img id="showimg"
-style="width: 200px; height:200px; border-radius:200px">
+<img id="showimg">
 
 <div id="tableform" style="width:700px" >
 	<form action="insert" method="post" enctype="multipart/form-data" id="moimform">

@@ -281,4 +281,10 @@ public class CityService implements CityServiceInter {
 		return cityMapper.cblikecountminus(cbnum);
 	}
 
+	@Override
+	public String getMainPhoto(int unum) {
+		// TODO Auto-generated method stub
+		return cityMapper.getMainPhoto(unum);
+	}
+
 }

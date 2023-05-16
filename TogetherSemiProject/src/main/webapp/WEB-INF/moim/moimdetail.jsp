@@ -130,17 +130,25 @@
 		${dto.mcontent}
 		
 		</div>
-		
+		<!-- 버튼영역 -->
 		<div style="text-align:center;">
 			<button type="button" class="btn btn-sm btn-outline-secondary"
-				style="width: 70px;" onclick="history.back()">목록</button>
+				style="width: 70px;" onclick="location.href='./moimlist'">목록</button>
 			<button type="button" class="btn btn-sm btn-outline-secondary"
-				style="width: 70px;" onclick="">수정</button>
-			<button type="button" class="btn btn-sm btn-outline-secondary" 
-				style="width: 70px;" onclick="">삭제</button>
+				style="width: 70px;" onclick="location.href='./updateform?mnum=${dto.mnum}'"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
+			<button type="button" class="btn btn-sm btn-outline-secondary" id="delmoim"
+				style="width: 70px;"><i class="bi bi-trash"></i>&nbsp;삭제</button>
 		</div>	
-		<hr>
+		<script>
+		$(document).on("click", "#delmoim", function() {
+			let b=confirm("삭제를 하려면 [확인]을 눌러주세요");
+			if(b){
+				location.href="delete?mnum="+${dto.mnum};
+			}
+		});
+		</script>
 		
+		<hr>
 			<c:if test="${sessionScope.unum != dto.unum }">
 				<div id="moim_resi_wrap">
 					<div id="jjim">
@@ -372,9 +380,9 @@
 		}
 	}
 	
+</script>
 	
 	</script>
 
-	
 </body>
 </html>

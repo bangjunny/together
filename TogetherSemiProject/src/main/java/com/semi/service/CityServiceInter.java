@@ -47,6 +47,7 @@ public interface CityServiceInter {
 	public int cblikecheck(int unum, int cbnum);
 	public int cblikecountplus(int cbnum);
 	public int cblikecountminus(int cbnum);
+
 	/**
 	public void updateCity(CityBoardDto dto);
 	**/

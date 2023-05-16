@@ -355,9 +355,9 @@ body, body * {
 
 	function writeform(){
 		if(${unum==0}){
-			let a = confirm("비회원은 게시글을 작성할수 없습니다. \n\"확인\" 버튼 클릭시 회원가입 페이지로 이동합니다");
+			let a = confirm("비회원은 게시글을 작성할수 없습니다. \n\"확인\" 버튼 클릭시 로그인 페이지로 이동합니다");
 			if(a){
-				location.href='/user/join';
+				location.href='/user/login';
 			}
 			
 		} else {
@@ -365,9 +365,9 @@ body, body * {
 		}
 	}
 	function guest() {
-		let b = confirm("비회원은 게시글을 조회할수 없습니다.\n\"확인\" 버튼 클릭시 회원가입 페이지로 이동합니다");
+		let b = confirm("비회원은 게시글을 조회할수 없습니다.\n\"확인\" 버튼 클릭시 로그인 페이지로 이동합니다");
 		if(b){
-			location.href='/user/join';
+			location.href='/user/login';
 		}
 	}
 </script>

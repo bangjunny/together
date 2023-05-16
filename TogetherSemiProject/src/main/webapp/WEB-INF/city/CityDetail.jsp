@@ -39,10 +39,8 @@ body, body * {
          <div class="likecount">${dto.cblike}</div>
       	</h6>
 		<h6 style="float: right;"><b>조회수</b> ${dto.readcount}&nbsp;</h6>
-
 		<h6 style="float: left"><b>작성자</b> ${dto.uname}&nbsp;</h6>
 		<h6><b>작성일</b> ${dto.cbwriteday }</h6>
-
 		<hr>
 			<c:if test="${photocount=='0'}">
 			<div class="cbcontent" align="center">
@@ -76,7 +74,6 @@ body, body * {
          </c:otherwise>
       </c:choose>
       </div>
-
       <div class="likecount">${dto.cblike}</div>
 		<hr>
 		<!-- 버튼 영역 -->
@@ -412,3 +409,6 @@ body, body * {
 	
 </script>
 </html>
+
+
+

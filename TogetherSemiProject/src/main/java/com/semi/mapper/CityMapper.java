@@ -49,7 +49,6 @@ public interface CityMapper {
 	public int cblikecountplus(int cbnum);
 	public int cblikecountminus(int cbnum);
 	
-	
 	/**
 	public void insertCity(CityBoardDto dto);
 	public void updateCity(CityBoardDto dto);	

@@ -245,5 +245,4 @@
     <update id="cblikecountminus" parameterType="int">
         update city_board set cblike=cblike-1 where cbnum=#{cbnum}
     </update>
-  	
 </mapper>

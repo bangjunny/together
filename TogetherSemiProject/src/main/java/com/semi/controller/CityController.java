@@ -153,6 +153,9 @@ public class CityController {
 
 		String city1 = dto.getCity1();
 		String city2 = dto.getCity2();
+		
+		int cblikecheck = cityService.cblikecheck(unum, cbnum);
+		model.addAttribute("cblikecheck",cblikecheck);
 
 		int cblikecheck = cityService.cblikecheck(unum, cbnum);
 	    model.addAttribute("cblikecheck",cblikecheck);
@@ -178,6 +181,7 @@ public class CityController {
 		model.addAttribute("step", step);
 		model.addAttribute("depth", depth);
 		model.addAttribute("sessionunum", unum);
+		
 
 		return "/main/city/CityDetail";
 	}
@@ -342,3 +346,4 @@ public class CityController {
     }
 	
 }
+

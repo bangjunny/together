@@ -40,14 +40,14 @@
         
         .ck.ck-editor {
 
-		width: 90%;
-		max-width: 800px;
-		margin: 0 auto;
-		}
+      width: 90%;
+      max-width: 800px;
+      margin: 0 auto;
+      }
 
-		.ck-editor__editable {
-			height: 80vh;
-		}
+      .ck-editor__editable {
+         height: 80vh;
+      }
 
 
     </style>
@@ -57,16 +57,16 @@
 <h1>지역 게시판</h1>
 
 <div style="float:left;">
-	<%-- <c:choose>
-		<c:when test="${dto.uphoto==null}">
-			<!-- Result값이 있다면 실행할 로직 -->
-			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width:40px; border-radius:100px;">
-		</c:when>
-		<c:otherwise>
-			<!-- 그렇지 않다면 실행할 로직 -->
-			<img src="https://${imageUrl}/userprofile/${dto.uphoto}" style="width:40px;">    
-		</c:otherwise>
-	</c:choose> --%>
+   <%-- <c:choose>
+      <c:when test="${dto.uphoto==null}">
+         <!-- Result값이 있다면 실행할 로직 -->
+         <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width:40px; border-radius:100px;">
+      </c:when>
+      <c:otherwise>
+         <!-- 그렇지 않다면 실행할 로직 -->
+         <img src="https://${imageUrl}/userprofile/${dto.uphoto}" style="width:40px;">    
+      </c:otherwise>
+   </c:choose> --%>
 </div>
       <h4>${udto.uname}님이 작성 중입니다</h4>
 <div class="container">
@@ -107,16 +107,16 @@
         <br>
 </div>
 <script type="text/javascript">
-	$("#delphoto").click(function(){
-		let s=confirm("사진을 삭제하겠습니까?")
-		if(s){
-			$("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
-			$("#showimg0").attr("value","");
-			$("#showimg1").attr("src",null);
-			$("#showimg2").attr("src",null);
-		}
-	});
-
+   $("#delphoto").click(function(){
+      let s=confirm("사진을 삭제하겠습니까?")
+      if(s){
+         $("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
+         $("#showimg0").attr("value","");
+         $("#showimg1").attr("src",null);
+         $("#showimg2").attr("src",null);
+      }
+   });
+  
 	$("#myfile").change(function(){
 		$("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
 		$("#showimg1").attr("src",null);
@@ -137,8 +137,6 @@
 			return;
 			};
 		};
-		
-		
 		
 		for(i=0;i<$(this)[0].files.length;i++){
 			console.log("번호"+i)
@@ -224,12 +222,10 @@
 			}
 		})
 		
-		
-		
 	});
 
-	
+
+   
 </script>
 </body>
-
 </html>

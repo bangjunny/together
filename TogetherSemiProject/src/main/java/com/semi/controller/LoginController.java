@@ -153,7 +153,7 @@ public class LoginController {
 	
 
 	@GetMapping("/mypagedetail")
-	public String mypageDetail(@RequestParam("unum") int unum, Integer mnum, @RequestParam(required = false) Integer photo_idx, Model model) {
+	public String mypageDetail(@RequestParam("unum") int unum, Integer mnum, @RequestParam(required = false) Integer is_main, Model model) {
 	
 	    
 		// 로그인한 사용자 아이디를 가져옵니다.
@@ -164,19 +164,16 @@ public class LoginController {
 	    }
 
 	    model.addAttribute("dto", dto);
-	    
-
+	   
 	    // 사용자 프로필 사진 정보 가져오기
 	    List<UserPhotoDto> photoList = loginMapper.getMyProfilePhotos(unum);
 	    if (photoList != null && !photoList.isEmpty()) {
-	        // 대표 사진이 지정되지 않은 경우 photo_idx 파라미터로 지정된 값을 사용합니다.
-	        // photo_idx 파라미터가 없는 경우 첫 번째 사진을 대표 사진으로 사용합니다.
-	        int index = (photo_idx != null && photo_idx < photoList.size()) ? photo_idx : 0;
-	        UserPhotoDto pdto = photoList.get(index);
-	        model.addAttribute("pdto", pdto);
+	    	 int index = (is_main != null) ? is_main.intValue() : 1;
+		        UserPhotoDto pdto = photoList.get(index);
+	    	model.addAttribute("pdto", pdto);
 	        model.addAttribute("photoList", photoList);
 	    } else {
-	        model.addAttribute("pdto", null);
+	    	model.addAttribute("pdto", null);
 	        model.addAttribute("photoList", null);
 	    }
 	    

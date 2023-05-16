@@ -40,32 +40,33 @@
         
         .ck.ck-editor {
 
-		width: 90%;
-		max-width: 800px;
-		margin: 0 auto;
-		}
+      width: 90%;
+      max-width: 800px;
+      margin: 0 auto;
+      }
 
-		.ck-editor__editable {
-			height: 80vh;
-		}
+      .ck-editor__editable {
+         height: 80vh;
+      }
 
 
     </style>
 </head>
+
 <body>
 <h1>지역 게시판</h1>
 
 <div style="float:left;">
-	<%-- <c:choose>
-		<c:when test="${dto.uphoto==null}">
-			<!-- Result값이 있다면 실행할 로직 -->
-			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width:40px; border-radius:100px;">
-		</c:when>
-		<c:otherwise>
-			<!-- 그렇지 않다면 실행할 로직 -->
-			<img src="https://${imageUrl}/userprofile/${dto.uphoto}" style="width:40px;">    
-		</c:otherwise>
-	</c:choose> --%>
+   <%-- <c:choose>
+      <c:when test="${dto.uphoto==null}">
+         <!-- Result값이 있다면 실행할 로직 -->
+         <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width:40px; border-radius:100px;">
+      </c:when>
+      <c:otherwise>
+         <!-- 그렇지 않다면 실행할 로직 -->
+         <img src="https://${imageUrl}/userprofile/${dto.uphoto}" style="width:40px;">    
+      </c:otherwise>
+   </c:choose> --%>
 </div>
       <h4>${udto.uname}님이 작성 중입니다</h4>
 <div class="container">
@@ -78,9 +79,20 @@
         <input type="hidden" id="uname" name="uname" value="${uname}">
         <input type="hidden" id="cbnum" name="cbnum" value="${cbdto.cbnum}"> 
         <!-- 이미지 미리보기 -->
+        
+        <c:choose>
+        <c:when test="${size != 0}">
         <c:forEach var="pdto" items="${pdto}" varStatus="status">
         <img id="showimg${status.index}" name="photo_idx" value=${pdto.photo_idx} style="width:25%" src="https://kr.object.ncloudstorage.com/together-bucket-104/city/${pdto.photo_idx}">
         </c:forEach>
+        </c:when>
+        <c:otherwise>
+
+        <img style="width:25%;" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+
+        </c:otherwise>
+        </c:choose>
+        
         <br>
         <br>
         <input type="button" id="delphoto" value="사진 삭제" class="form-controll">
@@ -95,16 +107,16 @@
         <br>
 </div>
 <script type="text/javascript">
-	$("#delphoto").click(function(){
-		let s=confirm("사진을 삭제하겠습니까?")
-		if(s){
-			$("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
-			$("#showimg0").attr("value","");
-			$("#showimg1").attr("src",null);
-			$("#showimg2").attr("src",null);
-		}
-	});
-
+   $("#delphoto").click(function(){
+      let s=confirm("사진을 삭제하겠습니까?")
+      if(s){
+         $("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
+         $("#showimg0").attr("value","");
+         $("#showimg1").attr("src",null);
+         $("#showimg2").attr("src",null);
+      }
+   });
+  
 	$("#myfile").change(function(){
 		$("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
 		$("#showimg1").attr("src",null);
@@ -125,8 +137,6 @@
 			return;
 			};
 		};
-		
-		
 		
 		for(i=0;i<$(this)[0].files.length;i++){
 			console.log("번호"+i)
@@ -166,6 +176,8 @@
 	});
 	
 	$(document).on("click","#newCity",function(){
+		let subject=$("#subject").val();
+		let cbcontent=$("#cbcontent").val();
 		let uname=$("#uname").val();
 		let cnt=$("#myfile")[0].files.length;
 		let unum=$("#unum").val();
@@ -195,26 +207,25 @@
 		form.append("unum",unum);
 		form.append("city1",city1);
 		form.append("city2",city2);
-		form.append("cbnum",cbnum)
+		form.append("cbnum",cbnum);
 		
 		$.ajax({
-			type:"get",
+			type:"post",
 			dataType:"text",
 			url:"./cityupdate",
 			processData:false,
 			contentType:false,
 			data:form,
 			success:function(res){
-				location.href="/city/detail?cbnum="+cbnum;
+				alert(cbnum);
+				location.href='/city/detail?cbnum='+cbnum;
 			}
 		})
 		
-		
-		
 	});
 
-	
+
+   
 </script>
 </body>
-
 </html>

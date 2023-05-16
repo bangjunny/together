@@ -13,8 +13,7 @@ spring:
     multipart:
       max-file-size:
         20MB
-        
-#email
+  #email
   mail:
   # host, port는 naver에서 정해준 값
     host: smtp.naver.com

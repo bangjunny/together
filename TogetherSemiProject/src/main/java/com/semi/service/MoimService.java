@@ -65,9 +65,9 @@ public class MoimService implements MoimServiceInter {
 
    @Override
    public void deleteMoim(int mnum) {
-      // TODO Auto-generated method stub
-      moimMapper.deleteMoim(mnum);
-   }
+	// TODO Auto-generated method stub
+	   moimMapper.deleteMoim(mnum);
+	   }
 
    @Override
    public void updateMoim(MoimDto dto) {

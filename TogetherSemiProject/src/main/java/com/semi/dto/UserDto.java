@@ -26,7 +26,6 @@ public class UserDto {
 	private int jjim;
 	private List<UserPhotoDto> photoList;
 	private int mnum;
-	
 	@Override
 	public String toString() {
 		return "UserDto [unum=" + unum + ", uname=" + uname + ", age=" + age + ", gender=" + gender + ", email=" + email

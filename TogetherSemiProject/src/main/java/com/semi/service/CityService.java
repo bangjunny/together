@@ -241,4 +241,44 @@ public class CityService implements CityServiceInter {
 		return cityMapper.getCityPagingListLikeTop(map);
 	}
 	
+	@Override
+	   public void cblike(int unum, int cbnum) {
+	      // TODO Auto-generated method stub
+	      Map<String, Object> map = new HashMap<>();
+	      map.put("unum", unum);
+	      map.put("cbnum", cbnum);
+	      cityMapper.cblike(map);
+	      
+	   }
+
+	   @Override
+	   public int cblikecheck(int unum, int cbnum) {
+	      // TODO Auto-generated method stub
+	      Map<String, Object> map = new HashMap<>();
+	      map.put("unum", unum);
+	      map.put("cbnum", cbnum);
+	      return cityMapper.cblikecheck(map);
+	   }
+
+	   @Override
+	   public int cblikecountplus(int cbnum) {
+	      // TODO Auto-generated method stub
+	      return cityMapper.cblikecountplus(cbnum);
+	   }
+
+	   @Override
+	   public void cbdislike(int unum, int cbnum) {
+	      // TODO Auto-generated method stub
+	      Map<String, Object> map = new HashMap<>();
+	      map.put("unum", unum);
+	      map.put("cbnum", cbnum);
+	      cityMapper.cbdislike(map);
+	   }
+
+	   @Override
+	   public int cblikecountminus(int cbnum) {
+	      // TODO Auto-generated method stub
+	      return cityMapper.cblikecountminus(cbnum);
+	   }
+	
 }

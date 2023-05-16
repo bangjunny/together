@@ -41,7 +41,7 @@
 		</if>
 	</sql>
 	<select id="getData" parameterType="int" resultType="MoimDto">		
-		SELECT *,(SELECT COUNT(mm.mmnum) as mcoun from moimmember mm where mm.mnum = m.mnum) as mcount from moim m where mnum=#{mnum}
+		SELECT *,(SELECT COUNT(mm.mmnum) as mcoun from moimmember mm where mm.mnum = m.mnum and acceptcall=1) as mcount from moim m where mnum=#{mnum}
 	</select>
 	<delete id="deleteMoim" parameterType="int">
 		delete from moim where mnum=#{mnum}

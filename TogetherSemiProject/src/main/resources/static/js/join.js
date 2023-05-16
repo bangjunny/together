@@ -332,13 +332,20 @@
       
       
       $("#inem").click(function(){
-		  let inemail = $("#inemail").val();
+		 
+		 let inemail = $("#inemail").val();
+		 
+		 // 이메일 중복 확인
+		 
+		 
+		 // 인증번호 보내기
+		 
 		 $.ajax({
     		type: "get",
     		url: "/inemail",
     		data: {"inemail": inemail},
     		success: function () {
-    			alert("인증번호");
+    			alert("인증번호를 발송했습니다");
     		}
     	});
 	  });

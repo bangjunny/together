@@ -13,6 +13,8 @@ public class EmailController {
 	@Autowired
 	EmailService emailService;
 	
+	//HashMap<String, String> hmap =new HashMap<String, String>();
+	
 	@GetMapping("/inemail")
 	@ResponseBody
 	public void suEmail(String inemail)
@@ -22,6 +24,21 @@ public class EmailController {
 		String code = String.valueOf((int) (Math.random() * (999999 * 100000 * 1) * 100000));
 		emailService.suEmail(inemail, code);
 		
+		//hmap.put("code",code);
+		
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

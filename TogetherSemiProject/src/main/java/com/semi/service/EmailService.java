@@ -27,7 +27,19 @@ public class EmailService {
 	}
 	
 	// 이메일 중복체크
-	
+//	public String chEmail(String inemail, String email) {
+//		
+//		String result;
+//		
+//		if(inemail.equals(email)) {
+//			
+//			result = false;
+//		}
+//		else {
+//			result = true;
+//		}
+//		return "result";
+//	}
 	
 	// 인증번호 맞았을때
 	

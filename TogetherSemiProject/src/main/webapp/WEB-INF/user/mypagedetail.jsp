@@ -235,7 +235,43 @@ function list()
 			</script>
 		
     <br><br><br><br>
-    
+    		
+			 <div id="mycity_wrap">
+			  <!-- 가입한 모임 목록 보여주기 -->
+			  나의 모임 리스트 출력하기
+			  <button id="mycity_1_btn">내가 쓴 게시글</button>
+			  <button id="myvity_2_btn">내가 찜한 게시글</button>
+			
+			  
+			  <div id="mycity_1" style="display: block;">
+			  <%@ include file="mypagecblist.jsp" %>
+			  </div>
+			  
+			<div id="mycity_2" style="display: none;">
+				 <%@ include file="mypagecityjjimlist.jsp" %>
+			</div>
+			
+			</div>
+			
+			<script type="text/javascript">
+				$("#mylist_2_btn").click(function() {
+					$("#mylist_1").css("display", "none");
+					$("#mylist_2").css("display", "block");
+					$("#mylist_3").css("display", "none");
+				});
+				$("#mylist_1_btn").click(function() {
+					$("#mylist_1").css("display", "block");
+					$("#mylist_2").css("display", "none");
+					$("#mylist_3").css("display", "none");
+				});
+				$("#mylist_3_btn").click(function() {
+					$("#mylist_1").css("display", "none");
+					$("#mylist_2").css("display", "none");
+					$("#mylist_3").css("display", "block");
+				});
+				
+			</script>
+        
     <div class="mybtn">
 		<button type="button" class="btn btn-outline-success btn-sm"
 		style="width: 200px;" onclick="location.href='/moim/moimlist'">모임리스트</button>

@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.semi.dto.MoimDto;
 import com.semi.dto.UserDto;
 import com.semi.dto.UserPhotoDto;
+import com.semi.dto.CityBoardDto;
 import com.semi.dto.JJimDto;
 
 @Mapper
@@ -50,6 +51,8 @@ public interface LoginMapper {
 	public void deletePhoto(int photo_idx);
 	public int mypagePassCheck(Map<String, Object> map);
 	public void updateMypage(UserDto dto);
+	
+	public List<CityBoardDto> getMyCBList(int unum);
 
 	
 }

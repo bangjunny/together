@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.semi.dto.CityBoardDto;
 import com.semi.dto.JJimDto;
 import com.semi.dto.MoimDto;
 import com.semi.dto.UserDto;
@@ -177,7 +178,10 @@ public class LoginController {
 	        model.addAttribute("photoList", null);
 	    }
 	    
-	 // 모임 리스트 가져오기
+	 // 내가쓴글 리스트 가져오기
+	    List<CityBoardDto> cbList = loginMapper.getMyCBList(unum);
+	    model.addAttribute("cbList", cbList);
+	    // 모임 리스트 가져오기
 	    List<MoimDto> moimList = loginMapper.getMyMoimList(unum);
 	    model.addAttribute("moimList", moimList);
 	 // 찜모임 리스트 가져오기

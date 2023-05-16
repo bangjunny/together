@@ -1,5 +1,6 @@
 package com.semi.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -114,14 +115,22 @@ public class MoimController {
    }
    
    @GetMapping("/moimdetail")
-   private String moimdetail(int mnum, Model model,HttpSession session)
+   private String moimdetail(int mnum, Model model, HttpSession session)
    {
-	 
+	
 	  //dto얻기
 	  MoimDto dto=moimService.getData(mnum);
+	  int unum = dto.getUnum();
+	  
+	  UserDto udto = cityService.getDetailbyunum(unum);
+	  String uname = udto.getUname();
+		model.addAttribute("unum", unum);
+		model.addAttribute("udto", udto);
+		model.addAttribute("uname", uname);
+		
 	  //model
 	  if (session.getAttribute("unum") != null) {
-		  int unum = (int)session.getAttribute("unum");
+		  unum = (int)session.getAttribute("unum");
 		  boolean pressChk = moimService.pressJjim(unum, mnum);
 		  boolean pressGaipChk = moimService.pressGaip(unum, mnum);
 	  
@@ -139,7 +148,7 @@ public class MoimController {
 	  List<Map<String, Object>> list = moimService.getGaipmemberList(mnum);
 	  model.addAttribute("list", list);
 	  model.addAttribute("dto",dto);
-	  
+	  	  
       return "/main/moim/moimdetail";
    	  }
    
@@ -161,7 +170,42 @@ public class MoimController {
 		moimMapper.insertMoim(dto);
 		return "redirect:moimlist";
 	}
-   
+   @GetMapping("/updateform")
+   private String updateform(int mnum,Model model)
+   {
+	   MoimDto dto=moimService.getData(mnum);
+	   model.addAttribute("dto",dto);
+	   
+	   return "/main/moim/moimupdateform";
+   }
+   @PostMapping("/update")
+   public String update(MoimDto dto,MultipartFile upload)
+   {
+	   String mphoto="";
+		// 사진선택시 기존사진을 버켓에서 지우고 재업로드
+		if(!upload.getOriginalFilename().equals("")) {
+			//기존파일 읽어오기
+			mphoto=moimService.getData(dto.getMnum()).getMphoto();
+			//버켓에서 삭제
+			storageService.deleteFile(bucketName,"moim", mphoto);
+			//재업로드
+			mphoto=storageService.uploadFile(bucketName,"moim", upload);
+		}
+		dto.setMphoto(mphoto);
+		// 수정하기
+		moimService.updateMoim(dto);
+		return "redirect:./moimdetail?mnum="+dto.getMnum();
+   }
+   @GetMapping("/delete")
+	public String delete(int mnum)
+	{
+		//스토리지에 업로드된 기존파일 지우기!!
+		String Mphoto=moimService.getData(mnum).getMphoto();
+		storageService.deleteFile(bucketName,"moim", Mphoto);
+		//db삭제
+		moimService.deleteMoim(mnum);
+		return "redirect:./moimlist";
+	}
    @ResponseBody //값 변환을 위해 꼭 필요함
    @GetMapping("mnameCheck")//아이디 중복확인을 위한 값으로 따로 매핑
    public int overlappedMname(MoimDto dto) throws Exception{

@@ -42,7 +42,12 @@ public interface CityServiceInter {
 	public void updateCity(CityBoardDto dto);
 	public void updateCityPhoto(CityBoardDto dto);
 	public void deleteCityPhoto(String photo_idx);
-	
+	public void cblike(int unum, int cbnum);
+	public void cbdislike(int unum, int cbnum);
+	public int cblikecheck(int unum, int cbnum);
+	public int cblikecountplus(int cbnum);
+	public int cblikecountminus(int cbnum);
+
 	/**
 	public void updateCity(CityBoardDto dto);
 	**/

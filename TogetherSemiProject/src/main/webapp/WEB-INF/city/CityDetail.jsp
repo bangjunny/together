@@ -34,12 +34,13 @@ body, body * {
 	<!-- 해당 글 정보 영역 -->
 	<div style="width: 800px; background-color: #ddd; margin: 0 auto; margin-top: 40px;">
 		<h3>${dto.subject}</h3>
-		<h6 style="float: right;"><b>추천수</b> ${dto.cblike}</h6>
+		<h6 style="float: right;">
+         <b>추천수</b>
+         <div class="likecount">${dto.cblike}</div>
+      	</h6>
 		<h6 style="float: right;"><b>조회수</b> ${dto.readcount}&nbsp;</h6>
-
 		<h6 style="float: left"><b>작성자</b> ${dto.uname}&nbsp;</h6>
 		<h6><b>작성일</b> ${dto.cbwriteday }</h6>
-
 		<hr>
 			<c:if test="${photocount=='0'}">
 			<div class="cbcontent" align="center">
@@ -58,8 +59,22 @@ body, body * {
         ${dto.cbcontent}
     	</pre>
 		<br> <br> <br> 
-		<i class="bi bi-hand-thumbs-up" style="font-size: 40px; margin-left: 200px"></i>
-		<br>${dto.cblike}
+		<!-- 좋아요 버튼 -->
+      <div id="likebutton">
+      <c:choose>
+         <c:when test="${cblikecheck==0}">
+            <i class="bi bi-hand-thumbs-up like"
+               style="font-size: 40px; margin-left: 200px; cursor: pointer;" onclick="cblike();"></i>
+            <br>
+         </c:when>
+         <c:otherwise>
+            <i class="bi bi-hand-thumbs-up-fill like2"
+               style="font-size: 40px; margin-left: 200px; cursor: pointer;" onclick="cbdislike();"></i>
+            <br>
+         </c:otherwise>
+      </c:choose>
+      </div>
+      <div class="likecount">${dto.cblike}</div>
 		<hr>
 		<!-- 버튼 영역 -->
 		<div style="margin: auto">
@@ -109,33 +124,35 @@ body, body * {
 			<!-- 댓글 출력 영역 -->
 			<caption align="top" style="width: 500px">총 ${totalComment}개의 댓글</caption>
 			<table style="border : 1px solid black;width:700px;">
-			
 			<hr>
 			<!-- 댓글이 없는 경우 -->
-			<c:if test="${totalComment=='0'}">
-				<tr>
-					<td>댓글이 없습니다</td>
-				</tr>
-			</c:if>
-			<!-- 댓글이 있는 경우 -->
-			<c:if test="${totalComment!='0' }">
-			<c:forEach var="listcomment" items="${listcomment}">
-			<c:if test="${listcomment.recontent=='' }">
-			<tr style="border: 1px solid black;">
-				<td>
-				<c:forEach begin="1" end="${listcomment.depth}">
-					&nbsp;&nbsp;
-				</c:forEach>
-				<c:if test="${listcomment.step!='0' }">
-				<i class="bi bi-arrow-return-right"></i>
+				<c:if test="${totalComment=='0'}">
+					<tr>
+						<td>댓글이 없습니다</td>
+					</tr>
 				</c:if>
-				삭제된 댓글입니다
-				</td>
-			</tr>	
-			</c:if>
-			<c:if test="${listcomment.recontent!='' }">
-				<tr style="border: 1px solid black;">				
-					<td>
+			<!-- 댓글이 있는 경우 -->
+				<c:if test="${totalComment!='0' }">
+					<c:forEach var="listcomment" items="${listcomment}" varStatus="">
+						<c:if test="${listcomment.recontent=='' }">
+							<tr style="border: 1px solid black" value="${listcomment.ref}">
+								<td>
+								<c:forEach begin="1" end="${listcomment.depth}">
+									&nbsp;&nbsp;
+								</c:forEach>
+								<c:if test="${listcomment.step!='0' }">
+								<i class="bi bi-arrow-return-right"></i>
+								</c:if>
+								삭제된 댓글입니다
+								</td>
+							</tr>	
+						</c:if>
+						<c:if test="${listcomment.recontent!='' }">
+						<c:choose>
+								<c:when test="${listcomment.depth=='0'}">
+									<tbody style="display:block" class="commentView" data-ref="${listcomment.ref}" data-depth="${listcomment.depth }">
+										<tr style="border: 1px solid black;" value="${listcomment.ref}">				
+					<td style="width: 540px;">
 					<c:forEach begin="1" end="${listcomment.depth}">
 					&nbsp;&nbsp;
 					</c:forEach>
@@ -145,11 +162,11 @@ body, body * {
 					<input id="renum" type="hidden" name="renum" value="${listcomment.renum}">
 					${listcomment.uname}
 					</td>
-					<td style="float:right">
+					<td style="float:right;width:170px;">
 					${listcomment.rewriteday}
 					</td>
 				</tr>
-				<tr>
+				<tr style="height:100px">
 					<td>
 					<c:forEach begin="1" end="${listcomment.depth}">
 					&nbsp;&nbsp;&nbsp;&nbsp;
@@ -159,8 +176,11 @@ body, body * {
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td colspan="3">
 						<c:if test="${sessionScope.unum==listcomment.unum}">
+						<c:if test="${listcomment.depth=='0' }">
+						<button type="button" id="commentFunction">답글 보기</button>
+						</c:if>
 						<button type="submit" id="deleteComment" style="float:right">삭제</button>
 						<button id="updateComment" style="float:right">수정</button>
 						</c:if>
@@ -169,7 +189,7 @@ body, body * {
 				</tr>
 				<tr>
 				<!-- 답글 입력 영역 -->
-				<td colspan="2" >
+				<td colspan="3" >
 					<form id="fixComment" action="addcomment" method="post">
 						<input type="hidden" name="renum" value="${listcomment.renum}">
 						<input type="hidden" name="unum" value="${udto.unum}">
@@ -189,9 +209,73 @@ body, body * {
 					</td>
 				
 				</tr>	
+									</tbody>
+								</c:when>
+								<c:otherwise>
+									<tbody style="display:none" id="commentView" data-ref="${listcomment.ref}" data-depth="${listcomment.depth }">
+									<tr style="border: 1px solid black;" value="${listcomment.ref}">				
+					<td style="width: 540px;">
+					<c:forEach begin="1" end="${listcomment.depth}">
+					&nbsp;&nbsp;
+					</c:forEach>
+					<c:if test="${listcomment.step!='0' }">
+					<i class="bi bi-arrow-return-right"></i>
+					</c:if>
+					<input id="renum" type="hidden" name="renum" value="${listcomment.renum}">
+					${listcomment.uname}
+					</td>
+					<td style="float:right;width:170px;">
+					${listcomment.rewriteday}
+					</td>
+				</tr>
+				<tr style="height:50px">
+					<td>
+					<c:forEach begin="1" end="${listcomment.depth}">
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					</c:forEach>
+					<input id="recomment" type="hidden" value="${listcomment.recontent}"></div>
+					${listcomment.recontent}
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<c:if test="${sessionScope.unum==listcomment.unum}">
+						<c:if test="${listcomment.depth=='0' }">
+						</c:if>
+						<button type="submit" id="deleteComment" style="float:right">삭제</button>
+						<button id="updateComment" style="float:right">수정</button>
+						</c:if>
+						<button id="addComment" style="float:right">답글</button>
+					</td>
+				</tr>
+				<tr>
+				<!-- 답글 입력 영역 -->
+				<td colspan="3" >
+					<form id="fixComment" action="addcomment" method="post">
+						<input type="hidden" name="renum" value="${listcomment.renum}">
+						<input type="hidden" name="unum" value="${udto.unum}">
+						<input type="hidden" name="uname" value="${udto.uname}">
+						<input type="hidden" name="cbnum" value="${dto.cbnum}">
+						<input type="hidden" name="ref" value="${listcomment.ref}">
+						<input type="hidden" name="step" value="${listcomment.step}">
+						<input type="hidden" name="depth" value="${listcomment.depth}">
+						<div id="recontent" style="display: none;" >
+							<textarea id="contentSide" class="form-control" rows="5" name="recontent"
+							style="height: 100px; resize: none; width: 494px;"
+							placeholder="${listcomment.recontent}"></textarea>
+							<button type="submit" class="btn btn-primary btn-sm"
+							id="submit" style="float: right; margin-right: 30px;">입력</button>
+						</div>
+					</form>
+					</td>
+				
+				</tr>	
+									</tbody>
+								</c:otherwise>
+							</c:choose>
+						</c:if>
+					</c:forEach>
 				</c:if>
-				</c:forEach>
-			</c:if>
 			</table>
 			
 		</div>
@@ -272,5 +356,59 @@ body, body * {
 		}
 	})
 	
+	function cblike(){
+      const unum = ${sessionunum}
+      const cbnum = ${dto.cbnum}
+      const cblikecheck = ${cblikecheck}
+      const cblikecount = ${dto.cblike}
+      $.ajax({
+         type:"get",
+         url:"cblike",
+         dataType:"text",
+         data:{"unum":unum,"cbnum":cbnum},
+         success:function(res){
+            alert("추천되었습니다");
+            $(".likecount").html(res);
+            $("#likebutton").html(`<i class="bi bi-hand-thumbs-up-fill like2"
+               style="font-size: 40px; margin-left: 200px; cursor: pointer;" onclick="cbdislike();"></i>`);
+         }
+         
+      });
+   }
+	function cbdislike(){
+	      const unum = ${sessionunum}
+	      const cbnum = ${dto.cbnum}
+	      const cblikecheck = ${cblikecheck}
+	      const cblikecount = ${dto.cblike}
+	      $.ajax({
+	         type:"get",
+	         url:"cbdislike",
+	         dataType:"text",
+	         data:{"unum":unum,"cbnum":cbnum},
+	         success:function(res){
+	            alert("추천이 취소되었습니다");
+	            $(".likecount").html(res);
+	            $("#likebutton").html(`<i class="bi bi-hand-thumbs-up like"
+	                  style="font-size: 40px; margin-left: 200px; cursor: pointer;" onclick="cblike();"></i>`);
+	         }
+	         
+	      });
+	   }
+	
+	$(document).on("click","#commentFunction",function(){
+		let ref=$(this).parent().parent().parent().data("ref");
+		let depth=$(this).parent().parent().parent().data("depth");
+		//console.log(ref)
+		//console.log(depth)
+		$("tbody[data-ref='" + ref + "'][data-depth!='0']").each(function() {
+	        let display = $(this).css("display");
+	        $(this).css("display", display === "none" ? "block" : "none");
+	    });
+		
+	})
+	
 </script>
 </html>
+
+
+

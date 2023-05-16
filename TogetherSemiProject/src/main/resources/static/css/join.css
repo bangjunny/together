@@ -1,4 +1,10 @@
 @charset "EUC-KR";
+.clear:after{    /* 자식이 모두 float 을 사용할때 부모가 높이를 갖게하기 위함 */
+    content:"";
+    display:block;
+    clear:both;
+}
+
 
 * {
             box-sizing: border-box;
@@ -42,6 +48,12 @@
       }
       
       .input-wrap {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+      
+      .input-inemail {
         display: flex;
         flex-direction: column;
         margin-bottom: 20px;
@@ -120,6 +132,50 @@
           border: none;
           background: #fff;
           font-size: 15px;
+      }
+      
+     .ine {
+      	display: block;
+        position: relative;
+        width: 260px;
+        background: #fff;
+        font-size: 15px;
+        float: left;
+        border: solid 1px #dadada;
+      	padding: 10px 14px 10px 14px;
+      	height: 50px;
+      	margin-bottom:10px;	
+      }
+      
+      .inn {
+      	display: block;
+        position: relative;
+        width: 260px;
+        background: #fff;
+        font-size: 15px;
+        float: left;
+        border: solid 1px #dadada;
+      	padding: 10px 14px 10px 14px;
+      	height: 30px;
+      	margin-bottom:10px;	
+      } 
+      
+      .inem {
+      	position: relative;
+      	width: 130px;
+      	height : 50px;
+      	float: left;
+      	margin-left: 10px;
+      	margin-bottom:10px;	
+      }
+      
+      .innum {
+      	position: relative;
+      	width: 130px;
+      	height : 30px;
+      	float: left;
+      	margin-left: 10px;
+      	margin-bottom:10px;	
       }
       
       .box.int_pass {

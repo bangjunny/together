@@ -20,17 +20,17 @@
 		font-family: 'NanumPenScript';
 	}
 	a:link,a:visited,a:hover {
-		color: black;
 		text-decoration: none;
 	}
 	.list_a span{
 		text-decoration: none;
-	
+		color: black;
 	}
 
 	#main_container{
 		width: 100%;
 		height: 100%;
+		padding-top: 100px;
 	}
   	#main_header{
       width: 1400px;
@@ -46,19 +46,19 @@
 		left: 175px;
 	}	
 	#main_header_txt{
-		margin-top: 25px;
-		margin-right:50px;
 		width: 500px;
 		height: 300px;
 		font-size: 25px;
 	}
 	
 	#main_header_pic{
-		width: 600px;
-		
+		width: 525px;
+		height: 400px;
+		text-align: center;
 	}
 	#main_header_pic img{
-		width: 600px;
+		width: 100%;
+		height: 100%;
 	}
 	#rotate_photo{
 		width: 700px;
@@ -66,24 +66,30 @@
 		
 	}
 	#main_btn_wrap{
-		margin-top: 50px;
-		margin-left:70px;
 		width: 200px;
-		display: flex;
-		justify-content: flex-end;
+		
+		
 	}
 	#main_list_go{
-		width: 1000px;
-		margin: 150px auto 150px auto;
+		width: 100%;
+		height: 500px;
+		margin: 0 auto;
 		text-align: center;
 		display: flex;
-		justify-content: center;
+		justify-content: space-around;
 		align-items: center;
 	}
-	.list_a{
-		width: 100%;
+	#main_list_go_img_wrap{
+		width: 1200px;
+		display: flex;
+		text-align: center;
+		justify-content: space-around;
+		align-items: center;
 	}
-	
+	#main_list_go_img_wrap img{
+		width: 200px;
+		height: 200px;
+	}
 	.mainphoto{
 		width: 200px;
 		height: 200px;
@@ -103,7 +109,8 @@
 		width: 100%;
 		height: 700px;
 		background-image:url("../photo/mid_pic.jpg");
-  		background-attachment: fixed;			
+  		background-attachment: fixed;		
+  		background-repeat: no-repeat;	
 	} 
 	#main_mid_txt{
 		position: relative; 
@@ -234,10 +241,10 @@ $(document).ready(function() {
 	<div id="main_btn_wrap">
 		<c:choose>
 			<c:when test="${sessionScope.unum ne null }">
-				<button type="button" class="btn btn-light layout_a" onclick="location.href='/user/mypage'">마이페이지</button>
+				<button type="button" class="btn btn-light layout_a" onclick="location.href='/moim/moimlist'">시작하기</button>
 			</c:when>
 			<c:otherwise>
-				<button type="button" class="btn btn-light" onclick="location.href='/user/login'">로그인</button>
+				<button type="button" class="btn btn-light" onclick="location.href='/user/login'">시작하기</button>
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -248,19 +255,26 @@ $(document).ready(function() {
 	
 </div>
 	<div id="main_list_go">
-		<a class="list_a" href="/moim/moimlist">
-			<img class="mainphoto" src="../photo/moim.png"><br>
-			<span>모임 게시판</span>
-		</a>
-			<a class="list_a" href="/city/list">
-			<img class="mainphoto" src="../photo/local.png"><br>
-			<span>지역 게시판</span>
-		</a>
-			<a class="list_a" href="/mapcontact">
-			<img class="mainphoto" src="../photo/map.png"><br>
-			<span>지도로 위치 검색</span>
-		</a>
-		<br>
+		<div id="main_list_go_img_wrap">
+			<a class="list_a" href="/moim/moimlist">
+				<img src="../photo/moim.png">
+				<br>
+				<br>
+				<span>모임 게시판</span>
+			</a>
+				<a class="list_a" href="/city/list">
+				<img src="../photo/local.png">
+				<br>
+				<br>
+				<span>지역 게시판</span>
+			</a>
+				<a class="list_a" href="/mapcontact">
+				<img src="../photo/map.png">
+				<br>
+				<br>
+				<span>지도로 위치 검색</span>
+			</a>
+		</div>	
 	</div>
 	
 	<div id="main_mid_pic">

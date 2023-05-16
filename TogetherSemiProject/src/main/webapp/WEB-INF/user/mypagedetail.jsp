@@ -113,13 +113,14 @@ function list()
                     <!-- 대표사진으로 출력하는 코드 -->
                     <h2>마이 프로필사진</h2>
                     <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo main" alt="대표사진">
-                    <i class="bi bi-x-square photodel" photo_idx="\${pele.photo_idx}"></i>
+                    <i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}"></i>
                   </div>
                 </c:if>
                 <c:if test="${photo.is_main != 1}">
                   <div class="carousel-item">
                     <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo" alt="포토사진 ${photo.photo_idx}">
                     <i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}"></i>
+                    <i class="bi bi-award-fill setmain" photo_idx="${photo.photo_idx}"></i>
                     <form method="post" action="/user/setMainPhoto">
                       <input type="hidden" name="photo_idx" value="${photo.photo_idx}" id="main">
                       <button type="submit" class="btn btn-primary" id="setMainBtn">대표 사진으로 지정하기</button>
@@ -322,6 +323,27 @@ $(document).on("click",".photodel",function(e){
 		$.ajax({
 			type:"get",
 			url:"/user/deletephoto",
+			data:{"photo_idx":photo_idx},
+			dataType:"text",
+			success:function(){
+				alert("삭제되었습니다");
+				window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
+				
+			}
+		});
+	}
+});
+//메인포토 이벤트		
+$(document).on("click",".setmain",function(e){
+	
+	console.log('click');
+	let b=confirm("해당 사진을 대표사진으로 선택하시겠습니까?");
+	if(m){
+		let photo_idx=$(this).attr("photo_idx");
+		//alert(photo_idx);
+		$.ajax({
+			type:"get",
+			url:"/user/setMainPhoto",
 			data:{"photo_idx":photo_idx},
 			dataType:"text",
 			success:function(){

@@ -48,7 +48,8 @@
   #sidebar_wrap:hover {
     cursor: pointer;
   }
-
+   /* #sidebar_wrap:not(:hover) */	
+	
 </style>
 
 <script type="text/javascript">

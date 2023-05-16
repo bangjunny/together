@@ -16,16 +16,15 @@
 	body, body *{
 		font-family: 'NanumPenScript';
 	}
-	a:link,a:visited,a:hover {
-		color: black;
-		text-decoration: none;
-	}
 	#main_container{
 		background-color: rgba(245, 245, 220, 0.2);	
 	}
-	.logout{
+	.header{
 		background-color: rgba(245, 245, 220, 0.2);	
 		height: 100px;
+	}
+	.footer{
+		margin-top: 100px;
 	}
 	
 </style>
@@ -33,12 +32,9 @@
 <body>
 	
 <div class="mainlayout">
-	<section class="logout">
-		<tiles:insertAttribute name="logout"/>
-	</section>
-	<section class="sidebar">
-		<tiles:insertAttribute name="sidebar"/>
-	</section>
+	<header class="header">
+		<tiles:insertAttribute name="header"/>
+	</header>
 	<section class="main">
 		<tiles:insertAttribute name="main"/>
 	</section>

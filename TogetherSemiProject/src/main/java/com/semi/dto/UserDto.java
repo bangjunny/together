@@ -21,15 +21,17 @@ public class UserDto {
 	private String city1;
 	private String city2;
 	private String category;
+	private String inemail;
 	private Timestamp joinday;
 	private int jjim;
 	private List<UserPhotoDto> photoList;
 	private int mnum;
+	
 	@Override
 	public String toString() {
 		return "UserDto [unum=" + unum + ", uname=" + uname + ", age=" + age + ", gender=" + gender + ", email=" + email
 				+ ", pass=" + pass + ", hp=" + hp + ", city1=" + city1 + ", city2=" + city2 + ",category=" + category + 
-				", joinday=" + joinday
+				", inemail=" + inemail + ", joinday=" + joinday
 				+ "]";
 	}
 	

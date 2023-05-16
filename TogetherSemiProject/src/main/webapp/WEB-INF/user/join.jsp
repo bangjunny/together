@@ -13,10 +13,13 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gothic+A1&family=Gowun+Batang&family=Hahmlet&family=Song+Myung&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-<link rel="stylesheet" type="text/css" href="login.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="/css/join.css">
 </head>
+<style>
+	
+	
+</style>
 <body>
     <div class="container-fluid">
        
@@ -84,6 +87,7 @@
                     <span class="error_next_box e5">필수 정보입니다.</span>
                 </div>
            
+           <!-- City -->
            <div class="input-wrap">
              <label for="user_city" class="la">지역</label>
              <div class="ps_box_city" style="left: 122px;">
@@ -255,6 +259,23 @@
                 <input type="tel" id="hp" name="hp" class="int" maxlength="16" placeholder="전화번호 입력">
              </span>
              <span class="error_next_box e8"></span>
+           </div>
+           
+           <!-- email 인증 -->
+           <div class="input-inemail">
+             <label for="user_inemail" class="la">이메일 인증</label>
+             
+               <div class="clear">
+	                <input type="text" id="inemail" name="inemail" class="ine" placeholder="인증 이메일 입력">
+	                <button type="button" id="inem" class="inem btn btn-primary ">인증번호 받기</button>
+
+               </div>
+               
+               <div class="clear">
+	                <input type="text" id="innum" name="innum" class="inn" placeholder="인증 번호">
+	                <button type="button" class="innum btn btn-primary">확인</button>
+                </div>
+             
            </div>
            
             

@@ -108,7 +108,7 @@
 		<span style="color:black; font-size: 14px;">모임원 : 총 ${dto.mcount}명</span>
 		<br>
 		
-		<span style="float: left; color:black; font-size:16px;">모임장 : ${sessionScope.uname}</span>
+		<span style="float: left; color:black; font-size:16px;">모임장 : ${uname} </span>
 		
 		<br>
 		</div>
@@ -221,7 +221,7 @@
 		</c:if>
 	</div>
 	<script type="text/javascript">
-		const mnum = ${dto.mnum};
+	const mnum = ${dto.mnum};
 		
 		
 	function updateJjimcount(){

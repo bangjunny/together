@@ -14,7 +14,7 @@ public class UserPhotoDto {
 	private int photo_idx;
 	private int unum;
 	private String file_name;
-	private boolean is_main;
+	private int is_main;
 	
 	@Override
 	public String toString() {

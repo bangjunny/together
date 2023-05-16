@@ -43,6 +43,11 @@ public interface CityMapper {
 	public void updateCity(CityBoardDto dto);
 	public void updateCityPhoto(CityBoardDto dto);
 	public void deleteCityPhoto(String photo_idx);
+	public void cblike(Map<String, Object>map);
+	public void cbdislike(Map<String, Object>map);
+	public int cblikecheck(Map<String, Object>map);
+	public int cblikecountplus(int cbnum);
+	public int cblikecountminus(int cbnum);
 	
 	/**
 	public void insertCity(CityBoardDto dto);

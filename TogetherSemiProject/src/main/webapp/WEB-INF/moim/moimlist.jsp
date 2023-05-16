@@ -23,10 +23,12 @@
 body, body * {
 	font-family: 'Jua'
 }
-
+#moim_container{
+	width: 900px;
+	margin: 200px auto 0 auto;
+}
 table {
 	border: 0.5px solid gray;
-	margin-left: 250px;
 	background-color: #ffd;
 }
 
@@ -50,24 +52,10 @@ label {
 div>img {
 	border-radius: 30px;
 }
-#loginfo {
-	margin-left: 300px;
-}
 </style>
 </head>
 <body>
-<div id="loginfo" style="border: 0px solid black; width: 900px; height: 60px; font-size: 30px" align="center">
-<c:choose>
-<c:when test="${unum==0 }">
-GUEST로 게시판 조회 중 입니다
-</c:when>
-<c:otherwise>
-${udto.uname }님이 로그인 중 입니다
-</c:otherwise>
-</c:choose>
-</div>
-
-	<div style="width: 900px;">			
+	<div id="moim_container">			
 		<table class="table">
 		<tr><td colspan="3">
 		<h2 align="center">모임리스트</h2><button type="button" class="btn btn-success" onclick="checkCreate(event)">만들기</button>

@@ -19,23 +19,12 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <style>
 body, body * {
-	font-family: 'Jua'
+	font-family: 'Jua';
 }
 </style>
 
 </head>
 <body>
-<div style="border: 1px solid black; width: 100%; height: 100px; font-size: 50px">
-	<c:choose>
-		<c:when test="${unum==0 }">
-			GUEST로 게시판 조회 중 입니다
-		</c:when>
-		<c:otherwise>
-			${udto.uname }님이 로그인 중 입니다
-		</c:otherwise>
-	</c:choose>
-</div>
-
 <br>
 <br>
 <br>
@@ -133,8 +122,17 @@ body, body * {
                    });
                  </script>
 		<button id="search" type="submit">선택지역검색</button>
+		
+		<button type="button" style="float: right" id="write" onclick="writeform();">글쓰기</button>
 	</form>
-	<button style="float: right" id="write" onclick="writeform();">글쓰기</button>
+	<form action="list" method="get">
+		<input type="hidden" name="city1" value="${city1}">
+		<input type="hidden" name="city2" value="${city2}">
+		<input name="keyword" value="${keyword }" type="text">
+		<button type="submit" id="keyword">검색</button>
+		</form>
+	
+	<hr>
 	<table class="table table-bordered boardlist">
 		<tr bgcolor="#f5f5dc">
 			<th style="width: 100px">번호</th>
@@ -144,62 +142,7 @@ body, body * {
 			<th style="width: 100px">조회수</th>
 			<th style="width: 100px">추천수</th>
 		</tr>
-		<tr bgcolor="cdcdcd">
-			<td align="center" colspan="6">조회수 TOP3</td>
-		</tr>
-		<c:forEach var="readlist" items="${readlist}" varStatus="i">
-			
-			<tr bgcolor="cdcdcd">
-				<td align="center">${readlist.cbnum }</td>
-
-				<c:choose>
-					<c:when test="${unum==0}">
-						<td style="cursor: pointer" onclick="guest();"><b>${readlist.subject}</b>
-						</td>
-					</c:when>
-					<c:otherwise>
-						<td style="cursor: pointer"
-							onclick="location.href='detail?cbnum=${readlist.cbnum}'"><b>${readlist.subject}</b>
-					</c:otherwise>
-				</c:choose>
-
-
-				<td>${readlist.uname}</td>
-				<td align="right"><fmt:formatDate value="${readlist.cbwriteday }"
-						pattern="yyyy-MM-dd" /></td>
-				<td>${readlist.readcount} </td>
-				<td>${readlist.cblike}</td>
-			</tr>
-		</c:forEach>
 		
-		
-		<tr bgcolor="cdcdcd">
-			<td align="center" colspan="6">추천수 TOP3</td>
-		</tr>
-		<c:forEach var="likelist" items="${likelist}" varStatus="i">
-			
-			<tr bgcolor="cdcdcd">
-				<td align="center">${likelist.cbnum }</td>
-
-				<c:choose>
-					<c:when test="${unum==0}">
-						<td style="cursor: pointer" onclick="guest();"><b>${likelist.subject}</b>
-						</td>
-					</c:when>
-					<c:otherwise>
-						<td style="cursor: pointer"
-							onclick="location.href='detail?cbnum=${likelist.cbnum}'"><b>${likelist.subject}</b>
-					</c:otherwise>
-				</c:choose>
-
-
-				<td>${likelist.uname}</td>
-				<td align="right"><fmt:formatDate value="${likelist.cbwriteday }"
-						pattern="yyyy-MM-dd" /></td>
-				<td>${likelist.readcount} </td>
-				<td>${likelist.cblike}</td>
-			</tr>
-		</c:forEach>
 		
 		<c:forEach var="list" items="${list}" varStatus="i">
 			<tr>
@@ -225,19 +168,48 @@ body, body * {
 			</tr>
 		</c:forEach>
 	</table>
-
-	<div style="float: right">
-		<form action="list" method="get">
-		<input type="hidden" name="city1" value="${city1}">
-		<input type="hidden" name="city2" value="${city2}">
-			<input name="keyword" value="${keyword }" type="text">
-			<button type="submit" id="keyword">검색</button>
-		</form>
+	<hr>
+	<div>
+	<h1>TOP3</h1>
+	<div class="btn-group">
+	<button class="btn btn-primary" id="liketop" onclick="liketop()">추천수 TOP3</button>
+	<button class="btn btn-primary" id="readtop" onclick="readtop()">조회수 TOP3</button>
 	</div>
+	<div class="ajaxzone"></div>
+	<table style="margin:0 auto;border:1px solid black;width:auto">
+	<c:forEach var="list" items="${list}" varStatus="i">
+	<tr>
+		<td style="border:1px solid black"><b style="display:inline-block;width:400px">${list.subject }</b></td>
+		<td style="border:1px solid black;width:100px" rowspan="2">
+		<c:choose>
+			<c:when test="${list.photo_idx!=null }">
+				<img style="width:150px;height:150px" src="https://kr.object.ncloudstorage.com/together-bucket-104/city/${list.photo_idx }">
+			</c:when>
+			<c:otherwise>
+				<img style="width:150px;height:150px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+			</c:otherwise>
+		</c:choose>
+		</td>
+	</tr>
+	<tr>
+		<td style="border:1px solid black;height:50px">
+			<span style="display:inline-block;margin-left:30px;width:100px">${list.uname}</span>|
+			<span style="margin-left:30px;display:inline-block;width:150px">추천수 : ${list.cblike}</span>
+			<span style="margin-left:15px;display:inline-block;width:150px">조회수 : ${list.readcount}</span>
+			<span style="margin-right:30px;display:inline-block;width:150px">
+			작성일 : <fmt:formatDate value="${list.cbwriteday }" pattern="yyyy-MM-dd"/>
+			</span>
+		</td>
+	</tr>
+	</c:forEach>
+	</table>
+	</div>
+
+	
 	<br>
 	<hr>
 	<!-- 페이징처리 -->
-<div style="width: 700px; text-align: center; font-size: 20px;">
+<div style="margin:0 auto;width: 700px; text-align: center; font-size: 20px;">
 <c:choose>
 	<c:when test="${city1!='no' && keyword!=null}"> 
 		<!-- 이전 -->
@@ -349,10 +321,13 @@ body, body * {
 		</c:if>
 	</c:otherwise>
 </c:choose>
+
 </div>
 
 	<script type="text/javascript">
-
+	$(function(){
+		liketop();
+	});
 	function writeform(){
 		if(${unum==0}){
 			let a = confirm("비회원은 게시글을 작성할수 없습니다. \n\"확인\" 버튼 클릭시 로그인 페이지로 이동합니다");
@@ -369,6 +344,48 @@ body, body * {
 		if(b){
 			location.href='/user/login';
 		}
+	}
+	function liketop(){
+		const city1 = '${city1}';
+		const city2 = '${city2}';
+		const keyword = '${keyword}';
+		$.ajax({
+			type:"get",
+	        url:"liketop",
+	        dataType:"json",
+	        data:{"city1":city1,"city2":city2,"keyword":keyword},
+	        success:function(res){
+	        	let s="";
+	        	$.each(res,function(idx,ele){
+	        		s+=`<b style="font-size:30px">\${idx+1}&nbsp;&nbsp;&nbsp;\${ele.subject}</b><br>`;
+	        		s+=`<span style="font-size:20px"><span style="display:inline-block;margin-left:50px;width:100px">\${ele.uname}</span>
+	        		|<span style="margin-left:50px;display:inline-block;width:150px">추천수 : \${ele.cblike}</span>조회수 : \${ele.readcount}</span>`;
+	        		s+=`<br>`;
+	        	});
+	        	$("div.ajaxzone").html(s);
+	        }
+		});
+	}
+	function readtop(){
+		const city1 = '${city1}';
+		const city2 = '${city2}';
+		const keyword = '${keyword}';
+		$.ajax({
+			type:"get",
+	        url:"readtop",
+	        dataType:"json",
+	        data:{"city1":city1,"city2":city2,"keyword":keyword},
+	        success:function(res){
+	        	let s="";
+	        	$.each(res,function(idx,ele){
+	        		s+=`<b style="font-size:30px">\${idx+1}&nbsp;&nbsp;&nbsp;\${ele.subject}</b><br>`;
+	        		s+=`<span style="font-size:20px"><span style="display:inline-block;margin-left:50px;width:100px">\${ele.uname}</span>
+	        		|<span style="margin-left:50px;display:inline-block;width:150px">추천수 : \${ele.cblike}</span>조회수 : \${ele.readcount}</span>`;
+	        		s+=`<br>`;
+	        	});
+	        	$("div.ajaxzone").html(s);
+	        }
+		});
 	}
 </script>
 

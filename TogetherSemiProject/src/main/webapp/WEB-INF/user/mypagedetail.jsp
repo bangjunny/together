@@ -18,9 +18,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <style>
+	.photodel, .setmain{
+		cursor:pointer;
+	}
+
+
 	.profile-photo {
-	  width: 300px;
-	  height: 300px;
+	  width: 400px;
+	  height: 400px;
 	  object-fit: cover;
 	}
 	
@@ -32,12 +37,12 @@
 	.showimg{
 	
 	width:250px;
-	
+	object-fit: contain;
 	}
 	
 	.container {
 	  max-width: 1800px;
-	  margin: 20 auto;
+	  margin: 100 100 100 100;
 	  flex : auto;
 	  padding: 40px 20px;
 	  background-color: #fff;
@@ -113,18 +118,17 @@ function list()
                     <!-- 대표사진으로 출력하는 코드 -->
                     <h2>마이 프로필사진</h2>
                     <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo main" alt="대표사진">
-                    <i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}"></i>
+                    <br><br>
+           
                   </div>
                 </c:if>
                 <c:if test="${photo.is_main != 1}">
                   <div class="carousel-item">
                     <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo" alt="포토사진 ${photo.photo_idx}">
-                    <i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}"></i>
-                    <i class="bi bi-award-fill setmain" photo_idx="${photo.photo_idx}"></i>
-                    <form method="post" action="/user/setMainPhoto">
-                      <input type="hidden" name="photo_idx" value="${photo.photo_idx}" id="main">
-                      <button type="submit" class="btn btn-primary" id="setMainBtn">대표 사진으로 지정하기</button>
-                    </form>
+                    <br><br>
+                    <label><i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}">사진 삭제하기</i></label>
+                    <label><i class="bi bi-award-fill setmain" photo_idx="${photo.photo_idx}">대표사진으로 지정하기</i></label>
+                    
                   </div>
                 </c:if>
               </c:forEach>
@@ -139,18 +143,20 @@ function list()
             </button>
           </div>
         </c:when>
-        <c:otherwise>
-          <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
-          <p>프로필 사진을 한장씩 추가할 수 있어요.</p>
-        </c:otherwise>
-      </c:choose>
-	           <!-- Button trigger modal -->           
-					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myphotoModal">
-					  사진 업로드
-					</button>
+	        <c:otherwise>
+	          <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+	          <p>프로필 사진을 한장씩 추가할 수 있어요.</p>
+	        </c:otherwise>
+      	</c:choose>
+	         <!-- Button trigger modal -->           
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myPhotoModal">
+                사진 업로드
+            </button>
 		</div>	
+	</div>	
 		
-    	<div class="text col">
+    	<div class="text col" id="mypageform" style="display: block;">
+    	
         넘버 : ${dto.unum}<br>
         이름 : ${dto.uname}<br>
         생년월일 : ${dto.age}<br>
@@ -162,6 +168,24 @@ function list()
         가입일 : <fmt:formatDate value="${dto.joinday}" pattern="yyyy-MM-dd HH:mm"/><br>
         <br>
     	</div>
+    	
+    	<div class="text col" id="mypageupdate">
+    		<!-- 마이페이지 수정폼 -->
+    		마이페이지 수정
+    		<button id="mypageupdatebtn">마이페이지 수정하기</button>
+    		<div id="mypageupdateform" style="display: none;">
+    		<%@include file="mypageupdate.jsp" %>
+    		</div>
+    	</div>
+    		<script type="text/javascript">
+				$("#mypageupdatebtn").click(function() {
+					$("#mypageform").css("display", "none");
+					$("#mypageupdateform").css("display", "block");					
+				});
+				
+			</script>
+    	
+    	   	
    </div> 
 		
 			 <div id="mylist_wrap">
@@ -227,7 +251,7 @@ function list()
 
 <hr>
 <div class="Container Photo">
-
+<form action="/user/mypageinsert" method="post" enctype="multipart/form-data">
 	<!-- 사진 변경 모달 -->
 	<div class="modal" id="myPhotoModal">
 	  <div class="modal-dialog modal-sm">
@@ -252,7 +276,10 @@ function list()
 			          </c:otherwise>
 			      </c:choose>
 			   	 
-			   	 	<div class="mb-3">			        
+			   	 	<div class="mb-3">
+			         <!-- 카메라 모양 -->
+			        <i class="bi bi-camera-fill update-photo"
+			        style="font-size: 26px;cursor: pointer;"></i>
 			        <!-- 파일 업로드 태그 -->
 				      <label for="photoInput" class="form-label">사진 선택</label>
 				      <input class="form-control" type="file" id="upload" name="upload">
@@ -267,7 +294,7 @@ function list()
 	    </div>
 	  </div> 
 	 </div>
-
+</form>
 </div> 
 <script type="text/javascript">
 $("#upload").change(function(){
@@ -291,25 +318,23 @@ $("#upload").change(function(){
 
 
 $(document).ready(function() {
-  $('#submitBtn').click(function() {
-    var formData = new FormData($('form')[0]);
+	  $('#submitBtn').click(function() {
+	    var formData = new FormData($('form')[0]);
 
-    $.ajax({
-      url: "/user/mypageinsert",
-      type: 'POST',
-      data: formData,
-      async: false,
-      success: function (data) {
-    	 alert("사진이 업로드 되었습니다") 
-        console.log(data);
-        window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
-      },
-      cache: false,
-      contentType: false,
-      processData: false
-    });
-
-  });
+	    $.ajax({
+	      url: "/user/mypageinsert",
+	      type: 'POST',
+	      data: formData,
+	      async: false,
+	      success: function (data) {
+	        console.log(data);
+	        window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
+	      },
+	      cache: false,
+	      contentType: false,
+	      processData: false
+	    });
+	  });    
 });
 
 //x아이콘 이벤트		
@@ -337,17 +362,17 @@ $(document).on("click",".photodel",function(e){
 $(document).on("click",".setmain",function(e){
 	
 	console.log('click');
-	let b=confirm("해당 사진을 대표사진으로 선택하시겠습니까?");
+	let m=confirm("해당 사진을 대표사진으로 선택하시겠습니까?");
 	if(m){
 		let photo_idx=$(this).attr("photo_idx");
 		//alert(photo_idx);
 		$.ajax({
 			type:"get",
-			url:"/user/setMainPhoto",
+			url:"/user/updatephoto",
 			data:{"photo_idx":photo_idx},
 			dataType:"text",
 			success:function(){
-				alert("삭제되었습니다");
+				alert("성공적으로 사진이 바뀌었습니다");
 				window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
 				
 			}

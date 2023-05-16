@@ -201,20 +201,20 @@ public class LoginController {
 		    return "/main/user/myjjimlist";
 	   	  }
 	 
-	 
-		@PostMapping("/setMainPhoto")
-		public String SetMainPhoto(@RequestParam int photo_idx, HttpSession session) {
-		    try {
-		       
-		        loginMapper.updateMainphoto(photo_idx);
-
-		        return "redirect:mypage";
-		    } catch (Exception e) {
-		        e.printStackTrace();
-		        // 에러 발생 시 alert 창 띄우기
-		        return "redirect:mypage?result=error";
-		    }
-		}
+//	 
+//		@PostMapping("/setMainPhoto")
+//		public String SetMainPhoto(@RequestParam int photo_idx, HttpSession session) {
+//		    try {
+//		       
+//		        loginMapper.updateMainphoto(photo_idx);
+//
+//		        return "redirect:mypage";
+//		    } catch (Exception e) {
+//		        e.printStackTrace();
+//		        // 에러 발생 시 alert 창 띄우기
+//		        return "redirect:mypage?result=error";
+//		    }
+//		}
 		
 	@PostMapping("/mypageinsert")
 	public String insertMyPhoto(UserPhotoDto pdto, MultipartFile upload, HttpSession session) {
@@ -248,6 +248,14 @@ public class LoginController {
 		storageService.deleteFile(bucketName, "userphoto", photoname);
 		//db 에서도 삭제
 		loginService.deletePhoto(photo_idx);
+	}
+	
+	@GetMapping("/updatephoto")
+	@ResponseBody public void updatePhoto(int photo_idx)
+	{
+		
+
+        loginMapper.updateMainphoto(photo_idx);
 	}
 
 	@GetMapping("/otherlogin")

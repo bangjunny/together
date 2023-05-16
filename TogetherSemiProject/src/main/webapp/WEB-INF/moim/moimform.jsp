@@ -18,8 +18,13 @@
 		font-family: 'Jua'
 	}
 	table {
-		position: absolute;
-		margin-left: 200px;
+		margin:50px auto 0 auto;
+	}
+	#showimg{
+	width: 200px;
+	height:200px; 
+	margin-top:100px;
+	border-radius:100px;
 	}
 	.mainlayout .main{
 		width: 100%;
@@ -43,8 +48,7 @@
 </script>
 <body>
 <!-- 이미지 출력할곳 -->
-<img id="showimg"
-style="width: 200px; height:200px; border-radius:200px">
+<img id="showimg">
 
 <div id="tableform" style="width:700px" >
 	<form action="insert" method="post" enctype="multipart/form-data" id="moimform">
@@ -219,16 +223,6 @@ style="width: 200px; height:200px; border-radius:200px">
 			</td>
 		</tr>
 		<tr>
-			<td>공개 여부</td>
-			<td>
-				<label>
-					<input type="radio" name="open" value="공개">공개</input>
-					&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="open" value="비공개">비공개</input>
-				</label>
-			</td>
-		</tr>
-		<tr>
 			<td colspan="2" align="center">
 				<button type="submit" class="btn btn-outline-success" id="btnsubmit">만들기</button>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -267,16 +261,6 @@ form.addEventListener('submit', function(event) {
     alert('카테고리를 선택해주세요');
   }
 });
-
-
-form.addEventListener('submit', (event) => {
-  const radioButton = document.querySelector('input[name="open"]:checked');
-  if (!radioButton) {
-    event.preventDefault();
-    alert('공개 여부를 선택해주세요.');
-  }
-});
-
 
 form.addEventListener('submit', function(event) {
 	const cityInput=document.querySelector('#city');

@@ -2,7 +2,7 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
-
+<%@ include file="../commonvar.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +18,13 @@
 		font-family: 'Jua'
 	}
 	table {
-		position: absolute;
-		margin-left: 200px;
+		margin:50px auto 0 auto;
+	}
+	#showimg{
+	width: 200px;
+	height:200px; 
+	margin-top:100px;
+	border-radius:100px;
 	}
 	.mainlayout .main{
 		width: 100%;
@@ -43,8 +48,7 @@
 </script>
 <body>
 <!-- 이미지 출력할곳 -->
-<img id="showimg" src="https://${imageUrl}/moim/${dto.mphoto}"
-style="width: 200px; height:200px; border-radius:200px">
+<img id="showimg" src="https://${imageUrl}/moim/${dto.mphoto}" value=${dto.mphoto}>
 
 <div id="tableform" style="width:700px" >
 	<form action="update" method="post" enctype="multipart/form-data" id="moimform">
@@ -71,29 +75,12 @@ style="width: 200px; height:200px; border-radius:200px">
 		<tr>
 			<td>지역</td>
 			<td>
-               		<select id = "city" name="city1">
-               			<option hidden>시, 도 선택</option>
-	               		<option value="서울특별시">서울특별시</option>
-	               		<option value="부산광역시">부산광역시</option>
-	               		<option value="대구광역시">대구광역시</option>
-	               		<option value="인천광역시">인천광역시</option>
-	               		<option value="광주광역시">광주광역시</option>
-	               		<option value="대전광역시">대전광역시</option>
-	               		<option value="울산광역시">울산광역시</option>
-	               		<option value="세종특별자치시">세종특별자치시</option>
-	               		<option value="경기도">경기도</option>
-	               		<option value="강원도">강원도</option>
-	               		<option value="충청북도">충청북도</option>
-	               		<option value="충청남도">충청남도</option>
-	               		<option value="전라북도">전라북도</option>
-	               		<option value="전라남도">전라남도</option>
-	               		<option value="경상북도">경상북도</option>
-	               		<option value="경상남도">경상남도</option>
-	               		<option value="제주특별자치도">제주특별자치도</option>
+               		<select id = "city" name="city1" disabled="disabled">
+               			<option>${dto.city1}</option>
                		</select>
                		
-               		 <select id="district" name="city2">
-      					<option>시, 군, 구 선택</option>
+               		 <select id="district" name="city2" disabled="disabled">
+      					<option>${dto.city2}</option>
    					</select>
 
    					<script>
@@ -203,8 +190,8 @@ style="width: 200px; height:200px; border-radius:200px">
 				<h7>선택한 <br>카테고리</h7>
 			</td>
 			<td>
-				<div type="text" id="selcategory"></div>
-				<input type="hidden" class="selcategory" name="category" value="${udto.category}">
+				<div type="text" id="selcategory">${dto.category}</div>
+				<input type="hidden" class="selcategory" name="category" value="${dto.category}">
 			</td>
 		</tr>
 		<tr>
@@ -221,18 +208,8 @@ style="width: 200px; height:200px; border-radius:200px">
 			</td>
 		</tr>
 		<tr>
-			<td>공개 여부</td>
-			<td>
-				<label>
-					<input type="radio" name="open" value="공개">공개</input>
-					&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="open" value="비공개">비공개</input>
-				</label>
-			</td>
-		</tr>
-		<tr>
 			<td colspan="2" align="center">
-				<button type="submit" class="btn btn-outline-success" id="btnsubmit">수정하기</button>
+				<button type="submit" class="btn btn-outline-success" id="btnsubmit">수정</button>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<button type="button" class="btn btn-outline-danger" onclick="history.back()">취소</button>
 			</td>
@@ -269,16 +246,6 @@ form.addEventListener('submit', function(event) {
     alert('카테고리를 선택해주세요');
   }
 });
-
-
-form.addEventListener('submit', (event) => {
-  const radioButton = document.querySelector('input[name="open"]:checked');
-  if (!radioButton) {
-    event.preventDefault();
-    alert('공개 여부를 선택해주세요.');
-  }
-});
-
 
 form.addEventListener('submit', function(event) {
 	const cityInput=document.querySelector('#city');

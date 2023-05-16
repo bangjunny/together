@@ -335,11 +335,11 @@ div>img {
 		<c:choose>
 			<c:when test="${category ne null and city1 ne null and city2 ne null and sort eq 'mcount'}">
 				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					style="width: 900px;margin-top: 50px; font-size: 20px; text-align:center;">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?category=${category}&city1=${city1}&city2=${city2}&sort=mcount&currentPage=${startPage-1}">이전</a>
+							href="moimlist?category=${category}&city1=${city1}&city2=${city2}&sort=mcount&currentPage=${startPage-1}"><i class="bi bi-caret-left-fill"></i></a>
 					</c:if>
 					&nbsp;
 					<!-- 페이지 번호 출력 -->
@@ -358,17 +358,17 @@ div>img {
 					<!-- 다음 -->
 					<c:if test="${endPage<totalPage}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?category=${category}&city1=${city1}&city2=${city2}&sort=mcount&currentPage=${endPage+1}">다음</a>
+							href="moimlist?category=${category}&city1=${city1}&city2=${city2}&sort=mcount&currentPage=${endPage+1}"><i class="bi bi-caret-right-fill"></i></a>
 					</c:if>
 				</div>
 			</c:when>
 			<c:when test="${category ne null and city1 ne null and city2 ne null and sort eq null}">
 				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					style="width: 900px;margin-top: 50px; font-size: 20px;text-align:center;">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?category=${category}&city1=${city1}&city2=${city2}&currentPage=${startPage-1}">이전</a>
+							href="moimlist?category=${category}&city1=${city1}&city2=${city2}&currentPage=${startPage-1}"><i class="bi bi-caret-left-fill"></i></a>
 					</c:if>
 					&nbsp;
 					<!-- 페이지 번호 출력 -->
@@ -387,17 +387,17 @@ div>img {
 					<!-- 다음 -->
 					<c:if test="${endPage<totalPage}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?category=${category}&city1=${city1}&city2=${city2}&currentPage=${endPage+1}">다음</a>
+							href="moimlist?category=${category}&city1=${city1}&city2=${city2}&currentPage=${endPage+1}"><i class="bi bi-caret-right-fill"></i></a>
 					</c:if>
 				</div>
 			</c:when>
 			<c:when test="${category ne null and city1 ne null and city2 eq null and sort eq 'mcount'}">
 				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					style="width: 900px;margin-top: 50px; font-size: 20px;text-align:center;">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?category=${category}&city1=${city1}&sort=mcount&currentPage=${startPage-1}">이전</a>
+							href="moimlist?category=${category}&city1=${city1}&sort=mcount&currentPage=${startPage-1}"><i class="bi bi-caret-left-fill"></i></a>
 					</c:if>
 					&nbsp;
 					<!-- 페이지 번호 출력 -->
@@ -416,17 +416,17 @@ div>img {
 					<!-- 다음 -->
 					<c:if test="${endPage<totalPage}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?category=${category}&city1=${city1}&sort=mcount&currentPage=${endPage+1}">다음</a>
+							href="moimlist?category=${category}&city1=${city1}&sort=mcount&currentPage=${endPage+1}"><i class="bi bi-caret-right-fill"></i></a>
 					</c:if>
 				</div>
 			</c:when>
 			<c:when test="${category ne null and city1 ne null and city2 eq null and sort eq null}">
 				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					style="width: 900px;margin-top: 50px; font-size: 20px;text-align:center;">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?category=${category}&city1=${city1}&currentPage=${startPage-1}">이전</a>
+							href="moimlist?category=${category}&city1=${city1}&currentPage=${startPage-1}"><i class="bi bi-caret-left-fill"></i></a>
 					</c:if>
 					&nbsp;
 					<!-- 페이지 번호 출력 -->
@@ -445,17 +445,17 @@ div>img {
 					<!-- 다음 -->
 					<c:if test="${endPage<totalPage}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?category=${category}&city1=${city1}&currentPage=${endPage+1}">다음</a>
+							href="moimlist?category=${category}&city1=${city1}&currentPage=${endPage+1}"><i class="bi bi-caret-right-fill"></i></a>
 					</c:if>
 				</div>
 			</c:when>
 			<c:when test="${category ne null and city1 eq null and city2 eq null and sort eq 'mcount'}">
 				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					style="width: 900px;margin-top: 50px; font-size: 20px;text-align:center;">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?category=${category}&sort=mcount&currentPage=${startPage-1}">이전</a>
+							href="moimlist?category=${category}&sort=mcount&currentPage=${startPage-1}"><i class="bi bi-caret-left-fill"></i></a>
 					</c:if>
 					&nbsp;
 					<!-- 페이지 번호 출력 -->
@@ -474,17 +474,17 @@ div>img {
 					<!-- 다음 -->
 					<c:if test="${endPage<totalPage}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?category=${category}&sort=mcount&currentPage=${endPage+1}">다음</a>
+							href="moimlist?category=${category}&sort=mcount&currentPage=${endPage+1}"><i class="bi bi-caret-right-fill"></i></a>
 					</c:if>
 				</div>
 			</c:when>
 			<c:when test="${category ne null and city1 eq null and city2 eq null and sort eq null}">
 				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					style="width: 900px;margin-top: 50px; font-size: 20px;text-align:center;">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?category=${category}&currentPage=${startPage-1}">이전</a>
+							href="moimlist?category=${category}&currentPage=${startPage-1}"><i class="bi bi-caret-left-fill"></i></a>
 					</c:if>
 					&nbsp;
 					<!-- 페이지 번호 출력 -->
@@ -503,17 +503,17 @@ div>img {
 					<!-- 다음 -->
 					<c:if test="${endPage<totalPage}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?category=${category}&currentPage=${endPage+1}">다음</a>
+							href="moimlist?category=${category}&currentPage=${endPage+1}"><i class="bi bi-caret-right-fill"></i></a>
 					</c:if>
 				</div>
 			</c:when>
 			<c:when test="${category eq null and city1 ne null and city2 eq null and sort eq 'mcount'}">
 				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					style="width: 900px;margin-top: 50px; font-size: 20px;text-align:center;">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?city1=${city1}&sort=mcount&currentPage=${startPage-1}">이전</a>
+							href="moimlist?city1=${city1}&sort=mcount&currentPage=${startPage-1}"><i class="bi bi-caret-left-fill"></i></a>
 					</c:if>
 					&nbsp;
 					<!-- 페이지 번호 출력 -->
@@ -532,17 +532,17 @@ div>img {
 					<!-- 다음 -->
 					<c:if test="${endPage<totalPage}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?city1=${city1}&sort=mcount&currentPage=${endPage+1}">다음</a>
+							href="moimlist?city1=${city1}&sort=mcount&currentPage=${endPage+1}"><i class="bi bi-caret-right-fill"></i></a>
 					</c:if>
 				</div>
 			</c:when>
 			<c:when test="${category eq null and city1 ne null and city2 eq null and sort eq null}">
 				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					style="width: 900px;margin-top: 50px; font-size: 20px;text-align:center;">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?city1=${city1}&currentPage=${startPage-1}">이전</a>
+							href="moimlist?city1=${city1}&currentPage=${startPage-1}"><i class="bi bi-caret-left-fill"></i></a>
 					</c:if>
 					&nbsp;
 					<!-- 페이지 번호 출력 -->
@@ -561,17 +561,17 @@ div>img {
 					<!-- 다음 -->
 					<c:if test="${endPage<totalPage}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?city1=${city1}&currentPage=${endPage+1}">다음</a>
+							href="moimlist?city1=${city1}&currentPage=${endPage+1}"><i class="bi bi-caret-right-fill"></i></a>
 					</c:if>
 				</div>
 			</c:when>
 			<c:when test="${category eq null and city1 ne null and city2 ne null and sort eq 'mcount'}">
 				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					style="width: 900px;margin-top: 50px; font-size: 20px;text-align:center;">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?city1=${city1}&city2=${city2}&sort=mcount&currentPage=${startPage-1}">이전</a>
+							href="moimlist?city1=${city1}&city2=${city2}&sort=mcount&currentPage=${startPage-1}"><i class="bi bi-caret-left-fill"></i></a>
 					</c:if>
 					&nbsp;
 					<!-- 페이지 번호 출력 -->
@@ -590,17 +590,17 @@ div>img {
 					<!-- 다음 -->
 					<c:if test="${endPage<totalPage}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?city1=${city1}&city2=${city2}&sort=mcount&currentPage=${endPage+1}">다음</a>
+							href="moimlist?city1=${city1}&city2=${city2}&sort=mcount&currentPage=${endPage+1}"><i class="bi bi-caret-right-fill"></i></a>
 					</c:if>
 				</div>
 			</c:when>
 			<c:when test="${category eq null and city1 ne null and city2 ne null and sort eq null}">
 				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					style="width: 900px;margin-top: 50px; font-size: 20px;text-align:center;">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?city1=${city1}&city2=${city2}&currentPage=${startPage-1}">이전</a>
+							href="moimlist?city1=${city1}&city2=${city2}&currentPage=${startPage-1}"><i class="bi bi-caret-left-fill"></i></a>
 					</c:if>
 					&nbsp;
 					<!-- 페이지 번호 출력 -->
@@ -619,17 +619,17 @@ div>img {
 					<!-- 다음 -->
 					<c:if test="${endPage<totalPage}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?city1=${city1}&city2=${city2}&currentPage=${endPage+1}">다음</a>
+							href="moimlist?city1=${city1}&city2=${city2}&currentPage=${endPage+1}"><i class="bi bi-caret-right-fill"></i></a>
 					</c:if>
 				</div>
 			</c:when>
 			<c:when test="${category eq null and city1 eq null and city2 eq null and sort eq 'mcount'}">
 				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					style="width: 900px;margin-top: 50px; font-size: 20px;text-align:center;">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?sort=mcount&currentPage=${startPage-1}">이전</a>
+							href="moimlist?sort=mcount&currentPage=${startPage-1}"><i class="bi bi-caret-left-fill"></i></a>
 					</c:if>
 					&nbsp;
 					<!-- 페이지 번호 출력 -->
@@ -648,17 +648,17 @@ div>img {
 					<!-- 다음 -->
 					<c:if test="${endPage<totalPage}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?sort=mcount&currentPage=${endPage+1}">다음</a>
+							href="moimlist?sort=mcount&currentPage=${endPage+1}"><i class="bi bi-caret-right-fill"></i></a>
 					</c:if>
 				</div>
 			</c:when>
 			<c:when test="${category eq null and city1 eq null and city2 eq null and sort eq null}">
 				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					style="width: 900px;margin-top: 50px; font-size: 20px;text-align:center;">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?currentPage=${startPage-1}">이전</a>
+							href="moimlist?currentPage=${startPage-1}"><i class="bi bi-caret-left-fill"></i></a>
 					</c:if>
 					&nbsp;
 					<!-- 페이지 번호 출력 -->
@@ -677,17 +677,17 @@ div>img {
 					<!-- 다음 -->
 					<c:if test="${endPage<totalPage}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?currentPage=${endPage+1}">다음</a>
+							href="moimlist?currentPage=${endPage+1}"><i class="bi bi-caret-right-fill"></i></a>
 					</c:if>
 				</div>
 			</c:when>			
 			<c:otherwise>
 				<div
-					style="width: 900px; margin-left: 640px; margin-top: 50px; font-size: 20px;">
+					style="width: 900px;margin-top: 50px; font-size: 20px;text-align:center;">
 					<!-- 이전 -->
 					<c:if test="${startPage>1}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?currentPage=${startPage-1}">이전</a>
+							href="moimlist?currentPage=${startPage-1}"><i class="bi bi-caret-left-fill"></i></a>
 					</c:if>
 					&nbsp;
 					<!-- 페이지 번호 출력 -->
@@ -706,7 +706,7 @@ div>img {
 					<!-- 다음 -->
 					<c:if test="${endPage<totalPage}">
 						<a style="color: black; text-decoration: none; cursor: pointer;"
-							href="moimlist?currentPage=${endPage+1}">다음</a>
+							href="moimlist?currentPage=${endPage+1}"><i class="bi bi-caret-right-fill"></i></a>
 					</c:if>
 				</div>
 			</c:otherwise>

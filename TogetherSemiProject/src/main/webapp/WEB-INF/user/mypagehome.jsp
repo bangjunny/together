@@ -137,7 +137,7 @@
 				 			
 		<div>
 		<button type="button" class="btn btn-outline-success btn-sm"
-		style="width: 200px;" onclick="location.href='login'">모임리스트</button>
+		style="width: 200px;" onclick="location.href='/moim/moimlist'">모임리스트</button>
 		<button type="button" class="btn btn-outline-success btn-sm"
 		style="width: 200px;" onclick="location.href='mypagelist'">마이페이지리스트</button>
 		

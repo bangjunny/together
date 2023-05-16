@@ -24,6 +24,10 @@ public interface LoginServiceInter {
 	public String getSelectPhoto(int photo_idx);
 
 	public void deletePhoto(int photo_idx);
+
+	public boolean mypagePassCheck(int unum, String pass);
+
+	public void updateMypage(UserDto dto);
 	
 
 	

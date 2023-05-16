@@ -117,7 +117,20 @@ public class LoginService implements LoginServiceInter{
 		// TODO Auto-generated method stub
 		loginMapper.deletePhoto(photo_idx);
 	}
-
+	@Override
+	public boolean mypagePassCheck(int unum, String pass) {
+		Map<String, Object> map=new HashMap<>();
+		map.put("unum", unum);
+		map.put("pass", pass);
+		//비번이 맞으면 1->true반환, 틀리면 0->false반환
+		boolean pck=loginMapper.mypagePassCheck(map)==0?false:true;
+		return pck;
+	}
+	@Override
+	public void updateMypage(UserDto dto) {
+		// TODO Auto-generated method stub
+		loginMapper.updateMypage(dto);
+	}
 
 	
 

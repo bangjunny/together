@@ -24,6 +24,18 @@
 	</select>
 	
 <!-- 마이페이지 -->
+	<update id="updateMypage">
+		update user 
+		set hp=#{hp}
+		<if test="city1!=''">
+			,city1=#{city1},city2=#{city2}
+		</if>
+		
+		where unum=#{unum}
+	</update>
+	<select id="mypagePassCheck" parameterType="Map" resultType="int">
+		select count(*) from user where unum=#{unum} and pass=#{pass}
+	</select>
 	<select id="getMyMoimList" resultType="MoimDto">
 		select * from moim where unum=#{unum}
 	</select>

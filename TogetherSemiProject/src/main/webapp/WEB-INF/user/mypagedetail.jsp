@@ -162,7 +162,7 @@ function list()
         생년월일 : ${dto.age}<br>
         성별 : ${dto.gender}<br>
         이메일 : ${dto.email}<br>
-        비밀번호 : ${dto.pass}<br>
+        관심카테고리 : ${dto.category}<br>
         전화번호 : ${dto.hp}<br>
         지역 : ${dto.city1} &nbsp; ${dto.city2}<br>
         가입일 : <fmt:formatDate value="${dto.joinday}" pattern="yyyy-MM-dd HH:mm"/><br>
@@ -174,7 +174,7 @@ function list()
     		마이페이지 수정
     		<button id="mypageupdatebtn">마이페이지 수정하기</button>
     		<div id="mypageupdateform" style="display: none;">
-    		<%@include file="mypageupdate.jsp" %>
+    		<%@include file="mypageupdatecheck.jsp" %>
     		</div>
     	</div>
     		<script type="text/javascript">

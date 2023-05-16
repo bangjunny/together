@@ -145,7 +145,7 @@ public class LoginController {
 	public String mypage(HttpSession session, Model model) {
 	    Integer loginUserUnum = (Integer) session.getAttribute("unum"); // 로그인한 사용자의 unum 값 가져오기
 	    if (loginUserUnum == null) {
-	        return "redirect:/login"; // 로그인하지 않은 사용자는 로그인 페이지로 이동
+	        return "redirect:/user/login"; // 로그인하지 않은 사용자는 로그인 페이지로 이동
 	    } else {
 	        return "redirect:/user/mypagedetail?unum=" + loginUserUnum; // 로그인한 사용자는 자신의 mypagedetail 페이지로 이동
 	    }
@@ -254,9 +254,45 @@ public class LoginController {
 	@ResponseBody public void updatePhoto(int photo_idx)
 	{
 		
-
         loginMapper.updateMainphoto(photo_idx);
 	}
+	@PostMapping("/mypagePassCheck")
+	public String mypagepasscheck(@RequestParam String pass,HttpSession session)
+	{
+		int unum = (int) session.getAttribute("unum"); // 세션에서 unum 값 가져오기
+		
+		boolean pck=loginService.mypagePassCheck(unum, pass);
+		if(pck) {
+			return "redirect:/user/mypageupdateform?unum=" + unum;			
+		}else {
+			 return "error";
+		}
+		
+	}
+	@GetMapping("/mypageupdateform")
+	public String mypageupdateform(@RequestParam("unum") int unum,Model model)
+	{
+		// 로그인한 사용자 아이디를 가져옵니다.
+	    UserDto dto = loginMapper.getMypage(unum);
+	    if (dto == null) {
+	        // 해당 유저를 찾을 수 없는 경우 에러 페이지 등을 보여줄 수 있습니다.
+	        return "error";
+	    }
+
+	    model.addAttribute("dto", dto);
+	    return "/main/user/mypageupdateform";
+	}
+	
+	@PostMapping("/updatemypage")
+	public String update(UserDto dto)
+	{		
+		//수정
+		loginService.updateMypage(dto);
+		
+		//수정후 내용보기로 이동한다
+		return "redirect:/user/mypagedetail?unum="+dto.getUnum();
+	}
+	
 
 	@GetMapping("/otherlogin")
 	@ResponseBody

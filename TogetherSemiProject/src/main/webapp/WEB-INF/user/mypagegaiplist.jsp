@@ -64,7 +64,7 @@
                         <td>${moim.city1}</td>
                         <td>${moim.city2}</td>
                         <td>${moim.mcontent}</td>
-                        <td><a href="/moim/moimdetail?mnum=${moim.mnum}" class="btn btn-primary">자세히보기</a></td> --%>
+                        <td><a href="/moim/moimdetail?mnum=${moim.mnum}&mname=${moim.mname}" class="btn btn-primary">자세히보기</a></td> --%>
                     </tr>
                 </c:forEach>
             </tbody>

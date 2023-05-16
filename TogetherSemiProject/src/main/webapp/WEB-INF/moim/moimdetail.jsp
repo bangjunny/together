@@ -110,6 +110,8 @@
 		<span style="float: left; color:black; font-size:16px;">모임장 : ${uname} </span>
 		
 		<br>
+		<span style="float: left; color:black; font-size:16px;">unum : ${unum} </span>
+		<br>
 		</div>
 		
 		<hr>

@@ -54,8 +54,8 @@
 </head>
 
 <body>
-<h1>지역 게시판</h1>
-
+<br>
+<br>
 <div style="float:left;">
    <%-- <c:choose>
       <c:when test="${dto.uphoto==null}">
@@ -68,7 +68,7 @@
       </c:otherwise>
    </c:choose> --%>
 </div>
-      <h4>${udto.uname}님이 작성 중입니다</h4>
+
 <div class="container">
         <br>
         <input type="text" class="form-control" id="subject" name="subject" style="width: 100%" value="${cbdto.subject}">

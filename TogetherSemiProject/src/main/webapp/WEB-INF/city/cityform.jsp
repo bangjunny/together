@@ -53,7 +53,8 @@
     </style>
 </head>
 <body>
-<h1>지역 게시판</h1>
+<br>
+<br>
 
 <div style="float:left;">
 	<%-- <c:choose>
@@ -67,7 +68,6 @@
 		</c:otherwise>
 	</c:choose> --%>
 </div>
-      <h4>${dto.uname}님이 작성 중입니다</h4>
 <div class="container">
         <br>
         <input type="text" class="form-control" id="subject" name="subject" placeholder="제목을 입력해주세요" style="width: 100%">

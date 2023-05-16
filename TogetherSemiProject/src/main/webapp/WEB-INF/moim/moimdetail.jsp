@@ -222,6 +222,7 @@
 	</div>
 	<script type="text/javascript">
 	const mnum = ${dto.mnum};
+	const mname= '${dto.mname}';
 		
 		
 	function updateJjimcount(){
@@ -275,7 +276,7 @@
 			      url: "moimgaip",
 			      dataType: "text",
 			      data: {
-			        mnum: mnum,
+			        mname: mname,
 			        unum: unum
 			      },
 			      success: function(res) {
@@ -301,7 +302,7 @@
 			      url: "deletegaip",
 			      dataType: "text",
 			      data: {
-			        mnum: mnum,
+			        mname: mname,
 			        unum: unum
 			      },
 			      success: function(res) {
@@ -314,14 +315,14 @@
 			
 			}
 	
-	function acceptGaip(unum){
-	
+	function acceptGaip(unum){	
+		
 	$.ajax({
 		type:"get",
 		url:"acceptgaip",
 		dataType:"text",
 		   data: {
-			      mnum: mnum,
+			      mname: mname,
 			      unum: unum
 			    },
 		success:function(res){
@@ -339,7 +340,7 @@
 			url:"deniedgaip",
 			dataType:"text",
 			   data: {
-				      mnum: mnum,
+				      mname: mname,
 				      unum: unum
 				    },
 			success:function(res){
@@ -364,7 +365,7 @@
 			      url: "moimout",
 			      dataType: "text",
 			      data: {
-			        mnum: mnum,
+			        mname: mname,
 			        unum: unum
 			      },
 			      success: function(res) {

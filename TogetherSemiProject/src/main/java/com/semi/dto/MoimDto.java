@@ -19,7 +19,6 @@ public class MoimDto {
 	private String category;
 	private String mcontent;
 	private Timestamp createday;
-	private String open;
 	private String mcount;
 	private String sort;
 }

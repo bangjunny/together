@@ -213,7 +213,7 @@
 		</c:if>
 	</div>
 	<script type="text/javascript">
-		const mnum = ${dto.mnum};
+	const mnum = ${dto.mnum};
 		
 		
 	function updateJjimcount(){

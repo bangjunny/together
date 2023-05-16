@@ -45,7 +45,7 @@
 
 	<div class="footer">
 		<div class="footer_wrap">
-			<h2>TOGETHER</h2>
+			<h2 onclick="location.href='/'" style="cursor: pointer">TOGETHER</h2>
 			<div class="footer_bot_txt">
 			<p>
 			<span>서울특별시 강남구 819 3 삼오빌딩 7층 701호 </span>

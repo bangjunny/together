@@ -45,6 +45,10 @@ public interface LoginMapper {
 	public void updateMainphoto(int photo_idx);
 	
 	public void updateOtherphoto(int unum);
+	public String getSelectPhoto(int photo_idx);
+	public void deletePhoto(int photo_idx);
+	public int mypagePassCheck(Map<String, Object> map);
+	public void updateMypage(UserDto dto);
 
 	
 }

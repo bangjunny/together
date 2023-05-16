@@ -18,6 +18,17 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <style>
+	.profile-photo {
+	  width: 300px;
+	  height: 300px;
+	  object-fit: cover;
+	}
+	
+	.profile-photo.main {
+	  border-radius: 50%;
+	  object-fit: contain;
+	}
+	
 	.showimg{
 	
 	width:250px;
@@ -88,9 +99,6 @@ function list()
 }
 </script>
 <body>
-
-
-
 <div class="container text-center">
   <div class="row">
     <div class="card col">
@@ -99,22 +107,26 @@ function list()
         <c:when test="${not empty photoList}">
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-              <div class="carousel-item active">
-              
-              </div>
-             <c:forEach var="photo" items="${photoList}">
-                <div class="carousel-item">
-                <h2>포토사진 ${photo.photo_idx}</h2>
-                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="d-block w-100" alt="포토사진 ${photo.photo_idx}"> 
-              		  <form method="post" action="/user/setMainPhoto">
+              <c:forEach var="photo" items="${photoList}">
+                <c:if test="${photo.is_main == 1}">
+                  <div class="carousel-item active">
+                    <!-- 대표사진으로 출력하는 코드 -->
+                    <h2>마이 프로필사진</h2>
+                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo main" alt="대표사진">
+                  </div>
+                </c:if>
+                <c:if test="${photo.is_main != 1}">
+                  <div class="carousel-item">
+                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo" alt="포토사진 ${photo.photo_idx}">
+                    <form method="post" action="/user/setMainPhoto">
                       <input type="hidden" name="photo_idx" value="${photo.photo_idx}" id="main">
                       <button type="submit" class="btn btn-primary" id="setMainBtn">대표 사진으로 지정하기</button>
                     </form>
-              
-              </div>
+                  </div>
+                </c:if>
               </c:forEach>
             </div>
-             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
             </button>
@@ -128,11 +140,11 @@ function list()
           <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
           <p>프로필 사진을 한장씩 추가할 수 있어요.</p>
         </c:otherwise>
-      </c:choose>  
-            <!-- Button trigger modal -->           
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myPhotoModal">
-                사진 업로드
-            </button>
+      </c:choose>
+	           <!-- Button trigger modal -->           
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myphotoModal">
+					  사진 업로드
+					</button>
 		</div>	
 		
     	<div class="text col">
@@ -211,7 +223,6 @@ function list()
 </div>	
 
 <hr>
-
 <div class="Container Photo">
 <form action="/user/mypageinsert" method="post" enctype="multipart/form-data">
 	<!-- 사진 변경 모달 -->
@@ -284,7 +295,7 @@ $(document).ready(function() {
     var formData = new FormData($('form')[0]);
 
     $.ajax({
-      url: "/user/mypageup",
+      url: "/user/mypageinsert",
       type: 'POST',
       data: formData,
       async: false,
@@ -299,33 +310,7 @@ $(document).ready(function() {
 
   });
 });
-//setMain 대표사진  버튼 이벤트
-$(document).ready(function() {
-  $('#setMainBtn').click(function() {
-    var formData = new FormData($('form')[0]);
-
-    $.ajax({
-      url: "/user/SetMainPhoto",
-      type: 'POST',
-      data: formData,
-      async: false,
-      success: function (data) {
-        console.log(data);
-        window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
-      },
-      cache: false,
-      contentType: false,
-      processData: false
-    });
-
-  });
-});
-
-
- 
- 
 
 </script>
-
 </body>
 </html>

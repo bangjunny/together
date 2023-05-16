@@ -19,6 +19,6 @@
 </style>
 </head>
 <body>
-
+마이페이지 업데이트
 </body>
 </html>

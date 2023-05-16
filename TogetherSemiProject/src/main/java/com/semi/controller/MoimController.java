@@ -119,9 +119,18 @@ public class MoimController {
 	 
 	  //dto얻기
 	  MoimDto dto=moimService.getData(mnum);
+	  int unum = dto.getUnum();
+	  
+	  
+	  UserDto udto = cityService.getDetailbyunum(unum);
+	  String uname = udto.getUname();
+		model.addAttribute("unum", unum);
+		model.addAttribute("udto", udto);
+		model.addAttribute("uname", uname);
+		
 	  //model
 	  if (session.getAttribute("unum") != null) {
-		  int unum = (int)session.getAttribute("unum");
+		  unum = (int)session.getAttribute("unum");
 		  boolean pressChk = moimService.pressJjim(unum, mnum);
 		  boolean pressGaipChk = moimService.pressGaip(unum, mnum);
 	  

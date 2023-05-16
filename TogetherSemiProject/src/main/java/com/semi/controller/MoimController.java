@@ -115,17 +115,15 @@ public class MoimController {
    }
    
    @GetMapping("/moimdetail")
-   private String moimdetail(int mnum,int unum,Model model,HttpSession session)
+   private String moimdetail(int mnum, Model model, HttpSession session)
    {
 	
 	  //dto얻기
 	  MoimDto dto=moimService.getData(mnum);
 	  
-	  UserDto udto=cityService.getDetailbyunum(unum);
-	  
 	  //model
 	  if (session.getAttribute("unum") != null) {
-		  unum = (int)session.getAttribute("unum");
+		  int unum = (int)session.getAttribute("unum");
 		  boolean pressChk = moimService.pressJjim(unum, mnum);
 		  boolean pressGaipChk = moimService.pressGaip(unum, mnum);
 	  
@@ -143,10 +141,7 @@ public class MoimController {
 	  List<Map<String, Object>> list = moimService.getGaipmemberList(mnum);
 	  model.addAttribute("list", list);
 	  model.addAttribute("dto",dto);
-	  
-	  model.addAttribute("udto",udto);
-	  model.addAttribute("sessionunum",unum);
-	  
+	  	  
       return "/main/moim/moimdetail";
    	  }
    

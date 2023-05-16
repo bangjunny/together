@@ -134,22 +134,11 @@
 		<div style="text-align:center;">
 			<button type="button" class="btn btn-sm btn-outline-secondary"
 				style="width: 70px;" onclick="location.href='./moimlist'">목록</button>
-				<c:choose>
-			 <c:when test="${sessionunum eq udto.unum}">
 			<button type="button" class="btn btn-sm btn-outline-secondary"
 				style="width: 70px;" onclick="location.href='./updateform?mnum=${dto.mnum}'"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
 			<button type="button" class="btn btn-sm btn-outline-secondary" id="delmoim"
 				style="width: 70px;"><i class="bi bi-trash"></i>&nbsp;삭제</button>
-				</c:when>
-				<c:otherwise>
-				<button type="button" class="btn btn-sm btn-outline-secondary" onclick="alert('작성자가 아닙니다')"
-				style="width: 70px;"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
-			<button type="button" class="btn btn-sm btn-outline-secondary" onclick="alert('작성자가 아닙니다')"
-				style="width: 70px;"><i class="bi bi-trash"></i>&nbsp;삭제</button>
-				</c:otherwise>
-				</c:choose>
 		</div>	
-		
 		<script>
 		$(document).on("click", "#delmoim", function() {
 			let b=confirm("삭제를 하려면 [확인]을 눌러주세요");
@@ -160,7 +149,6 @@
 		</script>
 		
 		<hr>
-		
 			<c:if test="${sessionScope.unum != dto.unum }">
 				<div id="moim_resi_wrap">
 					<div id="jjim">

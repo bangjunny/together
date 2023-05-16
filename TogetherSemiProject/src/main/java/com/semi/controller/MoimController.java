@@ -134,9 +134,9 @@ public class MoimController {
 		  unum = (int)session.getAttribute("unum");
 		  boolean pressChk = moimService.pressJjim(unum, mnum);
       
-		  boolean pressGaipChk = moimService.pressGaip(unum, mnum);
+		  boolean pressGaipChk = moimService.pressGaip(unum, mname);
 		  
-		  Integer acceptChk = moimService.acceptChk(unum, mnum);
+		  Integer acceptChk = moimService.acceptChk(unum, mname);
 
 		  model.addAttribute("pressChk", pressChk);
 		  model.addAttribute("pressGaipChk", pressGaipChk);

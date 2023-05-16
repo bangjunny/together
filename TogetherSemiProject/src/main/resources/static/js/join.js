@@ -24,6 +24,8 @@
     
     var error = document.querySelectorAll('.error_next_box');
     
+    var emailcheck = false;
+    
     /*이벤트 핸들러 연결*/
     
     email.addEventListener("input", isEmailCorrect);
@@ -314,6 +316,14 @@
     	    	}
     	    	return;
     	    }
+    	    
+    	    if(emailcheck == false){
+				event.preventDefault();	// 이벤트를 막는 함수
+				if(confirm('인증을 완료해주세요.')){
+					document.getElementById("inn").focus();
+				}
+				return;
+			}
     	});
     	
     
@@ -331,16 +341,61 @@
       });
       
       
-      $("#inem").click(function(){
-		  let inemail = $("#inemail").val();
+      $("#inem").click(function(){	 
+		 let inemail = $("#inemail").val();
+		 
+		 if(inemail=="")
+		 {
+			 alert("인증 이메일을 입력해주세요.")
+			 return;	// return을 쓰거나 else를 써야한다 그러지 않으면 밑에 있는 함수도 실행
+		 }
+		 
+		 // 이메일 중복 확인
 		 $.ajax({
-    		type: "get",
-    		url: "/inemail",
-    		data: {"inemail": inemail},
-    		success: function () {
-    			alert("인증번호");
-    		}
-    	});
+			type: "get",
+			url: "/chemail",
+			data: {"inemail":inemail},	// "" 안에있는 이름으로 controller에 : 뒤에 있는 값을 보낸다
+			success: function(data) {
+				if(data){
+					
+					// 인증번호 보내기	 
+					 $.ajax({
+			    		type: "get",
+			    		url: "/inemail",
+			    		data: {"inemail": inemail},
+			    		success: function () {
+			    			alert("인증번호를 발송했습니다.");
+			    		}
+			    	});	
+				}
+				else{
+					alert("이미 인증 받은 아이디 입니다.");
+				}
+			}
+		 }); 
+	  });
+	  
+	  // 인증 확인
+	  $("#innum").click(function(){
+		  
+		  let code = $("#inn").val();
+		  
+		  $.ajax({
+			 type: "get",
+			 url: "/chcode",
+			 data: {"code":code},
+			 success: function(data){
+				 if(data)
+				 {
+					 alert("인증되었습니다.");
+					 emailcheck=true;
+				 }
+				 else{
+					 alert("인증 번호가 틀렸습니다.")
+					 emailcheck=false;
+				 }
+			 }
+		  });
 	  });
       
       

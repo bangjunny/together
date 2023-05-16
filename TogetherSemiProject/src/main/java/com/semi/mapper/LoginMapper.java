@@ -19,6 +19,7 @@ public interface LoginMapper {
 	public int isEqualPassEmail(Map<String, String> map); // map : email, pass
 	public UserDto selectOneOfEmail(String email);
 	public int overlappedEmail(UserDto dto);
+	public int chEmail(String inemail);	// 인증 이메일 중복
 
 	/*마이페이지*/
 	

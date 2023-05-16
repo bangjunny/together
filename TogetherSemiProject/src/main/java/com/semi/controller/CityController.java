@@ -142,6 +142,7 @@ public class CityController {
 		int totalrenum = cityMapper.getReboardNum();
 		List<CbReBoardDto> listcomment = cityService.getCommentByCbnum(cbnum);
 		CbReBoardDto rdto=new CbReBoardDto();
+		String mainPhoto=cityService.getMainPhoto(unum);
 		
 		String precontent = cityService.preContent(dto);
 		String nxtcontent = cityService.nxtContent(dto);
@@ -166,10 +167,8 @@ public class CityController {
 		model.addAttribute("dto", dto);
 		model.addAttribute("nxtcontent", nxtcontent);
 		model.addAttribute("nxtnum", nxtnum);
-		//System.out.println(nxtcontent);
 		model.addAttribute("precontent", precontent);
 		model.addAttribute("prenum", prenum);
-		//System.out.println(precontent);
 		model.addAttribute("totalCountCity", totalCountCity);
 		model.addAttribute("totalComment", totalComment);
 		model.addAttribute("totalrenum", totalrenum);
@@ -177,6 +176,7 @@ public class CityController {
 		model.addAttribute("step", step);
 		model.addAttribute("depth", depth);
 		model.addAttribute("sessionunum", unum);
+		model.addAttribute("mainPhoto",mainPhoto);
 		
 
 		return "/main/city/CityDetail";

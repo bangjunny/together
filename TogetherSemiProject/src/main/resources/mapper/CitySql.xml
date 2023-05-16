@@ -245,4 +245,7 @@
     <update id="cblikecountminus" parameterType="int">
         update city_board set cblike=cblike-1 where cbnum=#{cbnum}
     </update>
+    <select id="getMainPhoto" parameterType="int" resultType="String">
+    	select file_name from user_photo where unum=#{unum} and is_main=1
+    </select>
 </mapper>

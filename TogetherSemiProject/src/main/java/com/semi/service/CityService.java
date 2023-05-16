@@ -280,5 +280,5 @@ public class CityService implements CityServiceInter {
 		// TODO Auto-generated method stub
 		return cityMapper.cblikecountminus(cbnum);
 	}
-	
+
 }

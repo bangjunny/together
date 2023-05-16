@@ -348,3 +348,17 @@
           $('.selcategory').val(selected);
         });
       });
+      
+      $("#inem").click(function(){
+		  let inemail = $("#inemail").val();
+		 $.ajax({
+    		type: "get",
+    		url: "/inemail",
+    		data: {"inemail": inemail},
+    		success: function () {
+    			alert("인증번호");
+    		}
+    	});
+	  });
+      
+      

@@ -155,11 +155,7 @@ public class CityController {
 		String city2 = dto.getCity2();
 		
 		int cblikecheck = cityService.cblikecheck(unum, cbnum);
-		model.addAttribute("cblikecheck",cblikecheck);
-
-		int cblikecheck = cityService.cblikecheck(unum, cbnum);
-	    model.addAttribute("cblikecheck",cblikecheck);
-		
+		model.addAttribute("cblikecheck",cblikecheck);		
 		model.addAttribute("photocount",photocount);
 		model.addAttribute("pdto",pdto);
 		model.addAttribute("rdto",rdto);

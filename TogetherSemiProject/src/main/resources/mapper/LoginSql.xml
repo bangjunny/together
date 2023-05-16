@@ -3,8 +3,8 @@
 
 
 	<insert id="insertUser" parameterType="UserDto">
-		insert into user (uname,age,gender,email,pass,hp,city1,city2,category,joinday) values
-		(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},#{category},now())
+		insert into user (uname,age,gender,email,pass,hp,city1,city2,category,inemail,joinday) values
+		(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},#{category},#{inemail},now())
 	</insert>
 	
 	<select id="isEqualPassEmail" parameterType="Map" resultType="int">

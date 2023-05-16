@@ -57,7 +57,7 @@
 			<c:choose>
 				<c:when test="${sessionScope.unum ne null }">
 					<span>${sessionScope.uname}</span>
-					<button class="btn btn-light layout_a" onclick="location.href='/moim/moimlist'">마이페이지</button>
+					<button class="btn btn-light layout_a" onclick="location.href='/user/mypage'">마이페이지</button>
 					<button class="btn btn-light layout_a" onclick="location.href='/user/logout'">로그아웃</button>
 				</c:when>
 				<c:otherwise>

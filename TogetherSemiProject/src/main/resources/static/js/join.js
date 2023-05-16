@@ -316,25 +316,6 @@
     	    }
     	});
     	
-    	
-    	
-    /* form.addEventListener('submit', function(event) {
-    	const nameInput=document.querySelector('#uname');
-    	if (nameInput.value == ''){
-    		event.preventDefault();
-    	    alert('이름을 입력해주세요');
-    	    nameInput.focus();
-    	}
-    });
-    
-    form.addEventListener('submit', function(event) {
-    	const genderInput=document.querySelector('#gender');
-    	if (genderInput.value == '성별'){
-    		event.preventDefault();
-    	    alert('성별을 선택해주세요');
-    	    genderInput.focus();
-    	}
-    }); */
     
     $(function() {
         // 체크박스 값이 변경될 때마다 실행되는 함수
@@ -348,6 +329,7 @@
           $('.selcategory').val(selected);
         });
       });
+      
       
       $("#inem").click(function(){
 		  let inemail = $("#inemail").val();

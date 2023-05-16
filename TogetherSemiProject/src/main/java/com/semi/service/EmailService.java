@@ -1,6 +1,6 @@
 package com.semi.service;
 
-import org.apache.ibatis.javassist.Loader.Simple; 
+import org.apache.ibatis.javassist.Loader.Simple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,6 +11,8 @@ public class EmailService {
 	
 	@Autowired
 	JavaMailSender inEmail;		// 자바 메일 기능
+	
+	
 	
 	public void suEmail(String inemail, String code) {
 		

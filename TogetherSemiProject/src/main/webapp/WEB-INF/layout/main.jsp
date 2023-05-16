@@ -241,7 +241,7 @@ $(document).ready(function() {
 	<div id="main_btn_wrap">
 		<c:choose>
 			<c:when test="${sessionScope.unum ne null }">
-				<button type="button" class="btn btn-light layout_a" onclick="location.href='/moim/moimlist'">시작하기</button>
+				<button type="button" class="btn btn-light layout_a" onclick="location.href='/user/mypage'">시작하기</button>
 			</c:when>
 			<c:otherwise>
 				<button type="button" class="btn btn-light" onclick="location.href='/user/login'">시작하기</button>

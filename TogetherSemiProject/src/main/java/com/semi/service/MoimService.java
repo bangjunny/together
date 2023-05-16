@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.semi.dto.MoimDto;
+import com.semi.dto.MoimMemberDto;
 import com.semi.mapper.MoimMapper;
 
 @Service
@@ -32,6 +33,12 @@ public class MoimService implements MoimServiceInter {
    public void insertMoim(MoimDto dto) {
       // TODO Auto-generated method stub
       moimMapper.insertMoim(dto);
+   }
+   
+   @Override
+   public void insertMoimMember(MoimMemberDto mdto) {
+      // TODO Auto-generated method stub
+      moimMapper.insertMoimMember(mdto);
    }
 
    @Override
@@ -103,10 +110,10 @@ public class MoimService implements MoimServiceInter {
    }
 
    @Override
-   public void moimGaip(int unum, int mnum) {
+   public void moimGaip(int unum, String mname) {
       
       Map<String, Object> map = new HashMap<>();
-      map.put("mnum", mnum);
+      map.put("mname", mname);
       map.put("unum", unum);
       
       moimMapper.moimGaip(map);
@@ -114,9 +121,9 @@ public class MoimService implements MoimServiceInter {
    }
 
    @Override
-   public void deleteGaip(int unum, int mnum) {
+   public void deleteGaip(int unum, String mname) {
       Map<String, Object> map = new HashMap<>();
-      map.put("mnum", mnum);
+      map.put("mname", mname);
       map.put("unum", unum);
       
       moimMapper.deleteGaip(map);
@@ -124,9 +131,9 @@ public class MoimService implements MoimServiceInter {
    }
 
    @Override
-   public boolean pressGaip(int unum, int mnum) {
+   public boolean pressGaip(int unum, String mname) {
       Map<String, Object> map = new HashMap<>();
-      map.put("mnum", mnum);
+      map.put("mname", mname);
       map.put("unum", unum);
       
       boolean pressGaipChk = moimMapper.pressGaip(map)==0?false:true;
@@ -134,26 +141,27 @@ public class MoimService implements MoimServiceInter {
    }
    
    @Override
-   public List<Map<String, Object>> getGaipmemberList(int mnum) {
+   public List<Map<String, Object>> getGaipmemberList(String mname) {
       
-      return moimMapper.getGaipmemberList(mnum);
+      return moimMapper.getGaipmemberList(mname);
 
    }
 
 @Override
-public void acceptGaip(int unum, int mnum) {
+public void acceptGaip(int unum, String mname) {
 	 Map<String, Object> map = new HashMap<>();
-     map.put("mnum", mnum);
+     map.put("mname", mname);
      map.put("unum", unum);
+     System.out.println(map);
      
      moimMapper.acceptGaip(map);
 	
 }
 
 @Override
-public void deniedGaip(int unum, int mnum) {
+public void deniedGaip(int unum, String mname) {
 	 Map<String, Object> map = new HashMap<>();
-     map.put("mnum", mnum);
+     map.put("mname", mname);
      map.put("unum", unum);
      
      moimMapper.deleteGaip(map);
@@ -161,9 +169,9 @@ public void deniedGaip(int unum, int mnum) {
 }
 
 @Override
-public Integer acceptChk(int unum, int mnum) {
+public Integer acceptChk(int unum, String mname) {
 	 Map<String, Object> map = new HashMap<>();
-     map.put("mnum", mnum);
+     map.put("mname", mname);
      map.put("unum", unum);
      
 	return moimMapper.acceptChk(map);

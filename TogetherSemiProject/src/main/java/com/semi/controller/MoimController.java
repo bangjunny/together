@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.semi.dto.MoimDto;
+import com.semi.dto.MoimMemberDto;
 import com.semi.dto.UserDto;
 import com.semi.mapper.MoimMapper;
 import com.semi.service.CityService;
@@ -115,7 +116,7 @@ public class MoimController {
    }
    
    @GetMapping("/moimdetail")
-   private String moimdetail(int mnum, Model model, HttpSession session)
+   private String moimdetail(int mnum, Model model, HttpSession session, String mname)
    {
 	
 	  //dto얻기
@@ -132,9 +133,11 @@ public class MoimController {
 	  if (session.getAttribute("unum") != null) {
 		  unum = (int)session.getAttribute("unum");
 		  boolean pressChk = moimService.pressJjim(unum, mnum);
+      
 		  boolean pressGaipChk = moimService.pressGaip(unum, mnum);
 		  
 		  Integer acceptChk = moimService.acceptChk(unum, mnum);
+
 		  model.addAttribute("pressChk", pressChk);
 		  model.addAttribute("pressGaipChk", pressGaipChk);
 		  
@@ -145,7 +148,7 @@ public class MoimController {
 		}
 		  
 	  	}  
-	  List<Map<String, Object>> list = moimService.getGaipmemberList(mnum);
+	  List<Map<String, Object>> list = moimService.getGaipmemberList(mname);
 	  model.addAttribute("list", list);
 	  model.addAttribute("dto",dto);
 	  	  
@@ -159,7 +162,7 @@ public class MoimController {
    }
    
    @PostMapping("/insert")
-	public String insert(MoimDto dto,MultipartFile upload)
+	public String insert(MoimDto dto,MultipartFile upload, MoimMemberDto mdto)
 	{
 		//네이버 클라우드의 버켓에 사진 업로드하기
 		String photo=storageService.uploadFile(bucketName, "moim", upload);
@@ -168,8 +171,10 @@ public class MoimController {
 		
 		//db insert
 		moimMapper.insertMoim(dto);
+		moimMapper.insertMoimMember(mdto);
 		return "redirect:moimlist";
 	}
+   
    @GetMapping("/updateform")
    private String updateform(int mnum,Model model)
    {
@@ -228,39 +233,39 @@ public class MoimController {
    }
    @ResponseBody
    @GetMapping("/moimgaip")
-   public String moimgaip(HttpSession session, int mnum) {
+   public String moimgaip(HttpSession session, String mname) {
 	   int unum = (int) session.getAttribute("unum");
-       moimService.moimGaip(unum, mnum);
+       moimService.moimGaip(unum, mname);
        return "success";
    }
    @ResponseBody
    @GetMapping("/deletegaip")
-   public String deleteGaip(HttpSession session, int mnum) {
+   public String deleteGaip(HttpSession session, String mname) {
 	   int unum = (int) session.getAttribute("unum");
-       moimService.deleteGaip(unum, mnum);
+       moimService.deleteGaip(unum, mname);
        return "success";
    }
    @ResponseBody
    @GetMapping("acceptgaip")
-   public String acceptGaip(int mnum, int unum) {
+   public String acceptGaip(int unum, String mname) {
 	   
-	   moimService.acceptGaip(unum, mnum);
+	   moimService.acceptGaip(unum, mname);
 	   
 	   return "success";
    }
    @ResponseBody
    @GetMapping("deniedgaip")
-   public String deniedGaip(int mnum, int unum) {
+   public String deniedGaip(int unum, String mname) {
 	   
-	   moimService.deniedGaip(unum, mnum);
+	   moimService.deniedGaip(unum, mname);
 	   
 	   return "success";
    }
    @ResponseBody
    @GetMapping("moimout")
-   public String moimOut(int mnum, int unum) {
+   public String moimOut(String mname, int unum) {
 	   
-	   moimService.deniedGaip(unum, mnum);
+	   moimService.deniedGaip(unum, mname);
 	   
 	   return "success";
    }

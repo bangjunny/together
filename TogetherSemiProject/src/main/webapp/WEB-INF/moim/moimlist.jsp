@@ -342,7 +342,7 @@ body, body * {
 					<tr>
 				</c:if>
 				<td style="width: 350px;">
-				<a href="moimdetail?mnum=${dto.mnum}"
+				<a href="moimdetail?mnum=${dto.mnum }&mname=${dto.mname}"
 									style="color: black; font-size: 17px; text-decoration: none; cursor: pointer;" id="godetail" onclick="checkUnum(event)">
 					<div>
 						<c:choose>

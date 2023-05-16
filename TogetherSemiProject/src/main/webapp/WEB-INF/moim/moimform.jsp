@@ -43,9 +43,6 @@
 	}
 </style>
 </head>
-<script>
-
-</script>
 <body>
 <!-- 이미지 출력할곳 -->
 <img id="showimg">
@@ -621,6 +618,7 @@ $("#overlappedMname").click(function(){
 		$("#olmessage").addClass("olmessaget");
 		$("#olmessage").removeClass("olmessagef");
 		$("#btnsubmit").attr("type", "submit");
+		$("#formmname").val($("#moimname").val());
 		}
 		}
 	})

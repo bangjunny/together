@@ -272,8 +272,8 @@
                </div>
                
                <div class="clear">
-	                <input type="text" id="innum" name="innum" class="inn" placeholder="인증 번호">
-	                <button type="button" class="innum btn btn-primary">확인</button>
+	                <input type="text" id="inn" name="innum" class="inn" placeholder="인증 번호">
+	                <button type="button" id="innum" class="innum btn btn-primary">확인</button>
                 </div>
              
            </div>

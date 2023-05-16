@@ -19,6 +19,12 @@
 		select count(email) from user where email=#{email}
 	</select>
 	
+	<select id="chEmail" parameterType="String" resultType="int">
+		select count(inemail) from user where inemail=#{inemail}
+	</select>
+	
+	
+	
 <!-- 마이페이지 -->
 	<select id="getMyMoimList" resultType="MoimDto">
 		select * from moim where unum=#{unum}

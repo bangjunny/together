@@ -78,8 +78,11 @@
 	
 	#sidebarmenu {
 		position: relative;
-		margin-top:10px;
-		margin-left : 1800px;
+		margin-left : 1700px;
+		width: 150px;
+	}
+	#sidebarmenu button {		
+		margin-top: 80px;
 	}
 	
 	.offcanvas-body button{
@@ -129,7 +132,7 @@ function list()
 </script>
 <body>
 <!-- 사이드바 -->
-<div class="offcanvas offcanvas-start" id="mypagemenu" style="width:300px">
+<!-- <div class="offcanvas offcanvas-start" id="mypagemenu" style="width:300px">
   <div class="offcanvas-header">
     <h1 class="offcanvas-title">MyPage Menu</h1>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
@@ -141,11 +144,31 @@ function list()
   </div>
 </div>
 
-<div class="container-fluid mt-3">
-  <!-- <h3>Offcanvas Sidebar</h3>
-  <p>Offcanvas is similar to modals, except that it is often used as a sidebar.</p> -->
-  <button id="sidebarmenu" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mypagemenu">
-    메뉴
+<div class="container-fluid mt-3" id="sidebarmenu">
+  <h3>Offcanvas Sidebar</h3>
+  <p>Offcanvas is similar to modals, except that it is often used as a sidebar.</p>
+  <button  class="btn btn-outline" type="button" data-bs-toggle="offcanvas" data-bs-target="#mypagemenu">
+    <i class="bi bi-list" style="font-size:30px;">메뉴</i>
+  </button>
+</div> -->
+
+<div class="offcanvas offcanvas-end" id="mypagemenu" style="width:300px">
+  <div class="offcanvas-header">
+    <h1 class="offcanvas-title">MyPage Menu</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <button class="btn btn-success sidebar_1_btn">프로필</button><br><br>
+    <button class="btn btn-success sidebar_2_btn">모임</button><br><br>
+    <button class="btn btn-success sidebar_3_btn">지역</button>
+  </div>
+</div>
+
+<div class="container-fluid mt-3" id="sidebarmenu">
+  <!-- <h3>Right Offcanvas</h3>
+  <p>The .offcanvas-end class positions the offcanvas to the right of the page.</p> -->
+  <button class="btn btn-outline" type="button" data-bs-toggle="offcanvas" data-bs-target="#mypagemenu">
+    <i class="bi bi-list" style="font-size:30px;">메뉴</i>
   </button>
 </div>
 <script type="text/javascript">

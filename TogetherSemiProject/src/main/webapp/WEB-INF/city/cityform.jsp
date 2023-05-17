@@ -13,15 +13,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
 <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
 <style>
-        body, body * {
-            font-family: 'Jua'
-        }
 
         .container  {
-            width: 700px;
+            width: 600px;
             margin: 0 auto;
             margin-top: 40px;
-            background-color: #ddd;
+            border : 1px solid skyblue;
+            border-radius: 10px;
         }
 
         .layout > input, textarea {
@@ -38,29 +36,24 @@
             min-height: 300px;
         }
         
-        .ck.ck-editor {
-
-		width: 90%;
-		max-width: 800px;
-		margin: 0 auto;
-		}
-
-		.ck-editor__editable {
-			height: 80vh;
-		}
-
-
     </style>
 </head>
 <body>
 <br>
 <br>
-
-<div style="float:left;">
-</div>
 <div class="container">
+<br>
+	<c:choose>
+		<c:when test="${mainPhoto!=null }">
+			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-top:5px; margin-left:5px; margin-right:5px; border-radius:100px;">
+		</c:when>
+		<c:otherwise>
+			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left; margin-top:5px; margin-left:5px; margin-right:5px; border-radius:100px;">                               
+		</c:otherwise>
+	</c:choose>
+	<h3>${uname } 님이 작성 중입니다</h3>
         <br>
-        <input type="text" class="form-control" id="subject" name="subject" placeholder="제목을 입력해주세요" style="width: 100%">
+        <input type="text" class="form-control" id="subject" name="subject" placeholder="제목을 입력해주세요" required>
         <br>
         <input type="hidden" id="unum" name="unum" value="${unum}">
         <input type="hidden" id="city1" name="city1" value="${city1}">
@@ -71,18 +64,21 @@
         <img id="showimg1" style="width:25%" src="">
         <img id="showimg2" style="width:25%" src="">
         <br>
-        <input type="file" name="upload" id="myfile" multiple="multiple">
-        
         <br>
-        <textarea class = "showimg" id="cbcontent" name ="cbcontent" placeholder="내용입력"></textarea>
+        <input type="file" name="upload" id="myfile" multiple="multiple">
+        <br>
+        <br>
+        <textarea class = "showimg" id="cbcontent" name ="cbcontent" placeholder="내용입력"  required="required"></textarea>
         <br>
         <hr>
-            <button type="button" id="newCity" class="btn btn-success" style="margin-left: 260px">작성</button>
-            <button type="button" class="btn btn-success" onclick="history.back()" style="margin-left: 50px">취소</button>
+        <div style="text-align:center">
+            <button type="button" id="newCity" class="btn btn-success">작성</button>
+            <button type="button" class="btn btn-success" onclick="history.back()" style="margin-left:50px;">취소</button>
+        </div>
         <br>
         <br>
 </div>
-<script type="text/javascript">
+	<script type="text/javascript">
 	$("#myfile").change(function(){
 		$("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
 		$("#showimg1").attr("src",null);
@@ -153,7 +149,13 @@
 		let city2=$("#city2").val();
 		
 		//alert(uname+","+subject+","+cnt+","+cbcontent+","+unum+","+city1+","+city2);
-		
+		if(subject==''){
+			alert("제목을 입력해 주세요")
+		}
+		else if (cbcontent==''){
+			alert("내용을 입력해주세요")
+		}
+		else {
 		var form=new FormData();
 		for(i=0;i<$("#myfile")[0].files.length;i++){
 			form.append("upload",$("#myfile")[0].files[i]);
@@ -177,7 +179,7 @@
 				location.href="/city/list";
 			}
 		})
-		
+		}
 	});
 
 	

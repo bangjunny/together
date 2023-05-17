@@ -18,9 +18,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <style>
-body, body * {
-	font-family: 'Jua'
-}
+
 .cbcontent_img{
 	width:400px;
 	height:420px;
@@ -43,10 +41,10 @@ body, body * {
 		
 		<c:choose>
 		<c:when test="${mainPhoto!=null }">
-		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-bottm:10px; margin-left:5px; border-radius:100px;">
+		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-bottom:10px; margin-left:5px; border-radius:100px;">
 		</c:when>
 		<c:otherwise>
-		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left;margin-bottm:10px; margin-left:5px; border-radius:100px;">                               
+		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left;margin-bottom:10px; margin-left:5px; border-radius:100px;">                               
 		</c:otherwise>
 		</c:choose>
 		<h5 style="float: left; margin-left:5px;margin-bottom:20px;">${dto.uname}&nbsp;</h5>
@@ -171,8 +169,8 @@ body, body * {
 					<input id="renum" type="hidden" name="renum" value="${listcomment.renum}">
 					${listcomment.uname}
 					</td>
-					<td style="float:right;width:170px;">
-					${listcomment.rewriteday}
+					<td style="float:right;width:170px; text-align:right">
+					<fmt:formatDate value="${listcomment.rewriteday}" pattern="yyyy.MM.dd HH:MM"/>
 					</td>
 				</tr>
 				<tr style="height:100px">
@@ -180,18 +178,18 @@ body, body * {
 					<c:forEach begin="1" end="${listcomment.depth}">
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					</c:forEach>
+					&nbsp;
 					<input id="recomment" type="hidden" value="${listcomment.recontent}"></div>
 					${listcomment.recontent}
 					</td>
 				</tr>
 				<tr>
 					<td colspan="3">
+						&nbsp;
 						<button type="button" id="commentFunction">답글 보기</button>
 						<c:if test="${sessionScope.unum==listcomment.unum}">
 						<button type="submit" id="deleteComment" style="float:right" class="btn btn-danger">삭제</button>
-						&nbsp;
 						<button id="updateComment" style="float:right" class="btn btn-secondary">수정</button>
-						&nbsp;
 						</c:if>
             			<button id="addComment" style="float:right" class="btn btn-secondary">답글</button>
 					</td>
@@ -234,8 +232,8 @@ body, body * {
 					<input id="renum" type="hidden" name="renum" value="${listcomment.renum}">
 					${listcomment.uname}
 					</td>
-					<td style="float:right;width:170px;">
-					${listcomment.rewriteday}
+					<td style="float:right;width:170px; text-align:right">
+					<fmt:formatDate value="${listcomment.rewriteday}" pattern="yyyy.MM.dd HH:MM"/>
 					</td>
 				</tr>
 				<tr style="height:50px">

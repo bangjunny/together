@@ -13,15 +13,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
 <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
 <style>
-        body, body * {
-            font-family: 'Jua'
-        }
 
         .container  {
-            width: 700px;
+            width: 600px;
             margin: 0 auto;
             margin-top: 40px;
-            background-color: #ddd;
+            border : 1px solid skyblue;
+            border-radius: 10px;
         }
 
         .layout > input, textarea {
@@ -38,18 +36,6 @@
             min-height: 300px;
         }
         
-        .ck.ck-editor {
-
-      width: 90%;
-      max-width: 800px;
-      margin: 0 auto;
-      }
-
-      .ck-editor__editable {
-         height: 80vh;
-      }
-
-
     </style>
 </head>
 <body>
@@ -69,6 +55,16 @@
 </div>
 
 <div class="container">
+<br>
+	<c:choose>
+		<c:when test="${mainPhoto!=null }">
+			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-top:5px; margin-left:5px; margin-right:5px; border-radius:100px;">
+		</c:when>
+		<c:otherwise>
+			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left; margin-top:5px; margin-left:5px; margin-right:5px; border-radius:100px;">                               
+		</c:otherwise>
+	</c:choose>
+	<h3>${uname } 님이 작성 중입니다</h3>
         <br>
         <input type="text" class="form-control" id="subject" name="subject" style="width: 100%" value="${cbdto.subject}">
         <br>
@@ -97,11 +93,14 @@
         <input type="button" id="delphoto" value="사진 삭제" class="form-controll">
         <input type="file" name="upload" id="myfile" multiple="multiple" class="form-controll">
         <br>
+        <br>
         <textarea id="cbcontent" name ="cbcontent">${cbdto.cbcontent}</textarea>
         <br>
         <hr>
-            <button type="button" id="newCity" class="btn btn-success" style="margin-left: 260px">수정</button>
+        <div style="text-align:center">
+            <button type="button" id="newCity" class="btn btn-success">수정</button>
             <button type="button" class="btn btn-success" onclick="history.back()" style="margin-left: 50px">취소</button>
+            </div>
         <br>
         <br>
 </div>
@@ -189,6 +188,14 @@
 		//alert(uname+","+subject+","+cnt+","+cbcontent+","+unum+","+city1+","+city2);
 		console.log("벨류체크:"+photo)
 		
+		if(subject==''){
+			alert("제목을 입력해 주세요")
+		}
+		else if (cbcontent==''){
+			alert("내용을 입력해주세요")
+		}
+		else {
+		
 		var form=new FormData();
 		
 		if(photo=="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243")
@@ -216,11 +223,11 @@
 			contentType:false,
 			data:form,
 			success:function(res){
-				alert(cbnum);
+				//alert(cbnum);
 				location.href='/city/detail?cbnum='+cbnum;
 			}
 		})
-		
+		}
 	});
 
 

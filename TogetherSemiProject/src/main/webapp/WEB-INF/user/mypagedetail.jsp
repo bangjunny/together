@@ -120,32 +120,12 @@
 	#mycity_wrap {
 		display: none;
 		margin-top:150px;
-	}
+	}	
 
 </style>
 
 </script>
 <body>
-<!-- 사이드바 -->
-<!-- <div class="offcanvas offcanvas-start" id="mypagemenu" style="width:300px">
-  <div class="offcanvas-header">
-    <h1 class="offcanvas-title">MyPage Menu</h1>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-  </div>
-  <div class="offcanvas-body">
-    <button class="btn btn-success sidebar_1_btn">프로필</button><br><br>
-    <button class="btn btn-success sidebar_2_btn">모임</button><br><br>
-    <button class="btn btn-success sidebar_3_btn">지역</button>
-  </div>
-</div>
-
-<div class="container-fluid mt-3" id="sidebarmenu">
-  <h3>Offcanvas Sidebar</h3>
-  <p>Offcanvas is similar to modals, except that it is often used as a sidebar.</p>
-  <button  class="btn btn-outline" type="button" data-bs-toggle="offcanvas" data-bs-target="#mypagemenu">
-    <i class="bi bi-list" style="font-size:30px;">메뉴</i>
-  </button>
-</div> -->
 
 <div class="offcanvas offcanvas-end" id="mypagemenu" style="width:300px">
   <div class="offcanvas-header">
@@ -155,7 +135,8 @@
   <div class="offcanvas-body">
     <button class="sidebar_1_btn"><i class="bi bi-house-fill"></i>&nbsp; 프로필</button><br><br>
     <button class="sidebar_2_btn"><i class="bi bi-people-fill"></i>&nbsp; 모임</button><br><br>
-    <button class="sidebar_3_btn"><i class="bi bi-geo-alt-fill"></i>&nbsp; 지역</button>
+    <button class="btn btn-success sidebar_3_btn" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-geo-alt-fill"></i>&nbsp;내 지역 작성글</button>
+    <button class="btn btn-success sidebar_3_btn" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-geo-alt-fill"></i>&nbsp;내 지역 좋아요글</button>
     <button class="sidebar_0_btn"><i class="bi bi-geo-alt-fill"></i>&nbsp; 수정</button>
   </div>
 </div>
@@ -315,46 +296,7 @@
 				});
 				
 			</script>
-		
-    
-    		
-			 <div id="mycity_wrap">
-			  <!-- 지역 게시판 목록 보여주기 -->
-			  나의 지역 게시판 리스트 출력하기
-			  <button id="mycity_1_btn">내가 쓴 게시글</button>
-			  <button id="mycity_2_btn">내가 추천한 게시글</button>
-			
-			  
-			  <div id="mycity_1" style="display: block;">
-			  <%@ include file="mypagecblist.jsp" %>
-			  </div>
-				  
-				<div id="mycity_2" style="display: none;">
-					 <%@ include file="mypagecblikelist.jsp" %>
-				</div>
-			
-			</div>
-<!-- 			
-			<script type="text/javascript">
-			    function goToTab(tab) {
-			        var unum = <%= request.getParameter("unum") %>;
-			        location.href = "/mypagedetail?unum=" + unum + "&tab=" + tab;
-			    }
-			</script>
- -->			
-			<script type="text/javascript">
-				$("#mycity_2_btn").click(function() {
-					$("#mycity_1").css("display", "none");
-					$("#mycity_2").css("display", "block");
-					
-				});
-				$("#mycity_1_btn").click(function() {
-					$("#mycity_1").css("display", "block");
-					$("#mycity_2").css("display", "none");
-				});
-				
-			</script>
-        
+  
     <div class="mybtn">
 		<button type="button" class="btn btn-outline-success btn-sm"
 		style="width: 200px;" onclick="location.href='/moim/moimlist'">모임리스트</button>

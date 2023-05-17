@@ -48,8 +48,8 @@
 	<select id="getMyMoimList" resultType="MoimDto">
 		select * from moim where unum=#{unum}
 	</select>
-	<select id="getMyCBList" resultType="CityBoardDto">
-		select * from city_board where unum=#{unum}
+	<select id="getMyCBList" parameterType="Map" resultType="CityBoardDto">
+		select * from city_board where unum=#{unum} order by cbnum desc limit #{start},#{perpage}
 	</select>
 	<select id="getMyProfile" resultType="UserPhotoDto">
 		select * from user_photo where unum=#{unum}
@@ -66,8 +66,8 @@
 		update user_photo set is_main = case when photo_idx = #{photo_idx} then 1 else 0 end
 	</update>
 
-	<select id="getCbLikeDto" resultType="CbLikeDto">
-		select * from cblike where unum=#{unum}
+	<select id="getCbLikeList" resultType="CityBoardDto">
+		select * from city_board cb join cblike cl on cb.cbnum=cl.cbnum where cl.unum=#{unum} order by cb.cbnum desc limit #{start},#{perpage}		
 	</select>
 	<select id="getJJimDto" resultType="JJimDto">
 		select * from jjim where unum=#{unum}
@@ -100,6 +100,14 @@
 	</insert>
 	
 	<select id="getGaipMoimList" parameterType="int" resultType="Map">
-		select m.mnum,m.mname, m.mphoto, m.city1, m.city2, m.category, m.mcontent from moim m join moimmember mm on m.mname=mm.mname where mm.unum=#{unum} and acceptcall=1;
+		select m.mname from moim m join moimmember mm on m.mname=mm.mname where mm.unum=#{unum} and acceptcall=1
+	</select>
+	
+	<select id="getMyCBWRCount" resultType="int">
+		select count(*) from city_board where unum=#{unum}
+	</select>
+	
+	<select id="getMyCBLikeCount" resultType="int">
+		select count(*) from cblike where unum=#{unum}
 	</select>
 </mapper>

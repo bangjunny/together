@@ -209,7 +209,8 @@
       }
       
       .la{
-       font-size:18px;
+       font-size:21px;
+       margin-bottom:10px;
       }
       
       .catego td {
@@ -218,6 +219,10 @@
        
        .motable td{
        width: 195px;
+       }
+       
+       .gory { 
+       	margin-top:3px;
        }
        
       

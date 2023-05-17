@@ -76,6 +76,7 @@
     
     function checkPw() {
         var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}/;
+       // var pwSafe = /^(?=.*[a-zA-Z0-9])(?=.*[~!@#$%^&*()_+|<>?:{}]).{8,16}$/;
         if(pw1.value === "") {
 			error[1].innerHTML = "필수 정보입니다.";
 			error[1].style.color = "red";
@@ -90,6 +91,18 @@
             
             pwMsg.style.display = "block";
             pwImg1.src = "/photo/m_icon_not_use.png";
+            
+        /*} else if(!pwSafe.test(pw1.value)) {
+            error[1].innerHTML = "특수문자를 포함해주세요.";
+            error[1].style.color = "orange";
+            pwMsg.innerHTML = "위험";
+            pwMsg.style.color = "orange";
+            pwMsgArea.style.paddingRight = "93px";
+            error[1].style.display = "block";
+            
+            pwMsg.style.display = "block";
+            pwImg1.src = "/photo/m_icon_danger.png";*/
+            
         } else {
             error[1].style.display = "none";
             pwMsg.innerHTML = "안전";

@@ -20,8 +20,8 @@
 		width: 100%;
 	}
 	#header_wrap{
-		width: 97%;
-		margin: 10px auto 0 auto;
+		width: 95%;
+		margin: 15px auto 0 auto;
 		display: flex;
 		justify-content: space-between;
 	}
@@ -33,7 +33,7 @@
 		width: 100%;
 		height: 75px;
 		margin-top:30px;
-		background-color: skyblue;
+		background-color: rgb(254, 154, 46);
 		display: flex;
 		justify-content: space-around;
 	}

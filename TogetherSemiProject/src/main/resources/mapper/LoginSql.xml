@@ -67,10 +67,10 @@
 	</update>
 
 	<select id="getCbLikeDto" resultType="CbLikeDto">
-		select * from cblike where unum=#{mnum}
+		select * from cblike where unum=#{unum}
 	</select>
 	<select id="getJJimDto" resultType="JJimDto">
-		select * from jjim where unum=#{mnum}
+		select * from jjim where unum=#{unum}
 	</select>
 	<select id="getMyJJImList" resultType="JJimDto">
 		select * from jjim where unum=#{unum}

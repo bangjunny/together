@@ -53,7 +53,8 @@
                         <td>${cblike.city1}</td>
                         <td>${cblike.city2}</td>
                         <td>${cblike.cbcontent}</td>
-                        <td><a href="/moim/moimdetail?mnum=${moim.mnum}" class="btn btn-primary">자세히보기</a></td>
+                        
+                        <td><a href="/city/detail?cbnum=${cblike.cbnum}" class="btn btn-primary">자세히보기</a></td>
                     </tr>
                 </c:forEach>
             </tbody>

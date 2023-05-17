@@ -126,11 +126,6 @@ public class LoginService implements LoginServiceInter{
 	}
 
 	@Override
-	public void updateMyPhoto(UserPhotoDto pdto) {
-		// TODO Auto-generated method stub
-		loginMapper.updateMyPhoto(pdto);
-	}
-	@Override
 	public String getSelectPhoto(int photo_idx) {
 		// TODO Auto-generated method stub
 		return loginMapper.getSelectPhoto(photo_idx);

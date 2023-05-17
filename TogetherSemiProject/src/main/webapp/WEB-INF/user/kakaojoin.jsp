@@ -237,18 +237,17 @@
 					</td>
 				</tr>
 				
-				<tr>
-					<td>
-						선택한 카테고리 :
-					</td>
-					<td colspan="2">
-						<div type="text" id="selcategory"></div>
-						<input type="hidden" class="selcategory" name="category" value="null" id="category">	
-					</td>
-				</tr>
-			</table>
-			<span class="error_next_box e7">필수 정보입니다.</span>           	
+			</table>   	
            </div>
+           
+           <div class="input-wrap ">
+				<div class="pk">
+					<div class="pick">선택한 카테고리 : </div>
+					<div type="text" id="selcategory" class="pickne"></div>
+		           	<input type="hidden" class="selcategory" name="category" value="null" id="category">
+	           	</div>
+				<span class="error_next_box e7">필수 정보입니다.</span> 
+           	</div>
            
            <!-- Hp -->
            <div class="input-wrap">

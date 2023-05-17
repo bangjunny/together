@@ -18,6 +18,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <style>
+
 	.photodel, .setmain{
 		cursor:pointer;
 	}
@@ -41,7 +42,7 @@
 	}
 	
 	.container {
-		margin-top:200px;
+	  margin-top:100px;
 	  max-width: 1800px;
 	  margin: 100 100 100 100;
 	  flex : auto;
@@ -76,13 +77,15 @@
 	}
 	
 	#sidebarmenu {
-		position: absolute;
-		margin-left : 100px;
+		position: relative;
+		margin-top:10px;
+		margin-left : 1800px;
 	}
 	
 	.offcanvas-body button{
 		margin-top : 30px;
-		width: 300px;
+		margin-left: 80px;
+		width: 100px;
 	}
 	
 	#mylist_wrap {
@@ -126,7 +129,7 @@ function list()
 </script>
 <body>
 <!-- 사이드바 -->
-<div class="offcanvas offcanvas-start" id="mypagemenu">
+<div class="offcanvas offcanvas-start" id="mypagemenu" style="width:300px">
   <div class="offcanvas-header">
     <h1 class="offcanvas-title">MyPage Menu</h1>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
@@ -231,7 +234,7 @@ function list()
     	<div class="text col" id="mypageupdate">
     		<!-- 마이페이지 수정폼 -->
     		마이페이지 수정
-    		<button id="mypageupdatebtn">마이페이지 수정하기</button>
+    		<button id="mypageupdatebtn">수정하기</button>
     		<div id="mypageupdateform" style="display: none;">
     		<%@include file="mypageupdatecheck.jsp" %>
     		</div>
@@ -295,7 +298,7 @@ function list()
 				
 			</script>
 		
-    <br><br><br><br>
+    
     		
 			 <div id="mycity_wrap">
 			  <!-- 지역 게시판 목록 보여주기 -->

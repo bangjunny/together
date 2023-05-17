@@ -74,6 +74,26 @@
 			margin-right: 30px;
 			padding: 0;
 	}
+	
+	#sidebarmenu {
+		position: absolute;
+		margin-left : 100px;
+	}
+	
+	.offcanvas-body button{
+		margin-top : 30px;
+		width: 300px;
+	}
+	
+	#mylist_wrap {
+		display: none;
+		margin-top:150px;
+	}
+	
+	#mycity_wrap {
+		display: none;
+		margin-top:150px;
+	}
 
 </style>
 <script type="text/javascript">
@@ -105,7 +125,47 @@ function list()
 }
 </script>
 <body>
-<div class="container text-center">
+<!-- 사이드바 -->
+<div class="offcanvas offcanvas-start" id="mypagemenu">
+  <div class="offcanvas-header">
+    <h1 class="offcanvas-title">MyPage Menu</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <button class="btn btn-success sidebar_1_btn">프로필</button><br><br>
+    <button class="btn btn-success sidebar_2_btn">모임</button><br><br>
+    <button class="btn btn-success sidebar_3_btn">지역</button>
+  </div>
+</div>
+
+<div class="container-fluid mt-3">
+  <!-- <h3>Offcanvas Sidebar</h3>
+  <p>Offcanvas is similar to modals, except that it is often used as a sidebar.</p> -->
+  <button id="sidebarmenu" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mypagemenu">
+    메뉴
+  </button>
+</div>
+<script type="text/javascript">
+				$(".sidebar_1_btn").click(function() {
+					$("#myprofile").css("display", "block");
+					$("#mylist_wrap").css("display", "none");
+					$("#mycity_wrap").css("display", "none");
+				});
+				$(".sidebar_2_btn").click(function() {
+					$("#myprofile").css("display", "none");
+					$("#mylist_wrap").css("display", "block");
+					$("#mycity_wrap").css("display", "none");
+				});
+				$(".sidebar_3_btn").click(function() {
+					$("#myprofile").css("display", "none");
+					$("#mylist_wrap").css("display", "none");
+					$("#mycity_wrap").css("display", "block");
+				});
+				
+			</script>
+<!-- 사이드바 -->
+
+<div class="container text-center" id="myprofile">
   <div class="row">
     <div class="card col">
       <h3>프로필 사진</h3>
@@ -238,8 +298,8 @@ function list()
     <br><br><br><br>
     		
 			 <div id="mycity_wrap">
-			  <!-- 가입한 모임 목록 보여주기 -->
-			  나의 모임 리스트 출력하기
+			  <!-- 지역 게시판 목록 보여주기 -->
+			  나의 지역 게시판 리스트 출력하기
 			  <button id="mycity_1_btn">내가 쓴 게시글</button>
 			  <button id="mycity_2_btn">내가 추천한 게시글</button>
 			

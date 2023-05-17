@@ -36,9 +36,11 @@
             margin: 20 auto;
             padding: 40px 20px;
             background-color: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 0px 0px 5px #ddd;
+            /* border: 1px solid #ddd;
+            box-shadow: 0px 0px 5px #ddd; */
             text-align: center;
+            margin-top : 30px;
+            margin-bottom: 200px;
         }
         
         .container h1 {
@@ -56,35 +58,38 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #666;
+            /* color: #666;
             font-size: 0.9em;
-            font-weight: bold;
+            font-weight: bold; */
+            float: left;
         }
         
         .form-group input[type="email"],
         .form-group input[type="password"] {
             width: 100%;
+            height: 50px;
             padding: 10px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 3px;
             font-size: 1em;
             /* color: #555; */
         }
         
-        .form-group input[type="submit"] {
+        .lobutton {
             width: 100%;
+            height: 50px;
             padding: 10px;
-            background-color: #00a0e9;
+            background-color: #FE9A2E;
             border: none;
-            border-radius: 5px;
+            border-radius: 3px;
             font-size: 1em;
             color: #fff;
             cursor: pointer;
             transition: background-color 0.2s;
         }
         
-        .form-group input[type="submit"]:hover {
-            background-color: #0077c0;
+        .lobutton:hover {
+            background-color: #FE642E;
         }
         
         .form-group .message {
@@ -93,13 +98,39 @@
             font-size: 0.8em;
         }
         .kakao {
-        	width: 100%;
+        	height:50px;
+        	
         }
+        
+        .daham {
+      	
+      	text-align: center; 	
+      	margin-bottom: 50px;
+      }
+      
+      .da {
+      	width: 100px;
+      }
+      
+      .jo {
+      	float: right;
+      }
+      
+      .jo:hover { 
+      	color: #FE642E;
+      }
+        
+        
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>로그인</h1>
+        
+        <div class="daham">
+       		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/login/logo.png" class="da">  	
+  		</div>
+        
+        
         <form action="loginaction" method="post">
         
             <div class="form-group">
@@ -116,36 +147,42 @@
             </div>
           
 	        <div class="form-group">
-	          <input type="submit" value="Login">
+	          <input type="submit" value="Login" class="lobutton">
 	        </div>
         
 
 			<div class="form-group">
 				<!-- <span>계정이 없으신가요? </span> -->
 				
-				<label>
+				<label class = ch>
 					<input type="checkbox" name="saveemail"
 					${!(saveemail==null or saveemail=='no')?"checked":"" }> 이메일 저장	
 				</label>
-				<a href="/user/join">회원가입</a><br>
+				<a href="/user/join" class="jo">회원가입</a><br>
 			</div>
 			
 			<br>
+			<div>
 			
-            <%-- 카카오 --%>
-            <a href="javascript:kakaoLogin();">
-				<img src="/photo/kakao_login_large_wide.png" class="kakao">
-			</a>
-			<br><br>
+				<!-- 네이버 로그인 버튼 노출 영역 -->
+				<div id="naver_id_login" style="float:left;"></div>
+				
+	            <%-- 카카오 --%>
+	            <div style="float:right;">
+		            <a href="javascript:kakaoLogin();">
+						<img src="https://kr.object.ncloudstorage.com/together-bucket-104/login/kakao_login_large.png" 
+						class="kakao">
+					</a>
+				</div>
 			
-			<!-- 네이버 로그인 버튼 노출 영역 -->
-			<div id="naver_id_login"></div>
+				
+			</div>
 			
 			<!-- //네이버 로그인 버튼 노출 영역 -->
 			<script type="text/javascript">
 				var naver_id_login = new naver_id_login("eeKSBaviQtr4I8frMTNN", "http://localhost:9000/user/callback");
 			  	var state = naver_id_login.getUniqState();
-			  	naver_id_login.setButton("green", 3,70);
+			  	naver_id_login.setButton("green", 3,50);
 			  	naver_id_login.setDomain("http://localhost:9000/user/login");
 			  	naver_id_login.setState(state);
 			  	//naver_id_login.setPopup(); // 팝업창으로 뜨게하는 코드

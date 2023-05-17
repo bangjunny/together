@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%> 
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -25,8 +24,10 @@
        
        <form id="join-form" method="post" action="userinsert">
        
-       <h2>회원가입</h2> <br>
-  
+       	<div class="daham">
+       		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/login/logo.png" class="da">  	
+  		</div>
+  		
            <!-- ID -->
                 <div class="input-wrap">
                 <label for="id" class="la">이메일</label>                

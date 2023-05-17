@@ -18,7 +18,7 @@
             width: 600px;
             margin: 0 auto;
             margin-top: 40px;
-            border : 1px solid skyblue;
+            border : 1px solid #6E6E6E;
             border-radius: 10px;
         }
 
@@ -65,12 +65,12 @@
         <img id="showimg2" style="width:25%" src="">
         <br>
         <br>
-        <input type="file" name="upload" id="myfile" multiple="multiple">
+        <input type="file" name="upload" id="myfile" multiple="multiple" style="color:#FE9A2E">
         <br>
         <br>
         <textarea class = "showimg" id="cbcontent" name ="cbcontent" placeholder="내용입력"  required="required"></textarea>
         <br>
-        <hr>
+        <br>
         <div style="text-align:center">
             <button type="button" id="newCity" class="btn btn-success">작성</button>
             <button type="button" class="btn btn-success" onclick="history.back()" style="margin-left:50px;">취소</button>

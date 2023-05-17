@@ -26,19 +26,27 @@
 		text-decoration: none;
 		color: black;
 	}
-
+	#main_logout{
+		width:90%;
+		display: flex;
+		justify-content: flex-end;
+	}
 	#main_container{
 		width: 100%;
 		height: 100%;
 		padding-top: 100px;
 	}
   	#main_header{
-      width: 1400px;
-      height: 500px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;      
-   }
+		width: 55%;
+		height: 500px;
+		margin:0 auto;
+		display: flex;
+		justify-content: space-around;
+  
+   	}
+ 	#main_header_left{
+    	width: 50%;
+    }
 
 	#main_head_logo{
 		position: relative;
@@ -68,28 +76,27 @@
 	#main_btn_wrap{
 		width: 200px;
 		
-		
 	}
 	#main_list_go{
-		width: 100%;
-		height: 500px;
+		width: 55%;
+		height: 300px;
+		display: flex;
+		justify-content: center;
+		justify-content: space-between;
 		margin: 0 auto;
-		text-align: center;
-		display: flex;
-		justify-content: space-around;
-		align-items: center;
 	}
-	#main_list_go_img_wrap{
-		width: 1200px;
-		display: flex;
-		text-align: center;
-		justify-content: space-around;
-		align-items: center;
+	.list_a:hover{
+		cursor: pointer;
 	}
-	#main_list_go_img_wrap img{
+	.list_a img{
 		width: 200px;
 		height: 200px;
 	}
+	.list_a div{
+		margin-top: 10px;
+		text-align: center;
+	}
+
 	.mainphoto{
 		width: 200px;
 		height: 200px;
@@ -121,11 +128,11 @@
 		background-color: transparent;
 	}
 	#main_bot_title{
-		margin: 20px 0px 20px 0px;
+		margin: 20px 0px 50px 0px;
 		text-align: center;
 	}
 	#main_bot{
-		width: 1200px;
+		width: 55%;
 		height: 600px;
 		margin: 0 auto;
 		display: flex;
@@ -145,7 +152,7 @@
 	}
 	
 	.main_bot_imgs{
-		width: 1000px;
+		width: 1200px;
 		height: 300px;
 		margin: 0 auto;
 
@@ -229,52 +236,53 @@ $(document).ready(function() {
 </head>
 <body>
 <div id="main_container">
-<div id="main_header">
-	<div id="main_head_logo">
-		<img src="../photo/logo.png" style="width: 75px; height: 75px;"> <b style="font-size: 25px;">다 함께!</b>
-	</div>
+<div id="main_logout">
+	<c:if test="${sessionScope.unum ne null }">
+		<a href="/user/logout">로그아웃</a>
+	</c:if>
+</div>
 
-	<div id="main_header_txt">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elited do eiusmod tempor incididunt ut labore e, st dolore magna aliqua. Ut enim ad <span id="rotate_word" style="color: red">communities</span>
+	<div id="main_header">
+		<div id="main_header_left">
+			<div id="main_head_logo">
+				<img src="../photo/logo.png" style="width: 75px; height: 75px;"> <b style="font-size: 25px;">다 함께!</b>
+			</div>
+
+			<div id="main_header_txt">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elited do eiusmod tempor incididunt ut labore e, st dolore magna aliqua. Ut enim ad <span id="rotate_word" style="color: red">communities</span>
 	
 		
-	<div id="main_btn_wrap">
-		<c:choose>
-			<c:when test="${sessionScope.unum ne null }">
-				<button type="button" class="btn btn-light layout_a" onclick="location.href='/user/mypage'">시작하기</button>
-			</c:when>
-			<c:otherwise>
-				<button type="button" class="btn btn-light" onclick="location.href='/user/login'">시작하기</button>
-			</c:otherwise>
-		</c:choose>
+			<div id="main_btn_wrap">
+				<c:choose>
+					<c:when test="${sessionScope.unum ne null }">
+						<button type="button" class="btn btn-light layout_a" onclick="location.href='/user/mypage'">시작하기</button>
+					</c:when>
+					<c:otherwise>
+						<button type="button" class="btn btn-light" onclick="location.href='/user/login'">시작하기</button>
+					</c:otherwise>
+				</c:choose>
+			</div>	
+		</div>
 	</div>
-	</div>
+	
 	<div id="main_header_pic">
 		<img src="../photo/main_1.jpg" id="rotate_photo">
 	</div>
 	
 </div>
 	<div id="main_list_go">
-		<div id="main_list_go_img_wrap">
-			<a class="list_a" href="/moim/moimlist">
+			<div class="list_a" onclick="location.href='/moim/moimlist'">
 				<img src="../photo/moim.png">
-				<br>
-				<br>
-				<span>모임 게시판</span>
-			</a>
-				<a class="list_a" href="/city/list">
+				<div>모임 게시판</div>
+			</div>
+			<div class="list_a"onclick="location.href='/city/list'">
 				<img src="../photo/local.png">
-				<br>
-				<br>
-				<span>지역 게시판</span>
-			</a>
-				<a class="list_a" href="/mapcontact">
+				<div>지역 게시판</div>
+			</div>
+			<div class="list_a" onclick="location.href='/mapcontact'">
 				<img src="../photo/map.png">
-				<br>
-				<br>
-				<span>지도로 위치 검색</span>
-			</a>
-		</div>	
+				<div>지도로 위치 검색</div>
+			</div>	
 	</div>
 	
 	<div id="main_mid_pic">
@@ -285,7 +293,7 @@ $(document).ready(function() {
 	</div>
 	
 <div id="main_bot_title">
-<h2 >Lorem ipsum</h2>
+	<h2>Lorem ipsum</h2>
 </div>
 
 <div id="main_bot">

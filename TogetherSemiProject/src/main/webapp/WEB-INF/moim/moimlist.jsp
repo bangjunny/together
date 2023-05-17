@@ -60,8 +60,32 @@ body, body * {
 #moim_table{
 	width: 1200px;
 	margin: 0 auto;
-	text-align: center;
+	
 }
+#moim_table td{
+	text-align: center;
+	cursor: pointer;
+}
+.moim_box{
+	 border: 1px gray solid;
+	 width: 250px;
+	 height: 350px;
+	 text-align: center;
+	 margin-bottom: 10px;	 
+}
+.moim_box a{
+	color: black;
+	text-decoration: none;
+}
+.moim_box img{
+	width: 100%;
+	height: 200px;
+}
+.moim_info{
+	display: flex;
+	justify-content: flex-start;
+}
+
 .moim_paging{
 	margin-top:25px;
 	text-align: center;
@@ -69,11 +93,10 @@ body, body * {
 </style>
 </head>
 <body>
-		<div id="moim_header">		
-			<h2>모임리스트</h2>
-			
-			<div id="moim_sel_locale">					 
-							<label for="user_city">지역</label> 
+						<div id="moim_header">		
+						<h2>모임리스트</h2>
+							<div id="moim_sel_locale">					 
+								<label for="user_city">지역</label> 
 								<select id="city" name="city1">
 									<option hidden>시, 도 선택</option>
 									<option value="서울특별시">서울특별시</option>
@@ -97,8 +120,8 @@ body, body * {
 								<select id="district" name="city2">
 									<option>시, 군, 구 선택</option>
 								</select>
-						</div>
-		</div>	
+							</div>
+						</div>	
 		
 		
 		
@@ -334,39 +357,38 @@ body, body * {
 			<div id="moim_sort_btn">
 				<button type="button" onclick="submitSelectedSortmnum()" class="btn btn-dark">최신순</button>
 				<button type="button" onclick="submitSelectedSortmcount()" class="btn btn-dark">가입자순</button>
-			</div>		
+			</div>	
+				
 			<table id="moim_table">
-					
-			<c:forEach var="dto" items="${list}" varStatus="i">
-				<c:if test="${i.count % 4 == 1}">
-					<tr>
-				</c:if>
-				<td style="width: 350px;">
-				<a href="moimdetail?mnum=${dto.mnum }&mname=${dto.mname}"
-									style="color: black; font-size: 17px; text-decoration: none; cursor: pointer;" id="godetail" onclick="checkUnum(event)">
-					<div>
-						<c:choose>
-							<c:when test="${dto.mphoto==null}">
-								<!-- Result값이 없다면 실행할 로직 -->								
-									<img
-									src="http://sjrhsefqqpro17075801.cdn.ntruss.com/moim/together.png?type=f&w=200&h=200&ttype=jpg">
-							</c:when>
-							<c:otherwise>
-								<img
-									src="http://${imageUrl_small}/moim/${dto.mphoto}?type=f&w=200&h=200&ttype=jpg">
-								<br>
-							</c:otherwise>
-						</c:choose>
-						<br>
-						<span>
-							<b style="font-size: 20px;">${dto.mname}</b>
-						</span> <br> 지역:${dto.city1} ${dto.city2} <br> 카테고리:${dto.category} <br> 모임인원:${dto.mcount}명						
-					</div>
-					</a>
-				</td>
+				<c:forEach var="dto" items="${list}" varStatus="i">
+					<c:if test="${i.count % 4 == 1}">
+						<tr>
+					</c:if>
+					<td>
+						<div class="moim_box" onclick="location.href='moimdetail?mnum=${dto.mnum }&mname=${dto.mname}'">
+						
+							<c:choose>
+								<c:when test="${dto.mphoto==null}">
+									<!-- Result값이 없다면 실행할 로직 -->								
+										<img src="http://sjrhsefqqpro17075801.cdn.ntruss.com/moim/together.png?type=f&w=200&h=200&ttype=jpg">
+								</c:when>
+								<c:otherwise>
+									<img src="http://${imageUrl_small}/moim/${dto.mphoto}?type=f&w=200&h=200&ttype=jpg">
+								</c:otherwise>
+							</c:choose>
+						
+						 	<div class="moim_info">
+								<b style="font-size: 20px; width: 100px;">${dto.mname}</b>
+								<div>
+									지역:${dto.city1} ${dto.city2} 
+									카테고리:${dto.category} 
+									모임인원:${dto.mcount}명
+								</div>
+							</div>						
+						</div>
+					</td>
 				<c:if test="${i.count % 4 == 0}">
-					</tr>
-					<tr>
+					</tr><tr>
 				</c:if>
 			</c:forEach>
 		</table>
@@ -1048,16 +1070,18 @@ $(function() {
     });
   });
 	
-	function checkUnum(event) {
 	  // 현재 사용자의 세션에서 unum 값을 가져옵니다.
 	  //const unum = sessionStorage.getItem('unum');
 	  // unum 값이 null인 경우에만 alert을 호출합니다.
-	  if (${unum} === 0) {
-	    alert('로그인을 해주세요.');
-	    event.preventDefault(); // 링크 이동을 막습니다.
-	    location.href="/user/login"
+	  $("#moim_table").click(function(e) {
+	 	 if (${sessionScope.unum == null}) {
+	 	   alert('로그인을 해주세요.');
+		   event.preventDefault(); // 링크 이동을 막습니다.
+	  	   location.href="/user/login"
 	  }	  
-	}
+		
+	});
+
 	
 	function checkCreate(event) {
 		  // 현재 사용자의 세션에서 unum 값을 가져옵니다.

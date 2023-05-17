@@ -37,7 +37,7 @@
 		padding-top: 100px;
 	}
   	#main_header{
-		width: 55%;
+		width: 1200px;
 		height: 500px;
 		margin:0 auto;
 		display: flex;
@@ -45,22 +45,21 @@
   
    	}
  	#main_header_left{
-    	width: 50%;
+    	width: 45%;
     }
 
-	#main_head_logo{
-		position: relative;
-		bottom: 200px;
-		left: 175px;
+	#main_head_logo img{
+		width: 75px;
+		height: 75px;
 	}	
 	#main_header_txt{
-		width: 500px;
+		width: 100%;
 		height: 300px;
 		font-size: 25px;
 	}
 	
 	#main_header_pic{
-		width: 525px;
+		width: 45%;
 		height: 400px;
 		text-align: center;
 	}
@@ -114,25 +113,21 @@
 	#main_mid_pic{
 		margin-top: 50px;
 		width: 100%;
-		height: 700px;
-		background-image:url("../photo/mid_pic.jpg");
-  		background-attachment: fixed;		
+		height: 500px;
+		background-image:url("../photo/mid_pic.jpg");	
   		background-repeat: no-repeat;	
 	} 
 	#main_mid_txt{
 		position: relative; 
-		bottom: 500px; 
+		bottom: 300px; 
 		color: white;		
-	}
-	#main_mid_txt h1, h3{
-		background-color: transparent;
 	}
 	#main_bot_title{
 		margin: 20px 0px 50px 0px;
 		text-align: center;
 	}
 	#main_bot{
-		width: 55%;
+		width: 65%;
 		height: 600px;
 		margin: 0 auto;
 		display: flex;
@@ -245,7 +240,7 @@ $(document).ready(function() {
 	<div id="main_header">
 		<div id="main_header_left">
 			<div id="main_head_logo">
-				<img src="../photo/logo.png" style="width: 75px; height: 75px;"> <b style="font-size: 25px;">다 함께!</b>
+				<img src="../photo/logo.png"><b style="font-size: 25px;">다 함께!</b>
 			</div>
 
 			<div id="main_header_txt">

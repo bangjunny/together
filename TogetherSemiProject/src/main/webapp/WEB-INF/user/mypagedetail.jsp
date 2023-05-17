@@ -156,6 +156,7 @@
     <button class="sidebar_1_btn"><i class="bi bi-house-fill"></i>&nbsp; 프로필</button><br><br>
     <button class="sidebar_2_btn"><i class="bi bi-people-fill"></i>&nbsp; 모임</button><br><br>
     <button class="sidebar_3_btn"><i class="bi bi-geo-alt-fill"></i>&nbsp; 지역</button>
+    <button class="sidebar_0_btn"><i class="bi bi-geo-alt-fill"></i>&nbsp; 수정</button>
   </div>
 </div>
 
@@ -167,6 +168,7 @@
   </button>
 </div>
 <script type="text/javascript">
+
 				$(".sidebar_1_btn").click(function() {
 					$("#myprofile").css("display", "block");
 					$("#mylist_wrap").css("display", "none");
@@ -181,6 +183,13 @@
 					$("#myprofile").css("display", "none");
 					$("#mylist_wrap").css("display", "none");
 					$("#mycity_wrap").css("display", "block");
+				});
+				$(".sidebar_0_btn").click(function() {
+					$("#myprofile").css("display", "block");
+					$("#mylist_wrap").css("display", "none");
+					$("#mycity_wrap").css("display", "none");
+					$("#mypageform").css("display", "none");
+					$("#mypageupdateform").css("display", "block");	
 				});
 				
 			</script>

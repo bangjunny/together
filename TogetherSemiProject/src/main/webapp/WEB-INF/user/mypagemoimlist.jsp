@@ -23,6 +23,15 @@
 		  width: 50px; /* 이미지 너비 */
 		  height: 50px; /* 이미지 높이 */
 	}
+	#mmdetail{
+		
+        color:black;
+        font-weight: 500;
+        border:none;
+        border-radius: 3px;
+	
+	
+	}
 	
     
 </style>
@@ -31,7 +40,7 @@
 <body>
  <div class="container mt-5">
         <h3 class="mb-4">나의 모임리스트</h3>
-        <table class="table table-bordered border-primary table-hover table-layout: fixed; width: 100%;">
+        <table class="table table-bordered table-hover table-layout: fixed; width: 100%;">
             <thead class="table-light">
                 <tr>
                     <th style="width: 20%;">모임 이름</th>
@@ -64,7 +73,7 @@
                         <td>${moim.city1}</td>
                         <td>${moim.city2}</td>
                         <td>${moim.mcontent}</td>
-                        <td><a href="/moim/moimdetail?mnum=${moim.mnum}&mname=${moim.mname}" class="btn btn-primary">자세히보기</a></td>
+                        <td><a href="/moim/moimdetail?mnum=${moim.mnum}&mname=${moim.mname}" id="mmdetail">상세보기<i class="bi bi-arrow-right-circle-fill"></i></a></td>
                     </tr>
                 </c:forEach>
             </tbody>

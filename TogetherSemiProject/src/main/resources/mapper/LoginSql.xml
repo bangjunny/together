@@ -100,6 +100,6 @@
 	</insert>
 	
 	<select id="getGaipMoimList" parameterType="int" resultType="Map">
-		select m.mname from moim m join moimmember mm on m.mname=mm.mname where mm.unum=#{unum} and acceptcall=1;
+		select m.mnum,m.mname, m.mphoto, m.city1, m.city2, m.category, m.mcontent from moim m join moimmember mm on m.mname=mm.mname where mm.unum=#{unum} and acceptcall=1;
 	</select>
 </mapper>

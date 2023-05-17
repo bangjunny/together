@@ -18,6 +18,8 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <style>
 	body, body * {
 		font-family: 'NanumPenScript';
@@ -28,14 +30,14 @@
 	}
 	div.moim {
 		width: 900px;
-		height:1200px;
+		height:1400px;
 		margin: 200px auto 0 auto;
 		background-color:white;
 	}
 	div.mcontent {
 		font-size: 15px;
 		margin:20px 10px;
-		height:250px;
+		height:350px;
 		background-color:white;
 		text-align: center;
 	}
@@ -71,6 +73,7 @@
 		width: 350px;
 		height:40px;
 		margin: 0 auto 0 10%;
+		
 	}
 	#jjim{
 		width: 450px;
@@ -86,12 +89,13 @@
 		display: flex;
 	}  */
 	#gaipmember0{
-		position:relative;
-		right:360px;
-		bottom:470px;
-		width: 450px;
-		height:10px;
+		position:absolute;
+		right:740px;
+		top:50px;
+		width: 430px;
+		height:350px;
 		font-size:13px;
+		overflow: auto;
 	}
 	#memberlist0{
 		width: 400px;
@@ -105,12 +109,13 @@
 		margin-left: 150px;
 	}
 	#gaipmember1{
-		position:relative;
-		left:980px;
-		bottom:480px;
-		width: 450px;
-		height:10px;
+		position:absolute;
+		left:970px;
+		top:50px;
+		width: 350px;
+		height:350px;
 		font-size:13px;
+		overflow: auto
 	}
 	#headhr{
 	 	 height: 1px;
@@ -125,7 +130,7 @@
 	 	 background-color: gray;
 	}
 	#midhr{
-	width:40%;
+	width:70%;
 	}
 @media ( max-width: 1200px ){
 	div.moim {
@@ -134,6 +139,7 @@
 	div.topright{
 		width:auto;
 		float:right;
+		font-size:14px;
 	}
 	div.topleft{
 	width:auto;
@@ -149,46 +155,56 @@
 	width:300px;
 	height:250px;
 	position:relative;
+	top:10px;
+	left:50px;
 	
 }
 #gaipmember0{
 		position:absolute;
 		left:100px;
-		top:950px;
+		top:1050px;
 		width: 450px;
-		height:10px;
+		height:300px;
 		font-size:13px;
+		overflow: auto;
 	}
 	#gaipmember1{
 		position:absolute;
 		left:500px;
-		top:955px;
-		width: 450px;
-		height:10px;
+		top:1055px;
+		width: 380px;
+		height:300px;
 		font-size:13px;
+		overflow: auto;
 	}
 	#moim_resi_wrap button{
 		width: 250px;
 		height:40px;
 		margin: 0 auto 0 10%;
 	}	
+	#midhr{
+	width:50%;
+	}
 }
 @media (  max-width: 767px ){
 	#gaipmember0{
 		position:absolute;
 		left:20px;
-		top:950px;
-		width: 450px;
-		height:10px;
+		top:1050px;
+		width:400px;
+		height:300px;
 		font-size:13px;
+		overflow: auto;
+		
 	}
 	#gaipmember1{
 		position:absolute;
 		left:350px;
-		top:950px;
-		width: 450px;
-		height:10px;
+		top:1055px;
+		width: 300px;
+		height:300px;
 		font-size:13px;
+		overflow: auto;
 	}
 	#moim_resi_wrap button{
 		width: 150px;
@@ -201,6 +217,7 @@
 	height:150px;
 	position:relative;
 	top:10px;
+	left:3px;
 }
 	div.janginfo{
 	position:relative;
@@ -208,6 +225,9 @@
 	float: left;
 	color:black; 
 	font-size:15px;
+	}
+	#midhr{
+	width:40%;
 	}
 }
 
@@ -244,7 +264,7 @@
 							</c:when>			
 							<c:otherwise>
 								<a class="jjim_cancle" onclick="deleteJjim();">
-									<i class="bi bi-heart-fill"></i>
+									<i class="bi bi-heart-fill" style="color:red;"></i>
 								</a>	
 							</c:otherwise>
 						</c:choose>
@@ -264,7 +284,7 @@
 				</c:when>			
 				<c:otherwise>
 						<div id="gaip_cancle">
-							<button type="button" class="btn btn-outline-secondary" onclick="deleteGaip(${acceptChk});">가입대기</button>
+							<button type="button" class="btn btn-secondary" onclick="deleteGaip(${acceptChk});">가입대기</button>
 						</div>
 				</c:otherwise>
 			</c:choose>
@@ -297,7 +317,7 @@
 		</div>
 		<c:if test="${dto.unum == sessionScope.unum }">
 		<!--  <div id="gaipmemberlist">  -->
-			<div id="gaipmember0" >&nbsp;&nbsp;&nbsp;&nbsp;<b>가입신청 확인</b>
+			<div id="gaipmember0" ><b id="gaipck">가입신청 확인</b><br><br>
 					<c:forEach items="${list }" var="standby">
 					<ul class="member_list0">
 						<c:if test="${standby.acceptcall == 0 }">
@@ -316,7 +336,7 @@
 			</div>
 			
 			<div id="gaipmember1" >
-			&nbsp;&nbsp;&nbsp;<b>가입한 멤버</b><br><br>
+			<b id="gaipmb">가입한 멤버</b><br><br>
 				<c:forEach items="${list }" var="pass">
 				<ul>
 					<c:if test="${pass.acceptcall == 1 }">
@@ -390,7 +410,7 @@
 		
 			if(res == "success") {
 				alert("찜하셨습니다");
-				$("#jjim").html('<a class="jjim_cancle" onclick="deleteJjim();"><i class="bi bi-heart-fill"></i></a>');
+				$("#jjim").html('<a class="jjim_cancle" onclick="deleteJjim();"><i class="bi bi-heart-fill" style="color:red;"></i></a>');
 			} 
 		},
 	});

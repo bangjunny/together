@@ -29,46 +29,54 @@
 		width: 900px;
 		height:1500px;
 		margin: 200px auto 0 auto;
-		background-color:#ccc;
+		background-color:white;
 	}
 	div.mcontent {
-		font-size: 20px;
+		font-size: 15px;
 		margin:20px 10px;
-		height:700px;
+		height:250px;
 		background-color:white;
-		text-align:center;
+		text-align: center;
 	}
 	.mcontent_img{
-		width:838px;
-		height:500px;
-		margin:20px;
+		width:350px;
+		height:250px;	
 }
+	.topright{
+		width:800px;
+		height:0px;
+		text-align:right;
+	}
 	#moim_resi_wrap{
 		width: 100%;
 		display:flex;
-		text-align: center;
+		margin-left:70px;
+		margin-top:80px;
 	}
 	#moim_resi_wrap button{
-		width: 300px;
+		width: 350px;
+		height:40px;
 		margin: 0 auto 0 10%;
 	}
 	#jjim{
-		width: 210px;
-		font-size: 30px;
+		width: 400px;
+		font-size: 33px;
 		display: flex;
 		justify-content: flex-end;
 	}
 	#jjim:hover{
 		cursor: pointer;
 	}
-	#gaipmemberlist{
+	/* #gaipmemberlist{
 		width: 900px;
 		display: flex;
-	}
+	} */
 	#gaipmember0{
-		width: 50%;
+		width: 450px;
 		height: 500px;
-		border: 1px red solid;
+		border: 0px gray solid;
+		position:absolute;
+		left:10px;
 	}
 	#memberlist0{
 		width: 400px;
@@ -82,82 +90,51 @@
 		margin-left: 150px;
 	}
 	#gaipmember1{
-		width: 50%;
+		width: 450px;
 		height: 500px;
-		border: 1px red solid;
+		border: 0px gray solid;
+		position:absolute;
+		right:30px;
+		
 	}
-	
-	
+	#headhr{
+	 	 height: 1px;
+	 	 background-color: gray;	  	
+	}
+	#bodyhr{
+		height: 1px;
+	 	background-color: gray;
+	}
+	#foothr{
+	 	 height: 1px;
+	 	 background-color: gray;
+	}
+	#midhr{
+	width:40%;
+	}
 
 </style>
 </head>
 <body>
+
 	<div class="moim">
-		<div><br>
-		<h2 style="text-align:center;">${dto.mname}</h2>
-		
-		<span style="float: left;font-size: 14px;">지역 : ${dto.city1} ${dto.city2}</span>
-		<span style="float: right; color:black; font-size: 14px;">
+		<h3 style="text-align:left">모임게시판</h3>
+		<hr id="headhr"><br>
+	<div class="topright">
+	<h3 style="text-align:right;">[${dto.category}] ${dto.mname}</h3><br>	
+		<span style="float: right;font-size: 14px;"><b>
 		모임 시작일 :
 		<fmt:formatDate value="${dto.createday}" pattern="yyyy-MM-dd" />
-		</span> 
+		</b></span> <br>
+		<span style="float: justify;font-size: 14px;"><b>지역 : ${dto.city1} ${dto.city2}</b></span>
 		<br> 
-		<span style="color:black; font-size: 14px;">카테고리 : ${dto.category}</span>
+		<span style="float: justify; color:black; font-size: 14px;"><b>카테고리 : ${dto.category}</b></span>
 		<br>
-		<span style="color:black; font-size: 14px;">모임원 : 총 ${dto.mcount}명</span>
+		<span style="float: justify; color:black; font-size: 14px;"><b>모임원 : 총 ${dto.mcount}명</b></span>
+		<br>	
+		<span style="float: justify; color:black; font-size:14px;"><b>모임장 : ${uname} </b></span>
 		<br>
 		
-		<span style="float: left; color:black; font-size:16px;">모임장 : ${uname} </span>
-		
-		<br>
-		</div>
-		
-		<hr>
-		
-		<div class="mcontent">
-		 <c:choose>
-   		 	<c:when test="${dto.mphoto==null}">
-   		<!-- Result값이 있다면 실행할 로직 -->
-   				<img class="mcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
-   		 	</c:when>
-   		 	<c:otherwise>
-		 <!-- 그렇지 않다면 실행할 로직 -->
-		 		<img class="mcontent_img" src="https://${imageUrl}/moim/${dto.mphoto}">	 
-   		 	</c:otherwise>
-		 </c:choose>
-		
-		${dto.mcontent}
-		
-		</div>
-		<!-- 버튼영역 -->
-		<div style="text-align:center;">
-			<button type="button" class="btn btn-sm btn-outline-secondary"
-				style="width: 70px;" onclick="location.href='./moimlist'"><i class="bi bi-list-stars"></i>목록</button>
-			<c:choose>
-			 <c:when test="${sessionScope.unum == udto.unum}">
-			<button type="button" class="btn btn-sm btn-outline-secondary"
-				style="width: 70px;" onclick="location.href='./updateform?mnum=${dto.mnum}'"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
-			<button type="button" class="btn btn-sm btn-outline-secondary" id="delmoim" onclick="del(${dto.mnum})"
-				style="width: 70px;"><i class="bi bi-trash"></i>&nbsp;삭제</button>
-			</c:when>
-			<c:otherwise>
-			<button type="button" class="btn btn-sm btn-outline-secondary"
-				style="width: 70px;" onclick="alert('작성자가 아닙니다')"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
-			<button type="button" class="btn btn-sm btn-outline-secondary" 
-				style="width: 70px;" onclick="alert('작성자가 아닙니다')"><i class="bi bi-trash"></i>&nbsp;삭제</button>
-			</c:otherwise>
-			</c:choose>
-		</div>	
-		<script>
-		$(document).on("click", "#delmoim", function() {
-			let b=confirm("삭제를 하려면 [확인]을 눌러주세요");
-			if(b){
-				location.href="delete?mnum="+${dto.mnum};
-			}
-		});
-		</script>
-		
-		<hr>
 			<c:if test="${sessionScope.unum != dto.unum }">
 				<div id="moim_resi_wrap">
 					<div id="jjim">
@@ -179,26 +156,72 @@
 			<c:choose>
 			<c:when test="${acceptChk == 1}">
 					<div>
-						<button type="button" onclick="moimOut();">모임탈퇴</button>
+						<button type="button" class="btn btn-outline-secondary" onclick="moimOut();">모임탈퇴</button>
 					</div>
 			</c:when>
 				<c:when test="${!pressGaipChk}">		
 					<div id="gaip_btn">
-						<button type="button" onclick="moimGaip();">가입신청</button>
+						<button type="button" class="btn btn-outline-secondary" onclick="moimGaip();">가입신청</button>
 					</div>
 				</c:when>			
 				<c:otherwise>
 						<div id="gaip_cancle">
-							<button type="button" onclick="deleteGaip(${acceptChk});">가입대기</button>
+							<button type="button" class="btn btn-outline-secondary" onclick="deleteGaip(${acceptChk});">가입대기</button>
 						</div>
 				</c:otherwise>
 			</c:choose>
 					
 			</div>	
 		</c:if>
+		
+		
+		
+		</div>
+		
+		<div class=mcontent_img> 
+		<c:choose>
+   		 	<c:when test="${dto.mphoto==null}">
+   		<!-- Result값이 있다면 실행할 로직 -->
+   				<img class="mcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+   		 	</c:when>
+   		 	<c:otherwise>
+		 <!-- 그렇지 않다면 실행할 로직 -->
+		 		<img class="mcontent_img" src="https://${imageUrl}/moim/${dto.mphoto}">	 
+   		 	</c:otherwise>
+		 </c:choose>
+		 </div>
+
+		 <div><br>
+		<h5><b>작성자 정보</b></h5>
+		 <hr id="midhr">
+		<span style="float: left; color:black; font-size:14px;"><b>이 메 일 : ${udto.email}</b></span><br>
+		<span style="float: left; color:black; font-size:14px;"><b>전화번호 : ${udto.hp}</b></span><br>
+		<span style="float: left; color:black; font-size:14px;"><b>이&nbsp;&nbsp;&nbsp;름 : ${udto.uname}</b></span><br>
+		</div>
+		<hr>
+		<!-- 버튼영역 -->
+		<div style="text-align:right; padding:3px;">
+			<button type="button" class="btn btn-sm btn-outline-secondary"
+				style="width: 100px;" onclick="location.href='./moimlist'"><i class="bi bi-list-stars"></i>&nbsp;목록</button>
+			<c:choose>
+			 <c:when test="${sessionScope.unum == udto.unum}">
+			<button type="button" class="btn btn-sm btn-outline-secondary"
+				style="width: 100px;" onclick="location.href='./updateform?mnum=${dto.mnum}'"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
+			<button type="button" class="btn btn-sm btn-outline-secondary" id="delmoim" onclick="del(${dto.mnum})"
+				style="width: 100px;"><i class="bi bi-trash"></i>&nbsp;삭제</button>
+			</c:when>
+			<c:otherwise>
+			<button type="button" class="btn btn-sm btn-outline-secondary"
+				style="width: 100px;" onclick="alert('작성자가 아닙니다')"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
+			<button type="button" class="btn btn-sm btn-outline-secondary" 
+				style="width: 100px;" onclick="alert('작성자가 아닙니다')"><i class="bi bi-trash"></i>&nbsp;삭제</button>
+			</c:otherwise>
+			</c:choose>
+		</div>	
+		<hr id="bodyhr">
 		<c:if test="${dto.unum == sessionScope.unum }">
-		<div id="gaipmemberlist">
-			<div id="gaipmember0">
+		<!-- <div id="gaipmemberlist"> -->
+			<div id="gaipmember0" class="border">
 					<c:forEach items="${list }" var="standby">
 					<ul class="member_list0">
 						<c:if test="${standby.acceptcall == 0 }">
@@ -215,7 +238,7 @@
 					</ul>
 					</c:forEach>
 			</div>
-			<div id="gaipmember1">
+			<div id="gaipmember1" class="border">
 				<c:forEach items="${list }" var="pass">
 				<ul>
 					<c:if test="${pass.acceptcall == 1 }">
@@ -226,8 +249,22 @@
 				</ul>	
 				</c:forEach>
 			</div>
-		</div>
+		<!-- </div> -->
 		</c:if>
+		<br>
+		<div class="mcontent">
+		${dto.mcontent}
+		</div>
+		
+		<script>
+		$(document).on("click", "#delmoim", function() {
+			let b=confirm("삭제를 하려면 [확인]을 눌러주세요");
+			if(b){
+				location.href="delete?mnum="+${dto.mnum};
+			}
+		});
+		</script>
+
 	</div>
 	<script type="text/javascript">
 	const mnum = ${dto.mnum};
@@ -391,8 +428,6 @@
 	}
 	
 </script>
-	
-	</script>
 
 </body>
 </html>

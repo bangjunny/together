@@ -3,6 +3,8 @@ package com.semi.service;
 import java.util.List;
 import java.util.Map;
 
+import com.semi.dto.CityBoardDto;
+import com.semi.dto.MoimDto;
 import com.semi.dto.UserDto;
 import com.semi.dto.UserPhotoDto;
 
@@ -29,8 +31,10 @@ public interface LoginServiceInter {
 
 	public void updateMypage(UserDto dto);
 
-	public List<Map<String, Object>> getcbLikeList(int unum);
+	public List<CityBoardDto> getMyCBList(int start, int perpage,int unum);
+	public List<CityBoardDto> getCbLikeList(int start, int perpage,int unum);
 	
-
+	public int getMyCBWRCount(int unum);
+	public int getMyCBLikeCount(int unum);
 	
 }

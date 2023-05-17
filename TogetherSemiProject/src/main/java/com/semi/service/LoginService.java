@@ -11,7 +11,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.semi.dto.CbLikeDto;
 import com.semi.dto.CityBoardDto;
 import com.semi.dto.JJimDto;
 import com.semi.dto.MoimDto;
@@ -99,35 +98,24 @@ public class LoginService implements LoginServiceInter{
 	    // 찜한 모임 목록을 반환한다.
 	    return jjimList;
 	}
-	@Override
-	public List<Map<String, Object>> getcbLikeList(int unum) {
-		// 사용자가 찜한 목록을 조회한다.
-	    List<CbLikeDto> cbdlist = loginMapper.getCbLikeDto(unum);
-	    //찜한 모임 정보를 담을 그릇을 만든다. 
-	    
-	    List<Map<String, Object>> cbLikeList = new ArrayList<Map<String, Object>>();
-	    if (Objects.isNull(cbdlist)) {
-	        return null;
-	    }
-	 // 찜한 목록을 하나씩 조회한다.
-	    cbdlist.forEach(i -> {
-	        // 해당 사용자가 찜한 모임의 번호로 모임 정보를 조회한다.
-	        CityBoardDto cbDto = cityMapper.getDetailbycbnum(i.getCbnum());
-	        // 모임 정보를 Map에 담는다.
-	        Map<String, Object> cbMap = new HashMap<String, Object>();
-	        cbMap.put("cbnum", cbDto.getCbnum());
-	        cbMap.put("subject", cbDto.getSubject());
-	        cbMap.put("cbcontent", cbDto.getCbcontent());
-	        cbMap.put("readcount", cbDto.getReadcount());
-	        cbMap.put("city1", cbDto.getCity1());
-	        cbMap.put("city2", cbDto.getCity2());
-	       
-	        // 모임 정보를 그릇에 담는다.
-	        cbLikeList.add(cbMap);
-	    });
-	    // 찜한 모임 목록을 반환한다.
-	    return cbLikeList;
-	}
+	/*
+	 * @Override public List<Map<String, Object>> getcbLikeList(int unum) { // 사용자가
+	 * 찜한 목록을 조회한다. List<CbLikeDto> cbdlist = loginMapper.getCbLikeDto(unum); //찜한
+	 * 모임 정보를 담을 그릇을 만든다.
+	 * 
+	 * List<Map<String, Object>> cbLikeList = new ArrayList<Map<String, Object>>();
+	 * if (Objects.isNull(cbdlist)) { return null; } // 찜한 목록을 하나씩 조회한다.
+	 * cbdlist.forEach(i -> { // 해당 사용자가 찜한 모임의 번호로 모임 정보를 조회한다. CityBoardDto cbDto
+	 * = cityMapper.getDetailbycbnum(i.getCbnum()); // 모임 정보를 Map에 담는다. Map<String,
+	 * Object> cbMap = new HashMap<String, Object>(); cbMap.put("cbnum",
+	 * cbDto.getCbnum()); cbMap.put("subject", cbDto.getSubject());
+	 * cbMap.put("cbcontent", cbDto.getCbcontent()); cbMap.put("readcount",
+	 * cbDto.getReadcount()); cbMap.put("city1", cbDto.getCity1());
+	 * cbMap.put("city2", cbDto.getCity2());
+	 * 
+	 * // 모임 정보를 그릇에 담는다. cbLikeList.add(cbMap); }); // 찜한 모임 목록을 반환한다. return
+	 * cbLikeList; }
+	 */
 	
 	
 
@@ -166,6 +154,39 @@ public class LoginService implements LoginServiceInter{
 		// TODO Auto-generated method stub
 		loginMapper.updateMypage(dto);
 	}
+
+	@Override
+	public List<CityBoardDto> getMyCBList(int start, int perpage, int unum) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map=new HashMap<>();
+	      map.put("start", start);
+	      map.put("perpage", perpage);
+	      map.put("unum", unum);	     
+	      return loginMapper.getMyCBList(map);
+	}
+
+	@Override
+	public int getMyCBWRCount(int unum) {
+		// TODO Auto-generated method stub
+		return loginMapper.getMyCBWRCount(unum);
+	}
+
+	@Override
+	public List<CityBoardDto> getCbLikeList(int start, int perpage, int unum) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map=new HashMap<>();
+	      map.put("start", start);
+	      map.put("perpage", perpage);
+	      map.put("unum", unum);	     
+	      return loginMapper.getCbLikeList(map);
+	}
+
+	@Override
+	public int getMyCBLikeCount(int unum) {
+		// TODO Auto-generated method stub
+		return loginMapper.getMyCBLikeCount(unum);
+	}
+
 
 	
 

@@ -209,7 +209,7 @@
 		<tr>
 			<td colspan="2">
 				<h5>모임 대표 사진</h5>
-				<input type="file" class="form-control" name="upload" id="moimfile">
+				<input type="file" class="form-control " name="upload" id="moimfile">
 			</td>
 		</tr>
 		<tr colspan="2">

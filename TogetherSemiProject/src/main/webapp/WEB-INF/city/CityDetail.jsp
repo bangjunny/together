@@ -9,47 +9,46 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+<!-- Include the Bootstrap 4 theme -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
 
 .cbcontent_img{
 	width:400px;
 	height:420px;
 	margin:20px;
-}
+	}	
+	
 </style>
 </head>
 <body>
 <!-- 게시판 명 -->
 	<br>
 	<br>
+	<br>
 	<!-- 해당 글 정보 영역 -->
-	<div style="width: 800px; margin: 0 auto; margin-top: 40px; border: 1px solid skyblue; border-radius: 10px;">
-		<h3 style="margin-left:10px;margin-top:10px;">${dto.subject}</h3>
-		<hr>
-		<h6 style="float: right; margin-top:5px;">
-        <b style="color:#A4A4A4">추천수</b>&nbsp;<span class="likecount">${dto.cblike}</span>&nbsp;
+	<div style="width: 800px; margin: 0 auto; margin-top: 40px; border: 1px solid #6E6E6E; border-radius: 10px;">
+		<br>
+		<h3 style="margin-left:40px;margin-top:10px;">${dto.subject}</h3>
+		<h6 style="float: right;">
+        <b style="color:#A4A4A4;">추천수</b>&nbsp;<span class="likecount" style="margin-right:40px;">${dto.cblike}</span>&nbsp;
       	</h6 >
-		<h6 style="float: right; margin-top:5px;"><b style="color:#A4A4A4">조회수</b> ${dto.readcount}&nbsp;</h6>
+		<h6 style="float: right;"><b style="color:#A4A4A4">조회수</b> ${dto.readcount}&nbsp;</h6>
 		
 		<c:choose>
 		<c:when test="${mainPhoto!=null }">
-		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-bottom:10px; margin-left:5px; border-radius:100px;">
+		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-bottom:10px; margin-left:40px; border-radius:100px;">
 		</c:when>
 		<c:otherwise>
-		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left;margin-bottom:10px; margin-left:5px; border-radius:100px;">                               
+		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left;margin-bottom:10px; margin-left:40px; border-radius:100px;">                               
 		</c:otherwise>
 		</c:choose>
 		<h5 style="float: left; margin-left:5px;margin-bottom:20px;">${dto.uname}&nbsp;</h5>
-		<h6 style="color:#A4A4A4; margin-top:20px;"> <fmt:formatDate value="${dto.cbwriteday }" pattern="yyyy.MM.dd HH:MM"/> </h6>
-		<hr>
+		<h6 style="color:#A4A4A4; margin-top:4px;"> <fmt:formatDate value="${dto.cbwriteday }" pattern="yyyy.MM.dd HH:MM"/> </h6>
+		<hr style="width:90%; margin-left:40px">
 			<c:if test="${photocount=='0'}">
 			<div class="cbcontent" align="center">
             	<img id="photoarea" class="cbcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
@@ -72,21 +71,21 @@
       <c:choose>
          <c:when test="${cblikecheck==0}">
             <i class="bi bi-hand-thumbs-up like"
-               style="font-size: 40px; cursor: pointer;" onclick="cblike();"></i>
+               style="font-size: 40px; cursor: pointer; color:#FE9A2E"  onclick="cblike();"></i>
             <br>
          </c:when>
          <c:otherwise>
             <i class="bi bi-hand-thumbs-up-fill like2"
-               style="font-size: 40px; cursor: pointer;" onclick="cbdislike();"></i>
+               style="font-size: 40px; cursor: pointer; color:#FE9A2E" onclick="cbdislike();"></i>
             <br>
          </c:otherwise>
       </c:choose>
       </div>
       <div class="likecount" style="text-align:center">${dto.cblike}</div>
-		<hr>
+		<hr style="width:90%; margin-left:40px">
 		<!-- 버튼 영역 -->
 		<div>
-			<button type="button" class="btn btn-sm btn-success" onclick="history.back()" style="margin-left:10px; width:100px;"><i class="bi bi-card-list"></i>
+			<button type="button" id="golist" class="btn btn-sm text-white" style="margin-left:40px; width:100px;background-color: #FE9A2E"><i class="bi bi-card-list"></i>
 			목록으로</button>
 			<c:choose>
 			 <c:when test="${sessionunum eq dto.unum}">
@@ -99,17 +98,28 @@
 			  </button>
 				</c:when>
 				<c:otherwise>
-				  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="alert('작성자가 아닙니다')">
+				  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="Swal.fire({
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: '작성자가 아닙니다...',
+					  footer: ''
+					})">
+				    
 				    <i class="bi bi-pencil-square"></i>&nbsp;수정
 				  </button>
 				  
-				  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="alert('작성자가 아닙니다')">
+				  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="Swal.fire({
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: '작성자가 아닙니다...',
+					  footer: ''
+					})">
 				    <i class="bi bi-trash"></i>&nbsp;삭제
 				  </button>
 				</c:otherwise>
 				</c:choose>
 		</div>
-		<hr>
+		<br>
 		<!-- 댓글 입력 영역 -->
 		<form action="newcomment" method="post" id="newcomment">
 			<input type="hidden" name="unum" value="${udto.unum}">
@@ -118,20 +128,21 @@
 			<!-- 댓글 입력 창 -->
 			<div class="mb-3 mt-3">
 				<textarea class="form-control" rows="5" id="content" name="recontent"
-					style="height: 200px; resize: none; width: 750px;margin:0 auto"
+					style="height: 200px; resize: none; width: 720px;margin:0 auto"
 					placeholder="내용을 입력해주세요" required="required"></textarea>
 			</div>
-			<button type="submit" class="btn btn-primary"
-				style="float: right; margin-right: 30px;">입력</button>
+			<button type="submit" class="btn btn-sm text-white"
+				style="float: right; margin-right: 40px; width:100px;background-color: #FE9A2E">입력</button>
 				<br>
 		</form>
 		<br>
 		<div>
 			<!-- 댓글 출력 영역 -->
-			<hr>
-			<button type="button" id="showComment" style="margin-left: 25px; margin-bottom: 10px;">댓글 보기</button>
 			<br>
-			<table id="commentArea" style="border : 1px solid black;width:700px;margin:0 auto;display:none; background-color:#ddd">
+			<button type="button" id="showComment" style="margin-left: 40px; margin-bottom: 10px;width:150px; background-color:white;color:#FE642E" 
+			class="btn btn-sm"><h6 style="margin-top:5px"><i class="bi bi-chat-dots"></i>&nbsp;댓글 보기</h6></button>
+			<br>
+			<table id="commentArea" style="border : 1px solid #ddd;width:700px;margin:0 auto;display:none;">
 			<!-- 댓글이 없는 경우 -->
 				<c:if test="${totalComment=='0'}">
 					<tr>
@@ -142,7 +153,7 @@
 				<c:if test="${totalComment!='0' }">
 					<c:forEach var="listcomment" items="${listcomment}" varStatus="">
 						<c:if test="${listcomment.recontent=='' }">
-							<tr style="border: 1px solid black;height:80px;" value="${listcomment.ref}">
+							<tr style="height:80px;" value="${listcomment.ref}">
 								<td style="width:700px">
 								<c:forEach begin="1" end="${listcomment.depth}">
 									&nbsp;&nbsp;
@@ -158,7 +169,7 @@
 						<c:choose>
 								<c:when test="${listcomment.depth=='0'}">
 									<tbody style="display:block" class="commentView" data-ref="${listcomment.ref}" data-depth="${listcomment.depth }">
-										<tr style="border: 1px solid black;" value="${listcomment.ref}">				
+										<tr style="border: 1px solid #ddd;" value="${listcomment.ref}">				
 					<td style="width: 540px;">
 					<c:forEach begin="1" end="${listcomment.depth}">
 					&nbsp;&nbsp;
@@ -186,12 +197,12 @@
 				<tr>
 					<td colspan="3">
 						&nbsp;
-						<button type="button" id="commentFunction">답글 보기</button>
+						<button type="button" id="commentFunction" class="btn btn-sm text-white" style="width:100px;background-color:#FE9A2E">답글 보기</button>
 						<c:if test="${sessionScope.unum==listcomment.unum}">
-						<button type="submit" id="deleteComment" style="float:right" class="btn btn-danger">삭제</button>
-						<button id="updateComment" style="float:right" class="btn btn-secondary">수정</button>
+						<button type="submit" id="deleteComment" style="float:right;" class="btn btn-sm btn-danger">삭제</button>
+						<button id="updateComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">수정</button>
 						</c:if>
-            			<button id="addComment" style="float:right" class="btn btn-secondary">답글</button>
+            			<button id="addComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">답글</button>
 					</td>
 				</tr>
 				<tr>
@@ -221,7 +232,7 @@
 								</c:when>
 								<c:otherwise>
 									<tbody style="display:none" id="commentView" data-ref="${listcomment.ref}" data-depth="${listcomment.depth }">
-									<tr style="border: 1px solid black;" value="${listcomment.ref}">				
+									<tr style="border: 1px solid #ddd;" value="${listcomment.ref}">				
 					<td style="width: 540px;">
 					<c:forEach begin="1" end="${listcomment.depth}">
 					&nbsp;&nbsp;
@@ -250,10 +261,10 @@
 						<c:if test="${sessionScope.unum==listcomment.unum}">
 						<c:if test="${listcomment.depth=='0' }">
 						</c:if>
-						<button type="submit" id="deleteComment" style="float:right" class="btn btn-danger">삭제</button>
-						<button id="updateComment" style="float:right" class="btn btn-secondary">수정</button>
+						<button type="submit" id="deleteComment" style="float:right" class="btn btn-sm btn-danger">삭제</button>
+						<button id="updateComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">수정</button>
 						</c:if>
-						<button id="addComment" style="float:right" class="btn btn-secondary">답글</button>
+						<button id="addComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">답글</button>
 					</td>
 				</tr>
 				<tr>
@@ -288,29 +299,30 @@
 			</table>
 			
 		</div>
-		<hr>
+		<hr style="width:90%; margin-left:40px">
 		<div>
 			
 			<!-- 이전 글 다음 글 출력 영역 -->
 			<div>
-			<h4>&nbsp;이전 글</h4>
+			<h5 style="margin-left:40px;"><b>이전 글</b></h5>
 				<c:if test="${not empty precontent}">
-					<a href="<c:url value='/city/detail?cbnum=${prenum}'/>"><h5 style="margin-left: 20px;">${precontent}</h5></a>
+					<a href="<c:url value='/city/detail?cbnum=${prenum}'/>"><h6 style="margin-left: 60px;">${precontent}</h6></a>
 				</c:if>
 				<c:if test="${empty precontent}">
-					<h5 style="margin-left: 20px;">이전 게시글이 없습니다</h4>
+					<h6 style="margin-left: 60px;">이전 게시글이 없습니다</h6>
 				</c:if>
 			</div>
-			<hr>
+			<hr style="width:90%; margin-left:40px">
 			<div>
-			<h4>&nbsp;다음 글</h4>
+			<h5 style="margin-left:40px;"><b>다음 글</b></h5>
 				<c:if test="${not empty nxtcontent}">
-					<a href="<c:url value='/city/detail?cbnum=${nxtnum}'/>"><h4 style="margin-left: 20px;">${nxtcontent}</h4></a>
+					<a href="<c:url value='/city/detail?cbnum=${nxtnum}'/>"><h6 style="margin-left: 60px;">${nxtcontent}</h6></a>
 				</c:if>
 				<c:if test="${empty nxtcontent}">
-					<h5 style="margin-left: 20px;">다음 게시글이 없습니다</h5>
+					<h6 style="margin-left: 60px;">다음 게시글이 없습니다</h6>
 				</c:if>
 			</div>
+			<br>
 		</div>
 	</div>
 	
@@ -381,7 +393,7 @@
             alert("추천되었습니다");
             $(".likecount").html(res);
             $("#likebutton").html(`<i class="bi bi-hand-thumbs-up-fill like2"
-               style="font-size: 40px; cursor: pointer;" onclick="cbdislike();"></i>`);
+               style="font-size: 40px; cursor: pointer; color:#FE9A2E" onclick="cbdislike();"></i>`);
          }
          
       });
@@ -400,7 +412,7 @@
 	            alert("추천이 취소되었습니다");
 	            $(".likecount").html(res);
 	            $("#likebutton").html(`<i class="bi bi-hand-thumbs-up like"
-	                  style="font-size: 40px; cursor: pointer;" onclick="cblike();"></i>`);
+	                  style="font-size: 40px; cursor: pointer; color:#FE9A2E" onclick="cblike();"></i>`);
 	         }
 	         
 	      });
@@ -422,14 +434,20 @@
 
 $("#showComment").click(function() {
   if ($("#commentArea").css("display") === "none") {
-    $("#commentArea").css("display", "block");
-    $("#commentArea").slideUp(0).slideDown("slow");
+	  $("#showComment").css("border","1px solid #FE9A2E")
+	  $("#commentArea").css("display", "block");
+      $("#commentArea").slideUp(0).slideDown("slow");
   } else {
-    $("#commentArea").slideUp("slow", function() {
-      $("#commentArea").css("display", "none");
+      $("#commentArea").slideUp("slow", function() {
+    	  $("#showComment").css("border","")
+        $("#commentArea").css("display", "none");
     });
   }
 });
+
+$("#golist").click(function(){
+	location.href="/city/list"
+})
 </script>
 </html>
 

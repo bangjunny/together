@@ -663,7 +663,7 @@
 	  </div>
 	</div>
     
-    <script src="/js/join.js">
+    <script src="/js/sojoin.js">
     
     </script>
 

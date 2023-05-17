@@ -28,8 +28,9 @@
         }
         
         .container-fluid {
-        	margin-top : 100px;
+        	margin-top : 20px;
         	margin-bottom : 150px;
+        	
         
         }
         
@@ -45,9 +46,10 @@
         margin: 0 auto;
         padding: 50px;
         background-color: #fff;
-        border-radius: 10px;
+        border : none;
+/*         border-radius: 10px;
         box-shadow: 0px 0px 10px #ccc;
-      }
+ */      }
       
       #join-form h2 {
         margin-bottom: 20px;
@@ -57,7 +59,7 @@
       .input-wrap {
         display: flex;
         flex-direction: column;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
       }
       
       .input-mo {
@@ -86,25 +88,6 @@
          width:197px;
       }
       
-      .btn-submit {
-        width:100%;
-        height:50px;
-        background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
-        background-position: left;
-        background-size: 200%;
-        color:white;
-        font-weight: 700;
-        border:none;
-        cursor:pointer;
-        transition: 0.4s;
-        margin-top:20px;
-        font-size:18px;
-      }
-
-      .btn-submit:hover {
-           background-position: right;
-      }
-      
       input:focus {
           outline: none;
       }
@@ -125,6 +108,7 @@
           width: 100%;
           height: 50px;
           border: solid 1px #dadada;
+          border-radius:5px;
           padding: 10px 14px 10px 14px;
           box-sizing: border-box;
           background: #fff;
@@ -151,7 +135,8 @@
         border: solid 1px #dadada;
       	padding: 10px 14px 10px 14px;
       	height: 50px;
-      	margin-bottom:10px;	
+      	margin-bottom:10px;
+      	border-radius:5px;
       }
       
       .inn {
@@ -165,7 +150,28 @@
       	padding: 10px 14px 10px 14px;
       	height: 30px;
       	margin-bottom:10px;	
+      	border-radius:5px;
       } 
+      
+      .btn-submit {
+        width:100%;
+        height:50px;
+        background: linear-gradient(125deg,#FAAC58,#FF4000,#FAAC58);
+        background-position: left;
+        background-size: 200%;
+        border-radius: 5px;
+        color:white;
+        font-weight: 700;
+        border:none;
+        cursor:pointer;
+        transition: 0.4s;
+        margin-top:20px;
+        font-size:18px;
+      }
+
+      .btn-submit:hover {
+           background-position: right;
+      }
       
       .inem {
       	position: relative;
@@ -175,12 +181,13 @@
       	margin-left: 10px;
       	margin-bottom:10px;
       	
-      	background: #819FF7;
+      	background: #FE9A2E;
       	background-size: 200%;
         color:white;
         font-weight: 500;
         border:none;
         cursor:pointer;
+        border-radius: 5px;
      
       }
       
@@ -192,12 +199,31 @@
       	margin-left: 10px;
       	margin-bottom:10px;
       	
-      	background: #8181F7;
+      	background: #FE9A2E;
       	background-size: 200%;
         color:white;
         font-weight: 500;
         border:none;
         cursor:pointer;
+        border-radius: 5px;
+      }
+      
+      .inem:hover { 
+      	background: #FE642E;
+      }
+      
+      .innum:hover {
+      	background: #FE642E;
+      }
+      
+      .daham {
+      	
+      	text-align: center; 	
+      	margin-bottom: 40px;
+      }
+      
+      .da {
+      	width: 100px;
       }
       
       .box.int_pass {
@@ -214,6 +240,7 @@
           font-size: 15px;
           background: #fff;
           background-size: 20px 8px;
+          border-radius:5px;
           -webkit-appearance: none;
           display: inline-block;
           text-align: start;
@@ -245,17 +272,23 @@
        
        .pick {
        	display: inline-block;
-       	font-size: 18px;
        	width: 150px;
        }
        
        .pickne {
        	display: inline-block;
-       	font-size: 18px;
        	width: 150px;
        	
        }
        
+       .bi {
+       	cursor: pointer;
+       	color : #FE9A2E
+       }
+       
+       h7{
+       	cursor: pointer;
+       }
       
       /* 에러메세지 */
    

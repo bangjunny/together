@@ -34,22 +34,23 @@ body, body * {
 	<br>
 	<!-- 해당 글 정보 영역 -->
 	<div style="width: 800px; margin: 0 auto; margin-top: 40px; border: 1px solid skyblue; border-radius: 10px;">
-		<h3>${dto.subject}</h3>
-		<h6 style="float: right;">
-         
-        <b>추천수</b>&nbsp;<span class="likecount">${dto.cblike}</span>&nbsp;
-      	</h6>
-		<h6 style="float: right;"><b>조회수</b> ${dto.readcount}&nbsp;</h6>
+		<h3 style="margin-left:10px;margin-top:10px;">${dto.subject}</h3>
+		<hr>
+		<h6 style="float: right; margin-top:5px;">
+        <b style="color:#A4A4A4">추천수</b>&nbsp;<span class="likecount">${dto.cblike}</span>&nbsp;
+      	</h6 >
+		<h6 style="float: right; margin-top:5px;"><b style="color:#A4A4A4">조회수</b> ${dto.readcount}&nbsp;</h6>
+		
 		<c:choose>
 		<c:when test="${mainPhoto!=null }">
-		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-bottm:10px; border-radius:100px;">
+		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-bottm:10px; margin-left:5px; border-radius:100px;">
 		</c:when>
 		<c:otherwise>
-		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left;margin-bottm:10px; border-radius:100px;">                               
+		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left;margin-bottm:10px; margin-left:5px; border-radius:100px;">                               
 		</c:otherwise>
 		</c:choose>
-		<h6 style="float: left">${dto.uname}&nbsp;</h6>
-		<h6 style="font-color:"> <fmt:formatDate value="${dto.cbwriteday }" pattern="yyyy.MM.dd HH:MM"/> </h6>
+		<h5 style="float: left; margin-left:5px;margin-bottom:20px;">${dto.uname}&nbsp;</h5>
+		<h6 style="color:#A4A4A4; margin-top:20px;"> <fmt:formatDate value="${dto.cbwriteday }" pattern="yyyy.MM.dd HH:MM"/> </h6>
 		<hr>
 			<c:if test="${photocount=='0'}">
 			<div class="cbcontent" align="center">
@@ -63,10 +64,10 @@ body, body * {
     		</div>
     	</c:forEach>
     	</c:if>
-		<br>	
-		<pre>
-        ${dto.cbcontent}
-    	</pre>
+		<br>
+		<div style="width: 700px; margin:0 auto;">
+        &nbsp;&nbsp;${dto.cbcontent}
+    	</div>	
 		<br> <br> <br> 
 		<!-- 좋아요 버튼 -->
       <div id="likebutton" style="text-align:center ">
@@ -120,10 +121,11 @@ body, body * {
 			<div class="mb-3 mt-3">
 				<textarea class="form-control" rows="5" id="content" name="recontent"
 					style="height: 200px; resize: none; width: 750px;margin:0 auto"
-					placeholder="내용을 입력해주세요"></textarea>
+					placeholder="내용을 입력해주세요" required="required"></textarea>
 			</div>
 			<button type="submit" class="btn btn-primary"
 				style="float: right; margin-right: 30px;">입력</button>
+				<br>
 		</form>
 		<br>
 		<div>
@@ -184,14 +186,14 @@ body, body * {
 				</tr>
 				<tr>
 					<td colspan="3">
-						<c:if test="${sessionScope.unum==listcomment.unum}">
-						<c:if test="${listcomment.depth=='0' }">
 						<button type="button" id="commentFunction">답글 보기</button>
-						</c:if>
+						<c:if test="${sessionScope.unum==listcomment.unum}">
 						<button type="submit" id="deleteComment" style="float:right" class="btn btn-danger">삭제</button>
+						&nbsp;
 						<button id="updateComment" style="float:right" class="btn btn-secondary">수정</button>
+						&nbsp;
 						</c:if>
-            <button id="addComment" style="float:right" class="btn btn-secondary">답글</button>
+            			<button id="addComment" style="float:right" class="btn btn-secondary">답글</button>
 					</td>
 				</tr>
 				<tr>
@@ -208,9 +210,10 @@ body, body * {
 						<div id="recontent" style="display: none;" >
 							<textarea id="contentSide" class="form-control" rows="5" name="recontent"
 							style="height: 100px; resize: none; width: 600px;margin: 0 auto"
-							placeholder="${listcomment.recontent}"></textarea>
+							placeholder="${listcomment.recontent}" required="required"></textarea>
 							<button type="submit" class="btn btn-primary btn-sm"
 							id="submit" style="float: right; margin-right: 30px; margin-top: 20px;">입력</button>
+							<br>
 						</div>
 					</form>
 					</td>
@@ -269,9 +272,10 @@ body, body * {
 						<div id="recontent" style="display: none;" >
 							<textarea id="contentSide" class="form-control" rows="5" name="recontent"
 							style="height: 100px; resize: none;width: 600px;margin: 0 auto"
-							placeholder="${listcomment.recontent}"></textarea>
+							placeholder="${listcomment.recontent}" required="required"></textarea>
 							<button type="submit" class="btn btn-primary"
 							id="submit" style="float: right; margin-right: 30px; margin-top: 50px;">입력</button>
+							<br>
 						</div>
 					</form>
 					</td>
@@ -290,21 +294,23 @@ body, body * {
 		<div>
 			
 			<!-- 이전 글 다음 글 출력 영역 -->
-			<div><h4>이전 글</h4>
+			<div>
+			<h4>&nbsp;이전 글</h4>
 				<c:if test="${not empty precontent}">
-					<a href="<c:url value='/city/detail?cbnum=${prenum}'/>"><h4>${precontent}</h4></a>
+					<a href="<c:url value='/city/detail?cbnum=${prenum}'/>"><h5 style="margin-left: 20px;">${precontent}</h5></a>
 				</c:if>
 				<c:if test="${empty precontent}">
-					<h4>이전 게시글이 없습니다</h4>
+					<h5 style="margin-left: 20px;">이전 게시글이 없습니다</h4>
 				</c:if>
 			</div>
 			<hr>
-			<div><h4>다음 글</h4>
+			<div>
+			<h4>&nbsp;다음 글</h4>
 				<c:if test="${not empty nxtcontent}">
-					<a href="<c:url value='/city/detail?cbnum=${nxtnum}'/>"><h4>${nxtcontent}</h4></a>
+					<a href="<c:url value='/city/detail?cbnum=${nxtnum}'/>"><h4 style="margin-left: 20px;">${nxtcontent}</h4></a>
 				</c:if>
 				<c:if test="${empty nxtcontent}">
-					<h4>다음 게시글이 없습니다</h4>
+					<h5 style="margin-left: 20px;">다음 게시글이 없습니다</h5>
 				</c:if>
 			</div>
 		</div>
@@ -348,8 +354,7 @@ body, body * {
 	
 	$(document).on("click", "#deleteComment",function(){
 		var valueByName=$(this).parent().parent().prev().prev().find('#renum').val();
-		let s=confirm("삭제하시겠습니까?")
-		alert(valueByName);	
+		let s=confirm("삭제하시겠습니까?")	
 		if(s){
 			location.href='deleteComment?renum='+valueByName+'&cbnum='+${dto.cbnum}
 		}

@@ -41,6 +41,7 @@
 	}
 	
 	.container {
+		margin-top:200px;
 	  max-width: 1800px;
 	  margin: 100 100 100 100;
 	  flex : auto;
@@ -151,7 +152,7 @@ function list()
                 사진 업로드
             </button>
 		</div>	
-	</div>	
+		
 		
     	<div class="text col" id="mypageform" style="display: block;">
     	
@@ -166,7 +167,7 @@ function list()
         가입일 : <fmt:formatDate value="${dto.joinday}" pattern="yyyy-MM-dd HH:mm"/><br>
         <br>
     	</div>
-    	
+  </div>  	
     	<div class="text col" id="mypageupdate">
     		<!-- 마이페이지 수정폼 -->
     		마이페이지 수정
@@ -239,8 +240,8 @@ function list()
 			 <div id="mycity_wrap">
 			  <!-- 가입한 모임 목록 보여주기 -->
 			  나의 모임 리스트 출력하기
-			  <button id="mycity_1_btn" onclick="goToTab('myPosts')">내가 쓴 게시글</button>
-			  <button id="mycity_2_btn" onclick="goToTab('myFavorites')">내가 찜한 게시글</button>
+			  <button id="mycity_1_btn">내가 쓴 게시글</button>
+			  <button id="mycity_2_btn">내가 찜한 게시글</button>
 			
 			  
 			  <div id="mycity_1" style="display: block;">
@@ -252,32 +253,27 @@ function list()
 				</div>
 			
 			</div>
+<!-- 			
 			<script type="text/javascript">
 			    function goToTab(tab) {
 			        var unum = <%= request.getParameter("unum") %>;
 			        location.href = "/mypagedetail?unum=" + unum + "&tab=" + tab;
 			    }
 			</script>
-<!--			
+ -->			
 			<script type="text/javascript">
-				$("#mylist_2_btn").click(function() {
-					$("#mylist_1").css("display", "none");
-					$("#mylist_2").css("display", "block");
-					$("#mylist_3").css("display", "none");
+				$("#mycity_2_btn").click(function() {
+					$("#mycity_1").css("display", "none");
+					$("#mycity_2").css("display", "block");
+					
 				});
-				$("#mylist_1_btn").click(function() {
-					$("#mylist_1").css("display", "block");
-					$("#mylist_2").css("display", "none");
-					$("#mylist_3").css("display", "none");
-				});
-				$("#mylist_3_btn").click(function() {
-					$("#mylist_1").css("display", "none");
-					$("#mylist_2").css("display", "none");
-					$("#mylist_3").css("display", "block");
+				$("#mycity_1_btn").click(function() {
+					$("#mycity_1").css("display", "block");
+					$("#mycity_2").css("display", "none");
 				});
 				
 			</script>
--->        
+        
     <div class="mybtn">
 		<button type="button" class="btn btn-outline-success btn-sm"
 		style="width: 200px;" onclick="location.href='/moim/moimlist'">모임리스트</button>

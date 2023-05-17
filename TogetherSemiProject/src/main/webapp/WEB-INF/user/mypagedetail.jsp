@@ -11,6 +11,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
@@ -75,20 +77,39 @@
 			margin-right: 30px;
 			padding: 0;
 	}
-	
+
 	#sidebarmenu {
 		position: relative;
-		margin-left : 1700px;
+		margin-right : 100px;
 		width: 150px;
 	}
+	
 	#sidebarmenu button {		
 		margin-top: 80px;
 	}
 	
 	.offcanvas-body button{
 		margin-top : 30px;
-		margin-left: 80px;
-		width: 100px;
+		margin-left: 37px;
+		width: 200px;
+		background: #FE9A2E;
+        background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        border-radius: 3px;
+	}
+	.offcanvas-body button:hover{
+		margin-top : 30px;
+		margin-left: 37px;
+		width: 200px;
+		background: #FE642E;
+        background-size: 200%;
+        color:white;
+        font-weight: 800;
+        border:none;
+        cursor:pointer;
+        border-radius: 3px;
 	}
 	
 	#mylist_wrap {
@@ -102,33 +123,7 @@
 	}
 
 </style>
-<script type="text/javascript">
-$(function() {
-	
-	list();
-	
-});//function close
 
-function list()
-{
-	$.ajax({
-	    type: "GET",
-	    url: "/myjjimlist",
-	    dataType:"json",
-	    success: function(res) {
-	    	let s="";
-	    	$.each(res,function(idx,ele){
-	    		s+=`
-	    			<div class = 'jjim_box'>
-	    				<b>\${ele.mname}</b>
-	    			</div>	
-	    		`;
-	    	});
-	    	$("div.jjimlist").html(s);
-	    }
-	     
-	 });
-}
 </script>
 <body>
 <!-- 사이드바 -->
@@ -158,9 +153,9 @@ function list()
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
   <div class="offcanvas-body">
-    <button class="btn btn-success sidebar_1_btn">프로필</button><br><br>
-    <button class="btn btn-success sidebar_2_btn">모임</button><br><br>
-    <button class="btn btn-success sidebar_3_btn">지역</button>
+    <button class="sidebar_1_btn"><i class="bi bi-house-fill"></i>&nbsp; 프로필</button><br><br>
+    <button class="sidebar_2_btn"><i class="bi bi-people-fill"></i>&nbsp; 모임</button><br><br>
+    <button class="sidebar_3_btn"><i class="bi bi-geo-alt-fill"></i>&nbsp; 지역</button>
   </div>
 </div>
 
@@ -283,19 +278,10 @@ function list()
 			  <div id="mylist_1" style="display: block;">
 			  <%@ include file="mypagemoimlist.jsp" %>
 			  </div>
-			  
 			  <div id="mylist_2" style="display: none;">
-			   <c:choose>
-       			 <c:when test="${not empty jjimList}">
-          		   <c:forEach var="j" items="${jjimList}">
-              		  <h2>내가 찜한 모임 이름 :  ${j.mname}</h2>
-             		 </c:forEach>
-      			  </c:when>
-       			  <c:otherwise>
-        			  <p>찜한 목록이 없어요</p>
-       			  </c:otherwise>
-      		</c:choose>  
-			</div>
+			  <%@ include file="mypagejjimlist.jsp" %>
+			  </div>
+			 
 			<div id="mylist_3" style="display: none;">
 				 <%@ include file="mypagegaiplist.jsp" %>
 			</div>
@@ -494,7 +480,7 @@ $(document).on("click",".setmain",function(e){
 			data:{"photo_idx":photo_idx},
 			dataType:"text",
 			success:function(){
-				alert("성공적으로 사진이 바뀌었습니다");
+				alert("성공적으로 사진이 바뀌었습니다")
 				window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
 				
 			}

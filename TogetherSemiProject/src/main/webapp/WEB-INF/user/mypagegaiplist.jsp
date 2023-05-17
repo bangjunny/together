@@ -47,24 +47,22 @@
                     <tr>
                         <td style="text-align: left;">
                 			${gm.mname}
-               <%--          <c:choose>
-					   		 <c:when test="${moim.mphoto==null}">
-					   		<!-- Result값이 있다면 실행할 로직 -->
-					   		<img class="mymoim_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
-					   		 </c:when>
-					   		 <c:otherwise>
-							 <!-- 그렇지 않다면 실행할 로직 -->
-							 <img class="mymoim_img" src="https://${imageUrl}/moim/${moim.mphoto}">	 
-					   		 </c:otherwise>
-							</c:choose> --%>
-							
-                        
+                			${gm.mphoto}
+                		</td>
+ 						<td>
+                         ${gm.category}
                         </td>
-                     <%--    <td>${moim.category}</td>
-                        <td>${moim.city1}</td>
-                        <td>${moim.city2}</td>
-                        <td>${moim.mcontent}</td>
-                        <td><a href="/moim/moimdetail?mnum=${moim.mnum}&mname=${moim.mname}" class="btn btn-primary">자세히보기</a></td> --%>
+ 						<td>
+                         ${gm.city1}
+                        </td>
+ 						<td>
+                         ${gm.city2}
+                        </td>
+ 						<td>
+                         ${gm.mcontent}
+                        </td>
+                        
+                     	<td><a href="/moim/moimdetail?mnum=${gm.mnum}&mname=${gm.mname}" class="btn btn-primary">자세히보기</a></td> 
                     </tr>
                 </c:forEach>
             </tbody>

@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link
@@ -27,7 +28,7 @@
 	}
 	div.moim {
 		width: 900px;
-		height:1500px;
+		height:1200px;
 		margin: 200px auto 0 auto;
 		background-color:white;
 	}
@@ -38,14 +39,27 @@
 		background-color:white;
 		text-align: center;
 	}
+	
 	.mcontent_img{
 		width:350px;
 		height:250px;	
 }
-	.topright{
-		width:800px;
-		height:0px;
+	div.top{
+	position:relative;
+	}
+	div.topright{
+		width:900px;
+		height:10px;
 		text-align:right;
+	}
+	div.topleft{
+	width:500px;
+	height:400px;
+	}
+	div.janginfo{
+	float: left;
+	color:black; 
+	font-size:15px;
 	}
 	#moim_resi_wrap{
 		width: 100%;
@@ -59,7 +73,7 @@
 		margin: 0 auto 0 10%;
 	}
 	#jjim{
-		width: 400px;
+		width: 450px;
 		font-size: 33px;
 		display: flex;
 		justify-content: flex-end;
@@ -67,16 +81,17 @@
 	#jjim:hover{
 		cursor: pointer;
 	}
-	/* #gaipmemberlist{
+	/*  #gaipmemberlist{
 		width: 900px;
 		display: flex;
-	} */
+	}  */
 	#gaipmember0{
+		position:relative;
+		right:360px;
+		bottom:470px;
 		width: 450px;
-		height: 500px;
-		border: 0px gray solid;
-		position:absolute;
-		left:10px;
+		height:10px;
+		font-size:13px;
 	}
 	#memberlist0{
 		width: 400px;
@@ -90,12 +105,12 @@
 		margin-left: 150px;
 	}
 	#gaipmember1{
+		position:relative;
+		left:980px;
+		bottom:480px;
 		width: 450px;
-		height: 500px;
-		border: 0px gray solid;
-		position:absolute;
-		right:30px;
-		
+		height:10px;
+		font-size:13px;
 	}
 	#headhr{
 	 	 height: 1px;
@@ -112,12 +127,95 @@
 	#midhr{
 	width:40%;
 	}
+@media ( max-width: 1200px ){
+	div.moim {
+		width: auto;
+	}
+	div.topright{
+		width:auto;
+		float:right;
+	}
+	div.topleft{
+	width:auto;
+	
+	}
+	div.janginfo{
+	width:auto;
+	float:none;
+	color:black; 
+	font-size:15px;
+	}
+	.mcontent_img{
+	width:300px;
+	height:250px;
+	position:relative;
+	
+}
+#gaipmember0{
+		position:absolute;
+		left:100px;
+		top:950px;
+		width: 450px;
+		height:10px;
+		font-size:13px;
+	}
+	#gaipmember1{
+		position:absolute;
+		left:500px;
+		top:955px;
+		width: 450px;
+		height:10px;
+		font-size:13px;
+	}
+	#moim_resi_wrap button{
+		width: 250px;
+		height:40px;
+		margin: 0 auto 0 10%;
+	}	
+}
+@media (  max-width: 767px ){
+	#gaipmember0{
+		position:absolute;
+		left:20px;
+		top:950px;
+		width: 450px;
+		height:10px;
+		font-size:13px;
+	}
+	#gaipmember1{
+		position:absolute;
+		left:350px;
+		top:950px;
+		width: 450px;
+		height:10px;
+		font-size:13px;
+	}
+	#moim_resi_wrap button{
+		width: 150px;
+		height:40px;
+		margin: 0 auto 0 10%;
+		
+	}	
+	.mcontent_img{
+	width:200px;
+	height:150px;
+	position:relative;
+	top:10px;
+}
+	div.janginfo{
+	position:relative;
+	top:10px;
+	float: left;
+	color:black; 
+	font-size:15px;
+	}
+}
 
 </style>
 </head>
 <body>
-
 	<div class="moim">
+	<div class="top">
 		<h3 style="text-align:left">모임게시판</h3>
 		<hr id="headhr"><br>
 	<div class="topright">
@@ -173,11 +271,8 @@
 					
 			</div>	
 		</c:if>
-		
-		
-		
 		</div>
-		
+		<div class="topleft">
 		<div class=mcontent_img> 
 		<c:choose>
    		 	<c:when test="${dto.mphoto==null}">
@@ -191,13 +286,52 @@
 		 </c:choose>
 		 </div>
 
-		 <div><br>
+		<br><br>
+		<hr id="midhr">
 		<h5><b>작성자 정보</b></h5>
-		 <hr id="midhr">
-		<span style="float: left; color:black; font-size:14px;"><b>이 메 일 : ${udto.email}</b></span><br>
-		<span style="float: left; color:black; font-size:14px;"><b>전화번호 : ${udto.hp}</b></span><br>
-		<span style="float: left; color:black; font-size:14px;"><b>이&nbsp;&nbsp;&nbsp;름 : ${udto.uname}</b></span><br>
+		 <div class="janginfo">
+		<span><b>이 메 일 : ${udto.email}</b></span><br>
+		<span><b>전화번호 : ${udto.hp}</b></span><br>
+		<span><b>이&nbsp;&nbsp;&nbsp;름 : ${udto.uname}</b></span><br>
 		</div>
+		</div>
+		<c:if test="${dto.unum == sessionScope.unum }">
+		<!--  <div id="gaipmemberlist">  -->
+			<div id="gaipmember0" >&nbsp;&nbsp;&nbsp;&nbsp;<b>가입신청 확인</b>
+					<c:forEach items="${list }" var="standby">
+					<ul class="member_list0">
+						<c:if test="${standby.acceptcall == 0 }">
+						<li>
+							<div class="memberinfo" >
+								멤버 이름 : ${standby.uname } 멤버 성별 : ${standby.gender }
+							</div>
+							<div class="memberaccpet">
+								<a onclick="acceptGaip(${standby.unum });"><i class="bi bi-check2" style="cursor: pointer;"></i></a> /
+								<a onclick="deniedGaip(${standby.unum });"><i class="bi bi-x" style="cursor: pointer;"></i></a>
+							</div>
+						</li>
+						</c:if>
+					</ul>
+					</c:forEach>
+			</div>
+			
+			<div id="gaipmember1" >
+			&nbsp;&nbsp;&nbsp;<b>가입한 멤버</b><br><br>
+				<c:forEach items="${list }" var="pass">
+				<ul>
+					<c:if test="${pass.acceptcall == 1 }">
+					<li>	
+						멤버 이름 : ${pass.uname } / 멤버 성별 : ${pass.gender }
+					</li>	
+					</c:if>
+				</ul>	
+				</c:forEach>
+			</div>
+		<!--  </div> -->
+		</c:if>
+		
+		</div>
+		<br>
 		<hr>
 		<!-- 버튼영역 -->
 		<div style="text-align:right; padding:3px;">
@@ -218,44 +352,6 @@
 			</c:otherwise>
 			</c:choose>
 		</div>	
-		<hr id="bodyhr">
-		<c:if test="${dto.unum == sessionScope.unum }">
-		<!-- <div id="gaipmemberlist"> -->
-			<div id="gaipmember0" class="border">
-					<c:forEach items="${list }" var="standby">
-					<ul class="member_list0">
-						<c:if test="${standby.acceptcall == 0 }">
-						<li>
-							<div class="memberinfo" >
-								멤버 이름 : ${standby.uname } 멤버 성별 : ${standby.gender }
-							</div>
-							<div class="memberaccpet">
-								<a onclick="acceptGaip(${standby.unum });"><i class="bi bi-check2" style="cursor: pointer;"></i></a> /
-								<a onclick="deniedGaip(${standby.unum });"><i class="bi bi-x" style="cursor: pointer;"></i></a>
-							</div>
-						</li>
-						</c:if>
-					</ul>
-					</c:forEach>
-			</div>
-			<div id="gaipmember1" class="border">
-				<c:forEach items="${list }" var="pass">
-				<ul>
-					<c:if test="${pass.acceptcall == 1 }">
-					<li>	
-						멤버 이름 : ${pass.uname } / 멤버 성별 : ${pass.gender }
-					</li>	
-					</c:if>
-				</ul>	
-				</c:forEach>
-			</div>
-		<!-- </div> -->
-		</c:if>
-		<br>
-		<div class="mcontent">
-		${dto.mcontent}
-		</div>
-		
 		<script>
 		$(document).on("click", "#delmoim", function() {
 			let b=confirm("삭제를 하려면 [확인]을 눌러주세요");
@@ -264,8 +360,16 @@
 			}
 		});
 		</script>
-
+		<hr id="bodyhr">
+		<br>
+		<div class="mcontent">
+		${dto.mcontent}
+		</div>
+		
+		<hr id="foothr">
+		<br>
 	</div>
+		
 	<script type="text/javascript">
 	const mnum = ${dto.mnum};
 	const mname= '${dto.mname}';
@@ -328,7 +432,7 @@
 			      success: function(res) {
 			        if (res == "success") {
 			          alert("가입 신청이 성공적으로 완료됐습니다.");
-			          $("#gaip_btn").html('<div id="gaip_cancle"><button type="button" style="width: 300px; margin: 0 auto 0 10%;" onclick="deleteGaip();">가입대기</button></div>');
+			          $("#gaip_btn").html('<div id="gaip_cancle"><button type="button" class="btn btn-secondary" style="width: 350px; margin: 0 auto 0 10%;" onclick="deleteGaip();">가입대기</button></div>');
 			        }
 			      },
 			    });
@@ -354,7 +458,7 @@
 			      success: function(res) {
 			        if (res == "success") {
 			          alert("가입 신청이 취소되었습니다.");
-			          $("#gaip_cancle").html('<div id="gaip_btn"><button type="button" style="width: 300px; margin: 0 auto 0 10%;" onclick="moimGaip();">가입신청</button></div>');
+			          $("#gaip_cancle").html('<div id="gaip_btn"><button type="button" class="btn btn-outline-secondary" style="width: 350px; margin: 0 auto 0 10%;" onclick="moimGaip();">가입신청</button></div>');
 			        }
 			      },
 			    });

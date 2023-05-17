@@ -115,8 +115,12 @@ public class LoginService implements LoginServiceInter{
 	        CityBoardDto cbDto = cityMapper.getDetailbycbnum(i.getCbnum());
 	        // 모임 정보를 Map에 담는다.
 	        Map<String, Object> cbMap = new HashMap<String, Object>();
-	        cbMap.put("mnum", cbDto.getSubject());
-	        cbMap.put("mname", cbDto.getCbcontent());
+	        cbMap.put("cbnum", cbDto.getCbnum());
+	        cbMap.put("subject", cbDto.getSubject());
+	        cbMap.put("cbcontent", cbDto.getCbcontent());
+	        cbMap.put("readcount", cbDto.getReadcount());
+	        cbMap.put("city1", cbDto.getCity1());
+	        cbMap.put("city2", cbDto.getCity2());
 	       
 	        // 모임 정보를 그릇에 담는다.
 	        cbLikeList.add(cbMap);

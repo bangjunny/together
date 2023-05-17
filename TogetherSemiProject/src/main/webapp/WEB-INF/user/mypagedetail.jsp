@@ -241,7 +241,7 @@ function list()
 			  <!-- 가입한 모임 목록 보여주기 -->
 			  나의 모임 리스트 출력하기
 			  <button id="mycity_1_btn">내가 쓴 게시글</button>
-			  <button id="mycity_2_btn">내가 찜한 게시글</button>
+			  <button id="mycity_2_btn">내가 추천한 게시글</button>
 			
 			  
 			  <div id="mycity_1" style="display: block;">

@@ -195,7 +195,7 @@
     	$.ajax({
     		type: "get",
     		async: false,
-    		url: "http://localhost:9000/user/emailCheck",
+    		url: "./emailCheck",
     		data: {email: email},
     		success: function (data) {
     			if(data == 0 && email!=''){
@@ -365,7 +365,7 @@
 		 // 이메일 중복 확인
 		 $.ajax({
 			type: "get",
-			url: "/chemail",
+			url: "./chemail",
 			data: {"inemail":inemail},	// "" 안에있는 이름으로 controller에 : 뒤에 있는 값을 보낸다
 			success: function(data) {
 				if(data){
@@ -394,7 +394,7 @@
 		  
 		  $.ajax({
 			 type: "get",
-			 url: "/chcode",
+			 url: "./chcode",
 			 data: {"code":code},
 			 success: function(data){
 				 if(data)

@@ -202,8 +202,12 @@ public class LoginController {
 	    	model.addAttribute("pdto", null);
 	        model.addAttribute("photoList", null);
 	    }
+	 // 내가 추천한 글 리스트 가져오기 
+	    List<Map<String, Object>> cbLikeList = loginService.getcbLikeList(unum);
+		model.addAttribute("cbLikeList", cbLikeList);
+
 	    
-	 // 내가쓴글 리스트 가져오기
+	 // 내가 쓴 글 리스트 가져오기
 	    List<CityBoardDto> cbList = loginMapper.getMyCBList(unum);
 	    model.addAttribute("cbList", cbList);
 	    // 모임 리스트 가져오기

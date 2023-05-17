@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.semi.dto.MoimDto;
 import com.semi.dto.UserDto;
 import com.semi.dto.UserPhotoDto;
+import com.semi.dto.CbLikeDto;
 import com.semi.dto.CityBoardDto;
 import com.semi.dto.JJimDto;
 
@@ -42,6 +43,7 @@ public interface LoginMapper {
 	public List<Map<String, Object>> getMyJJImList(int unum);
 
 	public List<JJimDto> getJJimDto(int unum);
+	public List<CbLikeDto> getCbLikeDto(int unum);
 	public List<Map<String, Object>> getGaipMoimList(int unum);	
 
 	public void updateMainphoto(int photo_idx);

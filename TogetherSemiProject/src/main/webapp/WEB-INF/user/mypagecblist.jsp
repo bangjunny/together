@@ -52,7 +52,8 @@
                         <td>${cb.city1}</td>
                         <td>${cb.city2}</td>
                         <td>${cb.cbcontent}</td>
-                        <td><a href="/city/CityDetail?cbnum=${cb.cbnum}" class="btn btn-primary">자세히보기</a></td>
+                       
+                        <td><a href="/city/detail?cbnum=${cb.cbnum}" class="btn btn-primary">자세히보기</a></td>
                     </tr>
                 </c:forEach>
             </tbody>

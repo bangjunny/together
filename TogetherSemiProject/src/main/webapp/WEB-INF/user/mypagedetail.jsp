@@ -239,20 +239,26 @@ function list()
 			 <div id="mycity_wrap">
 			  <!-- 가입한 모임 목록 보여주기 -->
 			  나의 모임 리스트 출력하기
-			  <button id="mycity_1_btn">내가 쓴 게시글</button>
-			  <button id="myvity_2_btn">내가 찜한 게시글</button>
+			  <button id="mycity_1_btn" onclick="goToTab('myPosts')">내가 쓴 게시글</button>
+			  <button id="mycity_2_btn" onclick="goToTab('myFavorites')">내가 찜한 게시글</button>
 			
 			  
 			  <div id="mycity_1" style="display: block;">
 			  <%@ include file="mypagecblist.jsp" %>
 			  </div>
-			  
-			<div id="mycity_2" style="display: none;">
-				 <%@ include file="mypagecityjjimlist.jsp" %>
-			</div>
+				  
+				<div id="mycity_2" style="display: none;">
+					 <%@ include file="mypagecblikelist.jsp" %>
+				</div>
 			
 			</div>
-			
+			<script type="text/javascript">
+			    function goToTab(tab) {
+			        var unum = <%= request.getParameter("unum") %>;
+			        location.href = "/mypagedetail?unum=" + unum + "&tab=" + tab;
+			    }
+			</script>
+<!--			
 			<script type="text/javascript">
 				$("#mylist_2_btn").click(function() {
 					$("#mylist_1").css("display", "none");
@@ -271,7 +277,7 @@ function list()
 				});
 				
 			</script>
-        
+-->        
     <div class="mybtn">
 		<button type="button" class="btn btn-outline-success btn-sm"
 		style="width: 200px;" onclick="location.href='/moim/moimlist'">모임리스트</button>

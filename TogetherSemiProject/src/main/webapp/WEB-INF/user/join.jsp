@@ -172,7 +172,7 @@
            </div>
            
            <!-- Category -->
-           <div class="input-wrap">
+           <div class="input-mo">
            	<label for="user_category" class="la">카테고리</label>
            	
            	<label data-bs-toggle="modal" data-bs-target="#mySportsModal">
@@ -239,20 +239,18 @@
 					</td>
 				</tr>
 				
-				<tr>
-					<td class="gory">
-						선택한 카테고리 :
-					</td>
-					<td colspan="2" class="gory">
-						<div type="text" id="selcategory"></div>
-						<input type="hidden" class="selcategory" name="category" value="null" id="category">	
-					</td>
-				</tr>
-			</table>
+			 </table>				
+			</div>
 			
-			<span class="error_next_box e7">필수 정보입니다.</span>           	
-           </div>
-           
+			<div class="input-wrap ">
+				<div class="pk">
+					<div class="pick">선택한 카테고리 : </div>
+					<div type="text" id="selcategory" class="pickne"></div>
+		           	<input type="hidden" class="selcategory" name="category" value="null" id="category">
+	           	</div>
+				<span class="error_next_box e7">필수 정보입니다.</span> 
+           	</div>
+
            <!-- Hp -->
            <div class="input-wrap">
              <label for="user_phone" class="la">휴대전화</label>
@@ -263,7 +261,7 @@
            </div>
            
            <!-- email 인증 -->
-           <div class="input-inemail">
+           <div class="input-wrap">
              <label for="user_inemail" class="la">이메일 인증</label>
              
                <div class="clear">

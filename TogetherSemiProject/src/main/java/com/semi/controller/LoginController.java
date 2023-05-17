@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -238,10 +239,10 @@ public class LoginController {
 	}
 	
 	@GetMapping("/updatephoto")
-	@ResponseBody public void updatePhoto(int photo_idx)
+	@ResponseBody public void updatePhoto(int photo_idx,HttpSession session)
 	{
-		
-        loginMapper.updateMainphoto(photo_idx);
+		int unum = (int) session.getAttribute("unum");
+        loginMapper.updateMainphoto(photo_idx,unum);
 	}
 	@PostMapping("/mypagePassCheck")
 	public String mypagepasscheck(@RequestParam String pass,HttpSession session)

@@ -60,10 +60,10 @@
 	</update>
 	<update id="updateMyPhoto" parameterType="UserPhotoDto">
 		update user_photo set is_main = 0 where unum=#{unum};
- 		 update user_photo set is_main = 1 where photo_idx = (select max(photo_idx) from user_photo where unum = #{unum});
+ 		update user_photo set is_main = 1 where photo_idx = (select max(photo_idx) from user_photo where unum = #{unum});
 	</update>
 	<update id="updateMainphoto" parameterType="int">
-		update user_photo set is_main = case when photo_idx = #{photo_idx} then 1 else 0 end
+		update user_photo set is_main = case when photo_idx = #{photo_idx} then 1 else 0 end WHERE unum = #{unum}
 	</update>
 
 	<select id="getCbLikeList" resultType="CityBoardDto">

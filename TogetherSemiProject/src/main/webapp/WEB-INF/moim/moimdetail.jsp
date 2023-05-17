@@ -134,7 +134,7 @@
 			<button type="button" class="btn btn-sm btn-outline-secondary"
 				style="width: 70px;" onclick="location.href='./moimlist'"><i class="bi bi-list-stars"></i>목록</button>
 			<c:choose>
-			 <c:when test="${sessionScope.unum eq udto.unum}">
+			 <c:when test="${sessionScope.unum == udto.unum}">
 			<button type="button" class="btn btn-sm btn-outline-secondary"
 				style="width: 70px;" onclick="location.href='./updateform?mnum=${dto.mnum}'"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
 			<button type="button" class="btn btn-sm btn-outline-secondary" id="delmoim" onclick="del(${dto.mnum})"

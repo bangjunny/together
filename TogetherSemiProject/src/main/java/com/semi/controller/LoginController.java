@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.semi.dto.CityBoardDto;
 import com.semi.dto.JJimDto;
 import com.semi.dto.MoimDto;
 import com.semi.dto.UserDto;
@@ -150,7 +151,32 @@ public class LoginController {
 	        return "redirect:/user/mypagedetail?unum=" + loginUserUnum; // 로그인한 사용자는 자신의 mypagedetail 페이지로 이동
 	    }
 	}
-	
+//	
+//	@GetMapping("/mypagecblike")
+//	public String mypagecblike(HttpSession session, Model model) {
+//		Integer loginUserUnum = (Integer) session.getAttribute("unum"); // 로그인한 사용자의 unum 값 가져오기
+//		if (loginUserUnum == null) {
+//			return "redirect:/user/login"; // 로그인하지 않은 사용자는 로그인 페이지로 이동
+//		} else {
+//			return "redirect:/user/mypagecblikelist?unum=" + loginUserUnum; // 로그인한 사용자는 자신의 mypagedetail 페이지로 이동
+//		}
+//	}
+//	
+//	 
+//	 @GetMapping("/mypagecblikelist")
+//	    public String showcbLikeList(@RequestParam("unum") int unum, HttpSession session, Model model) {
+//		// 로그인한 사용자 아이디를 가져옵니다.
+//		    UserDto dto = loginMapper.getMypage(unum);
+//		    if (dto == null) {
+//		        // 해당 유저를 찾을 수 없는 경우 에러 페이지 등을 보여줄 수 있습니다.
+//		        return "error";
+//		    }
+//
+//		 List<Map<String, Object>> cbLikeList = loginService.getcbLikeList(unum);
+//		 model.addAttribute("cbLikeList", cbLikeList);
+//
+//		    return "main/user/mypagecblikelist";
+//	 }
 
 	@GetMapping("/mypagedetail")
 	public String mypageDetail(@RequestParam("unum") int unum, Integer mnum, @RequestParam(required = false) Integer is_main, Model model) {
@@ -177,7 +203,10 @@ public class LoginController {
 	        model.addAttribute("photoList", null);
 	    }
 	    
-	 // 모임 리스트 가져오기
+	 // 내가쓴글 리스트 가져오기
+	    List<CityBoardDto> cbList = loginMapper.getMyCBList(unum);
+	    model.addAttribute("cbList", cbList);
+	    // 모임 리스트 가져오기
 	    List<MoimDto> moimList = loginMapper.getMyMoimList(unum);
 	    model.addAttribute("moimList", moimList);
 	 // 찜모임 리스트 가져오기
@@ -201,20 +230,7 @@ public class LoginController {
 		    return "/main/user/myjjimlist";
 	   	  }
 	 
-//	 
-//		@PostMapping("/setMainPhoto")
-//		public String SetMainPhoto(@RequestParam int photo_idx, HttpSession session) {
-//		    try {
-//		       
-//		        loginMapper.updateMainphoto(photo_idx);
-//
-//		        return "redirect:mypage";
-//		    } catch (Exception e) {
-//		        e.printStackTrace();
-//		        // 에러 발생 시 alert 창 띄우기
-//		        return "redirect:mypage?result=error";
-//		    }
-//		}
+
 		
 	@PostMapping("/mypageinsert")
 	public String insertMyPhoto(UserPhotoDto pdto, MultipartFile upload, HttpSession session) {

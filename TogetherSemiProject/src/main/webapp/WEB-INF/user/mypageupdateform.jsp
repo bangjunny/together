@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 	body, body *{
 		font-family: 'Jua'
@@ -55,7 +56,7 @@
 <body>
 <div class="container text" style="inline">
 	<div class="row">
-	<form action="/user/updatemypage" method="post" enctype="multipart/form-data">
+	<form id="myForm" action="/user/updatemypage" method="post" enctype="multipart/form-data">
 	<!-- hidden -->
 	<input type="hidden" name="unum" value="${dto.unum}">
 	
@@ -72,7 +73,7 @@
              <label for="user_city" class="la">지역</label>
              <div class="ps_box_city" style="left: 122px;">
                      <select id = "city" name="city1" class="cit">
-                        <option value="${dto.city1}">${dto.city1}</option>
+                        <option hidden value="${dto.city1}">${dto.city1}</option>
                         <option value="서울특별시">서울특별시</option>
                         <option value="부산광역시">부산광역시</option>
                         <option value="대구광역시">대구광역시</option>
@@ -93,7 +94,7 @@
                      </select>
                      
                       <select id="district" name="city2" class="cit">
-	                     <option></option>
+	                     <option>${dto.city2}</option>
 	                  </select>
 				</div>
 			</div>
@@ -140,7 +141,7 @@
                        }
                        var districtSelect = $('#district');
                        districtSelect.empty();
-                       /* districtSelect.append($('<option>', { value: '', text: '시, 군, 구 선택' })); */
+                       districtSelect.append($('<option>', { value: '시, 군, 구 선택', text: '시, 군, 구 선택' }));
                        $.each(districts, function(index, value) {
                          districtSelect.append($('<option>', { value: value, text: value }));
                        });
@@ -200,11 +201,11 @@
 				<i class="bi bi-palette"></i>
 				<h7>공예/만들기</h7>
 				</label>
-						
-				선택한 카테고리 :
+				<br><br>		
+				선택한 카테고리 : ${dto.category}
 					
 				<div type="text" id="selcategory"></div>
-				<input type="hidden" class="selcategory" name="category" value="null" id="category">	
+				<input type="hidden" class="selcategory" name="category" value="${dto.category}" id="category">	
 	
            </div>
  		</div>	
@@ -547,6 +548,14 @@ $(function() {
       $('.selcategory').val(selected);
     });
   }); 
+  
+document.getElementById('myForm').addEventListener('submit', function(event) {
+    var selectedOption = document.getElementById('district').value;
+    if (selectedOption === '시, 군, 구 선택') {
+      event.preventDefault(); // 폼 제출 막기
+      alert('시, 군, 구를 선택해주세요!');
+    }
+  });
 </script>
 </body>
 </html>

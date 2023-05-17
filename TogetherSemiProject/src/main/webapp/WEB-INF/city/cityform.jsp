@@ -57,16 +57,6 @@
 <br>
 
 <div style="float:left;">
-	<%-- <c:choose>
-		<c:when test="${dto.uphoto==null}">
-			<!-- Result값이 있다면 실행할 로직 -->
-			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width:40px; border-radius:100px;">
-		</c:when>
-		<c:otherwise>
-			<!-- 그렇지 않다면 실행할 로직 -->
-			<img src="https://${imageUrl}/userprofile/${dto.uphoto}" style="width:40px;">    
-		</c:otherwise>
-	</c:choose> --%>
 </div>
 <div class="container">
         <br>

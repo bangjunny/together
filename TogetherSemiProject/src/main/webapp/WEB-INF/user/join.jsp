@@ -25,7 +25,7 @@
        
        <form id="join-form" method="post" action="userinsert">
        
-       <h2>회원가입</h2>
+       <h2>회원가입</h2> <br>
   
            <!-- ID -->
                 <div class="input-wrap">
@@ -240,15 +240,16 @@
 				</tr>
 				
 				<tr>
-					<td>
+					<td class="gory">
 						선택한 카테고리 :
 					</td>
-					<td colspan="2">
+					<td colspan="2" class="gory">
 						<div type="text" id="selcategory"></div>
 						<input type="hidden" class="selcategory" name="category" value="null" id="category">	
 					</td>
 				</tr>
 			</table>
+			
 			<span class="error_next_box e7">필수 정보입니다.</span>           	
            </div>
            
@@ -267,13 +268,13 @@
              
                <div class="clear">
 	                <input type="text" id="inemail" name="inemail" class="ine" placeholder="인증 이메일 입력">
-	                <button type="button" id="inem" class="inem btn btn-primary ">인증번호 받기</button>
+	                <button type="button" id="inem" class="inem">인증번호 받기</button>
 
                </div>
                
                <div class="clear">
 	                <input type="text" id="inn" name="innum" class="inn" placeholder="인증 번호">
-	                <button type="button" id="innum" class="innum btn btn-primary">확인</button>
+	                <button type="button" id="innum" class="innum">확인</button>
                 </div>
              
            </div>

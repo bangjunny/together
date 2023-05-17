@@ -28,6 +28,8 @@ public interface LoginServiceInter {
 	public boolean mypagePassCheck(int unum, String pass);
 
 	public void updateMypage(UserDto dto);
+
+	public List<Map<String, Object>> getcbLikeList(int unum);
 	
 
 	

@@ -135,7 +135,7 @@
 	.olmessaget {
 		color: green; 
 		font-size: 13px;
-		float: left;	
+		float: left; 	
 	}
 	
 	#selcategory {

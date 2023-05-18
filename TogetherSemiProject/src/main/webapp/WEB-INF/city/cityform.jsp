@@ -36,7 +36,37 @@
             min-height: 300px;
         }
         
-    </style>
+        .filebox .upload-name {
+    		display: inline-block;
+    		height: 40px;
+    		padding: 0 10px;
+    		vertical-align: middle;
+    		border: 1px solid #dddddd;
+    		width: 89%;
+    		color: #999999;
+		}
+		
+		.filebox label {
+    		display: inline-block;
+    		padding: 10px 20px;
+    		color: #fff;
+    		vertical-align: middle;
+    		background-color: #FE9A2E;
+    		cursor: pointer;
+    		height: 40px;
+    		margin-left: 10px;
+    		margin-top: 5px;
+		}
+		
+		.filebox input[type="file"] {
+    		position: absolute;
+    		width: 0;
+    		height: 0;
+    		padding: 0;
+    		overflow: hidden;
+    		border: 0;
+		}
+</style>
 </head>
 <body>
 <br>
@@ -65,20 +95,37 @@
         <img id="showimg2" style="width:25%" src="">
         <br>
         <br>
-        <input type="file" name="upload" id="myfile" multiple="multiple" style="color:#FE9A2E">
+        <div class="filebox">
+        	<label for="myfile">파일 업로드</label> 
+    		<input class="upload-name" value="첨부파일" placeholder="첨부파일">
+    		<input type="file" id="myfile" multiple="multiple">
+		</div>
+        <!-- <input type="file" name="upload" id="myfile" multiple="multiple" style="color:#FE9A2E"> -->
         <br>
         <br>
         <textarea class = "showimg" id="cbcontent" name ="cbcontent" placeholder="내용입력"  required="required"></textarea>
         <br>
         <br>
         <div style="text-align:center">
-            <button type="button" id="newCity" class="btn btn-success">작성</button>
-            <button type="button" class="btn btn-success" onclick="history.back()" style="margin-left:50px;">취소</button>
+            <button type="button" id="newCity" class="btn btn-sm text-white" style="width:100px;background-color: #FE9A2E;">작성</button>
+            <button type="button" onclick="history.back()" class="btn btn-sm text-white" style="margin-left:50px;width:100px;background-color: #FE9A2E;">취소</button>
         </div>
         <br>
         <br>
 </div>
 	<script type="text/javascript">
+	
+	$("#myfile").on('change',function(){
+		var fileName = $("#myfile").val();
+		let cnt=$(this)[0].files.length;
+		if(cnt==1){
+			$(".upload-name").val(fileName);
+			}
+		else if(cnt>1){
+			$(".upload-name").val(cnt+"개의 파일 선택");
+			}
+		});
+	
 	$("#myfile").change(function(){
 		$("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
 		$("#showimg1").attr("src",null);

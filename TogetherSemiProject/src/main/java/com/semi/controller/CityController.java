@@ -73,8 +73,8 @@ public class CityController {
 
 		int totalCount = cityService.getTotalCountCity(city1, city2, keyword);// 게시판의 총 글 갯수
 		int totalPage;// 총 페이지수
-		int perPage = 5;// 한 페이지당 보여질 글 갯수
-		int perBlock = 2;// 한 블럭당 보여질 페이지의 갯수
+		int perPage = 6;// 한 페이지당 보여질 글 갯수
+		int perBlock = 3;// 한 블럭당 보여질 페이지의 갯수
 		int startNum;// 각 페이지에서 보여질 글의 시작번호
 		int startPage;// 각 블럭에서 보여질 시작 페이지 번호
 		int endPage;// 각 블럭에서 보여질 끝 페이지 번호

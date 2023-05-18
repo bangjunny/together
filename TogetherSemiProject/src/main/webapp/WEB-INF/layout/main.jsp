@@ -231,11 +231,7 @@ $(document).ready(function() {
 </head>
 <body>
 <div id="main_container">
-<div id="main_logout">
-	<c:if test="${sessionScope.unum ne null }">
-		<a href="/user/logout">로그아웃</a>
-	</c:if>
-</div>
+
 
 	<div id="main_header">
 		<div id="main_header_left">
@@ -250,7 +246,7 @@ $(document).ready(function() {
 			<div id="main_btn_wrap">
 				<c:choose>
 					<c:when test="${sessionScope.unum ne null }">
-						<button type="button" class="btn btn-light layout_a" onclick="location.href='/user/mypage'">시작하기</button>
+						<button type="button" class="btn btn-light layout_a" onclick="location.href='/user/mypage'">마이페이지</button>
 					</c:when>
 					<c:otherwise>
 						<button type="button" class="btn btn-light" onclick="location.href='/user/login'">시작하기</button>

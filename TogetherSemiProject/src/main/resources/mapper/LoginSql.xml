@@ -11,6 +11,11 @@
 		(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},#{category},#{inemail},now())
 	</insert>
 	
+	<insert id="insertSo" parameterType="UserDto">
+		insert into user (uname,age,gender,email,pass,hp,city1,city2,category,joinday) values
+		(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},#{category},now())
+	</insert>
+	
 	<select id="isEqualPassEmail" parameterType="Map" resultType="int">
 		select count(*) from user where email=#{email} and pass=#{pass}
 	</select>

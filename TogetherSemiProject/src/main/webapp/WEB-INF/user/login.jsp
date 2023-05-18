@@ -98,14 +98,14 @@
             font-size: 0.8em;
         }
         .kakao {
-        	height:50px;
+        	height:43px;
         	
         }
         
         .daham {
-      	
-      	text-align: center; 	
-      	margin-bottom: 50px;
+	      	text-align: center; 	
+	      	margin-bottom: 50px;
+	      	cursor: pointer;
       }
       
       .da {
@@ -127,7 +127,8 @@
     <div class="container">
         
         <div class="daham">
-       		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/login/logo.png" class="da">  	
+       		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/login/logo.png" 
+       		class="da" onclick="location.href='/'">  	
   		</div>
         
         
@@ -165,12 +166,12 @@
 			<div>
 			
 				<!-- 네이버 로그인 버튼 노출 영역 -->
-				<div id="naver_id_login" style="float:left;"></div>
+				<div id="naver_id_login" style="float:left; margin-right: 6px"></div>
 				
 	            <%-- 카카오 --%>
-	            <div style="float:right;">
+	            <div>
 		            <a href="javascript:kakaoLogin();">
-						<img src="https://kr.object.ncloudstorage.com/together-bucket-104/login/kakao_login_large.png" 
+						<img src="https://kr.object.ncloudstorage.com/together-bucket-104/login/kakao_login_large_narrow.png" 
 						class="kakao">
 					</a>
 				</div>
@@ -182,10 +183,10 @@
 			<script type="text/javascript">
 				var naver_id_login = new naver_id_login("eeKSBaviQtr4I8frMTNN", "http://localhost:9000/user/callback");
 			  	var state = naver_id_login.getUniqState();
-			  	naver_id_login.setButton("green", 3,50);
+			  	naver_id_login.setButton("green", 3,42);
 			  	naver_id_login.setDomain("http://localhost:9000/user/login");
 			  	naver_id_login.setState(state);
-			  	//naver_id_login.setPopup(); // 팝업창으로 뜨게하는 코드
+			  	// naver_id_login.setPopup(); // 팝업창으로 뜨게하는 코드
 			  	naver_id_login.init_naver_id_login();
 			</script>
 			

@@ -429,11 +429,36 @@ body, body * {
 	        data:{"city1":city1,"city2":city2,"keyword":keyword},
 	        success:function(res){
 	        	let s="";
+	        	s+=`<div class="outbox>`
 	        	$.each(res,function(idx,ele){
-	        		s+=`<b style="font-size:30px">\${idx+1}&nbsp;&nbsp;&nbsp;\${ele.subject}</b><br>`;
+	        			if(${unum==0 }{
+	        				s+=`<div class="box" onclick="guest()">`
+	        			}else{
+	        				s+=`<div class="box" onclick="location.href='detail?cbnum=\${ele.cbnum}'">`
+	        			}
+	        			s+=`<div class="listimg" style="float: left;">`
+	        				if(${list.photo_idx!=null }){
+	        					s+=`<img src="https://kr.object.ncloudstorage.com/together-bucket-104/city/\${list.photo_idx }">`
+	        				}else{
+	        					s+=`<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">`
+	        				}
+	        			s+=`</div>
+	        				<div class="listtext">
+	        				<b>\${ele.subject}</b><br>
+	        				작성자:\${ele.uname }<br>
+	        				조회수:\${ele.readcount } | 추천수:${ele.cblike }<br>
+	        				작성일:\${딛.cbwriteday }<br>
+	        				<span class="spancity">#\${ele.city1 } #\${ele.city2 }</span>
+	        			</div>
+	        		</div>
+	        		</div>`
+	        			
+	        			
+	        			
+	        		/* s+=`<b style="font-size:30px">\${idx+1}&nbsp;&nbsp;&nbsp;\${ele.subject}</b><br>`;
 	        		s+=`<span style="font-size:20px"><span style="display:inline-block;margin-left:50px;width:100px">\${ele.uname}</span>
 	        		|<span style="margin-left:50px;display:inline-block;width:150px">추천수 : \${ele.cblike}</span>조회수 : \${ele.readcount}</span>`;
-	        		s+=`<br>`;
+	        		s+=`<br>`; */
 	        	});
 	        	$("div.ajaxzone").html(s);
 	        }

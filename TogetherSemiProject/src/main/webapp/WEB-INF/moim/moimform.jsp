@@ -14,18 +14,106 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-	body, body *{
-		font-family: 'Jua'
+
+	.modu {
+		width:1140px;
+		margin: 0 auto;
+		margin-top:100px;
 	}
-	table {
-		margin:50px auto 0 auto;
+	
+	.cat {
+    	width:670px;
+		margin: 0 auto;
+    }
+    
+	.catego {
+		width:670px;
 	}
+	
+	.catego td {
+       width : 150px;
+       font-size:18px;
+     }
+       
+    .motable td{
+       width: 195px;
+     }
+	
+	.bi {
+       	cursor: pointer;
+       	color : #FE9A2E
+     }
+       
+    #moimfile {
+    	width:260px;
+    	margin-top:10px;
+    }
+    
+    .moimjuin {
+    	margin-top:5px;
+    	font-size:15px;
+    	border:none;
+    	width:90px;
+    }
+    
+    .moname{
+    	margin-right:10px;
+        width: 250px;
+        background: #fff;
+        font-size: 15px;
+        float: left;
+        border: solid 1px #dadada;
+      	padding: 10px 14px 10px 14px;
+      	height: 40px;
+      	border-radius:5px;
+    }
+    
+    .joocheck {
+    	height: 38px;
+    	width:90px;
+    	background: #FE9A2E;
+      	background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+    }
+    
+    .joocheck:hover {
+      	background: #FE642E;
+      }
+    
+    select {
+    	height: 40px;
+    	width: 140px;
+        font-size: 15px;
+        background: #fff;
+        background-size: 20px 8px;
+        border-radius:5px;
+        -webkit-appearance: none;
+        display: inline-block;
+        text-align: start;
+        border: solid 1px #dadada;
+        cursor: default;
+        padding-left: 5px;
+    }
+    
+   
+    
+    .pickcate {
+    	float:left;
+    	font-size: 18px;
+    	margin-right: 10px;
+    }
+
 	#showimg{
-	width: 200px;
-	height:200px; 
-	margin-top:100px;
-	border-radius:100px;
+	width: 350px;
+	height:350px;
+	boarder:1px solid black;
 	}
+	
 	.mainlayout .main{
 		width: 100%;
 		height: 1200px;
@@ -35,41 +123,77 @@
 		cursor: pointer;
 	}
 	
-	.olmessagef {color: red; font-style: Italic;}
-	.olmessaget {color: green; font-style: Italic;}
-	
-	#overlappedMname {
-		margin-top:10px;
+	.tag {
+		font-size:20px;
 	}
+	
+	.olmessagef {
+		color: red; 
+		font-size: 13px;
+		float: left;
+	}
+	.olmessaget {
+		color: green; 
+		font-size: 13px;
+		float: left;	
+	}
+	
+	#selcategory {
+		margin-top:2px;
+		font-size:15px;
+	}
+	.mapick {
+	 font-size:18px;
+	 float: left;
+	 margin-right: 8px;
+	 margin-top: 4px;
+	}
+	
+	
 </style>
 </head>
 <body>
-<!-- 이미지 출력할곳 -->
-<img id="showimg">
 
-<div id="tableform" style="width:700px" >
+<div class="modu">
+
 	<form action="insert" method="post" enctype="multipart/form-data" id="moimform">
-	<table class="table table-bordered" border="1" bgcolor="#ddd" style="width:500px">
+	
+	
+	<table class="table table-bordered" border="1" >
 		<tr>
-			<td style="width:100px;">모임 이름</td>
-			<td>
-				<input type="text" id="moimname" class="form-control" name="mname" required="required" placeholder="모임 이름을 입력해주세요">
-				<span id="olmessage"></span>
-				<div align="right">
-				<button id="overlappedMname" type="button" class="btn btn-outline-danger btn-sm">중복확인</button>
+			<td rowspan="4" style="width:440px;">
+			<!-- 이미지 출력할곳 -->
+				<div>
+					<img id="showimg">
+					<div>
+						<span class="mapick">대표사진 :</span> 
+						<input type="file" class="form-control " name="upload" id="moimfile">
+					</div>
 				</div>
 			</td>
-		</tr>
-		<tr>
-			<td style="width:100px;">모임장</td>
+		
+			<td style="width:120px;"><span class="tag"> 모임 이름 : </span></td>
+			<td style="width:400px;">
+			<div style="margin-bottom: 7px;">
+				<input type="text" id="moimname" class="moname" name="mname" required="required" placeholder="모임 이름을 입력해주세요.">
+				
+				<button id="overlappedMname" type="button" class="joocheck">중복확인</button>
+			</div>
+			<div>
+				<span id="olmessage"></span>
+			</div>
+			</td>
+			
+			<td style="width:92px;"><span class="tag"> 모임장 : </span></td>
 			<td>
-				<input type="text" class="form-control" value="${uname}" readonly>
+				<input type="text" class="moimjuin" value="${uname}" readonly>
 				<input type="hidden" name="unum" value="${unum}">
 			</td>
 		</tr>
+		
 		<tr>
-			<td>지역</td>
-			<td>
+			<td><span class="tag"> 활동 지역 : </span></td>
+			<td colspan="3">
                		<select id = "city" name="city1" >
                			<option hidden>시, 도 선택</option>
 	               		<option value="서울특별시">서울특별시</option>
@@ -149,86 +273,106 @@
 			</td>
 		</tr>
 		<tr>
-			<td>카테고리</td>
-			<td>
+			<td colspan="4">
+			<div style="margin-bottom: 10px;">
+				<span class="tag">카테고리</span>
+			</div>
+			
+			<div class="cat">
 				<label data-bs-toggle="modal" data-bs-target="#mySportsModal">
-				<i class="bi bi-dribbble"></i>
-				<h7>운동/스포츠</h7>
-				</label>
-				&nbsp;&nbsp;
-				<label data-bs-toggle="modal" data-bs-target="#myGameModal">
-				<i class="bi bi-controller"></i>
-				<h7>게임/오락</h7>
-				</label>
-				&nbsp;&nbsp;&nbsp;
-				<label data-bs-toggle="modal" data-bs-target="#myTravelModal">
-				<i class="bi bi-geo-alt"></i>
-				<h7>여행/아웃도어</h7>
-				</label>
-				<br>
-				<label data-bs-toggle="modal" data-bs-target="#myBookModal">
-				<i class="bi bi-book"></i>
-				<h7>책/글</h7>
-				</label>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<label data-bs-toggle="modal" data-bs-target="#myWorkModal">
-				<i class="bi bi-briefcase"></i>
-				<h7>업종/직무</h7>
-				</label>
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<label data-bs-toggle="modal" data-bs-target="#myLangModal">
-				<i class="bi bi-translate"></i>
-				<h7>외국/언어</h7>
-				</label>
-				<br>
-				<label data-bs-toggle="modal" data-bs-target="#myMusicModal">
-				<i class="bi bi-music-note-beamed"></i>
-				<h7>음악/악기</h7>
-				</label>
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<label data-bs-toggle="modal" data-bs-target="#mySocialModal">
-				<i class="bi bi-cup-straw"></i>
-				<h7>사교/인맥</h7>
-				</label>
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<label data-bs-toggle="modal" data-bs-target="#myCraftsModal">
-				<i class="bi bi-palette"></i>
-				<h7>공예/만들기</h7>
-				</label>		
-			</td>
-		</tr>
+				<table class=catego>
+					<tr>
+						<td>
+							<i class="bi bi-dribbble"></i>
+							<h7>운동/스포츠</h7>
+							</label>
+						</td>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myGameModal">
+							<i class="bi bi-controller"></i>
+							<h7>게임/오락</h7>
+							</label>
+						</td>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myTravelModal">
+							<i class="bi bi-geo-alt"></i>
+							<h7>여행/아웃도어</h7>
+							</label>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myBookModal">
+							<i class="bi bi-book"></i>
+							<h7>책/글</h7>
+							</label>
+						</td>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myWorkModal">
+							<i class="bi bi-briefcase"></i>
+							<h7>업종/직무</h7>
+							</label>
+						</td>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myLangModal">
+							<i class="bi bi-translate"></i>
+							<h7>외국/언어</h7>
+							</label>
+						</td>
+					</tr>
+				
+					<tr>
+					<td>
+						<label data-bs-toggle="modal" data-bs-target="#myMusicModal">
+						<i class="bi bi-music-note-beamed"></i>
+						<h7>음악/악기</h7>
+						</label>
+					</td>
+					<td>	
+						<label data-bs-toggle="modal" data-bs-target="#mySocialModal">
+						<i class="bi bi-cup-straw"></i>
+						<h7>사교/인맥</h7>
+						</label>
+					</td>
+					<td>
+						<label data-bs-toggle="modal" data-bs-target="#myCraftsModal">
+						<i class="bi bi-palette"></i>
+						<h7>공예/만들기</h7>
+						</label>
+					</td>
+				</tr>
+				
+			 </table>
+			</div>		
 		<tr>
-			<td>
-				<h7>선택한 <br>카테고리</h7>
-			</td>
-			<td>
+			<td colspan="4">
+				<div class="pickcate">
+					<h7>선택한 카테고리 : </h7>
+				</div>
 				<div type="text" id="selcategory"></div>
 				<input type="hidden" class="selcategory" name="category" value="null">
 			</td>
 		</tr>
-		<tr>
-			<td colspan="2">
-				<h5>모임 대표 사진</h5>
-				<input type="file" class="form-control " name="upload" id="moimfile">
-			</td>
-		</tr>
-		<tr colspan="2">
-			<td>모임 소개</td>
-			<br>
-			<td>
-				<textarea style="width:100%; height:300px;" name="mcontent" required="required" class="form-control"></textarea>
+		<tr colspan="3">
+			<td colspan="5">
+				<div style="margin-bottom: 10px;">
+					<span class="tag">상세 정보</span>
+				</div>
+				<textarea style="width:100%; height:300px;" name="mcontent" required="required" class="form-control"></textarea>			
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center">
-				<button type="submit" class="btn btn-outline-success" id="btnsubmit">만들기</button>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button type="button" class="btn btn-outline-danger" onclick="history.back()">취소</button>
+			<td colspan="5" align="center">
+				<button type="button" class="makemo" id="btnsubmit">만들기</button>
+				<button type="button" class="notmo" onclick="history.back()">취소</button>
 			</td>
 		</tr>
 	</table>
 	</form>
 </div>
+
+
 <script type="text/javascript">
 $("#moimfile").change(function(){
 	console.log("1:"+$(this)[0].files.length);
@@ -269,323 +413,403 @@ form.addEventListener('submit', function(event) {
 
 </script>
 
-<!-- The Modal -->
-		<div class="modal" id="mySportsModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">운동/스포츠</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="축구">축구</label>
-						<label><input type="checkbox" name="categorys" value="농구">농구</label>
-						<label><input type="checkbox" name="categorys" value="야구">야구</label>
-						<label><input type="checkbox" name="categorys" value="테니스">테니스</label>
-						<br> 
-						<label><input type="checkbox" name="categorys"	value="배드민턴">배드민턴</label> 
-						<label><input type="checkbox" name="categorys" value="자전거">자전거</label>
-						<label><input type="checkbox" name="categorys" value="클라이밍">클라이밍</label> 
-						<br>
-						<label><input type="checkbox" name="categorys" value="탁구">탁구</label>
-						<label><input type="checkbox" name="categorys" value="러닝/마라톤">러닝/마라톤</label>
-						<label><input type="checkbox" name="categorys" value="골프">골프</label>
-						<label><input type="checkbox" name="categorys" value="볼링">볼링</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myGameModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">게임/오락</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="다트">다트</label>
-						<label><input type="checkbox" name="categorys" value="보드게임">보드게임</label>
-						<label><input type="checkbox" name="categorys" value="두뇌심리게임">두뇌심리게임</label>
-						<br> 
-						<label><input type="checkbox" name="categorys" value="온라인게임">온라인게임</label>
-						<label><input type="checkbox" name="categorys" value="콘솔게임">콘솔게임</label> 
-						<label><input type="checkbox" name="categorys" value="단체놀이">단체놀이</label> 
-						<br>
-						<label><input type="checkbox" name="categorys" value="타로카드">타로카드</label>
-						<label><input type="checkbox" name="categorys" value="마술">마술</label>
-						<label><input type="checkbox" name="categorys" value="바둑">바둑</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myTravelModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">여행/아웃도어</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="등산">등산</label>
-						<label><input type="checkbox" name="categorys" value="산책/트래킹">산책/트래킹</label>
-						<label><input type="checkbox" name="category" value="캠핑/백패킹">캠핑/백패킹</label>
-						<br>
-						<label><input type="checkbox" name="categorys" value="국내여행">국내여행</label>
-						<label><input type="checkbox" name="categorys" value="해외여행">해외여행</label>
-						<label><input type="checkbox" name="categorys" value="낚시">낚시</label>
-						<label><input type="checkbox" name="categorys" value="패러글라이딩">패러글라이딩</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myBookModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">책/글</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="책/독서">책/독서</label>
-						<label><input type="checkbox" name="categorys" value="인문학">인문학</label>
-						<label><input type="checkbox" name="categorys" value="심리학">심리학</label>
-						<label><input type="checkbox" name="categorys" value="철학">철학</label>
-						<br> 
-						<label><input type="checkbox" name="categorys" value="역사">역사</label>
-						<label><input type="checkbox" name="categorys" value="시사/경제">시사/경제</label> 
-						<label><input type="checkbox" name="categorys" value="작문/글쓰기">작문/글쓰기</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myWorkModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">업족/직무</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="의료/건강/제약">의료/건강/제약</label> 
-						<label><input type="checkbox" name="categorys" value="IT/포털/인터넷">IT/포털/인터넷</label>
-						<label><input type="checkbox" name="categorys" value="교육업">교육업</label>
-						<br> 
-						<label><input type="checkbox" name="categorys" value="광고/마케팅업계">광고/마케팅업계</label> 
-						<label><input type="checkbox" name="categorys" value="디자인업계  ">디자인업계</label> 
-						<label><input type="checkbox" name="categorys" value="무역/상사">무역/상사</label> 
-						<br>
-						<label><input type="checkbox" name="categorys" value="금융업">금융업</label>
-						<label><input type="checkbox" name="categorys" value="세무/회계">세무/회계</label> 
-						<label><input type="checkbox" name="categorys" value="전자/기계/전기">전자/기계/전기</label> 
-						<br> 
-						<label><input type="checkbox" name="categorys" value="패션/의류/뷰티">패션/의류/뷰티</label>
-						<label><input type="checkbox" name="categorys" value="서비스업">서비스업</label>
-						<label><input type="checkbox" name="categorys" value="식음료/외식업">식음료/외식업</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myLangModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">외국/언어</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="영어">영어</label>
-						<label><input type="checkbox" name="categorys" value="일본어">일본어</label>
-						<label><input type="checkbox" name="categorys" value="중국어">중국어</label>
-						<label><input type="checkbox" name="categorys" value="프랑스어">프랑스어</label>
-						<label><input type="checkbox" name="categorys" value="스페인어">스페인어</label>
-						<label><input type="checkbox" name="categorys" value="러시아어">러시아어</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myMusicModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">음악/악기</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="노래/보컬">노래/보컬</label> 
-						<label><input type="checkbox" name="categorys" value="기타/베이스">기타/베이스</label> 
-						<label><input type="checkbox" name="categorys" value="드럼">드럼</label> 
-						<label><input type="checkbox" name="categorys" value="피아노">피아노</label> 
-						<label><input type="checkbox" name="categorys" value="바이올린">바이올린</label> 
-						<br>
-						<label><input type="checkbox" name="categorys" value="밴드/합주">밴드/합주</label> 
-						<label><input type="checkbox" name="categorys" value="작사/작곡">작사/작곡</label> 
-						<label><input type="checkbox" name="categorys" value="힙합">힙합</label> 
-						<label><input type="checkbox" name="categorys" value="클래식">클래식</label> 
-						<label><input type="checkbox" name="categorys" value="재즈">재즈</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="mySocialModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">사교/인맥</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="지역">지역</label>
-						<label><input type="checkbox" name="categorys" value="나이">나이</label>
-						<label><input type="checkbox" name="categorys" value="성별">성별</label>
-						<label><input type="checkbox" name="categorys" value="싱글/연애">싱글/연애</label> 
-						<label><input type="checkbox" name="categorys" value="기혼/유부">기혼/유부</label> 
-						<br> 
-						<label><input type="checkbox" name="categorys" value="돌싱">돌싱</label> 
-						<label><input type="checkbox" name="categorys" value="와인/커피/차">와인/커피/차</label> 
-						<label><input type="checkbox" name="categorys" value="맛집/미식회">맛집/미식회</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myCraftsModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">공예/만들기</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="미술/그림">미술/그림</label> 
-						<label><input type="checkbox" name="categorys" value="캘리그라피">캘리그라피</label> 
-						<label><input type="checkbox" name="categorys" value="천연비누/화장품">천연비누/화장품</label>
-						<br> 
-						<label><input type="checkbox" name="categorys" value="캔들/디퓨저/석고 ">캔들/디퓨저/석고 </label> 
-						<label><input type="checkbox" name="categorys" value="가죽공예">가죽공예</label> 
-						<label><input type="checkbox" name="categorys" value="가구/목공예">가구/목공예</label> 
-						<label><input type="checkbox" name="categorys" value="도자/점토공예">도자/점토공예</label> 
-						<br>
-						<label><input type="checkbox" name="categorys" value="자수/뜨개질">자수/뜨개질</label> 
-						<label><input type="checkbox" name="categorys" value="키덜트/프라모델">키덜트/프라모델</label>
-						<label><input type="checkbox" name="categorys" value="메이크업/네일">메이크업/네일</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
+<!-- Modal -->
+	<!-- The Modal -->
+	<div class="modal" id="mySportsModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">운동/스포츠</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="축구">축구</td>
+			      	<td><input type="checkbox" name="categorys" value="농구">농구</td>
+			      	<td><input type="checkbox" name="categorys" value="야구">야구</td>
+			      	<td><input type="checkbox" name="categorys" value="테니스">테니스</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="배드민턴">배드민턴</td>
+			      	<td><input type="checkbox" name="categorys" value="자전거">자전거</td>
+			      	<td><input type="checkbox" name="categorys" value="클라이밍">클라이밍</td>
+			      	<td><input type="checkbox" name="categorys" value="탁구">탁구</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="러닝/마라톤">러닝/마라톤</td>
+			      	<td><input type="checkbox" name="categorys" value="골프">골프</td>
+			      	<td><input type="checkbox" name="categorys" value="볼링">볼링</td>
+			      	<td></td>
+		      	</tr>
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myGameModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">게임/오락</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="다트">다트</td>
+			      	<td><input type="checkbox" name="categorys" value="보드게임">보드게임</td>
+			      	<td><input type="checkbox" name="categorys" value="두뇌심리게임">두뇌심리게임</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="온라인게임">온라인게임</td>
+			      	<td><input type="checkbox" name="categorys" value="콘솔게임">콘솔게임</td>
+			      	<td><input type="checkbox" name="categorys" value="단체놀이">단체놀이</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="타로카드">타로카드</td>
+			      	<td><input type="checkbox" name="categorys" value="마술">마술</td>
+			      	<td><input type="checkbox" name="categorys" value="바둑">바둑</td>  
+		      	</tr>
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myTravelModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">여행/아웃도어</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="등산">등산</td>
+			      	<td><input type="checkbox" name="categorys" value="국내여행">국내여행</td>
+			      	<td><input type="checkbox" name="categorys" value="산책/트래킹">산책/트래킹</td>
+			      	<td><input type="checkbox" name="categorys" value="패러글라이딩">패러글라이딩</td>
+			      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="낚시">낚시</td>
+			      	<td><input type="checkbox" name="categorys" value="해외여행">해외여행</td>
+			      	<td><input type="checkbox" name="categorys" value="캠핑/백패킹">캠핑/백패킹</td>
+			      	<td></td>
+		      	</tr>
+	      	</table>     
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myBookModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">책/글</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="책/독서">책/독서</td>
+			      	<td><input type="checkbox" name="categorys" value="인문학">인문학</td>
+			      	<td><input type="checkbox" name="categorys" value="심리학">심리학</td>
+			      	<td><input type="checkbox" name="categorys" value="철학">철학</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="역사">역사</td>
+			      	<td><input type="checkbox" name="categorys" value="시사/경제">시사/경제</td>
+			      	<td><input type="checkbox" name="categorys" value="작문/글쓰기">작문/글쓰기</td>
+			      	<td></td>
+		      	</tr>
+		    </table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myWorkModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">업족/직무</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="의료/건강/제약">의료/건강/제약</td>
+			      	<td><input type="checkbox" name="categorys" value="IT/포털/인터넷">IT/포털/인터넷</td>
+			      	<td><input type="checkbox" name="categorys" value="교육업">교육업</td> 	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="광고/마케팅업계">광고/마케팅업계</td>
+			      	<td><input type="checkbox" name="categorys" value="디자인업계  ">디자인업계</td>
+			      	<td><input type="checkbox" name="categorys" value="무역/상사">무역/상사</td>      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="금융업">금융업</td>
+			      	<td><input type="checkbox" name="categorys" value="세무/회계">세무/회계</td>
+			      	<td><input type="checkbox" name="categorys" value="전자/기계/전기">전자/기계/전기</td>  	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="패션/의류/뷰티">패션/의류/뷰티</td>
+			      	<td><input type="checkbox" name="categorys" value="서비스업">서비스업</td>
+			      	<td><input type="checkbox" name="categorys" value="식음료/외식업">식음료/외식업</td>
+		      	</tr>      	
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myLangModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">외국/언어</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="영어">영어</td>
+			      	<td><input type="checkbox" name="categorys" value="일본어">일본어</td>
+			      	<td><input type="checkbox" name="categorys" value="중국어">중국어</td>
+			      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="프랑스어">프랑스어</td>
+			      	<td><input type="checkbox" name="categorys" value="스페인어">스페인어</td>
+			      	<td><input type="checkbox" name="categorys" value="러시아어">러시아어</td>
+		      	</tr>
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myMusicModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">음악/악기</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="노래/보컬">노래/보컬</td>
+			      	<td><input type="checkbox" name="categorys" value="기타/베이스">기타/베이스</td>
+			      	<td><input type="checkbox" name="categorys" value="드럼">드럼</td>
+			      	<td><input type="checkbox" name="categorys" value="피아노">피아노</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="바이올린">바이올린</td>
+			      	<td><input type="checkbox" name="categorys" value="밴드/합주">밴드/합주</td>
+			      	<td><input type="checkbox" name="categorys" value="작사/작곡">작사/작곡</td>
+			      	<td><input type="checkbox" name="categorys" value="힙합">힙합</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="클래식">클래식</td>
+			      	<td><input type="checkbox" name="categorys" value="재즈">재즈</td>
+			      	<td></td>
+			      	<td></td>
+		      	</tr>	      	
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="mySocialModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">사교/인맥</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="지역">지역</td>
+			      	<td><input type="checkbox" name="categorys" value="나이">나이</td>
+			      	<td><input type="checkbox" name="categorys" value="성별">성별</td>
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="싱글/연애">싱글/연애</td>
+			      	<td><input type="checkbox" name="categorys" value="기혼/유부">기혼/유부</td>
+			      	<td><input type="checkbox" name="categorys" value="돌싱">돌싱</td> 	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="와인/커피/차">와인/커피/차</td>
+			      	<td><input type="checkbox" name="categorys" value="맛집/미식회">맛집/미식회</td>
+			      	<td></td>
+		      	</tr>
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myCraftsModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">공예/만들기</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="미술/그림">미술/그림</td>
+			      	<td><input type="checkbox" name="categorys" value="캘리그라피">캘리그라피</td>
+			      	<td><input type="checkbox" name="categorys" value="천연비누/화장품">천연비누/화장품</td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><input type="checkbox" name="categorys" value="가죽공예">가죽공예</td>
+			      	<td><input type="checkbox" name="categorys" value="가구/목공예">가구/목공예</td>
+			      	<td><input type="checkbox" name="categorys" value="도자/점토공예">도자/점토공예</td>
+			      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="자수/뜨개질">자수/뜨개질</td>
+			      	<td><input type="checkbox" name="categorys" value="키덜트/프라모델">키덜트/프라모델</td>
+			      	<td><input type="checkbox" name="categorys" value="메이크업/네일">메이크업/네일</td>
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><input type="checkbox" name="categorys" value="캔들/디퓨저/석고 ">캔들/디퓨저/석고</td>
+		      		<td></td>
+			      	<td></td>
+		      	</tr>	
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+		
 <script>
 $(function() {
     // 체크박스 값이 변경될 때마다 실행되는 함수
@@ -606,7 +830,7 @@ $("#overlappedMname").click(function(){
 	$.ajax({
 	type: "get",
 	async: false,
-	url: "./moim/mnameCheck",
+	url: "/moim/mnameCheck",
 	data: {mname: mname},
 	success: function (data) {
 	if(data == 1) {

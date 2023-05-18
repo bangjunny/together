@@ -177,7 +177,7 @@
            
            <!-- Category -->
            <div class="input-mo">
-           	<label for="user_category" class="la">카테고리</label>
+           	<label for="user_category" class="la">선호 카테고리</label>
            	
            	<label data-bs-toggle="modal" data-bs-target="#mySportsModal">
 				<table class=catego>

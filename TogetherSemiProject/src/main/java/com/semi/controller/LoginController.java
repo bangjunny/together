@@ -127,6 +127,14 @@ public class LoginController {
 		return "redirect:/user/login";
 	}
 	
+	@PostMapping("/soinsert")
+	public String insertSo(UserDto dto){
+		System.out.println(dto);
+		loginService.insertSo(dto);
+		
+		return "redirect:/user/login";
+	}
+	
 	@GetMapping("/mypagelist")
 	public String list(Model model)
 	{

@@ -18,6 +18,7 @@ import com.semi.dto.JJimDto;
 public interface LoginMapper {
 	
 	public void insertUser(UserDto dto);
+	public void insertSo(UserDto dto);
 	public int isEqualPassEmail(Map<String, String> map); // map : email, pass
 	public UserDto selectOneOfEmail(String email);
 	public int overlappedEmail(UserDto dto);

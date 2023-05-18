@@ -59,7 +59,13 @@
 	<select id="getMyProfile" resultType="UserPhotoDto">
 		select * from user_photo where unum=#{unum}
 	</select>
-	
+	<update id="updateOtherphoto" parameterType="int">
+		update user_photo set is_main = 0 where unum=#{unum}
+	</update>
+	<update id="updateMyPhoto" parameterType="UserPhotoDto">
+		update user_photo set is_main = 0 where unum=#{unum};
+ 		update user_photo set is_main = 1 where photo_idx = (select max(photo_idx) from user_photo where unum = #{unum});
+	</update>
 	<update id="updateMainphoto" parameterType="int">
 		update user_photo set is_main = case when photo_idx = #{photo_idx} then 1 else 0 end Where unum=#{unum}
 	</update>
@@ -98,7 +104,7 @@
 	</insert>
 	
 	<select id="getGaipMoimList" parameterType="int" resultType="Map">
-		select m.mname from moim m join moimmember mm on m.mname=mm.mname where mm.unum=#{unum} and acceptcall=1
+		select m.mnum,m.mname,m.mcontent,m.mphoto,m.city1,m.city2,m.category from moim m join moimmember mm on m.mname=mm.mname where mm.unum=#{unum} and acceptcall=1
 	</select>
 	
 	<select id="getMyCBWRCount" resultType="int">

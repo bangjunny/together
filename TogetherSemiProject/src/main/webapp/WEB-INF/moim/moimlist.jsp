@@ -23,22 +23,30 @@
 body, body * {
 	font-family: 'Jua'
 }
+#moimlist_container{
+	width: 1440px;
+	margin: 0 auto;
+}
 #moim_head_container{
-	width: 1000px;
+	width: 1440px;
 	margin: 50px auto 0 auto;
 }
 #moim_header{
 	display: flex;
 	justify-content: space-between;
 	margin: 100px auto 0 auto;
-	width: 85%;
+	width: 1440px;
 	background-color: #F6E3CE;
 }
 #moim_header h2{
 	margin-left: 20px;
 }
+#moimlist_head h4{
+	margin-left: 60px;
+	margin-bottom: 15px;
+}
 #moim_cate{
-	width: 1000px;
+	width: 1440px;
 	height: 100px;
 	display: flex;
 	justify-content: space-around;	
@@ -53,8 +61,23 @@ body, body * {
 	width: 50px;
 	height: 50px;
 }
+#moim_btn_wrap{
+	width: 96%;
+	height: 150px;
+}
+
+#moim_sort_btn{
+	
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 10px;
+}
+#moim_sort_btn button{
+	margin-left: 5px;
+}
 #moim_sel_local{
-	width: 80%;
+
+	margin: 0 auto;
 	display: flex;
 	justify-content: flex-end;
 	margin-bottom: 10px;
@@ -65,22 +88,18 @@ body, body * {
 #moim_sel_local button{
 	margin-left: 10px;
 }
-#moim_sort_btn{
-	width: 80%;
-	display: flex;
-	justify-content: flex-end;
-	margin-bottom: 10px;
-}
-#moim_sort_btn button{
-	margin-left: 5px;
-}
 #moim_table{
-	width: 1200px;
+	width: 1440px;
 	margin: 0 auto;
-	
+}
+#moim_table td{
+	 text-align: center;
+  	 vertical-align: middle;
 }
 #moim_table td div{
 	cursor: pointer;
+	display: inline-block;
+  	vertical-align: middle;
 }
 .moim_box{
 	 border: 1px rgb(226, 226, 226) solid;
@@ -116,7 +135,7 @@ body, body * {
 </style>
 </head>
 <body>
-
+	<div id="moimlist_container">
 
 			<div id="moim_header">		
 				<h2 >모임리스트</h2>
@@ -343,6 +362,9 @@ body, body * {
 		<hr style="color: gray">
 					
 			<!-- 리스트 출력 부분 -->
+			
+			<div id="moim_btn_wrap">
+			
 			<div id="moim_sort_btn">
 				<button type="button" onclick="submitSelectedSortmnum()" class="btn btn-dark">최신순</button>
 				<button type="button" onclick="submitSelectedSortmcount()" class="btn btn-dark">가입자순</button>
@@ -392,15 +414,16 @@ body, body * {
 				
 						  	  <button type="submit" class="btn btn-dark" onclick="submitSelectedConditions()">검색</button>
 							</form>
-							</div>	
+						</div>	
+					</div>	
 				
 			<table id="moim_table">
 				<c:forEach var="dto" items="${list}" varStatus="i">
 					<c:if test="${i.count % 4 == 1}">
 						<tr>
 					</c:if>
-					<td>
-						<div class="moim_box" onclick="location.href='moimdetail?mnum=${dto.mnum }&mname=${dto.mname}'">
+							<td>
+								<div class="moim_box" onclick="location.href='moimdetail?mnum=${dto.mnum }&mname=${dto.mname}'">
 						
 							<c:choose>
 								<c:when test="${dto.mphoto==null}">
@@ -433,6 +456,7 @@ body, body * {
 						<button type="button" class="btn btn-success" onclick="checkCreate(event)">만들기</button>
 					</div>
 				</c:if>	
+		</div>		
 			
 		<!-- 페이징처리하기 -->
 		<c:choose>

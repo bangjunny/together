@@ -160,7 +160,8 @@ public class CityController {
 		int totalrenum = cityMapper.getReboardNum();
 		List<CbReBoardDto> listcomment = cityService.getCommentByCbnum(cbnum);
 		CbReBoardDto rdto=new CbReBoardDto();
-		String mainPhoto=cityService.getMainPhoto(unum);
+		int dtounum= cityService.getUsernum(cbnum);
+		String mainPhoto=cityService.getMainPhoto(dtounum);
 		
 		String precontent = cityService.preContent(dto);
 		String nxtcontent = cityService.nxtContent(dto);

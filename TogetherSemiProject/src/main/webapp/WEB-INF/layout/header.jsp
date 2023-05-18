@@ -42,6 +42,11 @@
 		font-size: 25px;
 		line-height: 75px;
 		cursor: pointer;
+  		margin-left: 150px;
+	}
+
+	#header_navbar div:last-child {
+  		margin-right: 150px;
 	}
 </style>
 </head>
@@ -68,9 +73,9 @@
 			</div>
 	    </div>
 			<div id="header_navbar">
-				<div onclick="location.href='/moim/moimlist'">모임게시판</div>
-				<div onclick="location.href='/city/list'">지역게시판</div>
-				<div onclick="location.href='/mapcontact'">지역검색</div>
+					<div onclick="location.href='/moim/moimlist'">모임게시판</div>
+					<div onclick="location.href='/city/list'">지역게시판</div>
+					<div onclick="location.href='/mapcontact'">지역검색</div>
 			</div>		
 	</div>
 		

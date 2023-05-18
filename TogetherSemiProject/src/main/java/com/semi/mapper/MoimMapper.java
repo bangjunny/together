@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.semi.dto.JJimDto;
 import com.semi.dto.MoimDto;
 import com.semi.dto.MoimMemberDto;
+import com.semi.dto.MoimScheduleDto;
 
 @Mapper
 public interface MoimMapper {
@@ -32,4 +33,8 @@ public interface MoimMapper {
 	public Integer acceptChk(Map<String, Object> map);//unum, mnum
 	public List<MoimDto> getJoinedMoimList(int unum);
 	public List<JJimDto> getJJimList(int mnum);	
+	public void insertMoimSchedule(MoimScheduleDto msdto);
+	public MoimScheduleDto getMoimSchedule(int mnum);
+	public int getScheduleCount(int mnum);
+	public void changeMm(Map<String, Object> map);
 }

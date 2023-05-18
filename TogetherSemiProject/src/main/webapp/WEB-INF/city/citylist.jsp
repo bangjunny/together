@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +19,63 @@
 <style>
 body, body * {
 	font-family: 'Jua';
+	
+}
+#maincontainer{
+	width: 1440px;
+	margin: 80px auto 0 auto;
+	position: relative;
+	/* background-color: rgba(245, 245, 220, 0.2); */
+}
+.outbox{
+	margin: 0 auto;
+	padding: 10px;
+	width: 100%;
+	height: 830px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+	
+}
+.box{
+	width:100%;
+	height:192px;
+	border-radius: 12px;
+	float: left;
+	padding: 20px 15px;
+	background-color: white;
+	border: 1px solid #ddd;
+	cursor: pointer;
+}
+.listimg{
+	border-radius: 12px;
+	width: 150px;
+	height: 150px;
+}
+.listimg img{
+	width:100%;
+	height: 100%;
+	border-radius: 12px;
+}
+
+.listtext{
+	padding-left: 170px;
+	padding-top : 15px;
+	height: 150px;
+}
+.listtext b{
+	
+}
+.spansubject{
+}
+.spancity{
+	font-style: italic;
+	color: #ddd
 }
 </style>
-
 </head>
 <body>
+<div id="maincontainer">
 <br>
 <br>
 <br>
@@ -132,8 +183,8 @@ body, body * {
 		<button type="submit" id="keyword">검색</button>
 		</form>
 	
-	<hr>
-	<table class="table table-bordered boardlist">
+
+ 	<%-- <table class="table table-bordered boardlist">
 		<tr bgcolor="#f5f5dc">
 			<th style="width: 100px">번호</th>
 			<th style="width: 400px">제목</th>
@@ -147,7 +198,6 @@ body, body * {
 		<c:forEach var="list" items="${list}" varStatus="i">
 			<tr>
 				<td align="center">${list.cbnum }</td>
-
 				<c:choose>
 					<c:when test="${unum==0}">
 						<td style="cursor: pointer" onclick="guest();"><b>${list.subject}</b>
@@ -158,8 +208,6 @@ body, body * {
 							onclick="location.href='detail?cbnum=${list.cbnum}'"><b>${list.subject}</b>
 					</c:otherwise>
 				</c:choose>
-
-
 				<td>${list.uname}</td>
 				<td align="right"><fmt:formatDate value="${list.cbwriteday }"
 						pattern="yyyy-MM-dd" /></td>
@@ -167,20 +215,21 @@ body, body * {
 				<td>${list.cblike}</td>
 			</tr>
 		</c:forEach>
-	</table>
-	<hr>
-	<div>
+	</table> --%>
+
+	
 	<h1>TOP3</h1>
 	<div class="btn-group">
 	<button class="btn btn-primary" id="liketop" onclick="liketop()">추천수 TOP3</button>
 	<button class="btn btn-primary" id="readtop" onclick="readtop()">조회수 TOP3</button>
 	</div>
 	<div class="ajaxzone"></div>
-	<table style="margin:0 auto;border:1px solid black;width:auto">
+	
+	
+	<%-- <table style="margin:0 auto;border:1px solid black;width:auto">
 	<c:forEach var="list" items="${list}" varStatus="i">
 	<tr>
-		<td style="border:1px solid black"><b style="display:inline-block;width:400px">${list.subject }</b></td>
-		<td style="border:1px solid black;width:100px" rowspan="2">
+	<td style="border:1px solid black;width:100px" rowspan="2">
 		<c:choose>
 			<c:when test="${list.photo_idx!=null }">
 				<img style="width:150px;height:150px" src="https://kr.object.ncloudstorage.com/together-bucket-104/city/${list.photo_idx }">
@@ -190,6 +239,8 @@ body, body * {
 			</c:otherwise>
 		</c:choose>
 		</td>
+		<td style="border:1px solid black"><b style="display:inline-block;width:400px">${list.subject }</b></td>
+		
 	</tr>
 	<tr>
 		<td style="border:1px solid black;height:50px">
@@ -202,12 +253,43 @@ body, body * {
 		</td>
 	</tr>
 	</c:forEach>
-	</table>
+	</table> --%>
+	<%-- <div class="outbox">
+	<c:forEach var="list" items="${list}" varStatus="i">
+	<c:choose>
+		<c:when test="${unum==0 }">
+			<div class="box" onclick="guest()">
+		</c:when>
+		<c:otherwise>
+			<div class="box" onclick="location.href='detail?cbnum=${list.cbnum}'">
+		</c:otherwise>
+	</c:choose>
+		<div class="listimg" style="float: left;">
+			<c:choose>
+			<c:when test="${list.photo_idx!=null }">
+				<img src="https://kr.object.ncloudstorage.com/together-bucket-104/city/${list.photo_idx }">
+			</c:when>
+			<c:otherwise>
+				<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+			</c:otherwise>
+		</c:choose>
+		</div>
+		<div class="listtext">
+			
+			<b>${list.subject}</b><br>
+			작성자:${list.uname }<br>
+			조회수:${list.readcount } | 추천수:${list.cblike }<br>
+			<fmt:formatDate value="${list.cbwriteday }" pattern="yyyy-MM-dd"/><br>
+			<span class="spancity">#${list.city1 } #${list.city2 }</span>
+			
+		</div>
 	</div>
+	</c:forEach>
+	</div> --%>
 
 	
-	<br>
-	<hr>
+	
+
 	<!-- 페이징처리 -->
 <div style="margin:0 auto;width: 700px; text-align: center; font-size: 20px;">
 <c:choose>
@@ -218,7 +300,6 @@ body, body * {
 				href="list?city1=${city1 }&city2=${city2 }&keyword=${keyword }&currentPage=${startPage-1 }">이전</a>
 		</c:if>
 		&nbsp;
-
 		<!-- 페이지 번호 출력 -->
 		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
 			<c:if test="${currentPage==pp }">
@@ -231,7 +312,6 @@ body, body * {
 			</c:if>
         &nbsp;
     	</c:forEach>
-
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
 			<a style="color: green; text-decoration: none; cursor: pointer;"
@@ -245,7 +325,6 @@ body, body * {
 				href="list?keyword=${keyword }&currentPage=${startPage-1 }">이전</a>
 		</c:if>
 		&nbsp;
-
 		<!-- 페이지 번호 출력 -->
 		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
 			<c:if test="${currentPage==pp }">
@@ -258,7 +337,6 @@ body, body * {
 			</c:if>
         &nbsp;
     	</c:forEach>
-
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
 			<a style="color: green; text-decoration: none; cursor: pointer;"
@@ -273,7 +351,6 @@ body, body * {
 				href="list?city1=${city1 }&city2=${city2 }&currentPage=${startPage-1 }">이전</a>
 		</c:if>
 		&nbsp;
-
 		<!-- 페이지 번호 출력 -->
 		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
 			<c:if test="${currentPage==pp }">
@@ -286,7 +363,6 @@ body, body * {
 			</c:if>
         &nbsp;
     	</c:forEach>
-
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
 			<a style="color: green; text-decoration: none; cursor: pointer;"
@@ -313,7 +389,6 @@ body, body * {
 			</c:if>
         &nbsp;
     	</c:forEach>
-
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
 			<a style="color: green; text-decoration: none; cursor: pointer;"
@@ -321,9 +396,7 @@ body, body * {
 		</c:if>
 	</c:otherwise>
 </c:choose>
-
 </div>
-
 	<script type="text/javascript">
 	$(function(){
 		liketop();
@@ -387,17 +460,13 @@ body, body * {
 	        }
 		});
 	}
+	$("#search").click(function(){
+		if($("#city").val()=="시, 도 선택"){
+			alert("지역을 선택해 주세요");
+			return false;
+		}
+	}); 
 </script>
-
+</div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

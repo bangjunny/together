@@ -112,6 +112,7 @@ body, body * {
 	margin-top:25px;
 	text-align: center;
 }
+
 </style>
 </head>
 <body>

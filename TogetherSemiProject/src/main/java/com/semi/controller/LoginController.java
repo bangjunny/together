@@ -155,7 +155,10 @@ public class LoginController {
 	    Integer loginUserUnum = (Integer) session.getAttribute("unum"); // 로그인한 사용자의 unum 값 가져오기
 	    if (loginUserUnum == null) {
 	        return "redirect:/user/login"; // 로그인하지 않은 사용자는 로그인 페이지로 이동
-	    } else {
+	    }else if(loginUserUnum == 1){
+	    	return "redirect:/user/mypagelist"; 
+	    }
+	    else {
 	        return "redirect:/user/mypagedetail?unum=" + loginUserUnum; // 로그인한 사용자는 자신의 mypagedetail 페이지로 이동
 	    }
 	}

@@ -166,6 +166,7 @@
 	top:10px;
 	left:30px;
 	}
+	
 @media ( max-width: 1200px ){
 	div.moim {
 		width: auto;
@@ -204,20 +205,32 @@
 #gaipmember0{
 		position:absolute;
 		left:140px;
-		top:1000px;
+		top:1100px;
 		width: 360px;
-		height:250px;
+		height:150px;
 		font-size:13px;
 		overflow: auto;
 	}
 	#gaipmember1{
 		position:absolute;
 		left:540px;
-		top:1000px;
-		width: 350px;
-		height:250px;
+		top:1105px;
+		width: 360px;
+		height:150px;
 		font-size:13px;
 		overflow: auto;
+	}
+	#gaipck{
+	font-size:18px;
+	position:absolute;
+		left:560px;
+		top:1070px;
+	}
+	#gaipmb{
+	font-size:18px;
+	position:absolute;
+		left:160px;
+		top:1070px;
 	}
 	#moim_resi_wrap button{
 		width: 250px;
@@ -236,9 +249,9 @@
 	#gaipmember0{
 		position:absolute;
 		left:10px;
-		top:1000px;
+		top:1100px;
 		width:360px;
-		height:250px;
+		height:150px;
 		font-size:13px;
 		overflow: auto;
 		
@@ -246,11 +259,23 @@
 	#gaipmember1{
 		position:absolute;
 		left:380px;
-		top:1000px;
+		top:1100px;
 		width: 350px;
-		height:250px;
+		height:150px;
 		font-size:13px;
 		overflow: auto;
+	}
+	#gaipck{
+	font-size:18px;
+	position:relative;
+		left:450px;
+		top:580px;
+	}
+	#gaipmb{
+	font-size:18px;
+	position:relative;
+		left:50px;
+		top:530px;
 	}
 	#moim_resi_wrap{
 		width: 55%;

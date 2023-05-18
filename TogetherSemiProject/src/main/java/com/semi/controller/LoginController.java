@@ -1,5 +1,5 @@
 package com.semi.controller;
-
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -128,6 +128,14 @@ public class LoginController {
 		return "redirect:/user/login";
 	}
 	
+	@PostMapping("/soinsert")
+	public String insertSo(UserDto dto){
+		System.out.println(dto);
+		loginService.insertSo(dto);
+		
+		return "redirect:/user/login";
+	}
+	
 	@GetMapping("/mypagelist")
 	public String list(Model model)
 	{
@@ -169,8 +177,7 @@ public class LoginController {
 	    // 사용자 프로필 사진 정보 가져오기
 	    List<UserPhotoDto> photoList = loginMapper.getMyProfilePhotos(unum);
 	    if (photoList != null && !photoList.isEmpty()) {
-	    	 int index = (is_main != null) ? is_main.intValue() : 1;
-		        UserPhotoDto pdto = photoList.get(index);
+	    	 UserPhotoDto pdto = photoList.get(0); // 항상 첫 번째 요소 사용
 	    	model.addAttribute("pdto", pdto);
 	        model.addAttribute("photoList", photoList);
 	    } else {
@@ -208,19 +215,18 @@ public class LoginController {
 	public String insertMyPhoto(UserPhotoDto pdto, MultipartFile upload, HttpSession session) {
 	    try {
 	        int unum = (int) session.getAttribute("unum"); // 세션에서 unum 값 가져오기
-
 	        // 네이버 클라우드의 버켓에 사진 업로드하기
 	        String photo = storageService.uploadFile(bucketName, "userprofile", upload);
 	        // 반환된 암호화된 파일명을 dto에 넣기
 	        pdto.setFile_name(photo);
 	        pdto.setUnum(unum);
-
+	        loginMapper.updateMainphoto(pdto.getPhoto_idx(),unum);
 	        // db insert
 	        loginMapper.insertMyPhoto(pdto);
-
+	        
 	        return "redirect:mypage";
 	    } catch (Exception e) {
-	        e.printStackTrace();
+	        //e.printStackTrace();
 	        // 에러 발생 시 alert 창 띄우기
 	        return "redirect:mypage?result=error";
 	    }
@@ -241,9 +247,10 @@ public class LoginController {
 	@GetMapping("/updatephoto")
 	@ResponseBody public void updatePhoto(int photo_idx,HttpSession session)
 	{
-		int unum = (int) session.getAttribute("unum");
-        loginMapper.updateMainphoto(photo_idx,unum);
+		 int unum = (int) session.getAttribute("unum"); // 세션에서 unum 값 가져오기
+		loginMapper.updateMainphoto(photo_idx,unum);
 	}
+	
 	@PostMapping("/mypagePassCheck")
 	public String mypagepasscheck(@RequestParam String pass,HttpSession session)
 	{

@@ -18,6 +18,7 @@ import com.semi.dto.JJimDto;
 public interface LoginMapper {
 	
 	public void insertUser(UserDto dto);
+	public void insertSo(UserDto dto);
 	public int isEqualPassEmail(Map<String, String> map); // map : email, pass
 	public UserDto selectOneOfEmail(String email);
 	public int overlappedEmail(UserDto dto);
@@ -26,8 +27,6 @@ public interface LoginMapper {
 	/*마이페이지*/
 	
 	public void insertMyPhoto(UserPhotoDto pdto);
-	
-	public void updateMyPhoto(UserPhotoDto pdto);
 	
 	public UserPhotoDto getMyProfile(int unum);
 	
@@ -50,7 +49,6 @@ public interface LoginMapper {
 
 	public void updateMainphoto(int photo_idx,int unum);
 	
-	public void updateOtherphoto(int unum);
 	public String getSelectPhoto(int photo_idx);
 	public void deletePhoto(int photo_idx);
 	public int mypagePassCheck(Map<String, Object> map);

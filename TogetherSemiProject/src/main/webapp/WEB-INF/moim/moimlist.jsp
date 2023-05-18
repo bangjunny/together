@@ -54,9 +54,16 @@ body, body * {
 	height: 50px;
 }
 #moim_sel_local{
-	margin-top: 50px;
-	margin-right: 20px;
-	text-align: center;
+	width: 80%;
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 10px;
+}
+#moim_sel_local select{
+	margin-left: 10px;
+}
+#moim_sel_local button{
+	margin-left: 10px;
 }
 #moim_sort_btn{
 	width: 80%;
@@ -72,7 +79,7 @@ body, body * {
 	margin: 0 auto;
 	
 }
-#moim_table td{
+#moim_table td div{
 	cursor: pointer;
 }
 .moim_box{
@@ -108,52 +115,14 @@ body, body * {
 </style>
 </head>
 <body>
-						<div id="moim_header">		
-						<h2 >모임리스트</h2>
-							<div id="moim_sel_local">					 
-								<label for="user_city"></label> 
-								<select id="city" name="city1">
-									<option hidden>시, 도 선택</option>
-									<option value="서울특별시">서울특별시</option>
-									<option value="부산광역시">부산광역시</option>
-									<option value="대구광역시">대구광역시</option>
-									<option value="인천광역시">인천광역시</option>
-									<option value="광주광역시">광주광역시</option>
-									<option value="대전광역시">대전광역시</option>
-									<option value="울산광역시">울산광역시</option>
-									<option value="세종특별자치시">세종특별자치시</option>
-									<option value="경기도">경기도</option>
-									<option value="강원도">강원도</option>
-									<option value="충청북도">충청북도</option>
-									<option value="충청남도">충청남도</option>
-									<option value="전라북도">전라북도</option>
-									<option value="전라남도">전라남도</option>
-									<option value="경상북도">경상북도</option>
-									<option value="경상남도">경상남도</option>
-									<option value="제주특별자치도">제주특별자치도</option>
-								</select>						
-								<select id="district" name="city2">
-									<option>시, 군, 구 선택</option>
-								</select>
-							<form action="moimlist" method="get">
-								<input type="hidden" class="seldistrict1" name="city1" value="">
-								<input type="hidden" class="seldistrict2" name="city2" value="">
-								<input type="hidden" id="selcategory" name="category" value="">
-				
-						  	  <button type="submit" onclick="submitSelectedConditions()">선택 조건 검색</button>
-							</form>
-							</div>
-							<div>
-							</div>
-								
-				 	
-						</div>	
-		
-		
-		
-	<div id="moim_head_container">	
-					
-				<div id="moimlist_head" colspan="3">
+
+
+			<div id="moim_header">		
+				<h2 >모임리스트</h2>
+			</div>	
+			
+			<div id="moim_head_container">	
+				<div id="moimlist_head">
 					<h4>
 					<c:choose>
 						<c:when test="${unum == 0 && city1 == 'no'}">
@@ -169,44 +138,52 @@ body, body * {
 					</h4>
 				</div>
 			
-			
 				
 						<div id="moim_cate">					
 							<label data-bs-toggle="modal" data-bs-target="#mySportsModal">
 								<img src="../photo/Sports.png">
 								<h7>운동/스포츠</h7>
+								<span></span>
 							</label>
 							<label data-bs-toggle="modal" data-bs-target="#myGameModal"> 
 								<img src="../photo/board-game.png">
 								<h7>게임/오락</h7>
+								<span></span>
 							</label>
 							<label data-bs-toggle="modal" data-bs-target="#myTravelModal"> 
 								<img src="../photo/travel.png">
 								<h7>여행/아웃도어</h7>
+								<span></span>
 							</label> 
 							<label data-bs-toggle="modal" data-bs-target="#myBookModal">
 								<img src="../photo/reading.png">
 								<h7>책/글</h7>
+								<span></span>
 							</label>
 							<label data-bs-toggle="modal" data-bs-target="#myWorkModal"> 
 								<img src="../photo/working.png">
 								<h7>업종/직무</h7>
+								<span></span>
 							</label>  
 							<label data-bs-toggle="modal" data-bs-target="#myLangModal">
 								<img src="../photo/languages.png">
 								<h7>외국/언어</h7>
+								<span></span>
 							</label>
 							<label data-bs-toggle="modal"data-bs-target="#myMusicModal"> 
 								<img src="../photo/Live music.png">
 								<h7>음악/악기</h7>
+								<span></span>
 							</label>
 							<label data-bs-toggle="modal" data-bs-target="#mySocialModal"> 
 								<img src="../photo/meeting.png">
 								<h7>사교/인맥</h7>
+								<span></span>
 							</label>
 							<label data-bs-toggle="modal" data-bs-target="#myCraftsModal">
 								<img src="../photo/Color palette.png">
 								<h7>공예/만들기</h7>
+								<span></span>
 							</label>
 						</div>
 				
@@ -368,7 +345,53 @@ body, body * {
 			<div id="moim_sort_btn">
 				<button type="button" onclick="submitSelectedSortmnum()" class="btn btn-dark">최신순</button>
 				<button type="button" onclick="submitSelectedSortmcount()" class="btn btn-dark">가입자순</button>
-			</div>	
+			</div>
+			
+			
+					<!-- 	<div>
+						
+							선택한 지역 :
+							<span type="text" id="seldistrict1"></span>
+							<span type="text" id="seldistrict2"></span>				
+				 		</div> -->
+						
+			
+			<div id="moim_sel_local">
+				<span style="height: 38px; line-height: 38px;">카테고리 : &nbsp;</span><span type="text" class="selcategory" style="border: 1px gray solid; width:150px; border-radius:1px; height:38px; text-align: center; line-height: 38px;">선택해주세요!</span>
+				
+								 
+				<label for="user_city"></label> 
+					<select id="city" name="city1">
+						<option hidden>시, 도 선택</option>
+						<option value="서울특별시">서울특별시</option>
+						<option value="부산광역시">부산광역시</option>
+						<option value="대구광역시">대구광역시</option>
+						<option value="인천광역시">인천광역시</option>
+						<option value="광주광역시">광주광역시</option>
+						<option value="대전광역시">대전광역시</option>
+						<option value="울산광역시">울산광역시</option>
+						<option value="세종특별자치시">세종특별자치시</option>
+						<option value="경기도">경기도</option>
+						<option value="강원도">강원도</option>
+						<option value="충청북도">충청북도</option>
+						<option value="충청남도">충청남도</option>
+						<option value="전라북도">전라북도</option>
+						<option value="전라남도">전라남도</option>
+						<option value="경상북도">경상북도</option>
+						<option value="경상남도">경상남도</option>
+						<option value="제주특별자치도">제주특별자치도</option>
+					</select>						
+					<select id="district" name="city2">
+						<option>군, 구 선택</option>
+					</select>
+							<form action="moimlist" method="get">
+								<input type="hidden" class="seldistrict1" name="city1" value="">
+								<input type="hidden" class="seldistrict2" name="city2" value="">
+								<input type="hidden" id="selcategory" name="category" value="">
+				
+						  	  <button type="submit" class="btn btn-dark" onclick="submitSelectedConditions()">검색</button>
+							</form>
+							</div>	
 				
 			<table id="moim_table">
 				<c:forEach var="dto" items="${list}" varStatus="i">
@@ -780,7 +803,7 @@ body, body * {
 	
 	<form action="moimlist" method="get">
 		<!-- The Modal -->
-		<div class="modal" id="mySportsModal">
+		<div class="modal fade" id="mySportsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<!-- Modal Header -->
@@ -813,7 +836,7 @@ body, body * {
 			</div>
 		</div>
 		<!-- The Modal -->
-		<div class="modal" id="myGameModal">
+		<div class="modal fade" id="myGameModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<!-- Modal Header -->
@@ -843,7 +866,7 @@ body, body * {
 			</div>
 		</div>
 		<!-- The Modal -->
-		<div class="modal" id="myTravelModal">
+		<div class="modal fade" id="myTravelModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<!-- Modal Header -->
@@ -872,7 +895,7 @@ body, body * {
 			</div>
 		</div>
 		<!-- The Modal -->
-		<div class="modal" id="myBookModal">
+		<div class="modal fade" id="myBookModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<!-- Modal Header -->
@@ -900,7 +923,7 @@ body, body * {
 			</div>
 		</div>
 		<!-- The Modal -->
-		<div class="modal" id="myWorkModal">
+		<div class="modal fade" id="myWorkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<!-- Modal Header -->
@@ -936,7 +959,7 @@ body, body * {
 			</div>
 		</div>
 		<!-- The Modal -->
-		<div class="modal" id="myLangModal">
+		<div class="modal fade" id="myLangModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<!-- Modal Header -->
@@ -962,7 +985,7 @@ body, body * {
 			</div>
 		</div>
 		<!-- The Modal -->
-		<div class="modal" id="myMusicModal">
+		<div class="modal fade" id="myMusicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<!-- Modal Header -->
@@ -994,7 +1017,7 @@ body, body * {
 			</div>
 		</div>
 		<!-- The Modal -->
-		<div class="modal" id="mySocialModal">
+		<div class="modal fade" id="mySocialModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<!-- Modal Header -->
@@ -1023,7 +1046,7 @@ body, body * {
 			</div>
 		</div>
 		<!-- The Modal -->
-		<div class="modal" id="myCraftsModal">
+		<div class="modal fade" id="myCraftsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<!-- Modal Header -->
@@ -1059,8 +1082,8 @@ body, body * {
 	</form>
 	<script> 
 $(function() {
-    // 체크박스 값이 변경될 때마다 실행되는 함수
-    $('input[name="category"]').on('change', function() {
+ 	   // 체크박스 값이 변경될 때마다 실행되는 함수
+  	  $('input[name="category"]').on('change', function() {
       // 모든 체크박스를 해제
       $('input[name="category"]').not(this).prop('checked', false);
       
@@ -1068,6 +1091,8 @@ $(function() {
       var selected = $(this).val();
       $('.selcategory').text(selected);
       $('#selcategory').val(selected);
+
+      
     });
     
  	// 셀렉트 값이 변경될 때마다 실행되는 함수
@@ -1110,7 +1135,7 @@ $(function() {
 		  }else{
 			  location.href="/moim/moimform"
 		  }
-		  }
+		 }
 </script>
 </body>
 </html>

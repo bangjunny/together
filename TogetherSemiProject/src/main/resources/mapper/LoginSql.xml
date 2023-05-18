@@ -11,6 +11,11 @@
 		(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},#{category},#{inemail},now())
 	</insert>
 	
+	<insert id="insertSo" parameterType="UserDto">
+		insert into user (uname,age,gender,email,pass,hp,city1,city2,category,joinday) values
+		(#{uname},#{age},#{gender},#{email},#{pass},#{hp},#{city1},#{city2},#{category},now())
+	</insert>
+	
 	<select id="isEqualPassEmail" parameterType="Map" resultType="int">
 		select count(*) from user where email=#{email} and pass=#{pass}
 	</select>
@@ -54,7 +59,6 @@
 	<select id="getMyProfile" resultType="UserPhotoDto">
 		select * from user_photo where unum=#{unum}
 	</select>
-	
 	<update id="updateOtherphoto" parameterType="int">
 		update user_photo set is_main = 0 where unum=#{unum}
 	</update>
@@ -63,7 +67,7 @@
  		update user_photo set is_main = 1 where photo_idx = (select max(photo_idx) from user_photo where unum = #{unum});
 	</update>
 	<update id="updateMainphoto" parameterType="int">
-		update user_photo set is_main = case when photo_idx = #{photo_idx} then 1 else 0 end WHERE unum = #{unum}
+		update user_photo set is_main = case when photo_idx = #{photo_idx} then 1 else 0 end Where unum=#{unum}
 	</update>
 
 	<select id="getCbLikeList" resultType="CityBoardDto">

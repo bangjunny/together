@@ -120,8 +120,8 @@
             passch = true;
             
 		} else if(pwPattern.test(pw1.value)) {
-            error[1].innerHTML = "";
-            error[1].style.color = "orange";
+            error[1].innerHTML = "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
+            error[1].style.color = "red";
             pwMsg.innerHTML = "위험";
             pwMsg.style.color = "orange";
             pwMsgArea.style.paddingRight = "93px";

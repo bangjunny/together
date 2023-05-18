@@ -221,7 +221,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<button type="submit" class="btn btn-outline-success" id="btnsubmit">만들기</button>
+				<button type="button" class="btn btn-outline-success" id="btnsubmit">만들기</button>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<button type="button" class="btn btn-outline-danger" onclick="history.back()">취소</button>
 			</td>

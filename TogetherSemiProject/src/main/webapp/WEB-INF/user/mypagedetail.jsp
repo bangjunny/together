@@ -386,7 +386,7 @@ $(document).ready(function() {
 	      data: formData,
 	      async: false,
 	      success: function (data) {
-	        console.log(data);
+	    	alert("사진이 성공적으로 올라갔습니다");
 	        window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
 	      },
 	      cache: false,

@@ -37,6 +37,12 @@ public class LoginService implements LoginServiceInter{
 	}
 
 	@Override
+	public void insertSo(UserDto dto) {
+		// TODO Auto-generated method stub
+		loginMapper.insertSo(dto);
+	}
+
+	@Override
 	public int isEqualPassEmail(String email, String pass) {
 		// TODO Auto-generated method stub
 		Map<String,String> map = new HashMap<>();
@@ -125,11 +131,6 @@ public class LoginService implements LoginServiceInter{
 		return loginMapper.getGaipMoimList(unum);
 	}
 
-	@Override
-	public void updateMyPhoto(UserPhotoDto pdto) {
-		// TODO Auto-generated method stub
-		loginMapper.updateMyPhoto(pdto);
-	}
 	@Override
 	public String getSelectPhoto(int photo_idx) {
 		// TODO Auto-generated method stub

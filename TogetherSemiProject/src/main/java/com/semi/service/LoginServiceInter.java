@@ -12,7 +12,6 @@ public interface LoginServiceInter {
 	
 	public void insertUser(UserDto dto);
 	public void insertSo(UserDto dto);
-	public void updateMyPhoto(UserPhotoDto pdto);	
 	public int isEqualPassEmail(String email, String pass); 
 	public UserDto selectOneOfEmail(String email);
 	public int overlappedEmail(UserDto dto);

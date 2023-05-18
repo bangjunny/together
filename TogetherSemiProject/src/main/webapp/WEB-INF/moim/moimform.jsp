@@ -142,12 +142,7 @@
 		margin-top:2px;
 		font-size:15px;
 	}
-	.mapick {
-	 font-size:18px;
-	 float: left;
-	 margin-right: 8px;
-	 margin-top: 4px;
-	}
+	
 	
 	
 </style>
@@ -166,7 +161,6 @@
 				<div>
 					<img id="showimg">
 					<div>
-						<span class="mapick">대표사진 :</span> 
 						<input type="file" class="form-control " name="upload" id="moimfile">
 					</div>
 				</div>

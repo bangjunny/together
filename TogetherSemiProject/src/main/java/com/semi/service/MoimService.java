@@ -170,15 +170,6 @@ public class MoimService implements MoimServiceInter {
 	}
 	
 	@Override
-	public Integer acceptChk(int unum, String mname) {
-		 Map<String, Object> map = new HashMap<>();
-	     map.put("mname", mname);
-	     map.put("unum", unum);
-	     
-		return moimMapper.acceptChk(map);
-	}
-	
-	@Override
 	public void insertMoimSchedule(MoimScheduleDto msdto) {
 		// TODO Auto-generated method stub
 		moimMapper.insertMoimSchedule(msdto);
@@ -190,13 +181,33 @@ public class MoimService implements MoimServiceInter {
 	      return moimMapper.getMoimSchedule(mnum);
 	   }
 
+
+@Override
+public Integer acceptChk(int unum, String mname) {
+	 Map<String, Object> map = new HashMap<>();
+     map.put("mname", mname);
+     map.put("unum", unum);
+     
+	return moimMapper.acceptChk(map);
+}
+
+@Override
+public void changeMm(String hiddenname, String Mmname) {
+	Map<String, Object> map = new HashMap<>();
+	map.put("Mmname", Mmname);
+    map.put("hiddenname",hiddenname );
+ 
+    
+	moimMapper.changeMm(map);
+	
+}
+
+
 	@Override
 	public int getScheduleCount(int mnum) {
 		// TODO Auto-generated method stub
 		return moimMapper.getScheduleCount(mnum);
 	}
-
-
 
 
    

@@ -30,4 +30,5 @@ public interface MoimServiceInter {
 	public void insertMoimSchedule(MoimScheduleDto msdto);
 	public MoimScheduleDto getMoimSchedule(int mnum);
 	public int getScheduleCount(int mnum);
+	public void changeMm(String hiddenname,String Mmname);
 }	

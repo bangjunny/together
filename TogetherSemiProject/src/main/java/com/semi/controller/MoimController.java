@@ -1,5 +1,7 @@
 package com.semi.controller;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -175,39 +177,56 @@ public class MoimController {
 		moimMapper.insertMoimMember(mdto);
 		return "redirect:moimlist";
 	}
+  
+   @GetMapping("/updateform")
+   private String updateform(int mnum,Model model)
+   {
+	   MoimDto dto=moimService.getData(mnum);
+	   model.addAttribute("dto",dto);
+	   
+	   return "/main/moim/moimupdateform";
+   }
+   @PostMapping("/update")
+   public String update(MoimDto dto, MultipartFile upload ,String hiddenname) {
+       String mphoto = "";
 
-	@GetMapping("/updateform")
-	private String updateform(int mnum, Model model) {
-		MoimDto dto = moimService.getData(mnum);
-		model.addAttribute("dto", dto);
-
-		return "/main/moim/moimupdateform";
-	}
-
-	@PostMapping("/update")
-	public String update(MoimDto dto, MultipartFile upload) {
-		String mphoto = "";
-		// 사진선택시 기존사진을 버켓에서 지우고 재업로드
-		if (!upload.getOriginalFilename().equals("")) {
-			// 기존파일 읽어오기
-			mphoto = moimService.getData(dto.getMnum()).getMphoto();
-			// 버켓에서 삭제
-			storageService.deleteFile(bucketName, "moim", mphoto);
-			// 재업로드
-			mphoto = storageService.uploadFile(bucketName, "moim", upload);
-		}
-		dto.setMphoto(mphoto);
-		// 수정하기
-		moimService.updateMoim(dto);
-		return "redirect:./moimdetail?mnum=" + dto.getMnum();
-	}
-
-	@GetMapping("/delete")
-	public String delete(int mnum) {
-		// 스토리지에 업로드된 기존파일 지우기!!
-		String Mphoto = moimService.getData(mnum).getMphoto();
-		storageService.deleteFile(bucketName, "moim", Mphoto);
-		// db삭제
+       // 사진 선택 시 기존 사진을 버킷에서 지우고 재업로드
+       if (!upload.isEmpty()) {
+           // 기존 파일 읽어오기
+           mphoto = moimService.getData(dto.getMnum()).getMphoto();
+           // 버킷에서 삭제
+           storageService.deleteFile(bucketName, "moim", mphoto);
+           // 재업로드
+           mphoto = storageService.uploadFile(bucketName, "moim", upload);
+       }
+       dto.setMphoto(mphoto);
+       System.out.println(hiddenname);
+       
+       String Mmname = dto.getMname();
+       moimService.changeMm(hiddenname, Mmname);
+       // 수정하기
+       moimService.updateMoim(dto);
+       
+       try {
+           // 인코딩된 mname 값 생성
+           String encodedMname = URLEncoder.encode(dto.getMname(), StandardCharsets.UTF_8.toString());
+           // 리다이렉트 URL 생성
+           String redirectUrl = String.format("./moimdetail?mnum=%d&mname=%s", dto.getMnum(), encodedMname);
+           return "redirect:" + redirectUrl;
+       } catch (Exception e) {
+           // 인코딩 예외 처리
+           e.printStackTrace();
+           // 예외 발생 시 기본 리다이렉트 URL 사용
+           return "redirect:./moimdetail?mnum=" + dto.getMnum() + "&mname=" + dto.getMname();
+       }
+   }
+   @GetMapping("/delete")
+	public String delete(int mnum)
+	{
+		//스토리지에 업로드된 기존파일 지우기!!
+		String Mphoto=moimService.getData(mnum).getMphoto();
+		storageService.deleteFile(bucketName,"moim", Mphoto);
+		//db삭제
 		moimService.deleteMoim(mnum);
 		return "redirect:./moimlist";
 	}

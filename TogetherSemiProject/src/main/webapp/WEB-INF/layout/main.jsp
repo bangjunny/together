@@ -77,7 +77,7 @@
 		
 	}
 	#main_list_go{
-		width: 55%;
+		width: 1000px;
 		height: 300px;
 		display: flex;
 		justify-content: center;

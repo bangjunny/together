@@ -70,16 +70,16 @@
 		width: 100%;
 		display:flex;
 		margin-left:460px;
-		margin-top:80px;
+		margin-top:40px;
 	}
 	#moim_resi_wrap button{
-		width: 350px;
+		width: 300px;
 		height:40px;
 		margin: 0 auto 0 10%;
 		
 	}
 	#jjim{
-		width: 450px;
+		width: 520px;
 		font-size: 33px;
 		display: flex;
 		justify-content: flex-end;
@@ -310,7 +310,21 @@
 	text-align:center; 
 	padding:3px;
 	}
+	#moim_resi_wrap button{
+		width: 200px;
+		height:40px;
+		margin: 0 auto 0 10%;
 }
+#moim_resi_wrap{
+		width: 100%;
+		display:flex;
+		margin-left:460px;
+		margin-top:40px;
+	}
+	div.topleft{
+	width:500px;
+	height:200px;
+	}
 </style>
 </head>
 <body>
@@ -575,7 +589,7 @@
 	function deleteGaip(){
 		const unum = ${sessionScope.unum};
 
-		 if (confirm("가입 신청을 취소 하시겠습니까?")) {
+		alert("가입 신청을 취소하시겠습니까?")
 	
 			    $.ajax({
 			      type: "get",
@@ -592,10 +606,8 @@
 			        }
 			      },
 			    });
-		 }else {
-		  return; // 함수 즉시 종료
-		 }
-	}
+			 }
+	
 	
 	function acceptGaip(unum){	
 		

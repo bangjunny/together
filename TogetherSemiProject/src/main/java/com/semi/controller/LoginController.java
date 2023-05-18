@@ -127,6 +127,14 @@ public class LoginController {
 		return "redirect:/user/login";
 	}
 	
+	@PostMapping("/soinsert")
+	public String insertSo(UserDto dto){
+		System.out.println(dto);
+		loginService.insertSo(dto);
+		
+		return "redirect:/user/login";
+	}
+	
 	@GetMapping("/mypagelist")
 	public String list(Model model)
 	{
@@ -151,35 +159,9 @@ public class LoginController {
 	        return "redirect:/user/mypagedetail?unum=" + loginUserUnum; // 로그인한 사용자는 자신의 mypagedetail 페이지로 이동
 	    }
 	}
-//	
-//	@GetMapping("/mypagecblike")
-//	public String mypagecblike(HttpSession session, Model model) {
-//		Integer loginUserUnum = (Integer) session.getAttribute("unum"); // 로그인한 사용자의 unum 값 가져오기
-//		if (loginUserUnum == null) {
-//			return "redirect:/user/login"; // 로그인하지 않은 사용자는 로그인 페이지로 이동
-//		} else {
-//			return "redirect:/user/mypagecblikelist?unum=" + loginUserUnum; // 로그인한 사용자는 자신의 mypagedetail 페이지로 이동
-//		}
-//	}
-//	
-//	 
-//	 @GetMapping("/mypagecblikelist")
-//	    public String showcbLikeList(@RequestParam("unum") int unum, HttpSession session, Model model) {
-//		// 로그인한 사용자 아이디를 가져옵니다.
-//		    UserDto dto = loginMapper.getMypage(unum);
-//		    if (dto == null) {
-//		        // 해당 유저를 찾을 수 없는 경우 에러 페이지 등을 보여줄 수 있습니다.
-//		        return "error";
-//		    }
-//
-//		 List<Map<String, Object>> cbLikeList = loginService.getcbLikeList(unum);
-//		 model.addAttribute("cbLikeList", cbLikeList);
-//
-//		    return "main/user/mypagecblikelist";
-//	 }
 
 	@GetMapping("/mypagedetail")
-	public String mypageDetail(@RequestParam("unum") int unum, Integer mnum, @RequestParam(required = false) Integer is_main, Model model) {
+	public String mypageDetail(@RequestParam(defaultValue = "1") int currentPage, @RequestParam("unum") int unum, Integer mnum, @RequestParam(required = false) Integer is_main, Model model) {
 	
 	    
 		// 로그인한 사용자 아이디를 가져옵니다.
@@ -202,14 +184,7 @@ public class LoginController {
 	    	model.addAttribute("pdto", null);
 	        model.addAttribute("photoList", null);
 	    }
-	 // 내가 추천한 글 리스트 가져오기 
-	    List<Map<String, Object>> cbLikeList = loginService.getcbLikeList(unum);
-		model.addAttribute("cbLikeList", cbLikeList);
 
-	    
-	 // 내가 쓴 글 리스트 가져오기
-	    List<CityBoardDto> cbList = loginMapper.getMyCBList(unum);
-	    model.addAttribute("cbList", cbList);
 	    // 모임 리스트 가져오기
 	    List<MoimDto> moimList = loginMapper.getMyMoimList(unum);
 	    model.addAttribute("moimList", moimList);
@@ -380,6 +355,88 @@ public class LoginController {
 		  return result;
 	  }
 	  
+	  @GetMapping("/mypagecblist")
+	  public String mypageCblist(@RequestParam(defaultValue = "1") int currentPage, Model model, @RequestParam("unum") int unum)
+	  {
+		  
+		// 게시물의 총 글 갯수
+			int totalCount = loginService.getMyCBWRCount(unum);			
+					
+			int totalPage;// 총페이지수
+			int perPage = 10;// 한페이지당 보여질 글의 갯수
+			int perBlock = 5;// 한 블럭당 보여질 페이지 갯수
+			int startNum;// 각 페이지에서 보여질 글의 시작번호
+			int startPage;// 각 블럭에서 보여질 시작페이지 번호
+			int endPage;// 각 블럭에서 보여질 끝 페이지 번호'
+			int no;// 글출력시 출력할 시작번호
+			// 총 페이지 수
+			totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);
+			// 시작 페이지
+			startPage = (currentPage - 1) / perBlock * perBlock + 1;
+			// 끝 페이지
+			endPage = startPage + perBlock - 1;
+			// 이때 문제점
+			if (endPage > totalPage)
+				endPage = totalPage;
+			// 각페이지의 시작번호(1페이지 :0, 2페이지 :3, 3페이지:6....)
+			startNum = (currentPage - 1) * perPage;
+			// 각 글마다 출력할 글 번호(예: 10개 일 경우 1페이지 :10, 2페이지 :7....)
+			no = totalCount - startNum;
+  
+			// 내가 쓴 글 리스트 가져오기
+			  List<CityBoardDto> cbList = loginService.getMyCBList(startNum, perPage, unum);			  
+			  model.addAttribute("totalCount", totalCount);
+				model.addAttribute("cbList", cbList);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				model.addAttribute("totalPage", totalPage);
+				model.addAttribute("currentPage", currentPage);
+				model.addAttribute("no", no);
+				model.addAttribute("unum", unum);
+			  return "/main/user/mypagecblist";
+	  }
+	  
+	  @GetMapping("/mypagecblikelist")
+	  public String mypagecbLike(@RequestParam(defaultValue = "1") int currentPage, Model model, @RequestParam("unum") int unum)
+	  {
+		  
+		// 게시물의 총 글 갯수
+			int totalCount = loginService.getMyCBLikeCount(unum);		
+					
+			int totalPage;// 총페이지수
+			int perPage = 10;// 한페이지당 보여질 글의 갯수
+			int perBlock = 5;// 한 블럭당 보여질 페이지 갯수
+			int startNum;// 각 페이지에서 보여질 글의 시작번호
+			int startPage;// 각 블럭에서 보여질 시작페이지 번호
+			int endPage;// 각 블럭에서 보여질 끝 페이지 번호'
+			int no;// 글출력시 출력할 시작번호
+			// 총 페이지 수
+			totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);
+			// 시작 페이지
+			startPage = (currentPage - 1) / perBlock * perBlock + 1;
+			// 끝 페이지
+			endPage = startPage + perBlock - 1;
+			// 이때 문제점
+			if (endPage > totalPage)
+				endPage = totalPage;
+			// 각페이지의 시작번호(1페이지 :0, 2페이지 :3, 3페이지:6....)
+			startNum = (currentPage - 1) * perPage;
+			// 각 글마다 출력할 글 번호(예: 10개 일 경우 1페이지 :10, 2페이지 :7....)
+			no = totalCount - startNum;
+  
+			// 내가 쓴 글 리스트 가져오기
+			 // 내가 추천한 글 리스트 가져오기 		    
+			  List<CityBoardDto> cbLikeList = loginService.getCbLikeList(startNum, perPage, unum);			  
+			  	model.addAttribute("totalCount", totalCount);
+				model.addAttribute("cbLikeList", cbLikeList);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				model.addAttribute("totalPage", totalPage);
+				model.addAttribute("currentPage", currentPage);
+				model.addAttribute("no", no);
+				model.addAttribute("unum", unum);
+			  return "/main/user/mypagecblikelist";
+	  }
 	  
 	  
    

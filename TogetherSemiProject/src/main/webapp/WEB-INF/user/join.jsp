@@ -25,7 +25,8 @@
        <form id="join-form" method="post" action="userinsert">
        
        	<div class="daham">
-       		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/login/logo.png" class="da">  	
+       		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/login/logo.png" 
+       		class="da" onclick="location.href='/'">  	
   		</div>
   		
            <!-- ID -->

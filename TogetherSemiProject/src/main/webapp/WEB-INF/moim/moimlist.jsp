@@ -30,11 +30,16 @@ body, body * {
 #moim_header{
 	display: flex;
 	justify-content: space-between;
-	margin-top: 100px;
+	margin: 100px auto 0 auto;
+	width: 85%;
+	background-color: #F6E3CE;
+}
+#moim_header h2{
+	margin-left: 20px;
 }
 #moim_cate{
-	border: 1px red solid;
 	width: 1000px;
+	height: 100px;
 	display: flex;
 	justify-content: space-around;	
 }
@@ -44,8 +49,13 @@ body, body * {
   	align-items: center;
   	text-align: center;
 }
-#moim_sel_locale{
+#moim_cate img{
+	width: 50px;
+	height: 50px;
+}
+#moim_sel_local{
 	margin-top: 50px;
+	margin-right: 20px;
 	text-align: center;
 }
 #moim_sort_btn{
@@ -63,15 +73,14 @@ body, body * {
 	
 }
 #moim_table td{
-	text-align: center;
 	cursor: pointer;
 }
 .moim_box{
-	 border: 1px gray solid;
+	 border: 1px rgb(226, 226, 226) solid;
+	 box-shadow: 5px 5px 5px rgb(226, 226, 226);
 	 width: 250px;
-	 height: 350px;
-	 text-align: center;
-	 margin-bottom: 10px;	 
+	 height: 370px;
+	 margin-bottom: 60px;	 
 }
 .moim_box a{
 	color: black;
@@ -83,9 +92,15 @@ body, body * {
 }
 .moim_info{
 	display: flex;
-	justify-content: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-left: 10px;
 }
-
+#makemoim{
+	width: 95%;
+	display: flex;
+	justify-content: flex-end;
+}
 .moim_paging{
 	margin-top:25px;
 	text-align: center;
@@ -94,9 +109,9 @@ body, body * {
 </head>
 <body>
 						<div id="moim_header">		
-						<h2>모임리스트</h2>
-							<div id="moim_sel_locale">					 
-								<label for="user_city">지역</label> 
+						<h2 >모임리스트</h2>
+							<div id="moim_sel_local">					 
+								<label for="user_city"></label> 
 								<select id="city" name="city1">
 									<option hidden>시, 도 선택</option>
 									<option value="서울특별시">서울특별시</option>
@@ -120,7 +135,18 @@ body, body * {
 								<select id="district" name="city2">
 									<option>시, 군, 구 선택</option>
 								</select>
+							<form action="moimlist" method="get">
+								<input type="hidden" class="seldistrict1" name="city1" value="">
+								<input type="hidden" class="seldistrict2" name="city2" value="">
+								<input type="hidden" id="selcategory" name="category" value="">
+				
+						  	  <button type="submit" onclick="submitSelectedConditions()">선택 조건 검색</button>
+							</form>
 							</div>
+							<div>
+							</div>
+								
+				 	
 						</div>	
 		
 		
@@ -147,50 +173,44 @@ body, body * {
 				
 						<div id="moim_cate">					
 							<label data-bs-toggle="modal" data-bs-target="#mySportsModal">
-								<i class="bi bi-dribbble"></i> 
+								<img src="../photo/Sports.png">
 								<h7>운동/스포츠</h7>
 							</label>
 							<label data-bs-toggle="modal" data-bs-target="#myGameModal"> 
-								<i class="bi bi-controller"></i>
+								<img src="../photo/board-game.png">
 								<h7>게임/오락</h7>
 							</label>
 							<label data-bs-toggle="modal" data-bs-target="#myTravelModal"> 
-								<i class="bi bi-geo-alt"></i>
+								<img src="../photo/travel.png">
 								<h7>여행/아웃도어</h7>
 							</label> 
 							<label data-bs-toggle="modal" data-bs-target="#myBookModal">
-								<i class="bi bi-book"></i> 
+								<img src="../photo/reading.png">
 								<h7>책/글</h7>
 							</label>
 							<label data-bs-toggle="modal" data-bs-target="#myWorkModal"> 
-								<i class="bi bi-briefcase"></i> 
+								<img src="../photo/working.png">
 								<h7>업종/직무</h7>
 							</label>  
 							<label data-bs-toggle="modal" data-bs-target="#myLangModal">
-								<i class="bi bi-translate"></i> 
+								<img src="../photo/languages.png">
 								<h7>외국/언어</h7>
 							</label>
 							<label data-bs-toggle="modal"data-bs-target="#myMusicModal"> 
-								<i class="bi bi-music-note-beamed"></i> 
+								<img src="../photo/Live music.png">
 								<h7>음악/악기</h7>
 							</label>
 							<label data-bs-toggle="modal" data-bs-target="#mySocialModal"> 
-								<i class="bi bi-cup-straw"></i> 
+								<img src="../photo/meeting.png">
 								<h7>사교/인맥</h7>
 							</label>
 							<label data-bs-toggle="modal" data-bs-target="#myCraftsModal">
-								<i class="bi bi-palette"></i> 
+								<img src="../photo/Color palette.png">
 								<h7>공예/만들기</h7>
 							</label>
 						</div>
 				
 						
-						
-			
-			
-			
-			
-			
 			
 			<script>
                $(document).ready(function() {
@@ -244,19 +264,7 @@ body, body * {
                    });
             </script>
 					
-						<div colspan="2" align="center">
-							선택한 카테고리 : <span type="text" class="selcategory"></span><br>
-							선택한 지역 :
-							<span type="text" id="seldistrict1"></span>
-							<span type="text" id="seldistrict2"></span>				
-						<form action="moimlist" method="get">
-							<input type="hidden" class="seldistrict1" name="city1" value="">
-							<input type="hidden" class="seldistrict2" name="city2" value="">
-							<input type="hidden" id="selcategory" name="category" value="">
-				
-						    <button type="submit" onclick="submitSelectedConditions()">선택 조건 검색</button>
-				 		</div>
-						</form>
+					
 				<script>
 					function submitSelectedConditions() {
 					  // 선택된 카테고리와 지역 정보를 가져옴
@@ -352,6 +360,9 @@ body, body * {
 			</script>
 					
 		</div>	
+		<br>
+		<br>
+		<hr style="color: gray">
 					
 			<!-- 리스트 출력 부분 -->
 			<div id="moim_sort_btn">
@@ -378,11 +389,12 @@ body, body * {
 							</c:choose>
 						
 						 	<div class="moim_info">
-								<b style="font-size: 20px; width: 100px;">${dto.mname}</b>
+								<b style="font-size: 20px; width: 100%;">${dto.mname}</b>
+								<br>
 								<div>
-									지역:${dto.city1} ${dto.city2} 
-									카테고리:${dto.category} 
-									모임인원:${dto.mcount}명
+									지역:${dto.city1} ${dto.city2}<br>
+									카테고리:${dto.category}<br>
+									모임인원:${dto.mcount}명<br>
 								</div>
 							</div>						
 						</div>
@@ -392,7 +404,11 @@ body, body * {
 				</c:if>
 			</c:forEach>
 		</table>
-					<button type="button" class="btn btn-success" onclick="checkCreate(event)">만들기</button>
+				<c:if test="${sessionScope.unum != null }">
+					<div id="makemoim">
+						<button type="button" class="btn btn-success" onclick="checkCreate(event)">만들기</button>
+					</div>
+				</c:if>	
 			
 		<!-- 페이징처리하기 -->
 		<c:choose>

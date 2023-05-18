@@ -11,6 +11,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
@@ -75,17 +77,39 @@
 			margin-right: 30px;
 			padding: 0;
 	}
-	
+
 	#sidebarmenu {
 		position: relative;
-		margin-top:10px;
-		margin-left : 1800px;
+		margin-right : 100px;
+		width: 150px;
+	}
+	
+	#sidebarmenu button {		
+		margin-top: 80px;
 	}
 	
 	.offcanvas-body button{
 		margin-top : 30px;
-		margin-left: 80px;
-		width: 100px;
+		margin-left: 37px;
+		width: 200px;
+		background: #FE9A2E;
+        background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        border-radius: 3px;
+	}
+	.offcanvas-body button:hover{
+		margin-top : 30px;
+		margin-left: 37px;
+		width: 200px;
+		background: #FE642E;
+        background-size: 200%;
+        color:white;
+        font-weight: 800;
+        border:none;
+        cursor:pointer;
+        border-radius: 3px;
 	}
 	
 	#mylist_wrap {
@@ -96,59 +120,36 @@
 	#mycity_wrap {
 		display: none;
 		margin-top:150px;
-	}
+	}	
 
 </style>
-<script type="text/javascript">
-$(function() {
-	
-	list();
-	
-});//function close
 
-function list()
-{
-	$.ajax({
-	    type: "GET",
-	    url: "/myjjimlist",
-	    dataType:"json",
-	    success: function(res) {
-	    	let s="";
-	    	$.each(res,function(idx,ele){
-	    		s+=`
-	    			<div class = 'jjim_box'>
-	    				<b>\${ele.mname}</b>
-	    			</div>	
-	    		`;
-	    	});
-	    	$("div.jjimlist").html(s);
-	    }
-	     
-	 });
-}
 </script>
 <body>
-<!-- 사이드바 -->
-<div class="offcanvas offcanvas-start" id="mypagemenu" style="width:300px">
+
+<div class="offcanvas offcanvas-end" id="mypagemenu" style="width:300px">
   <div class="offcanvas-header">
     <h1 class="offcanvas-title">MyPage Menu</h1>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
   <div class="offcanvas-body">
-    <button class="btn btn-success sidebar_1_btn">프로필</button><br><br>
-    <button class="btn btn-success sidebar_2_btn">모임</button><br><br>
-    <button class="btn btn-success sidebar_3_btn">지역</button>
+    <button class="sidebar_1_btn"><i class="bi bi-house-fill"></i>&nbsp; 프로필</button><br><br>
+    <button class="sidebar_2_btn"><i class="bi bi-people-fill"></i>&nbsp; 모임</button><br><br>
+    <button class="btn btn-success sidebar_3_btn" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-geo-alt-fill"></i>&nbsp;내 지역 작성글</button>
+    <button class="btn btn-success sidebar_3_btn" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-geo-alt-fill"></i>&nbsp;내 지역 좋아요글</button>
+    <button class="sidebar_0_btn"><i class="bi bi-geo-alt-fill"></i>&nbsp; 수정</button>
   </div>
 </div>
 
-<div class="container-fluid mt-3">
-  <!-- <h3>Offcanvas Sidebar</h3>
-  <p>Offcanvas is similar to modals, except that it is often used as a sidebar.</p> -->
-  <button id="sidebarmenu" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mypagemenu">
-    메뉴
+<div class="container-fluid mt-3" id="sidebarmenu">
+  <!-- <h3>Right Offcanvas</h3>
+  <p>The .offcanvas-end class positions the offcanvas to the right of the page.</p> -->
+  <button class="btn btn-outline" type="button" data-bs-toggle="offcanvas" data-bs-target="#mypagemenu">
+    <i class="bi bi-list" style="font-size:30px;">메뉴</i>
   </button>
 </div>
 <script type="text/javascript">
+
 				$(".sidebar_1_btn").click(function() {
 					$("#myprofile").css("display", "block");
 					$("#mylist_wrap").css("display", "none");
@@ -163,6 +164,13 @@ function list()
 					$("#myprofile").css("display", "none");
 					$("#mylist_wrap").css("display", "none");
 					$("#mycity_wrap").css("display", "block");
+				});
+				$(".sidebar_0_btn").click(function() {
+					$("#myprofile").css("display", "block");
+					$("#mylist_wrap").css("display", "none");
+					$("#mycity_wrap").css("display", "none");
+					$("#mypageform").css("display", "none");
+					$("#mypageupdateform").css("display", "block");	
 				});
 				
 			</script>
@@ -260,19 +268,10 @@ function list()
 			  <div id="mylist_1" style="display: block;">
 			  <%@ include file="mypagemoimlist.jsp" %>
 			  </div>
-			  
 			  <div id="mylist_2" style="display: none;">
-			   <c:choose>
-       			 <c:when test="${not empty jjimList}">
-          		   <c:forEach var="j" items="${jjimList}">
-              		  <h2>내가 찜한 모임 이름 :  ${j.mname}</h2>
-             		 </c:forEach>
-      			  </c:when>
-       			  <c:otherwise>
-        			  <p>찜한 목록이 없어요</p>
-       			  </c:otherwise>
-      		</c:choose>  
-			</div>
+			  <%@ include file="mypagejjimlist.jsp" %>
+			  </div>
+			 
 			<div id="mylist_3" style="display: none;">
 				 <%@ include file="mypagegaiplist.jsp" %>
 			</div>
@@ -297,46 +296,7 @@ function list()
 				});
 				
 			</script>
-		
-    
-    		
-			 <div id="mycity_wrap">
-			  <!-- 지역 게시판 목록 보여주기 -->
-			  나의 지역 게시판 리스트 출력하기
-			  <button id="mycity_1_btn">내가 쓴 게시글</button>
-			  <button id="mycity_2_btn">내가 추천한 게시글</button>
-			
-			  
-			  <div id="mycity_1" style="display: block;">
-			  <%@ include file="mypagecblist.jsp" %>
-			  </div>
-				  
-				<div id="mycity_2" style="display: none;">
-					 <%@ include file="mypagecblikelist.jsp" %>
-				</div>
-			
-			</div>
-<!-- 			
-			<script type="text/javascript">
-			    function goToTab(tab) {
-			        var unum = <%= request.getParameter("unum") %>;
-			        location.href = "/mypagedetail?unum=" + unum + "&tab=" + tab;
-			    }
-			</script>
- -->			
-			<script type="text/javascript">
-				$("#mycity_2_btn").click(function() {
-					$("#mycity_1").css("display", "none");
-					$("#mycity_2").css("display", "block");
-					
-				});
-				$("#mycity_1_btn").click(function() {
-					$("#mycity_1").css("display", "block");
-					$("#mycity_2").css("display", "none");
-				});
-				
-			</script>
-        
+  
     <div class="mybtn">
 		<button type="button" class="btn btn-outline-success btn-sm"
 		style="width: 200px;" onclick="location.href='/moim/moimlist'">모임리스트</button>
@@ -471,7 +431,7 @@ $(document).on("click",".setmain",function(e){
 			data:{"photo_idx":photo_idx},
 			dataType:"text",
 			success:function(){
-				alert("성공적으로 사진이 바뀌었습니다");
+				alert("성공적으로 사진이 바뀌었습니다")
 				window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
 				
 			}

@@ -18,6 +18,7 @@ import com.semi.dto.JJimDto;
 public interface LoginMapper {
 	
 	public void insertUser(UserDto dto);
+	public void insertSo(UserDto dto);
 	public int isEqualPassEmail(Map<String, String> map); // map : email, pass
 	public UserDto selectOneOfEmail(String email);
 	public int overlappedEmail(UserDto dto);
@@ -34,6 +35,8 @@ public interface LoginMapper {
 	public UserDto getMypage(int unum);
 	
 	public int getTotalCount();
+	public int getMyCBWRCount(int unum);
+	public int getMyCBLikeCount(int unum);
 	public List<UserDto> getAllUsers();
 	public List<UserPhotoDto> getPhotosByUnum(int unum);
 	public UserDto getUserByUnum(int unum);
@@ -43,7 +46,7 @@ public interface LoginMapper {
 	public List<Map<String, Object>> getMyJJImList(int unum);
 
 	public List<JJimDto> getJJimDto(int unum);
-	public List<CbLikeDto> getCbLikeDto(int unum);
+	public List<CityBoardDto> getCbLikeList(Map<String, Integer> map);
 	public List<Map<String, Object>> getGaipMoimList(int unum);	
 
 	public void updateMainphoto(int photo_idx);
@@ -52,9 +55,9 @@ public interface LoginMapper {
 	public String getSelectPhoto(int photo_idx);
 	public void deletePhoto(int photo_idx);
 	public int mypagePassCheck(Map<String, Object> map);
-	public void updateMypage(UserDto dto);
+	public void updateMypage(UserDto dto);	
 	
-	public List<CityBoardDto> getMyCBList(int unum);
+	public List<CityBoardDto> getMyCBList(Map<String, Integer> map);//map:start,perpage
 
 	
 }

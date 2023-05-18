@@ -46,7 +46,7 @@
 	
 	.mcontent_img{
 		width:100%;
-		height:300px;	
+		height:350px;	
 }
 	div.top{
 	position:relative;
@@ -163,8 +163,8 @@
 	width:380px;
 	height:250px;
 	position:relative;
-	top:10px;
-	left:30px;
+	top:15px;
+	left:20px;
 	}
 	
 @media ( max-width: 1200px ){
@@ -190,7 +190,7 @@
 	width:380px;
 	height:250px;
 	position:relative;
-	top:10px;
+	top:15px;
 	left:20px;
 	}
 	div.mcontent {
@@ -207,7 +207,7 @@
 		left:140px;
 		top:1150px;
 		width: 360px;
-		height:150px;
+		height:240px;
 		font-size:13px;
 		overflow: auto;
 	}
@@ -216,7 +216,7 @@
 		left:540px;
 		top:1155px;
 		width: 360px;
-		height:150px;
+		height:240px;
 		font-size:13px;
 		overflow: auto;
 	}
@@ -294,7 +294,7 @@
 	height:150px;
 	position:relative;
 	top:15px;
-	left:2px;
+	left:5px;
 }
 	div.janginfo{
 	position:relative;

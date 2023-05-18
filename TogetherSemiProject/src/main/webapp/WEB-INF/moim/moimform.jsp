@@ -15,19 +15,21 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 
+	.tit {
+		font-size: 30px;
+		margin-bottom: 30px;
+	}	
+	
 	.modu {
 		width:1140px;
 		margin: 0 auto;
 		margin-top:100px;
 	}
 	
-	.cat {
-    	width:670px;
-		margin: 0 auto;
-    }
+	
     
 	.catego {
-		width:670px;
+		width:695px;
 	}
 	
 	.catego td {
@@ -45,7 +47,7 @@
      }
        
     #moimfile {
-    	width:260px;
+    	width:350px;
     	margin-top:10px;
     }
     
@@ -100,8 +102,6 @@
         padding-left: 5px;
     }
     
-   
-    
     .pickcate {
     	float:left;
     	font-size: 18px;
@@ -135,18 +135,57 @@
 	.olmessaget {
 		color: green; 
 		font-size: 13px;
-		float: left;	
+		float: left; 	
 	}
 	
 	#selcategory {
-		margin-top:2px;
+		margin-top:5px;
 		font-size:15px;
 	}
-	.mapick {
-	 font-size:18px;
-	 float: left;
-	 margin-right: 8px;
-	 margin-top: 4px;
+	
+	.de {
+		margin-top: 20px;
+		margin-bottom: 10px;
+	}
+	
+	.butt {
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	
+	.makemo {
+		margin-right: 30px;
+		height: 36px;
+    	width:100px;
+    	background: #FE9A2E;
+      	background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+	}
+	
+	.makemo:hover {
+		background: #FE642E;
+	}
+	
+	.notmo {
+		height: 36px;
+    	width:100px;
+    	background: #A4A4A4;
+      	background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+	}
+	
+	.notmo:hover {
+		background: #424242;
 	}
 	
 	
@@ -155,18 +194,19 @@
 <body>
 
 <div class="modu">
+	
+	<div class="tit">모임 생성하기</div>
 
 	<form action="insert" method="post" enctype="multipart/form-data" id="moimform">
 	
 	
-	<table class="table table-bordered" border="1" >
+	<table class="table">
 		<tr>
 			<td rowspan="4" style="width:440px;">
 			<!-- 이미지 출력할곳 -->
 				<div>
 					<img id="showimg">
 					<div>
-						<span class="mapick">대표사진 :</span> 
 						<input type="file" class="form-control " name="upload" id="moimfile">
 					</div>
 				</div>
@@ -348,7 +388,7 @@
 		<tr>
 			<td colspan="4">
 				<div class="pickcate">
-					<h7>선택한 카테고리 : </h7>
+					<span class="tag">선택한 카테고리 :	</span>
 				</div>
 				<div type="text" id="selcategory"></div>
 				<input type="hidden" class="selcategory" name="category" value="null">
@@ -356,7 +396,7 @@
 		</tr>
 		<tr colspan="3">
 			<td colspan="5">
-				<div style="margin-bottom: 10px;">
+				<div class="de" style="margin-bottom: 10px;">
 					<span class="tag">상세 정보</span>
 				</div>
 				<textarea style="width:100%; height:300px;" name="mcontent" required="required" class="form-control"></textarea>			
@@ -364,8 +404,10 @@
 		</tr>
 		<tr>
 			<td colspan="5" align="center">
-				<button type="button" class="makemo" id="btnsubmit">만들기</button>
-				<button type="button" class="notmo" onclick="history.back()">취소</button>
+				<div class="butt">
+					<button type="button" class="makemo" id="btnsubmit">생성하기</button>
+					<button type="button" class="notmo" onclick="history.back()">취소</button>
+				</div>
 			</td>
 		</tr>
 	</table>

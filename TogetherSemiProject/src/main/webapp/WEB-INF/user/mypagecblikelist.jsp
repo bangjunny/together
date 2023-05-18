@@ -13,24 +13,114 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <style>
- body, body * {
-		font-family: 'NanumPenScript'
+ body {
+		 font-family: Arial, sans-serif;
 	}
 	
-	.mymoim_img{
-		 border-radius: 50%;
-		  object-fit: cover;
-		  width: 50px; /* 이미지 너비 */
-		  height: 50px; /* 이미지 높이 */
-	}
+	.cblike-container {
+    max-width: 800px;
+    margin: 100 auto;
+    padding: 20px;
+  }
+	
+	 .cblike-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    transition: box-shadow 0.3s ease;
+  }
+   .cblike-item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+   .cblike-item .cblike-content {
+    flex-grow: 1;
+  }
+   .cblike-item .cblike-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .cblike-item .cblike-details {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .cblike-item .cblike-description {
+    color: #333;
+    font-size: 16px;
+  }
+  
+  .cblike-item .cblike-link {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+   .cblike-item .cblike-link:hover {
+    color: #0056b3;
+  }
+
+  .table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .table th {
+    white-space: nowrap;
+  }
+
+  .table-caption {
+    caption-side: top;
+    caption-padding: 10px;
+    caption-font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+  }
 	
     
 </style>
 
 </head>
 <body>
- <div class="container mt-5" style="margin-top:100px;">
-        <h3 class="mb-4">내가 추천한 게시물 보기</h3>
+<div class="container">
+<div class="cblike-container">
+	<h2>내가 추천한 게시물 보기</h2>
+	<c:if test="${totalCount==0 }">
+		<div class="cblike-item">
+			<b style="font-size:1.3em">등록된 게시글이 없습니다</b>
+		</div>
+	</c:if>
+	 <c:if test="${totalCount>0 }">	
+	 	<c:forEach var="cb" items="${cbLikeList}">	 
+		  <div class="cblike-item">
+		      <img class="cblike-thumbnail" src="https://via.placeholder.com/80" alt="Thumbnail">
+		      <div class="cblike-content">
+		        <h3 class="cblike-title">${cb.subject}</h3>
+		        <div class="cblike-details">
+		          작성자: 홍길동 |지역:${cb.city1},${cb.city2} |작성일: 2023-05-18 | 조회수: ${cb.readcount}
+		        </div>
+		        <div class="cblike-description">
+		          ${cb.cbcontent}
+		        </div>
+		        <a class="cblike-link" href="/city/detail?cbnum=${cb.cbnum}">자세히 보기</a>
+		      </div>
+		    </div>
+	    </c:forEach>
+	  </c:if> 
+    
+</div>
+</div>		
+<!-- 
+ <div class="container cblike-container">
+        <h3 class="mb-4">내가 추천한 게시물 보기</h3>        
         <table class="table table-bordered border-primary table-hover table-layout: fixed; width: 100%;">
             <thead class="table-light">
             	<caption>내가 추천한 게시물 보기</caption>
@@ -70,6 +160,8 @@
         </table>        
     </div>
    	<br>
+ -->   	
+   	
 <!-- 페이징 처리 -->
 		<div style="width: 700px; text-align:center; font-size:20px;">
 			<!-- 이전 -->

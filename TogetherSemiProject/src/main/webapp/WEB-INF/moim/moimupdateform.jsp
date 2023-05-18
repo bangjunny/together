@@ -59,6 +59,8 @@
 			<td style="width:100px;">모임 이름</td>
 			<td>
 				<input type="text" id="moimname" class="form-control" name="mname" required="required" value="${dto.mname}">
+				<!-- hidden -->
+				<input type="hidden" name="hiddenname" value="${dto.mname}">
 				<span id="olmessage"></span>
 				<div align="right">
 				<button id="overlappedMname" type="button" class="btn btn-outline-danger btn-sm">중복확인</button>
@@ -594,7 +596,7 @@ $("#overlappedMname").click(function(){
 	$.ajax({
 	type: "get",
 	async: false,
-	url: "./moim/mnameCheck",
+	url: "/moim/mnameCheck",
 	data: {mname: mname},
 	success: function (data) {
 	if(data == 1) {

@@ -249,6 +249,7 @@
           text-align: start;
           border: solid 1px #dadada;
           cursor: default;
+          padding-left: 5px;
       }
       
       .la{

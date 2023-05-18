@@ -14,26 +14,25 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
 <style>
 
-        .container  {
-            width: 600px;
+        #container  {
+            width: 1440px;
             margin: 0 auto;
             margin-top: 40px;
             border : 1px solid #6E6E6E;
             border-radius: 10px;
         }
 
-        .layout > input, textarea {
-            width: 100%;
+        
+        #cbcontent {
+            width: 90%;
             height: 600px;
-            box-sizing: border-box;
-            margin-top: 10px;
-
+            margin-left: 72px;
         }
 
-        .layout > textarea{
-            width: 100%;
-            margin-top: 50px;
-            min-height: 300px;
+        #subject{
+            width: 90%;
+            margin: 0 auto;
+            
         }
         
         .filebox .upload-name {
@@ -42,7 +41,7 @@
     		padding: 0 10px;
     		vertical-align: middle;
     		border: 1px solid #dddddd;
-    		width: 89%;
+    		width: 1168px;
     		color: #999999;
 		}
 		
@@ -54,7 +53,7 @@
     		background-color: #FE9A2E;
     		cursor: pointer;
     		height: 40px;
-    		margin-left: 10px;
+    		margin-left: 72px;
     		margin-top: 5px;
 		}
 		
@@ -71,17 +70,19 @@
 <body>
 <br>
 <br>
-<div class="container">
+<div id="container">
+
+
 <br>
 	<c:choose>
 		<c:when test="${mainPhoto!=null }">
-			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-top:5px; margin-left:5px; margin-right:5px; border-radius:100px;">
+			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-top:15px; margin-left:72px; margin-right:5px; border-radius:100px;">
 		</c:when>
 		<c:otherwise>
-			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left; margin-top:5px; margin-left:5px; margin-right:5px; border-radius:100px;">                               
+			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left; margin-top:15px; margin-left:72px; margin-right:5px; border-radius:100px;">                               
 		</c:otherwise>
 	</c:choose>
-	<h3>${uname } 님이 작성 중입니다</h3>
+	<h3 style="margin-top:10px">${uname } 님이 작성 중입니다</h3>
         <br>
         <input type="text" class="form-control" id="subject" name="subject" placeholder="제목을 입력해주세요" required>
         <br>
@@ -90,20 +91,23 @@
         <input type="hidden" id="city2" name="city2" value="${city2}">
         <input type="hidden" id="uname" name="uname" value="${uname}">
         <!-- 이미지 미리보기 -->
-        <img id="showimg0" style="width:25%" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
-        <img id="showimg1" style="width:25%" src="">
-        <img id="showimg2" style="width:25%" src="">
-        <br>
+        <div style="text-align:center">
+        	<img id="showimg0" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+        	&nbsp;
+        	<img id="showimg1" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+        	&nbsp;
+        	<img id="showimg2" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+        </div>
+        
         <br>
         <div class="filebox">
         	<label for="myfile">파일 업로드</label> 
     		<input class="upload-name" value="첨부파일" placeholder="첨부파일">
     		<input type="file" id="myfile" multiple="multiple">
 		</div>
-        <!-- <input type="file" name="upload" id="myfile" multiple="multiple" style="color:#FE9A2E"> -->
         <br>
         <br>
-        <textarea class = "showimg" id="cbcontent" name ="cbcontent" placeholder="내용입력"  required="required"></textarea>
+        <textarea id="cbcontent" name ="cbcontent" placeholder="내용입력"  required="required"></textarea>
         <br>
         <br>
         <div style="text-align:center">
@@ -112,6 +116,7 @@
         </div>
         <br>
         <br>
+        
 </div>
 	<script type="text/javascript">
 	
@@ -128,8 +133,8 @@
 	
 	$("#myfile").change(function(){
 		$("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
-		$("#showimg1").attr("src",null);
-		$("#showimg2").attr("src",null);
+		$("#showimg1").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
+		$("#showimg2").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
 		
 		console.log("1:"+$(this)[0].files.length);
 		let cnt=$(this)[0].files.length;
@@ -179,8 +184,8 @@
 				alert("사진은 3장까지만 올릴 수 있습니다");
 				$("#myfile").val(null);
 				$("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
-				$("#showimg1").attr("src",null);
-				$("#showimg2").attr("src",null);
+				$("#showimg1").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
+				$("#showimg2").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
 			}
 			reader.readAsDataURL($(this)[0].files[i]);
 		}

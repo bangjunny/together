@@ -28,7 +28,12 @@
 	    background-color: #FFF7E9;
 	  }
 	  
-    
+	#mypageupdateicon{
+		margin-left:10px;
+		color: #FE9A2E;
+		cursor:pointer;
+	
+	}     
     #myinfotable{
      text-algin:left;
     }    
@@ -144,7 +149,6 @@
   </button>
 </div>
 		<script type="text/javascript">
-
 				$(".sidebar_1_btn").click(function() {
 					$("#myprofile").css("display", "block");
 					$("#mylist_wrap").css("display", "none");
@@ -248,15 +252,27 @@
 				    </table>
 				    <div class="text" id="mypageupdate">
 		    		<!-- 마이페이지 수정폼 -->
-		    		<button id="mypageupdatebtn" class="btn btn-outline-danger">마이페이지 수정하기</button>
+		    		<label>
+		    		<a data-toggle="tooltip" data-placement="right" title="마이페이지 수정하기" >
+		    		<i class="bi bi-gear" id="mypageupdateicon">수정</i>
+		    		</a>
+		    		</label>
+		    		<!--
+		    		<button class="btn btn-outline-danger">마이페이지 수정하기</button>
+		    		-->
 		    		<div id="mypageupdateform" style="display: none;">
 		    		<%@include file="mypageupdatecheck.jsp" %>
 		    		</div>
 			    	</div>
 		    		<script type="text/javascript">
-						$("#mypageupdatebtn").click(function() {
-							$("#myinfotable").css("display", "none");
-							$("#mypageupdateform").css("display", "block");					
+		    			$(document).ready(function() {
+		    			  $('[data-toggle="tooltip"]').tooltip();
+		    			  
+						$("#mypageupdateicon").click(function() {
+								
+								$("#myinfotable").css("display", "none");
+								$("#mypageupdateform").css("display", "block");	
+						});			
 						});	
 					</script>
 			</div>
@@ -266,7 +282,9 @@
 		
 		<div id="mylist_wrap"  style="display: none;"> 
 			  나의 모임 리스트 출력하기
+			  
 			  <button id="mylist_1_btn">내가 만든 모임</button>
+			  </a>
 			  <button id="mylist_2_btn">내가 찜한 모임</button>
 			  <button id="mylist_3_btn">가입한 모임</button>
 			  

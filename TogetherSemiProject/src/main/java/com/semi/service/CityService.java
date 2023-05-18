@@ -280,11 +280,18 @@ public class CityService implements CityServiceInter {
 		// TODO Auto-generated method stub
 		return cityMapper.cblikecountminus(cbnum);
 	}
+	
+	@Override
+	public int getUsernum(int cbnum) {
+		// TODO Auto-generated method stub
+		return cityMapper.getUsernum(cbnum);
+	}
 
 	@Override
-	public String getMainPhoto(int unum) {
+	public String getMainPhoto(int dtounum) {
 		// TODO Auto-generated method stub
-		return cityMapper.getMainPhoto(unum);
+		return cityMapper.getMainPhoto(dtounum);
 	}
+
 
 }

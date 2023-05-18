@@ -249,4 +249,7 @@
     <select id="getMainPhoto" parameterType="int" resultType="String">
     	select file_name from user_photo where unum=#{unum} and is_main=1
     </select>
+    <select id="getUsernum" parameterType="int" resultType="int">
+    	select unum from city_board where cbnum=#{cbnum}
+    </select>
 </mapper>

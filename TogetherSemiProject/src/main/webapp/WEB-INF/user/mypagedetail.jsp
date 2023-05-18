@@ -348,7 +348,7 @@
 		      <!-- Modal footer -->
 				<div class="modal-footer">
 				  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-				  <button type="button" class="btn btn-primary" id="submitBtn">저장</button>
+				  <button type="submit" class="btn btn-primary" id="submitBtn">저장</button>
 				</div>
 	    </div>
 	  </div> 
@@ -386,7 +386,7 @@ $(document).ready(function() {
 	      data: formData,
 	      async: false,
 	      success: function (data) {
-	        console.log(data);
+	    	alert("사진이 성공적으로 올라갔습니다");
 	        window.location.href = "/user/mypage"; // 성공 시 mypage로 이동
 	      },
 	      cache: false,

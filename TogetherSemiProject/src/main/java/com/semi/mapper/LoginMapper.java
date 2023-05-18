@@ -28,8 +28,6 @@ public interface LoginMapper {
 	
 	public void insertMyPhoto(UserPhotoDto pdto);
 	
-	public void updateMyPhoto(UserPhotoDto pdto);
-	
 	public UserPhotoDto getMyProfile(int unum);
 	
 	public UserDto getMypage(int unum);
@@ -49,9 +47,8 @@ public interface LoginMapper {
 	public List<CityBoardDto> getCbLikeList(Map<String, Integer> map);
 	public List<Map<String, Object>> getGaipMoimList(int unum);	
 
-	public void updateMainphoto(int photo_idx);
+	public void updateMainphoto(int photo_idx, int unum);
 	
-	public void updateOtherphoto(int unum);
 	public String getSelectPhoto(int photo_idx);
 	public void deletePhoto(int photo_idx);
 	public int mypagePassCheck(Map<String, Object> map);

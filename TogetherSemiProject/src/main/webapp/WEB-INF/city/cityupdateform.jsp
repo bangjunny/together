@@ -18,7 +18,7 @@
             width: 600px;
             margin: 0 auto;
             margin-top: 40px;
-            border : 1px solid skyblue;
+            border : 1px solid #6E6E6E;
             border-radius: 10px;
         }
 
@@ -36,24 +36,64 @@
             min-height: 300px;
         }
         
-    </style>
+        .filebox .upload-name {
+    		display: inline-block;
+    		height: 40px;
+    		padding: 0 10px;
+    		vertical-align: middle;
+    		border: 1px solid #dddddd;
+    		width: 79%;
+    		color: #999999;
+		}
+		
+		#delphoto {
+    		display: inline-block;
+    		padding: 10px 20px;
+    		color: #fff;
+    		vertical-align: middle;
+    		background-color: #FE9A2E;
+    		cursor: pointer;
+    		height: 40px;
+    		margin-left: 10px;
+    		margin-top: 5px;
+    		width:117px;
+    		text-align:center;
+		}
+		
+		#upbox {
+    		display: inline-block;
+    		padding: 10px 20px;
+    		color: #fff;
+    		vertical-align: middle;
+    		background-color: #FE9A2E;
+    		cursor: pointer;
+    		height: 40px;
+    		margin-left: 2px;
+    		margin-top: 5px;
+		}
+		
+		.filebox input[type="file"] {
+    		position: absolute;
+    		width: 0;
+    		height: 0;
+    		padding: 0;
+    		overflow: hidden;
+    		border: 0;
+		}
+		
+		.filebox input[type="button"] {
+    		position: absolute;
+    		width: 0;
+    		height: 0;
+    		padding: 0;
+    		overflow: hidden;
+    		border: 0;
+		}
+</style>
 </head>
 <body>
 <br>
 <br>
-<div style="float:left;">
-   <%-- <c:choose>
-      <c:when test="${dto.uphoto==null}">
-         <!-- Result값이 있다면 실행할 로직 -->
-         <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width:40px; border-radius:100px;">
-      </c:when>
-      <c:otherwise>
-         <!-- 그렇지 않다면 실행할 로직 -->
-         <img src="https://${imageUrl}/userprofile/${dto.uphoto}" style="width:40px;">    
-      </c:otherwise>
-   </c:choose> --%>
-</div>
-
 <div class="container">
 <br>
 	<c:choose>
@@ -90,16 +130,21 @@
         
         <br>
         <br>
-        <input type="button" id="delphoto" value="사진 삭제" class="form-controll">
-        <input type="file" name="upload" id="myfile" multiple="multiple" class="form-controll">
+        <div class="filebox">
+        	<label id="delphoto" for="delbtn">사진 삭제</label>
+        	<label id="upbox" for="myfile">파일 업로드</label> 
+    		<input class="upload-name" value="첨부파일" placeholder="첨부파일">
+    		<input type="file" id="myfile" multiple="multiple">
+    		<input type="button">
+		</div>
         <br>
         <br>
         <textarea id="cbcontent" name ="cbcontent">${cbdto.cbcontent}</textarea>
         <br>
         <hr>
         <div style="text-align:center">
-            <button type="button" id="newCity" class="btn btn-success">수정</button>
-            <button type="button" class="btn btn-success" onclick="history.back()" style="margin-left: 50px">취소</button>
+            <button type="button" id="newCity" class="btn btn-sm text-white" style="width:100px;background-color: #FE9A2E;">수정</button>
+            <button type="button" onclick="history.back()" class="btn btn-sm text-white" style="margin-left:50px;width:100px;background-color: #FE9A2E;">취소</button>
             </div>
         <br>
         <br>

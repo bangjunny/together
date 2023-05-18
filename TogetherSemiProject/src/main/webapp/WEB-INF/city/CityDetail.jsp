@@ -30,7 +30,7 @@
 	<br>
 	<br>
 	<!-- 해당 글 정보 영역 -->
-	<div style="width: 800px; margin: 0 auto; margin-top: 40px; border: 1px solid #6E6E6E; border-radius: 10px;">
+	<div style="width: 800px; margin: 0 auto; margin-top: 40px; border: 1px solid #6E6E6E; border-radius: 5px;">
 		<br>
 		<h3 style="margin-left:40px;margin-top:10px;">${dto.subject}</h3>
 		<h6 style="float: right;">

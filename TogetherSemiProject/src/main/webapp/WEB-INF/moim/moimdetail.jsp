@@ -286,7 +286,6 @@
 	padding:3px;
 	}
 }
-
 </style>
 </head>
 <body>
@@ -363,15 +362,44 @@
 		 </div>
 
 		<br><br>
+		<c:choose>
+			 <c:when test="${sessionScope.unum == udto.unum}">
+		<button class="btn btn-success" onclick="location.href='/moim/moimschedule?mnum=${dto.mnum}'">일정 만들기</button>
+		</c:when>
+		<c:otherwise><button class="btn btn-success" hidden>일정 만들기</button></c:otherwise>
+		</c:choose>
 		<hr id="midhr">
-		<h5><b>작성자 정보</b></h5>
+		<h5><b>모임 일정</b></h5>
+		<%-- <c:choose> --%>
+			<c:if test="${scheduleCount eq 0}">
+				<h3>일정이 없습니다</h3>
+			</c:if>
+			<c:if test="${scheduleCount ne 0}">
 		 <div class="janginfo">
-		<span><b>이 메 일 : ${udto.email}</b></span><br>
-		<span><b>전화번호 : ${udto.hp}</b></span><br>
-		<span><b>이&nbsp;&nbsp;&nbsp;름 : ${udto.uname}</b></span>
-		<br>
+		 	<table class="table" id="schedule">
+		 		<tr>
+		 			<td style="font-size:20px;">
+		 			${msdto.mssubject } &nbsp;&nbsp;&nbsp;<span style="font-size:13px;"><b>￦</b> ${msdto.mscost }</span>
+		 			<br>
+		 			<span style="font-size:13px;"><i class="bi bi-calendar"></i> ${msdto.msdate } ${msdto.mstime }</span>		 			
+		 			<span style="font-size:13px;"><i class="bi bi-geo-alt"></i> ${msdto.mslocation }</span>		 			
+		 			</td>
+		 			<td><button class="btn btn-outline-success" style="height:70px">참석</button></td>
+		 			<c:choose>
+						<c:when test="${sessionScope.unum == udto.unum}">
+						<td>
+						<button class="btn btn-outline-danger" style="height:70px">취소</button>
+						</td>
+						</c:when>
+						<c:otherwise><td><button class="btn btn-outline-danger" style="height:70px" hidden>취소</button></td></c:otherwise>
+					</c:choose>
+		 		</tr>
+		 	</table>			
 		</div>
+		</c:if>
+		<%-- </c:choose> --%>
 		</div>
+		<br><br>
 		<c:if test="${dto.unum == sessionScope.unum }">
 		<!--  <div id="gaipmemberlist">  -->
 		<b id="gaipck">가입신청 확인</b><br><br>

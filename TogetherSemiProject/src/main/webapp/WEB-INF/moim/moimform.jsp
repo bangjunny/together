@@ -274,7 +274,7 @@
 		</tr>
 		<tr>
 			<td colspan="4">
-			<div style="margin-bottom: 10px;">
+			<div style="margin-bottom: 10px;"> 
 				<span class="tag">카테고리</span>
 			</div>
 			

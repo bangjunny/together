@@ -286,6 +286,7 @@
            </div>
          </form>
     </div>
+    
 <!-- Modal -->
 	<!-- The Modal -->
 	<div class="modal" id="mySportsModal">

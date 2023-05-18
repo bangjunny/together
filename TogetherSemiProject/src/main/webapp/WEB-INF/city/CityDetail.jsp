@@ -30,25 +30,25 @@
 	<br>
 	<br>
 	<!-- 해당 글 정보 영역 -->
-	<div style="width: 800px; margin: 0 auto; margin-top: 40px; border: 1px solid #6E6E6E; border-radius: 5px;">
+	<div style="width: 1440px; margin: 0 auto; margin-top: 40px; border: 1px solid #6E6E6E; border-radius: 5px;">
 		<br>
 		<h3 style="margin-left:40px;margin-top:10px;">${dto.subject}</h3>
 		<h6 style="float: right;">
-        <b style="color:#A4A4A4;">추천수</b>&nbsp;<span class="likecount" style="margin-right:40px;">${dto.cblike}</span>&nbsp;
+        <b style="color:#A4A4A4;margin-top:20px;">추천수</b>&nbsp;<span class="likecount" style="margin-right:40px;">${dto.cblike}</span>&nbsp;
       	</h6 >
 		<h6 style="float: right;"><b style="color:#A4A4A4">조회수</b> ${dto.readcount}&nbsp;</h6>
 		
 		<c:choose>
 		<c:when test="${mainPhoto!=null }">
-		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-bottom:10px; margin-left:40px; border-radius:100px;">
+		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/userprofile/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-bottom:10px; margin-left:40px; border-radius:100px;">
 		</c:when>
 		<c:otherwise>
 		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left;margin-bottom:10px; margin-left:40px; border-radius:100px;">                               
 		</c:otherwise>
 		</c:choose>
 		<h5 style="float: left; margin-left:5px;margin-bottom:20px;">${dto.uname}&nbsp;</h5>
-		<h6 style="color:#A4A4A4; margin-top:4px;"> <fmt:formatDate value="${dto.cbwriteday }" pattern="yyyy.MM.dd HH:MM"/> </h6>
-		<hr style="width:90%; margin-left:40px">
+		<h6 style="color:#A4A4A4; margin-top:13px;"> <fmt:formatDate value="${dto.cbwriteday }" pattern="yyyy.MM.dd HH:MM"/> </h6>
+		<hr style="width:94%; margin-left:40px">
 			<c:if test="${photocount=='0'}">
 			<div class="cbcontent" align="center">
             	<img id="photoarea" class="cbcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
@@ -62,7 +62,7 @@
     	</c:forEach>
     	</c:if>
 		<br>
-		<div style="width: 700px; margin:0 auto;">
+		<div style="width: 1000px; margin:0 auto;">
         &nbsp;&nbsp;${dto.cbcontent}
     	</div>	
 		<br> <br> <br> 
@@ -82,7 +82,7 @@
       </c:choose>
       </div>
       <div class="likecount" style="text-align:center">${dto.cblike}</div>
-		<hr style="width:90%; margin-left:40px">
+		<hr style="width:94%; margin-left:40px">
 		<!-- 버튼 영역 -->
 		<div>
 			<button type="button" id="golist" class="btn btn-sm text-white" style="margin-left:40px; width:100px;background-color: #FE9A2E"><i class="bi bi-card-list"></i>
@@ -128,7 +128,7 @@
 			<!-- 댓글 입력 창 -->
 			<div class="mb-3 mt-3">
 				<textarea class="form-control" rows="5" id="content" name="recontent"
-					style="height: 200px; resize: none; width: 720px;margin:0 auto"
+					style="height: 200px; resize: none; width: 1360px;margin:0 auto"
 					placeholder="내용을 입력해주세요" required="required"></textarea>
 			</div>
 			<button type="submit" class="btn btn-sm text-white"
@@ -142,7 +142,7 @@
 			<button type="button" id="showComment" style="margin-left: 40px; margin-bottom: 10px;width:150px; background-color:white;color:#FE642E" 
 			class="btn btn-sm"><h6 style="margin-top:5px"><i class="bi bi-chat-dots"></i>&nbsp;댓글 보기</h6></button>
 			<br>
-			<table id="commentArea" style="border : 1px solid #ddd;width:700px;margin:0 auto;display:none;">
+			<table id="commentArea" style="border : 1px solid #ddd;width:1296px;margin:0 auto;display:none;">
 			<!-- 댓글이 없는 경우 -->
 				<c:if test="${totalComment=='0'}">
 					<tr>
@@ -170,7 +170,7 @@
 								<c:when test="${listcomment.depth=='0'}">
 									<tbody style="display:block" class="commentView" data-ref="${listcomment.ref}" data-depth="${listcomment.depth }">
 										<tr style="border: 1px solid #ddd;" value="${listcomment.ref}">				
-					<td style="width: 540px;">
+					<td style="width: 1100px;background-color:#ddd;">
 					<c:forEach begin="1" end="${listcomment.depth}">
 					&nbsp;&nbsp;
 					</c:forEach>
@@ -180,7 +180,7 @@
 					<input id="renum" type="hidden" name="renum" value="${listcomment.renum}">
 					${listcomment.uname}
 					</td>
-					<td style="float:right;width:170px; text-align:right">
+					<td style="float:right;width:196px; text-align:right;background-color:#ddd;">
 					<fmt:formatDate value="${listcomment.rewriteday}" pattern="yyyy.MM.dd HH:MM"/>
 					</td>
 				</tr>
@@ -299,7 +299,7 @@
 			</table>
 			
 		</div>
-		<hr style="width:90%; margin-left:40px">
+		<hr style="width:94%; margin-left:40px">
 		<div>
 			
 			<!-- 이전 글 다음 글 출력 영역 -->
@@ -312,7 +312,7 @@
 					<h6 style="margin-left: 60px;">이전 게시글이 없습니다</h6>
 				</c:if>
 			</div>
-			<hr style="width:90%; margin-left:40px">
+			<hr style="width:94%; margin-left:40px">
 			<div>
 			<h5 style="margin-left:40px;"><b>다음 글</b></h5>
 				<c:if test="${not empty nxtcontent}">

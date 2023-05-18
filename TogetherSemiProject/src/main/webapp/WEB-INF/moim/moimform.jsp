@@ -606,7 +606,7 @@ $("#overlappedMname").click(function(){
 	$.ajax({
 	type: "get",
 	async: false,
-	url: "./moim/mnameCheck",
+	url: "/moim/mnameCheck",
 	data: {mname: mname},
 	success: function (data) {
 	if(data == 1) {

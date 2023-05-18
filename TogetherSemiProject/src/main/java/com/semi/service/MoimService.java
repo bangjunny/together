@@ -177,6 +177,17 @@ public Integer acceptChk(int unum, String mname) {
 	return moimMapper.acceptChk(map);
 }
 
+@Override
+public void changeMm(String hiddenname, String Mmname) {
+	Map<String, Object> map = new HashMap<>();
+	map.put("Mmname", Mmname);
+    map.put("hiddenname",hiddenname );
+ 
+    
+	moimMapper.changeMm(map);
+	
+}
+
 
 
 

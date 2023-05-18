@@ -139,7 +139,7 @@
 	}
 	
 	#selcategory {
-		margin-top:2px;
+		margin-top:5px;
 		font-size:15px;
 	}
 	
@@ -149,8 +149,43 @@
 	}
 	
 	.butt {
-		margin-top: 30px;
-		margin-bottom: 30px;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	
+	.makemo {
+		margin-right: 30px;
+		height: 36px;
+    	width:100px;
+    	background: #FE9A2E;
+      	background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+	}
+	
+	.makemo:hover {
+		background: #FE642E;
+	}
+	
+	.notmo {
+		height: 36px;
+    	width:100px;
+    	background: #A4A4A4;
+      	background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+	}
+	
+	.notmo:hover {
+		background: #424242;
 	}
 	
 	
@@ -353,7 +388,7 @@
 		<tr>
 			<td colspan="4">
 				<div class="pickcate">
-					<h7>선택한 카테고리 : </h7>
+					<span class="tag">선택한 카테고리 :	</span>
 				</div>
 				<div type="text" id="selcategory"></div>
 				<input type="hidden" class="selcategory" name="category" value="null">
@@ -370,7 +405,7 @@
 		<tr>
 			<td colspan="5" align="center">
 				<div class="butt">
-					<button type="button" class="makemo" id="btnsubmit">만들기</button>
+					<button type="button" class="makemo" id="btnsubmit">생성하기</button>
 					<button type="button" class="notmo" onclick="history.back()">취소</button>
 				</div>
 			</td>

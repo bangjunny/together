@@ -169,17 +169,17 @@
 	              <c:forEach var="photo" items="${photoList}">
 	                <c:if test="${photo.is_main == 1}">
 	                  <div class="carousel-item active">
-	                    <!-- 대표사진으로 출력하는 코드 -->
-	                    <h2>마이 프로필사진</h2>
+	                    <!-- 대표사진으로 출력하는 코드 -->	                             
 	                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo main" alt="대표사진">
 	                    <br><br>
+	                    <label><i class="bi bi-award-fill">나의 대표사진</i></label>    
 	                  </div>
 	                </c:if>
 	                <c:if test="${photo.is_main != 1}">
 	                  <div class="carousel-item">
 	                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo" alt="포토사진 ${photo.photo_idx}">
 	                    <br><br>
-	                    <label><i class="bi bi-award-fill setmain" photo_idx="${photo.photo_idx}">대표사진으로 지정하기</i></label>
+	                    <label><i class="bi bi-award setmain" photo_idx="${photo.photo_idx}">대표사진으로 지정하기</i></label>
 	                    <label><i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}">사진 삭제하기</i></label> 
 	                  </div>
 	                </c:if>

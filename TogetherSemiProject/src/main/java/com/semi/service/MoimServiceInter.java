@@ -26,5 +26,5 @@ public interface MoimServiceInter {
 	public void acceptGaip(int unum, String mname);
 	public void deniedGaip(int unum, String mname);
 	public Integer acceptChk(int unum, String mname);
-	
+	public void changeMm(String hiddenname,String Mmname);
 }	

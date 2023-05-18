@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.semi.dto.MoimDto;
 import com.semi.dto.MoimMemberDto;
+import com.semi.dto.MoimScheduleDto;
 import com.semi.mapper.MoimMapper;
 
 @Service
@@ -147,26 +148,39 @@ public class MoimService implements MoimServiceInter {
 
    }
 
-@Override
-public void acceptGaip(int unum, String mname) {
-	 Map<String, Object> map = new HashMap<>();
-     map.put("mname", mname);
-     map.put("unum", unum);
-     System.out.println(map);
-     
-     moimMapper.acceptGaip(map);
+	@Override
+	public void acceptGaip(int unum, String mname) {
+		 Map<String, Object> map = new HashMap<>();
+	     map.put("mname", mname);
+	     map.put("unum", unum);
+	     System.out.println(map);
+	     
+	     moimMapper.acceptGaip(map);
+		
+	}
 	
-}
+	@Override
+	public void deniedGaip(int unum, String mname) {
+		 Map<String, Object> map = new HashMap<>();
+	     map.put("mname", mname);
+	     map.put("unum", unum);
+	     
+	     moimMapper.deleteGaip(map);
+		
+	}
+	
+	@Override
+	public void insertMoimSchedule(MoimScheduleDto msdto) {
+		// TODO Auto-generated method stub
+		moimMapper.insertMoimSchedule(msdto);
+	}
 
-@Override
-public void deniedGaip(int unum, String mname) {
-	 Map<String, Object> map = new HashMap<>();
-     map.put("mname", mname);
-     map.put("unum", unum);
-     
-     moimMapper.deleteGaip(map);
-	
-}
+	@Override
+	   public MoimScheduleDto getMoimSchedule(int mnum) {
+	      // TODO Auto-generated method stub
+	      return moimMapper.getMoimSchedule(mnum);
+	   }
+
 
 @Override
 public Integer acceptChk(int unum, String mname) {
@@ -177,9 +191,23 @@ public Integer acceptChk(int unum, String mname) {
 	return moimMapper.acceptChk(map);
 }
 
+@Override
+public void changeMm(String hiddenname, String Mmname) {
+	Map<String, Object> map = new HashMap<>();
+	map.put("Mmname", Mmname);
+    map.put("hiddenname",hiddenname );
+ 
+    
+	moimMapper.changeMm(map);
+	
+}
 
 
-
+	@Override
+	public int getScheduleCount(int mnum) {
+		// TODO Auto-generated method stub
+		return moimMapper.getScheduleCount(mnum);
+	}
 
 
    

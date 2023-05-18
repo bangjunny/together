@@ -48,7 +48,8 @@ public interface CityMapper {
 	public int cblikecheck(Map<String, Object>map);
 	public int cblikecountplus(int cbnum);
 	public int cblikecountminus(int cbnum);
-	public String getMainPhoto(int unum);
+	public String getMainPhoto(int dtounum);
+	public int getUsernum(int cbnum);
 	
 	/**
 	public void insertCity(CityBoardDto dto);

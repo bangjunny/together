@@ -53,7 +53,7 @@
 		<if test="mphoto!=''">
 			,mphoto=#{mphoto}
 		</if>
-		,mcontent=#{mcontent} where mnum=#{mnum}
+		,mcontent=#{mcontent},category=#{category} where mnum=#{mnum}
 	</update>
 	<select id="overlappedMname" parameterType="MoimDto" resultType="int">
 		select count(mname) from moim where mname=#{mname}
@@ -88,5 +88,17 @@
 	<select id="acceptChk" parameterType="Map" resultType="Integer">
 		select acceptcall from moimmember where unum=#{unum} and mname=#{mname}
 	</select>
+	<insert id="insertMoimSchedule" parameterType="MoimScheduleDto">
+		insert into moimschedule (mssubject,msdate,mstime,mslocation,mscost,mnum) values (#{mssubject},#{msdate},#{mstime},#{mslocation},#{mscost},#{mnum})
+	</insert>
+	<select id="getMoimSchedule" parameterType="int" resultType="MoimScheduleDto">
+		select * from moimschedule where mnum=#{mnum}
+	</select>
+	<select id="getScheduleCount" parameterType="int" resultType="int">
+		select count(*) from moimschedule where mnum=#{mnum}
+	</select>
+	<update id="changeMm" parameterType="Map">
+		update moimmember set mname=#{Mmname} where mname=#{hiddenname}
+	</update>
 </mapper>
 

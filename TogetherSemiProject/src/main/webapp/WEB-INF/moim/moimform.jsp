@@ -15,19 +15,21 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 
+	.tit {
+		font-size: 30px;
+		margin-bottom: 30px;
+	}	
+	
 	.modu {
 		width:1140px;
 		margin: 0 auto;
 		margin-top:100px;
 	}
 	
-	.cat {
-    	width:670px;
-		margin: 0 auto;
-    }
+	
     
 	.catego {
-		width:670px;
+		width:695px;
 	}
 	
 	.catego td {
@@ -45,7 +47,7 @@
      }
        
     #moimfile {
-    	width:260px;
+    	width:350px;
     	margin-top:10px;
     }
     
@@ -100,8 +102,6 @@
         padding-left: 5px;
     }
     
-   
-    
     .pickcate {
     	float:left;
     	font-size: 18px;
@@ -143,6 +143,15 @@
 		font-size:15px;
 	}
 	
+	.de {
+		margin-top: 20px;
+		margin-bottom: 10px;
+	}
+	
+	.butt {
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
 	
 	
 </style>
@@ -150,11 +159,13 @@
 <body>
 
 <div class="modu">
+	
+	<div class="tit">모임 생성하기</div>
 
 	<form action="insert" method="post" enctype="multipart/form-data" id="moimform">
 	
 	
-	<table class="table table-bordered" border="1" >
+	<table class="table">
 		<tr>
 			<td rowspan="4" style="width:440px;">
 			<!-- 이미지 출력할곳 -->
@@ -350,7 +361,7 @@
 		</tr>
 		<tr colspan="3">
 			<td colspan="5">
-				<div style="margin-bottom: 10px;">
+				<div class="de" style="margin-bottom: 10px;">
 					<span class="tag">상세 정보</span>
 				</div>
 				<textarea style="width:100%; height:300px;" name="mcontent" required="required" class="form-control"></textarea>			
@@ -358,8 +369,10 @@
 		</tr>
 		<tr>
 			<td colspan="5" align="center">
-				<button type="button" class="makemo" id="btnsubmit">만들기</button>
-				<button type="button" class="notmo" onclick="history.back()">취소</button>
+				<div class="butt">
+					<button type="button" class="makemo" id="btnsubmit">만들기</button>
+					<button type="button" class="notmo" onclick="history.back()">취소</button>
+				</div>
 			</td>
 		</tr>
 	</table>

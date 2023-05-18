@@ -62,7 +62,7 @@
                          ${gm.mcontent}
                         </td>
                         
-                     	<td><a href="/moim/moimdetail?mnum=${gm.mnum}&mname=${gm.mname}" class="btn btn-primary">자세히보기</a></td> 
+                     	<td><a href="/moim/moimdetail?mnum=${gm.mnum}&mname=${gm.mname}">상세보기</a></td> 
                     </tr>
                 </c:forEach>
             </tbody>

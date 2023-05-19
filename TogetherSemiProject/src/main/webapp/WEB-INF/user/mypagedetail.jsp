@@ -10,14 +10,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mypage Detail</title>
+
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </head>
 <style>
 	body, body * {
@@ -129,7 +132,30 @@
 </style>
 
 <body>
+<!-- 삼선버튼 -->
+<button class="btn btn-outline" type="button" id="dropdownMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
+  <i class="bi bi-list" style="font-size:30px;">메뉴</i>
+</button>
 
+<!-- 드롭다운 메뉴 -->
+<ul class="dropdown-menu" aria-labelledby="dropdownMenuBtn">
+  <li><a class="dropdown-item" onclick="location.href='/user/mypagedetail?unum=${unum}'"><i class="bi bi-house-fill"></i> 마이프로필 홈</a></li>
+  <li><a class="dropdown-item" onclick="location.href='/user/mypagegaipmoimlist?unum=${unum}'"><i class="bi bi-people-fill"></i> 내 모임</a></li>
+  <li><a class="dropdown-item" onclick="location.href='/user/mypagegaipmoimlist?unum=${unum}'"><i class="bi bi-people-fill"></i> 내가 찜한 모임</a></li>
+  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-pencil-square"></i> 내가 작성한 글</a></li>
+  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-heart-fill"></i> 내가 추천한 게시글</a></li>
+</ul>
+
+<!-- 드롭다운 메뉴 스크립트 -->
+<script>
+  var dropdownMenu = document.getElementById('dropdownMenuBtn');
+  dropdownMenu.addEventListener('click', function () {
+    var dropdown = new bootstrap.Dropdown(dropdownMenu);
+  });
+</script>
+
+
+<!-- 
 <div class="offcanvas offcanvas-end" id="mypagemenu" style="width:300px">
   	<div class="offcanvas-header">
     <h1 class="offcanvas-title">MyPage Menu</h1>
@@ -143,11 +169,13 @@
 
 	</div>
 </div>
+
 <div class="container-fluid mt-3" id="sidebarmenu">
-  <button class="btn btn-outline" type="button" data-bs-toggle="offcanvas" data-bs-target="#mypagemenu">
+  <button class="btn btn-outline danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#mypagemenu">
     <i class="bi bi-list" style="font-size:30px;">메뉴</i>
   </button>
 </div>
+
 		<script type="text/javascript">
 				$(".sidebar_1_btn").click(function() {
 					$("#myprofile").css("display", "block");
@@ -159,8 +187,8 @@
 				});
 				
 		</script>
-<!-- 사이드바 -->
 
+ 사이드바-->
 <div class="container text">
 	<div id="myprofile"  style="display: block;">
   		<div class="row">

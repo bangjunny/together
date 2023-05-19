@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -122,6 +124,28 @@
 
 </head>
 <body>
+<!-- 삼선버튼 -->
+<button class="btn btn-outline" type="button" id="dropdownMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
+  <i class="bi bi-list" style="font-size:30px;">메뉴</i>
+</button>
+
+<!-- 드롭다운 메뉴 -->
+<ul class="dropdown-menu" aria-labelledby="dropdownMenuBtn">
+  <li><a class="dropdown-item" onclick="location.href='/user/mypagedetail?unum=${unum}'"><i class="bi bi-house-fill"></i> 마이프로필 홈</a></li>
+  <li><a class="dropdown-item" onclick="location.href='/user/mypagegaipmoimlist?unum=${unum}'"><i class="bi bi-people-fill"></i> 내 모임</a></li>
+  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-pencil-square"></i> 내가 작성한 글</a></li>
+  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-heart-fill"></i> 내가 추천한 게시글</a></li>
+</ul>
+
+<!-- 드롭다운 메뉴 스크립트 -->
+<script>
+  var dropdownMenu = document.getElementById('dropdownMenuBtn');
+  dropdownMenu.addEventListener('click', function () {
+    var dropdown = new bootstrap.Dropdown(dropdownMenu);
+  });
+</script>
+
+
 <div class="container">
 	<div class="cblike-container">
 		<h2>내가 추천한 게시물 보기</h2>

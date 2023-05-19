@@ -211,7 +211,17 @@ public class LoginController {
 		 model.addAttribute("jjimList", jjimList);
 		    
 		    return "/main/user/mypagejjimlist";
-	   	  }
+	  }
+	 @GetMapping("/mypagegaipmoimlist")
+	 private String MyMoimList(HttpSession session, Model model)
+	 {
+		 
+		 int unum = (int) session.getAttribute("unum"); // 세션에서 unum 값 가져오기
+		 List<Map<String, Object>> gaipMoimList = loginService.getGaipMoimList(unum);
+			model.addAttribute("gaipMoimList" , gaipMoimList);
+		 
+		 return "/main/user/mypagegaiplist";
+	 }
 	 
 
 		

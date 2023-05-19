@@ -32,6 +32,27 @@
 
 </head>
 <body>
+<!-- 삼선버튼 -->
+<button class="btn btn-outline" type="button" id="dropdownMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
+  <i class="bi bi-list" style="font-size:30px;">메뉴</i>
+</button>
+
+<!-- 드롭다운 메뉴 -->
+<ul class="dropdown-menu" aria-labelledby="dropdownMenuBtn">
+  <li><a class="dropdown-item" onclick="location.href='/user/mypagedetail?unum=${unum}'"><i class="bi bi-house-fill"></i> 마이프로필 홈</a></li>
+  <li><a class="dropdown-item" onclick="location.href='/user/mypagegaipmoimlist?unum=${unum}'"><i class="bi bi-people-fill"></i> 내 모임</a></li>
+  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-pencil-square"></i> 내가 작성한 글</a></li>
+  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-heart-fill"></i> 내가 추천한 게시글</a></li>
+</ul>
+
+<!-- 드롭다운 메뉴 스크립트 -->
+<script>
+  var dropdownMenu = document.getElementById('dropdownMenuBtn');
+  dropdownMenu.addEventListener('click', function () {
+    var dropdown = new bootstrap.Dropdown(dropdownMenu);
+  });
+</script>
+
  <div class="container mt-5" style="margin-top:100px;">
         <h3 class="mb-4">내가 쓴 게시물 보기</h3>
         <table class="table table-bordered border-primary table-hover table-layout: fixed; width: 100%;">

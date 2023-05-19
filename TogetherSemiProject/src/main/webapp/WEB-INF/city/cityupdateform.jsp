@@ -15,7 +15,7 @@
 <style>
 
         #container  {
-            width: 1440px;
+            width: 1140px;
             margin: 0 auto;
             margin-top: 40px;
             border : 1px solid #6E6E6E;
@@ -25,7 +25,7 @@
         #cbcontent {
             width: 90%;
             height: 600px;
-            margin-left: 72px;
+            margin-left: 57px;
         }
 
         #subject{
@@ -41,7 +41,7 @@
     		vertical-align: middle;
     		border: 1px solid #dddddd;
     		border-radius:5px;
-    		width: 1038px;
+    		width: 770px;
     		color: #999999;
 		}
 		
@@ -53,7 +53,7 @@
     		background-color: #FE9A2E;
     		cursor: pointer;
     		height: 40px;
-    		margin-left: 72px;
+    		margin-left: 57px;
     		margin-top: 5px;
     		width:117px;
     		text-align:center;
@@ -99,15 +99,15 @@
 <br>
 	<c:choose>
 		<c:when test="${mainPhoto!=null }">
-			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-top:15px; margin-left:72px; margin-right:5px; border-radius:100px;">
+			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-top:15px; margin-left:57px; margin-right:5px; border-radius:100px;">
 		</c:when>
 		<c:otherwise>
-			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left; margin-top:15px; margin-left:72px; margin-right:5px; border-radius:100px;">                               
+			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left; margin-top:15px; margin-left:57px; margin-right:5px; border-radius:100px;">                               
 		</c:otherwise>
 	</c:choose>
 	<h3 style="margin-top:10px">${uname } 님이 작성 중입니다</h3>
         <br>
-        <input type="text" class="form-control" id="subject" name="subject" value="${cbdto.subject}">
+        <input type="text" class="form-control" id="subject" name="subject" value="${cbdto.subject}" maxlength="50" required>
         <br>
         <input type="hidden" id="unum" name="unum" value="${unum}">
         <input type="hidden" id="city1" name="city1" value="${cbdto.city1}">
@@ -151,7 +151,7 @@
         <br>
         <textarea id="cbcontent" name ="cbcontent">${cbdto.cbcontent}</textarea>
         <br>
-        <hr style="width: 90%;margin-left:72px;">
+        <hr style="width: 90%;margin-left:57px;">
         <div style="text-align:center">
             <button type="button" id="newCity" class="btn btn-sm text-white" style="width:100px;background-color: #FE9A2E;">수정</button>
             <button type="button" onclick="history.back()" class="btn btn-sm text-white" style="margin-left:50px;width:100px;background-color: #FE9A2E;">취소</button>

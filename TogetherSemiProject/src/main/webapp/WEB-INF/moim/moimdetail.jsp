@@ -314,8 +314,8 @@
 		width: 200px;
 		height:40px;
 		margin: 0 auto 0 10%;
-}
-#moim_resi_wrap{
+  }
+  #moim_resi_wrap{
 		width: 100%;
 		display:flex;
 		margin-left:460px;
@@ -409,36 +409,43 @@
 		</c:choose>
 		<hr id="midhr">
 		<h5><b>모임 일정</b></h5>
-		<%-- <c:choose> --%>
-			<c:if test="${scheduleCount eq 0}">
+		<c:choose>
+			<c:when test="${scheduleCount eq 0}">
 				<h3>일정이 없습니다</h3>
-			</c:if>
-			<c:if test="${scheduleCount ne 0}">
-		 <div class="janginfo">
-		 	<table class="table" id="schedule">
+			</c:when>
+			<c:otherwise>
+		 <div class="janginfo" style="height:180px; overflow:auto;">
+		 	<table class="table" id="schedule" style="width:450px;">
+		 	<c:forEach var="msdto" items="${slist}" varStatus="i">
+		 		<c:if test="${i.count % 1 == 1}">
 		 		<tr>
+		 		</c:if>
 		 			<td style="font-size:20px;">
 		 			${msdto.mssubject } &nbsp;&nbsp;&nbsp;<span style="font-size:13px;"><b>￦</b> ${msdto.mscost }</span>
 		 			<br>
 		 			<span style="font-size:13px;"><i class="bi bi-calendar"></i> ${msdto.msdate } ${msdto.mstime }</span>		 			
 		 			<span style="font-size:13px;"><i class="bi bi-geo-alt"></i> ${msdto.mslocation }</span>		 			
 		 			</td>
-		 			<td><button class="btn btn-outline-success" style="height:70px">참석</button></td>
+		 			<td><button class="btn btn-outline-success" id="jsbtn" style="height:70px" onclick="joinSchedule('${msdto.mssubject}');">참석</button></td>
 		 			<c:choose>
 						<c:when test="${sessionScope.unum == udto.unum}">
 						<td>
-						<button class="btn btn-outline-danger" style="height:70px">취소</button>
+						<button class="btn btn-outline-danger" style="height:70px" onclick="deleteSchedule('${msdto.mssubject}');">삭제</button>
 						</td>
 						</c:when>
-						<c:otherwise><td><button class="btn btn-outline-danger" style="height:70px" hidden>취소</button></td></c:otherwise>
+						<c:otherwise><td><button class="btn btn-outline-danger" style="height:70px" hidden>삭제</button></td></c:otherwise>
 					</c:choose>
-		 		</tr>
+		 		
+		 		<c:if test="${i.count % 1 == 0}">
+					</tr><tr>
+				</c:if>
+		 		</c:forEach>
 		 	</table>			
 		</div>
-		</c:if>
-		<%-- </c:choose> --%>
+		</c:otherwise>
+		</c:choose>
 		</div>
-		<br><br>
+		<br>
 		<c:if test="${dto.unum == sessionScope.unum }">
 		<!--  <div id="gaipmemberlist">  -->
 		<b id="gaipck">가입신청 확인</b><br><br>
@@ -674,6 +681,57 @@
 			return;
 		}
 	}
+	
+	function deleteSchedule(mssubject){		
+		if (confirm("일정을 삭제 하시겠습니까?")) {	
+			$.ajax({
+				type:"get",
+				url:"deleteSchedule",
+				dataType:"text",
+				   data: {
+					      mssubject: mssubject,
+					      mnum: mnum
+					    },
+				success:function(res){
+					if(res == "success") {
+						alert("일정이 삭제되었습니다.");
+						window.location.reload();
+					} 
+				},
+			});				
+		}else{
+			return;
+		}
+	}
+	
+	function joinSchedule(mssubject){
+		const unum = ${sessionScope.unum};
+		const joinButton = document.getElementById('jsbtn');
+	
+		  if (confirm("해당 일정에 참석 하시겠습니까?")) {
+			    $.ajax({
+			      type: "get",
+			      url: "joinSchedule",
+			      dataType: "text",
+			      data: {
+			        mssubject: mssubject,
+			        unum: unum,
+			        mnum: mnum
+			      },
+			      success: function(res) {
+			        if (res == "success") {
+			          alert("참석이 완료됐습니다.");
+			          this.innerHTML = "취소";
+			          this.setAttribute('onclick', `cancelSchedule('${mssubject}')`);
+			          this.setAttribute('id', 'csbtn');
+			        }
+			      },
+			    });
+			  } else {
+				alert("작동실패");  			
+			    return; // 함수 즉시 종료
+			  }
+			}
 	
 </script>
 

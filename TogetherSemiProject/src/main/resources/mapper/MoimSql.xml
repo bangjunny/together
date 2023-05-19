@@ -91,14 +91,23 @@
 	<insert id="insertMoimSchedule" parameterType="MoimScheduleDto">
 		insert into moimschedule (mssubject,msdate,mstime,mslocation,mscost,mnum) values (#{mssubject},#{msdate},#{mstime},#{mslocation},#{mscost},#{mnum})
 	</insert>
-	<select id="getMoimSchedule" parameterType="int" resultType="MoimScheduleDto">
-		select * from moimschedule where mnum=#{mnum}
-	</select>
 	<select id="getScheduleCount" parameterType="int" resultType="int">
 		select count(*) from moimschedule where mnum=#{mnum}
 	</select>
 	<update id="changeMm" parameterType="Map">
 		update moimmember set mname=#{Mmname} where mname=#{hiddenname}
 	</update>
+	<select id="getScheduleList" parameterType="Map" resultType="MoimScheduleDto">
+		select * from moimschedule where mnum=#{mnum}
+	</select>
+	<delete id="deleteSchedule" parameterType="Map">
+		delete from moimschedule where mssubject=#{mssubject} and mnum=#{mnum}
+	</delete>
+	<insert id="insertSchedulemaker" parameterType="ScheduleJoinDto">
+		insert into schedulejoin (unum,mssubject,mnum) values (#{unum},#{mssubject},#{mnum})
+	</insert>
+	<insert id="scheduleJoin" parameterType="Map">
+		insert into schedulejoin (unum,mssubject,mnum) values (#{unum},#{mssubject},#{mnum})
+	</insert>
 </mapper>
 

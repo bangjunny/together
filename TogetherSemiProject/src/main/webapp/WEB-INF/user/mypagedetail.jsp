@@ -28,7 +28,12 @@
 	    background-color: #FFF7E9;
 	  }
 	  
-    
+	#mypageupdateicon{
+		margin-left:10px;
+		color: #FE9A2E;
+		cursor:pointer;
+	
+	}     
     #myinfotable{
      text-algin:left;
     }    
@@ -88,7 +93,7 @@
 	}
 	
 	.offcanvas-body button{
-		margin-top : 20px;
+		margin-top : 30px;
 		margin-left: 37px;
 		width: 200px;
 		background: #FE9A2E;
@@ -99,7 +104,7 @@
         border-radius: 3px;
 	}
 	.offcanvas-body button:hover{
-		margin-top : 20px;
+		margin-top : 30px;
 		margin-left: 37px;
 		width: 200px;
 		background: #FE642E;
@@ -131,10 +136,10 @@
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
 	</div>
 	<div class="offcanvas-body">
-	    <button class="btn sidebar_1_btn"><i class="bi bi-house-fill"></i>&nbsp; 프로필</button><br><br>
-	    <button class="btn sidebar_2_btn"><i class="bi bi-people-fill"></i>&nbsp; 모임</button><br><br>
-	    <button class="btn sidebar_3_btn" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-geo-alt-fill"></i>&nbsp;내 지역 작성글</button>
-	    <button class="btn sidebar_3_btn" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-geo-alt-fill"></i>&nbsp;내 지역 좋아요글</button>
+	    <button class="btn sidebar_1_btn"><i class="bi bi-house-fill"></i>&nbsp; 마이프로필 홈</button><br>
+	    <button class="btn sidebar_2_btn"><i class="bi bi-people-fill"></i>&nbsp; 내 모임</button><br>
+	    <button class="btn sidebar_3_btn" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-pencil-square"></i>&nbsp; 내가 작성한 글</button><br>
+	    <button class="btn sidebar_3_btn" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-heart-fill"></i>&nbsp; 내가 추천한 게시글</button>
 
 	</div>
 </div>
@@ -144,7 +149,6 @@
   </button>
 </div>
 		<script type="text/javascript">
-
 				$(".sidebar_1_btn").click(function() {
 					$("#myprofile").css("display", "block");
 					$("#mylist_wrap").css("display", "none");
@@ -169,17 +173,17 @@
 	              <c:forEach var="photo" items="${photoList}">
 	                <c:if test="${photo.is_main == 1}">
 	                  <div class="carousel-item active">
-	                    <!-- 대표사진으로 출력하는 코드 -->
-	                    <h2>마이 프로필사진</h2>
+	                    <!-- 대표사진으로 출력하는 코드 -->	                             
 	                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo main" alt="대표사진">
 	                    <br><br>
+	                    <label><i class="bi bi-award-fill">나의 대표사진</i></label>    
 	                  </div>
 	                </c:if>
 	                <c:if test="${photo.is_main != 1}">
 	                  <div class="carousel-item">
 	                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo" alt="포토사진 ${photo.photo_idx}">
 	                    <br><br>
-	                    <label><i class="bi bi-award-fill setmain" photo_idx="${photo.photo_idx}">대표사진으로 지정하기</i></label>
+	                    <label><i class="bi bi-award setmain" photo_idx="${photo.photo_idx}">대표사진으로 지정하기</i></label>
 	                    <label><i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}">사진 삭제하기</i></label> 
 	                  </div>
 	                </c:if>
@@ -248,15 +252,27 @@
 				    </table>
 				    <div class="text" id="mypageupdate">
 		    		<!-- 마이페이지 수정폼 -->
-		    		<button id="mypageupdatebtn" class="btn btn-outline-danger">마이페이지 수정하기</button>
+		    		<label>
+		    		<a data-toggle="tooltip" data-placement="right" title="마이페이지 수정하기" >
+		    		<i class="bi bi-gear" id="mypageupdateicon">수정</i>
+		    		</a>
+		    		</label>
+		    		<!--
+		    		<button class="btn btn-outline-danger">마이페이지 수정하기</button>
+		    		-->
 		    		<div id="mypageupdateform" style="display: none;">
 		    		<%@include file="mypageupdatecheck.jsp" %>
 		    		</div>
 			    	</div>
 		    		<script type="text/javascript">
-						$("#mypageupdatebtn").click(function() {
-							$("#myinfotable").css("display", "none");
-							$("#mypageupdateform").css("display", "block");					
+		    			$(document).ready(function() {
+		    			  $('[data-toggle="tooltip"]').tooltip();
+		    			  
+						$("#mypageupdateicon").click(function() {
+								
+								$("#myinfotable").css("display", "none");
+								$("#mypageupdateform").css("display", "block");	
+						});			
 						});	
 					</script>
 			</div>
@@ -266,7 +282,9 @@
 		
 		<div id="mylist_wrap"  style="display: none;"> 
 			  나의 모임 리스트 출력하기
+			  
 			  <button id="mylist_1_btn">내가 만든 모임</button>
+			  </a>
 			  <button id="mylist_2_btn">내가 찜한 모임</button>
 			  <button id="mylist_3_btn">가입한 모임</button>
 			  

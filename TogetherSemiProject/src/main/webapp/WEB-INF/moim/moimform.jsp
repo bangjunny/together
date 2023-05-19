@@ -201,7 +201,7 @@
 	
 	
 	<table class="table">
-		<tr>
+		
 			<td rowspan="4" style="width:440px;">
 			<!-- 이미지 출력할곳 -->
 				<div>

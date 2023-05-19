@@ -35,6 +35,8 @@ public interface LoginMapper {
 	public int getTotalCount();
 	public int getMyCBWRCount(int unum);
 	public int getMyCBLikeCount(int unum);
+	public int getMyGaipMoimCount(int unum);
+	
 	public List<UserDto> getAllUsers();
 	public List<UserPhotoDto> getPhotosByUnum(int unum);
 	public UserDto getUserByUnum(int unum);
@@ -55,6 +57,7 @@ public interface LoginMapper {
 	public void updateMypage(UserDto dto);	
 	
 	public List<CityBoardDto> getMyCBList(Map<String, Integer> map);//map:start,perpage
+	public int getJJimListTotalCount();
 
 	
 }

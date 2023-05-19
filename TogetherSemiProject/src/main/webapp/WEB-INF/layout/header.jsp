@@ -17,37 +17,37 @@
 	crossorigin="anonymous">
 <style>
 	#header_container{
-		width: 100%;
+		width: 1140px;
+		margin: 0 auto;
 	}
 	#header_wrap{
-		width: 95%;
+		width: 100%;
 		margin: 15px auto 0 auto;
 		display: flex;
 		justify-content: space-between;
+	}
+	#header_logo{
+		width: 20%;
 	}
 	.layout_a img{
 		width: 75px;
 		height: 75px;
 	}
 	#header_navbar{
-		width: 100%;
-		height: 75px;
-		margin-top:30px;
-		background-color: rgb(254, 154, 46);
+		width : 40%;
 		display: flex;
-		justify-content: space-around;
 	}
 	#header_navbar div{
-		color: white;
-		font-size: 25px;
+		font-size: 20px;
 		line-height: 75px;
 		cursor: pointer;
-  		margin-left: 150px;
+		margin: 0 auto;
+  		
+	}
+	#header_btns{
+		width: 25%;
 	}
 
-	#header_navbar div:last-child {
-  		margin-right: 150px;
-	}
 </style>
 </head>
 <body>
@@ -58,6 +58,11 @@
 					<img src="../photo/logo.png">
 				</a>
 			</div>	
+			<div id="header_navbar">
+					<div onclick="location.href='/moim/moimlist'">모임게시판</div>
+					<div onclick="location.href='/city/list'">지역게시판</div>
+					<div onclick="location.href='/mapcontact'">지역검색</div>
+			</div>		
 			<div id="header_btns">
 			<c:choose>
 				<c:when test="${sessionScope.unum ne null }">
@@ -72,13 +77,7 @@
 			</c:choose>	
 			</div>
 	    </div>
-			<div id="header_navbar">
-					<div onclick="location.href='/moim/moimlist'">모임게시판</div>
-					<div onclick="location.href='/city/list'">지역게시판</div>
-					<div onclick="location.href='/mapcontact'">지역검색</div>
-			</div>		
 	</div>
-		
 
 
 

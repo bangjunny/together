@@ -6,10 +6,11 @@
 	<definition name="mainLayout" template="/WEB-INF/layout/mainlayout.jsp">
 		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
 		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+		<put-attribute name="bot_btn" value="/WEB-INF/layout/bot_btn.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
 	</definition>
 	<definition name="subLayout" template="/WEB-INF/layout/sublayout.jsp">
-		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
+		<put-attribute name="bot_btn" value="/WEB-INF/layout/bot_btn.jsp"/>
 		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
 	</definition>

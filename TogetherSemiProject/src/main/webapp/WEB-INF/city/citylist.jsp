@@ -181,16 +181,14 @@ body, body * {
                      });
                    });
                  </script>
+        <input name="keyword" value="${keyword }" type="text">
 		<button id="search" type="submit">선택지역검색</button>
-		
-		<button type="button" style="float: right" id="write" onclick="writeform();">글쓰기</button>
-	</form>
-	<form action="list" method="get">
-		<input type="hidden" name="city1" value="${city1}">
-		<input type="hidden" name="city2" value="${city2}">
-		<input name="keyword" value="${keyword }" type="text">
-		<button type="submit" id="keyword">검색</button>
 		</form>
+		<button type="button" style="float: right" id="write" onclick="writeform();">글쓰기</button>
+
+		
+		
+		
 	
 
  	<%-- <table class="table table-bordered boardlist">
@@ -233,6 +231,8 @@ body, body * {
 	<button class="btn btn-primary" id="readtop" onclick="readtop()">조회수 TOP3</button>
 	</div>
 	<div class="ajaxzone"></div>
+	<div class="hrzone"></div>
+	
 	
 	
 	<c:forEach var="list" items="${list}" varStatus="i">
@@ -269,6 +269,7 @@ body, body * {
 	<br>
 	</c:forEach>
 	
+
 	<%-- <div class="outbox">
 	<c:forEach var="list" items="${list}" varStatus="i">
 	<c:choose>
@@ -413,6 +414,7 @@ body, body * {
 </c:choose>
 </div>
 </div>
+</div>
 	<script type="text/javascript">
 	$(function(){
 		liketop();
@@ -511,6 +513,7 @@ body, body * {
 	        		</div>`;
 	        	});
 	        	$("div.ajaxzone").html(s);
+	        	
 	        }
 		});
 	}

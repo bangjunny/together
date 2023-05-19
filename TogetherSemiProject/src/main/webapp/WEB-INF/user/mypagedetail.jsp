@@ -10,7 +10,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mypage Detail</title>
 
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
@@ -19,8 +18,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <style>
 	body, body * {
@@ -34,6 +32,10 @@
 	#mypageupdateicon{
 		margin-left:10px;
 		color: #FE9A2E;
+		cursor:pointer;
+	
+	}
+	#myinfoupdate{
 		cursor:pointer;
 	
 	}     
@@ -91,14 +93,12 @@
 		width: 150px;
 	}
 	
-	#sidebarmenu button {		
+	#mypage_navbar{		
 		margin-top: 80px;
 	}
 	
-	.offcanvas-body button{
-		margin-top : 30px;
-		margin-left: 37px;
-		width: 200px;
+	#myphotoupdatebtn{
+		margin-top : 5px;
 		background: #FE9A2E;
         background-size: 200%;
         color:white;
@@ -106,10 +106,8 @@
         border:none;
         border-radius: 3px;
 	}
-	.offcanvas-body button:hover{
-		margin-top : 30px;
-		margin-left: 37px;
-		width: 200px;
+	#myphotoupdatebtn:hover{
+		margin-top : 5px;
 		background: #FE642E;
         background-size: 200%;
         color:white;
@@ -132,6 +130,43 @@
 </style>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mypage_navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}">MYPAGE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagegaipmoimlist?unum=${unum}">내 모임</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 쓴 게시물</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="myinfoupdate">내 정보 수정</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="myuser_out">회원탈퇴</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
 <!-- 삼선버튼 -->
 <button class="btn btn-outline" type="button" id="dropdownMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
   <i class="bi bi-list" style="font-size:30px;">메뉴</i>
@@ -147,7 +182,7 @@
 </ul>
 
 <!-- 드롭다운 메뉴 스크립트 -->
-<script>
+<script type="text/javascript">
   var dropdownMenu = document.getElementById('dropdownMenuBtn');
   dropdownMenu.addEventListener('click', function () {
     var dropdown = new bootstrap.Dropdown(dropdownMenu);
@@ -233,7 +268,7 @@
 		        </c:otherwise>
 	      	</c:choose>
 		         <!-- Button trigger modal -->           
-	            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#myPhotoModal">
+	            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myPhotoModal" id="myphotoupdatebtn">
 	                사진 업로드
 	            </button>
 			</div>	
@@ -296,7 +331,7 @@
 		    			$(document).ready(function() {
 		    			  $('[data-toggle="tooltip"]').tooltip();
 		    			  
-						$("#mypageupdateicon").click(function() {
+						$("#myinfoupdate").click(function() {
 								
 								$("#myinfotable").css("display", "none");
 								$("#mypageupdateform").css("display", "block");	

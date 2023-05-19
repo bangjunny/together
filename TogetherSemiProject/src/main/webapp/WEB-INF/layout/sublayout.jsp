@@ -22,7 +22,7 @@
 		text-decoration: none;
 	}
 	#main_container{
-		background-color: rgba(245, 245, 220, 0.2);	
+		background-color: rgb(252, 252, 240);	
 	}
 	.footer{
 		margin-top: 100px;
@@ -33,6 +33,9 @@
 <div class="sublayout">
 	<section class="main">
 		<tiles:insertAttribute name="main"/>
+	</section>
+	<section class="bot_btn">
+		<tiles:insertAttribute name="bot_btn"/>
 	</section>
 	<footer class="footer">
 		<tiles:insertAttribute name="footer"/>

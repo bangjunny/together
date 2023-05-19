@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.semi.dto.MoimDto;
 import com.semi.dto.MoimMemberDto;
 import com.semi.dto.MoimScheduleDto;
+import com.semi.dto.ScheduleJoinDto;
 import com.semi.dto.UserDto;
 import com.semi.mapper.MoimMapper;
 import com.semi.service.CityService;
@@ -119,7 +120,7 @@ public class MoimController {
 
 	@GetMapping("/moimdetail")
 	private String moimdetail(int mnum, Model model, HttpSession session, String mname) {
-
+		
 		// dto얻기
 		MoimDto dto = moimService.getData(mnum);
 		int unum = dto.getUnum();
@@ -129,9 +130,9 @@ public class MoimController {
 		model.addAttribute("unum", unum);
 		model.addAttribute("udto", udto);
 		model.addAttribute("uname", uname);
-		
-		MoimScheduleDto msdto=moimService.getMoimSchedule(mnum);
+				
 		int scheduleCount = moimService.getScheduleCount(mnum);
+		System.out.println(mnum);
 		// model
 		if (session.getAttribute("unum") != null) {
 			unum = (int) session.getAttribute("unum");
@@ -152,10 +153,11 @@ public class MoimController {
 
 		}
 		List<Map<String, Object>> list = moimService.getGaipmemberList(mname);
+		List<MoimScheduleDto> slist = moimService.getScheduleList(mnum);
 		model.addAttribute("list", list);
 		model.addAttribute("dto", dto);
-		model.addAttribute("msdto", msdto);
 		model.addAttribute("scheduleCount", scheduleCount);
+		model.addAttribute("slist", slist);
 
 		return "/main/moim/moimdetail";
 	}
@@ -233,10 +235,23 @@ public class MoimController {
 
 	@ResponseBody // 값 변환을 위해 꼭 필요함
 	@GetMapping("mnameCheck") // 아이디 중복확인을 위한 값으로 따로 매핑
-	public int overlappedMname(MoimDto dto) throws Exception {
+	public int overlappedMname(MoimDto dto, String mname,int mnum) throws Exception {
+		
+		if(moimService.getData(mnum).getMname().equals(mname))
+		{
+			return 3;
+		}
 		int result = moimService.overlappedMname(dto);// 중복 확인한 값을 int로 받음
+		
 		return result;
 	}
+	
+	@ResponseBody // 값 변환을 위해 꼭 필요함
+	   @GetMapping("makeCheck") // 아이디 중복확인을 위한 값으로 따로 매핑
+	   public int overlappedMname(MoimDto dto) throws Exception {
+	      int result = moimService.overlappedMname(dto);// 중복 확인한 값을 int로 받음
+	      return result;
+	   }
 
 	@ResponseBody
 	@GetMapping("/updateJjimcount")
@@ -298,11 +313,12 @@ public class MoimController {
 
 	
 	@PostMapping("/insertSchedule")
-	public String insertSchedule(MoimScheduleDto msdto) {
-		
+	public String insertSchedule(MoimScheduleDto msdto, ScheduleJoinDto sjdto, HttpSession session,Model model) {
+		int unum = (int) session.getAttribute("unum");
 		// db insert
+		model.addAttribute("unum", unum);
 		moimMapper.insertMoimSchedule(msdto);
-		
+		moimMapper.insertSchedulemaker(sjdto);
 		return "redirect:./moimdetail?mnum=" + msdto.getMnum();
 	}
 	 
@@ -311,6 +327,23 @@ public class MoimController {
 	private String moimschedule(@RequestParam("mnum") int mnum, Model model) {
 		model.addAttribute("mnum", mnum);
 		return "/main/moim/moimschedule";
+	}
+	
+	@ResponseBody
+	@GetMapping("deleteSchedule")
+	public String deleteSchedule(String mssubject,int mnum) {
+
+		moimService.deleteSchedule(mssubject, mnum);
+
+		return "success";
+	}
+	
+	@ResponseBody
+	@GetMapping("/joinSchedule")
+	public String joinSchedule(HttpSession session, String mssubject, int mnum) {
+		int unum = (int) session.getAttribute("unum");
+		moimService.scheduleJoin(unum, mssubject, mnum);
+		return "success";
 	}
 
 }

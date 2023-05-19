@@ -168,7 +168,7 @@ public class CityController {
 		String prenum = cityService.preNum(dto);
 		String nxtnum = cityService.nxtNum(dto);
 		String totalComment = cityService.getTotalComment(cbnum);
-		System.out.println("댓글 수" + totalComment);
+		//System.out.println("댓글 수" + totalComment);
 		String photocount = cityService.getPhotoCount(cbnum);
 
 		String city1 = dto.getCity1();

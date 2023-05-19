@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.semi.dto.MoimDto;
 import com.semi.dto.MoimMemberDto;
 import com.semi.dto.MoimScheduleDto;
+import com.semi.dto.ScheduleJoinDto;
 import com.semi.mapper.MoimMapper;
 
 @Service
@@ -176,31 +177,24 @@ public class MoimService implements MoimServiceInter {
 	}
 
 	@Override
-	   public MoimScheduleDto getMoimSchedule(int mnum) {
-	      // TODO Auto-generated method stub
-	      return moimMapper.getMoimSchedule(mnum);
-	   }
-
-
-@Override
-public Integer acceptChk(int unum, String mname) {
-	 Map<String, Object> map = new HashMap<>();
-     map.put("mname", mname);
-     map.put("unum", unum);
-     
-	return moimMapper.acceptChk(map);
-}
-
-@Override
-public void changeMm(String hiddenname, String Mmname) {
-	Map<String, Object> map = new HashMap<>();
-	map.put("Mmname", Mmname);
-    map.put("hiddenname",hiddenname );
- 
-    
-	moimMapper.changeMm(map);
+	public Integer acceptChk(int unum, String mname) {
+		 Map<String, Object> map = new HashMap<>();
+	     map.put("mname", mname);
+	     map.put("unum", unum);
+	     
+		return moimMapper.acceptChk(map);
+	}
 	
-}
+	@Override
+	public void changeMm(String hiddenname, String Mmname) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("Mmname", Mmname);
+	    map.put("hiddenname",hiddenname );
+	 
+	    
+		moimMapper.changeMm(map);
+		
+	}
 
 
 	@Override
@@ -209,7 +203,39 @@ public void changeMm(String hiddenname, String Mmname) {
 		return moimMapper.getScheduleCount(mnum);
 	}
 
+	@Override
+	public List<MoimScheduleDto> getScheduleList(int mnum) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map=new HashMap<>();
+	      map.put("mnum", mnum);	      
+	      return moimMapper.getScheduleList(map);
+	}
 
+	@Override
+	public void deleteSchedule(String mssubject, int mnum) {
+		 Map<String, Object> map = new HashMap<>();
+	     map.put("mssubject", mssubject);
+	     map.put("mnum", mnum);
+	     
+	     moimMapper.deleteSchedule(map);
+		
+	}
    
-   
+	@Override
+	   public void scheduleJoin(int unum, String mssubject, int mnum) {
+	      
+	      Map<String, Object> map = new HashMap<>();	      
+	      map.put("unum", unum);
+	      map.put("mssubject", mssubject);
+	      map.put("mnum", mnum);
+	      moimMapper.scheduleJoin(map);
+	      
+	   }
+	
+	 @Override
+	   public void insertSchedulemaker(ScheduleJoinDto sjdto) {
+	      // TODO Auto-generated method stub
+	      moimMapper.insertSchedulemaker(sjdto);
+	   }
+
 }

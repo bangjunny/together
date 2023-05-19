@@ -27,7 +27,8 @@
 <div id="tableform" style="width:400px" >
 	<form action="insertSchedule" method="post" enctype="multipart/form-data" id="moimform">
 	<table class="table table-bordered" border="1" bgcolor="#ddd" style="width:400px;">
-		<caption style="align:top; font-size:20px;">일정 만들기</caption>		
+		<caption style="align:top; font-size:20px;">일정 만들기</caption>	
+		<input type="hidden" name="unum" value="${unum }">	
 		<tr>
 			<td colspan="2">
 				<input type="text" id="mssubject" class="form-control" name="mssubject" required="required" placeholder="일정 제목을 입력해주세요">

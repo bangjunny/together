@@ -33,7 +33,7 @@
 	div.moim {
 		width: 1140px;
 		height:1140px;
-		margin:100px auto 0 auto;
+		margin:0 auto;
 		background-color:white;
 	}
 	div.mcontent {
@@ -41,7 +41,7 @@
 		text-align:center;
 		margin:10px auto 0 auto;
 		width:80%;
-		height:340px;
+		height:280px;
 		background-color:white;
 		overflow: auto;
 	}
@@ -54,20 +54,21 @@
 	position:relative;
 	}
 	div.topright{
-		width:1050px;
+		width:1100px;
 		height:10px;
 		text-align:right;
 	
 	}
 	div.topleft{
 	width:500px;
-	height:400px;
+	height:350px;
 	}
 	div.janginfo{
 	float: left;
-	width:auto;
 	color:black; 
 	font-size:15px;
+	height:240px; 
+	overflow:auto;"
 	}
 	#moim_resi_wrap{
 		width: 100%;
@@ -103,21 +104,23 @@
 	
 	#gaipmember0{
 		position:absolute;
-		left:480px;
+		left:500px;
 		top:480px;
-		width: 350px;
-		height:250px;
+		width: 300px;
+		height:260px;
 		font-size:13px;
 		overflow: auto;
+		overflow-x:hidden;
 	}
 	#gaipmember1{
 		position:absolute;
 		left:820px;
 		top:480px;
-		width: 310px;
-		height:250px;
+		width: 300px;
+		height:260px;
 		font-size:13px;
-		overflow: auto
+		overflow: auto;
+		overflow-x:hidden;
 	}
 	#memberlist0{
 		width: 400px;
@@ -170,48 +173,53 @@
 		font-size:14px;
 	}
 	div.topleft{
-	width:auto;
-	
+	width:500px;
+	height:350px;
 	}
 	div.janginfo{
-	width:auto;
-	float:left;
+	float: left;
 	color:black; 
 	font-size:15px;
+	width:auto;
+	height:240px; 
+	overflow:auto;"
 	}
 	.mcontent_img{
 	width:380px;
 	height:250px;
 	position:relative;
-	top:15px;
-	left:20px;
+	top:10px;
+	left:10px;
 	}
 	div.mcontent {
 		font-size: 15px;
 		text-align:center;
 		margin:10px auto 0 auto;
 		width:80%;
-		height:140px;
+		height:125px;
 		background-color:white;
 		overflow: auto;
+		overflow-x:hidden;
 	}
 #gaipmember0{
 		position:absolute;
-		left:140px;
+		left:100px;
 		top:1055px;
-		width: 360px;
+		width: 300px;
 		height:150px;
 		font-size:13px;
 		overflow: auto;
+		overflow-x:hidden;
 	}
 	#gaipmember1{
 		position:absolute;
 		left:540px;
 		top:1060px;
-		width: 360px;
+		width: 300px;
 		height:150px;
 		font-size:13px;
 		overflow: auto;
+		overflow-x:hidden;
 	}
 	
 	#moim_resi_wrap button{
@@ -220,7 +228,7 @@
 		margin: 0 auto 0 10%;
 	}	
 	#midhr{
-	width:50%;
+	width:90%;
 	}
 	#midbtn{
 	text-align:center; 
@@ -231,27 +239,29 @@
 	#gaipmember0{
 		position:absolute;
 		left:10px;
-		top:875px;
-		width:350px;
+		top:910px;
+		width:300px;
 		height:300px;
 		font-size:13px;
 		overflow: auto;
+		overflow-x:hidden;
 		
 	}
 	#gaipmember1{
 		position:absolute;
 		left:330px;
-		top:880px;
-		width: 310px;
+		top:910px;
+		width: 300px;
 		height:300px;
 		font-size:13px;
 		overflow: auto;
+		overflow-x:hidden;
 	}
 
 	#moim_resi_wrap{
-		width: 50%;
+		width: 35%;
 		display:flex;
-		margin-left:440px;
+		margin-left:400px;
 		margin-top:80px;
 	}
 	#moim_resi_wrap button{
@@ -268,10 +278,11 @@
 	left:5px;
 }
 	div.janginfo{
-	height:50px;
 	float: left;
 	color:black; 
 	font-size:15px;
+	height:240px; 
+	overflow:auto;"
 	}
 	#midhr{
 	width:40%;
@@ -366,8 +377,8 @@
 				<h3>일정이 없습니다</h3>
 			</c:when>
 			<c:otherwise>
-		 <div class="janginfo" style="height:180px; overflow:auto;">
-		 	<table class="table" id="schedule" style="width:450px;">
+		 <div class="janginfo">
+		 	<table class="table" id="schedule" style="width:430px;">
 		 	<c:forEach var="msdto" items="${slist}" varStatus="i">
 		 		<c:if test="${i.count % 1 == 1}">
 		 		<tr>
@@ -381,23 +392,23 @@
 		 			<c:if test="${msdto.sjcount eq 0}">
 		 			<c:choose>
 		 			<c:when test="${membercheckCount eq 1}">
-		 			<td><button class="btn btn-outline-success" style="height:50px;" onclick="joinSchedule('${msdto.msnum}');">참석</button></td>
+		 			<td><button class="btn btn-outline-success" style="width:60px;height:50px;" onclick="joinSchedule('${msdto.msnum}');">참석</button></td>
 		 			</c:when>
 		 			<c:otherwise>
-		 			<td><button class="btn btn-outline-secondary" style="height:50px;" onclick="alert('모임원만 참석 가능합니다')">참석</button></td>
+		 			<td><button class="btn btn-outline-secondary" style="width:60px;height:50px;" onclick="alert('모임원만 참석 가능합니다')">참석</button></td>
 		 			</c:otherwise>
 		 			</c:choose>
 		 			</c:if>
 		 			<c:if test="${msdto.sjcount eq 1}">
-		 			<td><button class="btn btn-outline-danger" style="height:50px; border: 1px solid #FE9A2E; color:#FE9A2E;" onclick="cancelSchedule('${msdto.msnum}');">취소</button></td>
+		 			<td><button class="btn btn-outline-danger" style="width:60px;height:50px; border: 1px solid #FE9A2E; color:#FE9A2E;" onclick="cancelSchedule('${msdto.msnum}');">취소</button></td>
 		 			</c:if>
 		 			<c:choose>
 						<c:when test="${sessionScope.unum == udto.unum}">
 						<td>
-						<button class="btn btn-outline-danger" style="height:50px" onclick="deleteSchedule('${msdto.mssubject}');">삭제</button>
+						<button class="btn btn-outline-danger" style="width:60px;height:50px" onclick="deleteSchedule('${msdto.mssubject}');">삭제</button>
 						</td>
 						</c:when>
-						<c:otherwise><td><button class="btn btn-outline-danger" style="height:70px" hidden>삭제</button></td></c:otherwise>
+						<c:otherwise><td><button class="btn btn-outline-danger" style="width:70px;height:70px" hidden>삭제</button></td></c:otherwise>
 					</c:choose>
 		 		
 		 		<c:if test="${i.count % 1 == 0}">
@@ -410,9 +421,9 @@
 		</c:choose>		
 		<c:choose>
 			 <c:when test="${sessionScope.unum == udto.unum}">
-		<button class="btn btn-success" style="width:500px; background-color:#FE9A2E;" onclick="location.href='/moim/moimschedule?mnum=${dto.mnum}'">일정 만들기</button>
+		<button class="btn btnsch" style="width:460px;margin-top:5px; background-color:#FE9A2E;color:white" onclick="location.href='/moim/moimschedule?mnum=${dto.mnum}'">일정 만들기</button>
 		</c:when>
-		<c:otherwise><button class="btn btn-success" hidden>일정 만들기</button></c:otherwise>
+		<c:otherwise><button class="btn btnsch" hidden>일정 만들기</button></c:otherwise>
 		</c:choose>
 		</div>
 		<br><br><br><br><br>
@@ -421,7 +432,7 @@
 		<br><br>
 			<div id="gaipmember0" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
     		 data-aos-delay="300"  data-aos-offset="0">
-			<b style="margin-left:80px;font-size:15px">가입신청 확인</b><br><br>
+			<b style="margin-left:80px;font-size:20px">가입신청 확인</b><br><br>
 					<c:forEach items="${list }" var="standby">
 					<ul class="member_list0">
 						<c:if test="${standby.acceptcall == 0 }">
@@ -441,7 +452,7 @@
 			<br><br>
 			<div id="gaipmember1" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
     		 data-aos-delay="300"  data-aos-offset="0">
-			<b style="margin-left:100px;font-size:15px;">가입한 멤버</b><br><br>
+			<b style="margin-left:100px;font-size:20px;">가입한 멤버</b><br><br>
 				<c:forEach items="${list }" var="pass">
 				<ul>
 					<c:if test="${pass.acceptcall == 1 }">

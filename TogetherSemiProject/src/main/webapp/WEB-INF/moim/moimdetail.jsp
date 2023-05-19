@@ -19,6 +19,8 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 	<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <style>
 	body, body * {
@@ -29,9 +31,9 @@
 		text-decoration: none;
 	}
 	div.moim {
-		width: 1440px;
-		height:1300px;
-		margin: 200px auto 0 auto;
+		width: 1140px;
+		height:1140px;
+		margin:100px auto 0 auto;
 		background-color:white;
 	}
 	div.mcontent {
@@ -39,22 +41,23 @@
 		text-align:center;
 		margin:10px auto 0 auto;
 		width:80%;
-		height:473px;
+		height:340px;
 		background-color:white;
 		overflow: auto;
 	}
 	
 	.mcontent_img{
-		width:100%;
-		height:350px;	
+		width:480px;
+		height:300px;	
 }
 	div.top{
 	position:relative;
 	}
 	div.topright{
-		width:1300px;
+		width:1050px;
 		height:10px;
 		text-align:right;
+	
 	}
 	div.topleft{
 	width:500px;
@@ -62,25 +65,25 @@
 	}
 	div.janginfo{
 	float: left;
+	width:auto;
 	color:black; 
 	font-size:15px;
-
 	}
 	#moim_resi_wrap{
 		width: 100%;
 		display:flex;
-		margin-left:460px;
+		margin-left:680px;
 		margin-top:40px;
 	}
 	#moim_resi_wrap button{
-		width: 300px;
+		width: 350px;
 		height:40px;
 		margin: 0 auto 0 10%;
 		
 	}
 	#jjim{
-		width: 520px;
-		font-size: 33px;
+		width: 70px;
+		font-size: 30px;
 		display: flex;
 		justify-content: flex-end;
 	}
@@ -100,12 +103,21 @@
 	
 	#gaipmember0{
 		position:absolute;
-		left:750px;
-		top:470px;
-		width: 360px;
+		left:480px;
+		top:480px;
+		width: 350px;
 		height:250px;
 		font-size:13px;
 		overflow: auto;
+	}
+	#gaipmember1{
+		position:absolute;
+		left:820px;
+		top:480px;
+		width: 310px;
+		height:250px;
+		font-size:13px;
+		overflow: auto
 	}
 	#memberlist0{
 		width: 400px;
@@ -118,15 +130,7 @@
 		width: 100px;
 		margin-left: 150px;
 	}
-	#gaipmember1{
-		position:absolute;
-		left:1100px;
-		top:480px;
-		width: 350px;
-		height:250px;
-		font-size:13px;
-		overflow: auto
-	}
+	
 	#headhr{
 	 	 height: 1px;
 	 	 background-color: gray;	  	
@@ -146,18 +150,7 @@
 	text-align:right; 
 	padding:3px;
 	}
-	#gaipck{
-	font-size:18px;
-	position:relative;
-		left:850px;
-		bottom:120px;
-	}
-	#gaipmb{
-	font-size:18px;
-	position:relative;
-		left:1180px;
-		bottom:175px;
-	}
+	
 @media ( max-width: 1300px ){
 	.mcontent_img{
 	width:380px;
@@ -182,7 +175,7 @@
 	}
 	div.janginfo{
 	width:auto;
-	float:none;
+	float:left;
 	color:black; 
 	font-size:15px;
 	}
@@ -198,40 +191,29 @@
 		text-align:center;
 		margin:10px auto 0 auto;
 		width:80%;
-		height:200px;
+		height:140px;
 		background-color:white;
 		overflow: auto;
 	}
 #gaipmember0{
 		position:absolute;
 		left:140px;
-		top:1155px;
+		top:1055px;
 		width: 360px;
-		height:200px;
+		height:150px;
 		font-size:13px;
 		overflow: auto;
 	}
 	#gaipmember1{
 		position:absolute;
 		left:540px;
-		top:1160px;
+		top:1060px;
 		width: 360px;
-		height:200px;
+		height:150px;
 		font-size:13px;
 		overflow: auto;
 	}
-	#gaipck{
-	font-size:18px;
-	position:absolute;
-		left:240px;
-		top:1120px;
-	}
-	#gaipmb{
-	font-size:18px;
-	position:absolute;
-		left:620px;
-		top:1120px;
-	}
+	
 	#moim_resi_wrap button{
 		width: 250px;
 		height:40px;
@@ -249,8 +231,8 @@
 	#gaipmember0{
 		position:absolute;
 		left:10px;
-		top:975px;
-		width:360px;
+		top:875px;
+		width:350px;
 		height:300px;
 		font-size:13px;
 		overflow: auto;
@@ -258,35 +240,24 @@
 	}
 	#gaipmember1{
 		position:absolute;
-		left:380px;
-		top:980px;
-		width: 350px;
+		left:330px;
+		top:880px;
+		width: 310px;
 		height:300px;
 		font-size:13px;
 		overflow: auto;
 	}
-	#gaipck{
-	font-size:18px;
-	position:relative;
-		left:450px;
-		top:590px;
-	}
-	#gaipmb{
-	font-size:18px;
-	position:relative;
-		left:50px;
-		top:540px;
-	}
+
 	#moim_resi_wrap{
-		width: 55%;
+		width: 50%;
 		display:flex;
-		margin-left:460px;
+		margin-left:440px;
 		margin-top:80px;
 	}
 	#moim_resi_wrap button{
 		width: 150px;
 		height:40px;
-		margin: 0 auto 0 10%;
+		margin: 0 auto 0 22%;
 		
 	}	
 	.mcontent_img{
@@ -297,8 +268,7 @@
 	left:5px;
 }
 	div.janginfo{
-	position:relative;
-	top:10px;
+	height:50px;
 	float: left;
 	color:black; 
 	font-size:15px;
@@ -310,17 +280,7 @@
 	text-align:center; 
 	padding:3px;
 	}
-	#moim_resi_wrap button{
-		width: 200px;
-		height:40px;
-		margin: 0 auto 0 10%;
-  }
-  #moim_resi_wrap{
-		width: 100%;
-		display:flex;
-		margin-left:460px;
-		margin-top:40px;
-	}
+	
 	div.topleft{
 	width:500px;
 	height:200px;
@@ -330,26 +290,43 @@
 <body>
 	<div class="moim">
 	<div class="top">
-		<h3 style="text-align:left">모임게시판</h3>
+		<h5 style="text-align:left">모임게시판</h5>
 		<hr id="headhr"><br>
 	<div class="topright">
-	<h3 style="text-align:right;">[${dto.category}] ${dto.mname}</h3><br>	
-		<span style="float: right;font-size: 14px;"><b>
+	<h3 style="text-align:right;"><b>[${dto.category}] ${dto.mname}</b></h3><br>	
+		<span style="font-size: 17px;"><b>
 		모임 시작일 :
 		<fmt:formatDate value="${dto.createday}" pattern="yyyy-MM-dd" />
 		</b></span> <br>
-		<span style="float: justify;font-size: 14px;"><b>지역 : ${dto.city1} ${dto.city2}</b></span>
+		<span style="font-size: 17px;"><b>지역 : ${dto.city1} ${dto.city2}</b></span>
 		<br> 
-		<span style="float: justify; color:black; font-size: 14px;"><b>카테고리 : ${dto.category}</b></span>
+		<span style=" color:black; font-size: 17px;"><b>카테고리 : ${dto.category}</b></span>
 		<br>
-		<span style="float: justify; color:black; font-size: 14px;"><b>모임원 : 총 ${dto.mcount}명</b></span>
+		<span style=" color:black; font-size: 17px;"><b>모임원 : 총 ${dto.mcount}명</b></span>
 		<br>	
-		<span style="float: justify; color:black; font-size:14px;"><b>모임장 : ${uname} </b></span>
+		<span style=" color:black; font-size:17px;"><b>모임장 : ${uname} </b></span>
 		<br>
 		
 			<c:if test="${sessionScope.unum != dto.unum }">
-				<div id="moim_resi_wrap">
-					<div id="jjim">
+				<div id="moim_resi_wrap">	
+			<c:choose>
+			<c:when test="${acceptChk == 1}">
+					<div>
+						<button type="button" class="btn btn-outline-secondary" style="background-color:rgb(254, 154, 46,0.7);" onclick="moimOut();">모임탈퇴</button>
+					</div>
+			</c:when>
+				<c:when test="${!pressGaipChk}">		
+					<div id="gaip_btn">
+						<button type="button" class="btn btn-outline-secondary" style="background-color:#F6E3CE;" onclick="moimGaip();">가입신청</button>
+					</div>
+				</c:when>			
+				<c:otherwise>
+						<div id="gaip_cancle">
+							<button type="button" class="btn btn-secondary" style="background-color:rgb(254, 154, 46,0.7);" onclick="deleteGaip(${acceptChk});">가입대기</button>
+						</div>
+				</c:otherwise>
+			</c:choose>
+				<div id="jjim">
 						<c:choose>
 							<c:when test="${!pressChk}">		
 								<a class="jjim_btn" onclick="updateJjimcount();">
@@ -362,27 +339,7 @@
 								</a>	
 							</c:otherwise>
 						</c:choose>
-					</div>
-					
-					
-			<c:choose>
-			<c:when test="${acceptChk == 1}">
-					<div>
-						<button type="button" class="btn btn-outline-secondary" style="background-color:rgb(254, 154, 46);" onclick="moimOut();">모임탈퇴</button>
-					</div>
-			</c:when>
-				<c:when test="${!pressGaipChk}">		
-					<div id="gaip_btn">
-						<button type="button" class="btn btn-outline-secondary" style="background-color:#F6E3CE;" onclick="moimGaip();">가입신청</button>
-					</div>
-				</c:when>			
-				<c:otherwise>
-						<div id="gaip_cancle">
-							<button type="button" class="btn btn-secondary" style="background-color:rgb(254, 154, 46);" onclick="deleteGaip(${acceptChk});">가입대기</button>
-						</div>
-				</c:otherwise>
-			</c:choose>
-					
+				</div>	
 			</div>	
 		</c:if>
 		</div>
@@ -403,10 +360,11 @@
 		<br><br>
 		<c:choose>
 			 <c:when test="${sessionScope.unum == udto.unum}">
-		<button class="btn btn-success" onclick="location.href='/moim/moimschedule?mnum=${dto.mnum}'">일정 만들기</button>
+		<button class="btn btn-success" onclick="location.href='/moim/moimschedule?mnum=${dto.mnum}&mname=${dto.mname}'">일정 만들기</button>
 		</c:when>
 		<c:otherwise><button class="btn btn-success" hidden>일정 만들기</button></c:otherwise>
 		</c:choose>
+		<input type="hidden" name="hiddenmname" value="${dto.mname}">
 		<hr id="midhr">
 		<h5><b>모임 일정</b></h5>
 		<c:choose>
@@ -445,11 +403,13 @@
 		</c:otherwise>
 		</c:choose>
 		</div>
-		<br>
+		<br><br>
 		<c:if test="${dto.unum == sessionScope.unum }">
 		<!--  <div id="gaipmemberlist">  -->
-		<b id="gaipck">가입신청 확인</b><br><br>
-			<div id="gaipmember0" >
+		<br><br>
+			<div id="gaipmember0" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
+    		 data-aos-delay="300"  data-aos-offset="0">
+			<b style="margin-left:80px;font-size:15px">가입신청 확인</b><br><br>
 					<c:forEach items="${list }" var="standby">
 					<ul class="member_list0">
 						<c:if test="${standby.acceptcall == 0 }">
@@ -466,8 +426,10 @@
 					</ul>
 					</c:forEach>
 			</div>
-			<b id="gaipmb">가입한 멤버</b><br><br>
-			<div id="gaipmember1">
+			<br><br>
+			<div id="gaipmember1" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
+    		 data-aos-delay="300"  data-aos-offset="0">
+			<b style="margin-left:100px;font-size:15px;">가입한 멤버</b><br><br>
 				<c:forEach items="${list }" var="pass">
 				<ul>
 					<c:if test="${pass.acceptcall == 1 }">
@@ -486,24 +448,26 @@
 		<hr>
 		<!-- 버튼영역 -->
 		<div id="midbtn">
-			<button type="button" class="btn btn-sm btn-outline-secondary"
-				style="width: 100px;background-color:rgb(254, 154, 46);" onclick="location.href='./moimlist'"><i class="bi bi-list-stars"></i>&nbsp;목록</button>
+			<button type="button" class="btn btn-sm btn-light"
+				style="width: 100px;background-color:rgb(254, 154, 46,0.7);" onclick="location.href='./moimlist'"><i class="bi bi-list-stars"></i>&nbsp;목록</button>
 			<c:choose>
 			 <c:when test="${sessionScope.unum == udto.unum}">
-			<button type="button" class="btn btn-sm btn-outline-secondary"
-				style="width: 100px;background-color:rgb(254, 154, 46);" onclick="location.href='./updateform?mnum=${dto.mnum}&mname=${dto.mname}'"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
-			<button type="button" class="btn btn-sm btn-outline-secondary" id="delmoim" onclick="del(${dto.mnum})"
-				style="width: 100px;background-color:rgb(254, 154, 46);"><i class="bi bi-trash"></i>&nbsp;삭제</button>
+			<button type="button" class="btn btn-sm btn-light"
+				style="width: 100px;background-color:rgb(254, 154, 46,0.7);" onclick="location.href='./updateform?mnum=${dto.mnum}&mname=${dto.mname}'"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
+			<button type="button" class="btn btn-sm btn-light" id="delmoim" onclick="del(${dto.mnum})"
+				style="width: 100px;background-color:rgb(254, 154, 46,0.7);"><i class="bi bi-trash"></i>&nbsp;삭제</button>
 			</c:when>
 			<c:otherwise>
-			<button type="button" class="btn btn-sm btn-outline-secondary"
-				style="width: 100px;background-color:rgb(254, 154, 46);" onclick="alert('작성자가 아닙니다')"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
-			<button type="button" class="btn btn-sm btn-outline-secondary" 
-				style="width: 100px;background-color:rgb(254, 154, 46);" onclick="alert('작성자가 아닙니다')"><i class="bi bi-trash"></i>&nbsp;삭제</button>
+			<button type="button" class="btn btn-sm btn-light"
+				style="width: 100px;background-color:rgb(254, 154, 46,0.7);" onclick="alert('작성자가 아닙니다')"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
+			<button type="button" class="btn btn-sm btn-light" 
+				style="width: 100px;background-color:rgb(254, 154, 46,0.7);" onclick="alert('작성자가 아닙니다')"><i class="bi bi-trash"></i>&nbsp;삭제</button>
 			</c:otherwise>
 			</c:choose>
 		</div>	
 		<script>
+		AOS.init();
+
 		$(document).on("click", "#delmoim", function() {
 			let b=confirm("삭제를 하려면 [확인]을 눌러주세요");
 			if(b){
@@ -583,7 +547,7 @@
 			      success: function(res) {
 			        if (res == "success") {
 			          alert("가입 신청이 성공적으로 완료됐습니다.");
-			          $("#gaip_btn").html('<div id="gaip_cancle"><button type="button" class="btn btn-secondary" style="width: 350px; margin: 0 auto 0 10%;background-color:rgb(254, 154, 46);" onclick="deleteGaip();">가입대기</button></div>');
+			          $("#gaip_btn").html('<div id="gaip_cancle"><button type="button" class="btn btn-secondary" style="width: 350px; margin: 0 auto 0 10%;background-color:rgb(254, 154, 46,0.7);" onclick="deleteGaip();">가입대기</button></div>');
 			        }
 			      },
 			    });

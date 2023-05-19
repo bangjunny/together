@@ -197,7 +197,7 @@
 	
 	<div class="tit">모임 생성하기</div>
 
-	<form action="insert" method="post" enctype="multipart/form-data" id="moimform">
+	<form action="update" method="post" enctype="multipart/form-data" id="moimform">
 	
 	
 	<table class="table">

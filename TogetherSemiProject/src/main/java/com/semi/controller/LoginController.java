@@ -347,7 +347,7 @@ public class LoginController {
 	 public String logout(HttpSession session) 
 	 {
 		 session.removeAttribute("loginok"); 
-		 session.removeAttribute("unum"); 
+		 session.removeAttribute("unum");
 		 return "redirect:/";
 	 }
 	 

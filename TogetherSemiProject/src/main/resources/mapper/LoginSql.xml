@@ -114,4 +114,7 @@
 	<select id="getMyCBLikeCount" resultType="int">
 		select count(*) from cblike where unum=#{unum}
 	</select>
+	<select id="getMyGaipMoimCount" resultType="int">
+		select count(*) from moim where unum=#{unum}
+	</select>
 </mapper>

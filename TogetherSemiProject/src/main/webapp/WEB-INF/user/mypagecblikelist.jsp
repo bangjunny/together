@@ -18,25 +18,28 @@
  body {
 		 font-family: Arial, sans-serif;
 	}
+	#mypage_navbar{		
+		margin-top: 80px;
+	}
+ 	.container {
+	  width: 1440px;
+	  margin: 0 auto;
+	}
+	
 	@media (max-width: 740px) {
 	  .cblike-item {
 	    width: 100%;
 	  }
 	}
-	.container {
-	  width: 1440px;
-	  margin: 0 auto;
-	}
-	
 	.cblike-container {
-	  	margin-top: 150px;
+	  	margin-top: 50px;
 	  	padding: 20px;
 	    width: 1440px;
 	    margin: 100 auto;
 	    padding: 20px;
   }
   	
-	 .cblike-item {
+	.cblike-item {
     display: inline-block;
 	width: 48%;
 	margin-bottom: 20px;
@@ -46,6 +49,11 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 20px;
+    font-size: 18px;
+    height: 200px; /* 세로 크기를 200px로 고정 */
+    overflow: hidden; /* 내용이 넘칠 경우 숨김 처리 */
+    margin-bottom: 10px;
+    height:200px;
     transition: box-shadow 0.3s ease;
   }
    .cblike-item:hover {
@@ -64,15 +72,11 @@
 	  font-size: 1.2em;
 	  margin: 0;
 	}
-  
-   .cblike-item {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
+	
   .cblike-item .cblike-details {
     color: #888;
     font-size: 14px;
+    margin-top:10px;
     margin-bottom: 10px;
   }
   
@@ -98,133 +102,91 @@
 	  color: black;
 	  text-decoration: none;
 	}
-  
-  .table {
-    table-layout: fixed;
-    width: 100%;
-  }
-
-  .table th {
-    white-space: nowrap;
-  }
-
-  .table-caption {
-    caption-side: top;
-    caption-padding: 10px;
-    caption-font-weight: bold;
-    font-size: 1.2em;
-  }
-
-  .table-hover tbody tr:hover {
-    background-color: rgba(0, 123, 255, 0.1);
-  }
-	
+	.cblike-description {
+    	height:100%;
+    	overflow:hidden;
+	    text-overflow: ellipsis;
+	    display: -webkit-box;
+	    -webkit-box-orient: vertical;
+	    -webkit-line-clamp: 3; /* 최대 세 줄까지 표시하도록 설정 */
+  }		
     
 </style>
 
 </head>
 <body>
-<!-- 삼선버튼 -->
-<button class="btn btn-outline" type="button" id="dropdownMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
-  <i class="bi bi-list" style="font-size:30px;">메뉴</i>
-</button>
 
-<!-- 드롭다운 메뉴 -->
-<ul class="dropdown-menu" aria-labelledby="dropdownMenuBtn">
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagedetail?unum=${unum}'"><i class="bi bi-house-fill"></i> 마이프로필 홈</a></li>
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagegaipmoimlist?unum=${unum}'"><i class="bi bi-people-fill"></i> 내 모임</a></li>
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-pencil-square"></i> 내가 작성한 글</a></li>
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-heart-fill"></i> 내가 추천한 게시글</a></li>
-</ul>
-
-<!-- 드롭다운 메뉴 스크립트 -->
-<script>
-  var dropdownMenu = document.getElementById('dropdownMenuBtn');
-  dropdownMenu.addEventListener('click', function () {
-    var dropdown = new bootstrap.Dropdown(dropdownMenu);
-  });
-</script>
-
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mypage_navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}">MYPAGE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 쓴 게시물</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="myinfoupdate">내 정보 수정</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="myuser_out">회원탈퇴</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- 마이페이지내브바 -->
 <div class="container">
 	<div class="cblike-container">
-		<h2>내가 추천한 게시물 보기</h2>
-		<c:if test="${totalCount==0 }">
-			<div class="cblike-item">
-				<b style="font-size:1.3em">등록된 게시글이 없습니다</b>
-			</div>
-		</c:if>
-		 <c:if test="${totalCount>0 }">	
-		 	<c:forEach var="cb" items="${cbLikeList}">	
-			  <div class="cblike-item">
-			  	<a class="cblike-link" href="/city/detail?cbnum=${cb.cbnum}"> 			     
-			      <div class="cblike-content">
-			        <h3 class="cblike-title">${cb.subject}</h3>
-			        <div class="cblike-details">
-			          작성자: 홍길동 |지역:${cb.city1},${cb.city2} |작성일: 2023-05-18 | 조회수: ${cb.readcount}
-			       	          
-			        </div>
-			        <div class="cblike-description">
-			          ${cb.cbcontent}
-			       	  	<c:choose>
-					   		 <c:when test="${moim.mphoto!=null}">
-					   		<!-- 이미지있다면 실행할 로직 -->
-					   		<img class="mymoim_img" src="https://${imageUrl}/moim/${moim.mphoto}">
-					   		 </c:when>		
-						</c:choose>
-			        </div>	        
-			      </div>
-			     </a>	
-			    </div>
-			   
-		    </c:forEach>
-		  </c:if> 
-	    
+		 <h3 class="mb-4">내가 쓴 게시물 보기</h3>
+			<c:if test="${totalCount==0 }">
+				<div class="cblike-item">
+					<b style="font-size:1.3em">등록된 게시글이 없습니다</b>
+				</div>
+			</c:if>
+			 <c:if test="${totalCount>0 }">	
+			 	<c:forEach var="cb" items="${cbLikeList}">	
+				  <div class="cblike-item">
+				  	<a class="cblike-link" href="/city/detail?cbnum=${cb.cbnum}"> 			     
+				      <div class="cblike-content">
+				      <div class="cblist-title">
+				        <h3 class="cblike-title">${cb.subject}</h3></div>
+				        <div class="cblike-details">
+				          지역:${cb.city1},${cb.city2} | 작성일: 2023-05-18 | 조회수: ${cb.readcount}
+				       	          
+				        </div>
+				        <div class="cblike-description">
+				          ${cb.cbcontent}
+				       	  	<c:choose>
+						   		 <c:when test="${moim.mphoto!=null}">
+						   		<!-- 이미지있다면 실행할 로직 -->
+						   		<img class="mymoim_img" src="https://${imageUrl}/moim/${cb.mphoto}">
+						   		 </c:when>		
+							</c:choose>
+				        </div>				            
+				      </div>
+				     </a>	
+				    </div>
+				   
+			    </c:forEach>
+			  </c:if> 
 	</div>
 </div>		
-<!-- 
- <div class="container cblike-container">
-        <h3 class="mb-4">내가 추천한 게시물 보기</h3>        
-        <table class="table table-bordered border-primary table-hover table-layout: fixed; width: 100%;">
-            <thead class="table-light">
-            	<caption>내가 추천한 게시물 보기</caption>
-                <tr>
-                    <th style="width: 20%;">게시물 제목</th>
-                    <th style="width: 15%;">조회수</th>
-                    <th style="width: 10%;">지역1</th>
-                    <th style="width: 10%;">지역2</th>
-                    <th style="width: 30%;">게시물 내용</th>
-                    <th style="width: 15%;">자세히보기</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-            <c:if test="${totalCount==0}">
-		<tr height="50">
-			<td colspan="6" align="center" valign="middle">
-				<b style="font-size:1.3em">등록된 게시글이 없습니다</b>
-			</td> 
-		</tr>
-	</c:if>
-            <c:if test="${totalCount>0 }">
-                <c:forEach var="cb" items="${cbLikeList}">
-                    <tr>
-                        <td style="text-align: left;">  		               
-                        ${cb.subject}</td>
-                        <td>${cb.readcount}</td>
-                        <td>${cb.city1}</td>
-                        <td>${cb.city2}</td>
-                        <td>${cb.cbcontent}</td>
-                       
-                        <td><a href="/city/detail?cbnum=${cb.cbnum}" class="btn btn-primary">자세히보기</a></td>
-                    </tr>
-                </c:forEach>
-                </c:if>
-            </tbody>
-        </table>        
-    </div>
-   	<br>
- -->   	
+    
    	
 <!-- 페이징 처리 -->
 		<div style="width: 700px; text-align:center; font-size:20px;">

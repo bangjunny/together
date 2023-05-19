@@ -16,44 +16,186 @@
  body, body * {
 		font-family: 'NanumPenScript'
 	}
-	
-/* 	.mymoim_img{
-		 border-radius: 50%;
-		  object-fit: cover;
-		  width: 50px; /* 이미지 너비 */
-		  height: 50px; /* 이미지 높이 */
-	} */
-	
-	body {
-		margin-top:100px;
+	#mypage_navbar{		
+		margin-top: 80px;
 	}
+ 	.container {
+	  width: 1440px;
+	  margin: 0 auto;
+	}
+		@media (max-width: 740px) {
+	  .cblist-item {
+	    width: 100%;
+	  }
+	}
+
+	.cblist-container {
+	  margin-top: 50px;
+	  padding: 20px;
+	  width: 1440px;
+	  margin: 100 auto;
+	   padding: 20px;
+  }
+  	
+	.cblist-item {
+    display: inline-block;
+	width: 48%;
+	margin-bottom: 20px;
+	padding: 10px;
+	background-color: #fff;
+	box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 18px;
+    height: 200px; /* 세로 크기를 200px로 고정 */
+    overflow: hidden; /* 내용이 넘칠 경우 숨김 처리 */
+    margin-bottom: 10px;
+    height:200px;
+    transition: box-shadow 0.3s ease;
+  }
+
+   .cblike-item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .cblist-thumbnail {
+	  width: 80px;
+	  height: 80px;
+	  margin-right: 10px;
+	}
+  
+   .cblist-item .cblist-content {
+    flex-grow: 1;
+  }
+
+  .cblist-title {
+	font-size: 1.2em;
+	margin: 0;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%; /* 너비를 100%로 설정하여 부모 요소의 크기를 따라감 */
     
+}
+	
+  .cblist-item .cblist-details {
+    color: #888;
+    font-size: 14px;
+    margin-top:10px;
+    margin-bottom: 10px;
+  }
+  
+  .cblist-item .cblist-description {
+    color: #333;
+    font-size: 16px;
+    margin-bottom:10px;
+  }
+  
+  .cblist-item .cblist-link {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+   .cblist-item:hover {
+    color: #0056b3;
+  }
+	.cblist-link {
+	  display: inline-block;
+	  padding: 5px 10px;
+	  background-color: #fff;
+	  color: black;
+	  text-decoration: none;
+	}
+
+	.cblist-description {
+    height:100%;
+    overflow:hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	 -webkit-box-orient: vertical;
+	 -webkit-line-clamp: 3; /* 최대 세 줄까지 표시하도록 설정 */
+  }
+ 
+   
 </style>
 
 </head>
 <body>
-<!-- 삼선버튼 -->
-<button class="btn btn-outline" type="button" id="dropdownMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
-  <i class="bi bi-list" style="font-size:30px;">메뉴</i>
-</button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mypage_navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}">MYPAGE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 쓴 게시물</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="myinfoupdate">내 정보 수정</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="myuser_out">회원탈퇴</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- 마이페이지내브바 -->
 
-<!-- 드롭다운 메뉴 -->
-<ul class="dropdown-menu" aria-labelledby="dropdownMenuBtn">
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagedetail?unum=${unum}'"><i class="bi bi-house-fill"></i> 마이프로필 홈</a></li>
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagegaipmoimlist?unum=${unum}'"><i class="bi bi-people-fill"></i> 내 모임</a></li>
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-pencil-square"></i> 내가 작성한 글</a></li>
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-heart-fill"></i> 내가 추천한 게시글</a></li>
-</ul>
-
-<!-- 드롭다운 메뉴 스크립트 -->
-<script>
-  var dropdownMenu = document.getElementById('dropdownMenuBtn');
-  dropdownMenu.addEventListener('click', function () {
-    var dropdown = new bootstrap.Dropdown(dropdownMenu);
-  });
-</script>
-
- <div class="container mt-5" style="margin-top:100px;">
+<div class="container">
+	<div class="cblist-container">
+		 <h3 class="mb-4">내가 쓴 게시물 보기</h3>
+			<c:if test="${totalCount==0 }">
+				<div class="cblist-item">
+					<b style="font-size:1.3em">등록된 게시글이 없습니다</b>
+				</div>
+			</c:if>
+			<c:if test="${totalCount>0 }">	
+			 	<c:forEach var="cb" items="${cbList}">	
+				  <div class="cblist-item">
+				  	<a class="cblist-link" href="/city/detail?cbnum=${cb.cbnum}"> 			     
+				      <div class="cblist-content">
+				      	<div class="cblist-title">
+				        <h3 class="cblist-title">${cb.subject}</h3>
+				        </div>
+				        <div class="cblist-details">
+				          지역:${cb.city1},${cb.city2} | 작성일: 2023-05-18 | 조회수: ${cb.readcount}
+				       	          
+				        </div>
+				        <div class="cblist-description">
+				          ${cb.cbcontent}
+				       	  	<c:choose>
+						   		 <c:when test="${moim.mphoto!=null}">
+						   		<!-- 이미지있다면 실행할 로직 -->
+						   		<img class="mymoim_img" src="https://${imageUrl}/moim/${cb.mphoto}">
+						   		 </c:when>		
+							</c:choose>
+					     </div>				            
+				      </div>
+				     </a> 
+					</div>
+				</c:forEach>
+			</c:if>
+</div>
+</div>
+<!--  
+<div class="container mt-5" style="margin-top:100px;">
         <h3 class="mb-4">내가 쓴 게시물 보기</h3>
         <table class="table table-bordered border-primary table-hover table-layout: fixed; width: 100%;">
             <thead class="table-light">
@@ -93,6 +235,8 @@
             </tbody>
         </table>        
     </div>
+-->    
+    
    	<br>
 <!-- 페이징 처리 -->
 		<div style="width: 700px; text-align:center; font-size:20px;">

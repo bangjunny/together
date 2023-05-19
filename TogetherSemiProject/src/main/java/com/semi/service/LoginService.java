@@ -95,6 +95,7 @@ public class LoginService implements LoginServiceInter{
 	        // 모임 정보를 Map에 담는다.
 	        Map<String, Object> moimMap = new HashMap<String, Object>();
 	        moimMap.put("mnum", moimDto.getMnum());
+	        moimMap.put("category", moimDto.getCategory());
 	        moimMap.put("mname", moimDto.getMname());
 	        moimMap.put("mcontent", moimDto.getMcontent());
 	        moimMap.put("mphoto",moimDto.getMphoto());

@@ -11,7 +11,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Mypage Detail</title>
-
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
@@ -67,6 +66,9 @@
 		margin-left:20px;
 	}
 	
+	#mypage_navbar{		
+		margin-top: 80px;
+	}
 	.container {
 	  margin-top:100px;
 	  margin-left:10px;
@@ -91,10 +93,6 @@
 		position: relative;
 		margin-right : 100px;
 		width: 150px;
-	}
-	
-	#mypage_navbar{		
-		margin-top: 80px;
 	}
 	
 	#myphotoupdatebtn{
@@ -130,6 +128,7 @@
 </style>
 
 <body>
+<!-- 마이페이지내브바 -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mypage_navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}">MYPAGE</a>
@@ -139,10 +138,10 @@
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/user/mypagedetail?unum=${unum}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagegaipmoimlist?unum=${unum}">내 모임</a>
+          <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
@@ -164,66 +163,6 @@
   </div>
 </nav>
 
-
-
-
-<!-- 삼선버튼 -->
-<button class="btn btn-outline" type="button" id="dropdownMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
-  <i class="bi bi-list" style="font-size:30px;">메뉴</i>
-</button>
-
-<!-- 드롭다운 메뉴 -->
-<ul class="dropdown-menu" aria-labelledby="dropdownMenuBtn">
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagedetail?unum=${unum}'"><i class="bi bi-house-fill"></i> 마이프로필 홈</a></li>
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagegaipmoimlist?unum=${unum}'"><i class="bi bi-people-fill"></i> 내 모임</a></li>
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagegaipmoimlist?unum=${unum}'"><i class="bi bi-people-fill"></i> 내가 찜한 모임</a></li>
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-pencil-square"></i> 내가 작성한 글</a></li>
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-heart-fill"></i> 내가 추천한 게시글</a></li>
-</ul>
-
-<!-- 드롭다운 메뉴 스크립트 -->
-<script type="text/javascript">
-  var dropdownMenu = document.getElementById('dropdownMenuBtn');
-  dropdownMenu.addEventListener('click', function () {
-    var dropdown = new bootstrap.Dropdown(dropdownMenu);
-  });
-</script>
-
-
-<!-- 
-<div class="offcanvas offcanvas-end" id="mypagemenu" style="width:300px">
-  	<div class="offcanvas-header">
-    <h1 class="offcanvas-title">MyPage Menu</h1>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-	</div>
-	<div class="offcanvas-body">
-	    <button class="btn sidebar_1_btn"><i class="bi bi-house-fill"></i>&nbsp; 마이프로필 홈</button><br>
-	    <button class="btn sidebar_2_btn"><i class="bi bi-people-fill"></i>&nbsp; 내 모임</button><br>
-	    <button class="btn sidebar_3_btn" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-pencil-square"></i>&nbsp; 내가 작성한 글</button><br>
-	    <button class="btn sidebar_3_btn" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-heart-fill"></i>&nbsp; 내가 추천한 게시글</button>
-
-	</div>
-</div>
-
-<div class="container-fluid mt-3" id="sidebarmenu">
-  <button class="btn btn-outline danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#mypagemenu">
-    <i class="bi bi-list" style="font-size:30px;">메뉴</i>
-  </button>
-</div>
-
-		<script type="text/javascript">
-				$(".sidebar_1_btn").click(function() {
-					$("#myprofile").css("display", "block");
-					$("#mylist_wrap").css("display", "none");
-				});
-				$(".sidebar_2_btn").click(function() {
-					$("#myprofile").css("display", "none");
-					$("#mylist_wrap").css("display", "block");
-				});
-				
-		</script>
-
- 사이드바-->
 <div class="container text">
 	<div id="myprofile"  style="display: block;">
   		<div class="row">
@@ -239,15 +178,15 @@
 	                    <!-- 대표사진으로 출력하는 코드 -->	                             
 	                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo main" alt="대표사진">
 	                    <br><br>
-	                    <label><i class="bi bi-award-fill">나의 대표사진</i></label>    
+	                    <label><i class="bi bi-award-fill"></i>나의 대표사진</label>    
 	                  </div>
 	                </c:if>
 	                <c:if test="${photo.is_main != 1}">
 	                  <div class="carousel-item">
 	                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo" alt="포토사진 ${photo.photo_idx}">
 	                    <br><br>
-	                    <label><i class="bi bi-award setmain" photo_idx="${photo.photo_idx}">대표사진으로 지정하기</i></label>
-	                    <label><i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}">사진 삭제하기</i></label> 
+	                    <label><i class="bi bi-award setmain" photo_idx="${photo.photo_idx}"></i>대표사진으로 지정하기</label>
+	                    <label><i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}"></i>사진 삭제하기</label> 
 	                  </div>
 	                </c:if>
 	              </c:forEach>

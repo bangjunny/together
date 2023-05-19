@@ -7,20 +7,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+<title>내가 찜한 리스트</title>
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
- 	.container{
- 		max-width:1440px;
- 	
- 	
- 	}
+
+	#mypage_navbar{		
+		margin-top: 80px;
+	}
+ 	.container {
+	  margin-top:50px;
+	  margin-left:10px;
+	  max-width: 1440px;
+	  margin: 100 100 100 100;
+	  flex : auto;
+	  padding: 20px 20px 20px 20px;
+	  background-color: #fff;
+	  border: 1px solid #ddd;
+	  box-shadow: 0px 0px 5px #ddd;
+	}
  
 	.jjimitem-container{
 	  display: grid;
@@ -82,56 +92,62 @@
 
 </head>
 <body>
-<!-- 삼선버튼 -->
-<button class="btn btn-outline" type="button" id="dropdownMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
-  <i class="bi bi-list" style="font-size:30px;">메뉴</i>
-</button>
+<!-- 마이페이지내브바 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mypage_navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}">MYPAGE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 쓴 게시물</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="myinfoupdate">내 정보 수정</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="myuser_out">회원탈퇴</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<!-- 드롭다운 메뉴 -->
-<ul class="dropdown-menu" aria-labelledby="dropdownMenuBtn">
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagedetail?unum=${unum}'"><i class="bi bi-house-fill"></i> 마이프로필 홈</a></li>
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagegaipmoimlist?unum=${unum}'"><i class="bi bi-people-fill"></i> 내 모임</a></li>
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-pencil-square"></i> 내가 작성한 글</a></li>
-  <li><a class="dropdown-item" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-heart-fill"></i> 내가 추천한 게시글</a></li>
-</ul>
-
-<!-- 드롭다운 메뉴 스크립트 -->
-<script>
-  var dropdownMenu = document.getElementById('dropdownMenuBtn');
-  dropdownMenu.addEventListener('click', function () {
-    var dropdown = new bootstrap.Dropdown(dropdownMenu);
-  });
-</script>
-
-<div class="container-fluid">
-<div class="jjimitem-container" style="width: 30rem;">
-  	<c:forEach var="jjim" items="${jjimList}">
-  		<a href="/moim/moimdetail?mnum=${jjim.mnum}">
-	         <div class="jjimitem">        
-		         	 <div class="image-container" id="">
-		         	 	
-		         	 	  <c:choose>
-					   		 <c:when test="${jjim.mphoto==null}">
-		
-					   		<!-- Result값이 있다면 실행할 로직 -->
-					   		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
-					   		 </c:when>
-					   		 <c:otherwise>
-							 <!-- 그렇지 않다면 실행할 로직 -->
-							 <img src="https://${imageUrl}/moim/${jjim.mphoto}">	 
-					   		 </c:otherwise>
-							</c:choose>
-		              </div>   
-	         		<div class="jjimcontent">       
-	                   <h3>${jjim.subject}</h3>
-	                   <p>${jjim.mcontent}</p>
-	                   <p>${jjim.mname}</p>
-	                   <p>${jjim.mnum}</p>
-	               </div>   
-	           </div>
-         </a>              
-    </c:forEach>
-</div>
+<div class="container container-fluid">
+	 <h3 class="mb-4">내가 찜한 모임리스트</h3>
+		<div class="jjimitem-container" style="width: 30rem;">
+		  	<c:forEach var="jjim" items="${jjimList}">
+		  		<a href="/moim/moimdetail?mnum=${jjim.mnum}">
+			         <div class="jjimitem">        
+				         	 <div class="image-container">				         	 	
+				         	 	  <img src="https://${imageUrl}/moim/${jjim.mphoto}">
+				              </div>   
+			         		<div class="jjimcontent">       
+			                   <h3>${jjim.subject}</h3>
+			                   <p>${jjim.mcontent}</p>
+			                   <p>${jjim.mname}</p>
+			                   <p>${jjim.category}</p>
+			                   <p>${jjim.mnum}</p>
+			                   <p>${jjim.mphoto}</p>
+			               </div>   
+			           </div>
+		         </a>              
+		    </c:forEach>
+		</div>
 </div>
 </body>
 </html>

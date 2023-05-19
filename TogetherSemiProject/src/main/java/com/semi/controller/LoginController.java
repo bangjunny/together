@@ -167,12 +167,11 @@ public class LoginController {
 	@GetMapping("/mypagedetail")
 	public String mypageDetail(@RequestParam(defaultValue = "1") int currentPage, @RequestParam("unum") int unum, Integer mnum, @RequestParam(required = false) Integer is_main, Model model) {
 	
-	    
 		// 로그인한 사용자 아이디를 가져옵니다.
 	    UserDto dto = loginMapper.getMypage(unum);
 	    if (dto == null) {
 	        // 해당 유저를 찾을 수 없는 경우 에러 페이지 등을 보여줄 수 있습니다.
-	        return "error";
+	        return "redirect:/user/login";
 	    }
 
 	    model.addAttribute("dto", dto);
@@ -203,15 +202,42 @@ public class LoginController {
 	
 	 }	
 	 @GetMapping("/mypagejjimlist")
-	   private String MyJJimList(HttpSession session, Model model)
+	   private String MyJJimList(@RequestParam("unum") int unum, Model model)
 	   {
 		 
-		 int unum = (int) session.getAttribute("unum"); // 세션에서 unum 값 가져오기
-		 List<Map<String, Object>> jjimList = loginService.getJJimMoimList(unum);
-		 model.addAttribute("jjimList", jjimList);
+		// 모임 리스트 가져오기
+		    List<MoimDto> moimList = loginMapper.getMyMoimList(unum);
+		    model.addAttribute("moimList", moimList);
+		 // 찜모임 리스트 가져오기
+		    List<Map<String, Object>> jjimList = loginService.getJJimMoimList(unum);
+		    model.addAttribute("jjimList", jjimList);
+		    
+		 //가입한 모임의 리스트 가져오기    
+		    List<Map<String, Object>> gaipMoimList = loginService.getGaipMoimList(unum);
+			model.addAttribute("gaipMoimList" , gaipMoimList);
 		    
 		    return "/main/user/mypagejjimlist";
-	   	  }
+	  }
+	 @GetMapping("/mypagegaiplist")
+	 private String MyMoimList(HttpSession session, Model model)
+	 {
+		 
+		 int unum = (int) session.getAttribute("unum"); // 세션에서 unum 값 가져오기
+		 
+		 int totalCount = loginMapper.getMyGaipMoimCount(unum);
+		// 모임 리스트 가져오기
+		    List<MoimDto> moimList = loginMapper.getMyMoimList(unum);
+		    model.addAttribute("moimList", moimList);
+		 // 찜모임 리스트 가져오기
+		    List<Map<String, Object>> jjimList = loginService.getJJimMoimList(unum);
+		    model.addAttribute("jjimList", jjimList);
+		    
+		 //가입한 모임의 리스트 가져오기    
+		    List<Map<String, Object>> gaipMoimList = loginService.getGaipMoimList(unum);
+			model.addAttribute("gaipMoimList" , gaipMoimList);
+		 
+		 return "/main/user/mypagegaiplist";
+	 }
 	 
 
 		
@@ -348,7 +374,7 @@ public class LoginController {
 	 public String logout(HttpSession session) 
 	 {
 		 session.removeAttribute("loginok"); 
-		 session.removeAttribute("unum"); 
+		 session.removeAttribute("unum");
 		 return "redirect:/";
 	 }
 	 

@@ -16,11 +16,8 @@
 	body, body *{
 		font-family: 'NanumPenScript';
 	}
-	#main_container{
-		background-color: rgba(245, 245, 220, 0.2);	
-	}
 	.header{
-		height: 100px;
+		height: 200px;
 	}
 	.footer{
 		margin-top: 100px;
@@ -36,6 +33,9 @@
 	</header>
 	<section class="main">
 		<tiles:insertAttribute name="main"/>
+	</section>
+	<section class="bot_btn">
+		<tiles:insertAttribute name="bot_btn"/>
 	</section>
 	<footer class="footer">
 		<tiles:insertAttribute name="footer"/>

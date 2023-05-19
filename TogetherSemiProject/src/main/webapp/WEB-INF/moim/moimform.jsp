@@ -45,11 +45,41 @@
        	cursor: pointer;
        	color : #FE9A2E
      }
-       
-    #moimfile {
-    	width:350px;
-    	margin-top:10px;
-    }
+         
+    .filebox .upload-name {
+          display: inline-block;
+          height: 40px;
+          padding: 0 10px;
+          vertical-align: middle;
+          border: 1px solid #dddddd;
+          width: 238px;
+          color: #999999;
+          border-radius: 5px;
+      }
+      
+      .filebox label {
+        display: inline-block;
+        padding: 5px 10px;
+        color: black;
+        vertical-align: middle;
+        background-color: #E6E6E6;
+        border: 1px solid #D8D8D8;
+        border-radius: 5px;
+        cursor: pointer;
+        height: 39px;
+        margin-top: 7px;
+        text-align: center;
+    	line-height: 2;
+      }
+      
+      .filebox input[type="file"] {
+          position: absolute;
+          width: 0;
+          height: 0;
+          padding: 0;
+          overflow: hidden;
+          border: 0;
+      }
     
     .moimjuin {
     	margin-top:5px;
@@ -206,9 +236,11 @@
 			<!-- 이미지 출력할곳 -->
 				<div>
 					<img id="showimg">
-					<div>
-						<input type="file" class="form-control " name="upload" id="moimfile">
-					</div>
+					<div class="filebox">
+           				<label for="moimfile">파일 업로드</label> 
+          				<input class="upload-name" value="첨부파일" placeholder="첨부파일">
+          				<input type="file" name="upload" id="moimfile">
+      				</div>
 				</div>
 			</td>
 		
@@ -866,29 +898,44 @@ $(function() {
     });
   }); 
   
+	$("#moimfile").on('change',function(){
+	    var fileName = $("#moimfile").val();
+       	$(".upload-name").val(fileName);       	
+    });
+  
 $("#overlappedMname").click(function(){
 	$("#btnsubmit").attr("type", "button");
 	const mname = $("#moimname").val();
-	$.ajax({
-	type: "get",
-	async: false,
-	url: "/moim/mnameCheck",
-	data: {mname: mname},
-	success: function (data) {
-	if(data == 1) {
-		$("#olmessage").text("이미 사용중인 모임 이름 입니다.");
+	
+	if(mname==""){
+		$("#olmessage").text("필수 정보입니다.");
 		$("#olmessage").addClass("olmessagef");
 		$("#olmessage").removeClass("olmessaget");
-		}else {
-		$("#olmessage").text("사용 가능한 모임 이름 입니다.");
-		$("#olmessage").addClass("olmessaget");
-		$("#olmessage").removeClass("olmessagef");
-		$("#btnsubmit").attr("type", "submit");
-		$("#formmname").val($("#moimname").val());
-		}
-		}
-	})
-	});
+	}
+	else{
+		
+		$.ajax({
+			type: "get",
+			async: false,
+			url: "/moim/makeCheck",
+			data: {"mname": mname},
+			success: function (data) {
+				if(data == 1) {
+					$("#olmessage").text("이미 사용중인 모임 이름 입니다.");
+					$("#olmessage").addClass("olmessagef");
+					$("#olmessage").removeClass("olmessaget");
+				
+				}else {
+					$("#olmessage").text("사용 가능한 모임 이름 입니다.");
+					$("#olmessage").addClass("olmessaget");
+					$("#olmessage").removeClass("olmessagef");
+					$("#btnsubmit").attr("type", "submit");
+					$("#formmname").val($("#moimname").val());
+				}
+			}
+		});	
+	}
+});
 </script>
 </body>
 </html>

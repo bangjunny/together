@@ -241,10 +241,23 @@ public class MoimController {
 
 	@ResponseBody // 값 변환을 위해 꼭 필요함
 	@GetMapping("mnameCheck") // 아이디 중복확인을 위한 값으로 따로 매핑
-	public int overlappedMname(MoimDto dto) throws Exception {
+	public int overlappedMname(MoimDto dto, String mname,int mnum) throws Exception {
+		
+		if(moimService.getData(mnum).getMname().equals(mname))
+		{
+			return 3;
+		}
 		int result = moimService.overlappedMname(dto);// 중복 확인한 값을 int로 받음
+		
 		return result;
 	}
+	
+	@ResponseBody // 값 변환을 위해 꼭 필요함
+	   @GetMapping("makeCheck") // 아이디 중복확인을 위한 값으로 따로 매핑
+	   public int overlappedMname(MoimDto dto) throws Exception {
+	      int result = moimService.overlappedMname(dto);// 중복 확인한 값을 int로 받음
+	      return result;
+	   }
 
 	@ResponseBody
 	@GetMapping("/updateJjimcount")

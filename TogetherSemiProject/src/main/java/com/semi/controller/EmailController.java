@@ -40,7 +40,7 @@ public class EmailController {
 	@ResponseBody
 	public boolean chEmail(String inemail) {
 		
-		int result = emailService.chEmail(inemail);
+		int result = emailService.chEmail(inemail);	// 중복되면 1 아니면 0
 		//System.out.println(result);
 		
 		if(result==1) {			// if(result)로 사용하려면 안에 변수가 boolean 타입이여야 한다

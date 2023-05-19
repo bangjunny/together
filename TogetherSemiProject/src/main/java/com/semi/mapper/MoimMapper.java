@@ -41,4 +41,6 @@ public interface MoimMapper {
 	public void deleteSchedule(Map<String, Object> map);
 	public void insertSchedulemaker(ScheduleJoinDto sjdto);
 	public void scheduleJoin(Map<String, Object> map);
+	public int cancelScheduleJoin(Map<String, Object> map);
+	public int getMemberCheckCount(int unum,String mname);
 }

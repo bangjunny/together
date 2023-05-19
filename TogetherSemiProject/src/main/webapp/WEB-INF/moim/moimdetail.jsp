@@ -322,9 +322,10 @@
 		margin-top:40px;
 	}
 	div.topleft{
-	width:500px;
-	height:200px;
+		width:500px;
+		height:200px;
 	}
+	
 </style>
 </head>
 <body>
@@ -401,12 +402,7 @@
 		 </div>
 
 		<br><br>
-		<c:choose>
-			 <c:when test="${sessionScope.unum == udto.unum}">
-		<button class="btn btn-success" onclick="location.href='/moim/moimschedule?mnum=${dto.mnum}'">일정 만들기</button>
-		</c:when>
-		<c:otherwise><button class="btn btn-success" hidden>일정 만들기</button></c:otherwise>
-		</c:choose>
+		
 		<hr id="midhr">
 		<h5><b>모임 일정</b></h5>
 		<c:choose>
@@ -426,11 +422,23 @@
 		 			<span style="font-size:13px;"><i class="bi bi-calendar"></i> ${msdto.msdate } ${msdto.mstime }</span>		 			
 		 			<span style="font-size:13px;"><i class="bi bi-geo-alt"></i> ${msdto.mslocation }</span>		 			
 		 			</td>
-		 			<td><button class="btn btn-outline-success" id="jsbtn" style="height:70px" onclick="joinSchedule('${msdto.mssubject}');">참석</button></td>
+		 			<c:if test="${msdto.sjcount eq 0}">
+		 			<c:choose>
+		 			<c:when test="${membercheckCount eq 1}">
+		 			<td><button class="btn btn-outline-success" style="height:50px;" onclick="joinSchedule('${msdto.msnum}');">참석</button></td>
+		 			</c:when>
+		 			<c:otherwise>
+		 			<td><button class="btn btn-outline-secondary" style="height:50px;" onclick="alert('모임원만 참석 가능합니다')">참석</button></td>
+		 			</c:otherwise>
+		 			</c:choose>
+		 			</c:if>
+		 			<c:if test="${msdto.sjcount eq 1}">
+		 			<td><button class="btn btn-outline-danger" style="height:50px; border: 1px solid #FE9A2E; color:#FE9A2E;" onclick="cancelSchedule('${msdto.msnum}');">취소</button></td>
+		 			</c:if>
 		 			<c:choose>
 						<c:when test="${sessionScope.unum == udto.unum}">
 						<td>
-						<button class="btn btn-outline-danger" style="height:70px" onclick="deleteSchedule('${msdto.mssubject}');">삭제</button>
+						<button class="btn btn-outline-danger" style="height:50px" onclick="deleteSchedule('${msdto.mssubject}');">삭제</button>
 						</td>
 						</c:when>
 						<c:otherwise><td><button class="btn btn-outline-danger" style="height:70px" hidden>삭제</button></td></c:otherwise>
@@ -443,9 +451,16 @@
 		 	</table>			
 		</div>
 		</c:otherwise>
+		</c:choose>		
+		<c:choose>
+			 <c:when test="${sessionScope.unum == udto.unum}">
+		<button class="btn btn-success" style="width:500px; background-color:#FE9A2E;" onclick="location.href='/moim/moimschedule?mnum=${dto.mnum}'">일정 만들기</button>
+		</c:when>
+		<c:otherwise><button class="btn btn-success" hidden>일정 만들기</button></c:otherwise>
 		</c:choose>
 		</div>
-		<br>
+		
+		<br><br><br><br><br>
 		<c:if test="${dto.unum == sessionScope.unum }">
 		<!--  <div id="gaipmemberlist">  -->
 		<b id="gaipck">가입신청 확인</b><br><br>
@@ -704,9 +719,8 @@
 		}
 	}
 	
-	function joinSchedule(mssubject){
+	function joinSchedule(msnum){
 		const unum = ${sessionScope.unum};
-		const joinButton = document.getElementById('jsbtn');
 	
 		  if (confirm("해당 일정에 참석 하시겠습니까?")) {
 			    $.ajax({
@@ -714,21 +728,42 @@
 			      url: "joinSchedule",
 			      dataType: "text",
 			      data: {
-			        mssubject: mssubject,
+			        msnum: msnum,
 			        unum: unum,
 			        mnum: mnum
 			      },
 			      success: function(res) {
 			        if (res == "success") {
 			          alert("참석이 완료됐습니다.");
-			          this.innerHTML = "취소";
-			          this.setAttribute('onclick', `cancelSchedule('${mssubject}')`);
-			          this.setAttribute('id', 'csbtn');
+			          window.location.reload();
+			        }
+			      },
+			    });
+			  } else {		
+			    return; // 함수 즉시 종료
+			  }
+			}
+	
+	function cancelSchedule(msnum){
+		const unum = ${sessionScope.unum};
+	
+		  if (confirm("참석을 취소하시겠습니까?")) {
+			    $.ajax({
+			      type: "get",
+			      url: "cancelSchedule",
+			      dataType: "text",
+			      data: {
+			    	  unum: unum,
+			          msnum: msnum			        
+			      },
+			      success: function(res) {
+			        if (res == "success") {
+			          alert("참석이 취소됐습니다.");
+			          window.location.reload();
 			        }
 			      },
 			    });
 			  } else {
-				alert("작동실패");  			
 			    return; // 함수 즉시 종료
 			  }
 			}

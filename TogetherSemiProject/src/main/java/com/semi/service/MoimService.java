@@ -204,10 +204,11 @@ public class MoimService implements MoimServiceInter {
 	}
 
 	@Override
-	public List<MoimScheduleDto> getScheduleList(int mnum) {
+	public List<MoimScheduleDto> getScheduleList(int mnum, int unum) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map=new HashMap<>();
-	      map.put("mnum", mnum);	      
+	      map.put("mnum", mnum);
+	      map.put("unum", unum);
 	      return moimMapper.getScheduleList(map);
 	}
 
@@ -222,11 +223,11 @@ public class MoimService implements MoimServiceInter {
 	}
    
 	@Override
-	   public void scheduleJoin(int unum, String mssubject, int mnum) {
+	   public void scheduleJoin(int unum, int msnum, int mnum) {
 	      
 	      Map<String, Object> map = new HashMap<>();	      
 	      map.put("unum", unum);
-	      map.put("mssubject", mssubject);
+	      map.put("msnum", msnum);
 	      map.put("mnum", mnum);
 	      moimMapper.scheduleJoin(map);
 	      
@@ -238,4 +239,21 @@ public class MoimService implements MoimServiceInter {
 	      moimMapper.insertSchedulemaker(sjdto);
 	   }
 
+	@Override
+	public void cancelScheduleJoin(int unum, int msnum) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+	     map.put("unum", unum);
+	     map.put("msnum", msnum);
+	     
+	     moimMapper.cancelScheduleJoin(map);
+	}
+	 
+	@Override
+	   public int getMemberCheckCount(int unum, String mname) {
+	      // TODO Auto-generated method stub
+	      return moimMapper.getMemberCheckCount(unum,mname);
+	   }
+		
+		 
 }

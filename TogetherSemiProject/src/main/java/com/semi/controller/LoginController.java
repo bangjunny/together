@@ -202,10 +202,11 @@ public class LoginController {
 	    return "/main/user/mypagedetail";
 	
 	 }	
-	 @GetMapping("/myjjimList")
-	   private String MyJJimList(@RequestParam("unum") int unum, Model model)
+	 @GetMapping("/mypagejjimlist")
+	   private String MyJJimList(HttpSession session, Model model)
 	   {
 		 
+		 int unum = (int) session.getAttribute("unum"); // 세션에서 unum 값 가져오기
 		 List<Map<String, Object>> jjimList = loginService.getJJimMoimList(unum);
 		 model.addAttribute("jjimList", jjimList);
 		    

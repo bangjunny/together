@@ -15,19 +15,21 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 
+	.tit {
+		font-size: 30px;
+		margin-bottom: 30px;
+	}	
+	
 	.modu {
 		width:1140px;
 		margin: 0 auto;
 		margin-top:100px;
 	}
 	
-	.cat {
-    	width:670px;
-		margin: 0 auto;
-    }
+	
     
 	.catego {
-		width:670px;
+		width:695px;
 	}
 	
 	.catego td {
@@ -45,7 +47,7 @@
      }
        
     #moimfile {
-    	width:260px;
+    	width:350px;
     	margin-top:10px;
     }
     
@@ -100,8 +102,6 @@
         padding-left: 5px;
     }
     
-   
-    
     .pickcate {
     	float:left;
     	font-size: 18px;
@@ -135,18 +135,57 @@
 	.olmessaget {
 		color: green; 
 		font-size: 13px;
-		float: left;	
+		float: left; 	
 	}
 	
 	#selcategory {
 		margin-top:2px;
-		font-size:15px;
+		font-size:18px;
 	}
-	.mapick {
-	 font-size:18px;
-	 float: left;
-	 margin-right: 8px;
-	 margin-top: 4px;
+	
+	.de {
+		margin-top: 20px;
+		margin-bottom: 10px;
+	}
+	
+	.butt {
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	
+	.makemo {
+		margin-right: 30px;
+		height: 36px;
+    	width:100px;
+    	background: #FE9A2E;
+      	background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+	}
+	
+	.makemo:hover {
+		background: #FE642E;
+	}
+	
+	.notmo {
+		height: 36px;
+    	width:100px;
+    	background: #A4A4A4;
+      	background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+	}
+	
+	.notmo:hover {
+		background: #424242;
 	}
 	
 	
@@ -155,18 +194,19 @@
 <body>
 
 <div class="modu">
+	
+	<div class="tit">모임 생성하기</div>
 
 	<form action="insert" method="post" enctype="multipart/form-data" id="moimform">
 	
 	
-	<table class="table table-bordered" border="1" >
-		<tr>
+	<table class="table">
+		
 			<td rowspan="4" style="width:440px;">
 			<!-- 이미지 출력할곳 -->
 				<div>
 					<img id="showimg">
 					<div>
-						<span class="mapick">대표사진 :</span> 
 						<input type="file" class="form-control " name="upload" id="moimfile">
 					</div>
 				</div>
@@ -348,7 +388,7 @@
 		<tr>
 			<td colspan="4">
 				<div class="pickcate">
-					<h7>선택한 카테고리 : </h7>
+					<span class="tag">선택한 카테고리 :	</span>
 				</div>
 				<div type="text" id="selcategory"></div>
 				<input type="hidden" class="selcategory" name="category" value="null">
@@ -356,7 +396,7 @@
 		</tr>
 		<tr colspan="3">
 			<td colspan="5">
-				<div style="margin-bottom: 10px;">
+				<div class="de" style="margin-bottom: 10px;">
 					<span class="tag">상세 정보</span>
 				</div>
 				<textarea style="width:100%; height:300px;" name="mcontent" required="required" class="form-control"></textarea>			
@@ -364,8 +404,10 @@
 		</tr>
 		<tr>
 			<td colspan="5" align="center">
-				<button type="button" class="makemo" id="btnsubmit">만들기</button>
-				<button type="button" class="notmo" onclick="history.back()">취소</button>
+				<div class="butt">
+					<button type="button" class="makemo" id="btnsubmit">생성하기</button>
+					<button type="button" class="notmo" onclick="history.back()">취소</button>
+				</div>
 			</td>
 		</tr>
 	</table>
@@ -429,23 +471,23 @@ form.addEventListener('submit', function(event) {
 	      <div class="modal-body">
 	      	<table class="motable">
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="축구">축구</td>
-			      	<td><input type="checkbox" name="categorys" value="농구">농구</td>
-			      	<td><input type="checkbox" name="categorys" value="야구">야구</td>
-			      	<td><input type="checkbox" name="categorys" value="테니스">테니스</td>
+			      	<td><input type="radio" name="categorys" value="축구">축구</td>
+			      	<td><input type="radio" name="categorys" value="농구">농구</td>
+			      	<td><input type="radio" name="categorys" value="야구">야구</td>
+			      	<td><input type="radio" name="categorys" value="테니스">테니스</td>
 		      	</tr>
 		      	
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="배드민턴">배드민턴</td>
-			      	<td><input type="checkbox" name="categorys" value="자전거">자전거</td>
-			      	<td><input type="checkbox" name="categorys" value="클라이밍">클라이밍</td>
-			      	<td><input type="checkbox" name="categorys" value="탁구">탁구</td>
+			      	<td><input type="radio" name="categorys" value="배드민턴">배드민턴</td>
+			      	<td><input type="radio" name="categorys" value="자전거">자전거</td>
+			      	<td><input type="radio" name="categorys" value="클라이밍">클라이밍</td>
+			      	<td><input type="radio" name="categorys" value="탁구">탁구</td>
 		      	</tr>
 		      	
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="러닝/마라톤">러닝/마라톤</td>
-			      	<td><input type="checkbox" name="categorys" value="골프">골프</td>
-			      	<td><input type="checkbox" name="categorys" value="볼링">볼링</td>
+			      	<td><input type="radio" name="categorys" value="러닝/마라톤">러닝/마라톤</td>
+			      	<td><input type="radio" name="categorys" value="골프">골프</td>
+			      	<td><input type="radio" name="categorys" value="볼링">볼링</td>
 			      	<td></td>
 		      	</tr>
 	      	</table>
@@ -475,21 +517,21 @@ form.addEventListener('submit', function(event) {
 	      <div class="modal-body">
 	      	<table class="motable">
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="다트">다트</td>
-			      	<td><input type="checkbox" name="categorys" value="보드게임">보드게임</td>
-			      	<td><input type="checkbox" name="categorys" value="두뇌심리게임">두뇌심리게임</td>
+			      	<td><input type="radio" name="categorys" value="다트">다트</td>
+			      	<td><input type="radio" name="categorys" value="보드게임">보드게임</td>
+			      	<td><input type="radio" name="categorys" value="두뇌심리게임">두뇌심리게임</td>
 		      	</tr>
 		      	
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="온라인게임">온라인게임</td>
-			      	<td><input type="checkbox" name="categorys" value="콘솔게임">콘솔게임</td>
-			      	<td><input type="checkbox" name="categorys" value="단체놀이">단체놀이</td>
+			      	<td><input type="radio" name="categorys" value="온라인게임">온라인게임</td>
+			      	<td><input type="radio" name="categorys" value="콘솔게임">콘솔게임</td>
+			      	<td><input type="radio" name="categorys" value="단체놀이">단체놀이</td>
 		      	</tr>
 		      	
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="타로카드">타로카드</td>
-			      	<td><input type="checkbox" name="categorys" value="마술">마술</td>
-			      	<td><input type="checkbox" name="categorys" value="바둑">바둑</td>  
+			      	<td><input type="radio" name="categorys" value="타로카드">타로카드</td>
+			      	<td><input type="radio" name="categorys" value="마술">마술</td>
+			      	<td><input type="radio" name="categorys" value="바둑">바둑</td>  
 		      	</tr>
 	      	</table>
 	      </div>
@@ -519,17 +561,17 @@ form.addEventListener('submit', function(event) {
 	      
 	      	<table class="motable">
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="등산">등산</td>
-			      	<td><input type="checkbox" name="categorys" value="국내여행">국내여행</td>
-			      	<td><input type="checkbox" name="categorys" value="산책/트래킹">산책/트래킹</td>
-			      	<td><input type="checkbox" name="categorys" value="패러글라이딩">패러글라이딩</td>
+			      	<td><input type="radio" name="categorys" value="등산">등산</td>
+			      	<td><input type="radio" name="categorys" value="국내여행">국내여행</td>
+			      	<td><input type="radio" name="categorys" value="산책/트래킹">산책/트래킹</td>
+			      	<td><input type="radio" name="categorys" value="패러글라이딩">패러글라이딩</td>
 			      	
 		      	</tr>
 		      	
 		      	<tr>
-		      		<td><input type="checkbox" name="categorys" value="낚시">낚시</td>
-			      	<td><input type="checkbox" name="categorys" value="해외여행">해외여행</td>
-			      	<td><input type="checkbox" name="categorys" value="캠핑/백패킹">캠핑/백패킹</td>
+		      		<td><input type="radio" name="categorys" value="낚시">낚시</td>
+			      	<td><input type="radio" name="categorys" value="해외여행">해외여행</td>
+			      	<td><input type="radio" name="categorys" value="캠핑/백패킹">캠핑/백패킹</td>
 			      	<td></td>
 		      	</tr>
 	      	</table>     
@@ -560,16 +602,16 @@ form.addEventListener('submit', function(event) {
 	      
 	      	<table class="motable">
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="책/독서">책/독서</td>
-			      	<td><input type="checkbox" name="categorys" value="인문학">인문학</td>
-			      	<td><input type="checkbox" name="categorys" value="심리학">심리학</td>
-			      	<td><input type="checkbox" name="categorys" value="철학">철학</td>
+			      	<td><input type="radio" name="categorys" value="책/독서">책/독서</td>
+			      	<td><input type="radio" name="categorys" value="인문학">인문학</td>
+			      	<td><input type="radio" name="categorys" value="심리학">심리학</td>
+			      	<td><input type="radio" name="categorys" value="철학">철학</td>
 		      	</tr>
 		      	
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="역사">역사</td>
-			      	<td><input type="checkbox" name="categorys" value="시사/경제">시사/경제</td>
-			      	<td><input type="checkbox" name="categorys" value="작문/글쓰기">작문/글쓰기</td>
+			      	<td><input type="radio" name="categorys" value="역사">역사</td>
+			      	<td><input type="radio" name="categorys" value="시사/경제">시사/경제</td>
+			      	<td><input type="radio" name="categorys" value="작문/글쓰기">작문/글쓰기</td>
 			      	<td></td>
 		      	</tr>
 		    </table>
@@ -599,27 +641,27 @@ form.addEventListener('submit', function(event) {
 	      <div class="modal-body">
 	      	<table class="motable">
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="의료/건강/제약">의료/건강/제약</td>
-			      	<td><input type="checkbox" name="categorys" value="IT/포털/인터넷">IT/포털/인터넷</td>
-			      	<td><input type="checkbox" name="categorys" value="교육업">교육업</td> 	
+			      	<td><input type="radio" name="categorys" value="의료/건강/제약">의료/건강/제약</td>
+			      	<td><input type="radio" name="categorys" value="IT/포털/인터넷">IT/포털/인터넷</td>
+			      	<td><input type="radio" name="categorys" value="교육업">교육업</td> 	
 		      	</tr>
 		      	
 		      	<tr>
-		      		<td><input type="checkbox" name="categorys" value="광고/마케팅업계">광고/마케팅업계</td>
-			      	<td><input type="checkbox" name="categorys" value="디자인업계  ">디자인업계</td>
-			      	<td><input type="checkbox" name="categorys" value="무역/상사">무역/상사</td>      	
+		      		<td><input type="radio" name="categorys" value="광고/마케팅업계">광고/마케팅업계</td>
+			      	<td><input type="radio" name="categorys" value="디자인업계  ">디자인업계</td>
+			      	<td><input type="radio" name="categorys" value="무역/상사">무역/상사</td>      	
 		      	</tr>
 		      	
 		      	<tr>
-		      		<td><input type="checkbox" name="categorys" value="금융업">금융업</td>
-			      	<td><input type="checkbox" name="categorys" value="세무/회계">세무/회계</td>
-			      	<td><input type="checkbox" name="categorys" value="전자/기계/전기">전자/기계/전기</td>  	
+		      		<td><input type="radio" name="categorys" value="금융업">금융업</td>
+			      	<td><input type="radio" name="categorys" value="세무/회계">세무/회계</td>
+			      	<td><input type="radio" name="categorys" value="전자/기계/전기">전자/기계/전기</td>  	
 		      	</tr>
 		      	
 		      	<tr>
-		      		<td><input type="checkbox" name="categorys" value="패션/의류/뷰티">패션/의류/뷰티</td>
-			      	<td><input type="checkbox" name="categorys" value="서비스업">서비스업</td>
-			      	<td><input type="checkbox" name="categorys" value="식음료/외식업">식음료/외식업</td>
+		      		<td><input type="radio" name="categorys" value="패션/의류/뷰티">패션/의류/뷰티</td>
+			      	<td><input type="radio" name="categorys" value="서비스업">서비스업</td>
+			      	<td><input type="radio" name="categorys" value="식음료/외식업">식음료/외식업</td>
 		      	</tr>      	
 	      	</table>
 	      </div>
@@ -648,16 +690,16 @@ form.addEventListener('submit', function(event) {
 	      <div class="modal-body">
 	      	<table class="motable">
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="영어">영어</td>
-			      	<td><input type="checkbox" name="categorys" value="일본어">일본어</td>
-			      	<td><input type="checkbox" name="categorys" value="중국어">중국어</td>
+			      	<td><input type="radio" name="categorys" value="영어">영어</td>
+			      	<td><input type="radio" name="categorys" value="일본어">일본어</td>
+			      	<td><input type="radio" name="categorys" value="중국어">중국어</td>
 			      	
 		      	</tr>
 		      	
 		      	<tr>
-		      		<td><input type="checkbox" name="categorys" value="프랑스어">프랑스어</td>
-			      	<td><input type="checkbox" name="categorys" value="스페인어">스페인어</td>
-			      	<td><input type="checkbox" name="categorys" value="러시아어">러시아어</td>
+		      		<td><input type="radio" name="categorys" value="프랑스어">프랑스어</td>
+			      	<td><input type="radio" name="categorys" value="스페인어">스페인어</td>
+			      	<td><input type="radio" name="categorys" value="러시아어">러시아어</td>
 		      	</tr>
 	      	</table>
 	      </div>
@@ -686,22 +728,22 @@ form.addEventListener('submit', function(event) {
 	      <div class="modal-body">
 	      	<table class="motable">
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="노래/보컬">노래/보컬</td>
-			      	<td><input type="checkbox" name="categorys" value="기타/베이스">기타/베이스</td>
-			      	<td><input type="checkbox" name="categorys" value="드럼">드럼</td>
-			      	<td><input type="checkbox" name="categorys" value="피아노">피아노</td>
+			      	<td><input type="radio" name="categorys" value="노래/보컬">노래/보컬</td>
+			      	<td><input type="radio" name="categorys" value="기타/베이스">기타/베이스</td>
+			      	<td><input type="radio" name="categorys" value="드럼">드럼</td>
+			      	<td><input type="radio" name="categorys" value="피아노">피아노</td>
 		      	</tr>
 		      	
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="바이올린">바이올린</td>
-			      	<td><input type="checkbox" name="categorys" value="밴드/합주">밴드/합주</td>
-			      	<td><input type="checkbox" name="categorys" value="작사/작곡">작사/작곡</td>
-			      	<td><input type="checkbox" name="categorys" value="힙합">힙합</td>
+			      	<td><input type="radio" name="categorys" value="바이올린">바이올린</td>
+			      	<td><input type="radio" name="categorys" value="밴드/합주">밴드/합주</td>
+			      	<td><input type="radio" name="categorys" value="작사/작곡">작사/작곡</td>
+			      	<td><input type="radio" name="categorys" value="힙합">힙합</td>
 		      	</tr>
 		      	
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="클래식">클래식</td>
-			      	<td><input type="checkbox" name="categorys" value="재즈">재즈</td>
+			      	<td><input type="radio" name="categorys" value="클래식">클래식</td>
+			      	<td><input type="radio" name="categorys" value="재즈">재즈</td>
 			      	<td></td>
 			      	<td></td>
 		      	</tr>	      	
@@ -732,20 +774,20 @@ form.addEventListener('submit', function(event) {
 	      <div class="modal-body">
 	      	<table class="motable">
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="지역">지역</td>
-			      	<td><input type="checkbox" name="categorys" value="나이">나이</td>
-			      	<td><input type="checkbox" name="categorys" value="성별">성별</td>
+			      	<td><input type="radio" name="categorys" value="지역">지역</td>
+			      	<td><input type="radio" name="categorys" value="나이">나이</td>
+			      	<td><input type="radio" name="categorys" value="성별">성별</td>
 		      	</tr>
 		      	
 		      	<tr>
-		      		<td><input type="checkbox" name="categorys" value="싱글/연애">싱글/연애</td>
-			      	<td><input type="checkbox" name="categorys" value="기혼/유부">기혼/유부</td>
-			      	<td><input type="checkbox" name="categorys" value="돌싱">돌싱</td> 	
+		      		<td><input type="radio" name="categorys" value="싱글/연애">싱글/연애</td>
+			      	<td><input type="radio" name="categorys" value="기혼/유부">기혼/유부</td>
+			      	<td><input type="radio" name="categorys" value="돌싱">돌싱</td> 	
 		      	</tr>
 		      	
 		      	<tr>
-		      		<td><input type="checkbox" name="categorys" value="와인/커피/차">와인/커피/차</td>
-			      	<td><input type="checkbox" name="categorys" value="맛집/미식회">맛집/미식회</td>
+		      		<td><input type="radio" name="categorys" value="와인/커피/차">와인/커피/차</td>
+			      	<td><input type="radio" name="categorys" value="맛집/미식회">맛집/미식회</td>
 			      	<td></td>
 		      	</tr>
 	      	</table>
@@ -775,26 +817,26 @@ form.addEventListener('submit', function(event) {
 	      <div class="modal-body">
 	      	<table class="motable">
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="미술/그림">미술/그림</td>
-			      	<td><input type="checkbox" name="categorys" value="캘리그라피">캘리그라피</td>
-			      	<td><input type="checkbox" name="categorys" value="천연비누/화장품">천연비누/화장품</td>
+			      	<td><input type="radio" name="categorys" value="미술/그림">미술/그림</td>
+			      	<td><input type="radio" name="categorys" value="캘리그라피">캘리그라피</td>
+			      	<td><input type="radio" name="categorys" value="천연비누/화장품">천연비누/화장품</td>
 		      	</tr>
 		      	
 		      	<tr>
-			      	<td><input type="checkbox" name="categorys" value="가죽공예">가죽공예</td>
-			      	<td><input type="checkbox" name="categorys" value="가구/목공예">가구/목공예</td>
-			      	<td><input type="checkbox" name="categorys" value="도자/점토공예">도자/점토공예</td>
+			      	<td><input type="radio" name="categorys" value="가죽공예">가죽공예</td>
+			      	<td><input type="radio" name="categorys" value="가구/목공예">가구/목공예</td>
+			      	<td><input type="radio" name="categorys" value="도자/점토공예">도자/점토공예</td>
 			      	
 		      	</tr>
 		      	
 		      	<tr>
-		      		<td><input type="checkbox" name="categorys" value="자수/뜨개질">자수/뜨개질</td>
-			      	<td><input type="checkbox" name="categorys" value="키덜트/프라모델">키덜트/프라모델</td>
-			      	<td><input type="checkbox" name="categorys" value="메이크업/네일">메이크업/네일</td>
+		      		<td><input type="radio" name="categorys" value="자수/뜨개질">자수/뜨개질</td>
+			      	<td><input type="radio" name="categorys" value="키덜트/프라모델">키덜트/프라모델</td>
+			      	<td><input type="radio" name="categorys" value="메이크업/네일">메이크업/네일</td>
 		      	</tr>
 		      	
 		      	<tr>
-		      		<td><input type="checkbox" name="categorys" value="캔들/디퓨저/석고 ">캔들/디퓨저/석고</td>
+		      		<td><input type="radio" name="categorys" value="캔들/디퓨저/석고 ">캔들/디퓨저/석고</td>
 		      		<td></td>
 			      	<td></td>
 		      	</tr>	
@@ -815,14 +857,14 @@ $(function() {
     // 체크박스 값이 변경될 때마다 실행되는 함수
     $('input[name="categorys"]').on('change', function() {
       // 모든 체크박스를 해제
-      $('input[name="categorys"]').not(this).prop('checked', false);
+      //$('input[name="categorys"]').not(this).prop('checked', false);
       
       // 선택된 체크박스 값을 출력
       var selected = $(this).val();
       $('#selcategory').text(selected);
       $('.selcategory').val(selected);
     });
-  });
+  }); 
   
 $("#overlappedMname").click(function(){
 	$("#btnsubmit").attr("type", "button");

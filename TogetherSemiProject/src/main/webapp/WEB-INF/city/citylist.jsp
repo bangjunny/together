@@ -28,17 +28,10 @@ body, body * {
 	/* background-color: rgba(245, 245, 220, 0.2); */
 }
 .outbox{
-	margin: 0 auto;
-	padding: 10px;
-	width: 100%;
-	height: 830px;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-gap: 10px;
-	
+
 }
 .box{
-	width:100%;
+	width:470px;
 	height:192px;
 	border-radius: 12px;
 	float: left;
@@ -46,6 +39,8 @@ body, body * {
 	background-color: white;
 	border: 1px solid #ddd;
 	cursor: pointer;
+	margin-bottom: 20px;
+	margin-right: 10px;
 }
 .listimg{
 	border-radius: 12px;
@@ -57,21 +52,35 @@ body, body * {
 	height: 100%;
 	border-radius: 12px;
 }
-
 .listtext{
 	padding-left: 170px;
-	padding-top : 15px;
+	padding-top : 5px;
 	height: 150px;
 }
-.listtext b{
-	
-}
-.spansubject{
-}
+
 .spancity{
 	font-style: italic;
 	color: #ddd
 }
+#ta1{
+ 	margin:0 auto;
+ 	cursor: pointer;
+ 	border-collapse: separate;
+ 	border-radius: 12px;
+ 	border: 1px solid #ddd;
+ }
+ #ta1img{
+
+ 	width:75px;
+ 	height:75px;
+ 	
+ }
+ #ta1img img{
+ 	border-radius: 12px;
+ }
+ #taltext{
+ 	
+ }
 </style>
 </head>
 <body>
@@ -98,7 +107,7 @@ body, body * {
 	${totalCount}개 있습니다
 </h1>
 <form action="list" method="get">
-	<label for="user_city">지역</label> <select id="city" name="city1">
+	<select id="city" name="city1">
 		<option hidden>시, 도 선택</option>
 		<option value="서울특별시">서울특별시</option>
 		<option value="부산광역시">부산광역시</option>
@@ -172,19 +181,17 @@ body, body * {
                      });
                    });
                  </script>
+        <input name="keyword" value="${keyword }" type="text">
 		<button id="search" type="submit">선택지역검색</button>
-		
-		<button type="button" style="float: right" id="write" onclick="writeform();">글쓰기</button>
-	</form>
-	<form action="list" method="get">
-		<input type="hidden" name="city1" value="${city1}">
-		<input type="hidden" name="city2" value="${city2}">
-		<input name="keyword" value="${keyword }" type="text">
-		<button type="submit" id="keyword">검색</button>
 		</form>
+		<button type="button" style="float: right" id="write" onclick="writeform();">글쓰기</button>
+
+		
+		
+		
 	
 
- 	<table class="table table-bordered boardlist">
+ 	<%-- <table class="table table-bordered boardlist">
 		<tr bgcolor="#f5f5dc">
 			<th style="width: 100px">번호</th>
 			<th style="width: 400px">제목</th>
@@ -215,7 +222,7 @@ body, body * {
 				<td>${list.cblike}</td>
 			</tr>
 		</c:forEach>
-	</table>
+	</table> --%>
 
 	
 	<h1>TOP3</h1>
@@ -224,37 +231,46 @@ body, body * {
 	<button class="btn btn-primary" id="readtop" onclick="readtop()">조회수 TOP3</button>
 	</div>
 	<div class="ajaxzone"></div>
+	<div class="hrzone"></div>
 	
 	
-	<table style="margin:0 auto;border:1px solid black;width:auto">
+	
 	<c:forEach var="list" items="${list}" varStatus="i">
+	<c:choose>
+		<c:when test="${unum!=0 }">
+			<table id="ta1" onclick="location.href='detail?cbnum=${list.cbnum}'">
+		</c:when>
+		<c:otherwise>
+			<table id="ta1" onclick="guest()">
+		</c:otherwise>
+	</c:choose>
 	<tr>
-	<td style="border:1px solid black;width:100px" rowspan="2">
+	<td id="ta1img"  rowspan="">
 		<c:choose>
 			<c:when test="${list.photo_idx!=null }">
-				<img style="width:150px;height:150px" src="https://kr.object.ncloudstorage.com/together-bucket-104/city/${list.photo_idx }">
+				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.com/together-bucket-104/city/${list.photo_idx }">
 			</c:when>
 			<c:otherwise>
-				<img style="width:150px;height:150px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
 			</c:otherwise>
 		</c:choose>
 		</td>
-		<td style="border:1px solid black"><b style="display:inline-block;width:400px">${list.subject }</b></td>
-		
-	</tr>
-	<tr>
-		<td style="border:1px solid black;height:50px">
-			<span style="display:inline-block;margin-left:30px;width:100px">${list.uname}</span>|
-			<span style="margin-left:30px;display:inline-block;width:150px">추천수 : ${list.cblike}</span>
-			<span style="margin-left:15px;display:inline-block;width:150px">조회수 : ${list.readcount}</span>
-			<span style="margin-right:30px;display:inline-block;width:150px">
-			작성일 : <fmt:formatDate value="${list.cbwriteday }" pattern="yyyy-MM-dd"/>
-			</span>
+		<td id="ta1text">
+		<b style="display:inline-block;width:350px">&nbsp;&nbsp;${list.subject }</b>
+		<span style="display:inline-block;margin-left:0px;width:100px">${list.uname}</span>|
+		<span style="margin-left:30px;display:inline-block;width:150px">추천수 : ${list.cblike}</span>
+		<span style="margin-left:15px;display:inline-block;width:150px">조회수 : ${list.readcount}</span>
+		<span style="margin-right:30px;display:inline-block;width:150px">
+		작성일 : <fmt:formatDate value="${list.cbwriteday }" pattern="yyyy-MM-dd"/>
+		</span>
 		</td>
 	</tr>
-	</c:forEach>
 	</table>
-	<div class="outbox">
+	<br>
+	</c:forEach>
+	
+
+	<%-- <div class="outbox">
 	<c:forEach var="list" items="${list}" varStatus="i">
 	<c:choose>
 		<c:when test="${unum==0 }">
@@ -286,7 +302,7 @@ body, body * {
 	</div>
 	</c:forEach>
 	</div>
-
+ --%>
 	
 	
 
@@ -397,6 +413,8 @@ body, body * {
 	</c:otherwise>
 </c:choose>
 </div>
+</div>
+</div>
 	<script type="text/javascript">
 	$(function(){
 		liketop();
@@ -422,6 +440,7 @@ body, body * {
 		const city1 = '${city1}';
 		const city2 = '${city2}';
 		const keyword = '${keyword}';
+		const unum = ${unum};
 		$.ajax({
 			type:"get",
 	        url:"liketop",
@@ -430,10 +449,28 @@ body, body * {
 	        success:function(res){
 	        	let s="";
 	        	$.each(res,function(idx,ele){
-	        		s+=`<b style="font-size:30px">\${idx+1}&nbsp;&nbsp;&nbsp;\${ele.subject}</b><br>`;
-	        		s+=`<span style="font-size:20px"><span style="display:inline-block;margin-left:50px;width:100px">\${ele.uname}</span>
-	        		|<span style="margin-left:50px;display:inline-block;width:150px">추천수 : \${ele.cblike}</span>조회수 : \${ele.readcount}</span>`;
-	        		s+=`<br>`;
+	        		s+=`<div class="outbox">`;
+	        			if(unum==0){
+	        				s+=`<div class="box" onclick="guest()">`
+	        			} else {
+	        				s+=`<div class="box" onclick="location.href='detail?cbnum=\${ele.cbnum}'">`
+	        			}
+	        			s+=`<div class="listimg" style="float: left;">`
+	        				if(ele.photo_idx!=null){
+	        					s+=`<img src="https://kr.object.ncloudstorage.com/together-bucket-104/city/\${ele.photo_idx }">`
+	        				} else{
+	        					s+=`<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">`
+	        				}
+	        			s+=`</div>
+	        			<div class="listtext">
+	        				<b>\${ele.subject}</b><br>
+	        				작성자:\${ele.uname }<br>
+	        				조회수:\${ele.readcount } | 추천수:\${ele.cblike }<br>
+	        				작성일:\${ele.cbwriteday }<br>
+	        				<span class="spancity">#\${ele.city1} #\${ele.city2}</span>
+	        			</div>
+	        		</div>
+	        		</div>`;
 	        	});
 	        	$("div.ajaxzone").html(s);
 	        }
@@ -443,6 +480,7 @@ body, body * {
 		const city1 = '${city1}';
 		const city2 = '${city2}';
 		const keyword = '${keyword}';
+		const unum = ${unum};
 		$.ajax({
 			type:"get",
 	        url:"readtop",
@@ -451,12 +489,31 @@ body, body * {
 	        success:function(res){
 	        	let s="";
 	        	$.each(res,function(idx,ele){
-	        		s+=`<b style="font-size:30px">\${idx+1}&nbsp;&nbsp;&nbsp;\${ele.subject}</b><br>`;
-	        		s+=`<span style="font-size:20px"><span style="display:inline-block;margin-left:50px;width:100px">\${ele.uname}</span>
-	        		|<span style="margin-left:50px;display:inline-block;width:150px">추천수 : \${ele.cblike}</span>조회수 : \${ele.readcount}</span>`;
-	        		s+=`<br>`;
+	        		s+=`<div class="outbox">`;
+	        			if(unum==0){
+	        				s+=`<div class="box" onclick="guest()">`
+	        			} else {
+	        				s+=`<div class="box" onclick="location.href='detail?cbnum=\${ele.cbnum}'">`
+	        			}
+	        			s+=`<div class="listimg" style="float: left;">`
+	        				if(ele.photo_idx!=null){
+	        					s+=`<img src="https://kr.object.ncloudstorage.com/together-bucket-104/city/\${ele.photo_idx }">`
+	        				} else{
+	        					s+=`<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">`
+	        				}
+	        			s+=`</div>
+	        			<div class="listtext">
+	        				<b>\${ele.subject}</b><br>
+	        				작성자:\${ele.uname }<br>
+	        				조회수:\${ele.readcount } | 추천수:\${ele.cblike }<br>
+	        				작성일:\${ele.cbwriteday }<br>
+	        				<span class="spancity">#\${ele.city1} #\${ele.city2}</span>
+	        			</div>
+	        		</div>
+	        		</div>`;
 	        	});
 	        	$("div.ajaxzone").html(s);
+	        	
 	        }
 		});
 	}
@@ -466,7 +523,7 @@ body, body * {
 			return false;
 		}
 	}); 
+	
 </script>
-</div>
 </body>
 </html>

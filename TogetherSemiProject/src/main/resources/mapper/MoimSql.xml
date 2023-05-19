@@ -98,7 +98,7 @@
 		update moimmember set mname=#{Mmname} where mname=#{hiddenname}
 	</update>
 	<select id="getScheduleList" parameterType="Map" resultType="MoimScheduleDto">
-		select * from moimschedule where mnum=#{mnum}
+		select *,(select count(sj.msnum) as count from schedulejoin sj where ms.msnum = sj.msnum and unum=#{unum}) as sjcount from moimschedule ms where mnum=#{mnum};
 	</select>
 	<delete id="deleteSchedule" parameterType="Map">
 		delete from moimschedule where mssubject=#{mssubject} and mnum=#{mnum}
@@ -107,7 +107,13 @@
 		insert into schedulejoin (unum,mssubject,mnum) values (#{unum},#{mssubject},#{mnum})
 	</insert>
 	<insert id="scheduleJoin" parameterType="Map">
-		insert into schedulejoin (unum,mssubject,mnum) values (#{unum},#{mssubject},#{mnum})
+		insert into schedulejoin (unum,msnum,mnum) values (#{unum},#{msnum},#{mnum})
 	</insert>
+	<delete id="cancelScheduleJoin" parameterType="Map">
+		delete from schedulejoin where unum=#{unum} and msnum=#{msnum}
+	</delete>
+	<select id="getMemberCheckCount" parameterType="Map" resultType="int">
+		select count(*) from moimmember where unum=#{unum} and mname=#{mname}
+	</select>
 </mapper>
 

@@ -31,8 +31,10 @@ public interface MoimServiceInter {
 	public void insertMoimSchedule(MoimScheduleDto msdto);
 	public int getScheduleCount(int mnum);
 	public void changeMm(String hiddenname,String Mmname);
-	public List<MoimScheduleDto> getScheduleList(int mnum);
+	public List<MoimScheduleDto> getScheduleList(int mnum, int unum);
 	public void deleteSchedule(String mssubject, int mnum);
 	public void insertSchedulemaker(ScheduleJoinDto sjdto);
-	public void scheduleJoin(int unum, String mssubject, int mnum);
+	public void scheduleJoin(int unum, int msnum, int mnum);
+	public void cancelScheduleJoin(int unum, int msnum);
+	public int getMemberCheckCount(int unum,String mname);
 }	

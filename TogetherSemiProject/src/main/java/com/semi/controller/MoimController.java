@@ -119,7 +119,7 @@ public class MoimController {
 	}
 
 	@GetMapping("/moimdetail")
-	private String moimdetail(int mnum, Model model, HttpSession session, String mname) {
+	private String moimdetail(int mnum, Model model, HttpSession session, String mname, HttpServletRequest request) {
 		
 		// dto얻기
 		MoimDto dto = moimService.getData(mnum);
@@ -130,9 +130,11 @@ public class MoimController {
 		model.addAttribute("unum", unum);
 		model.addAttribute("udto", udto);
 		model.addAttribute("uname", uname);
-				
-		int scheduleCount = moimService.getScheduleCount(mnum);
-		System.out.println(mnum);
+		
+		
+		int scheduleCount = moimService.getScheduleCount(mnum);		
+		System.out.println(mnum);		
+		
 		// model
 		if (session.getAttribute("unum") != null) {
 			unum = (int) session.getAttribute("unum");
@@ -152,12 +154,16 @@ public class MoimController {
 			}
 
 		}
+		int membercheckCount = moimService.getMemberCheckCount(unum, mname);
+		System.out.println(membercheckCount);
+		System.out.println(unum);
 		List<Map<String, Object>> list = moimService.getGaipmemberList(mname);
-		List<MoimScheduleDto> slist = moimService.getScheduleList(mnum);
+		List<MoimScheduleDto> slist = moimService.getScheduleList(mnum, unum);
 		model.addAttribute("list", list);
 		model.addAttribute("dto", dto);
 		model.addAttribute("scheduleCount", scheduleCount);
 		model.addAttribute("slist", slist);
+		model.addAttribute("membercheckCount", membercheckCount);
 
 		return "/main/moim/moimdetail";
 	}
@@ -340,9 +346,18 @@ public class MoimController {
 	
 	@ResponseBody
 	@GetMapping("/joinSchedule")
-	public String joinSchedule(HttpSession session, String mssubject, int mnum) {
+	public String joinSchedule(HttpSession session, int msnum, int mnum) {
 		int unum = (int) session.getAttribute("unum");
-		moimService.scheduleJoin(unum, mssubject, mnum);
+		moimService.scheduleJoin(unum, msnum, mnum);
+		return "success";
+	}
+	
+	@ResponseBody
+	@GetMapping("cancelSchedule")
+	public String cancelSchedule(HttpSession session, int unum, int msnum) {
+		unum = (int) session.getAttribute("unum");
+		moimService.cancelScheduleJoin(unum, msnum);
+
 		return "success";
 	}
 

@@ -16,12 +16,14 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
 
-.cbcontent_img{
+	#photoarea{
 	width:400px;
-	height:420px;
-	margin:20px;
+	height:400px;
 	}	
 	
+	#photozone{
+	text-align:center;
+	}
 </style>
 </head>
 <body>
@@ -55,15 +57,17 @@
     		</div>
     		</c:if>
     		<c:if test="${photocount!='0'}">
+    		<div id="photozone">
     		<c:forEach var="pdto" items="${pdto}">
-    		<div class="cbcontent" align="center">
             	<img id="photoarea" class="cbcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/city/${pdto.photo_idx}">
+    		</c:forEach>
     		</div>
-    	</c:forEach>
     	</c:if>
 		<br>
+		<br>
+		<br>
 		<div style="width: 1000px; margin:0 auto;">
-        &nbsp;&nbsp;${dto.cbcontent}
+        ${dto.cbcontent}
     	</div>	
 		<br> <br> <br> 
 		<!-- 좋아요 버튼 -->
@@ -146,159 +150,176 @@
 			<!-- 댓글이 없는 경우 -->
 				<c:if test="${totalComment=='0'}">
 					<tr>
-						<td>댓글이 없습니다</td>
+						<td style="height:80px;">댓글이 없습니다</td>
 					</tr>
 				</c:if>
 			<!-- 댓글이 있는 경우 -->
 				<c:if test="${totalComment!='0' }">
 					<c:forEach var="listcomment" items="${listcomment}" varStatus="">
 						<c:if test="${listcomment.recontent=='' }">
-							<tr style="height:80px;" value="${listcomment.ref}">
-								<td style="width:700px">
+						<tbody style="display:block" id="commentView" data-ref="${listcomment.ref}" data-depth="${listcomment.depth }">
+						<tr style="border: 1px solid #ddd;" value="${listcomment.ref}">				
+							<td style="width: 1100px;background-color:#ddd;">
 								<c:forEach begin="1" end="${listcomment.depth}">
-									&nbsp;&nbsp;
+								&nbsp;&nbsp;
 								</c:forEach>
 								<c:if test="${listcomment.step!='0' }">
-								<i class="bi bi-arrow-return-right"></i>
+									<i class="bi bi-arrow-return-right"></i>
 								</c:if>
-								삭제된 댓글입니다
+								<input id="renum" type="hidden" name="renum" value="${listcomment.renum}">
+									${listcomment.uname}
 								</td>
-							</tr>	
+								<td style="float:right;width:196px; text-align:right;background-color:#ddd;">
+									<fmt:formatDate value="${listcomment.rewriteday}" pattern="yyyy.MM.dd HH:MM"/>
+								</td>
+							</tr>
+							<tr style="height:50px">
+								<td>
+									<c:forEach begin="1" end="${listcomment.depth}">
+										&nbsp;&nbsp;&nbsp;&nbsp;
+									</c:forEach>
+								<input id="recomment" type="hidden" value="${listcomment.recontent}">
+									<c:if test="${listcomment.recontent!='' }">
+									${listcomment.recontent}
+									</c:if>
+									<c:if test="${listcomment.recontent=='' }">
+									삭제된 댓글입니다
+									</c:if>
+								</td>
+							</tr>
+								
+						</tbody>
 						</c:if>
 						<c:if test="${listcomment.recontent!='' }">
 						<c:choose>
 								<c:when test="${listcomment.depth=='0'}">
 									<tbody style="display:block" class="commentView" data-ref="${listcomment.ref}" data-depth="${listcomment.depth }">
 										<tr style="border: 1px solid #ddd;" value="${listcomment.ref}">				
-					<td style="width: 1100px;background-color:#ddd;">
-					<c:forEach begin="1" end="${listcomment.depth}">
-					&nbsp;&nbsp;
-					</c:forEach>
-					<c:if test="${listcomment.step!='0' }">
-					<i class="bi bi-arrow-return-right"></i>
-					</c:if>
-					<input id="renum" type="hidden" name="renum" value="${listcomment.renum}">
-					${listcomment.uname}
-					</td>
-					<td style="float:right;width:196px; text-align:right;background-color:#ddd;">
-					<fmt:formatDate value="${listcomment.rewriteday}" pattern="yyyy.MM.dd HH:MM"/>
-					</td>
-				</tr>
-				<tr style="height:100px">
-					<td>
-					<c:forEach begin="1" end="${listcomment.depth}">
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					</c:forEach>
-					&nbsp;
-					<input id="recomment" type="hidden" value="${listcomment.recontent}"></div>
-					${listcomment.recontent}
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3">
-						&nbsp;
-						<button type="button" id="commentFunction" class="btn btn-sm text-white" style="width:100px;background-color:#FE9A2E">답글 보기</button>
-						<c:if test="${sessionScope.unum==listcomment.unum}">
-						<button type="submit" id="deleteComment" style="float:right;" class="btn btn-sm btn-danger">삭제</button>
-						<button id="updateComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">수정</button>
-						</c:if>
-            			<button id="addComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">답글</button>
-					</td>
-				</tr>
-				<tr>
-				<!-- 답글 입력 영역 -->
-				<td colspan="3" >
-					<form id="fixComment" action="addcomment" method="post">
-						<input type="hidden" name="renum" value="${listcomment.renum}">
-						<input type="hidden" name="unum" value="${udto.unum}">
-						<input type="hidden" name="uname" value="${udto.uname}">
-						<input type="hidden" name="cbnum" value="${dto.cbnum}">
-						<input type="hidden" name="ref" value="${listcomment.ref}">
-						<input type="hidden" name="step" value="${listcomment.step}">
-						<input type="hidden" name="depth" value="${listcomment.depth}">
-						<div id="recontent" style="display: none;" >
-							<textarea id="contentSide" class="form-control" rows="5" name="recontent"
-							style="height: 100px; resize: none; width: 600px;margin: 0 auto"
-							placeholder="${listcomment.recontent}" required="required"></textarea>
-							<button type="submit" class="btn btn-primary btn-sm"
-							id="submit" style="float: right; margin-right: 30px; margin-top: 20px;">입력</button>
-							<br>
-						</div>
-					</form>
-					</td>
+											<td style="width: 1100px;background-color:#ddd;">
+											<c:forEach begin="1" end="${listcomment.depth}">
+												&nbsp;&nbsp;
+											</c:forEach>
+											<c:if test="${listcomment.step!='0' }">
+												<i class="bi bi-arrow-return-right"></i>
+											</c:if>
+											<input id="renum" type="hidden" name="renum" value="${listcomment.renum}">
+												${listcomment.uname}
+											</td>
+											<td style="float:right;width:196px; text-align:right;background-color:#ddd;">
+												<fmt:formatDate value="${listcomment.rewriteday}" pattern="yyyy.MM.dd HH:MM"/>
+											</td>
+										</tr>
+										<tr style="height:100px">
+											<td>
+												<c:forEach begin="1" end="${listcomment.depth}">
+													&nbsp;&nbsp;&nbsp;&nbsp;
+												</c:forEach>
+												&nbsp;
+												<input id="recomment" type="hidden" value="${listcomment.recontent}"></div>
+													${listcomment.recontent}
+											</td>
+										</tr>
+										<tr>
+											<td colspan="3">
+												&nbsp;
+													<button type="button" id="commentFunction" class="btn btn-sm text-white" style="width:100px;background-color:#FE9A2E">답글 보기</button>
+													<c:if test="${sessionScope.unum==listcomment.unum}">
+														<button type="submit" id="deleteComment" style="float:right;" class="btn btn-sm btn-danger">삭제</button>
+														<button id="updateComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">수정</button>
+													</c:if>
+            										<button id="addComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">답글</button>
+											</td>
+										</tr>
+										<tr>
+										<!-- 답글 입력 영역 -->
+											<td colspan="3" >
+												<form id="fixComment" action="addcomment" method="post">
+													<input type="hidden" name="renum" value="${listcomment.renum}">
+													<input type="hidden" name="unum" value="${udto.unum}">
+													<input type="hidden" name="uname" value="${udto.uname}">
+													<input type="hidden" name="cbnum" value="${dto.cbnum}">
+													<input type="hidden" name="ref" value="${listcomment.ref}">
+													<input type="hidden" name="step" value="${listcomment.step}">
+													<input type="hidden" name="depth" value="${listcomment.depth}">
+													<div id="recontent" style="display: none;" >
+														<textarea id="contentSide" class="form-control" rows="5" name="recontent"
+														style="height: 100px; resize: none; width: 600px;margin: 0 auto"
+														placeholder="${listcomment.recontent}" required="required"></textarea>
+													<button type="submit" class="btn btn-primary btn-sm"
+													id="submit" style="float: right; margin-right: 30px; margin-top: 20px;">입력</button>
+													<br>
+													</div>
+												</form>
+											</td>
 				
-				</tr>	
+										</tr>	
 									</tbody>
 								</c:when>
-								<c:otherwise>
-									<tbody style="display:none" id="commentView" data-ref="${listcomment.ref}" data-depth="${listcomment.depth }">
+							<c:otherwise>
+								<tbody style="display:none" id="commentView" data-ref="${listcomment.ref}" data-depth="${listcomment.depth }">
 									<tr style="border: 1px solid #ddd;" value="${listcomment.ref}">				
-					<td style="width: 540px;">
-					<c:forEach begin="1" end="${listcomment.depth}">
-					&nbsp;&nbsp;
-					</c:forEach>
-					<c:if test="${listcomment.step!='0' }">
-					<i class="bi bi-arrow-return-right"></i>
-					</c:if>
-					<input id="renum" type="hidden" name="renum" value="${listcomment.renum}">
-					${listcomment.uname}
-					</td>
-					<td style="float:right;width:170px; text-align:right">
-					<fmt:formatDate value="${listcomment.rewriteday}" pattern="yyyy.MM.dd HH:MM"/>
-					</td>
-				</tr>
-				<tr style="height:50px">
-					<td>
-					<c:forEach begin="1" end="${listcomment.depth}">
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					</c:forEach>
-					<input id="recomment" type="hidden" value="${listcomment.recontent}"></div>
-					${listcomment.recontent}
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3">
-						<c:if test="${sessionScope.unum==listcomment.unum}">
-						<c:if test="${listcomment.depth=='0' }">
-						</c:if>
-						<button type="submit" id="deleteComment" style="float:right" class="btn btn-sm btn-danger">삭제</button>
-						<button id="updateComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">수정</button>
-						</c:if>
-						<button id="addComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">답글</button>
-					</td>
-				</tr>
-				<tr>
-				<!-- 답글 입력 영역 -->
-				<td colspan="3" style="height:10px;">
-					<form id="fixComment" action="addcomment" method="post">
-						<input type="hidden" name="renum" value="${listcomment.renum}">
-						<input type="hidden" name="unum" value="${udto.unum}">
-						<input type="hidden" name="uname" value="${udto.uname}">
-						<input type="hidden" name="cbnum" value="${dto.cbnum}">
-						<input type="hidden" name="ref" value="${listcomment.ref}">
-						<input type="hidden" name="step" value="${listcomment.step}">
-						<input type="hidden" name="depth" value="${listcomment.depth}">
-						<div id="recontent" style="display: none;" >
-							<textarea id="contentSide" class="form-control" rows="5" name="recontent"
-							style="height: 100px; resize: none;width: 600px;margin: 0 auto"
-							placeholder="${listcomment.recontent}" required="required"></textarea>
-							<button type="submit" class="btn btn-primary"
-							id="submit" style="float: right; margin-right: 30px; margin-top: 50px;">입력</button>
-							<br>
-						</div>
-					</form>
-					</td>
-				
-				</tr>	
-									</tbody>
-								</c:otherwise>
-							</c:choose>
-						</c:if>
-					</c:forEach>
+										<td style="width: 1100px;background-color:#ddd;">
+											<c:forEach begin="1" end="${listcomment.depth}">
+												&nbsp;&nbsp;
+											</c:forEach>
+											<c:if test="${listcomment.step!='0' }">
+												<i class="bi bi-arrow-return-right"></i>
+											</c:if>
+											<input id="renum" type="hidden" name="renum" value="${listcomment.renum}">
+											${listcomment.uname}
+										</td>
+										<td style="float:right;width:196px; text-align:right;background-color:#ddd;">
+											<fmt:formatDate value="${listcomment.rewriteday}" pattern="yyyy.MM.dd HH:MM"/>
+										</td>
+									</tr>
+									<tr style="height:50px">
+										<td>
+											<c:forEach begin="1" end="${listcomment.depth}">
+												&nbsp;&nbsp;&nbsp;&nbsp;
+											</c:forEach>
+											<input id="recomment" type="hidden" value="${listcomment.recontent}"></div>
+												${listcomment.recontent}
+											</td>
+									</tr>
+									<tr>
+										<td colspan="3">
+											<c:if test="${sessionScope.unum==listcomment.unum}">
+												<button type="submit" id="deleteComment" style="float:right" class="btn btn-sm btn-danger">삭제</button>
+												<button id="updateComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">수정</button>
+											</c:if>
+											<button id="addComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">답글</button>
+										</td>
+									</tr>
+									<tr>
+										<!-- 답글 입력 영역 -->
+										<td colspan="3" style="height:10px;">
+											<form id="fixComment" action="addcomment" method="post">
+												<input type="hidden" name="renum" value="${listcomment.renum}">
+												<input type="hidden" name="unum" value="${udto.unum}">
+												<input type="hidden" name="uname" value="${udto.uname}">
+												<input type="hidden" name="cbnum" value="${dto.cbnum}">
+												<input type="hidden" name="ref" value="${listcomment.ref}">
+												<input type="hidden" name="step" value="${listcomment.step}">
+												<input type="hidden" name="depth" value="${listcomment.depth}">
+												<div id="recontent" style="display: none;" >
+												<textarea id="contentSide" class="form-control" rows="5" name="recontent"
+												style="height: 100px; resize: none;width: 600px;margin: 0 auto"
+												placeholder="${listcomment.recontent}" required="required"></textarea>
+												<button type="submit" class="btn btn-primary"
+												id="submit" style="float: right; margin-right: 30px; margin-top: 50px;">입력</button>
+												<br>
+											</div>
+										</form>
+									</td>
+								</tr>	
+							</tbody>
+						</c:otherwise>
+					</c:choose>
 				</c:if>
-			</table>
-			
-		</div>
+			</c:forEach>
+		</c:if>
+	</table>		
+</div>
 		<hr style="width:94%; margin-left:40px">
 		<div>
 			

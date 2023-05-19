@@ -209,7 +209,7 @@ public class LoginController {
 		 List<Map<String, Object>> jjimList = loginService.getJJimMoimList(unum);
 		 model.addAttribute("jjimList", jjimList);
 		    
-		    return "/main/user/myjjimlist";
+		    return "/main/user/mypagejjimlist";
 	   	  }
 	 
 

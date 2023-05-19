@@ -252,16 +252,16 @@
     		var emailPattern = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/;
     	    if (emailInput.value == ''){
     	        event.preventDefault();
-    	        if (confirm('이메일을 입력해주세요.')) {
-    	        	emailInput.focus();
-    	        }
+    	        alert('이메일을 입력해주세요.');
+    	        emailInput.focus();
+    	        
     	        return;
     	    }
     	    else if (!emailPattern.test(emailInput.value)){
     	        event.preventDefault();
-    	        if (confirm('이메일 형식을 확인해주세요.')) {
-    	        	emailInput.focus();
-    	        }
+    	        alert('이메일 형식을 확인해주세요.');
+    	        emailInput.focus();
+    	        
     	        return;
     	    }
     		
@@ -269,25 +269,25 @@
     		
     	    if (passInput.value == ''){
     	        event.preventDefault();
-    	        if (confirm('비밀번호를 입력해주세요.')) {
-    	            passInput.focus();
-    	        }
+    	        alert('비밀번호를 입력해주세요.');
+    	        passInput.focus();
+    	        
     	        return;
     	    }
     	    else if (passch == false){
     	    	event.preventDefault();
-    	        if (confirm('비밀번호 형식을 확인해주세요.')) {
-    	            passInput.focus();
-    	        }
+    	        alert('비밀번호 형식을 확인해주세요.');
+    	        passInput.focus();
+    	        
     	        return;
     	    }
     	    
     	    const passcheck = document.querySelector('#pass_check');
     	    if (passcheck.value != passInput.value){
     	        event.preventDefault();
-    	        if (confirm('비밀번호를 확인해주세요.')) {
-    	            passcheck.focus();
-    	        }
+    	        alert('비밀번호를 확인해주세요.');
+    	        passcheck.focus();
+    	        
     	        return;
     	    }
     		
@@ -295,51 +295,51 @@
     	    var namePattern = /^[a-zA-Z가-힣]+$/;
     	    if (nameInput.value == ''){
     	        event.preventDefault();
-    	        if (confirm('이름을 입력해주세요.')) {
-    	        	nameInput.focus();
-    	        }
+    	        alert('이름을 입력해주세요.');
+    	       	nameInput.focus();
+    	
     	        return;
     	    }
  			else if (!namePattern.test(nameInput.value)){
     	    	event.preventDefault();
-    	        if (confirm('이름을 형식을 확인해주세요.')) {
-    	        	nameInput.focus();
-    	        }
+    	        alert('이름을 형식을 확인해주세요.');
+    	        nameInput.focus();
+    	        
     	        return;
     	    } 
     	    
     	    const ageInput = document.querySelector('#age');
     	    if (ageInput.value == ''){
     	        event.preventDefault();
-    	        if (confirm('생년월일을 입력해주세요.')) {
-    	            ageInput.focus();
-    	        }
+    	        alert('생년월일을 입력해주세요.');
+    	        ageInput.focus();
+    	        
     	        return;
     	    }
     	    
     	    const genderInput = document.querySelector('#gender');
     	    if (genderInput.value == '성별'){
     	        event.preventDefault();
-    	        if (confirm('성별을 선택해주세요.')) {
-    	            genderInput.focus();
-    	        }
+    	        alert('성별을 선택해주세요.');
+    	        genderInput.focus();
+    	        
     	        return;
     	    }
     	    const cityInput=document.querySelector('#city');
     	    if (cityInput.value == '시, 도 선택'){
     	    	event.preventDefault();
-    	        if(confirm('지역을 선택해주세요.')){
-    	    	    cityInput.focus();
-    	    	}
+    	        alert('지역을 선택해주세요.');
+    	    	cityInput.focus();
+    	    	
     	    	return;
     	    }
     	    
         	const categoryInput = document.querySelector('#category');
         	if (hiddenInput.value == "null") {
         		event.preventDefault();
-        	    if(confirm('카테고리를 선택해주세요.')){
-        	    	categoryInput.focus();
-        	    }
+        	    alert('카테고리를 선택해주세요.');
+        	    categoryInput.focus();
+        	    
         	    return;
         	}
     	    
@@ -347,18 +347,20 @@
     	    var isPhoneNum = /^[0-9]*$/;
     	    if (hpInput.value == ''){
     	    	event.preventDefault();
-    	        if(confirm('전화번호를 입력해주세요.')){
+    	        alert('전화번호를 입력해주세요.');
     	        hpInput.focus();
-    	    	}
+    	    	
     	    	return;
     	    }
     	    else if(!isPhoneNum.test(hpInput.value)){
     	    	event.preventDefault();
-    	        if(confirm('전화번호는 숫자로만 입력해주세요.')){
+    	        alert('전화번호는 숫자로만 입력해주세요.');
     	        hpInput.focus();
-    	    	}
+    	    	
     	    	return;
     	    }
+
+    	    alert("회원가입 완료!!!");
     	});
     	
     

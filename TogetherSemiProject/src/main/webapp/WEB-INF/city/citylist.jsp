@@ -106,7 +106,55 @@ body, body * {
 	</c:choose>
 	${totalCount}개 있습니다
 </h1>
-<form action="list" method="get">
+
+		<button type="button" style="float: right" id="write" onclick="writeform();">글쓰기</button>
+
+		
+		
+		
+	
+
+ 	<%-- <table class="table table-bordered boardlist">
+		<tr bgcolor="#f5f5dc">
+			<th style="width: 100px">번호</th>
+			<th style="width: 400px">제목</th>
+			<th style="width: 200px">작성자</th>
+			<th style="width: 150px">작성일</th>
+			<th style="width: 100px">조회수</th>
+			<th style="width: 100px">추천수</th>
+		</tr>
+		
+		
+		<c:forEach var="list" items="${list}" varStatus="i">
+			<tr>
+				<td align="center">${list.cbnum }</td>
+				<c:choose>
+					<c:when test="${unum==0}">
+						<td style="cursor: pointer" onclick="guest();"><b>${list.subject}</b>
+						</td>
+					</c:when>
+					<c:otherwise>
+						<td style="cursor: pointer"
+							onclick="location.href='detail?cbnum=${list.cbnum}'"><b>${list.subject}</b>
+					</c:otherwise>
+				</c:choose>
+				<td>${list.uname}</td>
+				<td align="right"><fmt:formatDate value="${list.cbwriteday }"
+						pattern="yyyy-MM-dd" /></td>
+				<td>${list.readcount} </td>
+				<td>${list.cblike}</td>
+			</tr>
+		</c:forEach>
+	</table> --%>
+
+	
+	<h1>TOP3</h1>
+	<div class="btn-group">
+	<button class="btn btn-primary" id="liketop" onclick="liketop()">추천수 TOP3</button>
+	<button class="btn btn-primary" id="readtop" onclick="readtop()">조회수 TOP3</button>
+	<form action="list" method="get">
+	
+	<div style="float: right;">
 	<select id="city" name="city1">
 		<option hidden>시, 도 선택</option>
 		<option value="서울특별시">서울특별시</option>
@@ -184,51 +232,7 @@ body, body * {
         <input name="keyword" value="${keyword }" type="text">
 		<button id="search" type="submit">선택지역검색</button>
 		</form>
-		<button type="button" style="float: right" id="write" onclick="writeform();">글쓰기</button>
-
-		
-		
-		
-	
-
- 	<%-- <table class="table table-bordered boardlist">
-		<tr bgcolor="#f5f5dc">
-			<th style="width: 100px">번호</th>
-			<th style="width: 400px">제목</th>
-			<th style="width: 200px">작성자</th>
-			<th style="width: 150px">작성일</th>
-			<th style="width: 100px">조회수</th>
-			<th style="width: 100px">추천수</th>
-		</tr>
-		
-		
-		<c:forEach var="list" items="${list}" varStatus="i">
-			<tr>
-				<td align="center">${list.cbnum }</td>
-				<c:choose>
-					<c:when test="${unum==0}">
-						<td style="cursor: pointer" onclick="guest();"><b>${list.subject}</b>
-						</td>
-					</c:when>
-					<c:otherwise>
-						<td style="cursor: pointer"
-							onclick="location.href='detail?cbnum=${list.cbnum}'"><b>${list.subject}</b>
-					</c:otherwise>
-				</c:choose>
-				<td>${list.uname}</td>
-				<td align="right"><fmt:formatDate value="${list.cbwriteday }"
-						pattern="yyyy-MM-dd" /></td>
-				<td>${list.readcount} </td>
-				<td>${list.cblike}</td>
-			</tr>
-		</c:forEach>
-	</table> --%>
-
-	
-	<h1>TOP3</h1>
-	<div class="btn-group">
-	<button class="btn btn-primary" id="liketop" onclick="liketop()">추천수 TOP3</button>
-	<button class="btn btn-primary" id="readtop" onclick="readtop()">조회수 TOP3</button>
+		</div>
 	</div>
 	<div class="ajaxzone"></div>
 	<div class="hrzone"></div>

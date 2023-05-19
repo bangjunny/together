@@ -18,9 +18,139 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-	body, body *{
-		 font-family: 'Noto Sans', sans-serif;
+
+	.myup_table tr{
+		width:690px;
+		height:50px
 	}
+	.myup_table td{
+		vertical-align: middle;
+	}
+	.mytit {
+		font-size: 30px;
+		margin-bottom: 30px;
+		font-weight: bold;
+	}	
+	
+	.modu {
+		width:690px;
+		margin: 0 auto;
+		margin-top:100px;
+	}   
+	.myinfofront {
+		
+		font-size:20px;
+		width:150px;
+		font-weight: bold;
+	}
+	.catego {
+		width:695px;
+	}
+	
+	.catego td {
+       width : 150px;
+       font-size:18px;
+     }
+       
+  
+	
+	.bi {
+       	cursor: pointer;
+       	color : #FE9A2E
+     }
+    
+    select {
+    	height: 40px;
+    	width: 140px;
+        font-size: 15px;
+        background: #fff;
+        background-size: 20px 8px;
+        border-radius:5px;
+        -webkit-appearance: none;
+        display: inline-block;
+        text-align: start;
+        border: solid 1px #dadada;
+        cursor: default;
+        padding-left: 5px;
+    }
+    
+    .pickcate {
+    	float:left;
+    	font-size: 17px;
+    	margin-left:5px;
+    	margin-right: 10px;
+    }
+    
+	.mainlayout .main{
+		width: 100%;
+		height: 1200px;
+	}
+	
+	label {
+		cursor: pointer;
+	}
+	
+	.olmessagef {
+		color: red; 
+		font-size: 13px;
+		float: left;
+	}
+	.olmessaget {
+		color: green; 
+		font-size: 13px;
+		float: left; 	
+	}
+	
+	#selcategory {
+		margin-top:5px;
+		font-size:15px;
+	}
+	
+	.de {
+		margin-top: 20px;
+		margin-bottom: 10px;
+	}
+	
+	.butt {
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	
+	.makemo {
+		margin-right: 30px;
+		height: 36px;
+    	width:100px;
+    	background: #FE9A2E;
+      	background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+	}
+	
+	.makemo:hover {
+		background: #FE642E;
+	}
+	
+	.notmo {
+		height: 36px;
+    	width:100px;
+    	background: #A4A4A4;
+      	background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+	}
+	
+	.notmo:hover {
+		background: #424242;
+	}
+	
 	.bi {
        	cursor: pointer;
        	color : #FE9A2E
@@ -30,15 +160,6 @@
 	 cursor:pointer;
 	}
 	
-	.container-fluid {
-	  max-width: 1440px;
-	  margin: 20 auto;
-	  flex : auto;
-	  padding: 40px 20px;
-	  background-color: #fff;
-	  border: 1px solid #ddd;
-	  box-shadow: 0px 0px 5px #ddd;
-	}
 	
 	.text {
 	  width:1440px;
@@ -52,29 +173,50 @@
 </style> 
 </head>
 <body>
-<div class="container-fluid text" style="inline">
-	<div class="row justify-content-center">
-		<div class="text col">
-			 <div class="card">
-				<div class="card-body">
-					<h5 class="card-title">내 정보 수정</h5>
-					<form id="myForm" action="/user/updatemypage" method="post" enctype="multipart/form-data">
-						<!-- hidden -->
-						<input type="hidden" name="unum" value="${dto.unum}">
-						<div class="form-group">
-						<label>이름 : ${dto.uname}</label><br>
-						<label>생년월일 : ${dto.age}</label><br>
-						<label>성별 : ${dto.gender}</label><br>
-						
-						</div>
-						<div class="form-group">
-						<label for="hp">전화번호</label>
+<div class="modu">
+	<div class="container-fluid">
+		<h5 class="mytit">내 정보 수정</h5>
+			<form id="myForm" action="/user/updatemypage" method="post" enctype="multipart/form-data">
+				<!-- hidden -->
+				<input type="hidden" name="unum" value="${dto.unum}">
+				<table class="table myup_table">
+				<tr>
+					<td class="myinfofront">이름</td>
+					<td>
+						${dto.uname}
+					</td>
+				</tr>
+				<tr>	
+					<td class="myinfofront">생년월일</td>
+					<td>
+						${dto.age}
+					</td>
+				</tr>
+				<tr>		
+					<td class="myinfofront">성별</td>
+					<td>
+						 ${dto.gender}
+					</td>
+				</tr>	
+				</tr>
+				<tr>
+					<td class="myinfofront">이메일  </td>
+					<td>${dto.email}</td>
+				</tr>
+				<tr>	
+					<td class="myinfofront">hp </td>
+					<td>	
 						<input type="tel" class="form-control" id="hp" name="hp" value="${dto.hp}" required>
-						</div>
-						<div class="form-group">  
-					         <!-- City -->
+					</td>
+				</tr>
+				<tr>		
+					<td class="myinfofront">
+					
+						  <!-- City -->
 				           <div class="input-wrap">
-				             <label for="user_city" class="la">지역</label>
+				             <label for="user_city" class="la">활동 지역</label>
+				     </td>
+				     <td>        
 				             	<div class="ps_box_city" style="left: 122px;">
 				                     <select id = "city" name="city1" class="cit">
 				                        <option hidden value="${dto.city1}">${dto.city1}</option>
@@ -102,7 +244,8 @@
 					                  </select>
 								</div>
 							</div>
-						</div> 	
+					</td>       
+				</tr>		
 	                  <script>
 	                   $(document).ready(function() {
 	                     $('#city').change(function() {
@@ -153,97 +296,102 @@
 	                       districtSelect.prop('disabled', false);
 	                     });
 	                   });
-	                 </script>	           
-             <div class="form-group">
-			            <!-- Category -->
-		           <div class="input-mo">
-		           	<label for="user_category" class="la">선호 카테고리</label>		   
-		           	<label data-bs-toggle="modal" data-bs-target="#mySportsModal">
-						<table class=catego>
-							<tr>
-								<td>
-									<i class="bi bi-dribbble"></i>
-									<h7>운동/스포츠</h7>
-									</label>
-								</td>
-								<td>
-									<label data-bs-toggle="modal" data-bs-target="#myGameModal">
-									<i class="bi bi-controller"></i>
-									<h7>게임/오락</h7>
-									</label>
-								</td>
-								<td>
-									<label data-bs-toggle="modal" data-bs-target="#myTravelModal">
-									<i class="bi bi-geo-alt"></i>
-									<h7>여행/아웃도어</h7>
-									</label>
-								</td>
-							</tr>
-							
-							<tr>
-								<td>
-									<label data-bs-toggle="modal" data-bs-target="#myBookModal">
-									<i class="bi bi-book"></i>
-									<h7>책/글</h7>
-									</label>
-								</td>
-								<td>
-									<label data-bs-toggle="modal" data-bs-target="#myWorkModal">
-									<i class="bi bi-briefcase"></i>
-									<h7>업종/직무</h7>
-									</label>
-								</td>
-								<td>
-									<label data-bs-toggle="modal" data-bs-target="#myLangModal">
-									<i class="bi bi-translate"></i>
-									<h7>외국/언어</h7>
-									</label>
-								</td>
-							</tr>
-						
-							<tr>
-							<td>
-								<label data-bs-toggle="modal" data-bs-target="#myMusicModal">
-								<i class="bi bi-music-note-beamed"></i>
-								<h7>음악/악기</h7>
-								</label>
-							</td>
-							<td>	
-								<label data-bs-toggle="modal" data-bs-target="#mySocialModal">
-								<i class="bi bi-cup-straw"></i>
-								<h7>사교/인맥</h7>
-								</label>
-							</td>
-							<td>
-								<label data-bs-toggle="modal" data-bs-target="#myCraftsModal">
-								<i class="bi bi-palette"></i>
-								<h7>공예/만들기</h7>
-								</label>
-							</td>
-						</tr>
-						
-					 </table>				
-					</div>
+	                 </script>	                	           
+             <tr>
+			<td colspan="4">
+			<div style="margin-bottom: 10px;"> 
+				<span class="tag">카테고리</span>
+			</div>
+			
+			<div class="cat">
+				<label data-bs-toggle="modal" data-bs-target="#mySportsModal">
+				<table class=catego>
+					<tr>
+						<td>
+							<i class="bi bi-dribbble"></i>
+							<h7>운동/스포츠</h7>
+							</label>
+						</td>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myGameModal">
+							<i class="bi bi-controller"></i>
+							<h7>게임/오락</h7>
+							</label>
+						</td>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myTravelModal">
+							<i class="bi bi-geo-alt"></i>
+							<h7>여행/아웃도어</h7>
+							</label>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myBookModal">
+							<i class="bi bi-book"></i>
+							<h7>책/글</h7>
+							</label>
+						</td>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myWorkModal">
+							<i class="bi bi-briefcase"></i>
+							<h7>업종/직무</h7>
+							</label>
+						</td>
+						<td>
+							<label data-bs-toggle="modal" data-bs-target="#myLangModal">
+							<i class="bi bi-translate"></i>
+							<h7>외국/언어</h7>
+							</label>
+						</td>
+					</tr>
 				
-					<div class="input-wrap ">
-						<div class="pk">
-							<div class="pick">선택한 카테고리 : </div>
-							<div type="text" id="selcategory" class="pickne"></div>
-				           	<input type="hidden" class="selcategory" name="category" value="null" id="category">
-			           	</div>
-           			</div>	
-	        	</div>  
-	       
-				<button type="submit" class="btn btn-outline-success">수정</button>
-				<button type="button" class="btn btn-outline-success"
-				onclick="history.back()">취소</button>
-						
-    	</form>
+					<tr>
+					<td>
+						<label data-bs-toggle="modal" data-bs-target="#myMusicModal">
+						<i class="bi bi-music-note-beamed"></i>
+						<h7>음악/악기</h7>
+						</label>
+					</td>
+					<td>	
+						<label data-bs-toggle="modal" data-bs-target="#mySocialModal">
+						<i class="bi bi-cup-straw"></i>
+						<h7>사교/인맥</h7>
+						</label>
+					</td>
+					<td>
+						<label data-bs-toggle="modal" data-bs-target="#myCraftsModal">
+						<i class="bi bi-palette"></i>
+						<h7>공예/만들기</h7>
+						</label>
+					</td>
+				</tr>
+				
+			 </table>
+			</div>		
+		<tr>
+			<td colspan="4">
+				<div class="pickcate">
+					<span class="tag">선택한 카테고리 :	</span>
+				</div>
+				<div type="text" id="selcategory"></div>
+				<input type="hidden" class="selcategory" name="category" value="null">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5" align="center">
+	       		<div class="mybutt">	
+					<button type="submit" class="makemo">수정</button>
+					<button type="button" class="notmo"	onclick="history.back()">취소</button>
+				</div>
+			</td>
+		</tr>		
+	</table>			
+    </form>
   </div> 
 </div>
-</div>
-</div>
-</div>
+
 <!-- The Modal -->
 		<div class="modal" id="mySportsModal">
 			<div class="modal-dialog modal-dialog-centered">

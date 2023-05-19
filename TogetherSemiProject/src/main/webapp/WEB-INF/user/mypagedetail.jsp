@@ -93,7 +93,7 @@
 	}
 	
 	.offcanvas-body button{
-		margin-top : 20px;
+		margin-top : 30px;
 		margin-left: 37px;
 		width: 200px;
 		background: #FE9A2E;
@@ -104,7 +104,7 @@
         border-radius: 3px;
 	}
 	.offcanvas-body button:hover{
-		margin-top : 20px;
+		margin-top : 30px;
 		margin-left: 37px;
 		width: 200px;
 		background: #FE642E;
@@ -136,10 +136,10 @@
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
 	</div>
 	<div class="offcanvas-body">
-	    <button class="btn sidebar_1_btn"><i class="bi bi-house-fill"></i>&nbsp; 프로필</button><br><br>
-	    <button class="btn sidebar_2_btn"><i class="bi bi-people-fill"></i>&nbsp; 모임</button><br><br>
-	    <button class="btn sidebar_3_btn" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-geo-alt-fill"></i>&nbsp;내 지역 작성글</button>
-	    <button class="btn sidebar_3_btn" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-geo-alt-fill"></i>&nbsp;내 지역 좋아요글</button>
+	    <button class="btn sidebar_1_btn"><i class="bi bi-house-fill"></i>&nbsp; 마이프로필 홈</button><br>
+	    <button class="btn sidebar_2_btn"><i class="bi bi-people-fill"></i>&nbsp; 내 모임</button><br>
+	    <button class="btn sidebar_3_btn" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-pencil-square"></i>&nbsp; 내가 작성한 글</button><br>
+	    <button class="btn sidebar_3_btn" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-heart-fill"></i>&nbsp; 내가 추천한 게시글</button>
 
 	</div>
 </div>

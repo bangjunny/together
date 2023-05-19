@@ -184,7 +184,7 @@ body, body * {
 		</form>
 	
 
- 	<%-- <table class="table table-bordered boardlist">
+ 	<table class="table table-bordered boardlist">
 		<tr bgcolor="#f5f5dc">
 			<th style="width: 100px">번호</th>
 			<th style="width: 400px">제목</th>
@@ -215,7 +215,7 @@ body, body * {
 				<td>${list.cblike}</td>
 			</tr>
 		</c:forEach>
-	</table> --%>
+	</table>
 
 	
 	<h1>TOP3</h1>
@@ -226,7 +226,7 @@ body, body * {
 	<div class="ajaxzone"></div>
 	
 	
-	<%-- <table style="margin:0 auto;border:1px solid black;width:auto">
+	<table style="margin:0 auto;border:1px solid black;width:auto">
 	<c:forEach var="list" items="${list}" varStatus="i">
 	<tr>
 	<td style="border:1px solid black;width:100px" rowspan="2">
@@ -253,8 +253,8 @@ body, body * {
 		</td>
 	</tr>
 	</c:forEach>
-	</table> --%>
-	<%-- <div class="outbox">
+	</table>
+	<div class="outbox">
 	<c:forEach var="list" items="${list}" varStatus="i">
 	<c:choose>
 		<c:when test="${unum==0 }">
@@ -285,7 +285,7 @@ body, body * {
 		</div>
 	</div>
 	</c:forEach>
-	</div> --%>
+	</div>
 
 	
 	

@@ -377,7 +377,7 @@
         // 체크박스 값이 변경될 때마다 실행되는 함수
         $('input[name="categorys"]').on('change', function() {
           // 모든 체크박스를 해제
-          $('input[name="categorys"]').not(this).prop('checked', false);
+          //$('input[name="categorys"]').not(this).prop('checked', false);
           
           // 선택된 체크박스 값을 출력
           var selected = $(this).val();

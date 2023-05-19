@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mypage Detail</title>
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
@@ -31,6 +31,10 @@
 	#mypageupdateicon{
 		margin-left:10px;
 		color: #FE9A2E;
+		cursor:pointer;
+	
+	}
+	#myinfoupdate{
 		cursor:pointer;
 	
 	}     
@@ -62,6 +66,9 @@
 		margin-left:20px;
 	}
 	
+	#mypage_navbar{		
+		margin-top: 80px;
+	}
 	.container {
 	  margin-top:100px;
 	  margin-left:10px;
@@ -88,14 +95,8 @@
 		width: 150px;
 	}
 	
-	#sidebarmenu button {		
-		margin-top: 80px;
-	}
-	
-	.offcanvas-body button{
-		margin-top : 30px;
-		margin-left: 37px;
-		width: 200px;
+	#myphotoupdatebtn{
+		margin-top : 5px;
 		background: #FE9A2E;
         background-size: 200%;
         color:white;
@@ -103,10 +104,8 @@
         border:none;
         border-radius: 3px;
 	}
-	.offcanvas-body button:hover{
-		margin-top : 30px;
-		margin-left: 37px;
-		width: 200px;
+	#myphotoupdatebtn:hover{
+		margin-top : 5px;
 		background: #FE642E;
         background-size: 200%;
         color:white;
@@ -129,37 +128,40 @@
 </style>
 
 <body>
-
-<div class="offcanvas offcanvas-end" id="mypagemenu" style="width:300px">
-  	<div class="offcanvas-header">
-    <h1 class="offcanvas-title">MyPage Menu</h1>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-	</div>
-	<div class="offcanvas-body">
-	    <button class="btn sidebar_1_btn"><i class="bi bi-house-fill"></i>&nbsp; 마이프로필 홈</button><br>
-	    <button class="btn sidebar_2_btn"><i class="bi bi-people-fill"></i>&nbsp; 내 모임</button><br>
-	    <button class="btn sidebar_3_btn" onclick="location.href='/user/mypagecblist?unum=${unum}'"><i class="bi bi-pencil-square"></i>&nbsp; 내가 작성한 글</button><br>
-	    <button class="btn sidebar_3_btn" onclick="location.href='/user/mypagecblikelist?unum=${unum}'"><i class="bi bi-heart-fill"></i>&nbsp; 내가 추천한 게시글</button>
-
-	</div>
-</div>
-<div class="container-fluid mt-3" id="sidebarmenu">
-  <button class="btn btn-outline" type="button" data-bs-toggle="offcanvas" data-bs-target="#mypagemenu">
-    <i class="bi bi-list" style="font-size:30px;">메뉴</i>
-  </button>
-</div>
-		<script type="text/javascript">
-				$(".sidebar_1_btn").click(function() {
-					$("#myprofile").css("display", "block");
-					$("#mylist_wrap").css("display", "none");
-				});
-				$(".sidebar_2_btn").click(function() {
-					$("#myprofile").css("display", "none");
-					$("#mylist_wrap").css("display", "block");
-				});
-				
-		</script>
-<!-- 사이드바 -->
+<!-- 마이페이지내브바 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mypage_navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}">MYPAGE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user/mypagedetail?unum=${unum}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 쓴 게시물</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="myinfoupdate">내 정보 수정</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="myuser_out">회원탈퇴</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <div class="container text">
 	<div id="myprofile"  style="display: block;">
@@ -176,15 +178,15 @@
 	                    <!-- 대표사진으로 출력하는 코드 -->	                             
 	                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo main" alt="대표사진">
 	                    <br><br>
-	                    <label><i class="bi bi-award-fill">나의 대표사진</i></label>    
+	                    <label><i class="bi bi-award-fill"></i>나의 대표사진</label>    
 	                  </div>
 	                </c:if>
 	                <c:if test="${photo.is_main != 1}">
 	                  <div class="carousel-item">
 	                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo" alt="포토사진 ${photo.photo_idx}">
 	                    <br><br>
-	                    <label><i class="bi bi-award setmain" photo_idx="${photo.photo_idx}">대표사진으로 지정하기</i></label>
-	                    <label><i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}">사진 삭제하기</i></label> 
+	                    <label><i class="bi bi-award setmain" photo_idx="${photo.photo_idx}"></i>대표사진으로 지정하기</label>
+	                    <label><i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}"></i>사진 삭제하기</label> 
 	                  </div>
 	                </c:if>
 	              </c:forEach>
@@ -205,7 +207,7 @@
 		        </c:otherwise>
 	      	</c:choose>
 		         <!-- Button trigger modal -->           
-	            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#myPhotoModal">
+	            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myPhotoModal" id="myphotoupdatebtn">
 	                사진 업로드
 	            </button>
 			</div>	
@@ -268,7 +270,7 @@
 		    			$(document).ready(function() {
 		    			  $('[data-toggle="tooltip"]').tooltip();
 		    			  
-						$("#mypageupdateicon").click(function() {
+						$("#myinfoupdate").click(function() {
 								
 								$("#myinfotable").css("display", "none");
 								$("#mypageupdateform").css("display", "block");	

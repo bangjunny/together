@@ -210,7 +210,6 @@
 	<form action="update" method="post" enctype="multipart/form-data" id="moimform">
 	<!-- hidden -->
 			<input type="hidden" name="mnum" value="${dto.mnum}"> 
-	
 	<table class="table">
 		<tr>
 			<td rowspan="4" style="width:440px;">

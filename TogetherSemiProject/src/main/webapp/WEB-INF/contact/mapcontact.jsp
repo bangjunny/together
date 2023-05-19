@@ -18,8 +18,8 @@
 	}
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-.map_wrap {position:relative;width:83%;height:720px;margin: 50px auto 0 auto;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:300px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+.map_wrap {position:relative;width:77%;height:750px;margin: 50px auto 0 auto;}
+#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:380px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.8);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
@@ -55,15 +55,16 @@
 
 @media ( max-width: 1200px ){
 .map_wrap {position:relative;width:520;height:520px;margin: 50px auto 0 auto;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:9px;border-radius: 10px;}
-
+#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:280px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.8);z-index: 1;font-size:9px;border-radius: 10px;}
+#keyword{width:110px;}
+.btnsch{width:35px;height:20px;}
 }
 </style>
 </head>
 <body>
-<br><br><br><br>
+<br><br><br><br><br>
 <div style="text-align:center;font-size:30px;"><b>모임 장소를 검색 해 보세요!</b></div>
-<br>
+
  <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
@@ -71,8 +72,8 @@
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="강남역 맛집" id="keyword" size="15"> 
-                    <button type="submit" class="btn btn-secondary btn-sm">검색</button> 
+                    키워드 : <input type="text" value="${udto.city1} ${udto.city2}" id="keyword" size="18"> 
+                    <button type="submit" class="btn btn-warning btnsch" style="width:70px;height:35px;">검색</button> 
                 </form>
             </div>
         </div>

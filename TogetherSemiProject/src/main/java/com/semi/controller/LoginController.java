@@ -470,10 +470,22 @@ public class LoginController {
 	  }
 	  @ResponseBody
 	  @GetMapping("/outmo")
-	  public String outmo(int unum) {
+	  public int outmo(int unum) {
 		  System.out.println(unum);
+		  int count = loginService.getMoimjangCount(unum);
+		  System.out.println(count);
 		  
-		  return "success";
+		return count;
+		  
+	  }
+	  
+	  @GetMapping("/talmo")
+	  public String talmo(int unum, HttpSession session) {
+		System.out.println("talmo"+unum);
+		loginService.deleteuser(unum);
+		session.removeAttribute("loginok"); 
+		session.removeAttribute("unum");
+		return "redirect:/"; 
 	  }
 	  
 	  

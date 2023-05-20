@@ -35,5 +35,7 @@ public interface LoginServiceInter {
 	public int getMyCBWRCount(int unum);
 	public int getMyCBLikeCount(int unum);
 	public int getMyGaipMoimCount(int unum);
+	public int getMoimjangCount(int unum);
+	public void deleteuser(int unum);
 	
 }

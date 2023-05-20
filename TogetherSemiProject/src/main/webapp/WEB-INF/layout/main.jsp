@@ -312,7 +312,7 @@ $(document).ready(function() {
 <body>
 <div id="main_container">
 	<div id="main_start">
-		<img src="../photo/logo.png">
+		<img src="../photo/로고main1.gif">
 	</div>
 	
 	<script type="text/javascript">

@@ -23,11 +23,9 @@
 	.modu {
 		width:1140px;
 		margin: 0 auto;
-		margin-top:100px;
+		margin-top:10px;
 	}
-	
-	
-    
+	 
 	.catego {
 		width:695px;
 	}
@@ -45,31 +43,20 @@
        	cursor: pointer;
        	color : #FE9A2E
      }
-         
-    .filebox .upload-name {
-          display: inline-block;
-          height: 40px;
-          padding: 0 10px;
-          vertical-align: middle;
-          border: 1px solid #dddddd;
-          width: 238px;
-          color: #999999;
-          border-radius: 5px;
-      }
       
       .filebox label {
         display: inline-block;
         padding: 5px 10px;
         color: black;
         vertical-align: middle;
-        background-color: #E6E6E6;
-        border: 1px solid #D8D8D8;
+        background-color: #F2F2F2;
+        border: 1px solid #848484;
         border-radius: 5px;
         cursor: pointer;
         height: 39px;
+        width:350px;
         margin-top: 7px;
         text-align: center;
-    	line-height: 2;
       }
       
       .filebox input[type="file"] {
@@ -237,8 +224,7 @@
 				<div>
 					<img id="showimg">
 					<div class="filebox">
-           				<label for="moimfile">파일 업로드</label> 
-          				<input class="upload-name" value="첨부파일" placeholder="첨부파일">
+           				<label for="moimfile">대표사진 파일 업로드</label> 
           				<input type="file" name="upload" id="moimfile">
       				</div>
 				</div>
@@ -897,11 +883,6 @@ $(function() {
       $('.selcategory').val(selected);
     });
   }); 
-  
-	$("#moimfile").on('change',function(){
-	    var fileName = $("#moimfile").val();
-       	$(".upload-name").val(fileName);       	
-    });
   
 $("#overlappedMname").click(function(){
 	$("#btnsubmit").attr("type", "button");

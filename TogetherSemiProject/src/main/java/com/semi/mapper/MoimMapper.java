@@ -42,4 +42,5 @@ public interface MoimMapper {
 	public void scheduleJoin(Map<String, Object> map);
 	public int cancelScheduleJoin(Map<String, Object> map);
 	public int getMemberCheckCount(int unum,String mname);
+	public void mandate(Map<String, Object> map);
 }

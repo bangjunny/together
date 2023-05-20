@@ -116,7 +116,7 @@
 		position:absolute;
 		left:820px;
 		top:480px;
-		width: 300px;
+		width: 400px;
 		height:260px;
 		font-size:13px;
 		overflow: auto;
@@ -457,7 +457,7 @@
 				<ul>
 					<c:if test="${pass.acceptcall == 1 }">
 					<li>	
-						멤버 이름 : ${pass.uname } / 멤버 성별 : ${pass.gender }
+						멤버 이름 : ${pass.uname } / 멤버 성별 : ${pass.gender } &nbsp;	<c:if test="${sessionScope.unum != pass.unum}"><button onclick="mandate(${pass.unum });">위임</button>	</c:if>
 					</li>	
 					</c:if>
 				</ul>	
@@ -739,6 +739,28 @@
 			    return; // 함수 즉시 종료
 			  }
 			}
+	
+	function mandate(unum){	
+		if(confirm("모임장을 위임 하시겠습니까?")){
+		$.ajax({
+			type:"get",
+			url:"mandate",
+			dataType:"text",
+			   data: {
+				      mname: mname,
+				      unum: unum
+				    },
+			success:function(res){
+				if(res == "success") {
+					alert("모임장을 위임하였습니다");
+					window.location.reload();
+				} 
+			},
+		});	
+	} else {
+	    return; // 함수 즉시 종료
+	  }
+	}
 	
 </script>
 

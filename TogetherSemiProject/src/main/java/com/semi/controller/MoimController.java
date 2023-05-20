@@ -359,5 +359,14 @@ public class MoimController {
 
 		return "success";
 	}
+	
+	@ResponseBody
+	@GetMapping("mandate")
+	public String mandate(int unum, String mname) {
+
+		moimService.mandate(unum, mname);
+
+		return "success";
+	}
 
 }

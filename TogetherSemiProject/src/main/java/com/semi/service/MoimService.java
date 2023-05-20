@@ -249,5 +249,14 @@ public class MoimService implements MoimServiceInter {
 	      return moimMapper.getMemberCheckCount(unum,mname);
 	   }
 		
-		 
+	@Override
+	public void mandate(int unum, String mname) {
+		 Map<String, Object> map = new HashMap<>();
+	     map.put("mname", mname);
+	     map.put("unum", unum);
+	     System.out.println(map);
+	     
+	     moimMapper.mandate(map);
+		
+	}
 }

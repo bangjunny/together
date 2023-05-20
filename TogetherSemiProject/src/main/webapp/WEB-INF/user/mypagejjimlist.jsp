@@ -2,7 +2,7 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
-
+<%@ include file="../commonvar.jsp" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +19,11 @@
 
 	#mypage_navbar{		
 		margin-top: 80px;
+
+	}
+	#mynav_text{		
+		margin-left:180px;
+
 	}
  	.container {
 	  margin-top:50px;
@@ -34,12 +39,14 @@
  
 	.jjimitem-container{
 	  display: grid;
-	  grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개의 아이템을 나타내도록 설정 */
-	  grid-gap: 20px; /* 아이템 사이의 간격을 조정하세요 */
-	 
-	 
+	    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 반응형으로 조정 */
+	    grid-gap: 20px; /* 아이템 사이의 간격을 조정 */
+	    max-width: 100%; /* 최대 가로 크기를 100%로 설정 */
+	    overflow: hidden; 
 	}
 	.jjimitem {
+		width: 250px; /* 가로 크기를 고정 */
+   		height: 370px; /* 세로 크기를 고정 */
 		display: flex;
 		flex-direction: column;
 	   	align-items: center;
@@ -47,16 +54,20 @@
 	    text-decoration:none;
 	     border-radius: 10px;
 		 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+		 margin-left:30px;
+		 margin-bottom:10px;
 		
 	}
 	 .image-container:hover{
+	    border-radius: 10px;
 	    transform: scale(1.01);
 	    transition: transform 0.3s ease;
 	  }
 	
 	.image-container {
-	 width: 200px; /* 이미지의 원래 크기에 맞게 조정하세요 */
-	 height: 200px; /* 이미지의 원래 크기에 맞게 조정하세요 */
+	   border-radius: 10px;
+	 width: 250px; /* 이미지의 원래 크기에 맞게 조정하세요 */
+	 height: 250px; /* 이미지의 원래 크기에 맞게 조정하세요 */
 	 overflow: hidden;
 	
 	 
@@ -72,22 +83,36 @@
 	  transform: scale(1.1);
 	}
 	  .jjimcontent {
+		display: -webkit-box;
+	    -webkit-line-clamp: 3; /* 표시할 줄 수 */
+	    -webkit-box-orient: vertical;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
 	    margin-top: 10px;
-	     text-decoration:none;
-	  }
-	
-	
-	#mmdetail{
-		
-        color:black;
-        font-weight: 500;
-        border:none;
-        border-radius: 3px;
-	
-	
+	    text-decoration:none;
+	}
+	.jjimitem-container a{
+	  	color: black; /* a 태그의 텍스트 색상을 검은색으로 설정 */
+    	text-decoration: none; /* 밑줄 제거 */
+	  
+	}
+	.jjim-title{
+	margin-top:5px;
+	font-weight: bold;
+	font-size:20px;
 	}
 	
-    
+	.jjim-details{
+		
+        color:gray;
+        font-weight: normal;
+        font-size:13px;
+        
+	}  
+	
+	
+	
+	
 </style>
 
 </head>
@@ -95,14 +120,14 @@
 <!-- 마이페이지내브바 -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mypage_navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}">MYPAGE</a>
+    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text">MYPAGE</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/user/mypagedetail?unum=${unum}">내 정보</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
@@ -126,28 +151,38 @@
     </div>
   </div>
 </nav>
-
 <div class="container container-fluid">
-	 <h3 class="mb-4">내가 찜한 모임리스트</h3>
-		<div class="jjimitem-container" style="width: 30rem;">
-		  	<c:forEach var="jjim" items="${jjimList}">
+	 <h3 class="mb-4">내가 찜한 모임</h3>
+	 	<div class="jjimitem-container">
+		<c:forEach var="jjim" items="${jjimList}">		  	
 		  		<a href="/moim/moimdetail?mnum=${jjim.mnum}">
 			         <div class="jjimitem">        
 				         	 <div class="image-container">				         	 	
-				         	 	  <img src="https://${imageUrl}/moim/${jjim.mphoto}">
+				         	 	  <c:choose>
+								<c:when test="${jjim.mphoto==null}">
+									<!-- Result값이 없다면 실행할 로직 -->								
+										<img src="http://sjrhsefqqpro17075801.cdn.ntruss.com/moim/together.png?type=f&w=200&h=200&ttype=jpg">
+								</c:when>
+								
+								<c:otherwise>
+									<img src="http://${imageUrl}/moim/${jjim.mphoto}">
+								</c:otherwise>
+							</c:choose>	 
 				              </div>   
-			         		<div class="jjimcontent">       
-			                   <h3>${jjim.subject}</h3>
-			                   <p>${jjim.mcontent}</p>
-			                   <p>${jjim.mname}</p>
+			         		<div class="jjimcontent"> 
+			         			 <div class="jjim-title">      
+			                   		<p>${jjim.mname}</p>
+			                   	</div>
+			                   <div class="jjim-details">			                  		                  
 			                   <p>${jjim.category}</p>
-			                   <p>${jjim.mnum}</p>
-			                   <p>${jjim.mphoto}</p>
+			                   </div>	                   
+			                    <p>${jjim.mcontent}</p>	
+			                   
 			               </div>   
 			           </div>
-		         </a>              
-		    </c:forEach>
-		</div>
+		         </a>             
+		 </c:forEach>
+	 </div> 	
 </div>
 </body>
 </html>

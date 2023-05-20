@@ -378,15 +378,16 @@
 			</c:when>
 			<c:otherwise>
 		 <div class="janginfo">
-		 	<table class="table" id="schedule" style="width:430px;">
+		 	<table class="table" id="schedule" style="width:480px;">
 		 	<c:forEach var="msdto" items="${slist}" varStatus="i">
 		 		<c:if test="${i.count % 1 == 1}">
 		 		<tr>
 		 		</c:if>
 		 			<td style="font-size:20px;">
-		 			${msdto.mssubject } &nbsp;&nbsp;&nbsp;<span style="font-size:13px;"><b>￦</b> ${msdto.mscost }</span>
+		 			${msdto.mssubject } <br><span style="font-size:13px;"><b>￦</b> ${msdto.mscost }</span>
 		 			<br>
-		 			<span style="font-size:13px;"><i class="bi bi-calendar"></i> ${msdto.msdate } ${msdto.mstime }</span>		 			
+		 			<span style="font-size:13px;"><i class="bi bi-calendar"></i> ${msdto.msdate} ${msdto.mstime.substring(0, 5)} 
+		 			</span>	&nbsp;	 			
 		 			<span style="font-size:13px;"><i class="bi bi-geo-alt"></i> ${msdto.mslocation }</span>		 			
 		 			</td>
 		 			<c:if test="${msdto.sjcount eq 0}">

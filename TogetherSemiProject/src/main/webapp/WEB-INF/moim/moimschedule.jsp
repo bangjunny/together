@@ -74,7 +74,7 @@
 		<input type="hidden" name="unum" value="${unum }">	
 		<tr>
 			<td colspan="2">
-				<input type="text" id="mssubject" class="form-control" name="mssubject" required="required" placeholder="일정 제목을 입력해주세요">
+				<input type="text" id="mssubject" class="form-control" name="mssubject" maxlength="15" required="required" placeholder="일정 제목을 입력해주세요(최대15자)">
 			</td>
 		</tr>
 		<tr>
@@ -98,7 +98,7 @@
 		<tr>
 			<td style="width:50px;" align="center"><b>￦</b></td>
 			<td>
-				<input type="text" class="form-control" id="mscost" name="mscost" required="required" placeholder="예시) 식사비 15000원">
+				<input type="text" class="form-control" id="mscost" name="mscost" maxlength="12" required="required" placeholder="예시) 식사비 15000원">
 			</td>
 		</tr>
 		<tr>

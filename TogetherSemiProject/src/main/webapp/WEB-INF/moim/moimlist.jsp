@@ -65,6 +65,19 @@
 	
 	#moim_sel_local select {
 		margin-left: 10px;
+		width: 150px;
+		height: 30px;
+		font-size: 15px;
+		background: #fff;
+		background-size: 20px 8px;
+		border-radius:5px;
+		-webkit-appearance: none;
+		display: inline-block;
+		text-align: start;
+		border: solid 1px #848484;
+		cursor: default;
+		padding-left: 5px;
+		
 	}
 	
 	#moim_sel_local button {
@@ -135,7 +148,6 @@
      .selcategory {
      	border: 1px solid black;
      }
-     
      
 
 </style>
@@ -401,14 +413,15 @@
 							<c:choose>
 								<c:when test="${unum == 0 && city1 == 'no'}">
 									<!-- 비회원일 때, 지역 전체 -->
-										모임이 총
+										모임
 								</c:when>
 								<c:otherwise>
 									<!-- 회원일 때 -->
-									${city1} ${city2} ${category} 모임이 총
+									${city1} ${city2} 
+									<br> ${category} 모임
 								</c:otherwise>
 							</c:choose>
-								${totalCount}개 있습니다
+								${totalCount}개
 						</h4>
 					
 					

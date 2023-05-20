@@ -64,6 +64,7 @@
 	
 	#myprofile{
 		margin-left:20px;
+		
 	}
 	
 	#mypage_navbar{		

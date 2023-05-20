@@ -224,7 +224,8 @@ public class LoginController {
 		 
 		 int unum = (int) session.getAttribute("unum"); // 세션에서 unum 값 가져오기
 		 
-		 int totalCount = loginMapper.getMyGaipMoimCount(unum);
+		 int totalCount = loginService.getMyGaipMoimCount(unum);
+		 model.addAttribute("totalCount", totalCount);
 		// 모임 리스트 가져오기
 		    List<MoimDto> moimList = loginMapper.getMyMoimList(unum);
 		    model.addAttribute("moimList", moimList);
@@ -466,6 +467,13 @@ public class LoginController {
 				model.addAttribute("no", no);
 				model.addAttribute("unum", unum);
 			  return "/main/user/mypagecblikelist";
+	  }
+	  @ResponseBody
+	  @GetMapping("/outmo")
+	  public String outmo(int unum) {
+		  System.out.println(unum);
+		  
+		  return "success";
 	  }
 	  
 	  

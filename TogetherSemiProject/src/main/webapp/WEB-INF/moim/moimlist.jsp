@@ -13,6 +13,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
+	.clear:after{    /* 자식이 모두 float 을 사용할때 부모가 높이를 갖게하기 위함 */
+		content:"";
+		display:block;
+		clear:both;
+	}
 
 	body, body * {
 		font-family: 'Jua'
@@ -42,14 +47,13 @@
 	}
 	
 	#moim_btn_wrap {
-    	height: 130px;
+    	height: 100px;
     	
 	}
 
 	#moim_sort_btn {
-		display: flex;
-		justify-content: flex-end;
-		margin-bottom: 10px;
+		margin-left: 13px;
+		float: left;
 	}
 	
 	#moim_sort_btn button {
@@ -60,7 +64,7 @@
 		margin: 0 auto;
 		display: flex;
 		justify-content: flex-end;
-		margin-bottom: 10px;
+		margin-bottom: 20px;
 	}
 	
 	#moim_sel_local select {
@@ -100,31 +104,6 @@
 	  	vertical-align: middle;
 	}
 	
-	.moim_box {
-		 border: 1px rgb(226, 226, 226) solid;
-		 box-shadow: 5px 5px 5px rgb(226, 226, 226);
-		 width: 250px;
-		 height: 370px;
-		 margin-bottom: 60px;	 
-	}
-	
-	.moim_box a {
-		color: black;
-		text-decoration: none;
-	}
-	
-	.moim_box img {
-		width: 100%;
-		height: 200px;
-	}
-	
-	.moim_info {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		margin-left: 10px;
-	}
-	
 	#makemoim {
 		width: 95%;
 		display: flex;
@@ -146,10 +125,88 @@
      }
      
      .selcategory {
-     	border: 1px solid black;
+     	border: solid 1px #848484;
+     	width: 150px;
+     	height: 30px;
+     	font-size: 15px;
+     	background: #fff;
+     	background-size: 20px 8px;
+     	border-radius:5px;
+     	text-align: center;
+     	line-height: 30px; 
      }
      
-
+     .search {
+     	width : 90px;
+     	height : 30px;
+		background: #FE9A2E;
+      	background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;   
+     }
+     .search:hover {
+     	background: #FE642E;
+     }
+     
+     .searchrul {
+     	margin-left: 20px;
+     	font-size:20px;
+     }
+     
+     .bsel {
+     	width : 90px;
+     	height : 30px;
+		background: #848484;
+      	background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+     }
+     
+     .bsel:hover {
+		background-color: #2E2E2E;
+	}
+	
+	.moim_box a {
+		color: black;
+		text-decoration: none;
+	}
+	
+	.moim_box img {
+		width: 100%;
+		height: 200px;
+	}
+	
+	.moim_info {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		margin-left: 10px;
+	}
+	
+	.moim_box {
+		 border: 1px solid #BDBDBD;
+		 width: 260px;
+		 height: 330px;
+		 margin-bottom: 40px;		 
+	}
+     
+	.boxph {
+		width:258px;
+		overflow: hidden;
+	}
+	
+ 	.boxph:hover {
+       	transform: scale(1.1);
+       	transition: transform 0.3s ease;
+	}
 </style>
 </head>
 <body>
@@ -370,8 +427,9 @@
 			
 			<div id="moim_btn_wrap">
 				
+				
 					<div id="moim_sel_local">
-						<span type="text" class="selcategory">선택해주세요!</span>
+						<span type="text" class="selcategory">카테고리</span>
 			 
 						<label for="user_city"></label> 
 						<select id="city" name="city1">
@@ -402,35 +460,33 @@
 							<input type="hidden" class="seldistrict1" name="city1" value="">
 							<input type="hidden" class="seldistrict2" name="city2" value="">
 							<input type="hidden" id="selcategory" name="category" value="">
-							<button type="submit" class="btn btn-dark" onclick="submitSelectedConditions()">검색</button>
+							<button type="submit" class="search" onclick="submitSelectedConditions()">검색</button>
 						</form>
 					</div>	
-				
 					
 					<div id="moim_sort_btn">
-						
-						<h4>
+						<button type="button" onclick="submitSelectedSortmnum()" class="bsel">최신순</button>
+						<button type="button" onclick="submitSelectedSortmcount()" class="bsel">가입자순</button>			
+					</div>
+					
+					<div>
+						<span class="searchrul">
 							<c:choose>
 								<c:when test="${unum == 0 && city1 == 'no'}">
 									<!-- 비회원일 때, 지역 전체 -->
-										모임
+									모임
 								</c:when>
 								<c:otherwise>
 									<!-- 회원일 때 -->
 									${city1} ${city2} 
-									<br> ${category} 모임
+									${category} 모임
 								</c:otherwise>
 							</c:choose>
 								${totalCount}개
-						</h4>
-					
-					
-						<button type="button" onclick="submitSelectedSortmnum()" class="btn btn-dark">최신순</button>
-						<button type="button" onclick="submitSelectedSortmcount()" class="btn btn-dark">가입자순</button>
+						</span>
 					</div>
 			</div>
 				
-			
 		<div>
 			<table id="moim_table">
 				<c:forEach var="dto" items="${list}" varStatus="i">
@@ -439,20 +495,22 @@
 					</c:if>
 							<td>
 								<div class="moim_box" onclick="location.href='moimdetail?mnum=${dto.mnum }&mname=${dto.mname}'">
-						
-									<c:choose>
-										<c:when test="${dto.mphoto==null}">
-											<!-- Result값이 없다면 실행할 로직 -->								
-												<img src="http://sjrhsefqqpro17075801.cdn.ntruss.com/moim/together.png?type=f&w=200&h=200&ttype=jpg">
-										</c:when>
-										
-										<c:otherwise>
-											<img src="http://${imageUrl_small}/moim/${dto.mphoto}?type=f&w=200&h=200&ttype=jpg">
-										</c:otherwise>
-									</c:choose>
-						
+									<div class="boxph">
+										<c:choose>
+											<c:when test="${dto.mphoto==null}">
+												<!-- Result값이 없다면 실행할 로직 -->								
+													<img src="http://sjrhsefqqpro17075801.cdn.ntruss.com/moim/together.png?type=f&w=200&h=200&ttype=jpg">
+											</c:when>
+											
+											<c:otherwise>
+												<img src="http://${imageUrl_small}/moim/${dto.mphoto}?type=f&w=200&h=200&ttype=jpg">
+											</c:otherwise>
+										</c:choose>
+									</div>
 								 	<div class="moim_info">
-										<b style="font-size: 20px; width: 100%;">${dto.mname}</b>
+										<b style="font-size: 20px; width: 100%;">
+										${dto.mname}
+										</b>
 										<br>
 										<div>
 											지역:${dto.city1} ${dto.city2}<br>

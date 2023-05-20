@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../commonvar.jsp" %>   
 
 <!DOCTYPE html>
 <html>
@@ -16,14 +17,18 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
- body, body * {
-		font-family: 'NanumPenScript'
-	}
+ 
 	#mypage_navbar{		
 		margin-top: 80px;
+		
+	}
+	#mynav_text{		
+		margin-left:180px;
+
 	}
  	.container {
 	  margin-top:50px;
+	
 	  margin-left:10px;
 	  max-width: 1440px;
 	  margin: 100 100 100 100;
@@ -54,14 +59,17 @@
 	    text-decoration:none;
 	    border-radius: 10px;
 		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-		margin-left:30px;
+		margin-left: 30px;
+		margin-bottom:10px;
 	}
 	 .image-container:hover{
+	    border-radius: 10px;
 	    transform: scale(1.01);
 	    transition: transform 0.3s ease;
 	  }
 	  
 	.image-container {
+	border-radius: 10px;
 	 width: 250px; /* 이미지의 원래 크기에 맞게 조정하세요 */
 	 height: 250px; /* 이미지의 원래 크기에 맞게 조정하세요 */
 	 overflow: hidden;
@@ -80,7 +88,7 @@
 	}
 	
 	 .mymoimcontent {
-	   /* 기존 스타일 유지 */
+	  	color:black;
 	    display: -webkit-box;
 	    -webkit-line-clamp: 3; /* 표시할 줄 수 */
 	    -webkit-box-orient: vertical;
@@ -89,16 +97,29 @@
 	    margin-top: 10px;
 	     text-decoration:none;
 	  }
-	
-	
-	#mymoimdetail{
-		
-        color:black;
-        font-weight: 500;
-        border:none;
-        border-radius: 3px;
+	  .mymoim-container a{
+	  	 color: black; /* a 태그의 텍스트 색상을 검은색으로 설정 */
+    	text-decoration: none; /* 밑줄 제거 */
+	  
+	  }
+	.mymoim-title{
+	margin-top:5px;
+	font-weight: bold;
+	font-size:20px;
 	}
 	
+	.mymoim-details{
+		
+        color:gray;
+        font-weight: normal;
+        font-size:13px;
+        
+	}
+	
+	#star {
+		color:yellow;
+		font-size: 30px;
+	}
     
 </style>
 
@@ -107,14 +128,14 @@
 <!-- 마이페이지내브바 -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mypage_navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}">MYPAGE</a>
+    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text">MYPAGE</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/user/mypagedetail?unum=${unum}">내 정보</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
@@ -139,11 +160,24 @@
   </div>
 </nav>
 <div class="container">
- <h3 class="mb-4">내가 쓴 게시물 보기</h3>
+ <h3 class="mb-4">내 모임 총 ${totalCount }개</h3>
 		<div class="mymoim-container">			 
 		 	<c:forEach var="gm" items="${gaipMoimList}">	
 		 	 <a href="/moim/moimdetail?mnum=${gm.mnum}&mname=${gm.mname}">
-			  <div class="mymoimitem">				  		     
+			  <div class="mymoimitem">
+			  		<div class="image-container">	
+			  				<c:choose>
+								<c:when test="${gm.mphoto==null}">
+									<!-- Result값이 없다면 실행할 로직 -->								
+										<img src="http://sjrhsefqqpro17075801.cdn.ntruss.com/moim/together.png?type=f&w=200&h=200&ttype=jpg">
+								</c:when>
+								
+								<c:otherwise>
+									<img src="http://${imageUrl}/moim/${gm.mphoto}">
+								</c:otherwise>
+							</c:choose>	  		
+				     </div> 
+			  				  		     
 			      <div class="mymoim-content">
 				      <div class="mymoim-title">
 				      		<c:choose>
@@ -152,13 +186,15 @@
 						   		<img src="https://${imageUrl}/moim/${gm.mphoto}">
 						   		 </c:when>		
 							</c:choose>
-				        <h3>${gm.mname}</h3>
+							<c:if test="${gm.mcount eq 1}"><span id="star">★</span></c:if>	
+				        <h3>${gm.mname}</h3>			        
 				        </div>
 				        <div class="mymoim-details">
-				        ${gm.city1},${gm.city2}
-				        ${gm.mcontent}       
-				       	  	
-				        </div>				            
+				        <p>${gm.city1},${gm.city2}</p>
+				        <br>
+				        </div>
+				        <p>${gm.mcontent}</p>	     	
+					            
 			      </div>
 			    </div>
 		    </a>  

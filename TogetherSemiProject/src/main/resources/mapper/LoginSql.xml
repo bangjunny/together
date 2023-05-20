@@ -104,7 +104,9 @@
 	</insert>
 	
 	<select id="getGaipMoimList" parameterType="int" resultType="Map">
-		select m.mnum,m.mname,m.mcontent,m.mphoto,m.city1,m.city2,m.category from moim m join moimmember mm on m.mname=mm.mname where mm.unum=#{unum} and acceptcall=1
+		<!-- select m.mnum,m.mname,m.mcontent,m.mphoto,m.city1,m.city2,m.category from moim m join moimmember mm on m.mname=mm.mname where mm.unum=#{unum} and acceptcall=1 -->
+		select m.mnum,m.mname,m.mcontent,m.mphoto,m.city1,m.city2,m.category,(SELECT COUNT(mm.unum) as mcoun from moim mm where m.unum=#{unum} and m.mname = mm.mname) as mcount 
+		from moim m join moimmember mm on m.mname=mm.mname where mm.unum=#{unum} and acceptcall=1 order by mcount desc
 	</select>
 	
 	<select id="getMyCBWRCount" resultType="int">
@@ -115,6 +117,6 @@
 		select count(*) from cblike where unum=#{unum}
 	</select>
 	<select id="getMyGaipMoimCount" resultType="int">
-		select count(*) from moim where unum=#{unum}
+		select count(*) from moim m join moimmember mm on m.mname=mm.mname where mm.unum=#{unum} and acceptcall=1;
 	</select>
 </mapper>

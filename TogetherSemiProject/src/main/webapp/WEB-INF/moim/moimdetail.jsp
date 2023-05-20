@@ -411,7 +411,7 @@
 						<c:otherwise><td><button class="btn btn-outline-danger" style="width:70px;height:70px" hidden>삭제</button></td></c:otherwise>
 					</c:choose>
 		 		
-		 		<c:if test="${i.count % 1 == 0}">
+		 		<c:if test="${i.count % 1 == 0}"> 
 					</tr><tr>
 				</c:if>
 		 		</c:forEach>

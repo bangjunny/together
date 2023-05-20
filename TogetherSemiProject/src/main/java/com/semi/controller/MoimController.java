@@ -324,7 +324,6 @@ public class MoimController {
 		// db insert
 		model.addAttribute("unum", unum);
 		moimMapper.insertMoimSchedule(msdto);
-		moimMapper.insertSchedulemaker(sjdto);
 		return "redirect:./moimdetail?mnum=" + msdto.getMnum();
 	}
 	 

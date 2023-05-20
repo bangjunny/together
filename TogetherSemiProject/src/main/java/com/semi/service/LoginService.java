@@ -189,6 +189,12 @@ public class LoginService implements LoginServiceInter{
 		return loginMapper.getMyCBLikeCount(unum);
 	}
 
+	@Override
+	public int getMyGaipMoimCount(int unum) {
+		// TODO Auto-generated method stub
+		return loginMapper.getMyGaipMoimCount(unum);
+	}
+
 
 	
 

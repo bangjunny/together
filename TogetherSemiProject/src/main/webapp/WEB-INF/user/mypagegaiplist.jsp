@@ -99,6 +99,10 @@
         border-radius: 3px;
 	}
 	
+	#star {
+		color:yellow;
+		font-size: 30px;
+	}
     
 </style>
 
@@ -139,7 +143,7 @@
   </div>
 </nav>
 <div class="container">
- <h3 class="mb-4">내가 쓴 게시물 보기</h3>
+ <h3 class="mb-4">내 모임 총 ${totalCount }개</h3>
 		<div class="mymoim-container">			 
 		 	<c:forEach var="gm" items="${gaipMoimList}">	
 		 	 <a href="/moim/moimdetail?mnum=${gm.mnum}&mname=${gm.mname}">
@@ -152,7 +156,8 @@
 						   		<img src="https://${imageUrl}/moim/${gm.mphoto}">
 						   		 </c:when>		
 							</c:choose>
-				        <h3>${gm.mname}</h3>
+							<c:if test="${gm.mcount eq 1}"><span id="star">★</span></c:if>	
+				        <h3>${gm.mname}</h3>			        
 				        </div>
 				        <div class="mymoim-details">
 				        ${gm.city1},${gm.city2}

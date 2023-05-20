@@ -103,9 +103,6 @@
 	<delete id="deleteSchedule" parameterType="Map">
 		delete from moimschedule where mssubject=#{mssubject} and mnum=#{mnum}
 	</delete>
-	<insert id="insertSchedulemaker" parameterType="ScheduleJoinDto">
-		insert into schedulejoin (unum,mssubject,mnum) values (#{unum},#{mssubject},#{mnum})
-	</insert>
 	<insert id="scheduleJoin" parameterType="Map">
 		insert into schedulejoin (unum,msnum,mnum) values (#{unum},#{msnum},#{mnum})
 	</insert>

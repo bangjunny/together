@@ -232,12 +232,6 @@ public class MoimService implements MoimServiceInter {
 	      moimMapper.scheduleJoin(map);
 	      
 	   }
-	
-	 @Override
-	   public void insertSchedulemaker(ScheduleJoinDto sjdto) {
-	      // TODO Auto-generated method stub
-	      moimMapper.insertSchedulemaker(sjdto);
-	   }
 
 	@Override
 	public void cancelScheduleJoin(int unum, int msnum) {

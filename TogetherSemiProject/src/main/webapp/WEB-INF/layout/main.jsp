@@ -44,7 +44,7 @@
  		width: 300px;
   		height: 300px;
   		animation: zoomIn; /* referring directly to the animation's @keyframe declaration */
-  		animation-duration: 2s; /* don't forget to set a duration! */
+  		animation-duration: 1s; /* don't forget to set a duration! */
 	}
   	#main_header{
 		width: 1440px;
@@ -239,9 +239,10 @@
 </script>
 <script type="text/javascript">
 	//Define initial variables.
-
-	var words = ["communities", "skills", "networks", "passions", "careers", "friendships"];
-	var photos = ["/photo/main_1.jpg", "/photo/main_2.jpg", "/photo/main_3.jpg", "/photo/main_7.jpg", "/photo/main_5.jpg", "/photo/main_6.jpg"]
+	var words = ["음악", "운동", "소셜", "예술", "게임", "여행"];
+	var photos = ["/photo/main1.jpg", "/photo/main2.jpg", "/photo/main3.jpg", "/photo/main4.jpg", "/photo/main5.jpg", "/photo/main_6.jpg"]
+	/* var words = ["communities", "skills", "networks", "passions", "careers", "friendships"]; */
+	/* var photos = ["/photo/main_1.jpg", "/photo/main_2.jpg", "/photo/main_3.jpg", "/photo/main_7.jpg", "/photo/main_5.jpg", "/photo/main_6.jpg"] */
 	var count = 0;
 
 	// Call the changeWord function once to start the rotation immediately
@@ -338,8 +339,8 @@ $(document).ready(function() {
 			
 
 			<div id="main_header_txt">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elited do eiusmod tempor incididunt ut labore e, st dolore magna aliqua. Ut enim ad <span id="rotate_word" style="color: red">communities</span>
-	
+				<!-- Lorem ipsum dolor sit amet, consectetur adipisicing elited do eiusmod tempor incididunt ut labore e, st dolore magna aliqua. Ut enim ad <span id="rotate_word" style="color: red">communities</span> -->
+				저희 사이트에서는 다양한 모임 카테고리를 제공하여 여러분이 원하는 분야에서 활동할 수 있도록 돕고 있습니다. <span id="rotate_word" style="color: red">음악</span> 외 다양한 분야의 모임을 찾아보실 수 있습니다. 또한, 새로운 모임을 개설하여 자신의 관심사를 공유하고 다른 회원들과 교류할 수도 있습니다.
 		
 			<div id="main_btn_wrap">
 				<c:choose>
@@ -355,7 +356,7 @@ $(document).ready(function() {
 	</div>
 	
 	<div id="main_header_pic" data-aos="zoom-in" data-aos-duration="2000">
-		<img src="../photo/main_1.jpg" id="rotate_photo">
+		<img src="../photo/main1.jpg" id="rotate_photo">
 	</div>
 	
 </div>
@@ -381,12 +382,12 @@ $(document).ready(function() {
 	</div>
 	
 	<div id="main_mid_txt">
-		<h1>대충 괜찮은 문장</h1>
-		<h3>적당히 설명하는 문장의 행렬은 나에게 스타크래프트 1.16.1 립버전 철수는 말했다 공열안와자였다 몹시 무시무시한 죠나단 스타크래프트 1.16.1 립버전</h3>
+		<h1>저희 사이트는</h1>
+		<h3> 사용자 친화적인 인터페이스와 신뢰할 수 있는 모임 정보를 제공합니다. 모임 일정, 장소, 회원 프로필 등 모든 정보를 손쉽게 확인하고 참여할 수 있습니다. 또한, 모임 활동을 위한 소통과 조직을 위한 도구도 제공하고 있습니다.</h3>
 	</div>
 	
 <div id="main_bot_title">
-	<h2>Lorem ipsum</h2>
+	<h2>다 함께!</h2>
 </div>
 
 <div id="main_bot">
@@ -399,7 +400,9 @@ $(document).ready(function() {
 	
 	<div id="main_bot_txt" data-aos="fade-up-left" data-aos-duration="1500">
 		<span>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			동호회 모임을 통해 새로운 친구를 사귈 수 있고, 전문 지식을 공유하며 즐거운 경험을 나눌 수 있습니다. 우리 사이트에서는 다양한 사람들과 소통하고 자신의 취미를 더욱 풍부하게 만들어 보세요.
+
+지금 바로 저희 사이트를 방문하여 원하는 동호회 모임을 찾아보세요. 새로운 사람들과 함께 즐거운 시간을 보내고 동료들과의 유익한 교류를 경험해보세요!
 		</span>
 	</div>
 	

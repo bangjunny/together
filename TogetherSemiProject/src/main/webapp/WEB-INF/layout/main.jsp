@@ -44,7 +44,7 @@
  		width: 300px;
   		height: 300px;
   		animation: zoomIn; /* referring directly to the animation's @keyframe declaration */
-  		animation-duration: 3s; /* don't forget to set a duration! */
+  		animation-duration: 2s; /* don't forget to set a duration! */
 	}
   	#main_header{
 		width: 1440px;
@@ -57,17 +57,30 @@
    	#main_side_btn{
    		width: 100px;
    		height: 300px;
-   		border: 1px black solid;
+   		display: flex;
+   		flex-direction: column;
+   		align-items: center;
+   		justify-content: space-around;
    		position: fixed;
    		top: 300px;
    		z-index:1;
-   	  	opacity: 0;
-  		transition: opacity 0.5s;
+   	  	transform: translateX(-100px);
+  		opacity: 0;
+  		transition: transform 1s, opacity 0.5s;
 	}
+	#main_side_btn button{
+		width: 50px;
+		height: 50px;
+		border-radius: 50px;
+		border: 1px gray solid;
+	}
+	#main_side_btn button:hover{
+		background-color: orange;
+	}	
 
 	#main_side_btn.show {
+  		transform: translateX(0);
   		opacity: 1;
-  		transition: opacity 3s;
   		
 	}
  	#main_header_left{
@@ -103,7 +116,6 @@
 	#rotate_photo{
 		width: 700px;
 		height: 500px;
-		
 	}
 	#main_btn_wrap{
 		margin-top: 50px;
@@ -130,14 +142,16 @@
       text-align: center;
       height: 250px;
 	}
-
-	.list_a:hover {
-  	cursor: pointer;
+	.list_a img {
+ 		 width: 200px;
+ 		 height: 200px;
+ 		 object-fit: cover;
+  		 transition: transform 0.3s;
 	}
 
-	.list_a img {
-  		width: 200px;
-  		height: 200px;
+	.list_a img:hover {
+		cursor: pointer;
+  		transform: scale(0.9); /* 이미지 크기 확대 */
 	}
 	
 	.list_a span{
@@ -146,7 +160,7 @@
 		width: 150px;
 		height: 30px;
 		background-color:rgb(252, 252, 240);
-		transition: 0.8s;
+		transition: 0.3s;
 		position: absolute;
 		top:220px;
 	}
@@ -443,7 +457,7 @@ $(document).ready(function() {
 	  
 	  $(".list_a").mouseover(function() {
 		  $(this).css({
-		    "transition":"0.5s"
+		    "transition":"0.3s"
 		  });
 		  $(this).find("span").css({
 			  "width":"0px"
@@ -452,13 +466,13 @@ $(document).ready(function() {
 
 		$(".list_a").mouseleave(function() {
 		  $(this).css({
-		    "transition": "0.5s"
+		    "transition": "0.3s"
 		  });
 		  $(this).find("span").css({
 		    "width": "150px",
 		    "height": "30px",
 		    "background-color":"rgb(252, 252, 240)",
-		    "transition": "0.8s", // 
+		    "transition": "0.3s", // 
 		    "position": "absolute", // 추가: 요소를 절대 위치로 설정
 		    "top":"220px"
 		    	/* rgb(245, 245, 220) */

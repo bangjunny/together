@@ -118,7 +118,7 @@
 	
 	#star {
 		color:yellow;
-		font-size: 30px;
+		font-size: 20px;
 	}
     
 </style>
@@ -164,7 +164,8 @@
 		<div class="mymoim-container">			 
 		 	<c:forEach var="gm" items="${gaipMoimList}">	
 		 	 <a href="/moim/moimdetail?mnum=${gm.mnum}&mname=${gm.mname}">
-			  <div class="mymoimitem">
+			  
+					 <div class="mymoimitem">
 			  		<div class="image-container">	
 			  				<c:choose>
 								<c:when test="${gm.mphoto==null}">
@@ -179,72 +180,26 @@
 				     </div> 
 			  				  		     
 			      <div class="mymoim-content">
-				      <div class="mymoim-title">
-				      		<c:choose>
-						   		 <c:when test="${gm.mphoto!=null}">
-						   		<!-- 이미지있다면 실행할 로직 -->
-						   		<img src="https://${imageUrl}/moim/${gm.mphoto}">
-						   		 </c:when>		
-							</c:choose>
-							<c:if test="${gm.mcount eq 1}"><span id="star">★</span></c:if>	
-				        <h3>${gm.mname}</h3>			        
+				      <div class="mymoim-title">				      	
+				        <p>
+				          <c:if test="${gm.mcount eq 1}"><span id="star">★</span></c:if>
+				        ${gm.mname}</p>
 				        </div>
 				        <div class="mymoim-details">
-				        <p>${gm.city1},${gm.city2}</p>
+				        <p>
+				       
+				        ${gm.city1},${gm.city2}				        
+				        </p>
 				        <br>
 				        </div>
 				        <p>${gm.mcontent}</p>	     	
 					            
 			      </div>
-			    </div>
+			    </div>	            	
+				
 		    </a>  
 		 </c:forEach>
 	</div>	 
 </div>
-	
-
-
-
-<!--
- <div class="container mt-5">
-        <h3 class="mb-4">나의 모임리스트</h3>
-        <table class="table table-bordered border-primary table-hover table-layout: fixed; width: 100%;">
-            <thead class="table-light">
-                <tr>
-                    <th style="width: 20%;">모임 이름</th>
-                    <th style="width: 15%;">카테고리</th>
-                    <th style="width: 10%;">지역1</th>
-                    <th style="width: 10%;">지역2</th>
-                    <th style="width: 30%;">모임 소개</th>
-                    <th style="width: 15%;">자세히보기</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="gm" items="${gaipMoimList}">
-                    <tr>
-                        <td style="text-align: left;">
-                			${gm.mname}
-                			${gm.mphoto}
-                		</td>
- 						<td>
-                         ${gm.category}
-                        </td>
- 						<td>
-                         ${gm.city1}
-                        </td>
- 						<td>
-                         ${gm.city2}
-                        </td>
- 						<td>
-                         ${gm.mcontent}
-                        </td>
-                        
-                     	<td><a href="/moim/moimdetail?mnum=${gm.mnum}&mname=${gm.mname}">상세보기</a></td> 
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-    </div>
--->
 </body>
 </html>

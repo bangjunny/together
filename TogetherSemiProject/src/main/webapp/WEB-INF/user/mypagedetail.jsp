@@ -153,12 +153,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" id="myinfoupdate">내 정보 수정</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="myuser_out">회원탈퇴</a>
-        </li>
+      
       </ul>
     </div>
   </div>
@@ -260,9 +255,7 @@
 		    		<i class="bi bi-gear" id="mypageupdateicon">수정</i>
 		    		</a>
 		    		</label>
-		    		<!--
-		    		<button class="btn btn-outline-danger">마이페이지 수정하기</button>
-		    		-->
+		    		
 		    		<div id="mypageupdateform" style="display: none;">
 		    		<%@include file="mypageupdatecheck.jsp" %>
 		    		</div>
@@ -271,7 +264,7 @@
 		    			$(document).ready(function() {
 		    			  $('[data-toggle="tooltip"]').tooltip();
 		    			  
-						$("#myinfoupdate").click(function() {
+						$("#mypageupdateicon").click(function() {
 								
 								$("#myinfotable").css("display", "none");
 								$("#mypageupdateform").css("display", "block");	

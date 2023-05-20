@@ -112,5 +112,8 @@
 	<select id="getMemberCheckCount" parameterType="Map" resultType="int">
 		select count(*) from moimmember where unum=#{unum} and mname=#{mname}
 	</select>
+	<update id="mandate" parameterType="Map">
+		update moim set unum=#{unum} where mname=#{mname}
+	</update>
 </mapper>
 

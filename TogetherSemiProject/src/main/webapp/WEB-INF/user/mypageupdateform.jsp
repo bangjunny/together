@@ -405,6 +405,7 @@
 					<button type="submit" class="makemo">수정</button>
 					<button type="button" class="notmo"	onclick="history.back()">취소</button>
 					<button type="button" class="outmo"	 data-bs-toggle="modal" data-bs-target="#outmo">회원탈퇴</button>
+					<input type="hidden" id="talmo2" class="talmo" data-bs-toggle="modal" data-bs-target="#talmo">
 				</div>
 			</td>
 		</tr>		
@@ -758,6 +759,31 @@
     </div>
   </div>
 </div>
+
+<!-- The Modal -->
+<div class="modal fade" id="talmo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">회원탈퇴</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+		모임의 모임장인 경우에는 탈퇴를 하실수 없습니다.
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="notmo" data-bs-dismiss="modal">확인</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 <script>
 $(function() {
     // 체크박스 값이 변경될 때마다 실행되는 함수
@@ -787,7 +813,12 @@ $(document).on("click","#out1",function(){
 		dataType:"text",
 		data:{"unum":unum},
 		success:function(res){
-			alert("123")
+			if(res>0){
+				var talmo=document.getElementById("talmo2");
+				talmo.click();
+			} else {
+				location.href='talmo?unum='+unum
+			}
 			
 		}
 	});

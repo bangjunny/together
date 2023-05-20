@@ -433,7 +433,10 @@ body, body * {
 	        				}
 	        			s+=`</div>
 	        			<div class="listtext">
-	        				<b><div style="width:170px;height:45px">\${ele.subject}</div></b>
+	        				<b><div style="overflow:hidden;text-overflow: ellipsis;word-wrap: break-word;
+	        			        display: -webkit-box;
+	        		        -webkit-line-clamp: 2 ;
+	        		        -webkit-box-orient: vertical;width:170px;height:45px">\${ele.subject}</div></b>
 	        				작성자:\${ele.uname }<br>
 	        				조회수:\${ele.readcount }<br>
 	        				추천수:\${ele.cblike }<br>
@@ -476,7 +479,10 @@ body, body * {
 	        				}
 	        			s+=`</div>
 	        			<div class="listtext">
-	        				<b><div style="width:170px;height:45px">\${ele.subject}</div></b>
+	        				<b><div style="overflow:hidden;text-overflow: ellipsis;word-wrap: break-word;
+	        			        display: -webkit-box;
+	        		        -webkit-line-clamp: 2 ;
+	        		        -webkit-box-orient: vertical;width:170px;height:45px">\${ele.subject}</div></b>
 	        				작성자:\${ele.uname }<br>
 	        				조회수:\${ele.readcount }<br>
 	        				추천수:\${ele.cblike }<br>
@@ -509,7 +515,7 @@ body, body * {
 	  flag = !flag;
 	}
 
-	//setInterval(alternatingFunctions, 8000);
+	setInterval(alternatingFunctions, 8000);
 	
 
 </script>

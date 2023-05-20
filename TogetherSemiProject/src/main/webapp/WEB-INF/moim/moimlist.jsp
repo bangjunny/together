@@ -21,7 +21,7 @@
 	#moimlist {
 		width: 1140px;
 		margin: 0 auto;
-		margin-top:120px;
+		margin-top:10px;
 	}
 	
 	#moim_cate {
@@ -131,6 +131,12 @@
      	margin-bottom: 100px;
      	margin-right: 55px;
      }
+     
+     .selcategory {
+     	border: 1px solid black;
+     }
+     
+     
 
 </style>
 </head>
@@ -353,10 +359,7 @@
 			<div id="moim_btn_wrap">
 				
 					<div id="moim_sel_local">
-						<span style="height: 38px; line-height: 38px;">카테고리 : </span>
-						<span type="text" class="selcategory" style="border: 1px gray solid; width:150px; 
-						border-radius:1px; height:38px; text-align: center; line-height: 38px;">
-						선택해주세요!</span>
+						<span type="text" class="selcategory">선택해주세요!</span>
 			 
 						<label for="user_city"></label> 
 						<select id="city" name="city1">

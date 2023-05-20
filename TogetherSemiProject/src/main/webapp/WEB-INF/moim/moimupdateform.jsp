@@ -24,10 +24,8 @@
 	.modu {
 		width:1140px;
 		margin: 0 auto;
-		margin-top:100px;
+		margin-top:10px;
 	}
-	
-	
     
 	.catego {
 		width:695px;
@@ -46,11 +44,30 @@
        	cursor: pointer;
        	color : #FE9A2E
      }
-       
-    #moimfile {
-    	width:350px;
-    	margin-top:10px;
-    }
+    
+    .filebox label {
+        display: inline-block;
+        padding: 5px 10px;
+        color: black;
+        vertical-align: middle;
+        background-color: #F2F2F2;
+        border: 1px solid #848484;
+        border-radius: 5px;
+        cursor: pointer;
+        height: 39px;
+        width:350px;
+        margin-top: 7px;
+        text-align: center;
+      }
+      
+      .filebox input[type="file"] {
+          position: absolute;
+          width: 0;
+          height: 0;
+          padding: 0;
+          overflow: hidden;
+          border: 0;
+      }
     
     .moimjuin {
     	margin-top:5px;
@@ -216,9 +233,10 @@
 			<!-- 이미지 출력할곳 -->
 				<div>
 					<img id="showimg" src="https://${imageUrl}/moim/${dto.mphoto}" value=${dto.mphoto}>
-					<div>
-						<input type="file" class="form-control " name="upload" id="moimfile">
-					</div>
+					<div class="filebox">
+           				<label for="moimfile">대표사진 파일 업로드</label> 
+          				<input type="file" name="upload" id="moimfile">
+      				</div>
 				</div>
 			</td>
 		

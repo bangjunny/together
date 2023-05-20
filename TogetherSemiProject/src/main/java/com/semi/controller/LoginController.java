@@ -468,6 +468,13 @@ public class LoginController {
 				model.addAttribute("unum", unum);
 			  return "/main/user/mypagecblikelist";
 	  }
+	  @ResponseBody
+	  @GetMapping("/outmo")
+	  public String outmo(int unum) {
+		  System.out.println(unum);
+		  
+		  return "success";
+	  }
 	  
 	  
    

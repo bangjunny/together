@@ -17,6 +17,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
 <style>
 
 	.myup_table tr{
@@ -135,6 +137,7 @@
 	}
 	
 	.notmo {
+		margin-right: 30px;
 		height: 36px;
     	width:100px;
     	background: #A4A4A4;
@@ -149,6 +152,22 @@
 	
 	.notmo:hover {
 		background: #424242;
+	}
+	
+	.outmo{
+		height: 36px;
+    	width:100px;
+    	background: #DC3545;
+      	background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+	}
+	.outmo:hover {
+		background: #FF0000;
 	}
 	
 	.bi {
@@ -170,6 +189,7 @@
 	  padding: 20px;
 	  flex : auto;
 	}
+	
 </style> 
 </head>
 <body>
@@ -384,6 +404,7 @@
 	       		<div class="mybutt">	
 					<button type="submit" class="makemo">수정</button>
 					<button type="button" class="notmo"	onclick="history.back()">취소</button>
+					<button type="button" class="outmo"	 data-bs-toggle="modal" data-bs-target="#outmo">회원탈퇴</button>
 				</div>
 			</td>
 		</tr>		
@@ -709,6 +730,34 @@
 				</div>
 			</div>
 		</div>
+		
+
+<!-- The Modal -->
+<div class="modal fade" id="outmo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">회원탈퇴</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        회원탈퇴를 진행하시겠습니까?<br>
+        회원으로 작성한 글은 삭제되며 모임의 모임장인 경우에는 탈퇴를 하실수 없습니다.
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="notmo" data-bs-dismiss="modal">취소</button>
+        <button type="button" class="outmo" data-bs-dismiss="modal" id="out1">탈퇴</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 <script>
 $(function() {
     // 체크박스 값이 변경될 때마다 실행되는 함수
@@ -730,6 +779,19 @@ document.getElementById('myForm').addEventListener('submit', function(event) {
       alert('시, 군, 구를 선택해주세요!');
     }
   });
+$(document).on("click","#out1",function(){
+	const unum=${unum};
+	$.ajax({
+		type:"get",
+		url:"outmo",
+		dataType:"text",
+		data:{"unum":unum},
+		success:function(res){
+			alert("123")
+			
+		}
+	});
+})
 </script>
 </body>
 </html>

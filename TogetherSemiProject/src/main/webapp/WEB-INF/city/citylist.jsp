@@ -98,10 +98,6 @@ body, body * {
 </head>
 <body>
 <div id="maincontainer">
-<br>
-<br>
-<br>
-<br>
 <%-- <h1>
 	<c:choose>
 		<c:when test="${unum == 0 && city1 == 'no' || city1==null}">
@@ -437,9 +433,10 @@ body, body * {
 	        				}
 	        			s+=`</div>
 	        			<div class="listtext">
-	        				<b>\${ele.subject}</b><br><br>
+	        				<b><div style="width:170px;height:45px">\${ele.subject}</div></b>
 	        				작성자:\${ele.uname }<br>
-	        				조회수:\${ele.readcount } | 추천수:\${ele.cblike }<br>
+	        				조회수:\${ele.readcount }<br>
+	        				추천수:\${ele.cblike }<br>
 	        				<span class="spancity">#\${ele.city1} #\${ele.city2}</span>
 	        			</div>
 	        		</div>
@@ -479,20 +476,19 @@ body, body * {
 	        				}
 	        			s+=`</div>
 	        			<div class="listtext">
-	        				<b>\${ele.subject}</b><br><br>
+	        				<b><div style="width:170px;height:45px">\${ele.subject}</div></b>
 	        				작성자:\${ele.uname }<br>
-	        				조회수:\${ele.readcount } | 추천수:\${ele.cblike }<br>
+	        				조회수:\${ele.readcount }<br>
+	        				추천수:\${ele.cblike }<br>
 	        				<span class="spancity">#\${ele.city1} #\${ele.city2}</span>
 	        			</div>
 	        		</div>
 	        		</div>`;
 	        	});
 	        	$("div.ajaxzone").animate({ opacity: 0, marginLeft: "0" }, 500, function() {
-	        	$("div.ajaxzone").html(s);
-	        	$("div.ajaxzone").animate({ opacity: 1, marginLeft: "0" }, 500);
-	        	});
-
-	        	
+		        	$("div.ajaxzone").html(s);
+		        	$("div.ajaxzone").animate({ opacity: 1, marginLeft: "0" }, 500);
+		        	});
 	        }
 		});
 	}

@@ -17,7 +17,7 @@
 		font-family: 'NanumPenScript';
 	}
 	.header{
-		height: 200px;
+		height: 120px;
 	}
 	.footer{
 		margin-top: 100px;

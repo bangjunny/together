@@ -195,6 +195,18 @@ public class LoginService implements LoginServiceInter{
 		return loginMapper.getMyGaipMoimCount(unum);
 	}
 
+	@Override
+	public int getMoimjangCount(int unum) {
+		// TODO Auto-generated method stub
+		return loginMapper.getMoimjangCount(unum);
+	}
+
+	@Override
+	public void deleteuser(int unum) {
+		// TODO Auto-generated method stub
+		loginMapper.deleteuser(unum);
+	}
+
 
 	
 

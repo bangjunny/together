@@ -119,4 +119,10 @@
 	<select id="getMyGaipMoimCount" resultType="int">
 		select count(*) from moim m join moimmember mm on m.mname=mm.mname where mm.unum=#{unum} and acceptcall=1;
 	</select>
+	<select id="getMoimjangCount" parameterType="int" resultType="int">
+		select count(*) from moim where unum=#{unum}
+	</select>
+	<delete id="deleteuser" parameterType="int">
+		delete from user where unum=#{unum}
+	</delete>
 </mapper>

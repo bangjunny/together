@@ -58,6 +58,8 @@ public interface LoginMapper {
 	
 	public List<CityBoardDto> getMyCBList(Map<String, Integer> map);//map:start,perpage
 	public int getJJimListTotalCount();
+	public int getMoimjangCount(int unum);
+	public void deleteuser(int unum);
 
 	
 }

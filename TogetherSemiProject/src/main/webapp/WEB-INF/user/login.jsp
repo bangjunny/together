@@ -28,7 +28,7 @@
         body {
             margin: 0;
             background-color: #f7f7f7;
-            font-family: "맑은 고딕", sans-serif;
+            /* font-family: "맑은 고딕", sans-serif; */
         }
         
         .container {

@@ -22,23 +22,25 @@
 	}
 	#header_wrap{
 		width: 100%;
-		margin: 15px auto 0 auto;
+		margin: 0 auto;
 		display: flex;
 		justify-content: space-between;
 	}
 	#header_logo{
-		width: 20%;
-		object-fit:cover;
+		width: 15%;
+		display:flex;
+		justify-content:flex-start
 	}
-	.layout_a img{
-		width: 100%;
-		height: 100%;
+	#header_logo img{
+		margin-left:-55px;
+	
 	}
+	
 	#header_navbar{
-		width : 40%;
+		width : 55%;
 		display: flex;
 	}
-	#header_navbar div{
+	#header_navbar div{;
 		font-size: 20px;
 		line-height: 75px;
 		cursor: pointer;
@@ -49,13 +51,35 @@
 		color:gray;
 	}
 	#header_btns{
-		width: 25%;
-		line-height : 75px;
+		width: 120px;
+		margin-top:29px;
+		font-size:13px;
+		margin-left:110px;
+	}
+	.header_btn{
+		margin-left:5px;
+		background: #FE9A2E;
+        background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+	}
+	.header_btn:hover{
+		background: #FE642E;
+		
+	}
+	.header_btn:not(:hover){
+		background: #FE9A2E;
+		transition: background-color 0.2s;
 	}
 	#header_guide{
 		width:100%;
 		height:5px;
 		background-color:orange;
+		margin-top:10px;
 		
 	}
 
@@ -78,12 +102,11 @@
 			<c:choose>
 				<c:when test="${sessionScope.unum ne null }">
 					<span>${sessionScope.uname}</span>
-					<button class="btn btn-light layout_a" onclick="location.href='/user/mypage'">마이페이지</button>
-					<button class="btn btn-light layout_a" onclick="location.href='/user/logout'">로그아웃</button>
+					<button class="header_btn" onclick="location.href='/user/logout'">로그아웃</button>
 				</c:when>
 				<c:otherwise>
-					<span>Guest 상태로 조회 중입니다</span>
-					<button type="button" class="btn btn-light layout_a" onclick="location.href='/user/login'">로그인</button>
+					<span>Guest</span>
+					<button type="button" class="header_btn" onclick="location.href='/user/login'">로그인</button>
 				</c:otherwise>
 			</c:choose>	
 			</div>

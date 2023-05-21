@@ -19,9 +19,6 @@
 	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-body, body * {
-/* 	font-family: 'Jua'; */
-}
 
 #maincontainer {
 	width: 1140px;
@@ -158,12 +155,25 @@ select {
 
 <div class="ajaxzone" style="height: 213px;"></div>
 
-	<span>
+	<div class="top3line" style="margin-bottom: -15px;">
 	<button class="btn btn-sm text-white" style="margin-top:0px;margin-bottom:20px; width:100px;background-color:#FE9A2E"
 	id="liketop" onclick="liketop()">추천수 TOP3</button>
 	<button class="btn btn-sm text-white" style="margin-top:0px;margin-bottom:20px; width:100px;background-color:#FE9A2E" 
 	id="readtop" onclick="readtop()">조회수 TOP3</button>
+	<c:choose>
+	<c:when test="${city1=='no' }">
+	<span style="float:right">
+		지역전체에 글이 ${totalCount } 개 있습니다
 	</span>
+	</c:when>
+	<c:otherwise>
+	<span style="float:right">
+		${city1 }의 ${city2 }에 글이 ${totalCount } 개 있습니다
+	</span>
+	</c:otherwise>
+	</c:choose>
+	</div>
+	
 	 
 	<div class="sea">
 		<form action="list" method="get" style="float: right;">

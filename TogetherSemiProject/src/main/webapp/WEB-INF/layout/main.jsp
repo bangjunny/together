@@ -161,12 +161,12 @@
 	}
 	#main_list_go_txt{
 		width:100%;
-		height: 400px;
+		height: 500px;
 		text-align:center;
 	}
 	#main_list_go_txt img{
 		width:90%;
-		height: 400px;
+		height: 500px;
 		object-fit:cover;
 	}
 	#main_list_go{
@@ -203,11 +203,11 @@
 		text-decoration: none;
 		color: black;
 		width: 150px;
-		height: 30px;
+		height: 50px;
 		background-color:rgb(252, 252, 240);
 		transition: 0.3s;
 		position: absolute;
-		top:200px;
+		top:195px;
 	}
 	.list_a div {
   		margin-top: 10px;
@@ -249,11 +249,17 @@
   		text-align: center;
   		color: #fff;
 	}
+	.slide-text h2{
+		text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+	}
+	.slide-text p{
+		text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+	}
 	
 	#main_bot{
 		width: 1140px;
 		height: 600px;
-		margin: 50px auto;
+		margin: 75px auto;
 		display: flex;
 		justify-content: space-between;
 	}
@@ -390,9 +396,9 @@ $(document).ready(function() {
 	</script>
 
 	<div id="main_side_btn">
-  		<button onclick="scrollToPosition(880)"></button>
-  		<button onclick="scrollToPosition(1940)"></button>
-  		<button onclick="scrollToPosition(2900)"></button>
+  		<button onclick="scrollToPosition(800)"></button>
+  		<button onclick="scrollToPosition(2200)"></button>
+  		<button onclick="scrollToPosition(3100)"></button>
 	</div>
 	
 
@@ -492,7 +498,7 @@ $(document).ready(function() {
 		</div>
 		
 		<span style="font-size:20px; line-height:40px;">
-			동호회 모임을 통해 새로운 친구를 사귈 수 있고, 전문 지식을 공유하며 즐거운 경험을 나눌 수 있습니다. 우리 사이트에서는 다양한 사람들과 소통하고 자신의 취미를 더욱 풍부하게 만들어 보세요.
+			동호회 모임을 통해 새로운 친구를 사귈 수 있고, 전문 지식을 공유하며 즐거운 경험을 나눌 수 있습니다. 다양한 사람들과 소통하고 자신의 취미를 더욱 풍부하게 만들어 보세요.
 
 지금 바로 저희 사이트를 방문하여 원하는 동호회 모임을 찾아보세요. 새로운 사람들과 함께 즐거운 시간을 보내고 동료들과의 유익한 교류를 경험해보세요!
 모임 커뮤니티의 경험을 재정의하고, 새로운 세계로 인도할 준비가 되어있는 다함께에서 여러분을 기다리고 있어요. 동호회 친구들과 함께 즐거운 시간을 보내고, 당신만의 동호회 이야기를 만들어보세요.
@@ -566,11 +572,11 @@ $(document).ready(function() {
 		  });
 		  $(this).find("span").css({
 		    "width": "150px",
-		    "height": "30px",
+		    "height": "50px",
 		    "background-color":"rgb(252, 252, 240)",
 		    "transition": "0.3s", // 
 		    "position": "absolute", // 추가: 요소를 절대 위치로 설정
-		    "top":"200px"
+		    "top":"195px"
 		    	/* rgb(245, 245, 220) */
 		  });
 		});

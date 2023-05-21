@@ -24,7 +24,7 @@
 
 	}
  	.container {
-	  width: 1440px;
+	  width: 1140px;
 	  margin: 0 auto;
 	}
 	
@@ -35,10 +35,9 @@
 	}
 	.cblike-container {
 	  	margin-top: 50px;
-	  	padding: 20px;
 	    width: 1440px;
 	    margin: 100 auto;
-	    padding: 20px;
+	  	margin-left: -40px;
   }
   	
 	.cblike-item {
@@ -151,7 +150,7 @@
 </nav>
 <div class="container">
 	<div class="cblike-container">
-		 <h3 class="mb-4">내가 쓴 게시물 보기</h3>
+		 <h3 class="mb-4">내가 추천한 게시물 보기</h3>
 			<c:if test="${totalCount==0 }">
 				<div class="cblike-item">
 					<b style="font-size:1.3em">등록된 게시글이 없습니다</b>

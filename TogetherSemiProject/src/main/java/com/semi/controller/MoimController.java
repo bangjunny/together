@@ -376,6 +376,9 @@ public class MoimController {
 	public List<ScheduleJoinDto> mslist(int msnum) {
 		System.out.println("msnum:"+msnum);
 		List<ScheduleJoinDto> list = moimService.getJoinlist(msnum);
+		System.out.println(list);
 		return list;
 	}
+	
+	
 }

@@ -28,10 +28,11 @@
 	}
 	#header_logo{
 		width: 20%;
+		object-fit:cover;
 	}
 	.layout_a img{
-		width: 75px;
-		height: 75px;
+		width: 100%;
+		height: 100%;
 	}
 	#header_navbar{
 		width : 40%;
@@ -44,8 +45,18 @@
 		margin: 0 auto;
   		
 	}
+	#header_navbar div:hover{
+		color:gray;
+	}
 	#header_btns{
 		width: 25%;
+		line-height : 75px;
+	}
+	#header_guide{
+		width:100%;
+		height:5px;
+		background-color:orange;
+		
 	}
 
 </style>
@@ -59,10 +70,10 @@
 				</a>
 			</div>	
 			<div id="header_navbar">
-					<div onclick="location.href='/moim/moimlist'">모임게시판</div>
-					<div onclick="location.href='/city/list'">지역게시판</div>
-					<div onclick="location.href='/mapcontact'">지역검색</div>
-			</div>		
+  				<div onclick="navigateTo('/moim/moimlist')" id="heading_moim">모임게시판</div>
+  				<div onclick="navigateTo('/city/list')" id="heading_city">지역게시판</div>
+  				<div onclick="navigateTo('/mapcontact')" id="heading_map">지역검색</div>
+			</div>	
 			<div id="header_btns">
 			<c:choose>
 				<c:when test="${sessionScope.unum ne null }">
@@ -78,8 +89,17 @@
 			</div>
 	    </div>
 	</div>
+	<div id=header_guide></div>
 
-
+	<script type="text/javascript">
+		function navigateTo(url) {
+  		// 클릭한 버튼에 스타일을 적용합니다.
+  		event.target.style.color = "orange";
+  
+  		// 페이지 이동
+  		location.href = url;
+		}
+	</script>
 
 </body>
 </html>

@@ -128,6 +128,7 @@
 	#showimg{
 	width: 350px;
 	height:350px;
+	overflow:hidden;
 	border:1px solid black;
 	}
 	

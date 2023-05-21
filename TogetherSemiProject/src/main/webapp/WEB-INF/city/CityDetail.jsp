@@ -29,6 +29,8 @@
 	#photozone{
 	text-align:center;
 	}
+	
+	
 </style>
 </head>
 <body>
@@ -37,7 +39,7 @@
 	<br>
 	<br>
 	<!-- 해당 글 정보 영역 -->
-	<div style="width: 1140px; margin: 0 auto; margin-top: 40px; border: 1px solid #6E6E6E; border-radius: 5px;background-color: #FBFBEF">
+	<div style="width: 1140px; margin: 0 auto; margin-top: 40px; border-radius: 5px;background-color: #FCFCF5">
 		<br>
 		<h3 style="margin-left:40px;margin-top:10px;">${dto.subject}</h3>
 		<h6 style="float: right;">
@@ -94,7 +96,7 @@
 		<hr style="width:94%; margin-left:40px">
 		<!-- 버튼 영역 -->
 		<div>
-			<button type="button" id="golist" class="btn btn-sm btn-outline-success" style="margin-left:40px; width:100px;"><i class="bi bi-card-list"></i>
+			<button type="button" id="golist" class="btn btn-sm" style="margin-left:40px; width:100px;border:1px solid #FE9A2E;color:#FE9A2E"><i class="bi bi-card-list"></i>
 			목록으로</button>
 			<c:choose>
 			 <c:when test="${sessionunum eq dto.unum}">
@@ -107,7 +109,7 @@
 			  </button>
 				</c:when>
 				<c:otherwise>
-				  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" onclick="Swal.fire({
+				  <button type="button" class="btn btn-sm btn-outline-success" style="width:100px" onclick="Swal.fire({
 					  icon: 'error',
 					  title: '',
 					  text: '작성자가 아닙니다',
@@ -147,8 +149,8 @@
 		<br>
 		<div>
 			<!-- 댓글 출력 영역 -->
-			<button type="button" id="showComment" style="margin-left: 40px; margin-bottom: 10px;width:150px; background-color:white;color:#FE642E" 
-			class="btn btn-sm"><h6 style="margin-top:5px"><i class="bi bi-chat-dots"></i>&nbsp;댓글 보기</h6></button>
+			<button type="button" id="showComment" style="margin-left: 40px; margin-bottom: 10px;width:150px; background-color:#FE9A2E" 
+			class="btn btn-sm text-white"><h6 style="margin-top:5px"><i class="bi bi-chat-dots"></i>&nbsp;댓글 보기 (${totalComment})</h6></button>
 			<div style="display:none;margin:72px;" id="commentArea">
 				<c:if test="${totalComment=='0'}">
 				<table>
@@ -162,7 +164,8 @@
 				<c:choose>
 					<c:when test="${listcomment.depth=='0'}">
 					<!-- 원 댓글 -->
-					<table style="display: block;border:1px solid #ddd;max-width: 1026px;border-radius:5px;" class="commentView" data-ref="${listcomment.ref}" data-depth="${listcomment.depth }">
+					<br>
+					<table style="display: block;border:1px solid #ddd;max-width: 1026px;border-radius:5px;" class="commentView" data-ref="${listcomment.ref}" data-step="${listcomment.step}" data-depth="${listcomment.depth }">
 						<tr style="border: 1px solid #ddd;" value="${listcomment.ref}">
 							<td style="width:800px;background-color:#ddd;">
 								<c:forEach begin="1" end="${listcomment.depth}">
@@ -200,12 +203,12 @@
 							<td colspan="2">
 							&nbsp;
 							<c:if test="${listcomment.recontent!=''}">
-							<button type="button" id="commentFunction" class="btn btn-sm text-white" style="width:100px;background-color:#FE9A2E">답글 보기</button>
+        					<button type="button" id="commentFunction" class="btn btn-sm text-white" style="width:100px;background-color:#FE9A2E;margin-bottom:10px;">답글 보기</button>
+            				<button id="addComment" style="float:right;margin-right:10px;" class="btn btn-sm btn-outline-secondary">답글</button>
 							<c:if test="${sessionScope.unum==listcomment.unum}">
-								<button type="submit" id="deleteComment" style="float:right;" class="btn btn-sm btn-danger">삭제</button>
-								<button id="updateComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">수정</button>
+								<button type="submit" id="deleteComment" style="float:right;margin-right:3px;" class="btn btn-sm btn-outline-secondary">삭제</button>
+								<button id="updateComment" style="float:right;margin-right:3px;" class="btn btn-sm btn-outline-secondary">수정</button>
 							</c:if>
-            				<button id="addComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">답글</button>
 							</c:if>
 							</td>
 						</tr>
@@ -234,12 +237,11 @@
 							
 						</tr>
 					</table>
-					<br>
 					</c:when>
 					<c:otherwise>
 					<!-- 답글 영역 --> 
-					<table style="display:none;border:1px solid #ddd;max-width: 1026px;" id="commentView" data-ref="${listcomment.ref}" data-depth="${listcomment.depth }">
-						<tr style="border: 1px solid #ddd;" value="${listcomment.ref}">
+					<table style="display:none;border:1px solid #ddd;max-width: 1026px;border-radius:5px;" id="commentView" data-ref="${listcomment.ref}" data-depth="${listcomment.depth }">
+						<tr style="border: 1px solid #ddd;border-radius:5px;" value="${listcomment.ref}">
 							<td style="width: 800px;background-color:#ddd">
 								<c:forEach begin="1" end="${listcomment.depth}">
 								&nbsp;&nbsp;
@@ -262,7 +264,7 @@
 							</c:if>							
 							</td>
 						</tr>
-						<tr style="height:100px; word-break: break-all;">
+						<tr style="height:80px; word-break: break-all;">
 							<td colspan="2">
 								<c:forEach begin="1" end="${listcomment.depth}">
 									&nbsp;&nbsp;&nbsp;&nbsp;
@@ -283,10 +285,10 @@
 							&nbsp;
 							
 							<c:if test="${sessionScope.unum==listcomment.unum}">
-								<button type="submit" id="deleteComment" style="float:right;" class="btn btn-sm btn-danger">삭제</button>
-								<button id="updateComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">수정</button>
+								<button type="submit" id="deleteComment" style="float:right;" class="btn btn-sm btn-outline-secondary">삭제</button>
+								<button id="updateComment" style="float:right;" class="btn btn-sm btn-outline-secondary">수정</button>
 							</c:if>
-            				<button id="addComment" style="float:right;background-color:#FE9A2E" class="btn btn-sm text-white">답글</button>
+            				<button id="addComment" style="float:right;" class="btn btn-sm btn-outline-secondary">답글</button>
 							</c:if>
 							</td>
 						</tr>
@@ -312,7 +314,6 @@
 									</div>
 								</form>
 							</td>
-							
 						</tr>
 					</table>
 					</c:otherwise>
@@ -328,20 +329,20 @@
 			<div>
 			<h5 style="margin-left:40px;"><b>이전 글</b></h5>
 				<c:if test="${not empty precontent}">
-					<a href="<c:url value='/city/detail?cbnum=${prenum}'/>"><h6 style="margin-left: 60px;">${precontent}</h6></a>
+					<a style="text-decoration: none;" href="<c:url value='/city/detail?cbnum=${prenum}'/>"><h6 style="margin-left: 60px;color:black">${precontent}</h6></a>
 				</c:if>
 				<c:if test="${empty precontent}">
-					<h6 style="margin-left: 60px;">이전 게시글이 없습니다</h6>
+					<h6 style="margin-left: 60px;color:#BDBDBD">이전 게시글이 없습니다</h6>
 				</c:if>
 			</div>
 			<hr style="width:94%; margin-left:40px">
 			<div>
 			<h5 style="margin-left:40px;"><b>다음 글</b></h5>
 				<c:if test="${not empty nxtcontent}">
-					<a href="<c:url value='/city/detail?cbnum=${nxtnum}'/>"><h6 style="margin-left: 60px;">${nxtcontent}</h6></a>
+					<a style="text-decoration: none;" href="<c:url value='/city/detail?cbnum=${nxtnum}'/>"><h6 style="margin-left: 60px;color:black">${nxtcontent}</h6></a>
 				</c:if>
 				<c:if test="${empty nxtcontent}">
-					<h6 style="margin-left: 60px;">다음 게시글이 없습니다</h6>
+					<h6 style="margin-left: 60px;color:#BDBDBD">다음 게시글이 없습니다</h6>
 				</c:if>
 			</div>
 			<br>
@@ -364,7 +365,7 @@
 		let s = $(this).parent().parent().next().find("#recontent").css("display");
 	    if (s == "none") {
 	        $(this).parent().parent().next().find("#recontent").css("display", "block");
-	        $(this).parent().parent().parent().siblings().find("#recontent").css("display","none")
+	        $(this).parent().parent().parent().parent().siblings().find("#recontent").css("display","none")
 	    } else {
 	        $(this).parent().parent().next().find("#recontent").css("display", "none");
 	    }
@@ -378,7 +379,7 @@
 		let s = $(this).parent().parent().next().find("#recontent").css("display");
 	    if (s == "none") {
 	        $(this).parent().parent().next().find("#recontent").css("display", "block");
-	        $(this).parent().parent().parent().siblings().find("#recontent").css("display","none")
+	        $(this).parent().parent().parent().parent().siblings().find("#recontent").css("display","none")
 	    } else {
 	        $(this).parent().parent().next().find("#recontent").css("display", "none");
 	    }
@@ -456,16 +457,15 @@
 
 $("#showComment").click(function() {
   if ($("#commentArea").css("display") === "none") {
-	  $("#showComment").css("border","1px solid #FE9A2E")
-	  $("#showComment").css("background-color","#FE9A2E")
-	  $("#showComment").attr("class","btn btn-sm text-white")
+	  $("#showComment").css("background-color","white")
+	  $("#showComment").css("color","#FE9A2E")
+	  $("#showComment").attr("class","btn btn-sm")
 	  $("#commentArea").css("display", "block");
       $("#commentArea").slideUp(0).slideDown("slow");
   } else {
       $("#commentArea").slideUp("slow", function() {
-    	  $("#showComment").css("border","")
-    	  $("#showComment").css("background-color","white")
-    	  $("#showComment").attr("class","btn btn-sm")
+    	  $("#showComment").css("background-color","#FE9A2E")
+    	  $("#showComment").attr("class","btn btn-sm text-white")
         $("#commentArea").css("display", "none");
     });
   }
@@ -484,9 +484,23 @@ $(document).on("click","#photoarea",function(){
 		  imageWidth: 600,
 		  imageHeight: 600,
 		  imageAlt: 'Custom image',
-		})
+		});
 	
+});
+
+let golist=$("#golist");
+
+golist.mouseover(function(){
+	golist.css("background-color","#FE9A2E")
+	golist.css("color","white")
 })
+
+golist.mouseout(function(){
+	golist.css("background-color","")
+	golist.css("color","#FE9A2E")
+})
+
+
 </script>
 </html>
 

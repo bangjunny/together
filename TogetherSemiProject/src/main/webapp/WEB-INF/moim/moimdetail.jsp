@@ -22,6 +22,7 @@
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 	body, body * {
 		font-family: 'NanumPenScript';
@@ -385,7 +386,7 @@
 		 		</c:if>
 		 			<td style="font-size:20px;">
 		 			${msdto.mssubject } <br><span style="font-size:13px;"><b>￦</b> ${msdto.mscost }</span>
-		 			&nbsp;&nbsp;<span style="font-size:13px;"><i class="bi bi-person"></i>&nbsp;${msdto.jmcount}/${msdto.personnel }</span>
+		 			&nbsp;&nbsp;<span style="font-size:13px;" onclick="ScheduleJoinMember('${msdto.msnum}');"><i class="bi bi-person"></i>&nbsp;${msdto.jmcount}/${msdto.personnel }</span>
 		 			<br>
 		 			<span style="font-size:13px;"><i class="bi bi-calendar"></i> ${msdto.msdate} ${msdto.mstime.substring(0, 5)} 
 		 			</span>	&nbsp;	 			
@@ -511,6 +512,41 @@
 		<hr id="foothr">
 		<br>
 	</div>
+	
+	<!-- 모임참석자 모달 -->
+	<div class="container mt-3">
+  <h3>Vertically Centered Modal Example</h3>
+  <p>Click on the button to open the modal.</p>
+  
+  <button type="hidden" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sjmModal">
+    참석자리스트
+  </button>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="sjmModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">참석자 리스트</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 		
 	<script type="text/javascript">
 	const mnum = ${dto.mnum};
@@ -766,6 +802,26 @@
 	  }
 	}
 	
+	function ScheduleJoinMember(msnum){
+		const unum = ${sessionScope.unum};
+		    $.ajax({
+			      type: "get",
+			      url: "ScheduleJoinMember",
+			      dataType: "text",
+			      data: {
+			    	  msnum: msnum			        
+			      },
+			      success: function(res) {
+			        if (res == "success") {
+			        	var sjlist=document.getElementById("?");
+						sjlist.click();
+			        }
+			      },
+			    });
+			  } else {
+			    return; // 함수 즉시 종료
+			  }
+			}
 </script>
 
 </body>

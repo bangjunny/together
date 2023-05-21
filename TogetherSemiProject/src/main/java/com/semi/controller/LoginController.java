@@ -290,7 +290,7 @@ public class LoginController {
 		boolean pck=loginService.mypagePassCheck(unum, pass);
 		if(pck) {
 			return "redirect:/user/mypageupdateform?unum=" + unum;			
-		}else {
+		}else {			
 			 return "error";
 		}
 		

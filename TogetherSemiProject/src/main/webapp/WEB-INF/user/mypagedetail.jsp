@@ -23,16 +23,25 @@
 	body, body * {
             font-family: 'Noto Sans', sans-serif;
     }
+    
+    tbody {
+    	font-size: 1.5em;
+    }
+
+	#mynav_text{		
+		margin-left:180px;
+
+	}
 
 	  .MPtable tbody tr:hover {
 	    background-color: #FFF7E9;
 	  }
 	  
 	#mypageupdateicon{
-		margin-left:10px;
+		margin-left:550px;
 		color: #FE9A2E;
 		cursor:pointer;
-	
+		
 	}
 	#myinfoupdate{
 		cursor:pointer;
@@ -67,14 +76,9 @@
 		
 	}
 	
-	#mypage_navbar{		
-		margin-top: 80px;
-	}
 	.container {
-	  margin-top:100px;
 	  margin-left:10px;
 	  max-width: 1440px;
-	  margin: 100 100 100 100;
 	  flex : auto;
 	  padding: 20px 20px 20px 20px;
 	  background-color: #fff;
@@ -132,14 +136,14 @@
 <!-- 마이페이지내브바 -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mypage_navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}">MYPAGE</a>
+    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text">MYPAGE</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/user/mypagedetail?unum=${unum}">Home</a>
+          <a class="nav-link active" aria-current="page" href="/user/mypagedetail?unum=${unum}">내 정보</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
@@ -148,12 +152,11 @@
           <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 쓴 게시물</a>
+          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 작성한 게시물</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
         </li>
-      
       </ul>
     </div>
   </div>
@@ -211,10 +214,6 @@
 				    <table class="table table-borderless table-hover MPtable" id="myinfotable">
 				        <tbody>
 				            <tr>
-				                <th scope="row">넘버</th>
-				                <td>${dto.unum}</td>
-				            </tr>
-				            <tr>
 				                <th scope="row">이름</th>
 				                <td>${dto.uname}</td>
 				            </tr>
@@ -248,11 +247,12 @@
 				            </tr>
 				        </tbody>
 				    </table>
+				    <br><br><br><br><br>
 				    <div class="text" id="mypageupdate">
 		    		<!-- 마이페이지 수정폼 -->
-		    		<label>
+		    		<label id="mypageupdateicon">
 		    		<a data-toggle="tooltip" data-placement="right" title="마이페이지 수정하기" >
-		    		<i class="bi bi-gear" id="mypageupdateicon">수정</i>
+		    		<i class="bi bi-gear" ></i>수정
 		    		</a>
 		    		</label>
 		    		

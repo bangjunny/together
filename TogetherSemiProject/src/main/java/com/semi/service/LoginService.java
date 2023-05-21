@@ -99,6 +99,8 @@ public class LoginService implements LoginServiceInter{
 	        moimMap.put("mname", moimDto.getMname());
 	        moimMap.put("mcontent", moimDto.getMcontent());
 	        moimMap.put("mphoto",moimDto.getMphoto());
+	        moimMap.put("city1",moimDto.getCity1());
+	        moimMap.put("city2",moimDto.getCity2());
 	        // 모임 정보를 그릇에 담는다.
 	        jjimList.add(moimMap);
 	    });

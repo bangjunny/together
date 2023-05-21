@@ -369,5 +369,13 @@ public class MoimController {
 
 		return "success";
 	}
-
+	
+	@ResponseBody
+	@GetMapping("/ScheduleJoinMember")
+	public String ScheduleJoinMember(HttpSession session, int msnum, int mnum,Model model) {
+		int unum = (int) session.getAttribute("unum");
+		List<Map<String, Object>> jmlist = moimService.getJoinMemberList(msnum);
+		model.addAttribute("jmlist", jmlist);
+		return "success";
+	}
 }

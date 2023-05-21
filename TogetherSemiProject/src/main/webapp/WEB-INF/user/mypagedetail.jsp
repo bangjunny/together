@@ -27,6 +27,12 @@
     tbody {
     	font-size: 1.5em;
     }
+    
+    #mypage_navbar{		
+		margin-top:-40px;
+		margin-bottom:30px;
+
+	}
 
 	#mynav_text{		
 		margin-left:180px;
@@ -77,6 +83,7 @@
 	}
 	
 	.container {
+	
 	  margin-left:10px;
 	  max-width: 1440px;
 	  flex : auto;
@@ -147,7 +154,7 @@
 
 <body>
 <!-- 마이페이지내브바 -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mypage_navbar">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" id="mypage_navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text">MYPAGE</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">

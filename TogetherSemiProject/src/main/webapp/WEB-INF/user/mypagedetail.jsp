@@ -23,16 +23,25 @@
 	body, body * {
             font-family: 'Noto Sans', sans-serif;
     }
+    
+    tbody {
+    	font-size: 1.5em;
+    }
+
+	#mynav_text{		
+		margin-left:180px;
+
+	}
 
 	  .MPtable tbody tr:hover {
 	    background-color: #FFF7E9;
 	  }
 	  
 	#mypageupdateicon{
-		margin-left:10px;
+		margin-left:550px;
 		color: #FE9A2E;
 		cursor:pointer;
-	
+		
 	}
 	#myinfoupdate{
 		cursor:pointer;
@@ -67,14 +76,9 @@
 		
 	}
 	
-	#mypage_navbar{		
-		margin-top: 80px;
-	}
 	.container {
-	  margin-top:100px;
 	  margin-left:10px;
 	  max-width: 1440px;
-	  margin: 100 100 100 100;
 	  flex : auto;
 	  padding: 20px 20px 20px 20px;
 	  background-color: #fff;
@@ -145,14 +149,14 @@
 <!-- 마이페이지내브바 -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mypage_navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}">MYPAGE</a>
+    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text">MYPAGE</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/user/mypagedetail?unum=${unum}">Home</a>
+          <a class="nav-link active" aria-current="page" href="/user/mypagedetail?unum=${unum}">내 정보</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
@@ -161,12 +165,11 @@
           <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 쓴 게시물</a>
+          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 작성한 게시물</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
         </li>
-      
       </ul>
     </div>
   </div>
@@ -223,7 +226,6 @@
 				<div class="text col" style="display: block;">
 				    <table class="table table-borderless table-hover MPtable" id="myinfotable">
 				        <tbody>
-			
 				            <tr>
 				                <th scope="row">이름</th>
 				                <td>${dto.uname}</td>
@@ -258,11 +260,12 @@
 				            </tr>
 				        </tbody>
 				    </table>
+				    <br><br><br><br><br>
 				    <div class="text" id="mypageupdate">
 		    		<!-- 마이페이지 수정폼 -->
-		    		<label>
+		    		<label id="mypageupdateicon">
 		    		<a data-toggle="tooltip" data-placement="right" title="마이페이지 수정하기" >
-		    		<i class="bi bi-gear" id="mypageupdateicon" data-bs-toggle="modal" data-bs-target="#sujung">수정</i>
+		    		<div data-bs-toggle="modal" data-bs-target="#sujung"><i class="bi bi-gear"></i>수정</div>
 		    		</a>
 		    		</label>
 		    		
@@ -295,18 +298,16 @@
       <!-- Modal body -->
       <div class="modal-body">
 		비밀번호를 확인 한 후 회원정보 수정으로 이동합니다<br>
-		<form action="mypagePassCheck" method="post">
 		<div class="mb-3" style="margin-top:30px;">
             <label for="message-text" class="col-form-label">비밀번호</label>
-            <input type="password" name="pass" class="form-control"  style="height:50px">
+            <input type="password" class="form-control" id="updatepass"  style="height:50px">
           </div>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="submit" class="makemo" data-bs-dismiss="modal">확인</button>
+        <button type="button" onclick="passchk()" class="makemo" data-bs-dismiss="modal">확인</button>
       </div>
-	</form>
     </div>
   </div>
 </div>
@@ -485,6 +486,26 @@ $(document).on("click",".setmain",function(e){
 		});
 	}
 });
+function passchk(){
+	var pass = $("#updatepass").val();
+	var unum = ${unum}
+	$.ajax({
+		type:"get",
+        url:"passchk",
+        dataType:"text",
+        data:{"pass":pass,"unum":unum},
+        success:function(res){
+        	if(res=='true'){
+        		location.href='/user/mypageupdateform?unum='+unum;
+        	} else {
+        		alert("비밀번호를 확인해주세요")
+        	}
+        	
+        }
+        	
+	});
+	
+}
 </script>
 </body>
 </html>

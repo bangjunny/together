@@ -18,11 +18,13 @@
  body {
 		 font-family: Arial, sans-serif;
 	}
-	#mypage_navbar{		
-		margin-top: 80px;
+
+	#mynav_text{		
+		margin-left:180px;
+
 	}
  	.container {
-	  width: 1440px;
+	  width: 1140px;
 	  margin: 0 auto;
 	}
 	
@@ -33,10 +35,9 @@
 	}
 	.cblike-container {
 	  	margin-top: 50px;
-	  	padding: 20px;
 	    width: 1440px;
 	    margin: 100 auto;
-	    padding: 20px;
+	  	margin-left: -40px;
   }
   	
 	.cblike-item {
@@ -69,7 +70,6 @@
     flex-grow: 1;
   }
   	.cblike-title {
-	  font-size: 1.2em;
 	  margin: 0;
 	  text-overflow: ellipsis;
 	overflow: hidden;
@@ -130,7 +130,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/user/mypagedetail?unum=${unum}">내 정보</a>
+          <a class="nav-link" aria-current="page" href="/user/mypagedetail?unum=${unum}">내 정보</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
@@ -139,16 +139,10 @@
           <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 쓴 게시물</a>
+          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 작성한 게시물</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="myinfoupdate">내 정보 수정</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="myuser_out">회원탈퇴</a>
+          <a class="nav-link active" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
         </li>
       </ul>
     </div>
@@ -156,7 +150,7 @@
 </nav>
 <div class="container">
 	<div class="cblike-container">
-		 <h3 class="mb-4">내가 쓴 게시물 보기</h3>
+		 <h3 class="mb-4">내가 추천한 게시물 보기</h3>
 			<c:if test="${totalCount==0 }">
 				<div class="cblike-item">
 					<b style="font-size:1.3em">등록된 게시글이 없습니다</b>
@@ -168,10 +162,10 @@
 				  	<a class="cblike-link" href="/city/detail?cbnum=${cb.cbnum}"> 			     
 				      <div class="cblike-content">
 				      <div class="cblist-title">
-				        <h3 class="cblike-title">${cb.subject}</h3></div>
+				        <b style="font-size:1.5em">${cb.subject}</b></div>
 				        <div class="cblike-details">
-				          지역:${cb.city1},${cb.city2} | 작성일: 2023-05-18 | 조회수: ${cb.readcount}
-				       	          
+				          지역:${cb.city1},${cb.city2} | 조회수: ${cb.readcount} | 
+				          작성일: <fmt:formatDate value="${cb.cbwriteday}" pattern="yyyy-MM-dd"/>      
 				        </div>
 				        <div class="cblike-description">
 				          ${cb.cbcontent}

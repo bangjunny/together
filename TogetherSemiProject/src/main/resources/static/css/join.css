@@ -312,5 +312,12 @@
           display: none;
       }
       
+      .tla {
+		height: 20px;
+		width: 160px;
+	  }
+      
       .olmessagef {color: red; margin-top:9px; font-size:12px;}
 	  .olmessaget {color: green; margin-top:9px; font-size:12px;}
+	  
+	  

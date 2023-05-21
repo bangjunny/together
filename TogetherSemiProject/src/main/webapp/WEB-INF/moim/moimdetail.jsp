@@ -22,6 +22,7 @@
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 	body, body * {
 		font-family: 'NanumPenScript';
@@ -387,7 +388,7 @@
 		 			${msdto.mssubject } <br><span style="font-size:13px;"><b>￦</b> ${msdto.mscost }</span>
 		 			&nbsp;&nbsp;<span style="font-size:13px;cursor:pointer" onclick="personlist('${msdto.msnum }')"><i class="bi bi-person"></i>&nbsp;${msdto.jmcount}/${msdto.personnel }</span>
 		 			<br>
-		 			<span style="font-size:13px;"><i class="bi bi-calendar"></i> ${msdto.msdate} ${msdto.mstime.substring(0, 5)} 
+		 			<span style="font-size:13px;"><i class="bi bi-calendar"></i> ${msdto.msdate} ${msdto.mstime.substring(0, 5)}
 		 			</span>	&nbsp;	 			
 		 			<span style="font-size:13px;"><i class="bi bi-geo-alt"></i> ${msdto.mslocation }</span>		 			
 		 			</td>
@@ -508,11 +509,48 @@
 		</pre>
 		</div>
 		
-		<hr id="foothr">
-		<br>
-		<div id="modalzone"></div>
-		<input type="hidden" data-bs-toggle="modal" data-bs-target="#myWorkModal">
-	</div>
+		
+
+		
+<!-- 모임참석자 모달 -->
+	<div class="container mt-3">
+  <button type="button" id="mslist" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sjmModal"></button>
+</div>
+
+<div class="modalzone">
+<!-- The Modal -->
+<div class="modal" id="sjmModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">참석자 리스트</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+<hr id="foothr">
+<br>
+</div>
+	
+	
+	
 		
 	<script type="text/javascript">
 	const mnum = ${dto.mnum};
@@ -767,64 +805,61 @@
 	    return; // 함수 즉시 종료
 	  }
 	}
-	
+    
 	function personlist(msnum){
-		alert(msnum);
 		$.ajax({
 			type:"get",
 	        url:"mslist",
-	        dataType:"text",
+	        dataType:"json",
 	        data:{"msnum":msnum},
 	        success:function(res){
-	        //alert(res);
+	        var mslist=document.getElementById("mslist");
+	        	
 	        	let s="";
+	        	let n="";
+	        	s+=`	
+	        		<!-- The Modal -->
+	        		<div class="modal" id="sjmModal">
+	        		  <div class="modal-dialog modal-dialog-centered">
+	        		    <div class="modal-content">
+
+	        		      <!-- Modal Header -->
+	        		      <div class="modal-header">
+	        		        <h4 class="modal-title">참석자리스트</h4>
+	        		        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	        		      </div>
+
+	        		      <!-- Modal body -->
+	        		      <div class="modal-body">
+	        		        Modal body..
+	        		      </div>
+
+	        		      <!-- Modal footer -->
+	        		      <div class="modal-footer">
+	        		        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	        		      </div>
+
+	        		    </div>
+	        		  </div>
+	        		</div>
+	        		</div>`
+	        	
 	        	$.each(res,function(idx,ele){
-	        		s+=`<!-- The Modal -->
-	        		<div class="modal" id="myWorkModal">
-	    			<div class="modal-dialog modal-dialog-centered">
-	    				<div class="modal-content">
-
-	    					<!-- Modal Header -->
-	    					<div class="modal-header">
-	    						<h4 class="modal-title">업족/직무</h4>
-	    						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-	    					</div>
-
-	    					<!-- Modal body -->
-	    					<div class="modal-body">
-	    						<label><input type="checkbox" name="categorys" value="의료/건강/제약">의료/건강/제약</label> 
-	    						<label><input type="checkbox" name="categorys" value="IT/포털/인터넷">IT/포털/인터넷</label>
-	    						<label><input type="checkbox" name="categorys" value="교육업">교육업</label>
-	    						<br> 
-	    						<label><input type="checkbox" name="categorys" value="광고/마케팅업계">광고/마케팅업계</label> 
-	    						<label><input type="checkbox" name="categorys" value="디자인업계  ">디자인업계</label> 
-	    						<label><input type="checkbox" name="categorys" value="무역/상사">무역/상사</label> 
-	    						<br>
-	    						<label><input type="checkbox" name="categorys" value="금융업">금융업</label>
-	    						<label><input type="checkbox" name="categorys" value="세무/회계">세무/회계</label> 
-	    						<label><input type="checkbox" name="categorys" value="전자/기계/전기">전자/기계/전기</label> 
-	    						<br> 
-	    						<label><input type="checkbox" name="categorys" value="패션/의류/뷰티">패션/의류/뷰티</label>
-	    						<label><input type="checkbox" name="categorys" value="서비스업">서비스업</label>
-	    						<label><input type="checkbox" name="categorys" value="식음료/외식업">식음료/외식업</label>
-	    					</div>
-
-	    					<!-- Modal footer -->
-	    					<div class="modal-footer">
-	    						<button type="button" class="btn btn-danger"
-	    							data-bs-dismiss="modal">선택</button>
-	    					</div>
-
-	    				</div>
-	    			</div>
-	    		</div>`
+	        		
+	        		n+=`<li>\${ele.uname}</li>`
+	        		
 	        	});
+	        	$(".modalzone").html(s);
+	        	$(".modal-body").html(n);
+	        	mslist.click();
+	        	
+	        	
 	        }
+	        
 		});
 		
 	}
 
-	
 </script>
 
 </body>

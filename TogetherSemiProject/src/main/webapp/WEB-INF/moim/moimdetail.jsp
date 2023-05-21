@@ -387,7 +387,7 @@
 		 			${msdto.mssubject } <br><span style="font-size:13px;"><b>￦</b> ${msdto.mscost }</span>
 		 			&nbsp;&nbsp;<span style="font-size:13px;"><i class="bi bi-person"></i>&nbsp;${msdto.jmcount}/${msdto.personnel }</span>
 		 			<br>
-		 			<span style="font-size:13px;"><i class="bi bi-calendar"></i> ${msdto.msdate} ${msdto.mstime.substring(0, 5)} 
+		 			<span style="font-size:13px;"><i class="bi bi-calendar"></i> ${msdto.msdate} ${msdto.mstime.substring(0, 5)}
 		 			</span>	&nbsp;	 			
 		 			<span style="font-size:13px;"><i class="bi bi-geo-alt"></i> ${msdto.mslocation }</span>		 			
 		 			</td>

@@ -41,8 +41,9 @@
  		overflow-x: hidden;
 	}	
 	#main_start img {
-  		width: 300px;
-  		height: 300px;
+  		width: 100%;
+  		height: 100%;
+  		object-fit:cover;
   		animation: zoomIn 1s ease-in-out; /* referring directly to the animation's @keyframe declaration */
   		animation-delay: 0.75s; /* adding a 2-second delay before the animation starts */
 	}
@@ -56,14 +57,7 @@
   		}
 	}
 	
-  	#main_header{
-		width: 1440px;
-		height: 600px;
-		margin: 0 auto;
-		display: flex;
-		justify-content: space-around;
   
-   	}
    	#main_side_btn{
    		width: 70px;
    		height: 300px;
@@ -96,19 +90,25 @@
   		opacity: 1;
   		
 	}
+	#main_header{
+		width: 1140px;
+		height: 500px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-around;
+  
+   	}
  	#main_header_left{
     	width: 45%;
     	height: 600px;
     	text-align: left;
     }
 	#main_head_logo{
-		margin-top: 25px;
-		margin-left: 100px;
-	}
-	#main_head_logo img{
-		width: 75px;
+		
+		margin-left: 40px;
+		width: 150px;
 		height: 75px;
-	}	
+	}
 	
 	#main_header_txt{
 		width: 80%;
@@ -118,24 +118,33 @@
 	}
 	
 	#main_header_pic{
-		width: 50%;
-		height: 550px;
+		width: 45%;
+		height: 350px;
 		text-align: center;
+		
 	}
 	#main_header_pic img{
 		width: 100%;
 		height: 100%;
+		border-radius: 10px;
 	}
 	#rotate_photo{
 		width: 700px;
 		height: 500px;
 	}
 	#main_btn_wrap{
-		margin-top: 50px;
 		width: 400px;
-		display: flex;
-		justify-content: flex-end;
 		
+	}
+	#main_list_go_txt{
+		width:100%;
+		height: 400px;
+		text-align:center;
+	}
+	#main_list_go_txt img{
+		width:90%;
+		height: 400px;
+		object-fit:cover;
 	}
 	#main_list_go{
 		width: 1000px;
@@ -143,7 +152,7 @@
 		display: flex;
 		justify-content: center;
 		justify-content: space-between;
-		margin: 0 auto 100px auto;
+		margin: 0 auto;
 	}
 	.list_a {
 	  display: flex;
@@ -153,7 +162,7 @@
       width: 200px;
       height: 200px;
       text-align: center;
-      height: 250px;
+      
 	}
 	.list_a img {
  		 width: 200px;
@@ -164,7 +173,8 @@
 
 	.list_a img:hover {
 		cursor: pointer;
-  		transform: scale(0.9); /* 이미지 크기 확대 */
+  		transform: scale(1.2); /* 이미지 크기 확대 */
+  		
 	}
 	
 	.list_a span{
@@ -175,7 +185,7 @@
 		background-color:rgb(252, 252, 240);
 		transition: 0.3s;
 		position: absolute;
-		top:220px;
+		top:200px;
 	}
 	.list_a div {
   		margin-top: 10px;
@@ -198,11 +208,11 @@
 	}
 	.main_mid_pic{
 		width: 100%;
-		height: 900px;
+		height: 800px;
 	} 
 	.main_mid_pic img{
 		width: 100%;
-		height: 900px;
+		height: 800px;
 		object-fit: cover;
 	}
 	.slide-item {
@@ -222,7 +232,7 @@
 		text-align: center;
 	}
 	#main_bot{
-		width: 65%;
+		width: 1140px;
 		height: 600px;
 		margin: 0 auto;
 		display: flex;
@@ -230,15 +240,22 @@
 	}
 	#main_bot_txt {
  		width: 45%;
-  		position: relative; /* add this line to make sure the position of the <span> is relative to this container */
 	}
 
 	#main_bot_txt span {
-  		position: absolute;
-  		top: 80px; /* adjust this value as needed to move the <span> down */
+  		position: relative;
+  		top:50px;
+  		
 	}
 	.main_bot_pic{
-		width: 45%;
+		width: 48%;
+		height: 300px;
+		
+	}
+	.main_bot_pic img{
+		width: 100%;
+		height: 100%;
+		border-radius:10px;
 	}
 	
 	.main_bot_imgs{
@@ -332,7 +349,7 @@ $(document).ready(function() {
 <body>
 <div id="main_container">
 	<div id="main_start">
-		<img src="../photo/logo.png">
+		<img src="../photo/main_back.gif">
 	</div>
 	
 	<script type="text/javascript">
@@ -363,7 +380,7 @@ $(document).ready(function() {
 	<div id="main_header">
 		<div id="main_header_left" data-aos="fade-right" data-aos-duration="2000">
 			<div id="main_head_logo">
-				<img src="../photo/logo.png"><b style="font-size: 25px;">다 함께!</b>
+				<img src="../photo/logo.png">
 			</div>
 			
 			
@@ -377,10 +394,10 @@ $(document).ready(function() {
 			<div id="main_btn_wrap">
 				<c:choose>
 					<c:when test="${sessionScope.unum ne null }">
-						<button type="button" class="btn btn-light layout_a" onclick="location.href='/user/mypage?unum=${sessionScope.unum}'">마이페이지</button>
+						<button type="button" class="btn btn-dark layout_a" onclick="location.href='/user/mypage?unum=${sessionScope.unum}'">마이페이지</button>
 					</c:when>
 					<c:otherwise>
-						<button type="button" class="btn btn-light" onclick="location.href='/user/login'">시작하기</button>
+						<button type="button" class="btn btn-dark" onclick="location.href='/user/login'">시작하기</button>
 					</c:otherwise>
 				</c:choose>
 			</div>	
@@ -392,6 +409,7 @@ $(document).ready(function() {
 	</div>
 	
 </div>
+			
 	<div id="main_list_go">
 			<div class="list_a" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" onclick="location.href='/moim/moimlist'">
 				<img src="../photo/moim.png">
@@ -411,6 +429,9 @@ $(document).ready(function() {
 					<span></span><div>지도로 위치 검색</div>
 				</div>
 			</div>	
+	</div>
+	<div id="main_list_go_txt">
+				<img src="../photo/main_list_go_txt.gif">
 	</div>
 	
 	<div class="main_mid_pic">
@@ -528,7 +549,7 @@ $(document).ready(function() {
 		    "background-color":"rgb(252, 252, 240)",
 		    "transition": "0.3s", // 
 		    "position": "absolute", // 추가: 요소를 절대 위치로 설정
-		    "top":"220px"
+		    "top":"200px"
 		    	/* rgb(245, 245, 220) */
 		  });
 		});

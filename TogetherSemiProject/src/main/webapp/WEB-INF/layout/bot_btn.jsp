@@ -79,7 +79,8 @@
 	}
 	#util_content{
 		width: 100%;
-		height: 100%;
+		height: 90%;
+		margin-top : 10px;
 		display: flex;
    		flex-direction: column;
    		align-items: center;

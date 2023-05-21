@@ -265,5 +265,11 @@ public class MoimService implements MoimServiceInter {
 	      return moimMapper.getJoinMemberList(msnum);
 
 	   }
+
+	@Override
+	public List<ScheduleJoinDto> getJoinlist(int msnum) {
+		// TODO Auto-generated method stub
+		return moimMapper.getJoinlist(msnum);
+	}
 	
 }

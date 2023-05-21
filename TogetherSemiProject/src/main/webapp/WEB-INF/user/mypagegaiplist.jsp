@@ -18,10 +18,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
  
-	#mypage_navbar{		
-		margin-top: 80px;
-		
-	}
 	#mynav_text{		
 		margin-left:180px;
 
@@ -87,7 +83,7 @@
 	  transform: scale(1.1);
 	}
 	
-	 .mymoimcontent {
+	 .mymoim-content {
 	  	color:black;
 	    display: -webkit-box;
 	    -webkit-line-clamp: 3; /* 표시할 줄 수 */
@@ -117,7 +113,7 @@
 	}
 	
 	#star {
-		color:yellow;
+		color:#FE9A2E;		
 		font-size: 20px;
 	}
     
@@ -135,25 +131,19 @@
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/user/mypagedetail?unum=${unum}">내 정보</a>
+          <a class="nav-link" aria-current="page" href="/user/mypagedetail?unum=${unum}">내 정보</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
+          <a class="nav-link active" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 쓴 게시물</a>
+          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 작성한 게시물</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="myinfoupdate">내 정보 수정</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="myuser_out">회원탈퇴</a>
         </li>
       </ul>
     </div>
@@ -182,7 +172,10 @@
 			      <div class="mymoim-content">
 				      <div class="mymoim-title">				      	
 				        <p>
-				          <c:if test="${gm.mcount eq 1}"><span id="star">★</span></c:if>
+				         <c:if test="${gm.mcount eq 1}">
+				         <label id="star">
+				         <i class="bi bi-star-fill"></i>
+				         </label></c:if>
 				        ${gm.mname}</p>
 				        </div>
 				        <div class="mymoim-details">
@@ -190,9 +183,9 @@
 				       
 				        ${gm.city1},${gm.city2}				        
 				        </p>
-				        <br>
+				       
 				        </div>
-				        <p>${gm.mcontent}</p>	     	
+				        <p>${gm.category}</p>    	
 					            
 			      </div>
 			    </div>	            	

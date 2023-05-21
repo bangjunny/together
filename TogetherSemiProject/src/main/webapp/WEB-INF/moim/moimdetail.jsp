@@ -464,7 +464,7 @@
 		</c:choose>		
 		<c:choose>
 			 <c:when test="${sessionScope.unum == udto.unum}">
-		<button class="btn btnsch" style="width:460px;margin-top:5px; background-color:#FE9A2E;color:white" onclick="location.href='/moim/moimschedule?mnum=${dto.mnum}'">일정 만들기</button>
+		<button class="btn btnsch" style="width:460px;margin-top:5px; background-color:#FE9A2E;color:white" onclick="location.href='/moim/moimschedule?mnum=${dto.mnum}&mname=${dto.mname }'">일정 만들기</button>
 		</c:when>
 		<c:otherwise><button class="btn btnsch" hidden>일정 만들기</button></c:otherwise>
 		</c:choose>

@@ -16,6 +16,9 @@
 	body, body *{
 		font-family: 'Gowun Dodum', sans-serif;
 	}
+	.main{
+		height: 1400px;
+	}
 	.header{
 		height: 120px;
 	}

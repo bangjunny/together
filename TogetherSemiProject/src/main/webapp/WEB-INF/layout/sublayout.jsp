@@ -27,6 +27,7 @@
 	#main_container{
 		background-color: rgb(252, 252, 240);	
 	}
+	
 </style>
 </head>
 <body>

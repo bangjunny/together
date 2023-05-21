@@ -21,7 +21,7 @@
 </head>
 <style>
 	body, body * {
-            font-family: 'Noto Sans', sans-serif;
+            /* font-family: 'Noto Sans', sans-serif; */
     }
     
     tbody {

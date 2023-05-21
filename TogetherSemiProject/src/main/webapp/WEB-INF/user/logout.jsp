@@ -23,7 +23,7 @@
 			text-align: center;
 			font-size: 20px;
 			color: #333;
-			font-family: 'Noto Sans KR', sans-serif;
+			/* font-family: 'Noto Sans KR', sans-serif; */
 		}
 		
 		 .container {

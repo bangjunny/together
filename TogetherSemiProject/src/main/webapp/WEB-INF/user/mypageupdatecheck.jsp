@@ -15,7 +15,7 @@
 <style>
     .container {
         background-color: #f7f7f7;
-        font-family: "맑은 고딕", sans-serif;
+        /* font-family: "맑은 고딕", sans-serif; */
         margin: 20px auto;
         padding: 40px 20px;
         background-color: #fff;

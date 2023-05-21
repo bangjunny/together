@@ -211,7 +211,7 @@ select {
 				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.com/together-bucket-104/city/${list.photo_idx }">
 			</c:when>
 			<c:otherwise>
-				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.clistom/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
 			</c:otherwise>
 		</c:choose>
 		</td>

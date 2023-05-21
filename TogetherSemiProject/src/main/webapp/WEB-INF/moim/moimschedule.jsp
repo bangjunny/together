@@ -106,7 +106,7 @@
 		</tr>
 		<tr>
 		<input type="hidden" name="mnum" value="${mnum}">
-		<input type="hidden" name="mname" value="${dto.mname}">
+		<input type="hidden" name="mname" value="${mname}">
 		</tr>
 		<tr>
 			<td colspan="2" align="center">

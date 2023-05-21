@@ -400,8 +400,8 @@
 				<div class="pickcate">
 					<span class="tag">선택한 카테고리 :	</span>
 				</div>
-				<div type="text" id="selcategory"></div>
-				<input type="hidden" class="selcategory" name="category" value="null">
+				<div type="text" id="selcategory">${dto.category }</div>
+				<input type="hidden" class="selcategory" name="category" value="${dto.category }">
 			</td>
 		</tr>
 		<tr>

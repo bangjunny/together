@@ -321,18 +321,32 @@ public class MoimController {
 
 	
 	@PostMapping("/insertSchedule")
-	public String insertSchedule(MoimScheduleDto msdto, ScheduleJoinDto sjdto, HttpSession session,Model model) {
+	public String insertSchedule(@RequestParam("mname") String mname, MoimScheduleDto msdto, ScheduleJoinDto sjdto, HttpSession session,Model model) {
 		int unum = (int) session.getAttribute("unum");
+		System.out.println(mname);
 		// db insert
 		model.addAttribute("unum", unum);
 		moimMapper.insertMoimSchedule(msdto);
-		return "redirect:./moimdetail?mnum=" + msdto.getMnum();
+		try {
+	           // 인코딩된 mname 값 생성
+	           String encodedMname = URLEncoder.encode(mname, StandardCharsets.UTF_8.toString());
+	           // 리다이렉트 URL 생성
+	           String redirectUrl = String.format("./moimdetail?mnum=%d&mname=%s", msdto.getMnum(), encodedMname);
+	           return "redirect:" + redirectUrl;
+	       } catch (Exception e) {
+	           // 인코딩 예외 처리
+	           e.printStackTrace();
+	           // 예외 발생 시 기본 리다이렉트 URL 사용
+	           return "redirect:./moimdetail?mnum=" + msdto.getMnum() +"&mname="+mname;
+	       }
+		
 	}
 	 
 
 	@GetMapping("/moimschedule")
-	private String moimschedule(@RequestParam("mnum") int mnum, Model model) {
+	private String moimschedule(@RequestParam("mnum") int mnum,@RequestParam("mname") String mname, Model model) {
 		model.addAttribute("mnum", mnum);
+		model.addAttribute("mname", mname);
 		return "/main/moim/moimschedule";
 	}
 	

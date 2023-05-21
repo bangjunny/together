@@ -550,6 +550,14 @@ select {
 
 	setInterval(alternatingFunctions, 8000);
 	
+	document.addEventListener("DOMContentLoaded", function() {
+  		var buttonId = "heading_city"; // 해당 버튼의 고유한 ID로 변경해야 합니다.
+  		var clickedButton = document.getElementById(buttonId);
+  
+  		if (clickedButton) {
+    		clickedButton.style.color = "orange"; // 버튼의 스타일을 주황색으로 변경합니다.
+  		}
+	});
 
 </script>
 </body>

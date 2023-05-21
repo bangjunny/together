@@ -19,9 +19,6 @@
 	.header{
 		height: 120px;
 	}
-	.footer{
-		margin-top: 100px;
-	}
 	
 </style>
 </head>

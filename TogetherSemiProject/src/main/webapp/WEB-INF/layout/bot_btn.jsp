@@ -66,24 +66,27 @@
 		justify-content: flex-end;
 	}
 	#util_page{
-		width: 300px;
-		height: 400px;
-		margin-right: 40px;
+		width: 250px;
+		height: 350px;
+		margin-right: 15px;
 		margin-bottom: 15px;
 		bottom:0;
 		border: 1px #808080 solid;
 		border-radius: 5px;
-		background-color: white;
+		background-color: rgb(252, 252, 240);
 		box-shadow: 1px 2px 3px #808080;
 		display: none;
 	}
 	#util_content{
 		width: 100%;
-		height: 80%;
+		height: 100%;
 		display: flex;
    		flex-direction: column;
    		align-items: center;
    		justify-content: space-around;
+	}
+	#util_content button{
+		width: 200px;
 	}
 </style>
 
@@ -95,10 +98,10 @@
 	<div id="util_window">
 		<div id="util_page">
 			<div id="util_content">
-	  		    <button onclick="location.href='/user/mypage?unum=${sessionScope.unum}'"><i class="bi bi-house-fill"></i>&nbsp; 마이프로필 홈</button><br>
-	   		    <button onclick="location.href='/user/mypagegaiplist?unum=${sessionScope.unum}'"><i class="bi bi-people-fill"></i>&nbsp; 내 모임</button><br>
-	            <button onclick="location.href='/user/mypagecblist?unum=${sessionScope.unum}'"><i class="bi bi-pencil-square"></i>&nbsp; 내가 작성한 글</button><br>
-	    		<button onclick="location.href='/user/mypagecblikelist?unum=${sessionScope.unum}'"><i class="bi bi-heart-fill"></i>&nbsp; 내가 추천한 게시글</button>
+	  		    <button class="btn btn-warning" onclick="location.href='/user/mypage?unum=${sessionScope.unum}'"><i class="bi bi-house-fill"></i>&nbsp; 마이프로필 홈</button><br>
+	   		    <button class="btn btn-warning" onclick="location.href='/user/mypagegaiplist?unum=${sessionScope.unum}'"><i class="bi bi-people-fill"></i>&nbsp; 내 모임</button><br>
+	            <button class="btn btn-warning" onclick="location.href='/user/mypagecblist?unum=${sessionScope.unum}'"><i class="bi bi-pencil-square"></i>&nbsp; 내가 작성한 글</button><br>
+	    		<button class="btn btn-warning" onclick="location.href='/user/mypagecblikelist?unum=${sessionScope.unum}'"><i class="bi bi-heart-fill"></i>&nbsp; 내가 추천한 게시글</button>
 			</div>
 		</div>
 	</div>
@@ -108,7 +111,9 @@
 			<button id="util_btn"><i class="bi bi-gear"></i></button>
 		</c:if>
 	</div>
-
+	
+	
+	
 
 	
 </body>

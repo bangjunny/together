@@ -41,11 +41,21 @@
  		overflow-x: hidden;
 	}	
 	#main_start img {
- 		width: 300px;
+  		width: 300px;
   		height: 300px;
-  		animation: zoomIn; /* referring directly to the animation's @keyframe declaration */
-  		animation-duration: 1s; /* don't forget to set a duration! */
+  		animation: zoomIn 1s ease-in-out; /* referring directly to the animation's @keyframe declaration */
+  		animation-delay: 0.75s; /* adding a 2-second delay before the animation starts */
 	}
+
+	@keyframes zoomIn {
+  		0% {
+    		transform: scale(0);
+  		}
+  		100% {
+    		transform: scale(1);
+  		}
+	}
+	
   	#main_header{
 		width: 1440px;
 		height: 600px;
@@ -55,7 +65,7 @@
   
    	}
    	#main_side_btn{
-   		width: 100px;
+   		width: 70px;
    		height: 300px;
    		display: flex;
    		flex-direction: column;
@@ -69,13 +79,16 @@
   		transition: transform 1s, opacity 0.5s;
 	}
 	#main_side_btn button{
-		width: 50px;
-		height: 50px;
-		border-radius: 50px;
+		width: 15px;
+		height: 15px;
+		border-radius: 15px;
 		border: 1px gray solid;
+		background-color: rgb(252, 252, 240);
 	}
 	#main_side_btn button:hover{
+		transition: all 0.5s;
 		background-color: orange;
+		box-shadow: 0 3px 5px gray;
 	}	
 
 	#main_side_btn.show {
@@ -137,8 +150,8 @@
  	  flex-direction: column;
 	  justify-content: center;
       align-items: center;
-      width: 300px;
-      height: 300px;
+      width: 200px;
+      height: 200px;
       text-align: center;
       height: 250px;
 	}
@@ -192,13 +205,20 @@
 		height: 900px;
 		object-fit: cover;
 	}
-	#main_mid_txt{
-		position: relative; 
-		bottom: 300px; 
-		color: white;		
+	.slide-item {
+ 		position: relative;
+	}
+
+	.slide-text {
+  		position: absolute;
+  		top: 50%;
+  		left: 50%;
+  		transform: translate(-50%, -50%);
+  		text-align: center;
+  		color: #fff;
 	}
 	#main_bot_title{
-		margin: 20px 0px 50px 0px;
+		margin: 70px 0px 30px 0px;
 		text-align: center;
 	}
 	#main_bot{
@@ -312,21 +332,31 @@ $(document).ready(function() {
 <body>
 <div id="main_container">
 	<div id="main_start">
-		<img src="../photo/로고main1.gif">
+		<img src="../photo/logo.png">
 	</div>
 	
 	<script type="text/javascript">
 	$("#main_start img").click(function() {
 		  var height = $("#main_start").height();
-		  $("html, body").animate({ scrollTop: height-100}, 500);
+
+		  // 애니메이션 클래스 추가 및 애니메이션 효과 보여주기
+		  $("#main_start").addClass("animate__animated animate__backOutDown");
+
+		  // 일정 시간 후에 스크롤 이동
+		  setTimeout(function() {
+		    $("html, body").animate({ scrollTop: height - 100 }, 50);
+		    
+		    // 이미지 숨기기
+		    $("#main_start img").css("display", "none");
+		  }, 550); 
 		});
 	
 	</script>
 
 	<div id="main_side_btn">
-  		<button onclick="scrollToPosition(880)">1</button>
-  		<button onclick="scrollToPosition(1940)">2</button>
-  		<button onclick="scrollToPosition(2930)">3</button>
+  		<button onclick="scrollToPosition(880)"></button>
+  		<button onclick="scrollToPosition(1940)"></button>
+  		<button onclick="scrollToPosition(2900)"></button>
 	</div>
 	
 
@@ -340,7 +370,9 @@ $(document).ready(function() {
 
 			<div id="main_header_txt">
 				<!-- Lorem ipsum dolor sit amet, consectetur adipisicing elited do eiusmod tempor incididunt ut labore e, st dolore magna aliqua. Ut enim ad <span id="rotate_word" style="color: red">communities</span> -->
-				저희 사이트에서는 다양한 모임 카테고리를 제공하여 여러분이 원하는 분야에서 활동할 수 있도록 돕고 있습니다. <span id="rotate_word" style="color: red">음악</span> 외 다양한 분야의 모임을 찾아보실 수 있습니다. 또한, 새로운 모임을 개설하여 자신의 관심사를 공유하고 다른 회원들과 교류할 수도 있습니다.
+				저희가 제공하는 다양한 모임 카테고리를 이용해, 다양한 분야의 다양한 사람들을 만나보세요! 예를 들어, <span id="rotate_word" style="color: red">음악</span>. 
+				
+				<p style="font-size: 18px;">새로운 모임을 개설하고, 같은 취미를 공유하는 친구들을 만들어 보세요. 모두 다 함께!</p>
 		
 			<div id="main_btn_wrap">
 				<c:choose>
@@ -363,28 +395,47 @@ $(document).ready(function() {
 	<div id="main_list_go">
 			<div class="list_a" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" onclick="location.href='/moim/moimlist'">
 				<img src="../photo/moim.png">
-				<span></span><div>모임 게시판</div>
+				<div style="display: flex; justify-content: space-between;">
+					<span></span><div>모임 게시판</div>
+				</div>
 			</div>
 			<div class="list_a" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" onclick="location.href='/city/list'">
 				<img src="../photo/local.png">
-				<span></span><div>지역 게시판</div>
+				<div style="display: flex; justify-content: space-between;">
+					<span></span><div>지역 게시판</div>
+				</div>
 			</div>
 			<div class="list_a" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" onclick="location.href='/mapcontact'">
 				<img src="../photo/map.png">
-				<span></span><div>지도로 위치 검색</div>
+				<div style="display: flex; justify-content: space-between;">
+					<span></span><div>지도로 위치 검색</div>
+				</div>
 			</div>	
 	</div>
 	
 	<div class="main_mid_pic">
-		<img src="../photo/mid_pic1.jpg">
-		<img src="../photo/mid_pic2.jpg">
-		<img src="../photo/mid_pic3.jpg">
-	</div>
-	
-	<div id="main_mid_txt">
-		<h1>저희 사이트는</h1>
-		<h3> 사용자 친화적인 인터페이스와 신뢰할 수 있는 모임 정보를 제공합니다. 모임 일정, 장소, 회원 프로필 등 모든 정보를 손쉽게 확인하고 참여할 수 있습니다. 또한, 모임 활동을 위한 소통과 조직을 위한 도구도 제공하고 있습니다.</h3>
-	</div>
+  		<div class="slide-item">
+   			<img src="../photo/mid_pic1.jpg">
+    	<div class="slide-text">
+      		<h2>Slide 1</h2>
+      		<p>Text for Slide 1</p>
+    	</div>
+   </div>
+  	<div class="slide-item">
+    	<img src="../photo/mid_pic2.jpg">
+    	<div class="slide-text">
+      		<h2>Slide 2</h2>
+      		<p>Text for Slide 2</p>
+    	</div>
+  	</div>
+  	<div class="slide-item">
+    	<img src="../photo/mid_pic3.jpg">
+    <div class="slide-text">
+      	<h2>Slide 3</h2>
+      	<p>Text for Slide 3</p>
+    </div>
+  </div>
+</div>
 	
 <div id="main_bot_title">
 	<h2>다 함께!</h2>

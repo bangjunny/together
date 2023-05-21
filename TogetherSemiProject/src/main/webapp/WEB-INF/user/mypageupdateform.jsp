@@ -190,6 +190,11 @@
 	  flex : auto;
 	}
 	
+	.tla {
+		height: 20px;
+		width: 160px;
+	}
+	
 </style> 
 </head>
 <body>
@@ -414,376 +419,407 @@
   </div> 
 </div>
 
-<!-- The Modal -->
-		<div class="modal" id="mySportsModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
+<!-- Modal -->
+	<!-- The Modal -->
+	<div class="modal" id="mySportsModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">운동/스포츠</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="축구">축구</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="농구">농구</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="야구">야구</label></td>    	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="테니스">테니스</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="배드민턴">배드민턴</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="자전거">자전거</label></td>
+			      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="클라이밍">클라이밍</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="탁구">탁구</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="러닝/마라톤">러닝/마라톤</label></td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="골프">골프</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="볼링">볼링</label></td>
+		      	</tr>
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
 
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">운동/스포츠</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="축구">축구</label>
-						<label><input type="checkbox" name="categorys" value="농구">농구</label>
-						<label><input type="checkbox" name="categorys" value="야구">야구</label>
-						<label><input type="checkbox" name="categorys" value="테니스">테니스</label>
-						<br> 
-						<label><input type="checkbox" name="categorys"	value="배드민턴">배드민턴</label> 
-						<label><input type="checkbox" name="categorys" value="자전거">자전거</label>
-						<label><input type="checkbox" name="categorys" value="클라이밍">클라이밍</label> 
-						<br>
-						<label><input type="checkbox" name="categorys" value="탁구">탁구</label>
-						<label><input type="checkbox" name="categorys" value="러닝/마라톤">러닝/마라톤</label>
-						<label><input type="checkbox" name="categorys" value="골프">골프</label>
-						<label><input type="checkbox" name="categorys" value="볼링">볼링</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myGameModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">게임/오락</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="다트">다트</label>
-						<label><input type="checkbox" name="categorys" value="보드게임">보드게임</label>
-						<label><input type="checkbox" name="categorys" value="두뇌심리게임">두뇌심리게임</label>
-						<br> 
-						<label><input type="checkbox" name="categorys" value="온라인게임">온라인게임</label>
-						<label><input type="checkbox" name="categorys" value="콘솔게임">콘솔게임</label> 
-						<label><input type="checkbox" name="categorys" value="단체놀이">단체놀이</label> 
-						<br>
-						<label><input type="checkbox" name="categorys" value="타로카드">타로카드</label>
-						<label><input type="checkbox" name="categorys" value="마술">마술</label>
-						<label><input type="checkbox" name="categorys" value="바둑">바둑</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myTravelModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">여행/아웃도어</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="등산">등산</label>
-						<label><input type="checkbox" name="categorys" value="산책/트래킹">산책/트래킹</label>
-						<label><input type="checkbox" name="category" value="캠핑/백패킹">캠핑/백패킹</label>
-						<br>
-						<label><input type="checkbox" name="categorys" value="국내여행">국내여행</label>
-						<label><input type="checkbox" name="categorys" value="해외여행">해외여행</label>
-						<label><input type="checkbox" name="categorys" value="낚시">낚시</label>
-						<label><input type="checkbox" name="categorys" value="패러글라이딩">패러글라이딩</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myBookModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">책/글</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="책/독서">책/독서</label>
-						<label><input type="checkbox" name="categorys" value="인문학">인문학</label>
-						<label><input type="checkbox" name="categorys" value="심리학">심리학</label>
-						<label><input type="checkbox" name="categorys" value="철학">철학</label>
-						<br> 
-						<label><input type="checkbox" name="categorys" value="역사">역사</label>
-						<label><input type="checkbox" name="categorys" value="시사/경제">시사/경제</label> 
-						<label><input type="checkbox" name="categorys" value="작문/글쓰기">작문/글쓰기</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myWorkModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">업족/직무</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="의료/건강/제약">의료/건강/제약</label> 
-						<label><input type="checkbox" name="categorys" value="IT/포털/인터넷">IT/포털/인터넷</label>
-						<label><input type="checkbox" name="categorys" value="교육업">교육업</label>
-						<br> 
-						<label><input type="checkbox" name="categorys" value="광고/마케팅업계">광고/마케팅업계</label> 
-						<label><input type="checkbox" name="categorys" value="디자인업계  ">디자인업계</label> 
-						<label><input type="checkbox" name="categorys" value="무역/상사">무역/상사</label> 
-						<br>
-						<label><input type="checkbox" name="categorys" value="금융업">금융업</label>
-						<label><input type="checkbox" name="categorys" value="세무/회계">세무/회계</label> 
-						<label><input type="checkbox" name="categorys" value="전자/기계/전기">전자/기계/전기</label> 
-						<br> 
-						<label><input type="checkbox" name="categorys" value="패션/의류/뷰티">패션/의류/뷰티</label>
-						<label><input type="checkbox" name="categorys" value="서비스업">서비스업</label>
-						<label><input type="checkbox" name="categorys" value="식음료/외식업">식음료/외식업</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myLangModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">외국/언어</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="영어">영어</label>
-						<label><input type="checkbox" name="categorys" value="일본어">일본어</label>
-						<label><input type="checkbox" name="categorys" value="중국어">중국어</label>
-						<label><input type="checkbox" name="categorys" value="프랑스어">프랑스어</label>
-						<label><input type="checkbox" name="categorys" value="스페인어">스페인어</label>
-						<label><input type="checkbox" name="categorys" value="러시아어">러시아어</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myMusicModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">음악/악기</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="노래/보컬">노래/보컬</label> 
-						<label><input type="checkbox" name="categorys" value="기타/베이스">기타/베이스</label> 
-						<label><input type="checkbox" name="categorys" value="드럼">드럼</label> 
-						<label><input type="checkbox" name="categorys" value="피아노">피아노</label> 
-						<label><input type="checkbox" name="categorys" value="바이올린">바이올린</label> 
-						<br>
-						<label><input type="checkbox" name="categorys" value="밴드/합주">밴드/합주</label> 
-						<label><input type="checkbox" name="categorys" value="작사/작곡">작사/작곡</label> 
-						<label><input type="checkbox" name="categorys" value="힙합">힙합</label> 
-						<label><input type="checkbox" name="categorys" value="클래식">클래식</label> 
-						<label><input type="checkbox" name="categorys" value="재즈">재즈</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="mySocialModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">사교/인맥</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="지역">지역</label>
-						<label><input type="checkbox" name="categorys" value="나이">나이</label>
-						<label><input type="checkbox" name="categorys" value="성별">성별</label>
-						<label><input type="checkbox" name="categorys" value="싱글/연애">싱글/연애</label> 
-						<label><input type="checkbox" name="categorys" value="기혼/유부">기혼/유부</label> 
-						<br> 
-						<label><input type="checkbox" name="categorys" value="돌싱">돌싱</label> 
-						<label><input type="checkbox" name="categorys" value="와인/커피/차">와인/커피/차</label> 
-						<label><input type="checkbox" name="categorys" value="맛집/미식회">맛집/미식회</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- The Modal -->
-		<div class="modal" id="myCraftsModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">공예/만들기</h4>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<label><input type="checkbox" name="categorys" value="미술/그림">미술/그림</label> 
-						<label><input type="checkbox" name="categorys" value="캘리그라피">캘리그라피</label> 
-						<label><input type="checkbox" name="categorys" value="천연비누/화장품">천연비누/화장품</label>
-						<br> 
-						<label><input type="checkbox" name="categorys" value="캔들/디퓨저/석고 ">캔들/디퓨저/석고 </label> 
-						<label><input type="checkbox" name="categorys" value="가죽공예">가죽공예</label> 
-						<label><input type="checkbox" name="categorys" value="가구/목공예">가구/목공예</label> 
-						<label><input type="checkbox" name="categorys" value="도자/점토공예">도자/점토공예</label> 
-						<br>
-						<label><input type="checkbox" name="categorys" value="자수/뜨개질">자수/뜨개질</label> 
-						<label><input type="checkbox" name="categorys" value="키덜트/프라모델">키덜트/프라모델</label>
-						<label><input type="checkbox" name="categorys" value="메이크업/네일">메이크업/네일</label>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"
-							data-bs-dismiss="modal">선택</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-		
-
-<!-- The Modal -->
-<div class="modal fade" id="outmo">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">회원탈퇴</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        회원탈퇴를 진행하시겠습니까?<br>
-        회원으로 작성한 글은 삭제되며 모임의 모임장인 경우에는 탈퇴를 하실수 없습니다.
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="notmo" data-bs-dismiss="modal">취소</button>
-        <button type="button" class="outmo" data-bs-dismiss="modal" id="out1">탈퇴</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- The Modal -->
-<div class="modal fade" id="talmo">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">회원탈퇴</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-		모임의 모임장인 경우에는 탈퇴를 하실수 없습니다.
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="notmo" data-bs-dismiss="modal">확인</button>
-      </div>
-
-    </div>
-  </div>
-</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myGameModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">게임/오락</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="다트">다트</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="보드게임">보드게임</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="두뇌심리게임">두뇌심리게임</label></td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="온라인게임">온라인게임</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="콘솔게임">콘솔게임</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="단체놀이">단체놀이</label></td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="타로카드">타로카드</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="마술">마술</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="바둑">바둑</label></td>  
+		      	</tr>
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myTravelModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">여행/아웃도어</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      
+	      	<table class="motable">
+		      	<tr>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="등산">등산</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="국내여행">국내여행</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="산책/트래킹">산책/트래킹</label></td>
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="낚시">낚시</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="해외여행">해외여행</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="캠핑/백패킹">캠핑/백패킹</label></td>
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="패러글라이딩">패러글라이딩</label></td>
+		      	</tr>
+	      	</table>     
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myBookModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">책/글</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      
+	      	<table class="motable">
+		      	<tr>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="책/독서">책/독서</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="인문학">인문학</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="심리학">심리학</label></td>      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="철학">철학</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="역사">역사</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="시사/경제">시사/경제</label></td>  	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="작문/글쓰기">작문/글쓰기</label></td>
+		      	</tr>
+		    </table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myWorkModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">업족/직무</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="의료/건강/제약">의료/건강/제약</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="IT/포털/인터넷">IT/포털/인터넷</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="교육업">교육업</label></td> 	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="광고/마케팅업계">광고/마케팅업계</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="디자인업계  ">디자인업계</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="무역/상사">무역/상사</label></td>      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="금융업">금융업</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="세무/회계">세무/회계</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="전자/기계/전기">전자/기계/전기</label></td>  	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="패션/의류/뷰티">패션/의류/뷰티</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="서비스업">서비스업</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="식음료/외식업">식음료/외식업</label></td>
+		      	</tr>      	
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myLangModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">외국/언어</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="영어">영어</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="일본어">일본어</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="중국어">중국어</label></td>
+			      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="프랑스어">프랑스어</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="스페인어">스페인어</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="러시아어">러시아어</label></td>
+		      	</tr>
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myMusicModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">음악/악기</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="노래/보컬">노래/보컬</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="기타/베이스">기타/베이스</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="드럼">드럼</label></td>   	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="피아노">피아노</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="바이올린">바이올린</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="밴드/합주">밴드/합주</label></td>	      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="작사/작곡">작사/작곡</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="힙합">힙합</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="클래식">클래식</label></td>      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="재즈">재즈</label></td>
+		      	</tr>      	
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="mySocialModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">사교/인맥</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="지역">지역</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="나이">나이</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="성별">성별</label></td>
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="싱글/연애">싱글/연애</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="기혼/유부">기혼/유부</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="돌싱">돌싱</label></td> 	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="와인/커피/차">와인/커피/차</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="맛집/미식회">맛집/미식회</label></td>
+		      	</tr>
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- The Modal -->
+	<div class="modal" id="myCraftsModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">공예/만들기</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<table class="motable">
+		      	<tr>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="미술/그림">미술/그림</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="캘리그라피">캘리그라피</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="천연비누/화장품">천연비누/화장품</label></td>
+		      	</tr>
+		      	
+		      	<tr>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="가죽공예">가죽공예</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="가구/목공예">가구/목공예</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="도자/점토공예">도자/점토공예</label></td>
+			      	
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="자수/뜨개질">자수/뜨개질</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="키덜트/프라모델">키덜트/프라모델</label></td>
+			      	<td><label class="tla"><input type="radio" name="categorys" value="메이크업/네일">메이크업/네일</label></td>
+		      	</tr>
+		      	
+		      	<tr>
+		      		<td><label class="tla"><input type="radio" name="categorys" value="캔들/디퓨저/석고 ">캔들/디퓨저/석고</label></td>
+		      	</tr>	
+	      	</table>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
 <script>
 $(function() {
     // 체크박스 값이 변경될 때마다 실행되는 함수

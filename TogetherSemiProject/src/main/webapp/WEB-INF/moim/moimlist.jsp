@@ -19,10 +19,6 @@
 		clear:both;
 	}
 
-	body, body * {
-		font-family: 'Jua'
-	}
-	
 	#moimlist {
 		width: 1140px;
 		margin: 0 auto;

@@ -12,44 +12,66 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <style>
  body {
-		 font-family: Arial, sans-serif;
+		 font-family:'Gowun Dodum', sans-serif;
 	}
+	#mypage_navbar{		
+		margin-top:0px;
+		
 
+	}
 	#mynav_text{		
-		margin-left:180px;
+		margin-left:280px;
+		margin-right:35px;
+		
 
+	}
+	.nav-item{
+		margin-left:20px;
+		margin-right:20px
+	
+	}
+	.nav-item{
+		font-weight:700;
+		margin-left:20px;
+		margin-right:20px
+	
 	}
  	.container {
 	  width: 1140px;
 	  margin: 0 auto;
+	  margin-bottom:50px;
 	}
 	
 	@media (max-width: 740px) {
 	  .cblike-item {
 	    width: 100%;
+	    
 	  }
 	}
 	.cblike-container {
-	  	margin-top: 50px;
-	    width: 1440px;
-	    margin: 100 auto;
-	  	margin-left: -40px;
+	  margin:0 auto;
+	  margin-bottom:50px;
+	  width: 1400px;
+	  margin-top:30px;
+	  margin-left:-10px;
   }
   	
 	.cblike-item {
+	margin-top:10px;
+	margin-right:20px;
     display: inline-block;
 	width: 48%;
 	margin-bottom: 20px;
-	padding: 10px;
+	margin-left:-10px;
 	background-color: #fff;
 	box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 20px;
+    padding: 10px;
     font-size: 18px;
     height: 200px; /* 세로 크기를 200px로 고정 */
     overflow: hidden; /* 내용이 넘칠 경우 숨김 처리 */
@@ -70,8 +92,8 @@
     flex-grow: 1;
   }
   	.cblike-title {
-	  margin: 0;
-	  text-overflow: ellipsis;
+	 margin: 0;
+	 text-overflow: ellipsis;
 	overflow: hidden;
     white-space: nowrap;
     width: 500px; 
@@ -121,7 +143,7 @@
 </head>
 <body>
 <!-- 마이페이지내브바 -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mypage_navbar">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" id="mypage_navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text">MYPAGE</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -150,10 +172,10 @@
 </nav>
 <div class="container">
 	<div class="cblike-container">
-		 <h3 class="mb-4">내가 추천한 게시물 보기</h3>
+		 <h3 style="margin-bottom:10px;">내가 추천한 게시물 보기</h3>
 			<c:if test="${totalCount==0 }">
 				<div class="cblike-item">
-					<b style="font-size:1.3em">등록된 게시글이 없습니다</b>
+					<b style="font-size:1.3em">추천한 게시글이 없습니다</b>
 				</div>
 			</c:if>
 			 <c:if test="${totalCount>0 }">	
@@ -187,7 +209,7 @@
     
    	
 <!-- 페이징 처리 -->
-		<div style="margin:0 auto;width: 700px; text-align:center; font-size:16px;">
+		<div style="margin:0 auto;width: 700px; text-align:center; font-size:16px; margin-bottom:200px;">
 			<!-- 이전 -->
 			<c:if test="${startPage>1}">
 				<a style="color:black; text-decoration:none; cursor:pointer;"

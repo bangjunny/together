@@ -509,20 +509,15 @@
 		</pre>
 		</div>
 		
-		<hr id="foothr">
-		<br>
-	</div>
-	
-	<!-- 모임참석자 모달 -->
+		
+
+		
+<!-- 모임참석자 모달 -->
 	<div class="container mt-3">
-  <h3>Vertically Centered Modal Example</h3>
-  <p>Click on the button to open the modal.</p>
-  
-  <button type="hidden" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sjmModal">
-    참석자리스트
-  </button>
+  <button type="button" id="mslist" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sjmModal"></button>
 </div>
 
+<div class="modalzone">
 <!-- The Modal -->
 <div class="modal" id="sjmModal">
   <div class="modal-dialog modal-dialog-centered">
@@ -547,6 +542,15 @@
     </div>
   </div>
 </div>
+</div>
+
+
+<hr id="foothr">
+<br>
+</div>
+	
+	
+	
 		
 	<script type="text/javascript">
 	const mnum = ${dto.mnum};
@@ -803,16 +807,55 @@
 	}
     
 	function personlist(msnum){
-		alert(msnum);
 		$.ajax({
 			type:"get",
 	        url:"mslist",
 	        dataType:"json",
 	        data:{"msnum":msnum},
 	        success:function(res){
-	        alert(res);	
-	        
+	        var mslist=document.getElementById("mslist");
+	        	
+	        	let s="";
+	        	let n="";
+	        	s+=`	
+	        		<!-- The Modal -->
+	        		<div class="modal" id="sjmModal">
+	        		  <div class="modal-dialog modal-dialog-centered">
+	        		    <div class="modal-content">
+
+	        		      <!-- Modal Header -->
+	        		      <div class="modal-header">
+	        		        <h4 class="modal-title">참석자리스트</h4>
+	        		        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	        		      </div>
+
+	        		      <!-- Modal body -->
+	        		      <div class="modal-body">
+	        		        Modal body..
+	        		      </div>
+
+	        		      <!-- Modal footer -->
+	        		      <div class="modal-footer">
+	        		        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+	        		      </div>
+
+	        		    </div>
+	        		  </div>
+	        		</div>
+	        		</div>`
+	        	
+	        	$.each(res,function(idx,ele){
+	        		
+	        		n+=`<li>\${ele.uname}</li>`
+	        		
+	        	});
+	        	$(".modalzone").html(s);
+	        	$(".modal-body").html(n);
+	        	mslist.click();
+	        	
+	        	
 	        }
+	        
 		});
 		
 	}

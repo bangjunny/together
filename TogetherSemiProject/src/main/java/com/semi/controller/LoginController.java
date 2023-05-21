@@ -395,8 +395,8 @@ public class LoginController {
 			int totalCount = loginService.getMyCBWRCount(unum);			
 					
 			int totalPage;// 총페이지수
-			int perPage = 10;// 한페이지당 보여질 글의 갯수
-			int perBlock = 5;// 한 블럭당 보여질 페이지 갯수
+			int perPage = 8;// 한페이지당 보여질 글의 갯수
+			int perBlock = 3;// 한 블럭당 보여질 페이지 갯수
 			int startNum;// 각 페이지에서 보여질 글의 시작번호
 			int startPage;// 각 블럭에서 보여질 시작페이지 번호
 			int endPage;// 각 블럭에서 보여질 끝 페이지 번호'
@@ -436,8 +436,8 @@ public class LoginController {
 			int totalCount = loginService.getMyCBLikeCount(unum);		
 					
 			int totalPage;// 총페이지수
-			int perPage = 10;// 한페이지당 보여질 글의 갯수
-			int perBlock = 5;// 한 블럭당 보여질 페이지 갯수
+			int perPage = 8;// 한페이지당 보여질 글의 갯수
+			int perBlock = 3;// 한 블럭당 보여질 페이지 갯수
 			int startNum;// 각 페이지에서 보여질 글의 시작번호
 			int startPage;// 각 블럭에서 보여질 시작페이지 번호
 			int endPage;// 각 블럭에서 보여질 끝 페이지 번호'
@@ -489,6 +489,14 @@ public class LoginController {
 		return "redirect:/"; 
 	  }
 	  
+	@ResponseBody
+	@GetMapping("passchk")
+	public boolean passchk(int unum, String pass) {
+			System.out.println(unum);
+			System.out.println(pass);
+			boolean pck=loginService.mypagePassCheck(unum, pass);
+			System.out.println(pck);
+			return pck;
+		}
 	  
-   
 }

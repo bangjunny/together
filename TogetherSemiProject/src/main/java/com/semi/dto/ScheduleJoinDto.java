@@ -9,6 +9,10 @@ import lombok.Data;
 public class ScheduleJoinDto {	
 	private int sjnum;
 	private int unum;
-	private String mssubject;
+	private int msnum;
 	private int mnum;
+	
+	private String uname;
+	
+	
 }

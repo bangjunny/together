@@ -95,7 +95,7 @@
 	}
 	
 	.moim_paging {
-		margin-top:25px;
+		margin-bottom:100px;
 		text-align: center;
 	}
 
@@ -223,6 +223,24 @@
 	.tla {
 		height: 20px;
 		width: 160px;
+	}
+	
+	.makemo {
+		margin-right: 13px;
+		height: 38px;
+       	width:90px;
+       	background: #FE9A2E;
+        background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+	}
+	
+	.makemo:hover {
+		background: #FE642E;
 	}
 	
 </style>
@@ -553,7 +571,7 @@
 			
 				<c:if test="${sessionScope.unum != null }">
 					<div id="makemoim">
-						<button type="button" class="btn btn-success" onclick="checkCreate(event)">만들기</button>
+						<button type="button" class="makemo" onclick="checkCreate(event)">만들기</button>
 					</div>
 				</c:if>	
 		</div>		
@@ -1389,6 +1407,15 @@ $(function() {
 			  location.href="/moim/moimform"
 		  }
 		 }
+		 
+	document.addEventListener("DOMContentLoaded", function() {
+  		var buttonId = "heading_moim"; // 해당 버튼의 고유한 ID로 변경해야 합니다.
+  		var clickedButton = document.getElementById(buttonId);
+  
+  		if (clickedButton) {
+    		clickedButton.style.color = "orange"; // 버튼의 스타일을 주황색으로 변경합니다.
+  		}
+	});
 </script>
 </body>
 </html>

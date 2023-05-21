@@ -272,7 +272,7 @@
 		    		<!-- 마이페이지 수정폼 -->
 		    		<label id="mypageupdateicon">
 		    		<a data-toggle="tooltip" data-placement="right" title="마이페이지 수정하기" >
-		    		<i class="bi bi-gear" ></i>수정
+		    		<div data-bs-toggle="modal" data-bs-target="#sujung"><i class="bi bi-gear"></i>수정</div>
 		    		</a>
 		    		</label>
 		    		
@@ -305,18 +305,16 @@
       <!-- Modal body -->
       <div class="modal-body">
 		비밀번호를 확인 한 후 회원정보 수정으로 이동합니다<br>
-		<form action="mypagePassCheck" method="post">
 		<div class="mb-3" style="margin-top:30px;">
             <label for="message-text" class="col-form-label">비밀번호</label>
-            <input type="password" name="pass" class="form-control"  style="height:50px">
+            <input type="password" class="form-control" id="updatepass"  style="height:50px">
           </div>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="submit" class="makemo" data-bs-dismiss="modal">확인</button>
+        <button type="button" onclick="passchk()" class="makemo" data-bs-dismiss="modal">확인</button>
       </div>
-	</form>
     </div>
   </div>
 </div>
@@ -495,6 +493,26 @@ $(document).on("click",".setmain",function(e){
 		});
 	}
 });
+function passchk(){
+	var pass = $("#updatepass").val();
+	var unum = ${unum}
+	$.ajax({
+		type:"get",
+        url:"passchk",
+        dataType:"text",
+        data:{"pass":pass,"unum":unum},
+        success:function(res){
+        	if(res=='true'){
+        		location.href='/user/mypageupdateform?unum='+unum;
+        	} else {
+        		alert("비밀번호를 확인해주세요")
+        	}
+        	
+        }
+        	
+	});
+	
+}
 </script>
 </body>
 </html>

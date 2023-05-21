@@ -44,8 +44,6 @@
   		width: 100%;
   		height: 100%;
   		object-fit:cover;
-  		animation: zoomIn 1s ease-in-out; /* referring directly to the animation's @keyframe declaration */
-  		animation-delay: 0.75s; /* adding a 2-second delay before the animation starts */
 	}
 
 	@keyframes zoomIn {
@@ -76,8 +74,8 @@
 		width: 15px;
 		height: 15px;
 		border-radius: 15px;
-		border: 1px gray solid;
-		background-color: rgb(252, 252, 240);
+		border: 1px #D9B67F solid;
+		background-color: #D9B67F;
 	}
 	#main_side_btn button:hover{
 		transition: all 0.5s;
@@ -104,11 +102,15 @@
     	text-align: left;
     }
 	#main_head_logo{
-		
-		margin-left: 40px;
-		width: 150px;
-		height: 75px;
+		margin-left: 10px;
+		width: 300px;
+		object-fit:cover;
 	}
+	#main_head_logo img{
+		width: 300px;
+		
+	}
+	
 	
 	#main_header_txt{
 		width: 80%;
@@ -121,6 +123,7 @@
 		width: 45%;
 		height: 350px;
 		text-align: center;
+		margin-top: 30px;
 		
 	}
 	#main_header_pic img{
@@ -133,8 +136,28 @@
 		height: 500px;
 	}
 	#main_btn_wrap{
-		width: 400px;
-		
+		width: 190px;
+	}
+	#main_btn_wrap button{
+		width:100%;
+		height:43px;
+		background: #FE9A2E;
+        background-size: 200%;
+        color:white;
+        font-weight: 500;
+        font-size:20px;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition:  0.2s;
+	}
+	#main_btn_wrap button:hover{
+		background: #FE642E;
+		transition:  0.2s;
+	}
+	#main_btn_wrap button:not(:hover){
+		background: #FE9A2E;
+		transition:  0.2s;
 	}
 	#main_list_go_txt{
 		width:100%;
@@ -147,10 +170,9 @@
 		object-fit:cover;
 	}
 	#main_list_go{
-		width: 1000px;
+		width: 1140px;
 		height: 300px;
 		display: flex;
-		justify-content: center;
 		justify-content: space-between;
 		margin: 0 auto;
 	}
@@ -173,7 +195,7 @@
 
 	.list_a img:hover {
 		cursor: pointer;
-  		transform: scale(1.2); /* 이미지 크기 확대 */
+  		transform: scale(1.1); /* 이미지 크기 확대 */
   		
 	}
 	
@@ -227,14 +249,11 @@
   		text-align: center;
   		color: #fff;
 	}
-	#main_bot_title{
-		margin: 70px 0px 30px 0px;
-		text-align: center;
-	}
+	
 	#main_bot{
 		width: 1140px;
 		height: 600px;
-		margin: 0 auto;
+		margin: 50px auto;
 		display: flex;
 		justify-content: space-between;
 	}
@@ -244,7 +263,7 @@
 
 	#main_bot_txt span {
   		position: relative;
-  		top:50px;
+  		top:25px;
   		
 	}
 	.main_bot_pic{
@@ -387,17 +406,17 @@ $(document).ready(function() {
 
 			<div id="main_header_txt">
 				<!-- Lorem ipsum dolor sit amet, consectetur adipisicing elited do eiusmod tempor incididunt ut labore e, st dolore magna aliqua. Ut enim ad <span id="rotate_word" style="color: red">communities</span> -->
-				저희가 제공하는 다양한 모임 카테고리를 이용해, 다양한 분야의 다양한 사람들을 만나보세요! 예를 들어, <span id="rotate_word" style="color: red">음악</span>. 
-				
-				<p style="font-size: 18px;">새로운 모임을 개설하고, 같은 취미를 공유하는 친구들을 만들어 보세요. 모두 다 함께!</p>
+				저희가 제공하는 다양한 모임 카테고리를 이용해, 다양한 분야의 다양한 사람들을 만나보세요! &nbsp;&nbsp;&nbsp;<span id="rotate_word" style="color: #FE642E; font-size:30px;">음악</span>
+			
+				<p style="font-size: 18px; margin-top:25px;">새로운 모임을 개설하고, 같은 취미를 공유하는 <br>친구들을 만들어 보세요. 모두 다 함께!</p>
 		
 			<div id="main_btn_wrap">
 				<c:choose>
 					<c:when test="${sessionScope.unum ne null }">
-						<button type="button" class="btn btn-dark layout_a" onclick="location.href='/user/mypage?unum=${sessionScope.unum}'">마이페이지</button>
+						<button type="button" class="joocheck" onclick="location.href='/user/mypage?unum=${sessionScope.unum}'">마이페이지</button>
 					</c:when>
 					<c:otherwise>
-						<button type="button" class="btn btn-dark" onclick="location.href='/user/login'">시작하기</button>
+						<button type="button" class="joocheck" onclick="location.href='/user/login'">시작하기</button>
 					</c:otherwise>
 				</c:choose>
 			</div>	
@@ -414,19 +433,19 @@ $(document).ready(function() {
 			<div class="list_a" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" onclick="location.href='/moim/moimlist'">
 				<img src="../photo/moim.png">
 				<div style="display: flex; justify-content: space-between;">
-					<span></span><div>모임 게시판</div>
+					<span></span><div style="font-weight: 1000; font-size:25px;">모임 게시판</div>
 				</div>
 			</div>
 			<div class="list_a" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" onclick="location.href='/city/list'">
 				<img src="../photo/local.png">
 				<div style="display: flex; justify-content: space-between;">
-					<span></span><div>지역 게시판</div>
+					<span></span><div style="font-weight: 1000; font-size:25px;">지역 게시판</div>
 				</div>
 			</div>
 			<div class="list_a" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" onclick="location.href='/mapcontact'">
 				<img src="../photo/map.png">
 				<div style="display: flex; justify-content: space-between;">
-					<span></span><div>지도로 위치 검색</div>
+					<span></span><div style="font-weight: 1000; font-size:25px;">위치 검색</div>
 				</div>
 			</div>	
 	</div>
@@ -438,29 +457,26 @@ $(document).ready(function() {
   		<div class="slide-item">
    			<img src="../photo/mid_pic1.jpg">
     	<div class="slide-text">
-      		<h2>Slide 1</h2>
-      		<p>Text for Slide 1</p>
+      		<h2>다함께에서는 간편하게 모임을 찾아볼 수 있어요.</h2>
+      		<p>함께 즐길 취미와 관심사를 가진 멤버들을 만나보는 재미, 그리고 모임 활동의 매력을 느껴보세요.</p>
     	</div>
    </div>
   	<div class="slide-item">
     	<img src="../photo/mid_pic2.jpg">
     	<div class="slide-text">
-      		<h2>Slide 2</h2>
-      		<p>Text for Slide 2</p>
+      		<h2>다함께는 모임 참여를 쉽고 재미있게 만들어줍니다. </h2>
+      		<p>함께 즐길 행사와 활동에 대한 정보도 얻을 수 있습니다. 지금 다함께를 방문해보세요. 우리 함께 멋진 모임 커뮤니티를 이끌고, 새로운 친구들과 즐거운 시간을 보내세요.</p>
     	</div>
   	</div>
   	<div class="slide-item">
     	<img src="../photo/mid_pic3.jpg">
     <div class="slide-text">
-      	<h2>Slide 3</h2>
-      	<p>Text for Slide 3</p>
+      	<h2>새로운 친구들을 만나고, 즐거운 시간을 보낼 수 있는 당신만의 모임을 발견해보세요. </h2>
+      	<p>다함께에서 활동하는 다양한 새로운 친구들이 당신을 기다리고 있습니다. 여러분의 열정을 터놓고, 취미와 관심사를 공유하는 동호회 친구들과 함께 잊지 못할 경험을 즐겨보세요.</p>
     </div>
   </div>
 </div>
 	
-<div id="main_bot_title">
-	<h2>다 함께!</h2>
-</div>
 
 <div id="main_bot">
 	<div class="main_bot_pic"  data-aos="fade-up-right" data-aos-duration="1500">
@@ -471,10 +487,15 @@ $(document).ready(function() {
 	</div>
 	
 	<div id="main_bot_txt" data-aos="fade-up-left" data-aos-duration="1500">
-		<span>
+		<div id="main_bot_title">
+			<h2 style="color:#FE9A2E;">다 함께!</h2>
+		</div>
+		
+		<span style="font-size:20px; line-height:40px;">
 			동호회 모임을 통해 새로운 친구를 사귈 수 있고, 전문 지식을 공유하며 즐거운 경험을 나눌 수 있습니다. 우리 사이트에서는 다양한 사람들과 소통하고 자신의 취미를 더욱 풍부하게 만들어 보세요.
 
 지금 바로 저희 사이트를 방문하여 원하는 동호회 모임을 찾아보세요. 새로운 사람들과 함께 즐거운 시간을 보내고 동료들과의 유익한 교류를 경험해보세요!
+모임 커뮤니티의 경험을 재정의하고, 새로운 세계로 인도할 준비가 되어있는 다함께에서 여러분을 기다리고 있어요. 동호회 친구들과 함께 즐거운 시간을 보내고, 당신만의 동호회 이야기를 만들어보세요.
 		</span>
 	</div>
 	

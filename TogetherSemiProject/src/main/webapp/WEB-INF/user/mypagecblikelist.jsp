@@ -41,7 +41,7 @@
 	
 	}
  	.container {
-	  width: 1440px;
+	  width: 1140px;
 	  margin: 0 auto;
 	  margin-bottom:50px;
 	}
@@ -53,7 +53,6 @@
 	  }
 	}
 	.cblike-container {
-		
 	  margin:0 auto;
 	  margin-bottom:50px;
 	  width: 1400px;

@@ -45,8 +45,7 @@
 	
 	}
  	.container {
- 	
-	  width: 1440px;
+	  width: 1140px;
 	  margin: 0 auto;
 	  margin-bottom:50px;
 	  
@@ -58,12 +57,10 @@
 	}
 
 	.cblist-container {
-
-	  margin:0 auto;
-	  margin-bottom:50px;
-	  width: 1400px;
-	  margin-top:30px;
-	  margin-left:-10px;
+	  margin-top: 50px;
+	  width: 1440px;
+	  margin: 100 auto;
+	  margin-left: -40px;
   }
   	
 	.cblist-item {

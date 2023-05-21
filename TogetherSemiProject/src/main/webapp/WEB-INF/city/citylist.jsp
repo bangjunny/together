@@ -94,6 +94,43 @@ body, body * {
 	overflow: hidden;
 	white-space : nowrap;
 }
+
+select {
+
+ 	width: 150px;
+    height: 30px;
+    font-size: 15px;
+    background: #fff;
+    background-size: 20px 8px;
+    border-radius:5px;
+    display: inline-block;
+    text-align: start;
+    border: solid 1px #848484;
+    cursor: default;
+    padding-left: 5px;
+
+}
+.sea {
+	margin-bottom: 10px;
+	height: 40px;
+}
+
+.sear {
+	border: solid 1px #848484;
+     width: 250px;
+     height: 30px;
+     font-size: 15px;
+     background: #fff;
+     background-size: 20px 8px;
+     border-radius:5px;
+}
+
+#search {
+	width:120px; 
+	background-color:#FE9A2E;
+	margin-bottom: 5px;
+}
+
 </style>
 </head>
 <body>
@@ -127,35 +164,35 @@ body, body * {
 	 
 
 	
-	<br>
-	<form action="list" method="get" style="float: right;">
-	<select id="city" name="city1">
-		<option hidden>시, 도 선택</option>
-		<option value="서울특별시">서울특별시</option>
-		<option value="부산광역시">부산광역시</option>
-		<option value="대구광역시">대구광역시</option>
-		<option value="인천광역시">인천광역시</option>
-		<option value="광주광역시">광주광역시</option>
-		<option value="대전광역시">대전광역시</option>
-		<option value="울산광역시">울산광역시</option>
-		<option value="세종특별자치시">세종특별자치시</option>
-		<option value="경기도">경기도</option>
-		<option value="강원도">강원도</option>
-		<option value="충청북도">충청북도</option>
-		<option value="충청남도">충청남도</option>
-		<option value="전라북도">전라북도</option>
-		<option value="전라남도">전라남도</option>
-		<option value="경상북도">경상북도</option>
-		<option value="경상남도">경상남도</option>
-		<option value="제주특별자치도">제주특별자치도</option>
-	</select>
-	<select id="district" name="city2">
-		<option>시, 군, 구 선택</option>
-	</select>
-    <input name="keyword" value="${keyword }" type="text">
-	<button id="search" type="submit" class="btn btn-sm text-white" style="width:120px; background-color:#FE9A2E">선택지역검색</button>
-	</form>
-		
+	<div class="sea">
+		<form action="list" method="get" style="float: right;">
+			<select id="city" name="city1">
+				<option hidden>시, 도 선택</option>
+				<option value="서울특별시">서울특별시</option>
+				<option value="부산광역시">부산광역시</option>
+				<option value="대구광역시">대구광역시</option>
+				<option value="인천광역시">인천광역시</option>
+				<option value="광주광역시">광주광역시</option>
+				<option value="대전광역시">대전광역시</option>
+				<option value="울산광역시">울산광역시</option>
+				<option value="세종특별자치시">세종특별자치시</option>
+				<option value="경기도">경기도</option>
+				<option value="강원도">강원도</option>
+				<option value="충청북도">충청북도</option>
+				<option value="충청남도">충청남도</option>
+				<option value="전라북도">전라북도</option>
+				<option value="전라남도">전라남도</option>
+				<option value="경상북도">경상북도</option>
+				<option value="경상남도">경상남도</option>
+				<option value="제주특별자치도">제주특별자치도</option>
+			</select>
+			<select id="district" name="city2">
+				<option>시, 군, 구 선택</option>
+			</select>
+		    <input class="sear" name="keyword" value="${keyword }" type="text">
+			<button id="search" type="submit" class="btn btn-sm text-white">선택지역 검색</button>
+		</form>
+	</div>
 		
 	
 	

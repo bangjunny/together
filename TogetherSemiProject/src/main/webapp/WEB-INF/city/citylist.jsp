@@ -93,6 +93,9 @@ body, body * {
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space : nowrap;
+	display:inline-block;
+	width:300px;
+	margin-right: 50px;
 }
 </style>
 </head>
@@ -131,23 +134,23 @@ body, body * {
 	<form action="list" method="get" style="float: right;">
 	<select id="city" name="city1">
 		<option hidden>시, 도 선택</option>
-		<option value="서울특별시">서울특별시</option>
-		<option value="부산광역시">부산광역시</option>
-		<option value="대구광역시">대구광역시</option>
-		<option value="인천광역시">인천광역시</option>
-		<option value="광주광역시">광주광역시</option>
-		<option value="대전광역시">대전광역시</option>
-		<option value="울산광역시">울산광역시</option>
-		<option value="세종특별자치시">세종특별자치시</option>
-		<option value="경기도">경기도</option>
-		<option value="강원도">강원도</option>
-		<option value="충청북도">충청북도</option>
-		<option value="충청남도">충청남도</option>
-		<option value="전라북도">전라북도</option>
-		<option value="전라남도">전라남도</option>
-		<option value="경상북도">경상북도</option>
-		<option value="경상남도">경상남도</option>
-		<option value="제주특별자치도">제주특별자치도</option>
+		<option value="서울특별시" ${city1 eq '서울특별시' ? 'selected' : ''}>서울특별시</option>
+		<option value="부산광역시" ${city1 eq '부산광역시' ? 'selected' : ''}>부산광역시</option>
+		<option value="대구광역시" ${city1 eq '대구광역시' ? 'selected' : ''}>대구광역시</option>
+		<option value="인천광역시" ${city1 eq '인천광역시' ? 'selected' : ''}>인천광역시</option>
+		<option value="광주광역시" ${city1 eq '광주광역시' ? 'selected' : ''}>광주광역시</option>
+		<option value="대전광역시" ${city1 eq '대전광역시' ? 'selected' : ''}>대전광역시</option>
+		<option value="울산광역시" ${city1 eq '울산광역시' ? 'selected' : ''}>울산광역시</option>
+		<option value="세종특별자치시" ${city1 eq '세종특별자치시' ? 'selected' : ''}>세종특별자치시</option>
+		<option value="경기도" ${city1 eq '경기도' ? 'selected' : ''}>경기도</option>
+		<option value="강원도" ${city1 eq '강원도' ? 'selected' : ''}>강원도</option>
+		<option value="충청북도" ${city1 eq '충청북도' ? 'selected' : ''}>충청북도</option>
+		<option value="충청남도" ${city1 eq '충청남도' ? 'selected' : ''}>충청남도</option>
+		<option value="전라북도" ${city1 eq '전라북도' ? 'selected' : ''}>전라북도</option>
+		<option value="전라남도" ${city1 eq '전라남도' ? 'selected' : ''}>전라남도</option>
+		<option value="경상북도" ${city1 eq '경상북도' ? 'selected' : ''}>경상북도</option>
+		<option value="경상남도" ${city1 eq '경상남도' ? 'selected' : ''}>경상남도</option>
+		<option value="제주특별자치도" ${city1 eq '제주특별자치도' ? 'selected' : ''}>제주특별자치도</option>
 	</select>
 	<select id="district" name="city2">
 		<option>시, 군, 구 선택</option>
@@ -178,12 +181,12 @@ body, body * {
 				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.com/together-bucket-104/city/${list.photo_idx }">
 			</c:when>
 			<c:otherwise>
-				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.clistom/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
 			</c:otherwise>
 		</c:choose>
 		</td>
 		<td id="ta1text">
-		<b class="listsubject" style="display:inline-block;width:300px;margin-right: 50px">&nbsp;&nbsp;${list.subject }</b>
+		<b class="listsubject">&nbsp;&nbsp;${list.subject }</b>
 		<span style="display:inline-block;margin-left:0px;width:100px">${list.uname}</span>|
 		<span style="margin-left:30px;display:inline-block;width:150px">추천수 : ${list.cblike}</span>
 		<span style="margin-left:15px;display:inline-block;width:150px">조회수 : ${list.readcount}</span>
@@ -205,19 +208,19 @@ body, body * {
 
 	
 	<!-- 페이징처리 -->
-<div style="margin:0 auto;width: 700px; text-align: center; font-size: 20px;">
+<div style="margin:0 auto;width: 700px; text-align: center; font-size: 16px;">
 <c:choose>
 	<c:when test="${city1!='no' && keyword!=null}"> 
 		<!-- 이전 -->
 		<c:if test="${startPage>1 }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?city1=${city1 }&city2=${city2 }&keyword=${keyword }&currentPage=${startPage-1 }">이전</a>
 		</c:if>
 		&nbsp;
 		<!-- 페이지 번호 출력 -->
 		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
 			<c:if test="${currentPage==pp }">
-				<a style="color: green; text-decoration: none; cursor: pointer;"
+				<a style="color: blue; font-size: 23px; text-decoration: none; cursor: pointer;"
 					href="list?city1=${city1 }&city2=${city2 }&keyword=${keyword }&currentPage=${pp }">${pp }</a>
 			</c:if>
 			<c:if test="${currentPage!=pp }">
@@ -228,21 +231,21 @@ body, body * {
     	</c:forEach>
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?city1=${city1 }&city2=${city2 }&keyword=${keyword }&currentPage=${endPage+1 }">다음</a>
 		</c:if>
 	</c:when>
 		<c:when test="${city1=='no' && keyword!=null}">
 		<!-- 이전 -->
 		<c:if test="${startPage>1 }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?keyword=${keyword }&currentPage=${startPage-1 }">이전</a>
 		</c:if>
 		&nbsp;
 		<!-- 페이지 번호 출력 -->
 		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
 			<c:if test="${currentPage==pp }">
-				<a style="color: green; text-decoration: none; cursor: pointer;"
+				<a style="color: blue; font-size: 23px; text-decoration: none; cursor: pointer;"
 					href="list?keyword=${keyword }&currentPage=${pp }">${pp }</a>
 			</c:if>
 			<c:if test="${currentPage!=pp }">
@@ -253,7 +256,7 @@ body, body * {
     	</c:forEach>
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?keyword=${keyword }&currentPage=${endPage+1 }">다음</a>
 		</c:if>
 	</c:when>
@@ -261,14 +264,14 @@ body, body * {
 		<c:when test="${city1!='no' && keyword==null}">
 		<!-- 이전 -->
 		<c:if test="${startPage>1 }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black text-decoration: none; cursor: pointer;"
 				href="list?city1=${city1 }&city2=${city2 }&currentPage=${startPage-1 }">이전</a>
 		</c:if>
 		&nbsp;
 		<!-- 페이지 번호 출력 -->
 		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
 			<c:if test="${currentPage==pp }">
-				<a style="color: green; text-decoration: none; cursor: pointer;"
+				<a style="color: blue; font-size: 23px; text-decoration: none; cursor: pointer;"
 					href="list?city1=${city1 }&city2=${city2 }&currentPage=${pp }">${pp }</a>
 			</c:if>
 			<c:if test="${currentPage!=pp }">
@@ -279,7 +282,7 @@ body, body * {
     	</c:forEach>
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?city1=${city1 }&city2=${city2 }&currentPage=${endPage+1 }">다음</a>
 		</c:if>
 	</c:when>
@@ -287,14 +290,14 @@ body, body * {
 	<c:otherwise>
 		<!-- 이전 -->
 		<c:if test="${startPage>1 }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?currentPage=${startPage-1 }">이전</a>
 		</c:if>
 		&nbsp;
 		<!-- 페이지 번호 출력 -->
 		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
 			<c:if test="${currentPage==pp }">
-				<a style="color: green; text-decoration: none; cursor: pointer;"
+				<a style="color: blue; font-size: 23px;text-decoration: none; cursor: pointer;"
 					href="list?currentPage=${pp }">${pp }</a>
 			</c:if>
 			<c:if test="${currentPage!=pp }">
@@ -305,7 +308,7 @@ body, body * {
     	</c:forEach>
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?currentPage=${endPage+1 }">다음</a>
 		</c:if>
 	</c:otherwise>

@@ -72,10 +72,10 @@
   .cblist-title {
 	font-size: 1.2em;
 	margin: 0;
-	overflow: hidden;
     text-overflow: ellipsis;
+	overflow: hidden;
     white-space: nowrap;
-    width: 100%; /* 너비를 100%로 설정하여 부모 요소의 크기를 따라감 */
+    width: 500px; 
     
 }
 	
@@ -238,7 +238,7 @@
     
    	<br>
 <!-- 페이징 처리 -->
-		<div style="width: 700px; text-align:center; font-size:20px;">
+		<div style="margin:0 auto;width: 700px; text-align:center; font-size:16px;">
 			<!-- 이전 -->
 			<c:if test="${startPage>1}">
 				<a style="color:black; text-decoration:none; cursor:pointer;"
@@ -247,7 +247,7 @@
 			<!-- 페이지번호 출력 -->
 			<c:forEach var="pp" begin="${startPage}" end="${endPage}">
 				<c:if test="${currentPage==pp}">
-					<a style="color:green; text-decoration:none; cursor:pointer;"
+					<a style="color:blue; font-size: 23px; text-decoration:none; cursor:pointer;"
 					href="mypagecblist?unum=${unum }&currentPage=${pp}">${pp}</a>
 				</c:if>
 				<c:if test="${currentPage!=pp}">

@@ -385,6 +385,7 @@
 		 		</c:if>
 		 			<td style="font-size:20px;">
 		 			${msdto.mssubject } <br><span style="font-size:13px;"><b>￦</b> ${msdto.mscost }</span>
+		 			&nbsp;&nbsp;<span style="font-size:13px;"><i class="bi bi-person"></i>&nbsp;${msdto.jmcount}/${msdto.personnel }</span>
 		 			<br>
 		 			<span style="font-size:13px;"><i class="bi bi-calendar"></i> ${msdto.msdate} ${msdto.mstime.substring(0, 5)} 
 		 			</span>	&nbsp;	 			
@@ -393,20 +394,20 @@
 		 			<c:if test="${msdto.sjcount eq 0}">
 		 			<c:choose>
 		 			<c:when test="${membercheckCount eq 1}">
-		 			<td><button class="btn btn-outline-success" style="width:60px;height:50px;" onclick="joinSchedule('${msdto.msnum}');">참석</button></td>
+		 			<td><br><button class="btn btn-outline-success" style="width:60px;height:50px;" onclick="joinSchedule('${msdto.msnum}');">참석</button></td>
 		 			</c:when>
 		 			<c:otherwise>
-		 			<td><button class="btn btn-outline-secondary" style="width:60px;height:50px;" onclick="alert('모임원만 참석 가능합니다')">참석</button></td>
+		 			<td><br><button class="btn btn-outline-secondary" style="width:60px;height:50px;" onclick="alert('모임원만 참석 가능합니다')">참석</button></td>
 		 			</c:otherwise>
 		 			</c:choose>
 		 			</c:if>
 		 			<c:if test="${msdto.sjcount eq 1}">
-		 			<td><button class="btn btn-outline-danger" style="width:60px;height:50px; border: 1px solid #FE9A2E; color:#FE9A2E;" onclick="cancelSchedule('${msdto.msnum}');">취소</button></td>
+		 			<td><br><button class="btn btn-outline-danger" style="width:60px;height:50px; border: 1px solid #FE9A2E; color:#FE9A2E;" onclick="cancelSchedule('${msdto.msnum}');">취소</button></td>
 		 			</c:if>
 		 			<c:choose>
 						<c:when test="${sessionScope.unum == udto.unum}">
 						<td>
-						<button class="btn btn-outline-danger" style="width:60px;height:50px" onclick="deleteSchedule('${msdto.mssubject}');">삭제</button>
+						<br><button class="btn btn-outline-danger" style="width:60px;height:50px" onclick="deleteSchedule('${msdto.mssubject}');">삭제</button>
 						</td>
 						</c:when>
 						<c:otherwise><td><button class="btn btn-outline-danger" style="width:70px;height:70px" hidden>삭제</button></td></c:otherwise>
@@ -439,7 +440,7 @@
 						<c:if test="${standby.acceptcall == 0 }">
 						<li>
 							<div class="memberinfo" >
-								멤버 이름 : ${standby.uname } 멤버 성별 : ${standby.gender }
+								이름 : ${standby.uname } / 성별 : ${standby.gender } / 나이 : <span>${2023-standby.age.substring(0, 4) }세</span>
 							</div>
 							<div class="memberaccpet">
 								<a onclick="acceptGaip(${standby.unum });"><i class="bi bi-check2" style="cursor: pointer;"></i></a> /
@@ -453,12 +454,12 @@
 			<br><br>
 			<div id="gaipmember1" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
     		 data-aos-delay="300"  data-aos-offset="0">
-			<b style="margin-left:100px;font-size:20px;">가입한 멤버</b><br><br>
+			<b style="margin-left:100px;font-size:20px;">모임원</b><br><br>
 				<c:forEach items="${list }" var="pass">
 				<ul>
 					<c:if test="${pass.acceptcall == 1 }">
 					<li>	
-						멤버 이름 : ${pass.uname } / 멤버 성별 : ${pass.gender } &nbsp;	<c:if test="${sessionScope.unum != pass.unum}"><button onclick="mandate(${pass.unum });">위임</button>	</c:if>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이름 : ${pass.uname } / 성별 : ${pass.gender } &nbsp;	<c:if test="${sessionScope.unum != pass.unum}"><button onclick="mandate(${pass.unum });">위임</button>	</c:if>
 					</li>	
 					</c:if>
 				</ul>	

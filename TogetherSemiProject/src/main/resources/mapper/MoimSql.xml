@@ -77,7 +77,7 @@
 		select count(*) from moimmember where unum=#{unum} and mname=#{mname}
 	</select>
 	<select id="getGaipmemberList" parameterType="String" resultType="Map">
-		SELECT u.uname, u.gender, u.unum, mm.acceptcall FROM user u JOIN moimmember mm ON u.unum=mm.unum where mname=#{mname}
+		SELECT u.uname, u.age, u.gender, u.unum, mm.acceptcall FROM user u JOIN moimmember mm ON u.unum=mm.unum where mname=#{mname}
 	</select>
 	<update id="acceptGaip" parameterType="Map">
 		update moimmember set acceptcall=1 where unum=#{unum} and mname=#{mname}
@@ -89,7 +89,7 @@
 		select acceptcall from moimmember where unum=#{unum} and mname=#{mname}
 	</select>
 	<insert id="insertMoimSchedule" parameterType="MoimScheduleDto">
-		insert into moimschedule (mssubject,msdate,mstime,mslocation,mscost,mnum) values (#{mssubject},#{msdate},#{mstime},#{mslocation},#{mscost},#{mnum})
+		insert into moimschedule (mssubject,msdate,mstime,mslocation,mscost,mnum,personnel) values (#{mssubject},#{msdate},#{mstime},#{mslocation},#{mscost},#{mnum},#{personnel})
 	</insert>
 	<select id="getScheduleCount" parameterType="int" resultType="int">
 		select count(*) from moimschedule where mnum=#{mnum}
@@ -98,7 +98,8 @@
 		update moimmember set mname=#{Mmname} where mname=#{hiddenname}
 	</update>
 	<select id="getScheduleList" parameterType="Map" resultType="MoimScheduleDto">
-		select *,(select count(sj.msnum) as count from schedulejoin sj where ms.msnum = sj.msnum and unum=#{unum}) as sjcount from moimschedule ms where mnum=#{mnum};
+		select *,(select count(sj.msnum) as count from schedulejoin sj where ms.msnum = sj.msnum and unum=#{unum}) as sjcount
+		,(select count(sj.msnum) as count from schedulejoin sj where ms.msnum = sj.msnum) as jmcount from moimschedule ms where mnum=#{mnum}
 	</select>
 	<delete id="deleteSchedule" parameterType="Map">
 		delete from moimschedule where mssubject=#{mssubject} and mnum=#{mnum}
@@ -115,5 +116,8 @@
 	<update id="mandate" parameterType="Map">
 		update moim set unum=#{unum} where mname=#{mname}
 	</update>
+	<select id="getJoinMemberList" parameterType="String" resultType="Map">
+		SELECT u.uname, u.age, u.gender, u.unum, sj.msnum FROM user u JOIN schedulejoin sj ON u.unum=sj.unum where sj.msnum=#{msnum}
+	</select>
 </mapper>
 

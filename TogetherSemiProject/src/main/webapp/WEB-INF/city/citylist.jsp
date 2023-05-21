@@ -93,6 +93,9 @@ body, body * {
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space : nowrap;
+	display:inline-block;
+	width:300px;
+	margin-right: 50px;
 }
 
 select {
@@ -162,8 +165,6 @@ select {
 	id="readtop" onclick="readtop()">조회수 TOP3</button>
 	</span>
 	 
-
-	
 	<div class="sea">
 		<form action="list" method="get" style="float: right;">
 			<select id="city" name="city1">
@@ -193,11 +194,6 @@ select {
 			<button id="search" type="submit" class="btn btn-sm text-white">선택지역 검색</button>
 		</form>
 	</div>
-		
-	
-	
-	
-	
 	
 	<c:forEach var="list" items="${list}" varStatus="i">
 	<c:choose>
@@ -215,12 +211,12 @@ select {
 				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.com/together-bucket-104/city/${list.photo_idx }">
 			</c:when>
 			<c:otherwise>
-				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.clistom/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
 			</c:otherwise>
 		</c:choose>
 		</td>
 		<td id="ta1text">
-		<b class="listsubject" style="display:inline-block;width:300px;margin-right: 50px">&nbsp;&nbsp;${list.subject }</b>
+		<b class="listsubject">&nbsp;&nbsp;${list.subject }</b>
 		<span style="display:inline-block;margin-left:0px;width:100px">${list.uname}</span>|
 		<span style="margin-left:30px;display:inline-block;width:150px">추천수 : ${list.cblike}</span>
 		<span style="margin-left:15px;display:inline-block;width:150px">조회수 : ${list.readcount}</span>
@@ -242,19 +238,19 @@ select {
 
 	
 	<!-- 페이징처리 -->
-<div style="margin:0 auto;width: 700px; text-align: center; font-size: 20px;">
+<div style="margin:0 auto;width: 700px; text-align: center; font-size: 16px;">
 <c:choose>
 	<c:when test="${city1!='no' && keyword!=null}"> 
 		<!-- 이전 -->
 		<c:if test="${startPage>1 }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?city1=${city1 }&city2=${city2 }&keyword=${keyword }&currentPage=${startPage-1 }">이전</a>
 		</c:if>
 		&nbsp;
 		<!-- 페이지 번호 출력 -->
 		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
 			<c:if test="${currentPage==pp }">
-				<a style="color: green; text-decoration: none; cursor: pointer;"
+				<a style="color: blue; font-size: 23px; text-decoration: none; cursor: pointer;"
 					href="list?city1=${city1 }&city2=${city2 }&keyword=${keyword }&currentPage=${pp }">${pp }</a>
 			</c:if>
 			<c:if test="${currentPage!=pp }">
@@ -265,21 +261,21 @@ select {
     	</c:forEach>
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?city1=${city1 }&city2=${city2 }&keyword=${keyword }&currentPage=${endPage+1 }">다음</a>
 		</c:if>
 	</c:when>
 		<c:when test="${city1=='no' && keyword!=null}">
 		<!-- 이전 -->
 		<c:if test="${startPage>1 }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?keyword=${keyword }&currentPage=${startPage-1 }">이전</a>
 		</c:if>
 		&nbsp;
 		<!-- 페이지 번호 출력 -->
 		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
 			<c:if test="${currentPage==pp }">
-				<a style="color: green; text-decoration: none; cursor: pointer;"
+				<a style="color: blue; font-size: 23px; text-decoration: none; cursor: pointer;"
 					href="list?keyword=${keyword }&currentPage=${pp }">${pp }</a>
 			</c:if>
 			<c:if test="${currentPage!=pp }">
@@ -290,7 +286,7 @@ select {
     	</c:forEach>
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?keyword=${keyword }&currentPage=${endPage+1 }">다음</a>
 		</c:if>
 	</c:when>
@@ -298,14 +294,14 @@ select {
 		<c:when test="${city1!='no' && keyword==null}">
 		<!-- 이전 -->
 		<c:if test="${startPage>1 }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black text-decoration: none; cursor: pointer;"
 				href="list?city1=${city1 }&city2=${city2 }&currentPage=${startPage-1 }">이전</a>
 		</c:if>
 		&nbsp;
 		<!-- 페이지 번호 출력 -->
 		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
 			<c:if test="${currentPage==pp }">
-				<a style="color: green; text-decoration: none; cursor: pointer;"
+				<a style="color: blue; font-size: 23px; text-decoration: none; cursor: pointer;"
 					href="list?city1=${city1 }&city2=${city2 }&currentPage=${pp }">${pp }</a>
 			</c:if>
 			<c:if test="${currentPage!=pp }">
@@ -316,7 +312,7 @@ select {
     	</c:forEach>
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?city1=${city1 }&city2=${city2 }&currentPage=${endPage+1 }">다음</a>
 		</c:if>
 	</c:when>
@@ -324,14 +320,14 @@ select {
 	<c:otherwise>
 		<!-- 이전 -->
 		<c:if test="${startPage>1 }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?currentPage=${startPage-1 }">이전</a>
 		</c:if>
 		&nbsp;
 		<!-- 페이지 번호 출력 -->
 		<c:forEach var="pp" begin="${startPage }" end="${endPage }">
 			<c:if test="${currentPage==pp }">
-				<a style="color: green; text-decoration: none; cursor: pointer;"
+				<a style="color: blue; font-size: 23px;text-decoration: none; cursor: pointer;"
 					href="list?currentPage=${pp }">${pp }</a>
 			</c:if>
 			<c:if test="${currentPage!=pp }">
@@ -342,7 +338,7 @@ select {
     	</c:forEach>
 		<!-- 다음 -->
 		<c:if test="${endPage<totalPage }">
-			<a style="color: green; text-decoration: none; cursor: pointer;"
+			<a style="color: black; text-decoration: none; cursor: pointer;"
 				href="list?currentPage=${endPage+1 }">다음</a>
 		</c:if>
 	</c:otherwise>

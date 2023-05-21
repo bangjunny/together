@@ -268,6 +268,7 @@ public class CityController {
 	public String delete(int cbnum) {
 	    cityService.deleteCityboard(cbnum);
 	    return "redirect:/city/list";
+	    //return "history.back();";
 	}
 
 	@PostMapping("/updatecomment")

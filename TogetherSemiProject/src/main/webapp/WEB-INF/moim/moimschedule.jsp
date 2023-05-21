@@ -102,6 +102,12 @@
 			</td>
 		</tr>
 		<tr>
+			<td style="width:50px;" align="center"><i class="bi bi-person"></td>
+			<td>
+				<input type="number" class="form-control" id="personnel" name="personnel" max="20" required="required" placeholder="정원 최대 20명">
+			</td>
+		</tr>
+		<tr>
 		<input type="hidden" name="mnum" value="${mnum}">
 		<input type="hidden" name="mname" value="${dto.mname}">
 		</tr>

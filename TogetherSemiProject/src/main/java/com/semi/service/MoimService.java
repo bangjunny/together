@@ -256,7 +256,14 @@ public class MoimService implements MoimServiceInter {
 	     map.put("unum", unum);
 	     System.out.println(map);
 	     
-	     moimMapper.mandate(map);
-		
+	     moimMapper.mandate(map);		
 	}
+	
+	@Override
+	   public List<Map<String, Object>> getJoinMemberList(int msnum) {
+	      
+	      return moimMapper.getJoinMemberList(msnum);
+
+	   }
+	
 }

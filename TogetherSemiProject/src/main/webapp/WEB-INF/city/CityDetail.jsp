@@ -37,7 +37,7 @@
 	<br>
 	<br>
 	<!-- 해당 글 정보 영역 -->
-	<div style="width: 1140px; margin: 0 auto; margin-top: 40px; border: 1px solid #6E6E6E; border-radius: 5px;">
+	<div style="width: 1140px; margin: 0 auto; margin-top: 40px; border: 1px solid #6E6E6E; border-radius: 5px;background-color: #FBFBEF">
 		<br>
 		<h3 style="margin-left:40px;margin-top:10px;">${dto.subject}</h3>
 		<h6 style="float: right;">
@@ -94,11 +94,11 @@
 		<hr style="width:94%; margin-left:40px">
 		<!-- 버튼 영역 -->
 		<div>
-			<button type="button" id="golist" class="btn btn-sm text-white" style="margin-left:40px; width:100px;background-color: #FE9A2E"><i class="bi bi-card-list"></i>
+			<button type="button" id="golist" class="btn btn-sm btn-outline-success" style="margin-left:40px; width:100px;"><i class="bi bi-card-list"></i>
 			목록으로</button>
 			<c:choose>
 			 <c:when test="${sessionunum eq dto.unum}">
-			  <button type="button" class="btn btn-sm btn-outline-danger" style="width:100px" id="btnupdate">
+			  <button type="button" class="btn btn-sm btn-outline-success" style="width:100px" id="btnupdate">
 			    <i class="bi bi-pencil-square"></i>&nbsp;수정
 			  </button>
 			  
@@ -457,11 +457,15 @@
 $("#showComment").click(function() {
   if ($("#commentArea").css("display") === "none") {
 	  $("#showComment").css("border","1px solid #FE9A2E")
+	  $("#showComment").css("background-color","#FE9A2E")
+	  $("#showComment").attr("class","btn btn-sm text-white")
 	  $("#commentArea").css("display", "block");
       $("#commentArea").slideUp(0).slideDown("slow");
   } else {
       $("#commentArea").slideUp("slow", function() {
     	  $("#showComment").css("border","")
+    	  $("#showComment").css("background-color","white")
+    	  $("#showComment").attr("class","btn btn-sm")
         $("#commentArea").css("display", "none");
     });
   }

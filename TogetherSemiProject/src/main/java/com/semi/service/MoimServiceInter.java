@@ -37,4 +37,5 @@ public interface MoimServiceInter {
 	public void cancelScheduleJoin(int unum, int msnum);
 	public int getMemberCheckCount(int unum,String mname);
 	public void mandate(int unum, String mname);
+	public List<Map<String, Object>> getJoinMemberList(int msnum);
 }	

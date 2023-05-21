@@ -37,7 +37,7 @@
 		background-color:white;
 	}
 	div.mcontent {
-		font-size: 15px;
+		font-size: 17px;
 		text-align:center;
 		margin:5px auto 0 auto;
 		width:1100px;

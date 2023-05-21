@@ -378,5 +378,4 @@ public class MoimController {
 		List<ScheduleJoinDto> list = moimService.getJoinlist(msnum);
 		return list;
 	}
-
 }

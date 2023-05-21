@@ -119,5 +119,8 @@
 	<select id="getJoinMemberList" parameterType="String" resultType="Map">
 		SELECT u.uname, u.age, u.gender, u.unum, sj.msnum FROM user u JOIN schedulejoin sj ON u.unum=sj.unum where sj.msnum=#{msnum}
 	</select>
+	<select id="getJoinlist" parameterType="int" resultType="ScheduleJoinDto">
+		select * from schedulejoin where msnum=#{msnum}
+	</select>
 </mapper>
 

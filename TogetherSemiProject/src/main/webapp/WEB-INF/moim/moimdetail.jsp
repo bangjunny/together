@@ -386,9 +386,9 @@
 		 		</c:if>
 		 			<td style="font-size:20px;">
 		 			${msdto.mssubject } <br><span style="font-size:13px;"><b>￦</b> ${msdto.mscost }</span>
-		 			&nbsp;&nbsp;<span style="font-size:13px;" onclick="ScheduleJoinMember('${msdto.msnum}');"><i class="bi bi-person"></i>&nbsp;${msdto.jmcount}/${msdto.personnel }</span>
+		 			&nbsp;&nbsp;<span style="font-size:13px;cursor:pointer" onclick="personlist('${msdto.msnum }')"><i class="bi bi-person"></i>&nbsp;${msdto.jmcount}/${msdto.personnel }</span>
 		 			<br>
-		 			<span style="font-size:13px;"><i class="bi bi-calendar"></i> ${msdto.msdate} ${msdto.mstime.substring(0, 5)} 
+		 			<span style="font-size:13px;"><i class="bi bi-calendar"></i> ${msdto.msdate} ${msdto.mstime.substring(0, 5)}
 		 			</span>	&nbsp;	 			
 		 			<span style="font-size:13px;"><i class="bi bi-geo-alt"></i> ${msdto.mslocation }</span>		 			
 		 			</td>
@@ -801,27 +801,22 @@
 	    return; // 함수 즉시 종료
 	  }
 	}
-	
-	function ScheduleJoinMember(msnum){
-		const unum = ${sessionScope.unum};
-		    $.ajax({
-			      type: "get",
-			      url: "ScheduleJoinMember",
-			      dataType: "text",
-			      data: {
-			    	  msnum: msnum			        
-			      },
-			      success: function(res) {
-			        if (res == "success") {
-			        	var sjlist=document.getElementById("?");
-						sjlist.click();
-			        }
-			      },
-			    });
-			  } else {
-			    return; // 함수 즉시 종료
-			  }
-			}
+    
+	function personlist(msnum){
+		alert(msnum);
+		$.ajax({
+			type:"get",
+	        url:"mslist",
+	        dataType:"json",
+	        data:{"msnum":msnum},
+	        success:function(res){
+	        alert(res);	
+	        
+	        }
+		});
+		
+	}
+
 </script>
 
 </body>

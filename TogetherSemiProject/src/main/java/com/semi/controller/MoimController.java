@@ -159,6 +159,7 @@ public class MoimController {
 		System.out.println(unum);
 		List<Map<String, Object>> list = moimService.getGaipmemberList(mname);
 		List<MoimScheduleDto> slist = moimService.getScheduleList(mnum, unum);
+		//System.out.println("msnum:"+msnum);
 		/* List<Map<String, Object>> jmlist = moimService.getJoinMemberList(msnum); */
 		model.addAttribute("list", list);
 		model.addAttribute("dto", dto);
@@ -371,11 +372,10 @@ public class MoimController {
 	}
 	
 	@ResponseBody
-	@GetMapping("/ScheduleJoinMember")
-	public String ScheduleJoinMember(HttpSession session, int msnum, int mnum,Model model) {
-		int unum = (int) session.getAttribute("unum");
-		List<Map<String, Object>> jmlist = moimService.getJoinMemberList(msnum);
-		model.addAttribute("jmlist", jmlist);
-		return "success";
+	@GetMapping("mslist")
+	public List<ScheduleJoinDto> mslist(int msnum) {
+		System.out.println("msnum:"+msnum);
+		List<ScheduleJoinDto> list = moimService.getJoinlist(msnum);
+		return list;
 	}
 }

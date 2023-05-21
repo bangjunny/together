@@ -38,4 +38,5 @@ public interface MoimServiceInter {
 	public int getMemberCheckCount(int unum,String mname);
 	public void mandate(int unum, String mname);
 	public List<Map<String, Object>> getJoinMemberList(int msnum);
+	public List<ScheduleJoinDto> getJoinlist(int msnum);
 }	

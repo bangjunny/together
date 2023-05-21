@@ -76,7 +76,8 @@ public class LoginController {
 		if(loginok==null) 
 		{ 
 			return "/sub/user/login"; 
-		} 
+		}
+		
 		else 
 		{ 
 			return "/main/moim/moimlist";  

@@ -128,7 +128,20 @@
 	#mycity_wrap {
 		display: none;
 		margin-top:150px;
-	}	
+	}
+	.makemo {
+		margin-right: 30px;
+		height: 36px;
+    	width:100px;
+    	background: #FE9A2E;
+      	background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+	}
 
 </style>
 
@@ -266,11 +279,40 @@
 		    			  
 						$("#mypageupdateicon").click(function() {
 								
-								$("#myinfotable").css("display", "none");
-								$("#mypageupdateform").css("display", "block");	
+								/* $("#myinfotable").css("display", "none");
+								$("#mypageupdateform").css("display", "block"); */	
 						});			
 						});	
 					</script>
+					<!-- The Modal -->
+<div class="modal fade" id="sujung">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">회원 확인</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+		비밀번호를 확인 한 후 회원정보 수정으로 이동합니다<br>
+		<form action="mypagePassCheck" method="post">
+		<div class="mb-3" style="margin-top:30px;">
+            <label for="message-text" class="col-form-label">비밀번호</label>
+            <input type="password" name="pass" class="form-control"  style="height:50px">
+          </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="submit" class="makemo" data-bs-dismiss="modal">확인</button>
+      </div>
+	</form>
+    </div>
+  </div>
+</div>
 			</div>
 		</div> 	  
 	</div>	  

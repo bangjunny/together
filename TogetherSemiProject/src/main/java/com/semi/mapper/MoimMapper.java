@@ -44,4 +44,5 @@ public interface MoimMapper {
 	public int getMemberCheckCount(int unum,String mname);
 	public void mandate(Map<String, Object> map);
 	public List<Map<String, Object>> getJoinMemberList(int msnum);
+	public List<ScheduleJoinDto> getJoinlist(int msnum);
 }

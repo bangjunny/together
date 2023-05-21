@@ -17,8 +17,8 @@
 <style>
 
 	#photoarea{
-	width:400px;
-	height:400px;
+	width:300px;
+	height:300px;
 	}	
 	
 	#photoarea1{
@@ -35,9 +35,6 @@
 </head>
 <body>
 <!-- 게시판 명 -->
-	<br>
-	<br>
-	<br>
 	<!-- 해당 글 정보 영역 -->
 	<div style="width: 1140px; margin: 0 auto; margin-top: 40px; border-radius: 5px;background-color: #FCFCF5">
 		<br>
@@ -73,10 +70,10 @@
 		<br>
 		<br>
 		<br>
-		<div style="width: 1000px; margin:0 auto;">
+		<pre style="width: 1000px; margin:0 auto;">
         ${dto.cbcontent}
-    	</div>	
-		<br> <br> <br> 
+    	</pre>	
+		<br><br><br> 
 		<!-- 좋아요 버튼 -->
       <div id="likebutton" style="text-align:center ">
       <c:choose>
@@ -192,7 +189,7 @@
 							&nbsp;
 							<input id="recomment" type="hidden" value="${listcomment.recontent}">
 							<c:if test="${listcomment.recontent!='' }">
-							${listcomment.recontent}
+							<pre>${listcomment.recontent}</pre>
 							</c:if>
 							<c:if test="${listcomment.recontent=='' }">
 							삭제된 댓글입니다
@@ -272,7 +269,7 @@
 								&nbsp;
 								<input id="recomment" type="hidden" value="${listcomment.recontent}">
 								<c:if test="${listcomment.recontent!='' }">
-									${listcomment.recontent}
+									<pre>${listcomment.recontent}</pre>
 								</c:if>
 								<c:if test="${listcomment.recontent=='' }">
 									삭제된 댓글입니다

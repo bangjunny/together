@@ -71,15 +71,12 @@
 <br>
 <br>
 <div id="container">
-
-
-<br>
 	<c:choose>
 		<c:when test="${mainPhoto!=null }">
-			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-top:15px; margin-left:57px; margin-right:5px; border-radius:100px;">
+			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left; margin-top:5px;margin-left:57px; margin-right:5px; border-radius:100px;">
 		</c:when>
 		<c:otherwise>
-			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left; margin-top:15px; margin-left:57px; margin-right:5px; border-radius:100px;">                               
+			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left; margin-top:5px; margin-left:57px; margin-right:5px; border-radius:100px;">                               
 		</c:otherwise>
 	</c:choose>
 	<h3 style="margin-top:10px">${uname } 님이 작성 중입니다</h3>

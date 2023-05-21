@@ -64,7 +64,7 @@
 		margin: 0 auto;
 		display: flex;
 		justify-content: flex-end;
-		margin-bottom: 20px;
+		margin-bottom: 30px;
 	}
 	
 	#moim_sel_local select {
@@ -75,7 +75,6 @@
 		background: #fff;
 		background-size: 20px 8px;
 		border-radius:5px;
-		-webkit-appearance: none;
 		display: inline-block;
 		text-align: start;
 		border: solid 1px #848484;
@@ -153,7 +152,8 @@
      }
      
      .searchrul {
-     	margin-left: 20px;
+     	float:right;
+     	margin-right: 12px;
      	font-size:20px;
      }
      
@@ -194,7 +194,7 @@
 	.moim_box {
 		 border: 1px solid #BDBDBD;
 		 width: 260px;
-		 height: 330px;
+		 height: 380px;
 		 margin-bottom: 40px;		 
 	}
      
@@ -453,7 +453,7 @@
 								<option value="제주특별자치도">제주특별자치도</option>
 							</select>						
 						<select id="district" name="city2">
-							<option>군, 구 선택</option>
+							<option>시, 군, 구 선택</option>
 						</select>
 							
 						<form action="moimlist" method="get">

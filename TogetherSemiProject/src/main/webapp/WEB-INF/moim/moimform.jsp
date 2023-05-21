@@ -233,7 +233,7 @@
 			<td style="width:120px;"><span class="tag"> 모임 이름 : </span></td>
 			<td style="width:400px;">
 			<div style="margin-bottom: 7px;">
-				<input type="text" id="moimname" class="moname" name="mname" required="required" placeholder="모임 이름을 입력해주세요.">
+				<input type="text" id="moimname" class="moname" name="mname" maxlength="20" required="required" placeholder="모임 이름을 입력해주세요.">
 				
 				<button id="overlappedMname" type="button" class="joocheck">중복확인</button>
 			</div>

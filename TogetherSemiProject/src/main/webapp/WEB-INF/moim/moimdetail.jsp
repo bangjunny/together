@@ -37,11 +37,11 @@
 		background-color:white;
 	}
 	div.mcontent {
-		font-size: 15px;
+		font-size: 17px;
 		text-align:center;
-		margin:10px auto 0 auto;
-		width:80%;
-		height:280px;
+		margin:5px auto 0 auto;
+		width:1100px;
+		height:300px;
 		background-color:white;
 		overflow: auto;
 	}
@@ -502,7 +502,9 @@
 		<hr id="bodyhr">
 		<br>
 		<div class="mcontent">
+		<pre>
 		${dto.mcontent}
+		</pre>
 		</div>
 		
 		<hr id="foothr">

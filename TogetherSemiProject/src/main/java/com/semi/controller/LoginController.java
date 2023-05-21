@@ -331,6 +331,10 @@ public class LoginController {
 		int unum = loginService.selectOneOfEmail(email).getUnum();
 		session.setAttribute("unum", unum);
 		
+		// 로그인 uname 세션에 저장
+		String uname = loginService.selectOneOfEmail(email).getUname();
+		session.setAttribute("uname", uname );
+		
 		System.out.println("로그인 성공");
 	}
 	

@@ -514,7 +514,7 @@
 		
 <!-- 모임참석자 모달 -->
 	<div class="container mt-3">
-  <button type="button" id="mslist" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sjmModal"></button>
+  <input type="hidden" id="mslist" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sjmModal">
 </div>
 
 <div class="modalzone">

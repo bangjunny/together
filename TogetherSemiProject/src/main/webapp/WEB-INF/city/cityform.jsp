@@ -18,8 +18,8 @@
             width: 1140px;
             margin: 0 auto;
             margin-top: 40px;
-            border : 1px solid #6E6E6E;
             border-radius: 10px;
+            background-color:#FCFCF5;
         }
 
         

@@ -99,7 +99,7 @@
 	}
 	
 	.moim_paging {
-		margin-top:25px;
+		margin-bottom:100px;
 		text-align: center;
 	}
 
@@ -227,6 +227,24 @@
 	.tla {
 		height: 20px;
 		width: 160px;
+	}
+	
+	.makemo {
+		margin-right: 13px;
+		height: 38px;
+       	width:90px;
+       	background: #FE9A2E;
+        background-size: 200%;
+        color:white;
+        font-weight: 500;
+        border:none;
+        cursor:pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+	}
+	
+	.makemo:hover {
+		background: #FE642E;
 	}
 	
 </style>
@@ -557,7 +575,7 @@
 			
 				<c:if test="${sessionScope.unum != null }">
 					<div id="makemoim">
-						<button type="button" class="btn btn-success" onclick="checkCreate(event)">만들기</button>
+						<button type="button" class="makemo" onclick="checkCreate(event)">만들기</button>
 					</div>
 				</c:if>	
 		</div>		

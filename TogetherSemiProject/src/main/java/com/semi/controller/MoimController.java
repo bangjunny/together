@@ -159,12 +159,13 @@ public class MoimController {
 		System.out.println(unum);
 		List<Map<String, Object>> list = moimService.getGaipmemberList(mname);
 		List<MoimScheduleDto> slist = moimService.getScheduleList(mnum, unum);
+		/* List<Map<String, Object>> jmlist = moimService.getJoinMemberList(msnum); */
 		model.addAttribute("list", list);
 		model.addAttribute("dto", dto);
 		model.addAttribute("scheduleCount", scheduleCount);
 		model.addAttribute("slist", slist);
 		model.addAttribute("membercheckCount", membercheckCount);
-
+		/* model.addAttribute("jmlist", jmlist); */
 		return "/main/moim/moimdetail";
 	}
 

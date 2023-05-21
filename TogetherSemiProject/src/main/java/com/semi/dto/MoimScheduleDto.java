@@ -17,5 +17,7 @@ public class MoimScheduleDto {
 	private String mslocation;
 	private String mscost;
 	private int mnum;
+	private int personnel;
 	private int sjcount;
+	private int jmcount;
 }

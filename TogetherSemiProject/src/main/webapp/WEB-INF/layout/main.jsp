@@ -41,8 +41,8 @@
  		overflow-x: hidden;
 	}	
 	#main_start img {
-  		width: 100%;
-  		height: 100%;
+  		width: 1000px;
+  		height: 600px;
   		object-fit:cover;
 	}
 
@@ -386,7 +386,7 @@ $(document).ready(function() {
 
 		  // 일정 시간 후에 스크롤 이동
 		  setTimeout(function() {
-		    $("html, body").animate({ scrollTop: height - 100 }, 50);
+		    $("html, body").animate({ scrollTop: height - 150 }, 50);
 		    
 		    // 이미지 숨기기
 		    $("#main_start img").css("display", "none");
@@ -535,7 +535,7 @@ $(document).ready(function() {
 		
 	  $('.main_mid_pic').slick({
 		  autoplay: true,
-		  autoplaySpeed: 2500
+		  autoplaySpeed: 3000
 		  
 	  });	
 

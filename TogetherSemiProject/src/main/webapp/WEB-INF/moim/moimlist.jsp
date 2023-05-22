@@ -18,6 +18,9 @@
 		display:block;
 		clear:both;
 	}
+	.footer{
+		margin-top: 350px;
+	}
 
 	#moimlist {
 		width: 1140px;

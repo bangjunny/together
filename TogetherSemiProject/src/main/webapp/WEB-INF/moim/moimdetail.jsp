@@ -92,6 +92,10 @@
 	#jjim:hover{
 		cursor: pointer;
 	}
+	.footer{
+	position:relative; 
+	top:100px;
+	}
 	/*  #gaipmemberlist{
 		width: 900px;
 		display: flex;
@@ -117,7 +121,7 @@
 		position:absolute;
 		left:820px;
 		top:480px;
-		width: 400px;
+		width: 350px;
 		height:260px;
 		font-size:13px;
 		overflow: auto;
@@ -322,7 +326,7 @@
 	float: left;
 	color:black; 
 	font-size:12px;
-	width:280px;
+	width:500px;
 	height:180px; 
 	overflow:auto;"
 	}
@@ -337,7 +341,16 @@
 		width:500px;
 		height:200px;
 	}
-	
+	.topbtn{
+	position: relative;
+	bottom:52px;
+	right:10px;
+	}
+	#jjim{
+	position: relative;
+	bottom:52px;
+	right:5px;
+	}
 </style>
 </head>
 <body>
@@ -524,9 +537,9 @@
 			</c:when>
 			<c:otherwise>
 			<button type="button" class="midbtn"
-				 onclick="alert('작성자가 아닙니다')"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
+				 onclick="alert('모임장이 아닙니다')"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
 			<button type="button" class="midbtn" 
-				 onclick="alert('작성자가 아닙니다')"><i class="bi bi-trash"></i>&nbsp;삭제</button>
+				 onclick="alert('모임장이 아닙니다')"><i class="bi bi-trash"></i>&nbsp;삭제</button>
 			</c:otherwise>
 			</c:choose>
 		</div>	

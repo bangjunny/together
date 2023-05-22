@@ -27,6 +27,9 @@
 	body, body * {
 		font-family: 'NanumPenScript';
 	}
+	.main{
+	height:100%;
+	}
 	a:link,a:visited,a:hover {
 		color: black;
 		text-decoration: none;

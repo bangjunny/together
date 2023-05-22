@@ -820,6 +820,62 @@
 	    </div>
 	  </div>
 	</div>
+
+<!-- 회원 탈퇴 모달 -->
+<!-- The Modal -->
+<div class="modal" id="outmo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">회원 탈퇴</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        모임장인 경우 모임장을 위임 후 탈퇴를 진행해 주세요<br>
+        회원탈퇴시 회원으로 가입한 모임에서 탈퇴되며 작성한 글, <br> 댓글이 삭제됩니다. 
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="notmo" data-bs-dismiss="modal">취소</button>
+        <button type="button" class="outmo" id="out1" data-bs-dismiss="modal">확인</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 회원 탈퇴 모달 -->
+<!-- The Modal -->
+<div class="modal" id="talmo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">회원 탈퇴</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        모임의 모임장은 탈퇴를 진행하실수 없습니다. <br>
+        모임장인 경우 모임장을 위임 후 탈퇴를 진행해 주세요.
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="outmo" data-bs-dismiss="modal">확인</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+	
 <script>
 $(function() {
     // 체크박스 값이 변경될 때마다 실행되는 함수

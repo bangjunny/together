@@ -90,6 +90,10 @@
     		overflow: hidden;
     		border: 0;
 		}
+		
+		.main{
+		height: 100%;
+		}
 </style>
 </head>
 <body>

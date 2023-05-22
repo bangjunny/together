@@ -929,7 +929,6 @@ $("#overlappedMname").click(function(){
 		});	
 	}
 });
-
 $(document).on("click",".makemo",function(){
 	   const mname = $("#moimname").val();
 	   const city = $("#city").val();

@@ -927,6 +927,16 @@ $("#overlappedMname").click(function(){
 		});	
 	}
 });
+$(document).on("click",".makemo",function(){
+	const mname = $("#moimname").val();
+	
+	if(mname==""){
+		$("#olmessage").text("필수 정보입니다.");
+		$("#olmessage").addClass("olmessagef");
+		$("#olmessage").removeClass("olmessaget");
+		
+	}
+});
 </script>
 </body>
 </html>

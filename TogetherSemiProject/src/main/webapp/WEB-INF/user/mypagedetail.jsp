@@ -68,7 +68,7 @@
 	
 	.profile-photo.main {
 	  border-radius: 50%;
-	  object-fit: contain;
+	  object-fit: cover;
 	}
 	
 	.showimg{

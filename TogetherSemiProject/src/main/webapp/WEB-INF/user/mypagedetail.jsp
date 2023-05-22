@@ -221,7 +221,7 @@
 	          </div>
 	        </c:when>
 		        <c:otherwise>
-		          <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+		          <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
 		          <p>프로필 사진을 추가해보세요!</p>
 		        </c:otherwise>
 	      	</c:choose>
@@ -382,7 +382,7 @@
 					 <c:choose>
 			          <c:when test="${pdto.file_name==null}">
 			         <!-- Result값이 있다면 실행할 로직 -->
-			         <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" class="showimg">
+			         <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png" class="showimg">
 			          </c:when>
 			          <c:otherwise>
 			       <!-- 그렇지 않다면 실행할 로직 -->

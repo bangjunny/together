@@ -208,7 +208,7 @@ select {
 				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.com/together-bucket-104/city/${list.photo_idx }">
 			</c:when>
 			<c:otherwise>
-				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+				<img style="width:100%;height:100%" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
 			</c:otherwise>
 		</c:choose>
 		</td>
@@ -459,7 +459,7 @@ select {
 	        				if(ele.photo_idx!=null){
 	        					s+=`<img src="https://kr.object.ncloudstorage.com/together-bucket-104/city/\${ele.photo_idx }">`
 	        				} else{
-	        					s+=`<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">`
+	        					s+=`<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">`
 	        				}
 	        			s+=`</div>
 	        			<div class="listtext">
@@ -505,7 +505,7 @@ select {
 	        				if(ele.photo_idx!=null){
 	        					s+=`<img src="https://kr.object.ncloudstorage.com/together-bucket-104/city/\${ele.photo_idx }">`
 	        				} else{
-	        					s+=`<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">`
+	        					s+=`<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">`
 	        				}
 	        			s+=`</div>
 	        			<div class="listtext">

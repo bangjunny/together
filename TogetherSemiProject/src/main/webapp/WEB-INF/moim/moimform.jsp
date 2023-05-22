@@ -227,7 +227,7 @@
 			<td rowspan="4" style="width:440px;">
 			<!-- 이미지 출력할곳 -->
 				<div>
-					<img id="showimg" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+					<img id="showimg" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
 					<div class="filebox">
            				<label for="moimfile">대표사진 파일 업로드</label> 
           				<input type="file" name="upload" id="moimfile">

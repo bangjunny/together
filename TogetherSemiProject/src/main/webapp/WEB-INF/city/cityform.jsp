@@ -21,7 +21,9 @@
             border-radius: 10px;
             background-color:#FCFCF5;
         }
-
+		.footer{
+			margin-top: 150px;
+		}
         
         #cbcontent {
             width: 90%;

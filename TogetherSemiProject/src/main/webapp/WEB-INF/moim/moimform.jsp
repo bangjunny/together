@@ -465,6 +465,7 @@ form.addEventListener('submit', function(event) {
   if (hiddenInput.value == "null") {
     event.preventDefault();
     alert('카테고리를 선택해주세요');
+    
   }
 });
 
@@ -473,6 +474,7 @@ form.addEventListener('submit', function(event) {
 	if (cityInput.value == "시, 도 선택"){
 		event.preventDefault();
 	    alert('지역을 선택해주세요');
+	    $("#city").focus();
 	}
 });
 
@@ -928,15 +930,18 @@ $("#overlappedMname").click(function(){
 	}
 });
 $(document).on("click",".makemo",function(){
-	const mname = $("#moimname").val();
-	
-	if(mname==""){
-		$("#olmessage").text("필수 정보입니다.");
-		$("#olmessage").addClass("olmessagef");
-		$("#olmessage").removeClass("olmessaget");
-		
-	}
-});
+	   const mname = $("#moimname").val();
+	   const city = $("#city").val();
+	   
+	   
+	   if(mname==""){
+	      $("#olmessage").text("필수 정보입니다.");
+	      $("#olmessage").addClass("olmessagef");
+	      $("#olmessage").removeClass("olmessaget");
+	      $("#moimname").focus();
+	   }
+		   
+	});
 </script>
 </body>
 </html>

@@ -30,6 +30,10 @@
 	text-align:center;
 	}
 	
+	.main{
+	height: 100%;
+	}
+	
 	
 </style>
 </head>

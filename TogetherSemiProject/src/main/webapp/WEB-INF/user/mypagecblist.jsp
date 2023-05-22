@@ -171,10 +171,10 @@
           <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="/user/mypagecblist?unum=${unum}">내가 작성한 게시물</a>
+          <a class="nav-link active" href="/user/mypagecblist?unum=${unum}">내가 작성한 게시글</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
+          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시글</a>
         </li>
       </ul>
     </div>
@@ -182,7 +182,7 @@
 </nav>
 <div class="container">
 	<div class="cblist-container">
-		 <h3 style="margin-bottom:10px;">내가 작성한 게시물 보기</h3>
+		 <h3 style="margin-bottom:10px;">내가 작성한 게시글 보기</h3>
 			<c:if test="${totalCount==0 }">
 				<div class="cblist-item">
 					<b style="font-size:1.3em">등록된 게시글이 없습니다</b>

@@ -34,7 +34,7 @@
 <br/>
 
 ## 개발환경
-
+![tool](https://github.com/Jeon1301/together/assets/116734433/411857d6-8813-4aa7-b485-9d484b589bb1)
 
 ### 사용 API
 * 네이버 로그인
@@ -44,4 +44,5 @@
 
 ## ERD
 * Table : 11개
+
 ![erd](https://github.com/Jeon1301/together/assets/116734433/d2363b70-f54a-4d4d-80e5-b35e5cf5408b)

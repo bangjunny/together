@@ -26,11 +26,11 @@
 ---|---|---
 전병준|로그인, 회원가입|[https://github.com/Jeon1301](https://github.com/Jeon1301)
 이지현|로그인, 마이페이지|[https://github.com/jihyunnee](https://github.com/jihyunnee)
-신동휘|메인페이지, 레이아웃/헤더|[]()
+신동휘|메인페이지, 레이아웃/헤더|[https://github.com/Alpac495](https://github.com/Alpac495)
 박명수|모임 생성, 모임 게시판 리스트|[https://github.com/BluffingPark](https://github.com/BluffingPark)
-신승우|모임 게시판 상세페이지, 지도 위치 검색|[]()
-조경현|지역 게시판 리스트, 지역 게시판 상세 페이지|[]()
-강동현|지역 게시판 리스트, 지역 게시판 상세 페이지|[]()
+신승우|모임 게시판 상세페이지, 지도 위치 검색|[https://github.com/tlstmddn683](https://github.com/tlstmddn683)
+조경현|지역 게시판 리스트, 지역 게시판 상세 페이지|[https://github.com/ChickenMania123](https://github.com/ChickenMania123)
+강동현|지역 게시판 리스트, 지역 게시판 상세 페이지|[https://github.com/Unic31](https://github.com/Unic31)
 <br/>
 
 ## 개발환경

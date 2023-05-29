@@ -34,7 +34,14 @@
 <br/>
 
 ## 개발환경
-![tool](https://github.com/Jeon1301/together/assets/116734433/4889d085-bdd7-4684-9efe-3957c89fcc24)
+
+
+### 사용 API
+* 네이버 로그인
+* 카카오 로그인
+* 카카오 맵
 <br/>
 
 ## ERD
+* Table : 11개
+![erd](https://github.com/Jeon1301/together/assets/116734433/d2363b70-f54a-4d4d-80e5-b35e5cf5408b)

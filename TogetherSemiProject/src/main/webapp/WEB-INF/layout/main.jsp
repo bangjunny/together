@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Gowun+Dodum&family=Single+Day&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?&family=Nunito:wght@1000&family=Gamja+Flower&family=Jua&family=Lobster&family=Gowun+Dodum&family=Single+Day&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
@@ -301,7 +301,7 @@
 </script>
 <script type="text/javascript">
 	//Define initial variables.
-	var words = ["음악", "운동", "소셜", "예술", "게임", "여행"];
+	var words = ["Music", "Activity", "Social", "Art", "Game", "Trip"];
 	var photos = ["/photo/main1.jpg", "/photo/main2.jpg", "/photo/main3.jpg", "/photo/main4.jpg", "/photo/main5.jpg", "/photo/main_6.jpg"]
 	/* var words = ["communities", "skills", "networks", "passions", "careers", "friendships"]; */
 	/* var photos = ["/photo/main_1.jpg", "/photo/main_2.jpg", "/photo/main_3.jpg", "/photo/main_7.jpg", "/photo/main_5.jpg", "/photo/main_6.jpg"] */
@@ -412,17 +412,17 @@ $(document).ready(function() {
 
 			<div id="main_header_txt">
 				<!-- Lorem ipsum dolor sit amet, consectetur adipisicing elited do eiusmod tempor incididunt ut labore e, st dolore magna aliqua. Ut enim ad <span id="rotate_word" style="color: red">communities</span> -->
-				저희가 제공하는 다양한 모임 카테고리를 이용해, 다양한 분야의 다양한 사람들을 만나보세요! &nbsp;&nbsp;&nbsp;<span id="rotate_word" style="color: #FE642E; font-size:30px;">음악</span>
+				저희가 제공하는 다양한 모임 카테고리를 이용해, 다양한 분야의 다양한 사람들을 만나보세요! &nbsp;&nbsp;&nbsp;<span id="rotate_word" style="color: #FE642E; font-size:30px; font-family:Nunito;">Music</span>
 			
 				<p style="font-size: 18px; margin-top:25px;">새로운 모임을 개설하고, 같은 취미를 공유하는 <br>친구들을 만들어 보세요. 모두 다 함께!</p>
 		
 			<div id="main_btn_wrap">
 				<c:choose>
 					<c:when test="${sessionScope.unum ne null }">
-						<button type="button" class="joocheck" onclick="location.href='/user/mypage?unum=${sessionScope.unum}'">마이페이지</button>
+						<button type="button" class="joocheck" onclick="location.href='/user/mypage?unum=${sessionScope.unum}'">My Page</button>
 					</c:when>
 					<c:otherwise>
-						<button type="button" class="joocheck" onclick="location.href='/user/login'">시작하기</button>
+						<button type="button" class="joocheck" onclick="location.href='/user/login'">L o g i n</button>
 					</c:otherwise>
 				</c:choose>
 			</div>	
@@ -439,19 +439,19 @@ $(document).ready(function() {
 			<div class="list_a" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" onclick="location.href='/moim/moimlist'">
 				<img src="../photo/moim.png">
 				<div style="display: flex; justify-content: space-between;">
-					<span></span><div style="font-weight: 1000; font-size:25px;">모임 게시판</div>
+					<span></span><div style="font-weight: 1000; font-size:25px; font-family:Nunito;">C l u b</div>
 				</div>
 			</div>
 			<div class="list_a" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" onclick="location.href='/city/list'">
 				<img src="../photo/local.png">
 				<div style="display: flex; justify-content: space-between;">
-					<span></span><div style="font-weight: 1000; font-size:25px;">지역 게시판</div>
+					<span></span><div style="font-weight: 1000; font-size:25px; font-family:Nunito;">L o c a l</div>
 				</div>
 			</div>
 			<div class="list_a" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" onclick="location.href='/mapcontact'">
 				<img src="../photo/map.png">
 				<div style="display: flex; justify-content: space-between;">
-					<span></span><div style="font-weight: 1000; font-size:25px;">위치 검색</div>
+					<span></span><div style="font-weight: 1000; font-size:25px; font-family:Nunito;">P l a c e</div>
 				</div>
 			</div>	
 	</div>

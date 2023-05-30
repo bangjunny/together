@@ -10,7 +10,7 @@
 <title>logout page</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -94,9 +94,9 @@
 				</a>
 			</div>	
 			<div id="header_navbar">
-  				<div onclick="navigateTo('/moim/moimlist')" id="heading_moim">모임게시판</div>
-  				<div onclick="navigateTo('/city/list')" id="heading_city">지역게시판</div>
-  				<div onclick="navigateTo('/mapcontact')" id="heading_map">지역검색</div>
+  				<div onclick="navigateTo('/moim/moimlist')" id="heading_moim" style="font-family:Nunito;">C l u b</div>
+  				<div onclick="navigateTo('/city/list')" id="heading_city" style="font-family:Nunito;">L o c a l</div>
+  				<div onclick="navigateTo('/mapcontact')" id="heading_map" style="font-family:Nunito;">P l a c e</div>
 			</div>	
 			<div id="header_btns">
 			<c:choose>

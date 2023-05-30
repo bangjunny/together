@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Sunflower:wght@700&family=Nunito:wght@800&family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
@@ -264,55 +264,55 @@
 			<div id="moim_cate">
 				<label data-bs-toggle="modal" data-bs-target="#mySportsModal">
 					<img src="../photo/Sports.png">
-					<h7>운동/스포츠</h7>
+					<h7 style="font-family:Sunflower">운동/스포츠</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal" data-bs-target="#myGameModal">
 					<img src="../photo/board-game.png">
-					<h7>게임/오락</h7>
+					<h7 style="font-family:Sunflower">게임/오락</h7>
 					<span></span>
 					</label>
 	
 				<label data-bs-toggle="modal" data-bs-target="#myTravelModal">
 					<img src="../photo/travel.png">
-					<h7>여행/아웃도어</h7>
+					<h7 style="font-family:Sunflower">여행/아웃도어</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal" data-bs-target="#myBookModal">
 					<img src="../photo/reading.png">
-					<h7>책/글</h7>
+					<h7 style="font-family:Sunflower">책/글</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal" data-bs-target="#myWorkModal">
 					<img src="../photo/working.png">
-					<h7>업종/직무</h7>
+					<h7 style="font-family:Sunflower">업종/직무</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal" data-bs-target="#myLangModal">
 					<img src="../photo/languages.png">
-					<h7>외국/언어</h7>
+					<h7 style="font-family:Sunflower">외국/언어</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal"data-bs-target="#myMusicModal">
 					<img src="../photo/Live music.png">
-					<h7>음악/악기</h7>
+					<h7 style="font-family:Sunflower">음악/악기</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal" data-bs-target="#mySocialModal">
 					<img src="../photo/meeting.png">
-					<h7>사교/인맥</h7>
+					<h7 style="font-family:Sunflower">사교/인맥</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal" data-bs-target="#myCraftsModal">
 					<img src="../photo/Color palette.png">
-					<h7>공예/만들기</h7>
+					<h7 style="font-family:Sunflower">공예/만들기</h7>
 					<span></span>
 				</label>
 			</div>
@@ -568,7 +568,7 @@
 										
 										<div class="info3">
 											${dto.city1} ${dto.city2} <br>
-											모임인원 : ${dto.mcount}명
+											멤버 : ${dto.mcount}/100명
 										</div>
 									</div>
 													

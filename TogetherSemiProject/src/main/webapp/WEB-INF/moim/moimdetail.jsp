@@ -27,6 +27,9 @@
 	body, body * {
 		font-family: 'NanumPenScript';
 	}
+	.main{
+	height:100%;
+	}
 	a:link,a:visited,a:hover {
 		color: black;
 		text-decoration: none;
@@ -372,7 +375,7 @@
 		<br>	
 		<span style=" color:black; font-size:17px;"><b>모임장 : ${uname} </b></span>
 		<br>
-		
+	
 			<c:if test="${sessionScope.unum != dto.unum }">
 				<div id="moim_resi_wrap">	
 			<c:choose>

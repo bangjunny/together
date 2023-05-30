@@ -33,7 +33,7 @@
                 <div class="input-wrap">
                 <label for="id" class="la">이메일</label>                
                 <span class="box int_id">
-                   <input type="email" id="email" name="email" class="int" maxlength="20">                                     
+                   <input type="email" id="email" name="email" class="int" maxlength="30">                                     
                 </span>
                 <span id="olmessage"></span> 
                 <span class="error_next_box e0"></span>

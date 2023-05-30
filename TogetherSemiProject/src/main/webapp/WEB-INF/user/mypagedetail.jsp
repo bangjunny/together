@@ -68,7 +68,7 @@
 	
 	.profile-photo.main {
 	  border-radius: 50%;
-	  object-fit: contain;
+	   object-fit: cover;
 	}
 	
 	.showimg{
@@ -221,7 +221,7 @@
 	          </div>
 	        </c:when>
 		        <c:otherwise>
-		          <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+		          <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
 		          <p>프로필 사진을 추가해보세요!</p>
 		        </c:otherwise>
 	      	</c:choose>

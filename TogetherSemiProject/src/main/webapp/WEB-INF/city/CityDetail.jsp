@@ -57,7 +57,7 @@
 		<hr style="width:94%; margin-left:40px">
 			<c:if test="${photocount=='0'}">
 			<div class="cbcontent" align="center">
-            	<img id="photoarea1" class="cbcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+            	<img id="photoarea1" class="cbcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
     		</div>
     		</c:if>
     		<c:if test="${photocount!='0'}">

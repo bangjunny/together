@@ -24,6 +24,11 @@
   cursor: pointer;
   background-color: #ddd;
 }
+.mypagelist{
+ justify-content:center;
+
+
+}
 	
 	
 </style>
@@ -34,7 +39,7 @@
 	총 ${utotalCount}명의 회원이 등록되어있습니다
 	
 </h5>
-<table class="table table-bordered">
+<table class="table table-bordered mypagelist" style="width:1140px;">
 	<tr style="background-color: #ddd">
 		<th style="width: 50px">번호</th>
 		<th style="width: 300px">이름</th>

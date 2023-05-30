@@ -18,9 +18,7 @@
 		display:block;
 		clear:both;
 	}
-	.footer{
-		margin-top: 350px;
-	}
+
 
 	#moimlist {
 		width: 1140px;
@@ -31,6 +29,7 @@
 	#moim_cate {
 		display: flex;
 		justify-content: space-around;	
+		
 	}
 	
 	#moim_cate label {
@@ -38,11 +37,19 @@
 		flex-direction: column;
 	  	align-items: center;
 	  	text-align: center;
+	  	cursor: pointer;
 	}
 	
 	#moim_cate img {
 		width: 50px;
 		height: 50px;
+	}
+	#moim_cate img:hover{
+		transform: scale(1.05);
+		transition:0.3s;
+	}
+	#moim_cate img:not(:hover){
+		transition:0.3s;
 	}
 	
 	#moim_btn_wrap {
@@ -84,6 +91,7 @@
 	
 	#moim_sel_local button {
 		margin-left: 10px;
+		cursor: pointer;
 	}
 
 	#moim_table {
@@ -954,7 +962,7 @@
 	<form action="moimlist" method="get">
 <!-- Modal -->
 	<!-- The Modal -->
-	<div class="modal" id="mySportsModal">
+	<div class="modal fade" id="mySportsModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1004,7 +1012,7 @@
 
 	
 	<!-- The Modal -->
-	<div class="modal" id="myGameModal">
+	<div class="modal fade" id="myGameModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1047,7 +1055,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="myTravelModal">
+	<div class="modal fade" id="myTravelModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1089,7 +1097,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="myBookModal">
+	<div class="modal fade" id="myBookModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1131,7 +1139,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="myWorkModal">
+	<div class="modal fade" id="myWorkModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1180,7 +1188,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="myLangModal">
+	<div class="modal fade" id="myLangModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1218,7 +1226,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="myMusicModal">
+	<div class="modal fade" id="myMusicModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1265,7 +1273,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="mySocialModal">
+	<div class="modal fade" id="mySocialModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1307,7 +1315,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="myCraftsModal">
+	<div class="modal fade" id="myCraftsModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	

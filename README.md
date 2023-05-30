@@ -46,3 +46,10 @@
 * Table : 11개
 
 ![erd](https://github.com/Jeon1301/together/assets/116734433/d2363b70-f54a-4d4d-80e5-b35e5cf5408b)
+<br/>
+
+## Jenkins
+URL : 
+### 테스트
+아이디 : <br/>
+비밀번호 : 

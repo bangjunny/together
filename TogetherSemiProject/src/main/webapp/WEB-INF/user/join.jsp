@@ -31,7 +31,7 @@
   		
            <!-- ID -->
                 <div class="input-wrap">
-                <label for="id" class="la">이메일</label>                
+                <label for="id" class="la">이메일</label>                 
                 <span class="box int_id">
                    <input type="email" id="email" name="email" class="int" maxlength="30">                                     
                 </span>

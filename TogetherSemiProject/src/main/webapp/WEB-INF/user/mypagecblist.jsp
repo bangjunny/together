@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@600&family=Gowun+Dodum&display=swap" rel="stylesheet">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -37,13 +37,8 @@
 		font-weight:700;
 		margin-left:20px;
 		margin-right:20px
-	
 	}
-	.nav-item{
-		margin-left:20px;
-		margin-right:20px
-	
-	}
+
  	.container {
 	  width: 1140px;
 	  margin: 0 auto;
@@ -146,7 +141,15 @@
 	 -webkit-box-orient: vertical;
 	 -webkit-line-clamp: 3; /* 최대 세 줄까지 표시하도록 설정 */
   }
- 
+  .navbar-nav .nav-item:hover .nav-link {
+  /*네브바 호버 이벤트 */
+  background-color: #f0f0f0;
+  color: orange;
+  border-radius: 5px;
+}
+ 	.navbar-nav .nav-item .nav-link.active {
+	  color: orange;
+	}
    
 </style>
 
@@ -155,26 +158,26 @@
 <!-- 마이페이지내브바 -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="mypage_navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text">MYPAGE</a>
+    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text" style="font-family:IBM Plex Sans KR;">MYPAGE</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/user/mypagedetail?unum=${unum}">내 정보</a>
+          <a class="nav-link" aria-current="page" href="/user/mypagedetail?unum=${unum}" style="font-family:IBM Plex Sans KR;">내 정보</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
+          <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내 모임</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
+          <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내가 찜한 모임</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="/user/mypagecblist?unum=${unum}">내가 작성한 게시물</a>
+          <a class="nav-link active" href="/user/mypagecblist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내가 작성한 게시글</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
+          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내가 추천한 게시글</a>
         </li>
       </ul>
     </div>
@@ -182,7 +185,7 @@
 </nav>
 <div class="container">
 	<div class="cblist-container">
-		 <h3 style="margin-bottom:10px;">내가 작성한 게시물 보기</h3>
+		 <h3 style="margin-bottom:10px;">내가 작성한 게시글 보기</h3>
 			<c:if test="${totalCount==0 }">
 				<div class="cblist-item">
 					<b style="font-size:1.3em">등록된 게시글이 없습니다</b>
@@ -207,6 +210,9 @@
 						   		 <c:when test="${moim.mphoto!=null}">
 						   		<!-- 이미지있다면 실행할 로직 -->
 						   		<img class="mymoim_img" src="https://${imageUrl}/moim/${cb.mphoto}">
+						   		
+						   		
+						   		
 						   		 </c:when>		
 							</c:choose>
 					     </div>				            

@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Sunflower:wght@700&family=Nunito:wght@800&family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
@@ -18,6 +18,7 @@
 		display:block;
 		clear:both;
 	}
+
 
 	#moimlist {
 		width: 1140px;
@@ -28,6 +29,7 @@
 	#moim_cate {
 		display: flex;
 		justify-content: space-around;	
+		
 	}
 	
 	#moim_cate label {
@@ -35,11 +37,19 @@
 		flex-direction: column;
 	  	align-items: center;
 	  	text-align: center;
+	  	cursor: pointer;
 	}
 	
 	#moim_cate img {
 		width: 50px;
 		height: 50px;
+	}
+	#moim_cate img:hover{
+		transform: scale(1.05);
+		transition:0.3s;
+	}
+	#moim_cate img:not(:hover){
+		transition:0.3s;
 	}
 	
 	#moim_btn_wrap {
@@ -81,6 +91,7 @@
 	
 	#moim_sel_local button {
 		margin-left: 10px;
+		cursor: pointer;
 	}
 
 	#moim_table {
@@ -253,55 +264,55 @@
 			<div id="moim_cate">
 				<label data-bs-toggle="modal" data-bs-target="#mySportsModal">
 					<img src="../photo/Sports.png">
-					<h7>운동/스포츠</h7>
+					<h7 style="font-family:Sunflower">운동/스포츠</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal" data-bs-target="#myGameModal">
 					<img src="../photo/board-game.png">
-					<h7>게임/오락</h7>
+					<h7 style="font-family:Sunflower">게임/오락</h7>
 					<span></span>
 					</label>
 	
 				<label data-bs-toggle="modal" data-bs-target="#myTravelModal">
 					<img src="../photo/travel.png">
-					<h7>여행/아웃도어</h7>
+					<h7 style="font-family:Sunflower">여행/아웃도어</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal" data-bs-target="#myBookModal">
 					<img src="../photo/reading.png">
-					<h7>책/글</h7>
+					<h7 style="font-family:Sunflower">책/글</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal" data-bs-target="#myWorkModal">
 					<img src="../photo/working.png">
-					<h7>업종/직무</h7>
+					<h7 style="font-family:Sunflower">업종/직무</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal" data-bs-target="#myLangModal">
 					<img src="../photo/languages.png">
-					<h7>외국/언어</h7>
+					<h7 style="font-family:Sunflower">외국/언어</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal"data-bs-target="#myMusicModal">
 					<img src="../photo/Live music.png">
-					<h7>음악/악기</h7>
+					<h7 style="font-family:Sunflower">음악/악기</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal" data-bs-target="#mySocialModal">
 					<img src="../photo/meeting.png">
-					<h7>사교/인맥</h7>
+					<h7 style="font-family:Sunflower">사교/인맥</h7>
 					<span></span>
 				</label>
 				
 				<label data-bs-toggle="modal" data-bs-target="#myCraftsModal">
 					<img src="../photo/Color palette.png">
-					<h7>공예/만들기</h7>
+					<h7 style="font-family:Sunflower">공예/만들기</h7>
 					<span></span>
 				</label>
 			</div>
@@ -557,7 +568,7 @@
 										
 										<div class="info3">
 											${dto.city1} ${dto.city2} <br>
-											모임인원 : ${dto.mcount}명
+											멤버 : ${dto.mcount}/100명
 										</div>
 									</div>
 													
@@ -951,7 +962,7 @@
 	<form action="moimlist" method="get">
 <!-- Modal -->
 	<!-- The Modal -->
-	<div class="modal" id="mySportsModal">
+	<div class="modal fade" id="mySportsModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1001,7 +1012,7 @@
 
 	
 	<!-- The Modal -->
-	<div class="modal" id="myGameModal">
+	<div class="modal fade" id="myGameModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1044,7 +1055,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="myTravelModal">
+	<div class="modal fade" id="myTravelModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1086,7 +1097,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="myBookModal">
+	<div class="modal fade" id="myBookModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1128,7 +1139,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="myWorkModal">
+	<div class="modal fade" id="myWorkModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1177,7 +1188,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="myLangModal">
+	<div class="modal fade" id="myLangModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1215,7 +1226,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="myMusicModal">
+	<div class="modal fade" id="myMusicModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1262,7 +1273,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="mySocialModal">
+	<div class="modal fade" id="mySocialModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
@@ -1304,7 +1315,7 @@
 	</div>
 	
 	<!-- The Modal -->
-	<div class="modal" id="myCraftsModal">
+	<div class="modal fade" id="myCraftsModal">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	

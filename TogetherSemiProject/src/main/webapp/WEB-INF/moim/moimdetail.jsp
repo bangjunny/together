@@ -27,6 +27,9 @@
 	body, body * {
 		font-family: 'NanumPenScript';
 	}
+	.main{
+	height:100%;
+	}
 	a:link,a:visited,a:hover {
 		color: black;
 		text-decoration: none;
@@ -92,6 +95,10 @@
 	#jjim:hover{
 		cursor: pointer;
 	}
+	.footer{
+	position:relative; 
+	top:100px;
+	}
 	/*  #gaipmemberlist{
 		width: 900px;
 		display: flex;
@@ -117,7 +124,7 @@
 		position:absolute;
 		left:820px;
 		top:480px;
-		width: 400px;
+		width: 350px;
 		height:260px;
 		font-size:13px;
 		overflow: auto;
@@ -322,7 +329,7 @@
 	float: left;
 	color:black; 
 	font-size:12px;
-	width:280px;
+	width:500px;
 	height:180px; 
 	overflow:auto;"
 	}
@@ -337,7 +344,16 @@
 		width:500px;
 		height:200px;
 	}
-	
+	.topbtn{
+	position: relative;
+	bottom:52px;
+	right:10px;
+	}
+	#jjim{
+	position: relative;
+	bottom:52px;
+	right:5px;
+	}
 </style>
 </head>
 <body>
@@ -359,7 +375,7 @@
 		<br>	
 		<span style=" color:black; font-size:17px;"><b>모임장 : ${uname} </b></span>
 		<br>
-		
+	
 			<c:if test="${sessionScope.unum != dto.unum }">
 				<div id="moim_resi_wrap">	
 			<c:choose>
@@ -401,7 +417,7 @@
 		<c:choose>
    		 	<c:when test="${dto.mphoto==null}">
    		<!-- Result값이 있다면 실행할 로직 -->
-   				<img class="mcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+   				<img class="mcontent_img" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
    		 	</c:when>
    		 	<c:otherwise>
 		 <!-- 그렇지 않다면 실행할 로직 -->
@@ -524,9 +540,9 @@
 			</c:when>
 			<c:otherwise>
 			<button type="button" class="midbtn"
-				 onclick="alert('작성자가 아닙니다')"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
+				 onclick="alert('모임장이 아닙니다')"><i class="bi bi-pencil-square"></i>&nbsp;수정</button>
 			<button type="button" class="midbtn" 
-				 onclick="alert('작성자가 아닙니다')"><i class="bi bi-trash"></i>&nbsp;삭제</button>
+				 onclick="alert('모임장이 아닙니다')"><i class="bi bi-trash"></i>&nbsp;삭제</button>
 			</c:otherwise>
 			</c:choose>
 		</div>	

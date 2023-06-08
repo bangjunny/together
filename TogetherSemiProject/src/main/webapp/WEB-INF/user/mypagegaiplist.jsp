@@ -13,11 +13,13 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:wght@600&family=Noto+Sans&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-
+	.main{
+	height:100%;
+	}
  		#mypage_navbar{		
 		margin-top:0px;
 		margin-bottom:30px;
@@ -131,6 +133,16 @@
 		color:#FE9A2E;		
 		font-size: 20px;
 	}
+	.navbar-nav .nav-item:hover .nav-link {
+	  /*네브바 호버 이벤트 */
+	  background-color: #f0f0f0;
+	  color: orange;
+	  border-radius: 5px;
+	}
+	.navbar-nav .nav-item .nav-link.active {
+	  color: orange;
+	}
+	
     
 </style>
 
@@ -139,26 +151,26 @@
 <!-- 마이페이지내브바 -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="mypage_navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text">MYPAGE</a>
+    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text" style="font-family:IBM Plex Sans KR;">MYPAGE</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav ">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/user/mypagedetail?unum=${unum}">내 정보</a>
+          <a class="nav-link" aria-current="page" href="/user/mypagedetail?unum=${unum}" style="font-family:IBM Plex Sans KR;">내 정보</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
+          <a class="nav-link active" href="/user/mypagegaiplist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내 모임</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
+          <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내가 찜한 모임</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 작성한 게시물</a>
+          <a class="nav-link" href="/user/mypagecblist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내가 작성한 게시글</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
+          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내가 추천한 게시글</a>
         </li>
       </ul>
     </div>

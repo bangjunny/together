@@ -24,11 +24,6 @@
   cursor: pointer;
   background-color: #ddd;
 }
-.mypagelist{
- justify-content:center;
-
-
-}
 	
 	
 </style>
@@ -39,7 +34,7 @@
 	총 ${utotalCount}명의 회원이 등록되어있습니다
 	
 </h5>
-<table class="table table-bordered mypagelist" style="width:1140px;">
+<table class="table table-bordered">
 	<tr style="background-color: #ddd">
 		<th style="width: 50px">번호</th>
 		<th style="width: 300px">이름</th>
@@ -56,7 +51,7 @@
 			<c:choose>
 	          <c:when test="${dto.unum==null}">
 	         <!-- Result값이 있다면 실행할 로직 -->
-	         <img class="photo-label" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243"
+	         <img class="photo-label" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png"
 	          id= border="1" hspace="10">
 	          </c:when>
 	          <c:otherwise>

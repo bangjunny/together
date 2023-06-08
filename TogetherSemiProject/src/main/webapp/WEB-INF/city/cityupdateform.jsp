@@ -90,6 +90,10 @@
     		overflow: hidden;
     		border: 0;
 		}
+		
+		.main{
+		height: 100%;
+		}
 </style>
 </head>
 <body>
@@ -101,7 +105,7 @@
 			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-top:5px; margin-left:57px; margin-right:5px; border-radius:100px;">
 		</c:when>
 		<c:otherwise>
-			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left; margin-top:5px; margin-left:57px; margin-right:5px; border-radius:100px;">                               
+			<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png" style="width: 30px;height: 30px;float:left; margin-top:5px; margin-left:57px; margin-right:5px; border-radius:100px;">                               
 		</c:otherwise>
 	</c:choose>
 	<h3 style="margin-top:10px">${uname } 님이 작성 중입니다</h3>
@@ -121,18 +125,18 @@
         	<img id="showimg${status.index}" name="photo_idx" value=${pdto.photo_idx} style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/city/${pdto.photo_idx}">
         </c:forEach>
         	<c:if test="${size==1}">
-        	<img id="showimg1" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
-        	<img id="showimg2" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+        	<img id="showimg1" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
+        	<img id="showimg2" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
         	</c:if>
         	<c:if test="${size==2}">
-        		<img id="showimg2" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+        		<img id="showimg2" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
         	</c:if>	
         </c:when>
         <c:otherwise>
 		
-        <img id="showimg0" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
-        <img id="showimg1" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
-        <img id="showimg2" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+        <img id="showimg0" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
+        <img id="showimg1" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
+        <img id="showimg2" style="width:25%;height:275px" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
 
         </c:otherwise>
         </c:choose>
@@ -173,17 +177,17 @@ $("#myfile").on('change',function(){
    $("#delphoto").click(function(){
       let s=confirm("사진을 삭제하겠습니까?")
       if(s){
-         $("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
+         $("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png");
          $("#showimg0").attr("value","");
-         $("#showimg1").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
-         $("#showimg2").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
+         $("#showimg1").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png");
+         $("#showimg2").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png");
       }
    });
   
 	$("#myfile").change(function(){
-		$("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
-		$("#showimg1").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
-		$("#showimg2").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
+		$("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png");
+		$("#showimg1").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png");
+		$("#showimg2").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png");
 		
 		console.log("1:"+$(this)[0].files.length);
 		let cnt=$(this)[0].files.length;
@@ -230,9 +234,9 @@ $("#myfile").on('change',function(){
 			if(cnt>3){
 				alert("사진은 3장까지만 올릴 수 있습니다");
 				$("#myfile").val(null);
-				$("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
-				$("#showimg1").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
-				$("#showimg2").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243");
+				$("#showimg0").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png");
+				$("#showimg1").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png");
+				$("#showimg2").attr("src","https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png");
 			}
 			reader.readAsDataURL($(this)[0].files[i]);
 		}
@@ -263,7 +267,7 @@ $("#myfile").on('change',function(){
 		
 		var form=new FormData();
 		
-		if(photo=="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243")
+		if(photo=="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png")
 			{
 			form.append("delcheck","1");
 		}

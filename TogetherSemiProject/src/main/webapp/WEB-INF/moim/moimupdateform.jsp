@@ -236,7 +236,12 @@
 			<td rowspan="4" style="width:440px;">
 			<!-- 이미지 출력할곳 -->
 				<div>
+				<c:if test="${dto.mphoto!=null }">
 					<img id="showimg" src="https://${imageUrl}/moim/${dto.mphoto}" value=${dto.mphoto}>
+				</c:if>
+				<c:if test="${dto.mphoto==null }">
+					<img id="showimg" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
+				</c:if>
 					<div class="filebox">
            				<label for="moimfile">대표사진 파일 업로드</label> 
           				<input type="file" name="upload" id="moimfile">

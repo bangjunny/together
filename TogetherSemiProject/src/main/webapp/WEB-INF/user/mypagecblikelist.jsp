@@ -12,7 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@600&family=Gowun+Dodum:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <style>
  body {
@@ -29,11 +29,7 @@
 		
 
 	}
-	.nav-item{
-		margin-left:20px;
-		margin-right:20px
-	
-	}
+
 	.nav-item{
 		font-weight:700;
 		margin-left:20px;
@@ -53,11 +49,10 @@
 	  }
 	}
 	.cblike-container {
-	  margin:0 auto;
-	  margin-bottom:50px;
-	  width: 1400px;
-	  margin-top:30px;
-	  margin-left:-10px;
+	  margin-top: 50px;
+	  width: 1440px;
+	  margin: 100 auto;
+	  margin-left: -40px;
   }
   	
 	.cblike-item {
@@ -136,7 +131,16 @@
 	    -webkit-box-orient: vertical;
 	    -webkit-line-clamp: 3; /* 최대 세 줄까지 표시하도록 설정 */
   }
-  
+  .navbar-nav .nav-item:hover .nav-link {
+  /*네브바 호버 이벤트 */
+  background-color: #f0f0f0;
+  color: orange;
+  border-radius: 5px;
+}
+	.navbar-nav .nav-item .nav-link.active {
+	  color: orange;
+	}
+
     
 </style>
 
@@ -145,26 +149,26 @@
 <!-- 마이페이지내브바 -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="mypage_navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text">MYPAGE</a>
+    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text" style="font-family:IBM Plex Sans KR;">MYPAGE</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/user/mypagedetail?unum=${unum}">내 정보</a>
+          <a class="nav-link" aria-current="page" href="/user/mypagedetail?unum=${unum}" style="font-family:IBM Plex Sans KR;">내 정보</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
+          <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내 모임</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
+          <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내가 찜한 모임</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 작성한 게시물</a>
+          <a class="nav-link" href="/user/mypagecblist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내가 작성한 게시글</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시물</a>
+          <a class="nav-link active" href="/user/mypagecblikelist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내가 추천한 게시글</a>
         </li>
       </ul>
     </div>
@@ -172,7 +176,7 @@
 </nav>
 <div class="container">
 	<div class="cblike-container">
-		 <h3 style="margin-bottom:10px;">내가 추천한 게시물 보기</h3>
+		 <h3 style="margin-bottom:10px;">내가 추천한 게시글 보기</h3>
 			<c:if test="${totalCount==0 }">
 				<div class="cblike-item">
 					<b style="font-size:1.3em">추천한 게시글이 없습니다</b>
@@ -186,7 +190,7 @@
 				      <div class="cblist-title">
 				        <b style="font-size:1.5em">${cb.subject}</b></div>
 				        <div class="cblike-details">
-				          지역:${cb.city1},${cb.city2} | 조회수: ${cb.readcount} | 
+				          지역: ${cb.city1},${cb.city2} | 조회수: ${cb.readcount} | 좋아요: ${cb.cblike} |
 				          작성일: <fmt:formatDate value="${cb.cbwriteday}" pattern="yyyy-MM-dd"/>      
 				        </div>
 				        <div class="cblike-description">

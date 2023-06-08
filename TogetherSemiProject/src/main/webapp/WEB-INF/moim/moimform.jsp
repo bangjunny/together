@@ -227,7 +227,7 @@
 			<td rowspan="4" style="width:440px;">
 			<!-- 이미지 출력할곳 -->
 				<div>
-					<img id="showimg" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243">
+					<img id="showimg" src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
 					<div class="filebox">
            				<label for="moimfile">대표사진 파일 업로드</label> 
           				<input type="file" name="upload" id="moimfile">
@@ -465,6 +465,7 @@ form.addEventListener('submit', function(event) {
   if (hiddenInput.value == "null") {
     event.preventDefault();
     alert('카테고리를 선택해주세요');
+    
   }
 });
 
@@ -473,6 +474,7 @@ form.addEventListener('submit', function(event) {
 	if (cityInput.value == "시, 도 선택"){
 		event.preventDefault();
 	    alert('지역을 선택해주세요');
+	    $("#city").focus();
 	}
 });
 
@@ -927,6 +929,19 @@ $("#overlappedMname").click(function(){
 		});	
 	}
 });
+$(document).on("click",".makemo",function(){
+	   const mname = $("#moimname").val();
+	   const city = $("#city").val();
+	   
+	   
+	   if(mname==""){
+	      $("#olmessage").text("필수 정보입니다.");
+	      $("#olmessage").addClass("olmessagef");
+	      $("#olmessage").removeClass("olmessaget");
+	      $("#moimname").focus();
+	   }
+		   
+	});
 </script>
 </body>
 </html>

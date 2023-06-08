@@ -79,7 +79,7 @@ public class MoimController {
 		int totalCount = moimService.getTotalCount(category, city1, city2);
 
 		int totalPage;// 총페이지수
-		int perPage = 12;// 한페이지당 보여질 글의 갯수
+		int perPage = 8;// 한페이지당 보여질 글의 갯수
 		int perBlock = 2;// 한 블럭당 보여질 페이지 갯수
 		int startNum;// 각 페이지에서 보여질 글의 시작번호
 		int startPage;// 각 블럭에서 보여질 시작페이지 번호

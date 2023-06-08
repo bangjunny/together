@@ -30,6 +30,10 @@
 	text-align:center;
 	}
 	
+	.main{
+	height: 100%;
+	}
+	
 	
 </style>
 </head>
@@ -49,7 +53,7 @@
 		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/userprofile/${mainPhoto}" style="width: 30px;height: 30px;float:left;margin-bottom:10px; margin-left:40px; border-radius:100px;">
 		</c:when>
 		<c:otherwise>
-		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243" style="width: 30px;height: 30px;float:left;margin-bottom:10px; margin-left:40px; border-radius:100px;">                               
+		<img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png" style="width: 30px;height: 30px;float:left;margin-bottom:10px; margin-left:40px; border-radius:100px;">                               
 		</c:otherwise>
 		</c:choose>
 		<h5 style="float: left; margin-left:5px;margin-bottom:20px;">${dto.uname}&nbsp;</h5>
@@ -350,12 +354,23 @@
 </body>
 <script type="text/javascript">
 	$(document).on("click", "#delbtn", function() {
-		let b=confirm("삭제를 하려면 [확인]을 눌러주세요");
-		if(b){
-			location.href="delete?cbnum="+${dto.cbnum};
-		}
+			Swal.fire({
+				  title: '삭제하시겠습니까?',
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: '네! 삭제할래요!',
+				  cancelButtonText: '취소'
+				}).then((result) => {
+				  if (result.isConfirmed) {
+					  location.href="delete?cbnum="+${dto.cbnum};
+				    
+				  }
+				})
+
 	});
-	
+				
 	$(document).on("click", "#addComment", function() {
 		$(this).parent().parent().next().find("#fixComment").attr("action","addcomment");
 		$(this).parent().parent().next().find("#contentSide").attr("placeholder","내용을 입력해주세요")
@@ -393,10 +408,20 @@
 	$(document).on("click","#btnupdate",function(){
 		var unum=${dto.unum}
 		var cbnum=${dto.cbnum}
-		let s=confirm("게시글을 수정하시겠습니까?")
-		if(s){
-		location.href='cityupdateform?unum='+unum+'&cbnum='+cbnum;
-		}
+		Swal.fire({
+			  title: '수정하시겠습니까?',
+			  icon: 'question',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '네! 수정할래요!',
+			  cancelButtonText: '취소'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+				  location.href='cityupdateform?unum='+unum+'&cbnum='+cbnum;
+			    
+			  }
+			})
 	})
 	
 	function cblike(){

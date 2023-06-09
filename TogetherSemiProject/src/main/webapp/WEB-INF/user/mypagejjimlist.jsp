@@ -26,7 +26,6 @@
 	  color: orange;
 	}
 	
-	
  	#mypage_navbar{		
 		margin-top:0px;
 		margin-bottom:30px;

@@ -451,7 +451,12 @@
 		 			<c:if test="${msdto.sjcount eq 0}">
 		 			<c:choose>
 		 			<c:when test="${membercheckCount eq 1}">
+		 			<c:if test="${msdto.personnel <= msdto.jmcount}">
+		 			<td><br><button class="btn btn-outline-success" style="width:60px;height:50px;" onclick="alert('정원이 초과되었습니다')">참석</button></td>
+		 			</c:if>
+		 			<c:if test="${msdto.personnel > msdto.jmcount}">
 		 			<td><br><button class="btn btn-outline-success" style="width:60px;height:50px;" onclick="joinSchedule('${msdto.msnum}');">참석</button></td>
+		 			</c:if>
 		 			</c:when>
 		 			<c:otherwise>
 		 			<td><br><button class="btn btn-outline-secondary" style="width:60px;height:50px;" onclick="alert('모임원만 참석 가능합니다')">참석</button></td>
@@ -791,8 +796,7 @@
 	}
 	
 	function joinSchedule(msnum){
-		const unum = ${sessionScope.unum};
-	
+		const unum = ${sessionScope.unum};		
 		  if (confirm("해당 일정에 참석 하시겠습니까?")) {
 			    $.ajax({
 			      type: "get",

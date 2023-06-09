@@ -161,7 +161,7 @@
 		    <!-- Modal body -->
 		    <div class="modal-body">
 		   	 <form id="photoForm">
-		        <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/595a63db-47b3-4d25-b7a5-05451064b243"
+		        <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png"
 		         border="2" style="margin-left: 30px;border-radius: 50px;" id="modalphoto">
 		         <!-- 카메라 모양 -->
 		        <i class="bi bi-camera-fill update-photo"

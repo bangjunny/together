@@ -152,23 +152,57 @@
      	margin-right: 12px;
      	font-size:20px;
      }
-     
-     .bsel {
-     	width : 90px;
-     	height : 30px;
-		background: #848484;
-      	background-size: 200%;
-        color:white;
-        font-weight: 500;
-        border:none;
-        cursor:pointer;
-        border-radius: 5px;
-        transition: background-color 0.2s;
-     }
-     
-     .bsel:hover {
-		background-color: #2E2E2E;
-	}
+   	.asel {
+    font-weight:bold;
+    background-color: #FE9A2E;
+    border: 2px solid #FE9A2E;
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    width: 150px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .asel:hover {
+    background-color: #FE9A2E;
+    color: white;
+    font-weight:bold;
+  }
+   .asel:active,
+  .asel:focus {
+   	background-color: #FE9A2E;
+    color: white;
+    outline: none;
+    font-weight:bold;
+  }
+  
+  .bsel {
+    font-weight:bold;
+    background-color: white;
+    border: 2px solid #FE9A2E;
+    color: #FE9A2E;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    width: 150px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .bsel:hover {
+    background-color: #FE9A2E;
+    color: white;
+    font-weight:bold;
+  }
+   .bsel:active,
+  .bsel:focus {
+   	background-color: #FE9A2E;
+    color: white;
+    outline: none;
+    font-weight:bold;
+  }
 	
 	.moim_box a {
 		color: black;
@@ -456,14 +490,26 @@
 					  document.querySelector('input[id="sortcategory"]').removeAttribute('name');
 				  }
 				
+	
+				  
 				  function submitSelectedSortmnum() {
 				    document.querySelector('.selsortmcount').removeAttribute('name');
-				    document.querySelector('#sort-form').submit();
+				    document.querySelector('#sort-form').submit();		  	
 				  }
 				  function submitSelectedSortmcount() {
 				    document.querySelector('.selsortmnum').removeAttribute('name');
 				    document.querySelector('#sort-form').submit();
 				  }				 
+				  /* let button = document.getElementById("asel");
+				  
+				  button.addEventList
+				  window.addEventListener("load", function(){
+					  let savedClass = localStorage.getItem("buttonClass");
+					  
+					  if(savedClass){
+						  button.classList.add(savedClass);
+					  }
+				  }) */
 			</script>
 					
 		</div>	
@@ -510,12 +556,20 @@
 							<button type="submit" class="search" onclick="submitSelectedConditions()">검색</button>
 						</form>
 					</div>	
-					
+										
 					<div id="moim_sort_btn">
-						<button type="button" onclick="submitSelectedSortmnum()" class="bsel">최신순</button>
-						<button type="button" onclick="submitSelectedSortmcount()" class="bsel">가입자순</button>			
+					  <c:choose>
+					    <c:when test="${param.sort != null && param.sort eq 'mcount'}">
+					      <button type="button" onclick="submitSelectedSortmnum()" id="new" class="bsel">최신순</button>
+					      <button type="button" onclick="submitSelectedSortmcount()" id="best" class="asel">인기순</button>
+					    </c:when>
+					    <c:otherwise>
+					      <button type="button" onclick="submitSelectedSortmnum()" id="new" class="asel">최신순</button>
+					      <button type="button" onclick="submitSelectedSortmcount()" id="best" class="bsel">인기순</button>
+					    </c:otherwise>
+					  </c:choose>
 					</div>
-					
+				
 					<div>
 						<span class="searchrul">
 							<c:choose>
@@ -562,11 +616,11 @@
 											${dto.category}
 										</div>
 										
-										<div class="info2">
+										<div class="info2" style="font-family:IBM Plex Sans KR;">
 											${dto.mname}
 										</div>
 										
-										<div class="info3">
+										<div class="info3" style="font-family:IBM Plex Sans KR;">
 											${dto.city1} ${dto.city2} <br>
 											멤버 : ${dto.mcount}/100명
 										</div>

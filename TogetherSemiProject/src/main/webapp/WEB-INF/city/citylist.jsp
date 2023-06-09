@@ -130,6 +130,31 @@ select {
 	background-color:#FE9A2E;
 	margin-bottom: 5px;
 }
+.btntop {
+ 	font-weight:bold;
+    background-color: white;
+    border: 2px solid #FE9A2E;
+    color: #FE9A2E;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    width: 150px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .btntop:hover {
+    background-color: #FE9A2E;
+    color: white;
+    font-weight:bold;
+  }
+   .btntop:active,
+  .btntop:focus {
+   	background-color: #FE9A2E;
+    color: white;
+    outline: none;
+    font-weight:bold;
+  }
 
 </style>
 </head>
@@ -156,10 +181,8 @@ select {
 <div class="ajaxzone" style="height: 213px;"></div>
 
 	<div class="top3line" style="margin-bottom: -15px;">
-	<button class="btn btn-sm text-white" style="margin-top:0px;margin-bottom:20px; width:100px;background-color:#FE9A2E"
-	id="liketop" onclick="liketop()">추천수 TOP3</button>
-	<button class="btn btn-sm text-white" style="margin-top:0px;margin-bottom:20px; width:100px;background-color:#FE9A2E" 
-	id="readtop" onclick="readtop()">조회수 TOP3</button>
+	<button class="btntop" id="liketop" onclick="liketop()">추천수 TOP3</button>
+	<button class="btntop" id="readtop" onclick="readtop()">조회수 TOP3</button>
 	<c:choose>
 	<c:when test="${city1=='no' }">
 	<span style="float:right">
@@ -549,16 +572,24 @@ select {
 	});
 	let flag = true;
 
-	function alternatingFunctions() {
-	  if (flag) {
-			liketop();
-	  } else {
-	   		readtop();
-	  }
-	  flag = !flag;
-	}
-
-	setInterval(alternatingFunctions, 8000);
+	   function alternatingFunctions() {
+	     if (flag) {
+	         liketop();
+	     } else {
+	            readtop();
+	     }
+	     flag = !flag;
+	   }
+	   
+	   
+	   timestop = setInterval(alternatingFunctions, 8000);
+	   
+	   $("#liketop").click(function(){
+	      clearInterval(timestop);
+	   });
+	   $("#readtop").click(function(){
+	      clearInterval(timestop);
+	   });
 	
 	document.addEventListener("DOMContentLoaded", function() {
   		var buttonId = "heading_city"; // 해당 버튼의 고유한 ID로 변경해야 합니다.

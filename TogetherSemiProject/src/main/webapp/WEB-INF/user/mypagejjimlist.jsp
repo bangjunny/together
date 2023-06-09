@@ -16,20 +16,16 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-	.navbar-nav .nav-item .nav-link.active {
-	  color: orange;
-	}
-
 	.navbar-nav .nav-item:hover .nav-link {
 	  /*네브바 호버 이벤트 */
-	  background-color: #f0f0f0;
+	  background-color: #FFF7E9;
 	  color: orange;
 	  border-radius: 5px;
 	}
-	
-	.navbar-nav .nav-item.nav-link:active{
+	.navbar-nav .nav-item .nav-link.active {
 	  color: orange;
 	}
+	
 	
  	#mypage_navbar{		
 		margin-top:0px;
@@ -61,7 +57,7 @@
 	}
  
 	.jjimitem-container{
-	  display: grid;
+	  	display: grid;
 	    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 반응형으로 조정 */
 	    grid-gap: 20px; /* 아이템 사이의 간격을 조정 */
 	    max-width: 100%; /* 최대 가로 크기를 100%로 설정 */
@@ -126,11 +122,9 @@
 	}
 	
 	.jjim-details{
-		
         color:gray;
         font-weight: normal;
         font-size:13px;
-        
 	}  
 	
 	
@@ -195,9 +189,9 @@
 						       	<p>
 						        ${jjim.city1},${jjim.city2}				        
 						        </p>				       
-				        
-				        <p>${jjim.category}</p>  
-			                 </div>  
+				        		 </div>
+				       			 <p>${jjim.category}</p>  
+			                  
 			               </div>   
 			           </div>
 		         </a>             

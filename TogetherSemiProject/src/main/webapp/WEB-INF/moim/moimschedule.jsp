@@ -110,7 +110,7 @@
 <div class="tableform">
 	<form action="insertSchedule" method="post" enctype="multipart/form-data" id="moimform">
 	<table class="table caption-top">
-		<caption>일정 만들기</caption>	
+		<h3 style="text-align:center"> 일정 만들기</h3>	
 		<input type="hidden" name="unum" value="${unum}">	
 		<tr>
 			<td colspan="2">

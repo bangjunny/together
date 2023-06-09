@@ -131,12 +131,12 @@
 	    -webkit-box-orient: vertical;
 	    -webkit-line-clamp: 3; /* 최대 세 줄까지 표시하도록 설정 */
   }
-  .navbar-nav .nav-item:hover .nav-link {
-  /*네브바 호버 이벤트 */
-  background-color: #f0f0f0;
-  color: orange;
-  border-radius: 5px;
-}
+ .navbar-nav .nav-item:hover .nav-link {
+	  /*네브바 호버 이벤트 */
+	  background-color: #FFF7E9;
+	  color: orange;
+	  border-radius: 5px;
+	}
 	.navbar-nav .nav-item .nav-link.active {
 	  color: orange;
 	}
@@ -190,7 +190,7 @@
 				      <div class="cblist-title">
 				        <b style="font-size:1.5em">${cb.subject}</b></div>
 				        <div class="cblike-details">
-				          지역: ${cb.city1},${cb.city2} | 조회수: ${cb.readcount} | 좋아요: ${cb.cblike} |
+				          지역: ${cb.city1},${cb.city2} | 조회수: ${cb.readcount} | 추천수: ${cb.cblike} |
 				          작성일: <fmt:formatDate value="${cb.cbwriteday}" pattern="yyyy-MM-dd"/>      
 				        </div>
 				        <div class="cblike-description">

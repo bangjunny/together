@@ -135,7 +135,7 @@
 	}
 	.navbar-nav .nav-item:hover .nav-link {
 	  /*네브바 호버 이벤트 */
-	  background-color: #f0f0f0;
+	  background-color: #FFF7E9;
 	  color: orange;
 	  border-radius: 5px;
 	}

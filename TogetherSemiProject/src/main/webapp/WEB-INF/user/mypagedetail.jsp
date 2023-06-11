@@ -15,28 +15,43 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:wght@600&family=Noto+Sans&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <style>
-	body, body * {
-            /* font-family: 'Noto Sans', sans-serif; */
-    }
     
     tbody {
     	font-size: 1.5em;
     }
     
-    #mypage_navbar{		
-		margin-top:-40px;
-		margin-bottom:30px;
+   	#mypage_navbar{		
+		margin-top:0px;
+		
 
 	}
-
 	#mynav_text{		
-		margin-left:180px;
+		margin-left:280px;
+		margin-right:35px;
+		
 
+	}
+	.nav-item{
+		font-weight:700;
+		margin: 0 20px;
+	
+	}
+ 	.container {
+	   margin-top:0px;
+	  margin-left:10px;
+	 margin-bottom:200px;
+	  max-width: 1440px;
+	  margin: 100 100 100 100;
+	  flex : auto;
+	  padding: 20px 20px 20px 20px;
+	  background-color: #fff;
+	  border: 1px solid #ddd;
+	  box-shadow: 0px 0px 5px #ddd;
 	}
 
 	  .MPtable tbody tr:hover {
@@ -80,17 +95,6 @@
 	#myprofile{
 		margin-left:20px;
 		
-	}
-	
-	.container {
-	
-	  margin-left:10px;
-	  max-width: 1440px;
-	  flex : auto;
-	  padding: 20px 20px 20px 20px;
-	  background-color: #fff;
-	  border: 1px solid #ddd;
-	  box-shadow: 0px 0px 5px #ddd;
 	}
 	
 	.card {
@@ -149,6 +153,15 @@
         border-radius: 5px;
         transition: background-color 0.2s;
 	}
+	.navbar-nav .nav-item:hover .nav-link {
+	  /*네브바 호버 이벤트 */
+	  background-color: #FFF7E9;
+	  color: orange;
+	  border-radius: 5px;
+	}
+	.navbar-nav .nav-item .nav-link.active {
+	  color: orange;
+	}
 
 </style>
 
@@ -156,26 +169,26 @@
 <!-- 마이페이지내브바 -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="mypage_navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text">MYPAGE</a>
+    <a class="navbar-brand" href="/user/mypagedetail?unum=${unum}" id="mynav_text" style="font-family:IBM Plex Sans KR;">MYPAGE</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/user/mypagedetail?unum=${unum}">내 정보</a>
+          <a class="nav-link active" aria-current="page" href="/user/mypagedetail?unum=${unum}" style="font-family:IBM Plex Sans KR;">내 정보</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}">내 모임</a>
+          <a class="nav-link" href="/user/mypagegaiplist?unum=${unum}"  style="font-family:IBM Plex Sans KR;">내 모임</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}">내가 찜한 모임</a>
+          <a class="nav-link" href="/user/mypagejjimlist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내가 찜한 모임</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagecblist?unum=${unum}">내가 작성한 게시글</a>
+          <a class="nav-link" href="/user/mypagecblist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내가 작성한 게시글</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}">내가 추천한 게시글</a>
+          <a class="nav-link" href="/user/mypagecblikelist?unum=${unum}" style="font-family:IBM Plex Sans KR;">내가 추천한 게시글</a>
         </li>
       </ul>
     </div>
@@ -185,51 +198,51 @@
 <div class="container text">
 	<div id="myprofile"  style="display: block;">
   		<div class="row">
-	    <div class="card col text-center">
-	      <h3>프로필 사진</h3>
-	      <c:choose>
-	        <c:when test="${not empty photoList}">
-	          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-	            <div class="carousel-inner">
-	              <c:forEach var="photo" items="${photoList}">
-	                <c:if test="${photo.is_main == 1}">
-	                  <div class="carousel-item active">
-	                    <!-- 대표사진으로 출력하는 코드 -->	                             
-	                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo main" alt="대표사진">
-	                    <br><br>
-	                    <label><i class="bi bi-award-fill"></i>나의 대표사진</label>    
-	                  </div>
-	                </c:if>
-	                <c:if test="${photo.is_main != 1}">
-	                  <div class="carousel-item">
-	                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo" alt="포토사진 ${photo.photo_idx}">
-	                    <br><br>
-	                    <label><i class="bi bi-award setmain" photo_idx="${photo.photo_idx}"></i>대표사진으로 지정하기</label>
-	                    <label><i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}"></i>사진 삭제하기</label> 
-	                  </div>
-	                </c:if>
-	              </c:forEach>
-	            </div>
-	            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-	              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-	              <span class="visually-hidden">Previous</span>
-	            </button>
-	            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-	              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-	              <span class="visually-hidden">Next</span>
-	            </button>
-	          </div>
-	        </c:when>
-		        <c:otherwise>
-		          <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
-		          <p>프로필 사진을 추가해보세요!</p>
-		        </c:otherwise>
-	      	</c:choose>
-		         <!-- Button trigger modal -->           
-	            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myPhotoModal" id="myphotoupdatebtn">
-	                사진 업로드
-	            </button>
-			</div>	
+		    <div class="card col text-center">
+		      <h3>프로필 사진</h3>
+		      <c:choose>
+		        <c:when test="${not empty photoList}">
+		          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+		            <div class="carousel-inner">
+		              <c:forEach var="photo" items="${photoList}">
+		                <c:if test="${photo.is_main == 1}">
+		                  <div class="carousel-item active">
+		                    <!-- 대표사진으로 출력하는 코드 -->	                             
+		                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo main" alt="대표사진">
+		                    <br><br>
+		                    <label><i class="bi bi-award-fill"></i>나의 대표사진</label>    
+		                  </div>
+		                </c:if>
+		                <c:if test="${photo.is_main != 1}">
+		                  <div class="carousel-item">
+		                    <img src="https://${imageUrl}/userprofile/${photo.file_name}" class="profile-photo" alt="포토사진 ${photo.photo_idx}">
+		                    <br><br>
+		                    <label><i class="bi bi-award setmain" photo_idx="${photo.photo_idx}"></i>대표사진으로 지정하기</label>
+		                    <label><i class="bi bi-x-square photodel" photo_idx="${photo.photo_idx}"></i>사진 삭제하기</label> 
+		                  </div>
+		                </c:if>
+		              </c:forEach>
+		            </div>
+		            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+		              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		              <span class="visually-hidden">Previous</span>
+		            </button>
+		            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+		              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		              <span class="visually-hidden">Next</span>
+		            </button>
+		          </div>
+		        </c:when>
+			        <c:otherwise>
+			          <img src="https://kr.object.ncloudstorage.com/together-bucket-104/moim/together.png">
+			          <p>프로필 사진을 추가해보세요!</p>
+			        </c:otherwise>
+		      	</c:choose>
+			         <!-- Button trigger modal -->           
+		            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myPhotoModal" id="myphotoupdatebtn">
+		                사진 업로드
+		            </button>
+				</div>	
 				<div class="text col" style="display: block;">
 				    <table class="table table-borderless table-hover MPtable" id="myinfotable">
 				        <tbody>
@@ -276,91 +289,41 @@
 		    		</a>
 		    		</label>
 		    		
-		    		<div id="mypageupdateform" style="display: none;">
-		    		<%@include file="mypageupdatecheck.jsp" %>
-		    		</div>
+			    		<div id="mypageupdateform" style="display: none;">
+			    		<%@include file="mypageupdatecheck.jsp" %>
+			    		</div>
 			    	</div>
-		    		<script type="text/javascript">
-		    			$(document).ready(function() {
-		    			  $('[data-toggle="tooltip"]').tooltip();
-		    			  
-						$("#mypageupdateicon").click(function() {
-								
-								/* $("#myinfotable").css("display", "none");
-								$("#mypageupdateform").css("display", "block"); */	
-						});			
-						});	
-					</script>
+		    		
 					<!-- The Modal -->
-<div class="modal fade" id="sujung">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">회원 확인</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-		비밀번호를 확인 한 후 회원정보 수정으로 이동합니다<br>
-		<div class="mb-3" style="margin-top:30px;">
-            <label for="message-text" class="col-form-label">비밀번호</label>
-            <input type="password" class="form-control" id="updatepass"  style="height:50px">
-          </div>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" onclick="passchk()" class="makemo" data-bs-dismiss="modal">확인</button>
-      </div>
-    </div>
-  </div>
-</div>
+					<div class="modal fade" id="sujung">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					
+					      <!-- Modal Header -->
+					      <div class="modal-header">
+					        <h4 class="modal-title">회원 확인</h4>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					      </div>
+					
+					      <!-- Modal body -->
+					      <div class="modal-body">
+							비밀번호를 확인 한 후 회원정보 수정으로 이동합니다<br>
+							<div class="mb-3" style="margin-top:30px;">
+					            <label for="message-text" class="col-form-label">비밀번호</label>
+					            <input type="password" class="form-control" id="updatepass"  style="height:50px">
+					          </div>
+					      </div>
+					
+					      <!-- Modal footer -->
+					      <div class="modal-footer">
+					        <button type="button" onclick="passchk()" class="makemo" data-bs-dismiss="modal">확인</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
 			</div>
 		</div> 	  
-	</div>	  
-	 <!-- 가입한 모임 목록 보여주기 -->
-		
-		<div id="mylist_wrap"  style="display: none;"> 
-			  나의 모임 리스트 출력하기
-			  
-			  <button id="mylist_1_btn">내가 만든 모임</button>
-			  </a>
-			  <button id="mylist_2_btn">내가 찜한 모임</button>
-			  <button id="mylist_3_btn">가입한 모임</button>
-			  
-			  <div id="mylist_1" style="display: block;">
-			  <%@ include file="mypagemoimlist.jsp" %>
-			  </div>
-			  <div id="mylist_2" style="display: none;">
-			  <%@ include file="mypagejjimlist.jsp" %>
-			  </div>
-			 
-			<div id="mylist_3" style="display: none;">
-				 <%@ include file="mypagegaiplist.jsp" %>
-			</div>	
-		</div>	
-			<script type="text/javascript">
-				$("#mylist_2_btn").click(function() {
-					$("#mylist_1").css("display", "none");
-					$("#mylist_2").css("display", "block");
-					$("#mylist_3").css("display", "none");
-				});
-				$("#mylist_1_btn").click(function() {
-					$("#mylist_1").css("display", "block");
-					$("#mylist_2").css("display", "none");
-					$("#mylist_3").css("display", "none");
-				});
-				$("#mylist_3_btn").click(function() {
-					$("#mylist_1").css("display", "none");
-					$("#mylist_2").css("display", "none");
-					$("#mylist_3").css("display", "block");
-				});
-				
-			</script>
-  
+	</div>	   
 </div>	
 
 <hr>

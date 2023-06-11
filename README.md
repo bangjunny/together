@@ -49,7 +49,7 @@
 <br/>
 
 ## Jenkins
-URL : 
+URL : http://223.130.129.171:8090/
 ### 테스트
-아이디 : <br/>
-비밀번호 : 
+아이디 : test@test.com <br/>
+비밀번호 : test123

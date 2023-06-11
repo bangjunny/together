@@ -14,14 +14,57 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <style>
 	
-	#tableform {
-		margin-left: 150px;
-		margin-top: 200px;
+	.tableform {
+		max-width:1140px;
+		margin :0 auto; 
 	}
-.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
-.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-.map_wrap {position:absolute;width:50%;height:430px;top:280px;left:650px;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:300px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.8);z-index: 1;font-size:12px;border-radius: 10px;}
+	.table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #fff;
+    font-size:20px;
+  }
+  
+  .table td {
+    padding: 10px;
+  }
+  
+  
+  .table input[type="text"],
+  .table input[type="date"],
+  .table input[type="time"],
+  .table input[type="number"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #fff;
+    border-radius: 3px;
+  }
+  
+  .table .bi {
+    font-size: 18px;
+    vertical-align: middle;
+  }
+  
+  .table .btnsubmit {
+    margin-top: 10px;
+  }
+  
+  .btnsubmit button {
+    margin-right: 5px;
+  }
+  	
+	.map_wrap, 
+	.map_wrap * {
+	  margin:0;
+	  padding:0;
+	  font-family:'Malgun Gothic',dotum,'돋움',sans-serif;
+	  font-size:12px;
+	  }
+    .map_wrap a, .map_wrap a:hover, .map_wrap a:active{
+    color:#000;text-decoration: none;
+    }
+.map_wrap {position:relative;width:50%;height:430px;top:280px;left:650px;}
+#menu_wrap {position:relative;top:0;left:0;bottom:0;width:300px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.8);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
@@ -55,20 +98,20 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 
-@media ( max-width: 1200px ){
-.map_wrap {position:absolute;width:35%;height:430px;top:280px;left:580px;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:270px;height:200px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.8);z-index: 1;font-size:12px;border-radius: 10px;}
+@media ( max-width: 1140px ){
+.map_wrap {position:relative;width:35%;height:430px;top:280px;left:580px;}
+#menu_wrap {position:relative;top:0;left:0;bottom:0;width:270px;height:200px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.8);z-index: 1;font-size:12px;border-radius: 10px;}
 #keyword{width:110px;}
 .btnsch{width:35px;height:20px;}
 }
 </style>
 </head>
 <body>
-<div id="tableform" style="width:400px" >
+<div class="tableform">
 	<form action="insertSchedule" method="post" enctype="multipart/form-data" id="moimform">
-	<table class="table table-bordered" border="1" bgcolor="#ddd" style="width:400px;">
-		<caption style="align:top; font-size:20px;">일정 만들기</caption>	
-		<input type="hidden" name="unum" value="${unum }">	
+	<table class="table caption-top">
+		<h3 style="text-align:center"> 일정 만들기</h3>	
+		<input type="hidden" name="unum" value="${unum}">	
 		<tr>
 			<td colspan="2">
 				<input type="text" id="mssubject" class="form-control" name="mssubject" maxlength="15" required="required" placeholder="일정 제목을 입력해주세요(최대15자)">
@@ -117,24 +160,27 @@
 		</tr>
 	</table>
 	</form>
+	
 </div>
 
 <div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-
-    <div id="menu_wrap" class="bg_white" style="border-radius: 20px;">
-        <div class="option">
-            <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="강남 비트캠프" id="keyword" size="18"> 
-                    <button type="submit" class="btn btn-warning btnsch" style="width:70px;height:35px;">검색</button> 
-                </form>
-            </div>
-        </div>
-        <hr>
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
-    </div>
+	<div class="tableform">
+	    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+	
+	    <div id="menu_wrap" class="bg_white" style="border-radius: 20px;">
+	        <div class="option">
+	            <div>
+	                <form onsubmit="searchPlaces(); return false;">
+	                    키워드 : <input type="text" value="강남 비트캠프" id="keyword" size="18"> 
+	                    <button type="submit" class="btn btn-warning btnsch" style="width:70px;height:35px;">검색</button> 
+	                </form>
+	            </div>
+	        </div>
+	        <hr>
+	        <ul id="placesList"></ul>
+	        <div id="pagination"></div>
+	    </div>
+ 	</div>   
 </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	82d531473f9f3c5fc093e4d7e3225bc7&libraries=services"></script>

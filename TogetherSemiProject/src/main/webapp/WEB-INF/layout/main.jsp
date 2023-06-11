@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?&family=Nunito:wght@1000&family=Gamja+Flower&family=Jua&family=Lobster&family=Gowun+Dodum&family=Single+Day&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?&family=Nunito:wght@1000&family=Gamja+Flower&family=Jua&family=IBM+Plex+Sans+KR:wght@600&family=Gowun+Dodum&family=Single+Day&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
@@ -23,6 +23,9 @@
  		transition: scroll-behavior 0.5s ease-in-out;
 		font-family: 'Gowun Dodum', sans-serif;
 		overflow-x: hidden;
+	}
+	.main_mid_pic img {
+	  filter: brightness(50%); /* 어둡게 조정할 밝기 비율을 설정합니다. 0%는 완전히 어둡게, 100%는 원본 이미지와 동일한 밝기입니다. */
 	}
 	a:link,a:visited,a:hover {
 		text-decoration: none;
@@ -410,7 +413,7 @@ $(document).ready(function() {
 			
 			
 
-			<div id="main_header_txt">
+			<div id="main_header_txt" style="font-family:IBM Plex Sans KR;">
 				<!-- Lorem ipsum dolor sit amet, consectetur adipisicing elited do eiusmod tempor incididunt ut labore e, st dolore magna aliqua. Ut enim ad <span id="rotate_word" style="color: red">communities</span> -->
 				저희가 제공하는 다양한 모임 카테고리를 이용해, 다양한 분야의 다양한 사람들을 만나보세요! &nbsp;&nbsp;&nbsp;<span id="rotate_word" style="color: #FE642E; font-size:30px; font-family:Nunito;">Music</span>
 			
@@ -419,7 +422,7 @@ $(document).ready(function() {
 			<div id="main_btn_wrap">
 				<c:choose>
 					<c:when test="${sessionScope.unum ne null }">
-						<button type="button" class="joocheck" onclick="location.href='/user/mypage?unum=${sessionScope.unum}'">My Page</button>
+						<button type="button" class="joocheck" style="font-family:Nunito" onclick="location.href='/user/mypage?unum=${sessionScope.unum}'">My Page</button>
 					</c:when>
 					<c:otherwise>
 						<button type="button" class="joocheck" onclick="location.href='/user/login'">L o g i n</button>
@@ -460,25 +463,28 @@ $(document).ready(function() {
 	</div>
 	
 	<div class="main_mid_pic">
+
   		<div class="slide-item">
    			<img src="../photo/mid_pic1.jpg">
     	<div class="slide-text">
-      		<h2>다함께에서는 간편하게 모임을 찾아볼 수 있어요.</h2>
+      		<h2 style="font-family:IBM Plex Sans KR;">다함께에서는 간편하게 모임을 찾아볼 수 있어요.</h2>
       		<p>함께 즐길 취미와 관심사를 가진 멤버들을 만나보는 재미, 그리고 모임 활동의 매력을 느껴보세요.</p>
     	</div>
    </div>
   	<div class="slide-item">
     	<img src="../photo/mid_pic2.jpg">
     	<div class="slide-text">
-      		<h2>다함께는 모임 참여를 쉽고 재미있게 만들어줍니다. </h2>
+      		<h2 style="font-family:IBM Plex Sans KR;">다함께는 모임 참여를 쉽고 재미있게 만들어줍니다. </h2>
       		<p>함께 즐길 행사와 활동에 대한 정보도 얻을 수 있습니다. 지금 다함께를 방문해보세요. 우리 함께 멋진 모임 커뮤니티를 이끌고, 새로운 친구들과 즐거운 시간을 보내세요.</p>
     	</div>
   	</div>
   	<div class="slide-item">
     	<img src="../photo/mid_pic3.jpg">
     <div class="slide-text">
-      	<h2>새로운 친구들을 만나고, 즐거운 시간을 보낼 수 있는 당신만의 모임을 발견해보세요. </h2>
-      	<p>다함께에서 활동하는 다양한 새로운 친구들이 당신을 기다리고 있습니다. 여러분의 열정을 터놓고, 취미와 관심사를 공유하는 동호회 친구들과 함께 잊지 못할 경험을 즐겨보세요.</p>
+      	<h2 style="font-family:IBM Plex Sans KR;">새로운 친구들을 만나고,<br> 
+      	즐거운 시간을 보낼 수 있는 당신만의 모임을 발견해보세요. </h2>
+      	
+      	<p>다함께에서 활동하는 다양한 새로운 친구들이 당신을 기다리고 있습니다. <br> 여러분의 열정을 터놓고, 취미와 관심사를 공유하는 동호회 친구들과 함께 잊지 못할 경험을 즐겨보세요.</p>
     </div>
   </div>
 </div>
@@ -494,7 +500,7 @@ $(document).ready(function() {
 	
 	<div id="main_bot_txt" data-aos="fade-up-left" data-aos-duration="1500">
 		<div id="main_bot_title">
-			<h2 style="color:#FE9A2E;">다 함께!</h2>
+			<h2 style="color:#FE9A2E; font-family:IBM Plex Sans KR;">다 함께!</h2>
 		</div>
 		
 		<span style="font-size:20px; line-height:40px;">

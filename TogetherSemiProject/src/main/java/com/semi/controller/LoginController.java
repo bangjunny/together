@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.semi.dto.CityBoardDto;
+import com.semi.dto.CityPhotoDto;
 import com.semi.dto.JJimDto;
 import com.semi.dto.MoimDto;
 import com.semi.dto.UserDto;
@@ -460,7 +461,8 @@ public class LoginController {
 			// 각 글마다 출력할 글 번호(예: 10개 일 경우 1페이지 :10, 2페이지 :7....)
 			no = totalCount - startNum;
   
-			// 내가 쓴 글 리스트 가져오기
+			// 내가 추천한 글 사진 가져오기 
+			
 			 // 내가 추천한 글 리스트 가져오기 		    
 			  List<CityBoardDto> cbLikeList = loginService.getCbLikeList(startNum, perPage, unum);			  
 			  	model.addAttribute("totalCount", totalCount);

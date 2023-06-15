@@ -30,7 +30,6 @@
     padding: 10px;
   }
   
-  
   .table input[type="text"],
   .table input[type="date"],
   .table input[type="time"],

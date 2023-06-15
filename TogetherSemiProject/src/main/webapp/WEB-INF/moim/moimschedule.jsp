@@ -15,8 +15,9 @@
 <style>
 	
 	.tableform {
-		max-width:1140px;
-		margin :0 auto; 
+		max-width:550px;
+		margin-left:180px;
+		margin-top:180px; 
 	}
 	.table {
     border-collapse: collapse;
@@ -52,19 +53,15 @@
   .btnsubmit button {
     margin-right: 5px;
   }
-  	
-	.map_wrap, 
-	.map_wrap * {
-	  margin:0;
-	  padding:0;
-	  font-family:'Malgun Gothic',dotum,'돋움',sans-serif;
-	  font-size:12px;
-	  }
-    .map_wrap a, .map_wrap a:hover, .map_wrap a:active{
-    color:#000;text-decoration: none;
-    }
-.map_wrap {position:relative;width:50%;height:430px;top:280px;left:650px;}
-#menu_wrap {position:relative;top:0;left:0;bottom:0;width:300px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.8);z-index: 1;font-size:12px;border-radius: 10px;}
+	
+	#tableform {
+		margin-left: 150px;
+		margin-top: 200px;
+	}
+.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
+.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
+.map_wrap {position:absolute;width:50%;height:500px;top:280px;left:800px;}
+#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:300px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.8);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
@@ -98,9 +95,9 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 
-@media ( max-width: 1140px ){
-.map_wrap {position:relative;width:35%;height:430px;top:280px;left:580px;}
-#menu_wrap {position:relative;top:0;left:0;bottom:0;width:270px;height:200px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.8);z-index: 1;font-size:12px;border-radius: 10px;}
+@media ( max-width: 1200px ){
+.map_wrap {position:absolute;width:35%;height:430px;top:280px;left:580px;}
+#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:270px;height:200px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.8);z-index: 1;font-size:12px;border-radius: 10px;}
 #keyword{width:110px;}
 .btnsch{width:35px;height:20px;}
 }
@@ -164,23 +161,21 @@
 </div>
 
 <div class="map_wrap">
-	<div class="tableform">
-	    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-	
-	    <div id="menu_wrap" class="bg_white" style="border-radius: 20px;">
-	        <div class="option">
-	            <div>
-	                <form onsubmit="searchPlaces(); return false;">
-	                    키워드 : <input type="text" value="강남 비트캠프" id="keyword" size="18"> 
-	                    <button type="submit" class="btn btn-warning btnsch" style="width:70px;height:35px;">검색</button> 
-	                </form>
-	            </div>
-	        </div>
-	        <hr>
-	        <ul id="placesList"></ul>
-	        <div id="pagination"></div>
-	    </div>
- 	</div>   
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+
+    <div id="menu_wrap" class="bg_white" style="border-radius: 20px;">
+        <div class="option">
+            <div>
+                <form onsubmit="searchPlaces(); return false;">
+                    키워드 : <input type="text" value="강남 비트캠프" id="keyword" size="18"> 
+                    <button type="submit" class="btn btn-warning btnsch" style="width:70px;height:35px;">검색</button> 
+                </form>
+            </div>
+        </div>
+        <hr>
+        <ul id="placesList"></ul>
+        <div id="pagination"></div>
+    </div>
 </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	82d531473f9f3c5fc093e4d7e3225bc7&libraries=services"></script>
@@ -404,7 +399,6 @@ function removeAllChildNods(el) {
 </script>
 </body>
 </html>
-
 
 
 

@@ -49,7 +49,7 @@
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
-
+ 
 @media ( max-width: 1200px ){
 .map_wrap {position:relative;width:520;height:520px;margin: 50px auto 0 auto;}
 #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:280px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.8);z-index: 1;font-size:9px;border-radius: 10px;}

@@ -25,7 +25,7 @@
 ## 팀원
 이름|담당 기능|Github
 ---|---|---
-전병준|로그인, 회원가입|[bangjunny](https://github.com/Jeon1301)
+전병준|로그인, 회원가입|[bangjunny](https://github.com/bangjunny)
 이지현|로그인, 마이페이지|[jihyunnee](https://github.com/jihyunnee)
 신동휘|메인페이지, 레이아웃/헤더|[Alpac495](https://github.com/Alpac495)
 박명수|모임 생성, 모임 게시판 리스트|[BluffingPark](https://github.com/BluffingPark)

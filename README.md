@@ -4,6 +4,7 @@
 모임 회원 모집 서비스를 제공하기 위한 프로젝트입니다.
 
 ## 프로젝트 시연 영상
+<img src="https://github.com/bangjunny/together/assets/116734433/23627e76-805f-4b66-b44e-94b26d79a232" width="400"/>(https://www.youtube.com/watch?v=Vnib4wn5tPY)
 <br/>
 
 ## 주요기능

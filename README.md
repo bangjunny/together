@@ -1,4 +1,4 @@
-# 다 함께 (together) - 모임 활동 서비스
+# <img src="https://github.com/bangjunny/together/assets/116734433/8a006221-4f7f-42a6-8a6c-231ec5c66d21" width="50"/> 다 함께 (together) - 모임 활동 서비스
 
 웹 페이지에서 지역 별로 동호회, 동아리 모임을 개설하거나<br/>
 모임 회원 모집 서비스를 제공하기 위한 프로젝트입니다.

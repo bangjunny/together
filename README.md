@@ -1,7 +1,7 @@
 # <img src="https://github.com/bangjunny/together/assets/116734433/8a006221-4f7f-42a6-8a6c-231ec5c66d21" width="33"/> 다 함께 (together)
 
-웹 페이지에서 지역 별로 동호회, 동아리 모임을 개설하거나<br/>
-모임 회원 모집 서비스를 제공하기 위한 프로젝트입니다.<br/><br/>
+<b>다 함께</b>는 지역 기반의 다양한 동호회와 동아리 모임을 손쉽게 만들고 참여할 수 있는 웹 페이지입니다.<br/>
+우리의 목표는 다양한 관심사를 공유하는 이들이 모여 더 특별한 순간을 함께할 수 있는 기회를 제공하는 것입니다.<br/><br/>
 
 ## 프로젝트 시연 영상
 [<img src="https://github.com/bangjunny/together/assets/116734433/23627e76-805f-4b66-b44e-94b26d79a232" width="400"/>](https://www.youtube.com/watch?v=Vnib4wn5tPY)
